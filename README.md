@@ -54,6 +54,9 @@ git push origin master
 ### 反射
 - [反射](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%8F%8D%E5%B0%84/%E5%8F%8D%E5%B0%84.md)
 
+### 设计模式
+- [设计模式](https://gitee.com/LovelyHzz/study-notes/blob/master/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
+
 ### SVN
 - [SVN](https://gitee.com/LovelyHzz/study-notes/blob/master/SVN/SVN.md)
 
