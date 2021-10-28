@@ -44,6 +44,13 @@ git push origin master
 - [JavaScript](https://gitee.com/LovelyHzz/study-notes/blob/master/%E4%BB%A3%E7%A0%81%E5%BA%93/javascript.md)
 - [Java](https://gitee.com/LovelyHzz/study-notes/blob/master/%E4%BB%A3%E7%A0%81%E5%BA%93/Java.md)
 
+### 开发环境
+- [数据库](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E6%95%B0%E6%8D%AE%E5%BA%93.md)
+- [VS2019](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vs2019.md)
+- [tomcat配置](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/Tomcat%E9%85%8D%E7%BD%AE.md)
+- [idea配置](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/IDEA%E9%85%8D%E7%BD%AE.md)
+- [maven配置](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/maven%E9%85%8D%E7%BD%AE.md)
+
 ### SVN
 - [SVN](https://gitee.com/LovelyHzz/study-notes/blob/master/SVN/SVN.md)
 
