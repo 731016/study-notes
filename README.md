@@ -51,6 +51,11 @@ git push origin master
 - [idea配置](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/IDEA%E9%85%8D%E7%BD%AE.md)
 - [maven配置](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/maven%E9%85%8D%E7%BD%AE.md)
 
+### MySql
+- [MySQL安装](https://gitee.com/LovelyHzz/study-notes/blob/master/MySQL/MySql%E5%AE%89%E8%A3%85.md)
+- [JDBC组件](https://gitee.com/LovelyHzz/study-notes/blob/master/MySQL/JDBC%E7%BB%84%E4%BB%B6.md)
+- [控制台购物商城实现](https://gitee.com/LovelyHzz/study-notes/blob/master/MySQL/%E8%B4%AD%E7%89%A9%E5%95%86%E5%9F%8E.md)
+
 ### 反射
 - [反射](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%8F%8D%E5%B0%84/%E5%8F%8D%E5%B0%84.md)
 
