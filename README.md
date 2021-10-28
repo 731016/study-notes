@@ -27,14 +27,12 @@ git commit -m "注释"
 ## 上传到远程仓库
 git push origin master
 ```
-
-### gitee
+### 博客
+#### <ins>gitee</ins>
 [我的工作台 - Gitee.com](https://gitee.com/LovelyHzz/dashboard/projects)
-
-### github
+#### <ins>github</ins>
 [731016 / Repositories · GitHub](https://github.com/731016?tab=repositories)
-
-### CSDN博客
+#### <ins>CSDN博客</ins>
 [小飞的博客_折腾的小飞_CSDN博客- 专升本c语言, 蓝桥杯,Java领域博主](https://blog.csdn.net/qq_41666142)
 
 
