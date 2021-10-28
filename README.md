@@ -5,5 +5,5 @@
 Java方面
 
 ## 目录 :pencil: 
-- [spring](https://gitee.com/LovelyHzz/study-notes/blob/master/spring.md)
+- [spring](https://gitee.com/LovelyHzz/study-notes/blob/master/SSM%E6%A1%86%E6%9E%B6/spring.md)
 
