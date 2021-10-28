@@ -59,6 +59,9 @@ git push origin master
 - [JDBC组件](https://gitee.com/LovelyHzz/study-notes/blob/master/MySQL/JDBC%E7%BB%84%E4%BB%B6.md)
 - [控制台购物商城实现](https://gitee.com/LovelyHzz/study-notes/blob/master/MySQL/%E8%B4%AD%E7%89%A9%E5%95%86%E5%9F%8E.md)
 
+### JSP + servlet
+- [JSP + servlet](https://gitee.com/LovelyHzz/study-notes/blob/master/jsp_servlet/jsp_servlet.md)
+
 ### 反射
 - [反射](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%8F%8D%E5%B0%84/%E5%8F%8D%E5%B0%84.md)
 
