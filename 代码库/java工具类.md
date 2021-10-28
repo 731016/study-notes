@@ -53,3 +53,5 @@ String[] delChecks = request.getParameterValues("delCheck");
 Integer[] delChecksInteger = (Integer[]) ConvertUtils.convert(delChecks, Integer.class);
 ```
 
+#### JavaSript API | 腾讯位置服务
+[https://lbs.qq.com/webApi/javascriptGL/glGuide/glOverview](https://lbs.qq.com/webApi/javascriptGL/glGuide/glOverview)
