@@ -51,6 +51,9 @@ git push origin master
 - [idea配置](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/IDEA%E9%85%8D%E7%BD%AE.md)
 - [maven配置](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/maven%E9%85%8D%E7%BD%AE.md)
 
+### jQuery
+- [jQuery Ajax](https://gitee.com/LovelyHzz/study-notes/blob/master/jQuery/Ajax.md)
+
 ### MySql
 - [MySQL安装](https://gitee.com/LovelyHzz/study-notes/blob/master/MySQL/MySql%E5%AE%89%E8%A3%85.md)
 - [JDBC组件](https://gitee.com/LovelyHzz/study-notes/blob/master/MySQL/JDBC%E7%BB%84%E4%BB%B6.md)
