@@ -94,3 +94,6 @@ git push origin master
 - [正则表达式](https://gitee.com/LovelyHzz/study-notes/blob/master/linux/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.md)
 - [samba服务器](https://gitee.com/LovelyHzz/study-notes/blob/master/linux/samba%E6%9C%8D%E5%8A%A1%E5%99%A8.md)
 - [ubuntu问题解答](https://gitee.com/LovelyHzz/study-notes/blob/master/linux/ubuntu%E9%97%AE%E9%A2%98%E8%A7%A3%E7%AD%94.md)
+
+### 面试
+- [Java基础面试16问部分](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%9D%A2%E8%AF%95/%E9%9D%A2%E8%AF%95%E9%A2%98.md)
