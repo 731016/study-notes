@@ -1,6 +1,6 @@
 # 学习笔记 :tw-1f4d7: 
 
-## 介绍
+## 介绍 :point_left: 
 编程学习记录
 Java方面
 
@@ -29,7 +29,7 @@ git commit -m "注释"
 ## 上传到远程仓库
 git push origin master
 ```
-### 博客
+### 博客 :books: 
 #### <ins>gitee</ins>
 [我的工作台 - Gitee.com](https://gitee.com/LovelyHzz/dashboard/projects)
 #### <ins>github</ins>
@@ -38,13 +38,13 @@ git push origin master
 [小飞的博客_折腾的小飞_CSDN博客- 专升本c语言, 蓝桥杯,Java领域博主](https://blog.csdn.net/qq_41666142)
 
 
-### 代码库
+### 代码库 :computer: 
 - [Java工具类](https://gitee.com/LovelyHzz/study-notes/blob/master/%E4%BB%A3%E7%A0%81%E5%BA%93/java%E5%B7%A5%E5%85%B7%E7%B1%BB.md)
 - [java算法基础题](https://gitee.com/LovelyHzz/study-notes/blob/master/%E4%BB%A3%E7%A0%81%E5%BA%93/java%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E9%A2%98.md)
 - [JavaScript](https://gitee.com/LovelyHzz/study-notes/blob/master/%E4%BB%A3%E7%A0%81%E5%BA%93/javascript.md)
 - [Java](https://gitee.com/LovelyHzz/study-notes/blob/master/%E4%BB%A3%E7%A0%81%E5%BA%93/Java.md)
 
-### 开发环境
+### 开发环境 :recycle: 
 - [数据库](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E6%95%B0%E6%8D%AE%E5%BA%93.md)
 - [VS2019](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vs2019.md)
 - [tomcat配置](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/Tomcat%E9%85%8D%E7%BD%AE.md)
@@ -97,5 +97,5 @@ git push origin master
 - [samba服务器](https://gitee.com/LovelyHzz/study-notes/blob/master/linux/samba%E6%9C%8D%E5%8A%A1%E5%99%A8.md)
 - [ubuntu问题解答](https://gitee.com/LovelyHzz/study-notes/blob/master/linux/ubuntu%E9%97%AE%E9%A2%98%E8%A7%A3%E7%AD%94.md)
 
-### 面试
+### 面试 :briefcase: 
 - [Java基础面试16问部分](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%9D%A2%E8%AF%95/%E9%9D%A2%E8%AF%95%E9%A2%98.md)
