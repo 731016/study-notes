@@ -10,6 +10,8 @@ Java方面
 
   [简单解决 gitee 上传限制问题 - jaychou、 - 博客园 (cnblogs.com)](https://www.cnblogs.com/jaychou-/p/14983818.html#:~:text=我们使用代码来上,10m以内的文件)
 
+  [vscode链接github&gitee](https://blog.csdn.net/qq_38981614/article/details/115013188)
+
 ```Git
 ## 克隆仓库 
 git clone 仓库地址
