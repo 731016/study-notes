@@ -597,3 +597,183 @@ public class Demo {
 
 ![image-20211029134920732](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110291349202.png)
 
+## 配置类config
+
+### pom.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.spring</groupId>
+    <artifactId>spring</artifactId>
+    <version>1.0</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.3.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.47</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.19</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.4.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.3.11</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>5.3.11</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <!--   xml映射文件放到java文件一起-->
+        <!--        <resources>-->
+        <!--            <resource>-->
+        <!--                <directory>src/main/java</directory>-->
+        <!--                <includes>-->
+        <!--                    <include>**/*.xml</include>-->
+        <!--                </includes>-->
+        <!--                <filtering>false</filtering>-->
+        <!--            </resource>-->
+        <!--        </resources>-->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+### JdbcConfig类
+
+```java
+package com.config;
+
+import com.alibaba.druid.pool.DruidDataSource;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import javax.sql.DataSource;
+
+public class JdbcConfig {
+    @Value("${jdbc.driver}")//读取db.properties中的驱动字符串
+    private String driver;
+
+    @Value("${jdbc.url}")//读取db.properties中的远程服务器地址
+    private String url;
+
+    @Value("${jdbc.user}")//读取db.properties中的mysql用户名
+    private String user;
+
+    @Value("${jdbc.password}")//读取db.properties中的mysql密码
+    private String password;
+    
+//该方法等价于spring配置文件中的<bean id="ds" />
+    @Bean("ds")
+    public DataSource createDataSource() {
+        DruidDataSource ds = new DruidDataSource();
+        ds.setDriverClassName(driver);
+        ds.setUrl(url);
+        ds.setUsername(user);
+        ds.setPassword(password);
+        return ds;
+    }
+//该方法等价于spring配置文件中的<bean id="jdbcTemplate" />并且通过注解参数和datasource建立关联
+    @Bean("jdbcTemplate")
+    public JdbcTemplate createJdbcTemplate(@Qualifier("ds") DataSource dataSource){
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        return jdbcTemplate;
+    }
+}
+
+```
+
+### db.properties
+
+```properties
+jdbc.driver=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/demo?characterEncoding=utf-8
+jdbc.user=root
+jdbc.password=123456
+```
+
+### SpringConfig类
+
+```java
+package com.config;
+
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
+//spring配置的启动类
+@Configuration//将该类变为配置类，起到bean.xml的作用
+@ComponentScan("com")// 组件扫描 com 下所有类
+@PropertySource("classpath:db.properties")//读取 db.properties文件
+@Import(JdbcConfig.class)//和 JdbcConfig类建立关联
+public class SpringConfig {
+}
+```
+
+### test类
+
+```java
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = SpringConfig.class)
+public class Demo2 {
+
+    @Resource
+    private StudentService service;
+
+    @Test
+    public void Demo1(){
+        System.out.println(service.queryAll());
+    }
+}
+```
