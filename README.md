@@ -12,6 +12,10 @@ Java方面
 
   [vscode链接github&gitee](https://blog.csdn.net/qq_38981614/article/details/115013188)
 
+  [git同时设置gitee和github push代码](https://cloud.tencent.com/developer/article/1774890)
+
+  [ssh测试连接超时](https://www.xuebuyuan.com/2159862.html)
+
 ```Git
 ## 克隆仓库 
 git clone 仓库地址
