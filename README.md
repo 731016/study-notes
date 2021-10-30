@@ -16,6 +16,13 @@ Java方面
 
   [ssh测试连接超时](https://www.xuebuyuan.com/2159862.html)
 
+  ```Git
+  重置账户和密码
+  git config --system --unset credential.helper
+  // 如果需要更大的范围
+  git config --global --unset credential.helper)
+  ```
+
 ```Git
 ## 克隆仓库 
 git clone 仓库地址
