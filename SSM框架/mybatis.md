@@ -57,6 +57,7 @@ jdbc.driver=com.mysql.jdbc.Driver
 jdbc.url=jdbc:mysql://localhost:3306/demo?characterEncoding=utf8
 jdbc.username=root
 jdbc.password=123456
+
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"

@@ -109,6 +109,8 @@ scope="singleton单例(同一个对象) | prototype多例" init-method="init(初
 
 ## Bean注入
 
+https://cloud.tencent.com/developer/article/1889640
+
 ```xml-dtd
 <bean id="student" class="com.pojo.Student">
 <!-- 构造 -->
@@ -124,6 +126,15 @@ scope="singleton单例(同一个对象) | prototype多例" init-method="init(初
 ```
 
 ## 依赖注入
+
+Spring通过DI（依赖注入）实现IOC（控制反转），常用的注入方式主要有三种：**构造方法注入**，**setter注入**，基于**注解的注入**。
+
+```java
+@Resource  根据名称注入
+@Autowired 自动装配 根据类型注入
+```
+
+
 
 ![image-20211028161607573](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281616290.png)
 
@@ -836,5 +847,85 @@ test
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring.xml")
 @Resource
+```
+
+### web（servlet）暂时
+
+```xml-dtd
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
+```
+
+
+
+![image-20211101112325460](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111011123119.png)
+
+```xml-dtd
+<bean id="studentService" class="com.service.impl.StudentServiceImpl"></bean>
+```
+
+```java
+package com.web;
+
+import com.pojo.Student;
+import com.service.StudentService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
+import javax.annotation.Resource;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
+
+@WebServlet(name = "QueryAllStuSvl",urlPatterns = "/select")
+public class QueryAllStuSvl extends HttpServlet {
+
+    @Resource
+    private StudentService service;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,config.getServletContext());
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
+        response.setCharacterEncoding("utf-8");
+
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        StudentService service = applicationContext.getBean("studentService", StudentService.class);
+
+
+        List<Student> list = service.queryAll();
+        request.getSession().setAttribute("stuList",list);
+        response.sendRedirect("index.jsp");
+    }
+}
 ```
 
