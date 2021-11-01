@@ -789,7 +789,7 @@ public class Demo2 {
 }
 ```
 
-## mybatis整合spring
+# mybatis整合spring
 
 ```xml
 <!-- mybatis.xml -->
@@ -849,7 +849,7 @@ test
 @Resource
 ```
 
-### web（servlet）暂时
+## web（servlet）暂时
 
 ```xml-dtd
 <?xml version="1.0" encoding="UTF-8"?>
