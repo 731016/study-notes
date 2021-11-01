@@ -1,4 +1,4 @@
-# Spring
+# Spring IoC
 
 
 
@@ -927,5 +927,348 @@ public class QueryAllStuSvl extends HttpServlet {
         response.sendRedirect("index.jsp");
     }
 }
+```
+
+# spring AOP
+
+https://toscode.gitee.com/JavaGuide/JavaGuide/blob/master/docs/java/basis/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3.md#31-jdk-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6
+
+## JDK动态代理
+
+### 处理类（切面类）
+
+```java
+package com.aop;
+//通用类
+public class Shop {
+    public void check(){
+        System.out.println("买房前检查...");
+    }
+    public void notQualifications(){
+        System.out.println("钱不够！！");
+    }
+    public void ok(){
+        System.out.println("可以买。");
+    }
+}
+```
+
+### 代理类(增强处理)
+
+```java
+package com.aop;
+
+import com.service.ShopService;
+import com.service.StudentService;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+
+public class ShopAop implements InvocationHandler {
+    private ShopService service;
+    private Shop shop;
+
+    public ShopAop(ShopService service, Shop shop) {
+        this.service = service;
+        this.shop = shop;
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        shop.check();
+        try {
+            int a =1/0;
+            shop.ok();
+            method.invoke(service,shop);//执行业务方法,args表示业务方法的参数（无参则用null表示）
+        }catch (Exception e){
+            shop.notQualifications();
+        }
+        return null;
+    }
+}
+```
+
+### 业务接口及实现类
+
+```java
+package com.service;
+
+public interface ShopService {
+    void buy();
+}
+// --------------------------------------------------
+package com.service.impl;
+
+import com.service.ShopService;
+
+public class ShopServiceImpl implements ShopService {
+    @Override
+    public void buy() {
+        System.out.printf("买房中...");
+        System.out.printf("买房完成...");
+    }
+}
+```
+
+### 测试类
+
+```java
+package com.Test;
+
+import com.aop.Shop;
+import com.aop.ShopAop;
+import com.service.ShopService;
+import com.service.StudentService;
+import com.service.impl.ShopServiceImpl;
+import com.service.impl.StudentServiceImpl;
+import org.junit.Test;
+
+import java.lang.reflect.Proxy;
+
+public class Demo3 {
+    @Test
+    public void Test1() {
+        ShopService service = new ShopServiceImpl();//纯粹的业务对象
+        Shop shop = new Shop();
+
+        ShopAop shopAop = new ShopAop(service,shop);//动态代理类（切面）
+
+         //创建具有通用功能的业务对象: service + shop
+        ShopService shopService = (ShopService) Proxy.newProxyInstance(service.getClass().getClassLoader(), service.getClass().getInterfaces(), shopAop);
+        shopService.buy();
+    }
+}
+```
+
+## AOP相关术语
+
+```
+Target 目标对象 -- 业务对象
+JoinPoint 连接点 -- 业务方法
+Aspect 切面 -- 类，通用功能加入业务对象
+Proxy 代理 -- 业务方法和切面类结合起来的代理对象（增强的业务对象）
+Weaving 织入 -- 业务对象-> 代理对象
+Advice 通知/增强 -- 拦截业务方法后要做的事情
+	前置（身份验证）、后置（日志）、环绕（前置+后置）、最终（finally）、异常（记录异常情况）
+Pointcut 切入点 -- 表达式，对哪些业务方法进行拦截。影响范围
+```
+
+## 配置代理
+
+### pom.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.example</groupId>
+	<artifactId>demo_factory</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<properties>
+		<spring-version>5.3.6</spring-version>
+	</properties>
+
+	<dependencies>
+		<!--单元测试-->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!--Spring整合单元测试-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>5.3.6</version>
+		</dependency>
+
+		<!--spring整合mybatis-->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>2.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.5.4</version>
+		</dependency>
+
+		<!--注解-->
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.20</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.47</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.2.6</version>
+		</dependency>
+
+		<!-- spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+
+		<!-- 可选模块，按需添加 -->
+		<!-- AOP -->
+		<!-- 基于代理的AOP支持 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<!-- 提供与AspectJ的集成 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+
+		<!-- JDBC支持包，包括数据源设置和JDBC访问支持 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+
+		<!-- 支持单元测试和集成测试Spring组件-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+
+		<!-- Spring事务 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+
+		<!-- 提供基本的面向Web的集成功能 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+
+		<!-- SpringMVC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.9.4</version>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>utf-8</encoding>
+				</configuration>
+				<version>3.8.1</version>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+```
+
+### applicationContext.xml
+
+```xml-dtd
+<!--切面类：事务类(启动、提交、回滚)-->
+    <bean id="shop" class="com.aop.Shop"/>
+    <aop:config>
+        <!--切点：将事务机制作用于service的所有类的所有方法-->
+        <aop:pointcut id="all" expression="execution(* com.service.impl.*.*(..))"/>
+        <!--切面-->
+        <aop:aspect ref="shop">
+            <!--通知（增加）-->
+            <aop:before method="check" pointcut-ref="all"/> <!--前置通知-->
+            <aop:after-returning method="ok" pointcut-ref="all"/> <!--后置通知-->
+            <aop:after-throwing method="notQualifications" pointcut-ref="all"/> <!--异常通知-->
+        </aop:aspect>
+    </aop:config>
 ```
 
