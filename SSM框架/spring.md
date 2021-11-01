@@ -777,3 +777,64 @@ public class Demo2 {
     }
 }
 ```
+
+## mybatis整合spring
+
+```xml
+<!-- mybatis.xml -->
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration></configuration>
+```
+
+```xml
+<!-- spring.xml -->
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:db.properties" />
+    <context:component-scan base-package="com" />
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+<!--        数据库连接池-->
+        <property name="dataSource" ref="dataSource"/>
+<!--        sql映射文件-->
+        <property name="mapperLocations" value="classpath:data/*.xml"/>
+<!--        mybatis配置文件-->
+        <property name="configLocation" value="classpath:mybatis.xml"/>
+    </bean>
+<!--mybatis扫描器-->
+    <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+<!--        整合连接池-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+<!--        设置扫描范围 mapper代理的实现类-->
+        <property name="basePackage" value="com.mapper"/>
+    </bean>
+          
+</beans>
+```
+
+```java
+dao(mapper) @Repository @Resource
+service @Service @Resource
+test 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:spring.xml")
+@Resource
+```
+
