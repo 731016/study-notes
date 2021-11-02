@@ -608,6 +608,8 @@ public class Demo {
 
 ![image-20211029134920732](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110291349202.png)
 
+
+
 ## 配置类config
 
 ### pom.xml
@@ -870,8 +872,6 @@ test
     </welcome-file-list>
 </web-app>
 ```
-
-
 
 ![image-20211101112325460](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111011123119.png)
 
@@ -1256,6 +1256,56 @@ Pointcut 切入点 -- 表达式，对哪些业务方法进行拦截。影响范�
 
 ### applicationContext.xml
 
+```java
+public class Shop {
+    //前置通知
+    public void check() {
+        System.out.println("买房前检查...");
+    }
+
+    //异常通知
+    public void notQualifications() {
+        System.out.println("钱不够！！");
+    }
+
+    /**
+     * 后置通知
+     */
+    public void ok() {
+        System.out.println("可以买。");
+    }
+
+    /**
+     * 最终通知
+     */
+    public void finallyMethod() {
+        System.out.println("交易完成");
+    }
+
+    /**
+     * 环绕通知
+     * @param pjp
+     * @return
+     */
+    public Object aroundActive(ProceedingJoinPoint pjp) {
+        Object returnValue = null;
+
+        try {
+            check(); // 前置
+            // 参数列表
+            Object[] args = pjp.getArgs();
+            returnValue = pjp.proceed(args);
+            ok(); //后置
+        } catch (Throwable throwable) {
+            notQualifications(); //异常
+        } finally {
+            finallyMethod(); //最终
+        }
+        return returnValue;
+    }
+}
+```
+
 ```xml-dtd
 <!--切面类：事务类(启动、提交、回滚)-->
     <bean id="shop" class="com.aop.Shop"/>
@@ -1267,8 +1317,260 @@ Pointcut 切入点 -- 表达式，对哪些业务方法进行拦截。影响范�
             <!--通知（增加）-->
             <aop:before method="check" pointcut-ref="all"/> <!--前置通知-->
             <aop:after-returning method="ok" pointcut-ref="all"/> <!--后置通知-->
+            <aop:after method="finallyMethod" pointcut-ref="all"/> <!--最终通知 -->
             <aop:after-throwing method="notQualifications" pointcut-ref="all"/> <!--异常通知-->
+            <aop:around method="aroundActive" pointcut-ref="all"/> <!--环绕通知 -->
         </aop:aspect>
     </aop:config>
 ```
+
+## AspectJ注解
+
+```xml-dtd
+<!--切面类：事务类(启动、提交、回滚)-->
+    <bean id="shop" class="com.aop.Shop"/>
+
+    <aop:aspectj-autoproxy/>
+```
+
+```java
+package com.aop;
+
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@Aspect
+public class Shop {
+    @Pointcut("execution(* com.service.impl.*.*(..))")
+    public void pointCutScope(){}
+
+
+    //前置通知
+    @Before("Shop.pointCutScope()")
+    public void check() {
+        System.out.println("买房前检查...");
+    }
+
+    //异常通知
+    @AfterThrowing("Shop.pointCutScope()")
+    public void notQualifications() {
+        System.out.println("钱不够！！");
+    }
+
+    /**
+     * 后置通知
+     */
+    @AfterReturning("Shop.pointCutScope()")
+    public void ok() {
+        System.out.println("可以买。");
+    }
+
+    /**
+     * 最终通知
+     */
+    @After("Shop.pointCutScope()")
+    public void finallyMethod() {
+        System.out.println("交易完成");
+    }
+
+    /**
+     * 环绕通知
+     * @param pjp
+     * @return
+     */
+    @Around("Shop.pointCutScope()")
+    public Object aroundActive(ProceedingJoinPoint pjp) {
+        Object returnValue = null;
+
+        try {
+            check(); // 前置
+            // 参数列表
+            Object[] args = pjp.getArgs();
+            returnValue = pjp.proceed(args);
+            ok(); //后置
+        } catch (Throwable throwable) {
+            notQualifications(); //异常
+        } finally {
+            finallyMethod(); //最终
+        }
+        return returnValue;
+    }
+}
+```
+
+## 事务处理
+
+### pojo
+
+```java
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Bank {
+    private String name;
+    private Integer money;
+}
+```
+
+### mapper
+
+```java
+@Repository
+public interface BankMapper {
+    void updateMoney(Bank bank);
+}
+```
+
+```java
+@Repository
+public interface BankMapper {
+    void updateMoney(@Param("name")String name,@Param("money")Integer money);
+}
+```
+
+
+
+### BankMapper.xml
+
+```xml-dtd
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.BankMapper">
+    <update id="updateMoney" parameterType="Bank">
+        update bank set money=money + #{money} where `name`=#{name}
+    </update>
+</mapper>
+```
+
+```xml-dtd
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.BankMapper">
+    <update id="updateMoney">
+        update bank set money=money + #{money} where `name`=#{name}
+    </update>
+</mapper>
+```
+
+
+
+### service
+
+```java
+public interface BankService {
+    void transfer(String from,String to,Integer money);
+}
+
+```
+
+```java
+@Service
+public class BankServiceImpl implements BankService {
+    @Resource
+    private BankMapper bankMapper;
+
+    @Override
+    public void transfer(String from, String to, Integer money) {
+        Bank bank = new Bank(from, -1 * money);
+        bankMapper.updateMoney(bank);
+
+//        int a = 1/0;
+
+        bank.setName(to);
+        bank.setMoney(money);
+        bankMapper.updateMoney(bank);
+    }
+}
+```
+
+### applicationContext.xml
+
+```xml-dtd
+<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.password}"/>
+</bean>
+
+<!--切面：spring的事务-->
+        <bean id="tm" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+            <property name="dataSource" ref="dataSource"/>
+        </bean>
+    <!-- 事务通知 -->
+    <tx:advice id="txAdvice" transaction-manager="tm">
+        <!-- 事务属性 -->
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED" isolation="REPEATABLE_READ"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <!--切点-->
+        <aop:pointcut id="p_all" expression="execution(* com.service.impl.*.*(..))"/>
+        <!--通知/增强：将spring事务通知嵌入-->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="p_all"/>
+    </aop:config>
+```
+
+
+
+### Test
+
+```java
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:applicationContext.xml")
+public class Demo5 {
+    @Resource
+    private BankService bankService;
+    @Test
+    public void Test1(){
+        try {
+            bankService.transfer("aaa","bbb",500);
+            System.out.println("转账成功！");
+        } catch (Exception e) {
+            System.out.println("转账失败！");
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### 事务注解
+
+```xml-dtd
+<!--切面：spring的事务-->
+    <bean id="tm" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="tm"/>
+```
+
+```java
+@Service
+@Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.REPEATABLE_READ,readOnly = false)
+public class BankServiceImpl implements BankService {
+    @Resource
+    private BankMapper bankMapper;
+
+    @Override
+    public void transfer(String from, String to, Integer money) {
+        bankMapper.updateMoney(from, (-1 * money));
+
+
+        bankMapper.updateMoney(to, money);
+//        int a = 1 / 0;
+    }
+}
+```
+
+## aop自定义通知和事务处理比较
+
+![image-20211102154812843](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111021548619.png)
 
