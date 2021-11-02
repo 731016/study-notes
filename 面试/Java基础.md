@@ -260,7 +260,8 @@ public String subString(String str, int subBytes) {
                 bytes += 1; // 英文字符的字节数看作1
             } else {
                 bytes += 2; // 中文字符的字节数看作2
-                
+                // 当要截取的最后一个是中文时，+2会超过要截取的字节数，上面的判断条件会不满足，要满足不能出现乱码，多要丢掉
+                // 此时直接截取
                 if(bytes - subBytes == 1){
                     return str.substring(0, i);
                 }
@@ -270,12 +271,12 @@ public String subString(String str, int subBytes) {
     }
     @Test
     public void Test6(){
-        String def1 = subString("我ABC 汉DEF", 8);
-        String def2 = subString("我ABC 汉DEF", 4);
-        System.out.println(def1);
+//        String def1 = subString("我ABC 汉DEF", 8);
+        String def2 = subString("我A汉BC汉DEF", 4);
+//        System.out.println(def1);
         System.out.println(def2);
     }
 ```
 
-![image-20211102195621155](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111021956377.png)
+![image-20211102200428558](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111022004722.png)
 
