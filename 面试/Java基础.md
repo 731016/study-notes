@@ -191,5 +191,91 @@ import java.text.DecimalFormat;
     }
 ```
 
+## 字符串操作：如何实现字符串的反转及替换？
 
+```
+StringBuffer，StringBulider都包含反转和替换的方法
+String有替换的方法
+```
+
+
+
+## 写一个函数，要求输入一个字符串和一个字符长度，对该字符串进行分隔。
+
+```java
+@Test
+    public void Test4() {
+        String str = "hello world";
+        String[] split = split(str, 2);
+        System.out.println(Arrays.toString(split));
+    }
+
+    public String[] split(String str, int chars) {
+        int index = 0;
+        StringBuilder sb = new StringBuilder();
+//        最大下标不能大于数组长度-1,数组长度从1开始
+        while (index < str.length() - 1) {
+//            endIndex下标不包含那个数,起始下标每次+2，结束下标每次加2
+            sb.append(str.substring(index, index + chars));
+            sb.append(",");
+            index += 2;
+        }
+        String hanleStr = String.valueOf(sb);
+        String[] split = hanleStr.split(",");
+        return split;
+    }
+```
+
+## 编码转换：怎样将GB2312 编码的字符串转换为ISO-8859-1 编码的字符串？
+
+```java
+@Test
+    public void Test5() throws UnsupportedEncodingException {
+        String str = "你好，世界！";
+//        utf8->gbk
+        String gbk = new String(str.getBytes("UTF-8"), "GBK");
+        System.out.println(gbk);
+//        gbk->utf-8
+        String utf8 = new String(gbk.getBytes("GBK"), "UTF-8");
+        System.out.println(utf8);
+
+    }
+```
+
+![image-20211102193048371](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111021930709.png)
+
+## 写一个函数，2 个参数，1 个字符串，1 个字节数，返回截取的字符串，要求字符串中的中文不能出现乱码：如（“我ABC”，4）应该截为“我AB”，输入（“我ABC 汉DEF”，6）应该输出为“我ABC”而不是“我ABC+汉的半个”。
+
+```java
+public String subString(String str, int subBytes) {
+        int bytes = 0; // 用来存储字符串的总字节数
+        for (int i = 0; i < str.length(); i++) {
+//            计算后的bytes与字节数相等，截取是的index正好是对应的下标
+            if (bytes == subBytes) {
+                return str.substring(0, i);
+            }
+//            返回对应index的char值
+            char c = str.charAt(i);
+            if (c < 256) {
+                bytes += 1; // 英文字符的字节数看作1
+            } else {
+                bytes += 2; // 中文字符的字节数看作2
+                
+                if(bytes - subBytes == 1){
+                    return str.substring(0, i);
+                }
+            }
+        }
+        return str;
+    }
+    @Test
+    public void Test6(){
+        String def1 = subString("我ABC 汉DEF", 8);
+        String def2 = subString("我ABC 汉DEF", 4);
+        System.out.println(def1);
+        System.out.println(def2);
+    }
+```
+
+![image-20211102195621155](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111021956377.png)
 
