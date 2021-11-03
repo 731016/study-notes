@@ -280,3 +280,246 @@ public String subString(String str, int subBytes) {
 
 ![image-20211102200428558](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111022004722.png)
 
+## **日期和时间**
+
+```java
+public String getDate(int flag) {
+        Calendar calendar = Calendar.getInstance();
+
+        // 取得年月日、小时分秒
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DATE);
+        int hour = calendar.get(Calendar.HOUR);
+        int minute = calendar.get(Calendar.MINUTE);
+        int second = calendar.get(Calendar.SECOND);
+        // 如何取得从1970 年到现在的毫秒数
+        long timeInMillis = calendar.getTimeInMillis();
+
+        // 如何取得某个日期是当月的最后一天
+        /*
+         *  DAY_OF_MONTH 指示月份中的某天
+         * 设置 此值为该月的最大天数
+         * */
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(calendar.DAY_OF_MONTH));
+        String day_of_month = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+
+        // 如何格式化日期
+        Date date = new Date();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String format = df.format(date);
+
+        // 昨天的当前时刻
+        // 今天的时间-1
+        calendar.set(Calendar.DATE, -1);
+        Date time = calendar.getTime();
+        String formatTime = df.format(time);
+
+        switch (flag) {
+            case 1:
+                return year + "年" + month + "月" + day + "日" + hour + "时" + minute + "分" + second + "秒";
+            case 2:
+                return String.valueOf(timeInMillis);
+            case 3:
+                return day_of_month;
+            case 4:
+                return format;
+            case 5:
+                return formatTime;
+        }
+        return null;
+    }
+
+    @Test
+    public void Demo1() {
+//        java.util.Calendar
+//        1)如何取得年月日、小时分秒？
+        System.out.println(getDate(1));
+//        2)如何取得从1970 年到现在的毫秒数？
+        System.out.println(getDate(2));
+//        3)如何取得某个日期是当月的最后一天？
+        System.out.println(getDate(3));
+//        4)如何格式化日期？
+        System.out.println(getDate(4));
+        // 昨天的当前时刻
+        System.out.println(getDate(5));
+    }
+```
+
+![image-20211103160912164](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211103160912164.png)
+
+## error和exception有什么区别
+
+`error`是系统中的错误，程序员是不能改变的和处理的，是在程序编译时出现的错误，只能通过修改程序才能修正。一般是指与虚拟机相关的问题，如系统崩溃，虚拟机错误，内存空间不足，方法调用栈溢等。对于这类错误的导致的应用程序中断，仅靠程序本身无法恢复和和预防，遇到这样的错误，建议让程序终止。
+
+`exception`表示程序可以处理的异常，可以捕获且可能恢复。遇到这类异常，应该尽可能处理异常，使程序恢复运行，而不应该随意终止异常。
+
+## ArrayList和Vector的区别
+
+这两个类都实现了**List接口**（List接口继承了Collection接口），他们都是**有序集合**，即存储在这两个集合中的元素的位置都是有顺序的，可以按位置**索引**号取出某个元素，并且其中的数据是**允许重复**的。
+
+主要包括两个方面：
+
+（1）同步性： **Vector是线程安全的**，也就是说是它的方法之间是线程同步的，而ArrayList是线程序不安全的，它的方法之间是线程不同步的。
+
+（2）数据增长： ArrayList与Vector都有一个初始的容量大小，当存储进它们里面的元素的个数超过了容量时，就需要增加ArrayList与Vector的存储空间，每次要增加存储空间时，不是只增加一个存储单元，而是增加多个存储单元，每次增加的存储单元的个数在内存空间利用与程序效率之间要取得一定的平衡。**Vector默认增长为原来两倍**，而ArrayList的增长策略在文档中没有明确规定（从**源代码看到的是增长为原来的1.5倍**）。ArrayList与Vector都可以设置初始的空间大小，**Vector还可以设置增长的空间大小**，而**ArrayList没有提供设置**增长空间的方法。 
+
+总结：即Vector增长原来的一倍，ArrayList增加原来的0.5倍。
+
+## 说出ArrayList, Vector, LinkedList的存储性能和特性
+
+`ArrayList`和`Vector`都是使用**数组方式存储数据**，此数组元素数大于实际存储的数据以便增加和插入元素，它们都允许**直接按序号索引元素**，但是插入元素要涉及数组元素移动等内存操作，所以<u>索引数据快而插入数据慢</u>，Vector由于使用了`synchronized方法`（线程安全），通常性能上较ArrayList差，而LinkedList使用**双向链表**实现存储，按序号索引数据**需要进行前向或后向遍历**，但是插入数据时只需要记录本项的前后项即可，所以**插入速度较快**。
+
+## Collection 和 Collections的区别
+
+Collection是**集合类的上级接口**，继承与他的接口主要有Set、Queue 和List.
+Collections是针对**集合类的一个工具类**，他提供一系列静态方法实现对各种集合的搜索、排序、线程安全化等操作。
+
+## Set里的元素是不能重复的，那么用什么方法来区分重复与否呢? 是用==还是equals()? 它们有何区别
+
+Set里的元素是不能重复的，用`equals()`判断两个Set是否相等
+**==是用来判断两者是否是同一对象（同一事物），而equals是用来判断是否引用同一个对象**
+
+因为set里面存放的是对象的引用，所以当两个元素只要满足了equals()时就已经指向同一个对象，也就出现了重复元素。
+
+## HashMap和Hashtable的区别
+
+HashMap是Hashtable的轻量级实现（非线程安全的实现），他们都完成了**Map接口**，主要区别在于
+
+由于非线程安全，HashMap允许将null作为一个entry的key或者value，而**Hashtable不允许**。 
+
+HashMap把Hashtable的contains方法去掉了，改成**containsvalue和containsKey**。
+
+Hashtable继承自**Dictionary**类，而HashMap是Java1.2引进的Map interface的一个实现。
+
+最大的不同是，**Hashtable的方法是Synchronized的**，而HashMap不是。 
+
+Hashtable和HashMap采用的hash/rehash算法都大概一样，所以性能不会有很大的差异。 
+
+## java中有几种类型的流？JDK为每种类型的流提供了一些抽象类以供继承，请说出他们分别是哪些类？
+
+字节流，字符流。字节流继承于`InputStream`、`OutputStream`，字符流继承于`InputStreamReader`、`OutputStreamWriter`。
+
+## 文件读写的基本类
+
+`FileReader`类和`FileWriter`类分别继承自**Reader**类和**Writer**类。FileReader类用于读取文件，File Writer类用于将数据写入文件，这两各类在使用前，都必须要调用其构造方法创建相应的对象，然后调用相应的`read()`或`write()`方法。
+
+## 多线程有几种实现方法,都是什么?同步有几种实现方法,都是什么?
+
+个人觉得实现多线程有4种方法，想要同步也有4种
+
+> **多线程**
+>
+> （1）继承`Thread`
+>
+> （2）实现`Runnable` 无返回值
+>
+> （3）实现`Callable` 有返回值
+>
+> （4）线程池 `Executors`工厂类、`ExecutorService`接口执行任务、`ThreadPoolExecutor`构造方法自定义线程池
+>
+> ```java
+> public static ExecutorService newFixedThreadPool(int nThreads)
+> 创建一个可重用固定线程数的线程池，以共享的无界队列方式来运行这些线程。
+> 
+> public static ExecutorService newCachedThreadPool(ThreadFactory threadFactory)
+> 创建一个可根据需要创建新线程的线程池，但是在以前构造的线程可用时将重用它们
+> 
+> public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize)
+> 创建一个线程池，可以调度命令在给定的延迟后运行，或者定期执行。
+> 
+> public static ExecutorService newSingleThreadExecutor(ThreadFactory threadFactory)
+> 返回一个线程池（这个线程池只有一个线程 ）,这个线程 池可以在线程死后（或发生异常时）重新启动一个线程来替代原来的线程继续执行下去！
+> 
+> ScheduledExecutorService scheduledPool= Executors.newXXXX(corePoolSize);
+> ```
+>
+> ```java
+> public interface ExecutorService
+> 用来从线程池中获取线程，调用start方法，并执行任务
+> 
+> ExecutorService pool= Executors.newFixedThreadPool(3);
+> ```
+>
+> ```java
+> public ThreadPoolExecutor(int corePoolSize, 
+>                        int maximumPoolSize, 
+>                        long keepAliveTime, 
+>                        TimeUnit unit, 
+>                        BlockingQueue<Runnable> workQueue, 
+>                        ThreadFactory threadFactory, 
+>                        RejectedExecutionHandler handler);
+> 1. corePoolSize：指定了线程池中的线程数量。
+> 2. maximumPoolSize：指定了线程池中的最大线程数量。
+> 3. keepAliveTime：当前线程池数量超过 corePoolSize 时，多余的空闲线程的存活时间，即多次时间内会被销毁。
+> 4. unit：keepAliveTime 的单位。
+> 5. workQueue：任务队列，被提交但尚未被执行的任务。
+> 6. threadFactory：线程工厂，用于创建线程，一般用默认的即可。
+> 7. handler：拒绝策略，当任务太多来不及处理，如何拒绝任务。
+> 
+> JDK 内置的拒绝策略如下： new ThreadPoolExecutor XXXXXXXX()
+> 1. AbortPolicy ： 直接抛出异常，阻止系统正常运行。
+> 2. CallerRunsPolicy ： 只要线程池未关闭，该策略直接在调用者线程中，运行当前被丢弃的任务。显然这样做不会真的丢弃任务，但是，任务提交线程的性能极有可能会急剧下降。
+> 3. DiscardOldestPolicy ： 丢弃最老的一个请求，也就是即将被执行的一个任务，并尝试再次提交当前任务。
+> 4. DiscardPolicy ： 该策略默默地丢弃无法处理的任务，不予任何处理。如果允许任务丢失，这是最好的一种方案。
+> 以上内置拒绝策略均实现了 RejectedExecutionHandler 接口，若以上策略仍无法满足实际需要，完全可以自己扩展 RejectedExecutionHandler 接口。
+> ```
+>
+> 
+>
+> **同步**
+>
+> （1）同步方法 synchronized,wait与notify
+>
+> ```java
+> 修饰词 synchronized 返回值 方法名称(参数){}
+> ```
+>
+> （2）同步代码块
+>
+> ```java
+> synchronized(锁对象){
+>   可能发生安全问题的代码
+> }
+> ```
+>
+> （3）锁机制
+>
+> ```java
+> ReentrantLock 可重入s
+> ReadLock 读锁
+> WriteLock 写锁
+> ```
+>
+> ```java
+> ReentrantLock lock=new ReentrantLock(); //可重入锁
+> lock.lock();
+> lock.unlock();
+> ------------------------------------------------------
+> /*
+>     初始化可重入锁
+> */
+> final Lock lock = new ReentrantLock();
+> // 设置条件 等待通知组件
+> final Condition reachThreeCondition = lock.newCondition();
+> // 加锁
+> lock.lock();
+> try {
+>         reachThreeCondition.await(); // 等待
+>         reachThreeCondition.signal(); // 通知等待该条件的线程可以执行
+> }finally {
+>     // 释放锁
+>      lock.unlock();
+> }
+> ```
+
+## 当一个线程进入一个对象的一个synchronized方法后，其它线程是否可进入此对象的其它方法?
+
+1.其他方法前是否加了synchronized关键字，如果**没加**，则**能**。
+
+2.如果这个方法**内部调用了wait**，则可以进入其他synchronized方法。
+
+3.如果其他个方法<u>都加了synchronized关键字，并且内部没有调用wait</u>，则不能。
+
+4.如果其他方法是<u>static</u>，它用的同步锁是当前类的字节码，与非静态的方法不能同步，因为非静态的方法用的是this。
+

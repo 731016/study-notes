@@ -2074,8 +2074,6 @@ public class Test1 {
 //        for (Bank bank : banks) {
 //            System.out.println(bank);
 //        }
-
-
     }
 }
 ```
