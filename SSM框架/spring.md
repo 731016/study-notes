@@ -70,7 +70,7 @@ private StudentService studentService;
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>5.3.9</version>
-        </dependency>
+</dependency>
 ```
 
 ## xml配置文件
@@ -1573,4 +1573,510 @@ public class BankServiceImpl implements BankService {
 ## aop自定义通知和事务处理比较
 
 ![image-20211102154812843](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111021548619.png)
+
+# Hibernate + spring
+
+## pom.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.Hibernate</groupId>
+    <artifactId>HibernateDemo</artifactId>
+    <version>1.0</version>
+    <properties>
+        <spring-version>5.3.6</spring-version>
+    </properties>
+
+    <dependencies>
+
+        <!-- 添加Hibernate依赖 -->
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.6.0.Final</version>
+        </dependency>
+
+
+        <!-- 添加Log4J依赖 -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>1.6.4</version>
+        </dependency>
+
+        <!-- 添加javassist -->
+        <dependency>
+            <groupId>javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.12.0.GA</version>
+        </dependency>
+
+        <!-- mysql数据库的驱动包 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.47</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+        </dependency>
+
+
+        <!--单元测试-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--Spring整合单元测试-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>5.3.6</version>
+        </dependency>
+
+        <!--spring整合mybatis-->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>2.0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.4</version>
+        </dependency>
+
+        <!--注解-->
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.2.6</version>
+        </dependency>
+
+        <!-- spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+
+        <!-- 可选模块，按需添加 -->
+        <!-- AOP -->
+        <!-- 基于代理的AOP支持 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <!-- 提供与AspectJ的集成 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+
+        <!-- JDBC支持包，包括数据源设置和JDBC访问支持 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+
+        <!-- 支持单元测试和集成测试Spring组件-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+
+        <!-- Spring事务 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+
+        <!-- 提供基本的面向Web的集成功能 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+
+        <!-- SpringMVC -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.4</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+
+
+
+
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>5.2.18.RELEASE</version>
+        </dependency>
+
+
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>utf-8</encoding>
+                </configuration>
+                <version>3.8.1</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+```
+
+## hibernate_config.xml
+
+```xml-dtd
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<!--数据库方言-->
+		<property name="hibernate.dialect">
+			org.hibernate.dialect.MySQLDialect
+		</property>
+<!--		<property name="dialect">-->
+<!--			org.hibernate.dialect.MySQL5InnoDBDialect-->
+<!--		</property>-->
+<!--		<property name="hibernate.connection.driver_class">-->
+<!--			com.mysql.jdbc.Driver-->
+<!--		</property>-->
+
+<!--		&lt;!&ndash; Assume test is the database name &ndash;&gt;-->
+<!--		<property name="hibernate.connection.url">-->
+<!--			jdbc:mysql://localhost/demo-->
+<!--		</property>-->
+<!--		<property name="hibernate.connection.username">-->
+<!--			root-->
+<!--		</property>-->
+<!--		<property name="hibernate.connection.password">-->
+<!--			123456-->
+<!--		</property>-->
+
+		<!-- List of XML mapping files -->
+		<mapping resource="BankMapper.xml"/>
+
+	</session-factory>
+</hibernate-configuration>
+```
+
+## db.properties
+
+```properties
+jdbc.driver=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/demo?characterEncoding=utf-8
+jdbc.user=root
+jdbc.password=123456
+```
+
+## BankMapper.xml
+
+```xml-dtd
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--
+	<hibernate-mapping>一般不去配置，采用默认即可。
+	schema:指定映射数据库的schema(模式/数据库)，如果指定该属性，则表名会自动添加该schema前缀
+	package:指定包前缀 指定持久化类所在的包名 这样之后calss子元素中就不必使用全限定性的类名
+	default-cascade="none"：默认的级联风格，表与表联动。
+	default-lazy="true"：默认延迟加载
+ -->
+<hibernate-mapping>
+	<!--
+		<class>：使用class元素定义一个持久化类。
+		name="cn.javass.user.vo.UserModel"：持久化类的java全限定名；
+		table="tbl_user"：对应数据库表名，默认持久化类名作为表名；
+		proxy:指定一个接口，在延迟装载时作为代理使用，也可在这里指定该类自己的名字。
+		mutable="true"：默认为true，设置为false时则不可以被应用程序更新或删除，等价于所有<property>元素的update属性为false，表示整个实例不能被更新。
+		dynamic-insert="false"：默认为false，动态修改那些有改变过的字段，而不用修改所有字段；
+		dynamic-update="false"：默认为false，动态插入非空值字段；
+		select-before-update="false"：默认为false，在修改之前先做一次查询，与用户的值进行对比，有变化都会真正更新；
+		optimistic-lock="version"：默认为version(检查version/timestamp字段)，取值：all(检查全部字段)、dirty(只检查修改过的字段)；
+		                           none(不使用乐观锁定)，此参数主要用来处理并发，每条值都有固定且唯一的版本，版本为最新时才能执行操作；
+		如果需要采用继承映射，则class元素下还会增加<subclass.../>元素等用于定义子类。
+	 -->
+	<class name="com.hibernate.pojo.Bank" table="bank" >
+		<id name="name">
+			<column name="name"/>
+		</id>
+		<property name="money" column="money"/>
+	</class>
+</hibernate-mapping>
+```
+
+## applicationContext.xml
+
+```xml-dtd
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			    http://www.springframework.org/schema/beans/spring-beans.xsd
+			    http://www.springframework.org/schema/context
+			    http://www.springframework.org/schema/context/spring-context.xsd
+			    http://www.springframework.org/schema/aop
+			    http://www.springframework.org/schema/aop/spring-aop.xsd
+			    http://www.springframework.org/schema/tx
+			    http://www.springframework.org/schema/tx/spring-tx.xsd
+			    http://www.springframework.org/schema/mvc
+			    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:property-placeholder location="classpath:db.properties" />
+    <!--组件扫描：用于注解-->
+    	<context:component-scan base-package="com.hibernate"/>
+
+    <!--数据库连接池（德鲁伊连接池）-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.user}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+
+<!--    org.springframework.orm.hibernate5.LocalSessionFactoryBean-->
+    <!-- 配置 Hibernate 的 SeesionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- hibernateProperties 属性：配置与 hibernate 相关的内容，如显示 sql 语句，开启正向工程 -->
+        <property name="hibernateProperties">
+            <props> <!-- 显示当前执行的 sql 语句 -->
+                <prop key="hibernate.show_sql">true</prop>
+                <!-- 开启正向工程 -->
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+        <!-- 扫描实体所在的包 -->
+        <property name="packagesToScan">
+            <list>
+                <value>com.hibernate.pojo</value>
+            </list>
+        </property>
+    </bean>
+    <!-- 配置 Hibernate 的事务管理器 -->
+    <!--	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">-->
+    <!--		<property name="sessionFactory" ref="sessionFactory"/>-->
+    <!--	</bean>-->
+
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+</beans>
+```
+
+## pojo
+
+```java
+package com.hibernate.pojo;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import javax.persistence.*;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Entity
+//@Table(name = "bank")
+public class Bank {
+    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String name;
+    private Integer money;
+}
+```
+
+## mapper
+
+```java
+package com.hibernate.mapper;
+
+import com.hibernate.pojo.Bank;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+public interface BankMapper {
+    List<Bank> queryAll();
+}
+```
+
+```java
+package com.hibernate.mapper.impl;
+
+import com.hibernate.mapper.BankMapper;
+import com.hibernate.pojo.Bank;
+import org.springframework.http.codec.cbor.Jackson2CborDecoder;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Repository;
+
+import javax.annotation.Resource;
+import javax.persistence.criteria.CriteriaQuery;
+import java.util.List;
+
+@Repository
+public class BankMapperImpl implements BankMapper {
+    @Resource
+    private HibernateTemplate hibernateTemplate;
+    @Override
+    public List<Bank> queryAll() {
+        @SuppressWarnings("unchecked")
+        List<Bank> from_bank = (List<Bank>) hibernateTemplate.find("from Bank");
+        return from_bank;
+    }
+}
+```
+
+## test
+
+```java
+package com.demo;
+
+import com.hibernate.mapper.BankMapper;
+import com.hibernate.pojo.Bank;
+import com.hibernate.service.BankService;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:applicationContext.xml")
+public class Test1 {
+    @Resource
+    private BankService service;
+
+    @Resource
+    private BankMapper mapper;
+    @Test
+    public void Demo1() {
+        List<Bank> banks = service.queryAll();
+        for (Bank bank : banks) {
+            System.out.println(bank);
+        }
+//        List<Bank> banks = mapper.queryAll();
+//        for (Bank bank : banks) {
+//            System.out.println(bank);
+//        }
+
+
+    }
+}
+```
 
