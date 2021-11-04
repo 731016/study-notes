@@ -2078,3 +2078,384 @@ public class Test1 {
 }
 ```
 
+
+
+# spring Data JPA
+
+## pom.xml
+
+```xml
+<dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>2.2.2.RELEASE</version>
+</dependency>
+```
+
+## applicationContext.xml
+
+```xml-dtd
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			    http://www.springframework.org/schema/beans/spring-beans.xsd
+			    http://www.springframework.org/schema/context
+			    http://www.springframework.org/schema/context/spring-context.xsd
+			    http://www.springframework.org/schema/aop
+			    http://www.springframework.org/schema/aop/spring-aop.xsd
+			    http://www.springframework.org/schema/data/jpa
+				http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+			    http://www.springframework.org/schema/tx
+			    http://www.springframework.org/schema/tx/spring-tx.xsd
+			    http://www.springframework.org/schema/mvc
+			    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:property-placeholder location="classpath:db.properties" />
+    <!--组件扫描：用于注解-->
+    <context:component-scan base-package="com.jpa"/>
+
+    <!--数据库连接池（德鲁伊连接池）-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.user}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+
+<!--    org.springframework.orm.hibernate5.LocalSessionFactoryBean-->
+    <!-- 配置 Hibernate 的 SeesionFactory -->
+    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        &lt;!&ndash; hibernateProperties 属性：配置与 hibernate 相关的内容，如显示 sql 语句，开启正向工程 &ndash;&gt;
+        <property name="hibernateProperties">
+            <props> &lt;!&ndash; 显示当前执行的 sql 语句 &ndash;&gt;
+                <prop key="hibernate.show_sql">true</prop>
+                &lt;!&ndash; 开启正向工程 &ndash;&gt;
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+        &lt;!&ndash; 扫描实体所在的包 &ndash;&gt;
+        <property name="packagesToScan">
+            <list>
+                <value>com.hibernate.pojo</value>
+            </list>
+        </property>
+    </bean>-->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <!-- 配置数据库类型 -->
+                <property name="database" value="MYSQL"/>
+                <!-- 正向工程 自动创建表 -->
+                <property name="generateDdl" value="true"/>
+                <!-- 显示执行的 SQL -->
+                <property name="showSql" value="true"/>
+            </bean>
+        </property>
+        <!-- 扫描实体的包 -->
+        <property name="packagesToScan">
+            <list>
+                <value>com.jpa.pojo</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- 配置 Hibernate 的事务管理器 -->
+    <!--	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">-->
+    <!--		<property name="sessionFactory" ref="sessionFactory"/>-->
+    <!--	</bean>-->
+    <!-- 配置 Hibernate 的事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <!-- 配置开启注解事务处理 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!--<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>-->
+
+    <!-- Spring Data JPA 的配置 -->
+    <!-- base-package：扫描 dao 接口所在的包 -->
+    <jpa:repositories base-package="com.jpa.mapper" />
+</beans>
+```
+
+## dao
+
+```java
+    public interface BankMapper extends JpaRepository<Bank,String> {
+}
+```
+
+## pojo
+
+```java
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Entity
+//@Table(name = "bank")
+public class Bank {
+    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String name;
+    private Integer money;
+}
+```
+
+## test
+
+```java
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:applicationContext.xml")
+public class Test1 {
+
+    @Resource
+    private BankMapper bankMapper;
+
+    /**
+     * 查询
+     */
+    @Test
+    public void Demo1(){
+        List<Bank> all = bankMapper.findAll();
+        for (Bank bank : all) {
+            System.out.println(bank);
+        }
+    }
+
+    /**
+     * 删除
+     */
+    @Test
+    public void Demo2(){
+        bankMapper.deleteById("bbb");
+    }
+
+    /**
+     * 修改
+     */
+    @Test
+    public void Demo3(){
+        Optional<Bank> aaa = bankMapper.findById("aaa");
+        aaa.get().setMoney(1500);
+        bankMapper.save(aaa.get());
+    }
+
+    /**
+     * 插入
+     */
+    @Test
+    public void Demo4(){
+        Bank bank = new Bank("bbb", 2000);
+        bankMapper.save(bank);
+    }
+}
+```
+
+## JPA运行原理
+
+```java
+// 实体管理对象 持久化上下文
+    @PersistenceContext(name = "entityManagerFactory")
+    private EntityManager manager;
+
+    @Test
+    //JPA的运行原理
+    public void Demo5(){
+        JpaRepositoryFactory jpaFactory = new JpaRepositoryFactory(manager);
+        BankMapper mapper = jpaFactory.getRepository(BankMapper.class);
+        List<Bank> all = mapper.findAll();
+        for (Bank bank : all) {
+            System.out.println(bank);
+        }
+    }
+```
+
+## 事务处理
+
+[事务问题解决](https://www.cnblogs.com/huacw/p/8075143.html)
+
+[Optional类的使用方法](https://www.jianshu.com/p/d81a5f7c9c4e)
+
+```java
+@Test
+    @Transactional //测试类中，事务提交方式默认都是回滚，需要手动更改
+//    @Rollback(false) // 取消自动回滚
+    @Commit // 也可提交
+// 组件扫描：默认不能扫描到Test <context:component-scan base-package="com.jpa"/> 所以在单元测试上加注解@Transactional无效
+    public void Demo3(){
+        try {
+            Optional<Bank> aaa = bankMapper.findById("aaa");
+            aaa.get().setMoney(5000);
+            bankMapper.save(aaa.get());
+            int i = 1/0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+```
+
+## JpaRepository接口
+
+[使用方法介绍](https://cloud.tencent.com/developer/article/1429365#:~:text=JpaRepository%20%E6%8E%A5%E5%8F%A3%E6%98%AF%E6%88%91%E4%BB%AC%E5%BC%80%E5%8F%91%E6%97%B6%E4%BD%BF%E7%94%A8%E7%9A%84%E6%9C%80%E5%A4%9A%E7%9A%84%E6%8E%A5%E5%8F%A3%E3%80%82,%E5%85%B6%E7%89%B9%E7%82%B9%E6%98%AF%E5%8F%AF%E4%BB%A5%E5%B8%AE%E5%8A%A9%E6%88%91%E4%BB%AC%E5%B0%86%E5%85%B6%E4%BB%96%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%96%B9%E6%B3%95%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC%E5%81%9A%E9%80%82%E9%85%8D%E5%A4%84%E7%90%86%E3%80%82%20%E5%8F%AF%E4%BB%A5%E4%BD%BF%E5%BE%97%E6%88%91%E4%BB%AC%E5%9C%A8%E5%BC%80%E5%8F%91%E6%97%B6%E6%9B%B4%E6%96%B9%E4%BE%BF%E7%9A%84%E4%BD%BF%E7%94%A8%E8%BF%99%E4%BA%9B%E6%96%B9...%20%E9%80%9A%E8%BF%87%E5%89%8D%E9%9D%A2%E5%A4%9A%E7%AF%87%E6%96%87%E4%BB%B6%E5%AF%B9SpringDataJPA%E7%9A%84%E4%BB%8B%E7%BB%8D%EF%BC%8C%E7%9B%B8%E4%BF%A1%E5%A4%A7%E5%AE%B6%E5%BA%94%E8%AF%A5%E5%B7%B2%E7%BB%8F%E5%AF%B9SpringDataJPA%E5%BE%88%E7%86%9F%E6%82%89%E4%BA%86%EF%BC%8C%E4%BD%BF%E7%94%A8%E8%B5%B7%E6%9D%A5%E8%BF%98%E6%98%AF%E8%9B%AE%E6%96%B9%E4%BE%BF%E7%9A%84%EF%BC%8C%E5%8F%AA%E6%98%AF%E5%9C%A8%E6%95%B4%E5%90%88%E7%9A%84%E6%97%B6%E5%80%99%E9%9C%80%E8%A6%81%E6%B7%BB%E5%8A%A0%E5%A4%A7%E9%87%8F)
+
+### 方法名称命名规则查询
+
+规则：findBy(关键字)+属性名称(属性名称的首字母大写)+查询条件(首字母大写)
+
+| 关键字           | 方法名                         | sql where 子句              |
+| :--------------- | :----------------------------- | :-------------------------- |
+| And              | findByNameAndPwd               | where name= ? and pwd =?    |
+| Or               | findByNameOrSex                | where name= ? or sex=?      |
+| Is,Equal         | findById,findByIdEquals        | where id= ?                 |
+| Between          | findByIdBetween                | where id between ? and ?    |
+| LessThan         | findByIdLessThan               | where id < ?                |
+| LessThanEqual    | findByIdLessThanEquals         | where id <= ?               |
+| GreaterThan      | findByIdGreaterThan            | where id > ?                |
+| GreaterThanEqual | findByIdGreaterThanEquals      | where id > = ?              |
+| After            | findByIdAfter                  | where id > ?                |
+| Before           | findByIdBefore                 | where id < ?                |
+| IsNull           | findByNameIsNull               | where name is null          |
+| isNotNull,Not    | findByNameNotNull              | where name is not Null null |
+| Like             | findByNameLike                 | where name like ?           |
+| NotLike          | findByNameNotLike              | where name not like ?       |
+| StartingWith     | findByNameStartingWith         | where name like ‘?%’        |
+| EndingWith       | findByNameEndingWith           | where name like ‘%?’        |
+| Containing       | findByNameContaining           | where name like ‘%?%’       |
+| OrderBy          | findByIdOrderByXDesc           | where id=? order by x desc  |
+| Not              | findByNameNot                  | where name <> ?             |
+| In               | findByIdIn(Collection<?> c)    | where id in (?)             |
+| NotIn            | findByIdNotIn(Collection<?> c) | where id not in (?)         |
+| True             | findByAaaTue                   | where aaa = true            |
+| False            | findByAaaFalse                 | where aaa = false           |
+| IgnoreCase       | findByNameIgnoreCase           | where UPPER(name)=UPPER(?)  |
+
+```java
+public interface BankMapper extends JpaRepository<Bank,String> {
+    List<Bank> findByNameContaining(String likeName);
+}
+@Test
+    public void Demo6(){
+        List<Bank> likeName = bankMapper.findByNameContaining("a");
+        System.out.println(likeName);
+}
+```
+
+
+
+### 基于@Query 注解查询
+
+```java
+//注解query
+    @Query(value = "from Bank where name like ?1")
+    List<Bank> findByNameLikeJPQL(String name);
+
+    //nativeQuerym开启sql支持
+    @Query(value = "select * from bank where name like ?1", nativeQuery = true)
+    List<Bank> selectNameLike(String name);
+```
+
+### 分页查询
+
+```java
+public interface AreaMapper extends JpaRepository<Area,Integer> {
+
+}
+@Resource
+    private AreaMapper areaMapper;
+@Test
+    public void Demo7() {
+        Integer page = 1; // 当前页码
+        Integer size = 3; // 每页大小
+        Pageable pageRequest1 = PageRequest.of(page, size);
+        //(1)
+        Page<Area> all = areaMapper.findAll(pageRequest1);
+        List<Area> content = all.getContent();
+        System.out.println(content);
+        //(2)
+        page = 1;
+        size = 5;
+        Pageable pageRequest2 = PageRequest.of(page, size);
+        List<Area> bankMapperAll = areaMapper.findAll(pageRequest2).toList();
+        System.out.println(bankMapperAll);
+    }
+```
+
+### Sort排序
+
+```java
+/**
+     * 单条件查询
+     */
+    @Test
+    public void Demo8(){
+        Sort sort = Sort.by(Sort.Direction.DESC,"aid");
+        List<Area> all = areaMapper.findAll(sort);
+        System.out.println(all);
+    }
+
+    /**
+     * 多条件查询
+     * order属于sort的静态内部类
+     */
+    @Test
+    public void Demo9(){
+        Sort.Order order1 = Sort.Order.desc("aid");
+        Sort.Order order2 = Sort.Order.asc("aname");
+        Sort orders = Sort.by(order1, order2);
+        List<Area> all = areaMapper.findAll(orders);
+        System.out.println(all);
+    }
+```
+
+## 多条件+排序+分页
+
+```java
+/**
+     * 实现多条件查询
+     * 条件+排序+分页
+     */
+    @Test
+    public void Demo10(){
+        Specification<Area> spec = new Specification<Area>() {
+            @Override
+            public Predicate toPredicate(Root<Area> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                /**
+                 * @return Predicate:定义了查询条件
+                 * @param Root<Users> root:根对象。封装了查询条件的对象
+                 * @param CriteriaQuery<?> query:定义了一个基本的查询.一般不
+                使用
+                 * @param CriteriaBuilder cb:创建一个查询条件
+                 */
+                // 条件集合
+                List<Predicate> predicateList = new ArrayList<Predicate>();
+                // 添加条件
+                predicateList.add(criteriaBuilder.like(root.get("aname"), "%区%"));
+                // 定义查询条件
+                Predicate[] predicates = new Predicate[predicateList.size()];
+                // 创建查询条件
+                return criteriaBuilder.and(predicateList.toArray(predicates));
+            }
+        };
+        // 加上排序
+        Sort orders = Sort.by(Sort.Direction.DESC);
+        // 加上分页
+        Pageable pageable = PageRequest.of(1,4,orders);
+        List<Area> areaMapperAll = areaMapper.findAll(spec, pageable).toList();
+        System.out.println(areaMapperAll);
+    }
+```
+
