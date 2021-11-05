@@ -2667,13 +2667,30 @@ private Department department;
     }
 ```
 
-#### 更新数据
+#### 修改数据
 
 ```java
+@Test
+    public void Demo5() {
+        // 无数据get会出错
+        Department department = departmentMapper.findById(802).get();
+        departmentMapper.delete(department);
+//        System.out.println(department.getPname());
+        department.setPid(701);
+        for (int i = 0; i < department.getEmployeeList().size(); i++) {
+            department.getEmployeeList().get(i).setDepartment(department);
+        }
+
+        departmentMapper.save(department);
+
+        List<Employee> employees = employeeMapper.findByDepartment_Pid(null);
+        for (Employee employee : employees) {
+            System.out.println(employee);
+            employee.setDepartment(department);
+            employeeMapper.save(employee);
+        }
+    }
 ```
 
-#### 删除数据
 
-```java
-```
 
