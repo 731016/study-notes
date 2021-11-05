@@ -460,3 +460,175 @@ private SqlSession sqlSession = null;
         left join housing h on l.lid=h.lId
     </select>
 ```
+
+
+
+# Mybatis-plus
+
+## pom.xml
+
+```xml
+# 要删除mybatis依赖
+<dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+            <version>3.4.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>2.0.4</version>
+        </dependency>
+```
+
+## mybatis.xml
+
+```xml-dtd
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+</configuration>
+```
+
+## applicationContext.xml
+
+```xml-dtd
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			    http://www.springframework.org/schema/beans/spring-beans.xsd
+			    http://www.springframework.org/schema/context
+			    http://www.springframework.org/schema/context/spring-context.xsd
+			    http://www.springframework.org/schema/aop
+			    http://www.springframework.org/schema/aop/spring-aop.xsd
+			    http://www.springframework.org/schema/tx
+			    http://www.springframework.org/schema/tx/spring-tx.xsd
+			    http://www.springframework.org/schema/mvc
+			    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:property-placeholder location="classpath:db.properties" />
+    <!--组件扫描：用于注解-->
+    <context:component-scan base-package="com.mybatisplus"/>
+
+    <!--数据库连接池（德鲁伊连接池）-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.user}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+
+
+        <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
+            <property name="dataSource" ref="dataSource"/>
+    <!--        加载mybatis配置文件-->
+            <property name="configLocation" value="classpath:mybatis.xml"/>
+    <!--        别名处理-->
+            <property name="typeAliasesPackage" value="com.mybatisplus.pojo"/>
+        </bean>
+
+        <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+            <property name="basePackage" value="com.mybatisplus.mapper"/>
+            <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        </bean>
+</beans>
+```
+
+## CRUD
+
+```java
+package com.Demo;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.mybatisplus.mapper.DepartmentMapper;
+import com.mybatisplus.mapper.EmployeeMapper;
+import com.mybatisplus.pojo.Department;
+import com.mybatisplus.pojo.Employee;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
+public class Test1 {
+
+    @Resource
+    private DepartmentMapper departmentMapper;
+    @Resource
+    private EmployeeMapper employeeMapper;
+
+    @Test
+    //查询
+    public void test1() {
+        QueryWrapper<Employee> queryWrap = new QueryWrapper<>();
+        queryWrap.like("sex", "男");
+
+        List<Employee> employees = employeeMapper.selectList(queryWrap);
+        for (Employee employee : employees) {
+            System.out.println(employee);
+        }
+    }
+
+    @Test
+    //添加
+    public void test2() {
+        Department department = new Department();
+        // 遇到主键auto_incremnet时，不用设置
+        department.setPid(303);
+        department.setPname("绝密");
+        int insert = departmentMapper.insert(department);
+        if (insert > 0) {
+            System.out.println("插入成功！");
+        }
+    }
+
+    @Test
+    //添加
+    public void test2_1() {
+        Employee employee = new Employee(null, "FIB", "男", 303, 15000.0, "云南省", "海军陆战队", "***");
+        int insert = employeeMapper.insert(employee);
+        if (insert > 0) {
+            System.out.println("插入成功！");
+        }
+    }
+
+    @Test
+    // 删除
+    public void test3() {
+        QueryWrapper<Department> queryWrap = new QueryWrapper<>();
+        queryWrap.like("pname", "密");
+        int delete = departmentMapper.delete(queryWrap);
+        if (delete > 0) {
+            System.out.println("删除成功！");
+        }
+    }
+
+    @Test
+    public void test4() {
+        QueryWrapper<Department> wrapper = new QueryWrapper<>();
+        wrapper.eq("pid", 303);
+
+        Department department = departmentMapper.selectOne(wrapper);
+        department.setPid(404);
+
+        int update = departmentMapper.update(department,wrapper);
+        if (update > 0) {
+            System.out.println("修改成功！");
+        }
+    }
+}
+```
+

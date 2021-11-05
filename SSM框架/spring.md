@@ -2372,7 +2372,6 @@ public interface BankMapper extends JpaRepository<Bank,String> {
 
 ```java
 public interface AreaMapper extends JpaRepository<Area,Integer> {
-
 }
 @Resource
     private AreaMapper areaMapper;
@@ -2394,7 +2393,7 @@ public interface AreaMapper extends JpaRepository<Area,Integer> {
     }
 ```
 
-### Sort排序
+#### Sort排序
 
 ```java
 /**
@@ -2421,7 +2420,7 @@ public interface AreaMapper extends JpaRepository<Area,Integer> {
     }
 ```
 
-## 多条件+排序+分页
+#### 多条件+排序+分页
 
 ```java
 /**
@@ -2444,6 +2443,7 @@ public interface AreaMapper extends JpaRepository<Area,Integer> {
                 List<Predicate> predicateList = new ArrayList<Predicate>();
                 // 添加条件
                 predicateList.add(criteriaBuilder.like(root.get("aname"), "%区%"));
+                predicateList.add(criteriaBuilder.greaterThan(root.get("aid"),2));
                 // 定义查询条件
                 Predicate[] predicates = new Predicate[predicateList.size()];
                 // 创建查询条件
@@ -2451,11 +2451,229 @@ public interface AreaMapper extends JpaRepository<Area,Integer> {
             }
         };
         // 加上排序
-        Sort orders = Sort.by(Sort.Direction.DESC);
+        Sort orders = Sort.by("aid").descending();
+        //Sort orders = Sort.by(Sort.Direction.DESC,"aid");
         // 加上分页
         Pageable pageable = PageRequest.of(1,4,orders);
         List<Area> areaMapperAll = areaMapper.findAll(spec, pageable).toList();
         System.out.println(areaMapperAll);
     }
+```
+
+![image-20211105090627422](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211105090627422.png)
+
+### 关系映射
+
+#### 员工类 employee.java
+
+```java
+package com.jpa.pojo;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer eid;
+    private String ename;
+    private String sex;
+//    private Integer pid;
+    private Double salary;
+    private String dizhi;
+    private String file;
+
+    @ManyToOne
+    @JoinColumn(name = "pid")
+    private Department department;
+}
+```
+
+#### 部门类 department.java
+
+```java
+package com.jpa.pojo;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class Department {
+    @Id
+    private Integer pid;
+    private String pname;
+
+    // 一对多
+    @OneToMany(mappedBy = "department",fetch = FetchType.EAGER)
+    private List<Employee> employeeList = new ArrayList<>();
+}
+```
+
+#### 员工和部门对应的mapper接口
+
+##### DepartmentMapper.java
+
+```java
+package com.jpa.mapper;
+
+import com.jpa.pojo.Department;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DepartmentMapper extends JpaRepository<Department,Integer> {
+}
+```
+
+##### EmployeeMapper.java
+
+```java
+package com.jpa.mapper;
+
+import com.jpa.pojo.Employee;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
+public interface EmployeeMapper extends JpaRepository<Employee,Integer>, JpaSpecificationExecutor<Employee> {
+}
+```
+
+#### Test
+
+```java
+import com.jpa.mapper.DepartmentMapper;
+import com.jpa.mapper.EmployeeMapper;
+import com.jpa.pojo.Department;
+import com.jpa.pojo.Employee;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.annotation.Resource;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
+import java.util.List;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:applicationContext.xml")
+public class Test2 {
+
+    @Resource
+    private EmployeeMapper employeeMapper;
+    @Resource
+    private DepartmentMapper departmentMapper;
+
+    @Test
+    //查询员工
+    public void Demo1() {
+        List<Employee> mapperAll = employeeMapper.findAll();
+        for (Employee e : mapperAll) {
+            System.out.println(e.getEname() + ":" + e.getDepartment().getPname());
+        }
+    }
+
+    @Test
+    // 查询部门
+    public void Demo2() {
+        List<Department> mapperAll = departmentMapper.findAll();
+        for (Department d : mapperAll) {
+            System.out.println(d.getPname());
+            for (Employee e : d.getEmployeeList()) {
+                System.out.println("\t" + e.getEname());
+            }
+        }
+    }
+    @Test
+    // 多条件查询员工
+    public void Demo3() {
+        Specification<Employee> spec = new Specification<Employee>() {
+            @Override
+            public Predicate toPredicate(Root<Employee> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                List<Predicate> predicateList = new ArrayList<>();
+                predicateList.add(criteriaBuilder.equal(root.get("sex"),"男"));
+                predicateList.add(criteriaBuilder.equal(root.get("department").get("pname"),"市场部"));
+                predicateList.add(criteriaBuilder.greaterThan(root.get("salary"),3000));
+
+                Predicate[] predicates = new Predicate[predicateList.size()];
+
+                return criteriaBuilder.and(predicateList.toArray(predicates));
+            }
+        };
+        Sort orders = Sort.by("eid").descending();
+        Pageable pageable = PageRequest.of(0, 5, orders);
+        List<Employee> employeeMapperAll = employeeMapper.findAll(spec, pageable).toList();
+        employeeMapperAll.forEach(employee -> System.out.println(employee.getEname()));
+    }
+}
+```
+
+#### 添加数据
+
+版本要一致！
+
+![image-20211105140953401](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111051409191.png)
+
+```java
+忽略不存在的部门编号
+@ManyToOne
+@JoinColumn(name = "pid")
+@NotFound(action = NotFoundAction.IGNORE) 
+private Department department;
+```
+
+```java
+ @Test
+    public void Demo4() {
+        Department department = new Department(805, "外交部", new ArrayList<Employee>());
+
+        Employee employee1 = new Employee(-1, "凸凹啊", "男", 8000.0, "湖北省", "项目主管","xxx", null);
+        Employee employee2 = new Employee(-1, "湖滨层", "女", 6000.2, "四川省", "项目主管","xxx", null);
+
+        employee1.setDepartment(department);
+        employee2.setDepartment(department);
+
+        department.getEmployeeList().add(employee1);
+        department.getEmployeeList().add(employee2);
+
+        departmentMapper.save(department);
+        employeeMapper.save(employee1);
+        employeeMapper.save(employee2);
+        System.out.println("添加成功...");
+    }
+```
+
+#### 更新数据
+
+```java
+```
+
+#### 删除数据
+
+```java
 ```
 
