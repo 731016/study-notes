@@ -100,7 +100,7 @@ git push origin master
 ### SSM 框架
 - [Mybatis](https://gitee.com/LovelyHzz/study-notes/blob/master/SSM%E6%A1%86%E6%9E%B6/mybatis.md)
 - [spring](https://gitee.com/LovelyHzz/study-notes/blob/master/SSM%E6%A1%86%E6%9E%B6/spring.md)
-- [springMVC](https://gitee.com/LovelyHzz/study-notes/tree/master/SSM%E6%A1%86%E6%9E%B6)
+- [springMVC](https://gitee.com/LovelyHzz/study-notes/blob/master/SSM%E6%A1%86%E6%9E%B6/springMVC.md)
 
 ### Linux
 - [linux安装](https://gitee.com/LovelyHzz/study-notes/blob/master/linux/linux%E5%AE%89%E8%A3%85.md)
