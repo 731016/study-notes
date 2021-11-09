@@ -465,6 +465,8 @@ private SqlSession sqlSession = null;
 
 # Mybatis-plus
 
+pojo实体类名称为**驼峰命名包含大写**，mybatis-plus默认会转换为`蛇形命名`
+
 ## pom.xml
 
 ```xml
