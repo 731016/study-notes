@@ -235,6 +235,11 @@ https://www.cnblogs.com/liaochong/p/spring_modelattribute.html
 
 ## restFul风格
 
+> @GetMapping(value = "/test1/{id}")
+> @PathVariable(value="id")
+>
+> 当@GetMapping上的占位符名称与下面括号里面的参数列表相同时，可**省略value**
+
 ```jsp
 <a href="/test/test1/1">test1</a>
 ```
@@ -528,4 +533,156 @@ PageInfo<Employee> selectCondByPage(Integer pageNum, Integer pageSize,Integer pi
 ```
 
 ![image-20211109160023901](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111091600265.png)
+
+## 当需要接收集合类型时
+
+```java
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+public class Department {
+    private List<Employee> employees;
+}
+```
+
+```java
+@Controller
+public class DepartmentController {
+    @GetMapping("/toDepAdd")
+    public String toDepAdd(){
+        return "/department_add";
+    }
+    @PostMapping("/depAdd")
+    public String toDepAdd(@ModelAttribute Department department){
+        for (Employee employee : department.getEmployees()) {
+            System.out.println(employee);
+        }
+        return "/department_add";
+    }
+}
+```
+
+```jsp
+<form action="/depAdd" method="post">
+    员工编号：<input type="text" name="employees[0].eid">
+    员工名称：<input type="text" name="employees[0].ename">
+    员工编号：<input type="text" name="employees[1].eid">
+    员工名称：<input type="text" name="employees[1].ename">
+
+    <input type="submit" value="添加">
+</form>
+```
+
+## 异步请求,响应
+
+> @ResponseBody 写在方法上，返回值可以为void
+> @RequestBody 写在参数列表上，可以post提交的表单数据，自动封装成pojo实体对象
+
+```java
+@Controller  
+@RequestMapping("/catalog.do")  
+public class CatalogController {  
+    @RequestMapping(params = "fn=saveUsers")  
+    @ResponseBody  
+    public AjaxJson saveUsers(@RequestBody List<User> userList) {  
+        …  
+    }  
+}
+```
+
+```java
+public class User {  
+        private String name;   
+    private String pwd;  
+    //省略getter/setter  
+}  
+```
+
+```javascript
+var userList = new Array();  
+userList.push({name: "李四",pwd: "123"});   
+userList.push({name: "张三",pwd: "332"});   
+$.ajax({  
+    type: "POST",  
+    url: "<%=path%>/catalog.do?fn=saveUsers",  
+    data: JSON.stringify(userList),//将对象序列化成JSON字符串  
+    dataType:"json",  
+    contentType : 'application/json;charset=utf-8', //设置请求头信息  
+    success: function(data){  
+        …  
+    },  
+    error: function(res){  
+        …  
+    }  
+});  
+```
+
+## 自定义类型转换器
+
+```java
+@Component
+public class DateConverter implements Converter<String, Date> {
+    @Override
+    public Date convert(String s) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy:MM:dd");
+        Date date = null;
+        try {
+            date = dateFormat.parse(s);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+}
+```
+
+### springmvc.xml
+
+```xml-dtd
+<mvc:annotation-driven conversion-service="conversionService"/>
+
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.springmvc.utils.DateConverter" />
+            </list>
+        </property>
+    </bean>
+```
+
+```jsp
+<form action="/checkHouseRecordAdd" method="post">
+    cid:<input type="number">
+    hid:<input type="number">
+    账户名称：<input type="text">
+    看房时间：<input type="date">
+
+    <input type="submit" value="添加">
+</form>
+```
+
+```java
+@Controller
+public class CheckHouseRecordController {
+
+    @Resource
+    private CheckHouseRecordService service;
+
+    @GetMapping("/toCheckHouseRecordAdd")
+    public String toCheckHouseRecordAdd() {
+        return "/date_add";
+    }
+
+    @PostMapping("/checkHouseRecordAdd")
+    public String checkHouseRecordAdd(@ModelAttribute CheckHouseRecord record) {
+        System.out.println(record);
+        Integer add = service.add(record);
+        if (add <= 0) {
+            System.out.println("添加失败！");
+        }
+        return "/date_add";
+    }
+}
+```
 

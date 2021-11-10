@@ -4,6 +4,8 @@
 
 [mybatis基础 · 语雀 (yuque.com)](https://www.yuque.com/docs/share/c93efd30-fc24-41a3-aa5d-cbb472d0687b#4CZlQ)
 
+
+
 ## 依赖
 
 ```XML
@@ -465,6 +467,8 @@ private SqlSession sqlSession = null;
 
 # Mybatis-plus
 
+**命名**问题：https://blog.csdn.net/Zack_tzh/article/details/107487209
+
 pojo实体类名称为**驼峰命名包含大写**，mybatis-plus默认会转换为`蛇形命名`
 
 ## pom.xml
@@ -632,5 +636,11 @@ public class Test1 {
         }
     }
 }
+```
+
+## 主键自增策略
+
+```java
+@TableId(value = "id",type = IdType.AUTO)
 ```
 
