@@ -574,51 +574,9 @@ public class DepartmentController {
 </form>
 ```
 
-## 异步请求,响应
-
-> @ResponseBody 写在方法上，返回值可以为void
-> @RequestBody 写在参数列表上，可以post提交的表单数据，自动封装成pojo实体对象
-
-```java
-@Controller  
-@RequestMapping("/catalog.do")  
-public class CatalogController {  
-    @RequestMapping(params = "fn=saveUsers")  
-    @ResponseBody  
-    public AjaxJson saveUsers(@RequestBody List<User> userList) {  
-        …  
-    }  
-}
-```
-
-```java
-public class User {  
-        private String name;   
-    private String pwd;  
-    //省略getter/setter  
-}  
-```
-
-```javascript
-var userList = new Array();  
-userList.push({name: "李四",pwd: "123"});   
-userList.push({name: "张三",pwd: "332"});   
-$.ajax({  
-    type: "POST",  
-    url: "<%=path%>/catalog.do?fn=saveUsers",  
-    data: JSON.stringify(userList),//将对象序列化成JSON字符串  
-    dataType:"json",  
-    contentType : 'application/json;charset=utf-8', //设置请求头信息  
-    success: function(data){  
-        …  
-    },  
-    error: function(res){  
-        …  
-    }  
-});  
-```
-
 ## 自定义类型转换器
+
+### utils
 
 ```java
 @Component
@@ -651,6 +609,8 @@ public class DateConverter implements Converter<String, Date> {
     </bean>
 ```
 
+### jsp
+
 ```jsp
 <form action="/checkHouseRecordAdd" method="post">
     cid:<input type="number">
@@ -661,6 +621,8 @@ public class DateConverter implements Converter<String, Date> {
     <input type="submit" value="添加">
 </form>
 ```
+
+### web
 
 ```java
 @Controller
@@ -684,5 +646,389 @@ public class CheckHouseRecordController {
         return "/date_add";
     }
 }
+```
+
+## 异步请求,响应
+
+> @ResponseBody 写在方法上，返回值可以为void
+> @RequestBody 写在参数列表上，可以post提交的表单数据，自动封装成pojo实体对象
+
+### pom.xml
+
+```xml
+<dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.11.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.11.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.11.4</version>
+        </dependency>
+```
+
+### service
+
+```java
+@GetMapping(value = "/toSelectOneEmp")
+    public String toSelectOneEmp(){
+        return "/select_emp";
+    }
+
+    @PostMapping(value = "/selectOneEmp")
+    @ResponseBody
+    public Employee selectOneEmp(@RequestBody Employee employee){
+        System.out.println(employee);
+        Integer employeeEid = employee.getEid();
+        Employee emp = employeeService.selectOneEmp(employeeEid);
+        return emp;
+    }
+```
+
+### pojo
+
+```java
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class Employee {
+    private Integer eid;
+    private String ename;
+    private String sex;
+    private Integer pid;
+    private String salary;
+    private String dizhi;
+    private String job;
+    private String file;
+}
+```
+
+### jsp
+
+```javascript
+<head>
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function () {
+            $('#select').click(function () {
+                let dataObj = new Object();
+                dataObj.eid = $('#eid').val();
+                if (dataObj.eid == ""){
+                    return false;
+                }
+                $.ajax({
+                    type: 'post',
+                    url: '${pageContext.request.contextPath}/selectOneEmp',
+                    data: JSON.stringify(dataObj),
+                    dataType: 'json',
+                    contentType:"application/json;charset=utf-8",
+                    success: function (data) {
+                        console.log(data)
+                        $('#info').html("");
+
+                        $.each(data, function (index, element) {
+                            $('#info').append('<h3>姓名：' + element + '</h3>');
+                        });
+                    },
+                    error: function (resp) {
+                        $('body').html(resp.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+员工编号:<input type="text" id="eid">
+<input type="button" id="select" value="查询">
+<div id="info"></div>
+</body>
+```
+
+## 多条件异步查询
+
+### pojo
+
+```java
+public class Employee {
+    private Integer eid;
+    private String ename;
+    private String sex;
+    private Integer pid;
+    private Double salary;
+    private String dizhi;
+    private String job;
+    private String file;
+}
+public class ResultInfo<T> {
+    private String msg;
+    private List<T> resultObj;
+}
+```
+
+### mapper
+
+```java
+List<Employee> selectCondEmpXml(Employee employee);
+```
+
+### service
+
+```java
+ResultInfo<Employee> selectCondEmp(Employee employee);
+@Override
+    public ResultInfo<Employee> selectCondEmp(Employee employee) {
+
+        List<Employee> employees = employeeMapper.selectCondEmpXml(employee);
+
+        System.out.println("service"+employees);
+
+        ResultInfo<Employee> resultInfo = new ResultInfo<>();
+        resultInfo.setResultObj(employees);
+
+        if (employees.size() >= 0) {
+            resultInfo.setMsg("查询成功！");
+        } else {
+            resultInfo.setMsg("查询失败！");
+        }
+        return resultInfo;
+    }
+```
+
+### controller
+
+```java
+ @PostMapping(value = "/selectCondEmp")
+    @ResponseBody
+    public ResultInfo<Employee> selectCondEmp(@RequestBody Employee employee) {
+        System.out.println("进入controller");
+        System.out.println("controller"+employee);
+        ResultInfo<Employee> info = employeeService.selectCondEmp(employee);
+        return info;
+    }
+```
+
+### jsp
+
+```jsp
+<head>
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function () {
+            $('#select').click(function () {
+                let dataObj = new Object();
+                dataObj.eid = $('#eid').val();
+                if (dataObj.eid == "") {
+                    return false;
+                }
+                $.ajax({
+                    type: 'post',
+                    url: '${pageContext.request.contextPath}/selectOneEmp',
+                    data: JSON.stringify(dataObj),
+                    dataType: 'json',
+                    contentType: "application/json;charset=utf-8",
+                    success: function (data) {
+                        console.log(data);
+                        $('#info').html("");
+                        $.each(data, function (index, element) {
+                            $('#info').append('<h3>姓名：' + element + '</h3>');
+                        });
+                    },
+                    error: function (resp) {
+                        $('body').html(resp.responseText);
+                    }
+                });
+            });
+            $('#select2').click(function () {
+
+                let arr = $('#empForm').serializeArray()
+                // console.log(arr);
+                let dataArr = {};
+                for (let i = 0; i < arr.length; i++) {
+                    dataArr[arr[i].name] = arr[i].value;
+                }
+                console.log(JSON.stringify(dataArr));
+                $.ajax({
+                    type: 'post',
+                    url: '${pageContext.request.contextPath}/selectCondEmp',
+                    data: JSON.stringify(dataArr),
+                    dataType: 'json',
+                    contentType: "application/json;charset=utf-8",
+                    cache: false,
+                    success: function (data) {
+                        console.log(data)
+                        console.log(data.msg);
+                        console.log(data.resultObj)
+                        $('#info').html("");
+                        $.each(data.resultObj, function (index, element) {
+                            $('#info').append('<h3>姓名：' + element.ename + '</h3>');
+                        });
+                    },
+                    error: function (resp) {
+                        $('body').html(resp.responseText);
+                    }
+                });
+            });
+
+        });
+    </script>
+</head>
+<body>
+<form id="empForm">
+    <div>
+        员工编号:<input type="text" id="eid" name="eid">
+    </div>
+    <div>
+        员工姓名：<input type="text" name="ename">
+    </div>
+    <div>
+        性别：
+        <input type="radio" value="男" name="sex">男
+        <input type="radio" value="女" name="sex">女
+    </div>
+    <div>
+        所属部门：
+        <select name="pid">
+            <option value="" selected>所有部门</option>
+            <option value="404">绝密</option>
+            <option value="701">销售部</option>
+            <option value="803">调研部</option>
+            <option value="805">外交部</option>
+        </select>
+    </div>
+    <div>
+        薪资：
+        <input type="number" name="salary">
+    </div>
+    <div>
+        地址：
+        <input type="text" name="dizhi">
+    </div>
+    <div>
+        工作：
+        <input type="text" name="job">
+    </div>
+</form>
+<input type="button" id="select" value="查询">
+<input type="button" id="select2" value="多条件查询2">
+<div id="info"></div>
+</body>
+```
+
+## 访问静态资源
+
+### springmvc.xml
+
+```xml-dtd
+<!--可以访问指定的静态资源-->
+    <mvc:resources mapping="/js/**" location="/js"></mvc:resources>
+    <mvc:resources mapping="/css/**" location="/css"></mvc:resources>
+    <mvc:resources mapping="/img/**" location="/img"></mvc:resources>
+
+<mvc:default-servlet-handler/>
+```
+
+## 文件上传
+
+### pom.xml
+
+```xml
+<dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.3</version>
+    </dependency>
+```
+
+### springmvc.xml
+
+```xml-dtd
+<!--设置文件解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--设置文件大小不超过10M-->
+        <property name="maxUploadSize" value="1024"/>
+    </bean>
+```
+
+### controller
+
+```java
+@PostMapping(value = "/empAdd")
+    public String empAdd(Model model,
+                         HttpServletRequest request,
+                         @ModelAttribute(value = "employee") Employee employee,
+                         @RequestParam MultipartFile upload
+    ) throws IOException {
+        //服务器保存文件的真实路径
+        String path = request.getSession().getServletContext().getRealPath("/uploads/");
+//判断该文件夹是否存在，如果不存在则创建
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+//获取上传文件的原始名称
+        String filename = upload.getOriginalFilename();
+//改造文件名，防止重名发生
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+//执行上传
+        filename = uuid + filename;
+
+        System.out.println("文件名称"+filename);
+
+        upload.transferTo(new File(path, filename));
+
+        employee.setFile(filename);
+
+        Integer empAdd = employeeService.empAdd(employee);
+        if (empAdd <= 0) {
+            System.out.println("添加失败！");
+        }
+        return "redirect:/queryAllEmp";
+    }
+```
+
+### 上传jsp
+
+```jsp
+<form action="/empAdd" method="post" enctype="multipart/form-data">
+        姓名：<input type="text" name="ename">
+        性别：
+        <input type="radio" name="sex" value="男" checked>男
+        <input type="radio" name="sex" value="女">女
+        部门：
+        <select name="pid">
+            <option value="404">绝密</option>
+            <option value="701">销售部</option>
+            <option value="803">调研部</option>
+            <option value="805">外交部</option>
+        </select>
+        薪资：<input type="number" name="salary">
+        地址：<input type="text" name="dizhi">
+        职位：<input type="text" name="job">
+        头像：<input type="file" name="upload">
+
+        <input type="submit" value="提交">
+        <input type="reset" value="重置">
+    </form>
+```
+
+### 显示jsp
+
+```jsp
+<td><img src="/uploads/${emp.file}"></td>
 ```
 
