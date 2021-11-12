@@ -1032,3 +1032,127 @@ ResultInfo<Employee> selectCondEmp(Employee employee);
 <td><img src="/uploads/${emp.file}"></td>
 ```
 
+## 拦截器
+
+https://cloud.tencent.com/developer/article/1562376#:~:text=%E6%8B%A6%E6%88%AA%E5%99%A8%20%28interceptor%29%E6%98%AFspringmvc%E4%B8%AD%E7%9A%84%E4%B8%80%E4%B8%AA%20%E7%BB%84%E4%BB%B6%20%EF%BC%8C%E6%98%AF%E8%BF%90%E8%A1%8C%E5%9C%A8%20DispatcherServlet%20%E4%B9%8B%E5%90%8E%EF%BC%8C%E8%BF%90%E8%A1%8C%E5%9C%A8,Controller%20%E4%B9%8B%E5%89%8D%E7%9A%84%20%E6%8B%A6%E6%88%AA%E5%99%A8%E5%8F%AF%E4%BB%A5%E5%86%B3%E5%AE%9A%E5%AF%B9%E6%9F%90%E4%BA%9B%E7%AC%A6%E5%90%88%E6%9D%A1%E4%BB%B6%E7%9A%84%E8%BF%9B%E8%A1%8C%20%E6%8B%A6%E6%88%AA%20%E6%88%96%E8%80%85%20%E6%94%BE%E8%A1%8C%20%EF%BC%8C%E6%89%80%E4%BB%A5%EF%BC%8C%E9%80%9A%E5%B8%B8%E7%94%A8%E4%BA%8E%E5%AF%B9%E4%B8%80%E4%BA%9B%E5%85%B7%E6%9C%89%E7%9B%B8%E5%90%8C%E8%BF%90%E8%A1%8C%E6%9D%A1%E4%BB%B6%E7%9A%84%E5%8A%9F%E8%83%BD%E8%BF%9B%E8%A1%8C%E7%BA%A6%E6%9D%9F
+
+```java
+public class EmployeeInterceptor implements HandlerInterceptor {
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("handler执行之前");
+        return true;
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        System.out.println("handler执行之后，view返回之前");
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        System.out.println("view执行之后");
+    }
+}
+```
+
+### 登录验证
+
+#### springmvc
+
+```xml-dtd
+<!--    配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/test/**"/>
+<!--            <mvc:exclude-mapping path="/test/**"/>-->
+            <bean class="com.springmvc.interceptor.EmployeeInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+```
+
+#### interceptor
+
+```java
+public class EmployeeInterceptor implements HandlerInterceptor {
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("handler执行之前");
+        String uri = request.getRequestURI();
+        if (uri.contains("login")) {
+            return true;
+        }
+
+        if (request.getSession().getAttribute("login") == null) {
+            response.sendRedirect("/login.jsp");
+        }
+        return false;
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        System.out.println("handler执行之后，view返回之前");
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        System.out.println("view执行之后");
+    }
+}
+```
+
+#### mapper
+
+```java
+Employee login(String username);
+```
+
+```xml-dtd
+<select id="login" resultType="com.springmvc.pojo.Employee" parameterType="java.lang.String">
+        select * from employee where ename = #{username}
+</select>
+```
+
+#### service
+
+```java
+Boolean login(String username);
+@Override
+    public Boolean login(String username) {
+        Employee employee = employeeMapper.login(username);
+        if (employee == null) {
+            return false;
+        }
+        return true;
+    }
+```
+
+#### web
+
+```java
+@PostMapping(value = "/emp_login")
+    public String login(HttpServletRequest request,
+                        @RequestParam(value = "username") String username,
+                        @RequestParam(value = "password") String password) {
+        System.out.println(username);
+        System.out.println(password);
+        if (employeeService.login(username) && "12345".equals(password)) {
+            request.getSession().setAttribute("login","2000");
+            return "/index";
+        }
+        return "/login";
+    }
+```
+
+#### jsp
+
+```jsp
+<form action="/emp_login" method="post">
+    用户名：<input type="text" name="username">
+    密码：<input type="password" name="password">
+    <input type="submit" value="登录">
+</form>
+```
+
+### 多个拦截器的执行顺序
+
