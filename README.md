@@ -103,7 +103,7 @@ git push origin master
 - [springMVC](https://gitee.com/LovelyHzz/study-notes/blob/master/SSM%E6%A1%86%E6%9E%B6/springMVC.md)
 
 ### redis
-- [Redis]()
+- [Redis](https://gitee.com/LovelyHzz/study-notes/blob/master/Redis/redis.md)
 
 ### Linux
 - [linux安装](https://gitee.com/LovelyHzz/study-notes/blob/master/linux/linux%E5%AE%89%E8%A3%85.md)
