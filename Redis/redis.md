@@ -520,3 +520,134 @@ public class Test2 {
 }
 ```
 
+## 案例-获取数据
+
+```xml
+<!--使用pool-->
+<dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>2.4.2</version>
+        </dependency>
+```
+
+```java
+@Override
+    public String queryAllEmpRedisJson() {
+        // 创建Jedis对象
+        Jedis jedis = JedisPoolUtils.getJedis();
+        // 获取缓存数据
+        String empJsonResult = jedis.get("emp");
+        // 为空，从数据库查询
+        if (StringUtils.isBlank(empJsonResult)) {
+            List<Employee> employees = employeeMapper.selectList(null);
+
+            empJsonResult = JSON.toJSONString(employees);
+//            ObjectMapper objectMapper = new ObjectMapper();
+//            try {
+//                String string = objectMapper.writeValueAsString(employees);
+//            } catch (JsonProcessingException e) {
+//                e.printStackTrace();
+//            }
+            // 设置缓存数据
+            jedis.set("emp", empJsonResult);
+            jedis.close();
+        }
+        return empJsonResult;
+```
+
+## 整合spring
+
+### pom.xml
+
+https://developer.aliyun.com/article/269833
+
+```xml
+<dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>2.10.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>2.5.4</version>
+        </dependency>
+```
+
+### applicationContext.xml
+
+> 同时写两个<context:property-placeholder>标签在Spring配置文件中不行，只能存在一个，Spring通过反射扫描标签的命名实例化Bean。
+> org.springframework.beans.factory.config.PropertyPlaceholderCVonfigurer只能存在一个实例。
+
+```xml-dtd
+<context:property-placeholder location="classpath:jedis.properties"/>
+
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${maxTotal}"/>
+        <property name="maxIdle" value="${maxIdle}"/>
+        <property name="minIdle" value="${minIdle}"/>
+        <property name="maxWaitMillis" value="${maxWaitMillis}"/>
+        <property name="testOnBorrow" value="${testOnBorrow}"/>
+        <property name="testOnReturn" value="${testOnReturn}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${timeBetweenEvictionRunsMillis}"/>
+        <property name="testWhileIdle" value="${testWhileIdle}"/>
+        <property name="numTestsPerEvictionRun" value="${numTestsPerEvictionRun}"/>
+    </bean>
+
+    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="hostName" value="${host}"/>
+        <property name="port" value="${port}"/>
+        <!-- 连接池配置引用 -->
+        <property name="poolConfig" ref="poolConfig"/>
+        <!-- usePool：是否使用连接池 -->
+        <property name="usePool" value="true"/>
+    </bean>
+
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="jedisConnectionFactory"/>
+        <property name="keySerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+        </property>
+        <property name="valueSerializer">
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+        </property>
+        <!--开启事务  -->
+        <property name="enableTransactionSupport" value="true"></property>
+    </bean>
+```
+
+### service
+
+> emp会出现序列化异常！，`emps`就没问题？？？
+
+```java
+@Resource
+    private RedisTemplate<String,String> redisTemplate;
+@Override
+    public String queryAllEmpRedisJson() {
+        // 获取缓存数据
+        String empJsonResult = redisTemplate.opsForValue().get("emps");
+        // 为空，从数据库查询
+        if (StringUtils.isBlank(empJsonResult)) {
+            List<Employee> employees = employeeMapper.selectList(null);
+
+            empJsonResult = JSON.toJSONString(employees);
+//            ObjectMapper objectMapper = new ObjectMapper();
+//            try {
+//                String string = objectMapper.writeValueAsString(employees);
+//            } catch (JsonProcessingException e) {
+//                e.printStackTrace();
+//            }
+            // 设置缓存数据
+            redisTemplate.opsForValue().set("emps", empJsonResult);
+        }
+        return empJsonResult;
+    }
+```
+

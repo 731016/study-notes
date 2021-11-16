@@ -1156,3 +1156,177 @@ Boolean login(String username);
 
 ### 多个拦截器的执行顺序
 
+![image-20211116191916499](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111162003499.png)
+
+## 防止多表单提交
+
+### js
+
+```jsp
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Form表单</title>
+  <script type="text/javascript">
+      var isCommitted = false;//表单是否已经提交标识，默认为false
+
+      function dosubmit(){
+          if(isCommitted==false){
+              isCommitted = true;//提交表单后，将表单是否已经提交标识设置为true
+              return true;//返回true让表单正常提交
+          }else{
+              return false;//返回false那么表单将不提交
+          }
+      }
+  </script>
+</head>
+
+<body>
+<form action="/DoForm"  method="post">
+  用户名：<input type="text" name="username">
+    <input type="submit" value="提交" id="submit"  onclick="return dosubmit()" >
+
+</form>
+</body>
+</html>
+```
+
+### session
+
+```jsp
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <title>form表单</title>
+</head>
+
+<body>
+<form action="/DoFormToken" method="post">
+  <input type="hidden" name="token" value="<%=session.getAttribute("token") %>">
+  用户名：<input type="text" name="username">
+  <input type="submit" value="提交">
+</form>
+</body>
+</html>
+```
+
+### 生成token字符串
+
+```java
+package com.zr.utils;
+
+import java.util.Random;
+
+
+public class TokenProccessor {
+    /*
+     *单例模式
+     */
+    private TokenProccessor(){}
+
+    private static final TokenProccessor instance = new TokenProccessor();
+
+    /**
+     * 返回类的对象
+     * @return
+     */
+    public static TokenProccessor getInstance(){
+        return instance;
+    }
+
+    /**
+     * 生成Token
+     */
+    public String makeToken(){
+        String token = (System.currentTimeMillis() + new Random().nextInt(999999999)) + "";
+        return token;
+    }
+}
+```
+
+### 进入页面之前，生成token，传给前端
+
+```java
+package com.zr.web;
+
+import com.zr.utils.TokenProccessor
+        ;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import java.io.IOException;
+
+@WebServlet(name = "DoFormSession",urlPatterns = "/DoFormSession")
+public class DoFormSession extends HttpServlet {
+    protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
+
+    }
+
+    protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
+        String token = TokenProccessor.getInstance().makeToken();//创建令牌
+        System.out.println("在FormServlet中生成的token："+token);
+        request.getSession().setAttribute("token", token);  //在服务器使用session保存token(令牌)
+        response.sendRedirect("/add_session.jsp");//跳转到form.jsp页面
+    }
+}
+```
+
+### 提交时，验证token隐藏域
+
+```java
+package com.zr.web;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet(name = "DoFormToken",urlPatterns = "/DoFormToken")
+public class DoFormToken extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        boolean b = isRepeatSubmit(request);//判断用户是否是重复提交
+        if(b==true){
+            System.out.println("请不要重复提交!!!");
+            return;
+        }
+        request.getSession().removeAttribute("token");//移除session中的token
+        System.out.println("处理用户提交请求：添加完毕......");
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+    /**
+     * 判断客户端提交上来的令牌和服务器端生成的令牌是否一致
+     *         true：重复提交
+     *         false：没有重复提交
+     */
+    private boolean isRepeatSubmit(HttpServletRequest request) {
+        String client_token = request.getParameter("token");
+        //如果用户提交的表单数据中没有token，则是重复提交
+        if(client_token==null){
+            return true;
+        }
+        //取出存储在Session中的token
+        String server_token = (String) request.getSession().getAttribute("token");
+        //如果当前用户的Session中不存在Token，则是重复提交
+        if(server_token==null){
+            return true;
+        }
+        //存储在Session中的Token)与表单提交的Token不同，则是重复提交
+        if(!client_token.equals(server_token)){
+            return true;
+        }
+
+        return false;
+    }
+}
+```
+
