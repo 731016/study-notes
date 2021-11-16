@@ -50,6 +50,7 @@ git push origin master
 
 
 ### 代码库 :computer: 
+- [java学习代码Demo](https://gitee.com/LovelyHzz/code-demo/tree/master)
 - [Java常用配置文件模板](https://gitee.com/LovelyHzz/study-notes/blob/master/%E4%BB%A3%E7%A0%81%E5%BA%93/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.md)
 - [Java工具类](https://gitee.com/LovelyHzz/study-notes/blob/master/%E4%BB%A3%E7%A0%81%E5%BA%93/java%E5%B7%A5%E5%85%B7%E7%B1%BB.md)
 - [JavaScript基础算法](https://gitee.com/LovelyHzz/study-notes/blob/master/%E4%BB%A3%E7%A0%81%E5%BA%93/javascript.md)
