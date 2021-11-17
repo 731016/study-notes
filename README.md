@@ -14,7 +14,9 @@ Java方面
 
   [git同时设置gitee和github push代码](https://cloud.tencent.com/developer/article/1774890)
 
-  [ssh测试连接超时](https://www.xuebuyuan.com/2159862.html)
+  [ssh测试连接超时 10053](https://www.xuebuyuan.com/2159862.html)
+
+  [git push 443问题（我自己的端口4780）](https://blog.csdn.net/m0_46979525/article/details/120825786)
 
   ```Git
   重置账户和密码
