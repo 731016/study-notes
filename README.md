@@ -18,6 +18,10 @@ Java方面
 
   [git push 443问题（我自己的端口4780）](https://blog.csdn.net/m0_46979525/article/details/120825786)
 
+  [not a git repository](https://blog.csdn.net/wenb1bai/article/details/89363588)
+
+  [git push No configured push destination](https://blog.csdn.net/COCOLI_BK/article/details/97921497)
+
   ```Git
   重置账户和密码
   git config --system --unset credential.helper
