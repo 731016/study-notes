@@ -101,7 +101,7 @@ public static void horse(int n) {
 
 ### 数组倒序
 
-![img](https://cdn.nlark.com/yuque/0/2021/png/22266803/1627729372627-6884858a-ef17-44d2-b48a-4094f6fd9074.png#id=Vckt8&originHeight=166&originWidth=755&originalType=binary&ratio=1&status=done&style=none)
+![img](https://gitee.com/LovelyHzz/imgSave/raw/master/note/1627729372627-6884858a-ef17-44d2-b48a-4094f6fd9074.png)
 
 ### 选择排序
 

@@ -6,15 +6,15 @@
 
 ## 新建项目
 
-![image-20211028154401703](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281544101.png)
+![image-20211124223240393](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124223240393.png)
 
-## 添加tomcat
+## 添加tomcat!
 
-![image-20211028154442472](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281544719.png)
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124223308753.png" style="zoom:80%;" />
 
 ## 部署项目
 
-![image-20211028154504821](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281545880.png)
+<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124223446489.png" alt="image-20211124223446489" style="zoom:67%;" />
 
 ## 控制台乱码
 
@@ -25,13 +25,13 @@
 java.util.logging.ConsoleHandler.encoding = GBK
 ```
 
-![image-20211028154557956](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281546487.png)
+![image-20211124223501748](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124223501748.png)
 
 
 
 ## tomcat热更新
 
-![image-20211028154623045](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281546282.png)
+<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124223515518.png" alt="image-20211124223515518" style="zoom:80%;" />
 
 # 简单的web页面
 

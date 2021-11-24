@@ -164,7 +164,7 @@ public class MybatisUtils {
 </dependency>
 ```
 
-![image-20211028143226754](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281432896.png)
+![image-20211124233231786](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233231786.png)
 
 ## 增删改查
 
@@ -215,7 +215,7 @@ public class MybatisUtils {
 </mapper>
 ```
 
-![image-20211028143255131](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281432238.png)
+![image-20211124233245087](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233245087.png)
 
 ## `<foreach>`
 
@@ -305,15 +305,15 @@ private SqlSession sqlSession = null;
     }
 ```
 
-![image-20211028143455054](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281434401.png)
+![image-20211124233309505](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233309505.png)
 
 ### lib问题
 
-![image-20211028143549361](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281435885.png)
+<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124233325091.png" alt="image-20211124233325091" style="zoom: 80%;" />
 
 **解决**
 
-![image-20211028143607841](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281436037.png)
+![image-20211124233347604](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233347604.png)
 
 ### 映射xml和java文件放在一起
 
@@ -364,7 +364,7 @@ private SqlSession sqlSession = null;
 
 ## `<where>`
 
-![image-20211028143650439](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281436686.png)
+![image-20211124233359969](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233359969.png)
 
 ```XML
 <select id="checkRecordVoAsCondition" parameterType="CheckRecordVo" resultType="CheckhouseRecord">

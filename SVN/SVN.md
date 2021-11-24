@@ -8,37 +8,37 @@
 
 ## 添加用户
 
-![image-20211028153243429](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281532803.png)
+![image-20211124233019129](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233019129.png)
 
 # 3. 创建仓库
 
-![image-20211028153308329](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281533469.png)
+![image-20211124233029478](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233029478.png)
 
 ## 权限设置
 
-![image-20211028153323810](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281533816.png)
+![image-20211124233043308](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233043308.png)
 
 ## 绑定用户
 
-![image-20211028153342697](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281533082.png)
+![image-20211124233056681](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233056681.png)
 
 # 4. 下载
 
-![image-20211028153411138](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281534330.png)
+![image-20211124233108915](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233108915.png)
 
 ```Git
 SVN Update 更新
 ```
 
-![image-20211028153435736](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281534953.png)
+![image-20211124233123121](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233123121.png)
 
 # 5. 上传
 
-![image-20211028153458389](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281534971.png)
+![image-20211124233137202](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233137202.png)
 
 ### 清除身份验证数据
 
-![image-20211028153518807](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281535038.png)
+![image-20211124233156070](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233156070.png)
 
 # IDEA使用SVN
 
@@ -50,7 +50,7 @@ SVN Update 更新
 
 [windows下svn强制写日志hook脚本增强版（空格过滤）_goldboar的专栏-CSDN博客](https://blog.csdn.net/goldboar/article/details/7086964)
 
-![image-20211028153704646](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281537074.png)
+![image-20211124233208368](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233208368.png)
 
 ```shell
 @echo off  

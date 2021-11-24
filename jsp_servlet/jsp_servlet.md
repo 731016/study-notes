@@ -191,7 +191,7 @@ request.getRequestDispatcher("JSP页面").forward(request,response);
 %>
 ```
 
-![image-20211028183356462](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281833311.png)
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231407722.png" alt="image-20211124231407722" style="zoom:67%;" />
 
 ### (2) setContentType
 
@@ -319,7 +319,7 @@ web.xml中添加如下代码:
 
 应用场景:统计网站访问人数
 
-![image-20211028183424999](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281834629.png)
+![image-20211124231600164](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231600164.png)
 
 ### (1)`getAttribute,setAttribute`
 
@@ -393,7 +393,7 @@ select * from d_student;
 
 **jar包**
 
-![image-20211028183449077](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281834355.png)
+![image-20211124231701264](C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124231701264.png)
 
 - **实体类**
 
@@ -534,6 +534,8 @@ public class JdbcUtils {
 </html>
 ```
 
+
+
 ## 插入数据-用户注册
 
 - 数据访问层`Dao`
@@ -619,7 +621,7 @@ public class StudentServiceImpl implements StudentService {
 %>
 ```
 
-![image-20211028183702533](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281837953.png)
+![image-20211124231827467](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231827467.png)
 
 ## 查询数据-列出用户列表
 
@@ -720,7 +722,7 @@ public Student selectOne(String stuName) throws SQLException;
 </html>
 ```
 
-![image-20211028183731618](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281837988.png)
+![image-20211124231748488](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231748488.png)
 
 ## 用户登录
 
@@ -954,11 +956,11 @@ public Integer delOne(String stuName) throws SQLException;
 %>
 ```
 
-![image-20211028183806599](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281838172.png)
+![image-20211124231956550](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231956550.png)
 
 ## 用户信息修改
 
-![image-20211028183825969](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281838490.png)
+![image-20211124232006233](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232006233.png)
 
 - 业务逻辑层`Service`
 
@@ -1474,11 +1476,11 @@ public Integer alterOne(Student student) throws SQLException;
 
 ## 传统注册
 
-![image-20211028183935801](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281839253.png)
+![image-20211124232100341](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232100341.png)
 
 ## 注解注册
 
-![image-20211028183956874](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281839580.png)
+![image-20211124232112397](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232112397.png)
 
 **输出**
 
@@ -1495,7 +1497,7 @@ HttpSession session = request.getSession();
 
 ## 超链接传递数据到servlet
 
-![image-20211028184017169](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281840526.png)
+![image-20211124232125745](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232125745.png)
 
 ## EL表达式
 
@@ -1516,15 +1518,15 @@ standard-1.1.2.jar
 
 https://mvnrepository.com/artifact/taglibs/standard/1.1.2
 
-![image-20211028184143722](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281841643.png)
+<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124232145600.png" alt="image-20211124232145600" style="zoom:80%;" />
 
 **遍历<c:forEach>**集合
 
-![image-20211028184230872](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281842695.png)
+![image-20211124232202999](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232202999.png)
 
 ## JS选中表单，显示信息
 
-![image-20211028184246681](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281842032.png)
+![image-20211124232214317](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232214317.png)
 
 ## 上传图片
 
@@ -1534,7 +1536,7 @@ upload_bill.jar
 
 **网站根目录**
 
-![image-20211028184330535](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281843867.png)
+![image-20211124232225602](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232225602.png)
 
 - `form`表单
 
@@ -1655,7 +1657,7 @@ GROUP BY eid
 limit 5,5
 ```
 
-![image-20211028184356959](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281843713.png)
+![image-20211124232255310](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232255310.png)
 
 ```Java
 public List<Employee> selectAllEmployee(Integer index, Integer size) throws SQLException {

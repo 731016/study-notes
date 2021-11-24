@@ -8,7 +8,7 @@
 
 新建系统变量 **MAVEN_HOME**，变量值：自己的安装文件夹
 
-![image-20211028171509988](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281715107.png)
+![image-20211124221930804](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124221930804.png)
 
 编辑系统变量 **Path**，添加变量值：
 
@@ -16,7 +16,7 @@
 ;%MAVEN_HOME%\bin
 ```
 
-![image-20211028171547857](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281715986.png)
+![image-20211124221947523](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124221947523.png)
 
 ```PowerShell
 mvn -version
@@ -59,15 +59,15 @@ apache-maven-3.6.3\conf\settings.xml
 
 ## IDEA配置maven
 
-![image-20211028171623312](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281716533.png)
+<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124222700068.png" alt="image-20211124222700068" style="zoom: 67%;" />
 
 # 运行maven项目
 
-![image-20211028170512953](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281705467.png)
+<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124222731245.png" alt="image-20211124222731245"  />
 
-![image-20211028170538275](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281705392.png)
+![image-20211124222757353](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124222757353.png)
 
-![image-20211028170555883](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281705158.png)
+<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124222821518.png" alt="image-20211124222821518" style="zoom:80%;" />
 
 # 依赖
 
@@ -170,7 +170,7 @@ apache-maven-3.6.3\conf\settings.xml
         </dependency>
 ```
 
-![image-20211028170635566](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281706110.png)
+![image-20211124222857539](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124222857539.png)
 
 # 依赖管理
 
@@ -362,15 +362,15 @@ war
 
 ## 新建web模块
 
-![image-20211028170739072](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281707377.png)
+![image-20211124222923709](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124222923709.png)
 
 ## 配置web目录
 
-![image-20211028170753264](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281707575.png)
+![image-20211124222946844](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124222946844.png)
 
 ## maven编译,打包,安装
 
-![image-20211028170843292](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211028170843292.png)
+https://blog.csdn.net/zhan107876/article/details/93197985
 
 ## 复制打包好的.war文件
 
@@ -378,7 +378,7 @@ war
 
 ## 设置tomcat管理用户名密码
 
-![image-20211028170922094](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281709224.png)
+![image-20211124223204383](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124223204383.png)
 
 ```XML
 <role rolename="manager-gui"/>
@@ -387,7 +387,7 @@ war
 
 ## cmd启动tomcat
 
-![image-20211028170937404](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281709820.png)
+![image-20211124223216479](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124223216479.png)
 
 ```PowerShell
 startup 启动

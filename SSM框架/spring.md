@@ -136,7 +136,7 @@ Spring通过DI（依赖注入）实现IOC（控制反转），常用的注入方
 
 
 
-![image-20211028161607573](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281616290.png)
+![image-20211124233440712](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233440712.png)
 
 ```xml-dtd
 <bean id="studentService" class="com.service.impl.StudentServiceImpl" scope="prototype">
@@ -169,9 +169,9 @@ public class StudentServiceImpl implements StudentService {
 
 ## JdbcTemplate
 
-![image-20211028161645951](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281616918.png)
+![image-20211124233544224](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233544224.png)
 
-![image-20211028161854469](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281618802.png)
+
 
 ### 依赖
 
@@ -602,11 +602,7 @@ public class Demo {
 
 ### 注解
 
-![image-20211029115407639](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110291154291.png)
-
-![image-20211029115336390](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110291153435.png)
-
-![image-20211029134920732](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110291349202.png)
+![image-20211124233644417](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233644417.png)
 
 
 
@@ -873,7 +869,7 @@ test
 </web-app>
 ```
 
-![image-20211101112325460](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111011123119.png)
+![image-20211124233714938](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233714938.png)
 
 ```xml-dtd
 <bean id="studentService" class="com.service.impl.StudentServiceImpl"></bean>
@@ -1572,7 +1568,7 @@ public class BankServiceImpl implements BankService {
 
 ## aop自定义通知和事务处理比较
 
-![image-20211102154812843](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111021548619.png)
+![image-20211124233740825](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233740825.png)
 
 # Hibernate + spring
 
@@ -2460,8 +2456,6 @@ public interface AreaMapper extends JpaRepository<Area,Integer> {
     }
 ```
 
-![image-20211105090627422](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211105090627422.png)
-
 ### 关系映射
 
 #### 员工类 employee.java
@@ -2636,7 +2630,7 @@ public class Test2 {
 
 版本要一致！
 
-![image-20211105140953401](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111051409191.png)
+![image-20211124233825158](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233825158.png)
 
 ```java
 忽略不存在的部门编号

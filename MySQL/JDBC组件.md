@@ -14,17 +14,17 @@
 
 ## 创建项目
 
-![image-20211028181231831](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281812105.png)
+<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124232407819.png" alt="image-20211124232407819" style="zoom:80%;" />
 
 ## 添加目录，更改为源目录
 
-![image-20211028181254601](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281812238.png)
+<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124232421304.png" alt="image-20211124232421304" style="zoom:80%;" />
 
 ## 加入jar包
 
 复制jar包到创建好的源目录
 
-![image-20211028181321801](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281813399.png)
+![image-20211124232434718](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232434718.png)
 
 
 
@@ -32,7 +32,7 @@
 
 **版本**
 
-![image-20211028181346332](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281813451.png)
+![image-20211124232447130](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232447130.png)
 
 ```sql
 public static void main(String[] args) throws Exception {
@@ -82,7 +82,7 @@ public static void main(String[] args) throws ClassNotFoundException, SQLExcepti
     }
 ```
 
-![image-20211028181417304](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281814346.png)
+![image-20211124232459237](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232459237.png)
 
 - 条件查询，返回结果
 
@@ -119,7 +119,7 @@ static String url = "jdbc:mysql://localhost:3306/demo?characterEncoding=utf8&use
     }
 ```
 
-![image-20211028181439286](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281814871.png)
+![image-20211124232511713](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232511713.png)
 
 - 简单的登陆验证
 
@@ -152,7 +152,7 @@ public static void main(String[] args) throws ClassNotFoundException, SQLExcepti
     }
 ```
 
-![image-20211028181518049](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281815111.png)
+![image-20211124232641272](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232641272.png)
 
 ## 创建JDBCUtils工具类
 
@@ -294,7 +294,7 @@ public class Test1 {
 }
 ```
 
-![image-20211028181545060](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281815099.png)
+![image-20211124232539764](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232539764.png)
 
 - 执行插入数据
 
@@ -338,7 +338,7 @@ public class Test2 {
 }
 ```
 
-![image-20211028181603472](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281816491.png)
+![image-20211124232550928](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-2021112423255092822.png)
 
 - 防止SQL注入,验证用户登录
 
@@ -415,7 +415,7 @@ public class Test4 {
 }
 ```
 
-![image-20211028181622606](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281816830.png)
+![image-20211124232715310](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232715310.png)
 
 - 带参数的存储过程-输入参数
 
@@ -446,7 +446,7 @@ public class Test5 {
 }
 ```
 
-![image-20211028181641148](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281816428.png)
+![image-20211124232732870](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232732870.png)
 
 - 带输入输出参数的存储过程，main方法
 
@@ -500,7 +500,7 @@ public class Test6 {
 }
 ```
 
-![image-20211028181659528](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281817660.png)
+![image-20211124232753865](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232753865.png)
 
 - 带输入输出参数的存储过程，工具类
 
@@ -580,7 +580,7 @@ public class Test7 {
 }
 ```
 
-![image-20211028181717217](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281817663.png)
+![](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232753865.png)
 
 - 聚合查询（单行记录）
 
@@ -636,7 +636,7 @@ public class Test8 {
 }
 ```
 
-![image-20211028181755515](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281817686.png)
+![image-20211124232820087](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232820087.png)
 
 ## 数据库连接池
 
@@ -697,7 +697,7 @@ public static void main(String[] args) throws SQLException, ClassNotFoundExcepti
     }
 ```
 
-![image-20211028181905823](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281819062.png)
+![image-20211124232834089](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232834089.png)
 
 ## 使用QueryRunner处理返回数据
 
@@ -727,7 +727,7 @@ public static void main(String[] args) throws Exception {
     }
 ```
 
-![image-20211028182002433](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281820766.png)
+![image-20211124232845874](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232845874.png)
 
 - 带单个聚合函数的查询
 
@@ -762,7 +762,7 @@ public int getAvgSalary(String dName) {
     }
 ```
 
-![image-20211028182027702](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281820734.png)
+![image-20211124232901994](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232901994.png)
 
 ### QueryRunner
 
@@ -963,13 +963,13 @@ public class TestOne {
 
 # 三层架构
 
-![image-20211028182101438](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281821740.png)
+![image-20211124232937611](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232937611.png)
 
 > `pojo`.实体类 -类 `utils`.JDBCutils -类 `dao`(database access object) -**接口** impl.实体类Impl -**实现类** `service`.实体类Service -**接口** impl.实体类Impl -**实现类** `ui`.Test -测试类
 
 ## 结构
 
-![image-20211028182118015](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281821703.png)
+![image-20211124232925772](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232925772.png)
 
 - pojo
 

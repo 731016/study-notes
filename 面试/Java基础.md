@@ -108,7 +108,7 @@ JVM 中类的装载是由ClassLoader 和它的子类来实现的,Java ClassLoade
 
 3. 抽象类中可以包含**静态方法**，<del>接口中不能包含静态方法 </del>(jdk8加入)
 
-   ![image-20211102163408655](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111021634953.png)
+   ![image-20211124223730577](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124223730577.png)
 
 在**<u>成员变量和访问修饰符</u>**上：
 
@@ -246,7 +246,7 @@ String有替换的方法
     }
 ```
 
-![image-20211102193048371](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111021930709.png)
+![image-20211124223746838](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124223746838.png)
 
 ## 写一个函数，2 个参数，1 个字符串，1 个字节数，返回截取的字符串，要求字符串中的中文不能出现乱码：如（“我ABC”，4）应该截为“我AB”，输入（“我ABC 汉DEF”，6）应该输出为“我ABC”而不是“我ABC+汉的半个”。
 
@@ -282,7 +282,7 @@ public String subString(String str, int subBytes) {
     }
 ```
 
-![image-20211102200428558](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111022004722.png)
+![image-20211124223759087](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124223759087.png)
 
 ## **日期和时间**
 
@@ -349,8 +349,6 @@ public String getDate(int flag) {
         System.out.println(getDate(5));
     }
 ```
-
-![image-20211103160912164](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211103160912164.png)
 
 ## error和exception有什么区别
 
@@ -584,7 +582,7 @@ Hashtable和HashMap采用的hash/rehash算法都大概一样，所以性能不�
 
 当线程关联的**代码执行完后**，线程变为结束状态。
 
-![image-20211104192939798](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111041929080.png)
+![image-20211124223832750](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124223832750.png)
 
 ## sleep() 和 wait() 有什么区别?
 

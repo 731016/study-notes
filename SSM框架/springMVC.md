@@ -4,9 +4,9 @@
 
 http://c.biancheng.net/spring_mvc/process.html
 
-![image-20211123110951328](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111231110957.png)
+![image-20211124233848858](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233848858.png)
 
-![image-20211108151623092](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111081516282.png)
+![image-20211124233906738](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233906738.png)
 
 ## pom.xml
 
@@ -25,8 +25,6 @@ http://c.biancheng.net/spring_mvc/process.html
 ```
 
 ## tomcat配置
-
-![image-20211108111708587](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211108111708587.png)
 
 ```properties
 tomcat.util.scan.StandardJarScanFilter.jarsToScan=\
@@ -197,17 +195,17 @@ public class Test1 {
 
 https://www.cnblogs.com/kitor/p/10987217.html
 
-![image-20211108152018220](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111081520334.png)
+![image-20211124234102729](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124234102729.png)
 
 ## 请求重定向
 
 https://blog.csdn.net/weixin_39973810/article/details/84847922
 
-![image-20211108152315128](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111081523729.png)
+![image-20211124234135022](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124234135022.png)
 
-![image-20211108152329816](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111081523677.png)
 
-![image-20211108152344230](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111081523381.png)
+
+![image-20211124234146818](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124234146818.png)
 
 ## @ModelAttribute
 
@@ -534,7 +532,7 @@ PageInfo<Employee> selectCondByPage(Integer pageNum, Integer pageSize,Integer pi
 </html>
 ```
 
-![image-20211109160023901](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111091600265.png)
+![image-20211124234203933](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124234203933.png)
 
 ## 当需要接收集合类型时
 
@@ -1158,7 +1156,7 @@ Boolean login(String username);
 
 ### 多个拦截器的执行顺序
 
-![image-20211116191916499](https://raw.githubusercontent.com/731016/imgSave/master/note_img202111162003499.png)
+![image-20211124234224028](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124234224028.png)
 
 ## 防止多表单提交
 

@@ -1,10 +1,8 @@
 # Debug
 
-![image-20211028190029823](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281900416.png)
+![image-20211124230348714](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124230348714.png)
 
-![image-20211028190046513](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281900640.png)
-
-1. 将**光标移动** 到**当前代码执行位置** 
+1. 将**光标移动** 到**当前代码执行位置**  
 
 2. 单步跳入，不进入方法
 

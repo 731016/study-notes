@@ -372,9 +372,6 @@ st1 = st1.replace('f', 'g');
 System.out.println(st1);
 ```
 
-
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/22266803/1627971612808-009ee44d-b8b2-4ede-9a23-b4f32b47f45d.png#align=left&display=inline&height=49&id=ub20eb9cc&margin=%5Bobject%20Object%5D&name=image.png&originHeight=49&originWidth=181&size=1753&status=done&style=stroke&width=181)
-
 <br />
 
 `public String replace(CharSequence target,CharSequence replacement)`
@@ -397,7 +394,7 @@ System.out.println(st1);
 ```
 
 
-![image-20211028191536729](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281915899.png)
+![image-20211124231236063](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231236063.png)
 
 ## replaceAll
 
@@ -423,7 +420,7 @@ char[] chars=st1.toCharArray();
 ```
 
 
-![image-20211028191550494](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281915771.png)
+![image-20211124231247085](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231247085.png)
 
 ## getBytes
 
@@ -437,7 +434,7 @@ byte[] bytes=st1.getBytes();
 ```
 
 
-![image-20211028191606916](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281916922.png)
+![image-20211124231256956](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231256956.png)
 
 
 ## indexOf
@@ -455,7 +452,7 @@ String st1 = "food kood";
 ```
 
 
-![image-20211028191620644](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281916954.png)
+![image-20211124231306066](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231306066.png)
 
 ## substring
 
@@ -482,7 +479,7 @@ String[] st2 = st1.split("o");
 ```
 
 
-![image-20211028191641467](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281916547.png)
+![image-20211124231318155](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231318155.png)
 
 ```java
 //提取网址信息
@@ -502,7 +499,7 @@ for (int i = 0; i < par.length; i++) {
 ```
 
 
-![image-20211028191653893](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281916019.png)
+![image-20211124231327340](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231327340.png)
 
 
 
@@ -540,7 +537,7 @@ System.out.println(" ".isBlank());
 ```
 
 
-![image-20211028191735471](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281917505.png)
+![image-20211124231336482](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231336482.png)
 
 ## valueOf
 
