@@ -108,6 +108,7 @@ git push origin master
 - [Mybatis](https://gitee.com/LovelyHzz/study-notes/blob/master/SSM%E6%A1%86%E6%9E%B6/mybatis.md)
 - [spring](https://gitee.com/LovelyHzz/study-notes/blob/master/SSM%E6%A1%86%E6%9E%B6/spring.md)
 - [springMVC](https://gitee.com/LovelyHzz/study-notes/blob/master/SSM%E6%A1%86%E6%9E%B6/springMVC.md)
+- [springBoot](https://gitee.com/LovelyHzz/study-notes/blob/master/SSM%E6%A1%86%E6%9E%B6/springBoot.md)
 
 ### redis
 - [Redis](https://gitee.com/LovelyHzz/study-notes/blob/master/Redis/redis.md)
