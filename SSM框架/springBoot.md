@@ -355,3 +355,100 @@ Th:href （了解）
       static-locations: classpath:static/
 ```
 
+## 使用thymeleaf表单提交
+
+### 添加操作
+
+```html
+<form method="post" th:action="@{/product/addProduct}" th:object="${product}">
+    <!--  input文本框获取表单内容  -->
+    <div>商品名称：<input type="text" name="productName" th:value="*{productName}"></div>
+    <div>商品库存：<input type="text" name="inventory" th:value="*{inventory}"></div>
+    <!--  单选框获取表单内容  -->
+    <div>商品类型：
+        <input type="radio" name="tid"
+               th:checked="${product.tid==1?true:false}" value="1">食品
+        <input type="radio" name="tid"
+               th:checked="${product.tid==2?true:false}" value="2">生活用品
+        <input type="radio" name="tid"
+               th:checked="${product.tid==3?true:false}" value="3">数码产品
+    </div>
+    <!--  下拉菜单获取表单内容  -->
+    <div>商品类型：
+        <select name="tid" th:value="*{tid}">
+            <option
+                    th:each="p : ${productTypes}"
+                    th:value="${p.tid}"
+                    th:text="${p.tname}"
+            >
+            </option>
+        </select>
+    </div>
+    <input type="submit" value="添加">
+</form>
+```
+
+### 后台控制层写法
+
+```java
+/**
+ * 通过中转页面将对象信息存入session
+ *
+ * @param model
+ * @return
+ */
+@RequestMapping("/toAddProduct")
+public String toAddProduct(Model model) {
+    List<ProductType> productTypes = typeService.selectAll();
+    Product product = new Product();
+    model.addAttribute("productTypes", productTypes);
+    //必须先将对象存入session前台才能获取到对应的对象属性，对象是空的也无所谓
+    model.addAttribute("product", product);
+    return "/product/product_add";
+}
+
+/**
+ * 获取表单提交数据，自动组成对象
+ *
+ * @param product
+ * @return
+ */
+@RequestMapping("/addProduct")
+public String addProduct(Product product) {
+    System.out.println(product);
+    service.addProduct(product);
+    return "redirect:/product/allList";
+}
+```
+
+### 修改操作
+
+```html
+<!--  下拉菜单获取表单内容  -->
+<div>商品类型：
+    <select name="tid" th:value="*{tid}">
+        <!-- 将数据显示在下拉菜单中 -->
+        <option
+                th:each="p : ${productTypes}"
+                th:value="${p.tid}"
+                th:text="${p.tname}"
+                th:selected="${p.tid==product.tid}"
+        >
+        </option>
+    </select>
+</div>
+```
+
+### 逻辑层
+
+```java
+@Override
+public Boolean updateProduct(Product product) {
+    //修改操作可以使用UpdateWrapper
+    UpdateWrapper<Product> updateWrapper = new UpdateWrapper<>();
+    updateWrapper.eq("id", product.getId());
+    int update = mapper.update(product, updateWrapper);
+    return update > 0;
+}
+```
+
