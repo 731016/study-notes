@@ -122,3 +122,5 @@ git push origin master
 ### 面试 :briefcase: 
 - [Java基础面试16问部分](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%9D%A2%E8%AF%95/%E9%9D%A2%E8%AF%95%E9%A2%98.md)
 - [Java基础](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%9D%A2%E8%AF%95/Java%E5%9F%BA%E7%A1%80.md)
+- [群硕软件](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%9D%A2%E8%AF%95/%E7%BE%A4%E7%A1%95%E8%BD%AF%E4%BB%B6.md)
+- [赛德勤](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%9D%A2%E8%AF%95/%E8%B5%9B%E5%BE%B7%E5%8B%A4.md)
