@@ -14,7 +14,7 @@
 
 ## 部署项目
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124223446489.png" alt="image-20211124223446489" style="zoom:67%;" />
+<img src="D:\xunleidownload\imgSave-master\imgSave-master\note\image-20211124223446489.png" alt="image-20211124223446489" style="zoom:67%;" />
 
 ## 控制台乱码
 
@@ -31,7 +31,7 @@ java.util.logging.ConsoleHandler.encoding = GBK
 
 ## tomcat热更新
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124223515518.png" alt="image-20211124223515518" style="zoom:80%;" />
+![image-20211124223515518](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202111271738701.png)
 
 # 简单的web页面
 

@@ -59,15 +59,15 @@ apache-maven-3.6.3\conf\settings.xml
 
 ## IDEA配置maven
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124222700068.png" alt="image-20211124222700068" style="zoom: 67%;" />
+## <img src="D:\xunleidownload\imgSave-master\imgSave-master\note\image-20211124222700068.png" alt="image-20211124222700068" style="zoom:67%;" />
 
 # 运行maven项目
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124222731245.png" alt="image-20211124222731245"  />
+![image-20211124222731245](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202111271735488.png)
 
 ![image-20211124222757353](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124222757353.png)
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124222821518.png" alt="image-20211124222821518" style="zoom:80%;" />
+![image-20211124222821518](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202111271735229.png)
 
 # 依赖
 
@@ -374,7 +374,7 @@ https://blog.csdn.net/zhan107876/article/details/93197985
 
 ## 复制打包好的.war文件
 
-![image-20211028170904979](https://raw.githubusercontent.com/731016/imgSave/master/note_img202110281709116.png)
+![image-20211127173751201](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202111271737102.png)
 
 ## 设置tomcat管理用户名密码
 
