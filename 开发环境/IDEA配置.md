@@ -54,11 +54,11 @@ Settings ->
 
 # 标签全部显示
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124221757311.png" alt="image-20211124221757311" style="zoom: 80%;" />
+<img src="D:\xunleidownload\imgSave-master\imgSave-master\note\image-20211124221757311.png" alt="image-20211124221757311" style="zoom:80%;" />
 
 # IDEA运行程序无效
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124221824624.png" alt="image-20211124221824624" style="zoom:80%;" />
+<img src="D:\xunleidownload\imgSave-master\imgSave-master\note\image-20211124221824624.png" alt="image-20211124221824624" style="zoom:80%;" />
 
 # 自定义文件，方法注释
 
@@ -70,7 +70,7 @@ Settings ->
 
 `Translation` 翻译插件
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124221844192.png" alt="image-20211124221844192" style="zoom:80%;" />
+![image-20211124221844192](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202111271734433.png)
 
 ## lombok
 
@@ -90,4 +90,4 @@ Settings ->
 
 # 代码提示
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124221905121.png" alt="image-20211124221905121" style="zoom:80%;" />
+<img src="D:\xunleidownload\imgSave-master\imgSave-master\note\image-20211124221905121.png" alt="image-20211124221905121" style="zoom:80%;" />
