@@ -1,5 +1,3 @@
-# springMVC
-
 ## 执行流程
 
 http://c.biancheng.net/spring_mvc/process.html

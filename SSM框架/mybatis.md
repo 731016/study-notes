@@ -309,7 +309,7 @@ private SqlSession sqlSession = null;
 
 ### lib问题
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124233325091.png" alt="image-20211124233325091" style="zoom: 80%;" />
+<img src="D:\xunleidownload\imgSave-master\imgSave-master\note\image-20211124233325091.png" alt="image-20211124233325091" style="zoom:80%;" />
 
 **解决**
 
