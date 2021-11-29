@@ -513,7 +513,7 @@ public class QuartzConfig {
         CronTrigger trigger = TriggerBuilder.newTrigger().forJob(getJobDetail())
             // 创建的CronTrigger类型的对象
                 .withIdentity("trigger").withDescription("这是cron触发器").startNow()
-            // 创建的CronScheduleBuilderl
+            // 创建的CronScheduleBuilder类型的对象
                 .withSchedule(cronTrig).build();
         return trigger;
     }
@@ -528,6 +528,41 @@ public class Quartz extends QuartzJobBean{
     @Override
     public void executeInternal(JobExecutionContext context){
         System.out.println("调用任务。。。"+new Random().nextInt());
+    }
+}
+```
+
+## 拦截器
+
+```java
+@Component
+public class LoginIntercepter implements HandlerInterceptor {
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("执行拦截器");
+        return false;
+    }
+}
+```
+
+### config
+
+<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211129160821148.png" alt="image-20211129160821148" style="zoom:80%;" />
+
+```java
+@Configuration
+public class IntercepterConfig implements WebMvcConfigurer {
+
+    @Resource
+    private LoginIntercepter loginIntercepter;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(loginIntercepter).addPathPatterns("/**")
+                .excludePathPatterns("/css/**")
+                .excludePathPatterns("/js/**")
+                .excludePathPatterns("/images/**")
+                .excludePathPatterns("/login");
     }
 }
 ```
