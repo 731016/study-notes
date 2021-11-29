@@ -452,3 +452,83 @@ public Boolean updateProduct(Product product) {
 }
 ```
 
+## Scheduled定时任务
+
+### 依赖
+
+```xml
+<dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context-support</artifactId>
+    </dependency>
+```
+
+### 启动类
+
+```java
+@EnableScheduling
+```
+
+### 定时任务
+
+```java
+@Component 
+public class DemoScheduled {
+    @Scheduled(cron="0/2 * * * * *")
+    public void testScheduled(){
+        System.out.println("test scheduled");
+    }
+}
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202111291106557.png" alt="image-20211129110620409" style="zoom: 67%;" />
+
+## Quartz
+
+<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211129114126034.png" alt="image-20211129114126034" style="zoom:67%;" />
+
+### 依赖
+
+```xml
+<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
+```
+
+### 配置类
+
+```java
+@Configuration
+public class QuartzConfig {
+
+    @Bean
+    public JobDetail getJobDetail() {
+        // 对应定时任务类
+        return JobBuilder.newJob(Quartz.class).withIdentity("quartz").storeDurably().build();
+    }
+    @Bean
+    public CronTrigger scheduleJob() {
+        CronScheduleBuilder cronTrig = CronScheduleBuilder.cronSchedule("0/2 * * * * ?");
+        CronTrigger trigger = TriggerBuilder.newTrigger().forJob(getJobDetail())
+            // 创建的CronTrigger类型的对象
+                .withIdentity("trigger").withDescription("这是cron触发器").startNow()
+            // 创建的CronScheduleBuilderl
+                .withSchedule(cronTrig).build();
+        return trigger;
+    }
+}
+```
+
+### 定时任务
+
+```java
+@Component
+public class Quartz extends QuartzJobBean{
+    @Override
+    public void executeInternal(JobExecutionContext context){
+        System.out.println("调用任务。。。"+new Random().nextInt());
+    }
+}
+```
+
