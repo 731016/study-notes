@@ -4,8 +4,6 @@ http://c.biancheng.net/spring_mvc/process.html
 
 ![image-20211124233848858](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233848858.png)
 
-![image-20211124233906738](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233906738.png)
-
 ## pom.xml
 
 ```xml
