@@ -493,7 +493,7 @@ public class DemoScheduled {
 <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-quartz</artifactId>
-        </dependency>
+</dependency>
 ```
 
 ### 配置类
@@ -501,7 +501,6 @@ public class DemoScheduled {
 ```java
 @Configuration
 public class QuartzConfig {
-
     @Bean
     public JobDetail getJobDetail() {
         // 对应定时任务类
