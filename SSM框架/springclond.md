@@ -33,7 +33,7 @@ public class App {
 
 ## 注册中心、生产者、消费者
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211201164137119.png" alt="image-20211201164137119" style="zoom: 67%;" />
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112040854320.png" alt="image-20211201164137119" style="zoom: 67%;" />
 
 ### Eureka客户端
 
@@ -668,6 +668,12 @@ public class UserController {
 
 > 多个注册中心
 
+### 服务同步
+
+多个Eureka Server之间也会互相注册为服务，当服务提供者注册到Eureka Server集群中的某个节点时，该节点会把 服务的信息同步给集群中的每个节点，从而实现数据同步。
+
+因此，无论客户端访问到Eureka Server集群中的任意一 个节点，都可以获取到完整的服务列表信息。
+
 ![image-20211201101958313](https://i.loli.net/2021/12/01/f27hpkNdUSWobZ4.png)
 
 
@@ -701,4 +707,238 @@ public class UserController {
         return new RestTemplate();
     }
 ```
+
+## 熔断器 hystrix
+
+Hystrix解决雪崩问题的手段主要是服务降级，包括： 
+
++ 线程隔离 
+
++ 服务熔断
+
+  <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112021121673.png" alt="image-20211202112059571" style="zoom: 80%;" />
+
+1. Hystrix为每个依赖服务调用分配一个小的线程池，如果线程池已满调用将被立即拒绝，默认不采用排队，加速 失败判定时间。 
+
+2. 用户的请求将不再直接访问服务，而是通过线程池中的空闲线程来访问服务，如果线程池已满，或者请求超 时，则会进行降级处理，什么是服务降级？
+
+> 服务降级：优先保证核心服务，而非核心服务不可用或弱可用。 
+
+用户的请求故障时，不会被阻塞，更不会无休止的等待或者看到系统崩溃，至少可以看到一个执行结果（例如返回友 好的提示信息） 。 
+
+服务降级虽然会导致请求失败，但是不会导致阻塞，而且最多会影响这个依赖服务对应的线程池中的资源，对其它服 务没有响应。 
+
+触发Hystrix服务降级的情况： 
+
++ 线程池已满 
++ 请求超时
+
+
+
+Hystrix的服务熔断机制，可以实现弹性容错；当服务请求情况好转之后，可以自动重连。
+
+通过断路的方式，将后续 请求直接拒绝，一段时间（默认5秒）之后允许部分请求通过，如果调用成功则回到断路器关闭状态，否则继续打开，拒绝请求的服务。
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112021122698.png" alt="image-20211202112224630" style="zoom:80%;" />
+
+状态机有3个状态： 
+
+1. Closed：关闭状态（断路器关闭），所有请求都正常访问。 
+2. Open：打开状态（断路器打开），所有请求都会被降级。Hystrix会对请求情况计数，当一定时间内失败请求百 分比达到阈值，则触发熔断，断路器会完全打开。默认失败比例的阈值是50%，请求次数最少不低于20次。 
+3. Half Open：半开状态，不是永久的，断路器打开后会进入休眠时间（默认是5S）。随后断路器会自动进入半开 状态。此时会释放部分请求通过，若这些请求都是健康的，则会关闭断路器，否则继续保持打开，再次进行休眠计时
+
+### maven依赖
+
+```xml
+<!-- 熔断机制 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+```
+
+### 消费者
+
+```java
+@GetMapping("/user/queryCond/{name}")
+    @HystrixCommand(fallbackMethod = "queryUserAllFallback")
+    @ResponseBody
+    public String queryUserAll(@PathVariable(value = "name") String name) throws Exception {
+        System.out.println(StringUtils.isAlpha(name));
+        System.out.println(StringUtils.isNumeric(name));
+        System.out.println(StringUtils.isAlphanumeric(name));
+        if (StringUtils.isAlpha(name) || StringUtils.isNumeric(name) || StringUtils.isAlphanumeric(name)) {
+
+            String url = "http://MyProvider/user/queryOne/" + name;
+            Users users = restTemplate.getForObject(url, Users.class);
+            return JSON.toJSONString(users);
+        } else {
+            throw new Exception("输入的不是英文或数字");
+        }
+    }
+
+    public String queryUserAllFallback(String name) {
+        System.out.println("查询员工" + name + "失败！");
+        return "网络太拥挤。。。";
+    }
+```
+
+> 可放在类上，对该类所有的方法进行处理
+
+```java
+@DefaultProperties(defaultFallback = "queryUserAllFallback")
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211202104808569.png" alt="image-20211202104808569" style="zoom:80%;" />
+
+## 远程调用 feign
+
+### maven依赖
+
+```xml
+<!-- 服务调用-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+```
+
+### client接口
+
+```java
+@FeignClient("MyProvider")
+public interface UsersFeignClient {
+
+    @GetMapping("/user/queryOne/{name}")
+    String queryUsers(@PathVariable(value = "name") String name);
+}
+```
+
+### controller
+
+```java
+@Resource
+    private UsersFeignClient usersFeignClient;
+@GetMapping("/user.html/{name}")
+    @ResponseBody
+    public Users queryUsers(@PathVariable(value = "name") String name) {
+        String users = usersFeignClient.queryUsers(name);
+        return JSON.parseObject(users, Users.class);
+    }
+```
+
+### 启动类
+
+```java
+@EnableFeignClients
+```
+
+### 支持负载均衡
+
+<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211202110903538.png" alt="image-20211202110903538" style="zoom:80%;" />
+
+### 支持熔断器
+
+<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211202111251538.png" alt="image-20211202111251538" style="zoom:80%;" />
+
+1）首先，要定义一个类，实现刚才编写的UserFeignClient，作为fallback的处理类
+
+<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211202111421278.png" alt="image-20211202111421278" style="zoom:80%;" />
+
+
+
+2）然后在UserFeignClient中，指定刚才编写的实现类
+
+<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211202111438322.png" alt="image-20211202111438322" style="zoom:80%;" />
+
+### 请求压缩
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112021115877.png" alt="image-20211202111507613" style="zoom:80%;" />
+
+###  日志级别(了解)
+
+<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211203091327038.png" alt="image-20211203091327038" style="zoom:80%;" />
+
+<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211203091420949.png" alt="image-20211203091420949" style="zoom:80%;" />
+
+## 网关 gateway
+
+Spring Cloud Gateway是替代Netflix Zuul的一套解决方案。
+
+网关的核心功能是：过滤和路由
+
+### maven依赖
+
+```xml
+<!--  Eureka客户端 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <!-- 网关-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
+        </dependency>
+```
+
+### yml
+
+```yaml
+server:
+  port: 10010
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: user-service-route # 路由id，可以随意写
+          uri: lb://MyProvider #代理生产者的地址
+          predicates:
+            - Path=/user/** # 路由断言，可以配置映射路径
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka
+  instance:
+    prefer-ip-address: true
+```
+
+### 启动类
+
+```java
+@SpringBootApplication
+@EnableDiscoveryClient
+public class GatewayApp {
+    public static void main(String[] args) {
+        SpringApplication.run(GatewayApp.class);
+    }
+}
+```
+
+### 路由前缀
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112031029825.png" alt="image-20211203102946775" style="zoom:80%;" />
+
+> http://127.0.0.1:10010/queryOne/123 -> http://127.0.0.1:10010/user/queryOne/123
+
+####  去除前缀
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112031031278.png" alt="image-20211203103154652" style="zoom:80%;" />
+
+<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211203103210440.png" alt="image-20211203103210440" style="zoom:80%;" />
+
+### 过滤器
+
+[Spring Cloud Gateway](https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.1.1.RELEASE/single/spring-cloud-gateway.html#_gatewayfilter_factories)
+
+| 过滤器名称           | 说明                         |
+| -------------------- | ---------------------------- |
+| AddRequestHeader     | 对匹配上的请求加上Header     |
+| AddRequestParameters | 对匹配上的请求路由添加参数   |
+| AddResponseHeader    | 对从网关返回的响应添加Header |
+| StripPrefix          | 对匹配上的请求路径去除前缀   |
+
+#### 配置全局默认过滤器
 
