@@ -416,26 +416,55 @@ PageInfo<Employee> selectCondByPage(Integer pageNum, Integer pageSize,Integer pi
 
 ```java
 @Override
-    public PageInfo<Employee> selectByPage(Integer pageNum, Integer pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        List<Employee> employeeList = employeeMapper.selectByPage();
-        PageInfo<Employee> pageInfo = new PageInfo<>(employeeList, 5);
-        return pageInfo;
-    }
-
-    @Override
-    public PageInfo<Employee> selectCondByPage(Integer pageNum, Integer pageSize, Integer pid) {
-        PageHelper.startPage(pageNum, pageSize);
-        List<Employee> employeeList = null;
-        if (pid == 0) {
-            employeeList = employeeMapper.selectByPage();
-        } else {
-            employeeList = employeeMapper.selectCondByPage(pid);
-        }
-        PageInfo<Employee> pageInfo = new PageInfo<>(employeeList, 3);
-        return pageInfo;
-    }
+public PageInfo<Employee> paging(Integer pagenumber, Integer pgessize) {
+   //利用PageHelper分页查询 注意：这个一定要放查询语句的前一行,否则无法进行分页,因为它对紧随其后第一个sql语句有效
+   PageHelper.startPage(pagenumber,pgessize);
+   //查询出所有数据
+   List<Employee> list = mapper.selectList(null);
+   //将数据存入pageInfo中
+   PageInfo<Employee> pageInfo = new PageInfo<>(list);
+   return pageInfo;
+}
 ```
+
+```java
+@GetMapping("/page")
+public String page(){
+    //调用，传入需要查询的页数和每页数量
+   PageInfo<Employee> paging = service.paging(2, 5);
+   //使用getList方法获取到分页后的数据
+   for (Employee employee : paging.getList()) {
+      System.out.println(employee);
+   }
+   return "index";
+}
+```
+
+```java
+//如果要使用显示所有导航页号的话需要在PageInfo的构造中多添加一个参数：显示的导航号数量
+PageInfo<Employee> pageInfo = new PageInfo<>(list,3);
+```
+
+| 参数                                     | 作用                                 |
+| ---------------------------------------- | ------------------------------------ |
+| private int pageNum;                     | 当前页                               |
+| private int pageSize;                    | 每页的数量                           |
+| private int size;                        | 当前页的数量                         |
+| private int startRow;                    | 当前页面第一个元素在数据库中的行号   |
+| private int endRow;                      | 当前页面最后一个元素在数据库中的行号 |
+| private long total;                      | 总记录数                             |
+| private int pages;                       | 总页数                               |
+| private List list;                       | 结果集(每页显示的数据)               |
+| private int prePage;                     | 前一页                               |
+| private int nextPage;                    | 下一页                               |
+| private boolean isFirstPage = false;     | 是否为第一页                         |
+| private boolean isLastPage = false;      | 是否为最后一页                       |
+| private boolean hasPreviousPage = false; | 是否有前一页                         |
+| private boolean hasNextPage = false;     | 是否有下一页                         |
+| private int navigatePages;               | 导航页码数                           |
+| private int[] navigatepageNums;          | 所有导航页号                         |
+| private int navigateFirstPage;           | 导航条上的第一页                     |
+| private int navigateLastPage;            | 导航条上的最后一页                   |
 
 ### web
 
