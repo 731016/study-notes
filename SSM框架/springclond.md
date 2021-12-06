@@ -805,6 +805,8 @@ Hystrix的服务熔断机制，可以实现弹性容错；当服务请求情况�
 
 ### client接口
 
+> 接口调用想要调用的生产者的controller类的方法（一模一样）
+
 ```java
 @FeignClient("MyProvider")
 public interface UsersFeignClient {
@@ -831,6 +833,19 @@ public interface UsersFeignClient {
 
 ```java
 @EnableFeignClients
+```
+
+### 超时控制
+
+> 默认1s
+
+```yml
+feign:
+  client:
+    config:
+      default:
+        ConnectTimeOut: 5000
+        ReadTimeOut: 10000
 ```
 
 ### 支持负载均衡
@@ -860,6 +875,13 @@ public interface UsersFeignClient {
 <img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211203091327038.png" alt="image-20211203091327038" style="zoom:80%;" />
 
 <img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211203091420949.png" alt="image-20211203091420949" style="zoom:80%;" />
+
+```yaml
+logging:
+  level:
+    # 以什么级别监控哪个接口
+    com.springclond.client.UsersFeginClient: debug
+```
 
 ## 网关 gateway
 
