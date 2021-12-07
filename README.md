@@ -119,6 +119,9 @@ git push origin master
 ### redis
 - [Redis](https://gitee.com/LovelyHzz/study-notes/blob/master/Redis/redis.md)
 
+### 消息队列
+ -[RadditMQ](https://gitee.com/LovelyHzz/study-notes/blob/master/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/rabbitMQ.md)
+
 ### Linux
 - [linux安装](https://gitee.com/LovelyHzz/study-notes/blob/master/linux/linux%E5%AE%89%E8%A3%85.md)
 - [正则表达式](https://gitee.com/LovelyHzz/study-notes/blob/master/linux/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.md)
