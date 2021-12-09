@@ -122,6 +122,9 @@ git push origin master
 ### 消息队列
  -[RadditMQ](https://gitee.com/LovelyHzz/study-notes/blob/master/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/rabbitMQ.md)
 
+### 测试
+-[JMeter压力测试](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95.md)
+
 ### Linux
 - [linux安装](https://gitee.com/LovelyHzz/study-notes/blob/master/linux/linux%E5%AE%89%E8%A3%85.md)
 - [正则表达式](https://gitee.com/LovelyHzz/study-notes/blob/master/linux/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.md)
