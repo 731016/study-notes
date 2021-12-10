@@ -1074,7 +1074,9 @@ Spring Cloud Gateway是替代Netflix Zuul的一套解决方案。
 
 网关的核心功能是：过滤和路由
 
-### maven依赖
+### yml配置
+
+#### maven依赖
 
 ```xml
 <!--  Eureka客户端 -->
@@ -1089,7 +1091,7 @@ Spring Cloud Gateway是替代Netflix Zuul的一套解决方案。
         </dependency>
 ```
 
-### yml
+#### yml
 
 ```yaml
 server:
@@ -1112,7 +1114,7 @@ eureka:
     prefer-ip-address: true
 ```
 
-### 启动类
+#### 启动类
 
 ```java
 @SpringBootApplication
@@ -1124,19 +1126,79 @@ public class GatewayApp {
 }
 ```
 
-### 路由前缀
+### config配置
+
+```java
+@Configuration
+public class GatewayConfig {
+    /**
+     * 配置了一个id为gateway-route的路由规则，
+     * 当访问地址 http://localhost:10011/guonei时会自动转发到地址：http://news.baidu.com/guonei
+     * @param builder
+     * @return
+     */
+    @Bean
+    public RouteLocator customRouteLocator(RouteLocatorBuilder builder){
+        RouteLocatorBuilder.Builder routes = builder.routes();
+        routes.route("gateway-route",r->r.path("/guonei").uri("http://news.baidu.com/guonei")).build();
+        return routes.build();
+    }
+}
+```
+
+### 动态路由
+
+```yaml
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true #开启从注册中心动态创建路由的功能，利用微服务名进行路由
+      routes:
+        - id: payment_routh #payment_route    #路由的ID，没有固定规则但要求唯一，建议配合服务名
+          # uri: http://localhost:8001          #匹配后提供服务的路由地址
+          uri: lb://cloud-payment-service #匹配后提供服务的路由地址
+          predicates:
+            - Path=/payment/get/**         # 断言，路径相匹配的进行路由
+
+        - id: payment_routh2 #payment_route    #路由的ID，没有固定规则但要求唯一，建议配合服务名
+          # uri: http://localhost:8001          #匹配后提供服务的路由地址
+          uri: lb://cloud-payment-service #匹配后提供服务的路由地址
+          predicates:
+            - Path=/payment/lb/**         # 断言，路径相匹配的进行路由
+
+```
+
+### Route Predicate
+
+```yaml
+- After=2020-02-05T15:10:03.685+08:00[Asia/Shanghai]         # 断言，路径相匹配的进行路由
+- Before=2020-02-05T15:10:03.685+08:00[Asia/Shanghai]         # 断言，路径相匹配的进行路由
+- Between=2020-02-02T17:45:06.206+08:00[Asia/Shanghai],2020-03-25T18:59:06.206+08:00[Asia/Shanghai]
+
+- Cookie=username,zzyy #curl http://localhost:9588/paymentInfo curl http://localhost:9588/paymentInfo --cookie "username=zzyy"
+- Header=X-Request-Id, \d+  # 请求头要有X-Request-Id属性并且值为整数的正则表达式 # curl http://localhost:9588/paymentInfo -H "X-Request-Id:123"
+- Host=**.atguigu.com
+- Method=GET
+- Query=username, \d+  # 要有参数名username并且值还要是整数才能路由 #http://localhost:9527/payment/lb?username=31
+```
+
+### 过滤器
 
 <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112031029825.png" alt="image-20211203102946775" style="zoom:80%;" />
 
 > http://127.0.0.1:10010/queryOne/123 -> http://127.0.0.1:10010/user/queryOne/123
 
-####  去除前缀
+
 
 <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112031031278.png" alt="image-20211203103154652" style="zoom:80%;" />
 
 <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112100005183.png" alt="image-20211203103210440" style="zoom:80%;" />
 
-### 过滤器
+
 
 [Spring Cloud Gateway](https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.1.1.RELEASE/single/spring-cloud-gateway.html#_gatewayfilter_factories)
 
@@ -1146,6 +1208,34 @@ public class GatewayApp {
 | AddRequestParameters | 对匹配上的请求路由添加参数   |
 | AddResponseHeader    | 对从网关返回的响应添加Header |
 | StripPrefix          | 对匹配上的请求路径去除前缀   |
+
+### 自定义全局过滤器
+
+```java
+@Component //必须加，必须加，必须加
+public class MyLogGateWayFilter implements GlobalFilter,Ordered
+{
+    @Override
+    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain)
+    {
+        System.out.println("time:"+new Date()+"\t 执行了自定义的全局过滤器: "+"MyLogGateWayFilter"+"hello");
+
+        String uname = exchange.getRequest().getQueryParams().getFirst("uname");
+        if (uname == null) {
+            System.out.println("****用户名为null，无法登录");
+            exchange.getResponse().setStatusCode(HttpStatus.NOT_ACCEPTABLE);
+            return exchange.getResponse().setComplete();
+        }
+        return chain.filter(exchange);
+    }
+
+    @Override
+    public int getOrder()
+    {
+        return 0;
+    }
+}
+```
 
 
 
