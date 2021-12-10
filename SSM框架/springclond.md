@@ -1,3 +1,5 @@
+## 基础实例
+
 ### controller
 
 ```java
@@ -12,6 +14,30 @@ public class DemoController {
         return products;
     }
 }
+```
+
+> + getForObject 纯纯的对象，可理解为json
+>
+> + getForEntity 返回`ResponseEntity` 还包含响应体、响应头、状态码。。。
+
+```java
+@GetMapping("/user/queryEntity/{name}")
+    @ResponseBody
+    public String queryUserAllGetForEntity(@PathVariable(value = "name") String name) throws Exception {
+        if (StringUtils.isAlphanumeric(name)) { //配英文，数字，中文
+            String url = "http://MyProvider/user/queryOne/" + name;
+            // 返回ResponseEntity对象，包含响应信息
+            ResponseEntity<Users> entity = restTemplate.getForEntity(url, Users.class);
+            // 判断状态码是否是2开头
+            if (entity.getStatusCode().is2xxSuccessful()){
+                return JSON.toJSONString(entity.getBody());
+            }else{
+                return "查询失败!";
+            }
+        } else {
+            throw new Exception("输入的不是英文或数字");
+        }
+    }
 ```
 
 ### 启动类
@@ -101,7 +127,7 @@ eureka:
 
 我们关停一个服务，很可能会在Eureka面板看到一条警告： 
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211201165431134.png" alt="image-20211201165431134" style="zoom:80%;" />
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112100006420.png" alt="image-20211201165431134" style="zoom:80%;" />
 
 这是触发了Eureka的自我保护机制。当服务未按时进行心跳续约时，Eureka会统计服务实例最近15分钟心跳续约的 比例是否低于了85%。
 
@@ -657,6 +683,15 @@ public class UserController {
         restTemplate.postForObject(url,users,User.class);
         return "消费者success";
     }
+    
+    @PostMapping("/user/addEntity")
+    @ResponseBody
+    public String addUserEntity(@RequestBody Users users) {
+        String url = "http://MyProvider/user/add";
+        Users body = restTemplate.postForEntity(url, users, Users.class).getBody();
+        System.out.println(body);
+        return "添加的对象"+JSON.toJSONString(body);
+    }
 }
 ```
 
@@ -682,7 +717,7 @@ public class UserController {
 
 > 当需要作为消费者向别人请求，需要配置
 
-#### maven依赖
+### maven依赖
 
 ```xml
 <!-- 负载均衡,用于@LoadBalanced, 通过服务名调用服务而非 ip:端口 -->
@@ -698,7 +733,7 @@ public class UserController {
         </dependency>
 ```
 
-#### 启动类
+### 启动类
 
 ```java
 @Bean
@@ -706,6 +741,27 @@ public class UserController {
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
     }
+```
+
+### 配置类
+
+> 自定义配置类不要放在@ComponentScan能扫描到的包和子包下面！
+
+```java
+@Configuration
+public class MySelfRule {
+    @Bean
+    public IRule myRule() {
+        return new RandomRule(); // 随机
+    }
+}
+```
+
+### 启动类
+
+```java
+@RibbonClient(name = "MyCustomer",configuration = MySelfRule.class)
+public class CustomerApp {...}
 ```
 
 ## 熔断器 hystrix
@@ -757,11 +813,13 @@ Hystrix的服务熔断机制，可以实现弹性容错；当服务请求情况�
         </dependency>
 ```
 
-### 消费者
+### 生产者
 
 ```java
 @GetMapping("/user/queryCond/{name}")
-    @HystrixCommand(fallbackMethod = "queryUserAllFallback")
+    @HystrixCommand(fallbackMethod = "queryUserAllFallback"，commandProperties={
+        @HystrixProperty(name="execution.isolation.thread.tomeoutInMilliseconds",value="3000") //只等待3s
+    })
     @ResponseBody
     public String queryUserAll(@PathVariable(value = "name") String name) throws Exception {
         System.out.println(StringUtils.isAlpha(name));
@@ -789,7 +847,61 @@ Hystrix的服务熔断机制，可以实现弹性容错；当服务请求情况�
 @DefaultProperties(defaultFallback = "queryUserAllFallback")
 ```
 
+### 新建类实现controller方法，统一处理
+
+```yml
+feign:
+  hystrix:
+    enabled: true
+```
+
+#### 接口
+
+```java
+@FeignClient(value = "MyProvider",fallback = UserFallback.class)
+@Configuration
+public interface UsersFeignClient {
+
+    @GetMapping("/user/queryOne/{name}")
+    Users queryOne(@PathVariable(value = "name") String name);
+
+    @GetMapping("/user/query")
+    @ResponseBody
+    List<Users> queryAll();
+}
+```
+
+```java
+@Component
+public class UserFallback implements UsersFeignClient {
+    @Override
+    public String queryUsers(String name) {
+        System.out.println("查询员工" + name + "失败！");
+        return "网络太拥挤。。。";
+    }
+
+    @Override
+    public Employee getOne(Integer eid) {
+        System.out.println("查询员工" + eid + "失败！");
+        return null;
+    }
+}
+```
+
+
+
 <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211202104808569.png" alt="image-20211202104808569" style="zoom:80%;" />
+
+### 启动类
+
+```java
+@EnableCircuitBreaker #范围更大
+@EnableHystrix
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211209234833610.png" alt="image-20211209234833610" style="zoom:80%;" />
+
+
 
 ## 远程调用 feign
 
@@ -850,21 +962,21 @@ feign:
 
 ### 支持负载均衡
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211202110903538.png" alt="image-20211202110903538" style="zoom:80%;" />
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112100006806.png" alt="image-20211202110903538" style="zoom:80%;" />
 
 ### 支持熔断器
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211202111251538.png" alt="image-20211202111251538" style="zoom:80%;" />
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112100006439.png" alt="image-20211202111251538" style="zoom:80%;" />
 
 1）首先，要定义一个类，实现刚才编写的UserFeignClient，作为fallback的处理类
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211202111421278.png" alt="image-20211202111421278" style="zoom:80%;" />
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112100006484.png" alt="image-20211202111421278" style="zoom:80%;" />
 
 
 
 2）然后在UserFeignClient中，指定刚才编写的实现类
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211202111438322.png" alt="image-20211202111438322" style="zoom:80%;" />
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112100005798.png" alt="image-20211202111438322" style="zoom:80%;" />
 
 ### 请求压缩
 
@@ -872,9 +984,9 @@ feign:
 
 ###  日志级别(了解)
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211203091327038.png" alt="image-20211203091327038" style="zoom:80%;" />
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112100005822.png" alt="image-20211203091327038" style="zoom:80%;" />
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211203091420949.png" alt="image-20211203091420949" style="zoom:80%;" />
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112100005585.png" alt="image-20211203091420949" style="zoom:80%;" />
 
 ```yaml
 logging:
@@ -882,6 +994,79 @@ logging:
     # 以什么级别监控哪个接口
     com.springclond.client.UsersFeginClient: debug
 ```
+
+## 图形化监控dashboard
+
+### maven
+
+```xml
+<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+        </dependency>
+```
+
+### 
+
+```yaml
+server:
+  port: 7001
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: localhost
+```
+
+### 启动类
+
+```java
+@SpringBootApplication
+@EnableHystrixDashboard
+public class DashBoardApp {
+    /*
+     * description: 此配置是为了服务监控而配置，与服务容错本身 无关，springcloud 升级后的坑
+     * ServletRegistrationBean因为springboot的默认路径不是"/hystrix.stream",
+     * 只要在自己的项目里配置上下面的servlet就可以了
+     * @Param: [] 
+     * @Return: org.springframework.boot.web.servlet.ServletRegistrationBean 
+     **/
+    @Bean
+    public ServletRegistrationBean getServlet() {
+        HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
+        ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+        registrationBean.setLoadOnStartup(1);
+        registrationBean.addUrlMappings("/actuator/hystrix.stream");
+        registrationBean.setName("HystrixMetricsStreamServlet");
+        return registrationBean;
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(DashBoardApp.class, args);
+    }
+}
+```
+
+```xml
+<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- 监控完善 需要监控的服务导入的依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+```
+
+> 访问：http://localhost:端口/hystrix
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112101436850.png" alt="image-20211210143614813" style="zoom: 67%;" />
+
+
 
 ## 网关 gateway
 
@@ -949,7 +1134,7 @@ public class GatewayApp {
 
 <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112031031278.png" alt="image-20211203103154652" style="zoom:80%;" />
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211203103210440.png" alt="image-20211203103210440" style="zoom:80%;" />
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112100005183.png" alt="image-20211203103210440" style="zoom:80%;" />
 
 ### 过滤器
 
@@ -962,5 +1147,12 @@ public class GatewayApp {
 | AddResponseHeader    | 对从网关返回的响应添加Header |
 | StripPrefix          | 对匹配上的请求路径去除前缀   |
 
-#### 配置全局默认过滤器
 
+
+## Spring Cloud Config分布式配置中心
+
+
+
+
+
+## Spring Cloud Bus服务总线
