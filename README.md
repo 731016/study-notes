@@ -86,6 +86,7 @@ git push origin master
 
 ### MySql
 - [MySQL安装](https://gitee.com/LovelyHzz/study-notes/blob/master/MySQL/MySql%E5%AE%89%E8%A3%85.md)
+- [MySQL基础](https://gitee.com/LovelyHzz/study-notes/blob/master/MySQL/MySQL%E5%9F%BA%E7%A1%80.md)
 - [JDBC组件](https://gitee.com/LovelyHzz/study-notes/blob/master/MySQL/JDBC%E7%BB%84%E4%BB%B6.md)
 - [控制台购物商城实现](https://gitee.com/LovelyHzz/study-notes/blob/master/MySQL/%E8%B4%AD%E7%89%A9%E5%95%86%E5%9F%8E.md)
 
