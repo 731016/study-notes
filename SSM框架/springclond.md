@@ -1241,8 +1241,390 @@ public class MyLogGateWayFilter implements GlobalFilter,Ordered
 
 ## Spring Cloud Config分布式配置中心
 
+### 配置git仓库
 
+```
+1. 新建github仓库
+2. git clone https://github.com/731016/springcloud-config.git
+```
+
+### 搭建配置中心
+
+#### maven
+
+```xml
+<dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+```
+
+#### application.yml
+
+```yaml
+server:
+  port: 20000
+
+spring:
+  application:
+    name:  cloud-config-center #注册进Eureka服务器的微服务名
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/731016/springcloud-config.git #GitHub上面的git仓库名字
+#          ####搜索目录
+#          search-paths:
+#            - springcloud-config
+#          username: 731016
+#          password: 18925468479=lol
+#          skip-ssl-validation: true
+#      ####读取分支
+#      label: main
+
+#服务注册到eureka地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka
+```
+
+#### 启动类
+
+```java
+@SpringBootApplication
+@EnableConfigServer
+public class ConfigApp {
+    public static void main(String[] args) {
+        SpringApplication.run(ConfigApp.class, args);
+    }
+}
+```
+
+#### host映射
+
+```powershell
+windows下修改hosts文件，增加映射
+127.0.0.1  config-3344.com # 不换也无所谓
+```
+
+#### 测试
+
+```powershell
+http://localhost:20000/main/config-dev.yml
+```
+
+### 获取配置中心配置
+
+[Spring Cloud Config](https://cloud.spring.io/spring-cloud-static/spring-cloud-config/2.2.1.RELEASE/reference/html/)
+
+```powershell
+/{label}/{application}-{profile}.yml
+	http://config-3344.com:3344/master/config-dev.yml
+	http://config-3344.com:3344/dev/config-dev.yml
+/{application}-{profile}.yml
+	http://config-3344.com:3344/config-dev.yml
+/{application}/{profile}[/{label}]
+	http://config-3344.com:3344/config/dev/master #json格式
+```
+
+#### maven
+
+```xml
+ <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+```
+
+#### bootstrap.yml
+
+```yaml
+server:
+  port: 20001
+
+spring:
+  application:
+    name: config-client
+  cloud:
+    #Config客户端配置
+    config:
+      label: main #分支名称
+      name: config #配置文件名称
+      profile: dev #读取后缀名称   上述3个综合：master分支上config-dev.yml的配置文件被读取http://config-3344.com:3344/master/config-dev.yml
+      uri: http://localhost:20000 #配置中心地址
+
+#服务注册到eureka地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka
+```
+
+#### controller
+
+```java
+@RestController
+public class ConfigController {
+    @Value("${version}")
+    private String version;
+    @GetMapping("/v")
+    public String getVersion(){
+        return version;
+    }
+}
+```
+
+### update配置中心刷新，<u>服务端不刷新</u>
+
+#### maven
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+```
+
+#### bootstrap.yml
+
+```yaml
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+```
+
+#### 控制层
+
+```java
+@RestController
+@RefreshScope
+public class ConfigController {...}
+```
+
+```powershell
+curl -X POST "http://localhost:20001/actuator/refresh"
+
+C:\Users\折腾的小飞>curl -X POST "http://localhost:20001/actuator/refresh"
+["config.client.version","version"]
+```
 
 
 
 ## Spring Cloud Bus服务总线
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112131420956.png" alt="image-20211213142046120" style="zoom:80%;" />
+
+### 配置一个消费者
+
+#### maven
+
+```xml
+<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+```
+
+#### bootstrap.yml
+
+```yaml
+server:
+  port: 20001
+
+spring:
+  application:
+    name: config-client
+  cloud:
+    #Config客户端配置
+    config:
+      label: main #分支名称
+      name: config #配置文件名称
+      profile: dev #读取后缀名称   上述3个综合：master分支上config-dev.yml的配置文件被读取http://config-3344.com:3344/master/config-dev.yml
+      uri: http://localhost:20000 #配置中心地址
+
+#服务注册到eureka地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+```
+
+#### 启动类
+
+```java
+@SpringBootApplication
+@EnableEurekaClient
+public class Config20002App {
+    public static void main(String[] args) {
+        SpringApplication.run(Config20002App.class, args);
+    }
+}
+```
+
+#### 控制层
+
+```java
+@RestController
+@RefreshScope
+public class ConfigController {
+    @Value("${name}")
+    private String name;
+    @Value("${version}")
+    private String version;
+
+    @GetMapping("/info")
+    public String getVersion() {
+        return "config-dev文件" + name + "|" + version;
+    }
+}
+```
+
+### 设计思想
+
+```java
+1）利用消息总线触发一个客户端/bus/refresh,而刷新所有客户端的配置 ×
+2）利用消息总线触发一个服务端ConfigServer的/bus/refresh端点，而刷新所有客户端的配置 √
+```
+
+### config配置中心-消息总线支持
+
+#### maven
+
+```xml
+<!--添加消息总线RabbitMQ支持-->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+```
+
+#### bootstrap.yml
+
+```yaml
+#rabbitmq相关配置
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password: guest
+##rabbitmq相关配置,暴露bus刷新配置的端点
+management:
+  endpoints: #暴露bus刷新配置的端点
+    web:
+      exposure:
+        include: 'bus-refresh'
+```
+
+
+
+### 客户端配置-消息总线支持
+
+#### maven
+
+```xml
+<!--添加消息总线RabbitMQ支持-->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+```
+
+#### bootstrap.yml
+
+```yaml
+#rabbitmq相关配置 15672是Web管理界面的端口；5672是MQ访问的端口
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"   # 'refresh'
+```
+
+### 发送
+
+```powershell
+# 向配置中心发送post请求 全局通知
+curl -X POST "http://localhost:3344/actuator/bus-refresh"
+# 定点推送
+curl -X POST "http://localhost:3344/actuator/bus-refresh/config-client:"
+```
+
+
+
+
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112131423741.png" alt="image-20211213142337248" style="zoom:80%;" />
+
