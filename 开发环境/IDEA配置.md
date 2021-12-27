@@ -91,3 +91,6 @@ Settings ->
 # 代码提示
 
 <img src="D:\xunleidownload\imgSave-master\imgSave-master\note\image-20211124221905121.png" alt="image-20211124221905121" style="zoom:80%;" />
+
+# idea控制台乱码
+https://cloud.tencent.com/developer/article/1795283
