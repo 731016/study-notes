@@ -160,3 +160,88 @@ let number = 18;
 
 ## 事件处理
 
+```vue
+使用v-xxx / @xxx 绑定事件
+事件的回调函数需要配置在methods中，会绑定在vue实例对象上
+普通函数的this指向vue实例对象
+@click="demo" @click="demo($event,params,...)" $event会把事件对象传过去
+```
+
+```vue
+      <!-- 事件处理 -->
+      <input type="button" value="点击提示" @click="tip($event)" />
+<script>
+      Vue.config.productionTip = false;
+      const v = new Vue({
+        methods: {
+          tip(event) {
+            console.log(event.target);
+          },
+        },
+      });
+    </script>
+```
+
+## 事件修饰符
+
+### .prevent
+
+> 阻止默认事件
+
+```vue
+<input type="button" value="点击提示" @click.prevent="tip($event)" />
+<script>
+	new Vue({
+        tip(e){
+            e.preventDefault();
+        }
+    });
+</script>
+```
+
+### .stop
+
+> 阻止事件冒泡
+
+```vue
+      <div @click="demo">
+        <input type="button" @click.stop="demo($event)"/>
+      </div>
+<script>
+	new Vue({
+        demo(e){
+            e.stopPropagation();
+          }
+    });
+</script>
+```
+
+### .once
+
+> 事件只触发一次
+
+### .capture
+
+> 使用事件的捕获方式,在**捕获阶段**就处理事件
+
+### .self
+
+> 只有event.target是当前操作的元素才触发事件
+>
+> <u>冒泡触发的target永远都是哪个触发的元素</u>
+>
+> 只有操作的是谁才触发，可用于阻止冒泡
+
+### .passive
+
+> 事件的默认行为立即执行，无需等待回调函数执行完成
+>
+> ```vue
+> @scroll 页面滚动 先执行滚动条滚动，再执行回调函数
+> 	滚动条到底，不会触发
+> @whell 鼠标滚轮滚动 先执行回调函数，再执行滚动条滚动
+> 	只要滚轮滚动就出触发
+> ```
+
+## 键盘事件
+
