@@ -243,5 +243,129 @@ let number = 18;
 > 	只要滚轮滚动就出触发
 > ```
 
+可链式写法 .stop.prevent
+
 ## 键盘事件
+
+```vue
+@keydown
+@keypress
+@keyup
+(1)
+	.enter .13
+	.delete 删除键和退格键
+	.esc
+	.space
+	.tab 需要配合@keydown使用，因为按下就切换走了
+	.up	上
+	.down 下
+	.left 左
+	.right 右
+(2)
+	ctrl,alt,shift.win(meta)
+	@keyup 系统修饰键 + xxx ,释放xxx后，才触发
+	@keydown 正常触发
+(3)
+keyCode
+(4)
+key
+(5)
+<input type="text" value="enter" @keydown.hz="tip($event)" />
+<script>
+Vue.config.keyCodes = {
+    "kebab-case": 179,
+    "hz": 13,
+};
+if(event.key=="Enter"){
+      console.log(event.key); //Enter
+}
+</script>
+.caps-lock 切换大小写 两个单词（命令首字母小写，加“-”）
+
+//////////////////////////////////
+.ctrl.y 按下ctrl+y
+```
+
+## 计算属性
+
+```html
+<div id="root">
+      <input type="text" name="" id="" v-model:value="v1" />
+      <br />
+      <input type="text" name="" id="" v-model:value="v2" />
+      <div>{{v1}}{{v2}}</div>
+      <div>{{fullName()}}</div>
+    </div>
+<script>
+    new Vue({
+      el: "#root",
+      data: {
+        v1: 1,
+        v2: 2,
+      },
+      methods: {
+        fullName() {
+          return this.v1 + "-" + this.v2;
+        },
+      },
+    });
+  </script>
+```
+
+计算属性，有缓存
+
+get()
+
++ 初次读取
++ 所依赖的数据发生变化
+
+```html
+<div id="root">
+      <input type="text" name="" id="" v-model:value="v1" />
+      <br />
+      <input type="text" name="" id="" v-model:value="v2" />
+      <div>{{full_Name}}</div>
+    </div>
+<script>
+    computed: {
+        full_Name: {
+          get() {
+            console.log("get被调用");
+            return this.v1 + "-" + this.v2;
+          },
+          //vm.full_name='里-斯'
+          set(value) {
+            let arr = value.split("-");
+            this.v1 = arr[0];
+            this.v2 = arr[1];
+          },
+        },
+</script>
+```
+
+计算属性会出现的vue实例上，即为一个属性，值是计算出来的
+
+#### 简写
+
+> 不考虑修改，只展示
+
+```html
+<script>
+    computed: /*{
+        full_Name:function(){
+            console.log("get被调用");
+            return this.v1 + "-" + this.v2;
+        }*/
+        full_name(){
+            console.log("get被调用");
+            return this.v1 + "-" + this.v2;
+        }
+  }
+</script>
+```
+
+## 监视属性
+
+```html
+```
 
