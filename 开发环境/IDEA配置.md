@@ -88,7 +88,15 @@ Settings ->
 
 被@Test注解修饰的方法所在的类**只能有一个构造器** 被@Test注解修饰的方法所在的类**只能有一个修饰符为public公有的无参的构造器**
 
-# 代码提示  
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112292132970.png" alt="image-20211124221905121" style="zoom:80%;" />                   idea控制台乱码
+
+
+## 代码提示  
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112292132970.png" alt="image-20211124221905121" style="zoom:80%;" />                   
+
+
+
+## idea控制台乱码
 
 https://cloud.tencent.com/developer/article/1795283
+
