@@ -366,6 +366,95 @@ get()
 
 ## 监视属性
 
+> 监视属性必须存在才能监视
+>
+> (1) new Vue时传入watch配置
+>
+> (2) 通过vm.$watch监视
+
 ```html
+<script>
+   const vm = new Vue({
+      el: "#main",
+      data: {
+        flag: false,
+      },
+      methods: {
+        changeWeather() {
+          this.flag = !this.flag;
+        }
+      },
+      computed: {
+        
+      },
+       //(1)
+      watch: {
+        flag: {
+          immediate: true, //初始化时加载handler
+          handler(newValue, oldValue) {
+            console.log("falg被修改了", newValue, oldValue);
+          },
+        },
+      },
+    });
+    //(2)
+    vm.$watch("flag", {
+      immediate: true, //初始化时加载handler
+      handler(newValue, oldValue) {
+        console.log("flag被修改了", newValue, oldValue);
+      },
+    });
+  </script>
 ```
 
+### 深度监视
+
+> vue中的watch默认不监测对象内部值的改变
+>
+> 配置`deep:true`可以监测对象内部值改变
+
+```html
+<script>
+    const vm = new Vue({
+      el: "#main",
+      data: {
+        flag: false,
+        number: {
+          a: 1,
+          b: 2,
+        },
+      },
+      watch: {
+        "number": {
+          deep:true, //深度监视
+          handler(newValue,oldValue) {
+            console.log("number里面的a被修改了", newValue, oldValue);
+          },
+        },
+      },
+    });
+  </script>
+```
+
+### 监视简写
+
+> 不需要配置其他属性如immediate,deep时，使用
+
+```vue
+watch: {
+number(newValue,oldValue){
+          console.log("number里面的a被修改了", newValue, oldValue);
+        }
+}
+vm.$watch('flag',function(){
+      console.log("flag被修改了", newValue, oldValue);
+    })
+```
+
+## watch与computed的区别
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112292130387.png" alt="image-20211229213007245" style="zoom:80%;" />
+
+
+
+## 绑定class样式
