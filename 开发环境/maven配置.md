@@ -59,7 +59,7 @@ apache-maven-3.6.3\conf\settings.xml
 
 ## IDEA配置maven
 
-## <img src="D:\xunleidownload\imgSave-master\imgSave-master\note\image-20211124222700068.png" alt="image-20211124222700068" style="zoom:67%;" />
+## <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112292132356.png" alt="image-20211124222700068" style="zoom:67%;" />
 
 # 运行maven项目
 
