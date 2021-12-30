@@ -440,7 +440,7 @@ get()
 
 > 不需要配置其他属性如immediate,deep时，使用
 
-```vue
+```js
 watch: {
 number(newValue,oldValue){
           console.log("number里面的a被修改了", newValue, oldValue);
@@ -458,3 +458,44 @@ vm.$watch('flag',function(){
 
 
 ## 绑定class样式
+
+> (1) `字符串`写法，:class(v-bind:class)="字符串" 样式的类名不确认，需要动态指定
+>
+> (2) `数组`写法，要绑定的样式数量不确定，名字也不确定
+>
+> ```html
+> <div :class="arr"></div>
+> data:{
+>     arr:['className1','className2']
+> }
+> ```
+>
+> (3) `对象`写法，数量，类名相同，动态确定
+>
+> ```html
+> <div :class="obj"></div>
+> data:{
+> 	obj:{
+> 		className1false,
+> 		className2true
+> 	}
+> }
+> }
+> ```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112302227752.png" alt="image-20211230222709222" style="zoom:80%;" />
+
+## 绑定style样式
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112302227641.png" alt="image-20211230222746668" style="zoom:80%;" />
+
+> :style(v-bind:style)
+>
+> + 数组写法 :style="{fontSize:xxx}" xxx是动态值
+>
+> + 对象写法 :style="[a,b]" a,b是<u>样式对象</u>
+>
+>   **样式对象：**
+>
+>   <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112302226467.png" alt="image-20211230222623754" style="zoom:80%;" />
+
