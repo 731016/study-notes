@@ -499,3 +499,63 @@ vm.$watch('flag',function(){
 >
 >   <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112302226467.png" alt="image-20211230222623754" style="zoom:80%;" />
 
+## 条件渲染
+
+> `v-show`=xxx `display:none`隐藏样式（xxx为布尔值）
+>
+> `v-if`=xxx 删除结点,不展示的dom被移除。适用于切换频率较低的场景
+>
+> `v-else-if`=xxx
+>
+> `v-else`=xxx
+
+```vue
+<template v-if="i==1">
+     <h2>我的</h2>
+     <h2>爱</h2>
+     <h2>好</h2>
+</template>
+```
+
+## 列表渲染
+
+> `v-for`
+> 展示列表数据
+> v-for="(item,index) in xxx" :key="index"
+> 可遍历数组，对象，字符串，指定次数
+
+ ```vue
+ <ul>
+         <li>遍历数组</li>
+         <li v-for="(item, value) in arr" :key="value">
+             姓名：{{item.sname}}，年龄：{{item.age}}
+         </li>
+         <li>遍历对象</li>
+         <li v-for="(val, name) in object" :key="name">
+             {{name}}:{{val}}
+         </li>
+         <li>遍历字符串</li>
+         <li v-for="(element, index) in str" :key="index">
+             {{index}}:{{element}}
+         </li>
+         <li>遍历指定次数</li>
+         <li v-for="(number, inx) in 6" :key="inx">
+             {{inx}}:{{number}}
+         </li>
+     </ul>
+ ```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201032147953.png" alt="image-20220103214659565" style="zoom:80%;" />
+
+### key作用与原理
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201032214054.png" alt="image-20220103221441441" style="zoom:80%;" />
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201032218974.png" alt="image-20220103221758075" style="zoom:80%;" />
+
+### key的原理
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201032221122.png" alt="image-20220103222148681" style="zoom:80%;" />
+
+### 列表过滤
+
