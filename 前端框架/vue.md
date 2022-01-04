@@ -559,3 +559,111 @@ vm.$watch('flag',function(){
 
 ### 列表过滤
 
+> "asdsf" 使用 ""（空字符串）indexOf 返回`0`
+
+```vue
+<div id="root">
+    <ul>
+        <input type="text" placeholder="请输入要查询的数据。。。" v-model="keyWord"/>
+        <li v-for="(item,index) in filterPersons">
+            姓名：{{item.name}}--性别：{{item.sex}}--年龄：{{item.age}}
+        </li>
+    </ul>
+</div>
+<script>
+    new Vue({
+        el: '#root',
+        data: {
+            keyWord: '',
+            persons: [
+                {id: '001', name: '马冬梅', sex: '女', age: '18'},
+                {id: '002', name: '周冬雨', sex: '女', age: '19'},
+                {id: '003', name: '周杰伦', sex: '男', age: '20'},
+                {id: '004', name: '温兆伦', sex: '男', age: '21'}
+            ],
+            filterPersons: []
+        },
+        method: {},
+        watch: {
+            keyWord: {
+                immediate: true,
+                handler(val) {
+                    this.filterPersons = this.persons.filter((p) => {
+                        return p.name.indexOf(val) !== -1;
+                    })
+                }
+            }
+        },
+        computed: {
+            // filterPersons() {
+            //     return this.persons.filter((p) => {
+            //         return p.name.indexOf(this.keyWord) !== -1;
+            //     })
+            // }
+        }
+    });
+</script>
+```
+
+### 列表排序
+
+```vue
+<div id="root">
+    <ul>
+        <input type="text" placeholder="请输入要查询的数据。。。" v-model="keyWord"/>
+        <input type="button" @click="sortType=0" value="原顺序"/>
+        <input type="button" @click="sortType=1" value="升序"/>
+        <input type="button" @click="sortType=2" value="降序"/>
+        <li v-for="(item,index) in filterPersons">
+            姓名：{{item.name}}--性别：{{item.sex}}--年龄：{{item.age}}
+        </li>
+    </ul>
+</div>
+<script>
+    new Vue({
+        el: '#root',
+        data: {
+            keyWord: '',
+            sortType: '',
+            persons: [
+                {id: '001', name: '马冬梅', sex: '女', age: '23'},
+                {id: '002', name: '周冬雨', sex: '女', age: '35'},
+                {id: '003', name: '周杰伦', sex: '男', age: '34'},
+                {id: '004', name: '温兆伦', sex: '男', age: '21'}
+            ],
+            // filterPersons: []
+        },
+        method: {},
+        watch: {
+            // keyWord: {
+            //     immediate: true,
+            //     handler(val) {
+            //         this.filterPersons = this.persons.filter((p) => {
+            //             return p.name.indexOf(val) !== -1;
+            //         }).sort((a, b) => {
+            //
+            //         })
+            //     }
+            // }
+        },
+        computed: {
+            filterPersons() {
+                const arr = this.persons.filter((p) => {
+                    return p.name.indexOf(this.keyWord) !== -1;
+                });
+                if (this.sortType !== 0) {
+                    arr.sort((o1, o2) => {
+                        return this.sortType === 1 ? o1.age - o2.age : o2.age - o1.age;
+                    })
+                }
+                return arr;
+            }
+        }
+    });
+</script>
+```
+
+## vue检测数据的原理
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201042157082.png" alt="image-20220104215723138" style="zoom:80%;" />
+
