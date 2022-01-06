@@ -8,6 +8,10 @@
 
 <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112191550766.png" alt="image-20211219155006661" style="zoom:80%;" />
 
+
+
+# VUE 2.0/3.0
+
 ## helloworld
 
 ```vue
@@ -666,4 +670,60 @@ vm.$watch('flag',function(){
 ## vue检测数据的原理
 
 <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201042157082.png" alt="image-20220104215723138" style="zoom:80%;" />
+
+> + vue会监视data中所有层次的数据
+
+### 对象里面的数据改变
+
+通过setter实现监视，且要在new Vue时就传入要检测的数据
+
+1. 对象中后追加的属性，Vue默认不做响应式处理
+
+2. 如果需要后添加的属性为响应式
+
+   ```js
+   Vue.set(target,propertyName/index,value)
+   vm.$set(target,propertyName/index,value)
+   ```
+
+### 数组里面的数据改变
+
+通过包裹数组更新元素的方法实现
+
+1. 调用原生对应的方法对数组进行更新
+2. 重新解析模板，进而更新页面
+
+#### 修改数组元素
+
+```js
+使用push(),shift(),unshift(),splice(),sort(),reverse()
+Vue.set(),vm.$set()
+```
+
+> **Vue.set(),vm.$set() 不能给vm或vm的根数据对象添加属性**
+
+## 收集表单数据
+
+```html
+<input type="text"> v-model收集value值
+
+<input type="radio">  v-model收集value值
+
+<input type="checkbox">
+没有配置value属性，收集的就是checked（布尔值）
+配置value属性
+（1）v-model的初始值是非数组，收集的就是checked（布尔值）
+（2）v-model的初始值是数组，收集的就是value组成的数组
+```
+
+### 修饰符
+
+```js
+（1）v-model.lazy 失去焦点再收集数据
+（2）v-model.number 输入字符串转化为有效的数字，一般配合type="number"使用
+使用type="text"输入12df44，收集12
+（3）v-model.trim 去除首尾空格
+```
+
+## 过滤器
 
