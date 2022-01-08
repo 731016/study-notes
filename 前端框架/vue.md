@@ -725,5 +725,48 @@ Vue.set(),vm.$set()
 （3）v-model.trim 去除首尾空格
 ```
 
-## 过滤器
+## ~~过滤器~~
+
+> 从 Vue 3.0 开始，过滤器已移除，且不再支持
+
+1. 注册过滤器 Vue.filter(name,callback) 或 new Vue{filters:{}}
+2. 使用过滤器 {{xxx | 过滤器名}} 或 v-bind:属性 = "xxx | 过滤器名"
+
++ 可接收额外参数，多个过滤器可串联使用
+
++ 不改变原始数据
+
+```js
+<h2>局部过滤器</h2>
+    <h2>现在时间：{{date | fmtDate}}</h2>
+    <h2>现在时间：{{date | fmtDate('YYYY年MM月DD日')}}</h2>
+    <h2>现在时间：{{date | fmtDate('YYYY年MM月DD日') | strSlice}}</h2>
+    <h2 v-bind:data-strSlice="date | strSlice">现在时间：{{date | fmtDate('YYYY年MM月DD日') | strSlice}}</h2>
+    <script>
+        // 全局过滤器
+        Vue.filter('strSlice', function (value) {
+                return (value+'').slice(0, 4);
+            }
+        )
+        new Vue({
+            el: '#root',
+            data: {
+                date: Date.now()
+            },
+            method: {},
+            watch: {},
+            computed: {},
+            filters: {
+                fmtDate(value, params = 'YYYY-MM-DD HH:mm:ss') {
+                    return dayjs().format(params);
+                },
+                // strSlice(value) {
+                //     return value.slice(0, 4);
+                // }
+            }
+        });
+    </script>
+```
+
+## v-text指令
 
