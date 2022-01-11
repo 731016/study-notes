@@ -10,7 +10,7 @@
 
 
 
-# VUE 2.0/3.0
+# VUE 2.0
 
 ## helloworld
 
@@ -495,9 +495,9 @@ vm.$watch('flag',function(){
 
 > :style(v-bind:style)
 >
-> + 数组写法 :style="{fontSize:xxx}" xxx是动态值
+> + 对象写法 :style="{fontSize:xxx}" xxx是动态值
 >
-> + 对象写法 :style="[a,b]" a,b是<u>样式对象</u>
+> + 数组写法 :style="[a,b]" a,b是<u>样式对象</u>
 >
 >   **样式对象：**
 >
@@ -875,4 +875,103 @@ Vue.set(),vm.$set()
 + this作用域为`window`
 
 ## 生命周期
+
+生命周期函数的this指向**vue实例**或**组件实例对象**
+
+```vue
+<script>
+    new Vue({
+      //vue模板解析完成并把初始的真实DOM元素放入页面后，执行
+	mounted(){}  
+    })
+</script>
+```
+
+### `创建-挂载-更新-销毁`流程
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201112215165.png" alt="image-20220111221542241" style="zoom:80%;" />
+
+
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201112150055.png" style="zoom:80%;" />
+
+```vue
+vue2.x 模板必须包含一个根节点，vue3.x已解决
+<script>
+new Vue({
+            el: '#root',
+            template: `
+                 <div>
+                  <h2></h2>
+                  <div></div>
+                 </div>
+                `,
+</script>
+```
+
+> **注意：**
+>
+> 销毁解绑的是`自定义事件`，绑定的dom事件有效，如click
+>
+> 执行``beforeDestory`时，**数据发送变化，不会触发页面更新**
+
+```html
+两个不同作用域要使用同一个变量，可使用this关键字挂到当前实例上
+文字透明度改变a
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <script src="https://cn.vuejs.org/js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <h2 v-bind:style="{opacity}">胡梓卓</h2>
+    <button @click="stopTime()">点击停止</button>
+    <button @click="opacity = 1">点击透明度=1</button>
+    <button @click="destoryVue()">销毁vue</button>
+</div>
+<script>
+    new Vue({
+        el: '#root',
+        data: {
+            opacity: 1
+        },
+        methods: {
+            destoryVue() {
+                this.$destroy();
+            },
+            stopTime() {
+                clearInterval(this.timer);
+            }
+        },
+        watch: {},
+        computed: {},
+        filters: {},
+        directives: {},
+        mounted() {
+            this.timer = setInterval(() => {
+                this.opacity -= 0.01;
+                if (this.opacity < 0) {
+                    this.opacity = 1;
+                }
+            }, 16)
+        },
+        beforeDestroy() {
+            console.log("vue实例即将被销毁");
+            clearInterval(this.timer);
+        }
+    });
+</script>
+</div>
+</body>
+</html>
+```
+
+
+
+## 组件
 
