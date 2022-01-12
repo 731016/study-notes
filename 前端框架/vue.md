@@ -8,9 +8,9 @@
 
 <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112191550766.png" alt="image-20211219155006661" style="zoom:80%;" />
 
+> :no_entry: 此笔记适用于`vue 2.x` ！！！
 
-
-# VUE 2.0
+# vue核心
 
 ## helloworld
 
@@ -49,7 +49,7 @@
 
 > 插值表达式{{js表达式}} 也可以写vue实例上所有的
 >
-> 一个Vue实例只能接管一个容器
+> :warning: 一个Vue实例只能接管一个容器
 >
 > + 如果有多个容器，只对第一个有效
 > + 如果有多个实例，只对第一个vue实例生效
@@ -91,7 +91,7 @@
         <input type="button" v-model="name">
 ```
 
-> v-bind 数据只能从data流向也页面
+> v-bind 数据只能从data流向页面
 >
 > v-model一般只用于表单元素(input、select)
 
@@ -507,7 +507,7 @@ vm.$watch('flag',function(){
 
 > `v-show`=xxx `display:none`隐藏样式（xxx为布尔值）
 >
-> `v-if`=xxx 删除结点,不展示的dom被移除。适用于切换频率较低的场景
+> `v-if`=xxx 删除结点,**不展示的dom被移除**。适用于切换频率较低的场景
 >
 > `v-else-if`=xxx
 >
@@ -725,9 +725,9 @@ Vue.set(),vm.$set()
 （3）v-model.trim 去除首尾空格
 ```
 
-## ~~过滤器~~
+## ~~过滤器~~:x:
 
-> 从 Vue 3.0 开始，过滤器已移除，且不再支持
+> :no_entry_sign: 从 Vue 3.0 开始，过滤器已移除，且不再支持
 
 1. 注册过滤器 Vue.filter(name,callback) 或 new Vue{filters:{}}
 2. 使用过滤器 {{xxx | 过滤器名}} 或 v-bind:属性 = "xxx | 过滤器名"
@@ -973,5 +973,150 @@ new Vue({
 
 
 
+# vue组件化编程
+
 ## 组件
+
+实现局部功能的代码和资源的集合
+
+
+
+## 使用组件（非单文件组件）
+
+> 1.定义组件（创建组件）
+>
+> 2.注册组件
+>
+> 3.使用组件（写组件标签）
+
+### 定义
+
+使用``Vue.extend(options)``创建，其中options和new Vue(options)时传入的有点区别
+
+ 1. **el不写**。最终所有的组件要经过vm的管理，有vm中的el决定哪个容器
+ 2. **data必须写成函数**。避免组件复用时，数据存在引用关系
+ 使用template配置组件结构
+
+### 注册
+
+局部注册：new Vue时传入`components`选项
+
+全局注册：使用`Vue.component('组件名','组件')`
+
+### 编写组件标签
+
+```vue
+<school></school>
+```
+
+```vue
+<body>
+<div id="root">
+    <!--    使用组件-->
+    <employee></employee>
+    <hr>
+    <department></department>
+</div>
+</body>
+<script>
+    //定义组件
+    const employee = Vue.extend({
+        template: `
+          <div>
+          <h2>{{ name }}</h2>
+          <h2>{{ age }}</h2>
+          <button @click="showName">点击提示姓名</button>
+          </div>
+        `,
+        data() {
+            return {
+                name: '胡梓卓',
+                age: 18
+            }
+        },
+        methods: {
+            showName() {
+                alert(this.name);
+            }
+        }
+    });
+    const department = Vue.extend({
+        template: `
+          <div>
+          <h2>{{ name }}</h2>
+          <h2>{{ numberOfPeople }}</h2>
+          <button @click="showName">点击提示部门名称</button>
+          </div>
+        `,
+        data() {
+            return {
+                name: '智能制造部',
+                numberOfPeople: 203
+            }
+        },
+        methods: {
+            showName() {
+                alert(this.name);
+            }
+        }
+    });
+    new Vue({
+        el: '#root',
+        //注册组件
+        components: {
+            employee: employee,
+            department: department
+        },
+        data: {},
+        method: {},
+        computed: {},
+        watch: {},
+        filters: {},
+        directives: {}
+    });
+</script>
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201122134138.png" alt="image-20220112213414805" style="zoom:80%;" />
+
+
+
+## 注意点:warning:
+
+### 组件名
+
+一个单词组成：
+
+​	（首字母小写）：school
+
+​	（首字母大写）：School
+
+多个单词组成：
+
+​	（kebab-case）：my-school
+
+​	（CamelCase）：MySchool
+
+注意：
+
+（1）组件名不要写成html中已有的元素名称
+
+（2）可以使用name配置向指定组件在开发者工具中呈现的名字(第三方组件库)
+
+
+
+### 组件标签
+
+```vue
+<school></school>
+<school/>
+```
+
+不能使用脚手架时，`<school/>`会导致后续组件不能渲染
+
+### 声明组件简写
+
+```vue
+const school = Vue.extend({options}) => const school = {options}
+```
 
