@@ -981,7 +981,7 @@ new Vue({
 
 
 
-## 使用组件（非单文件组件）
+## 非单文件组件
 
 > 1.定义组件（创建组件）
 >
@@ -1081,9 +1081,9 @@ new Vue({
 
 
 
-## 注意点:warning:
+### 注意点:warning:
 
-### 组件名
+#### 组件名
 
 一个单词组成：
 
@@ -1105,7 +1105,7 @@ new Vue({
 
 
 
-### 组件标签
+#### 组件标签
 
 ```vue
 <school></school>
@@ -1114,9 +1114,158 @@ new Vue({
 
 不能使用脚手架时，`<school/>`会导致后续组件不能渲染
 
-### 声明组件简写
+#### 声明组件简写
 
 ```vue
 const school = Vue.extend({options}) => const school = {options}
 ```
+
+### 组件嵌套
+
+```vue
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <script src="https://cn.vuejs.org/js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <app></app>
+</div>
+</body>
+<script>
+    const student = Vue.extend({
+        name: 'student',
+        data() {
+            return {
+                name: '涂鏊飞',
+                age: 22
+            }
+        },
+        template: `
+          <div>
+          <h2>{{ name }}</h2>
+          <h2>{{ age }}</h2>
+          </div>
+        `,
+        components: {}
+    });
+    const hello = Vue.extend({
+        name: 'hello',
+        template: `
+        <h1>介绍</h1>
+      `
+    });
+    const school = Vue.extend({
+        name: 'school',
+        data() {
+            return {
+                name: '湖北工程学院',
+                adress: '湖北孝感'
+            }
+        },
+        template: `
+          <div>
+          <div>
+            <h2>{{ name }}</h2>
+            <h2>{{ adress }}</h2>
+          </div>
+          <student></student>
+          </div>
+        `,
+        //注册子组件，模板包含student，外部要包含一个根节点
+        components: {
+            student
+        }
+    });
+    const app = Vue.extend({
+        name: 'app',
+        template: `
+          <div>
+          <hello></hello>
+          <school></school>
+          </div>
+        `,
+        //管理school和hello
+        components: {
+            school, hello
+        }
+    });
+    new Vue({
+        el: '#root',
+        components: {
+            app
+        },
+        data: {},
+        method: {},
+        computed: {},
+        watch: {},
+        filters: {},
+        directives: {}
+    });
+</script>
+</html>
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201132032520.png" alt="image-20220113203249371" style="zoom:80%;" />
+
+## VueComponent构造函数
+
+1. school組件本质是一个VueComponent的构造函数
+
+2. Vue解析时，会帮我们创建school的组件实例对象，即执行new VueComponent(options)
+3. `每次调用Vue.extend，返回的是全新的VueComponent组件实例对象`
+4. 关于this指向
+
+```js
+(1)组件配置中：
+	data,methods,watch,comptued指向【VueComponent组件实例对象】，简称vc
+(2)new Vue(options)配置中：
+    data,methods,watch,comptued指向【Vue实例对象】
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201132109292.png" alt="image-20220113210933616" style="zoom:80%;" />
+
+### vue实例与组件实例
+
+组件是可复用的 Vue 实例，所以它们与 `new Vue` 接收相同的选项，例如 `data`、`computed`、`watch`、`methods` 以及生命周期钩子等。仅有的例外是像 `el` 这样根实例特有的选项。
+
+### 内置关系
+
+#### 原型链
+
+```js
+function Demo() {
+        this.a = 1999;
+        this.b = 2000;
+    }
+    const d = new Demo();
+    console.log(d.__proto__);
+    console.log(Demo.prototype === d.__proto__);
+    Demo.prototype.c = 2022;
+    console.log(d.c);
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201132125803.png" alt="image-20220113212458368" style="zoom:80%;" />
+
+> ```js
+> (VueComponent.prototype.__proto__ === Vue.prototype
+> ```
+
+```vue
+const app = Vue.extend({});
+console.log(app.prototype.__proto__ === Vue.prototype) //true
+```
+
+**让组件实例对象可以访问到vue原型上的属性和方法**
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201132142296.png" alt="image-20220113214210545" style="zoom:80%;" />
+
+
+
+## 单文件组件
 
