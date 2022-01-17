@@ -116,6 +116,7 @@ git push origin master
 - [springMVC](https://gitee.com/LovelyHzz/study-notes/blob/master/SSM%E6%A1%86%E6%9E%B6/springMVC.md)
 - [springBoot](https://gitee.com/LovelyHzz/study-notes/blob/master/SSM%E6%A1%86%E6%9E%B6/springBoot.md)
 - [springClond](https://gitee.com/LovelyHzz/study-notes/blob/master/SSM%E6%A1%86%E6%9E%B6/springclond.md)
+- [springClond Alibaba](https://gitee.com/LovelyHzz/study-notes/blob/master/SSM%E6%A1%86%E6%9E%B6/springClond%20Alibaba.md)
 
 ### redis
 - [Redis](https://gitee.com/LovelyHzz/study-notes/blob/master/Redis/redis.md)
