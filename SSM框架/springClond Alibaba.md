@@ -1,4 +1,4 @@
-
+​        
 
 ## Nacos(Dynamic Naming and Configuration Service)
 
@@ -646,9 +646,9 @@ spring:
 spring.datasource.platform=mysql
 
 db.num=1
-db.url.0=jdbc:mysql://11.162.196.16:3306/nacos_devtest?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
-db.user=nacos_devtest
-db.password=youdontknow
+db.url.0=jdbc:mysql://127.0.0.1:3306/nacos_config?characterEncoding=utf8&connectTimeout=60000&socketTimeout=120000&autoReconnect=true&serverTimezone=UTC&useSSL=false
+db.user=root
+db.password=root
 ```
 
 再以单机模式启动nacos，nacos所有写嵌入式数据库的数据都写到了mysql
@@ -664,4 +664,291 @@ db.password=youdontknow
 
 
 ## Sentinel熔断与限流
+
+ <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151443872.png" alt="image-20220115144314805" style="zoom:80%;" />
+
+[Releases · alibaba/Sentinel · GitHub](https://github.com/alibaba/Sentinel/releases)
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151450541.png" alt="image-20220115145001993" style="zoom:80%;" />
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151451924.png" alt="image-20220115145120117" style="zoom:80%;" />
+
+### 初始化工程
+
+#### pom.xml
+
+```xml
+<dependencies>
+        <!--SpringCloud ailibaba nacos -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--SpringCloud ailibaba sentinel-datasource-nacos 后续做持久化用到-->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+        </dependency>
+        <!--SpringCloud ailibaba sentinel -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+        <!--openfeign-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <!-- SpringBoot整合Web组件+actuator -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!--日常通用jar包配置-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>4.6.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+```
+
+#### application.yml
+
+```yaml
+server:
+  port: 8401
+
+spring:
+  application:
+    name: cloudalibaba-sentinel-service
+  cloud:
+    nacos:
+      discovery:
+        #Nacos服务注册中心地址
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        #配置Sentinel dashboard地址
+        dashboard: localhost:8080
+        #默认8719端口，假如被占用会自动从8719开始依次+1扫描,直至找到未被占用的端口
+        port: 8719
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+```
+
+#### controller
+
+```java
+package com.wsd.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+@RestController
+public class FlowLimitController
+{
+
+    @GetMapping("/testA")
+    public String testA()
+    {
+        return "------testA";
+    }
+
+    @GetMapping("/testB")
+    public String testB()
+    {
+        return "------testB";
+    }
+}
+```
+
+#### 主启动类
+
+```java
+@EnableDiscoveryClient
+@SpringBootApplication
+public class MainApp8401
+{
+    public static void main(String[] args) {
+        SpringApplication.run(MainApp8401.class, args);
+    }
+}
+```
+
+
+
+
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151502745.png" alt="image-20220115150240039" style="zoom:80%;" />
+
+### 流控规则
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151510285.png" alt="image-20220115151017641" style="zoom:80%;" />
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151510129.png" alt="image-20220115151049664" style="zoom:80%;" />
+
+#### 流控模式
+
+##### 直接（快速失败）
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151515187.png" alt="image-20220115151539003" style="zoom:80%;" />
+
+```txt
+Blocked by Sentinel (flow limiting)
+```
+
+##### 关联
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151603420.png" alt="image-20220115160350007" style="zoom:80%;" />
+
+大批量线程高并发访问B，导致A失效
+
+Blocked by Sentinel (flow limiting)
+
+##### 链路
+
+？？？
+
+#### 流控效果
+
+##### 预热
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151653080.png" alt="image-20220115165342077" style="zoom:80%;" />
+
+[流量控制 · alibaba/Sentinel Wiki · GitHub](https://github.com/alibaba/Sentinel/wiki/流量控制)
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151636281.png" alt="image-20220115163619492" style="zoom:80%;" />
+
+> 默认 coldFactor 为 3，即请求QPS从(threshold / 3) 开始，经多少预热时长才逐渐升至设定的 QPS 阈值。
+>
+> ```
+> 案例，阀值为10+预热时长设置5秒。
+> 系统初始化的阀值为10 / 3 约等于3,即阀值刚开始为3；然后过了5秒后阀值才慢慢升高恢复到10
+> ```
+
+##### 排队等待
+
+ [流量控制 · alibaba/Sentinel Wiki · GitHub](https://github.com/alibaba/Sentinel/wiki/流量控制)
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151654763.png" alt="image-20220115165404742" style="zoom:80%;" />
+
+### 降级规则
+
+[熔断降级 · alibaba/Sentinel Wiki · GitHub](https://github.com/alibaba/Sentinel/wiki/熔断降级)
+
+```
+Sentinel 熔断降级会在调用链路中某个资源出现不稳定状态时（例如调用超时或异常比例升高），对这个资源的调用进行限制，
+让请求快速失败，避免影响到其它的资源而导致级联错误。
+ 
+当资源被降级后，在接下来的降级时间窗口之内，对该资源的调用都自动熔断（默认行为是抛出 DegradeException）。
+```
+
+
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151657550.png" alt="image-20220115165739076" style="zoom:80%;" />
+
+#### RT
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151715960.png" alt="image-20220115171547867" style="zoom:80%;" />
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151716734.png" alt="image-20220115171630272" style="zoom:80%;" />
+
+```
+按照上述配置，
+ 
+  永远一秒钟打进来10个线程（大于5个了）调用testD，我们希望200毫秒处理完本次任务，
+如果超过200毫秒还没处理完，在未来1秒钟的时间窗口内，断路器打开(保险丝跳闸)微服务不可用，保险丝跳闸断电了
+ 
+后续我停止jmeter，没有这么大的访问量了，断路器关闭(保险丝恢复)，微服务恢复OK
+```
+
+
+
+#### 异常比例
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151715839.png" alt="image-20220115171527648" style="zoom:80%;" />
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151717870.png" alt="image-20220115171728000" style="zoom:80%;" />
+
+按照上述配置，
+单独访问一次，必然来一次报错一次(int age  = 10/0)，调一次错一次；
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151718635.png" alt="image-20220115171820648" style="zoom:80%;" />
+
+开启jmeter后，直接高并发发送请求，多次调用达到我们的配置条件了。
+断路器开启(保险丝跳闸)，微服务不可用了，不再报错error而是服务降级了。
+
+#### 异常数
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151719169.png" alt="image-20220115171933488" style="zoom:80%;" />
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151720858.png" alt="image-20220115172006007" style="zoom:80%;" />
+
+### 热点key限流
+
+[热点参数限流 · alibaba/Sentinel Wiki · GitHub](https://github.com/alibaba/Sentinel/wiki/热点参数限流)
+
+热点即经常访问的数据，很多时候我们希望统计或者限制某个热点数据中访问频次最高的TopN数据，并对其访问进行限流或者其它操作
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151738816.png" alt="image-20220115173802312" style="zoom:80%;" />
+
+```java
+@SentinelResource
+处理的是Sentinel控制台配置的违规情况，有blockHandler方法配置的兜底处理；
+ 
+RuntimeException
+int age = 10/0,这个是java运行时报出的运行时异常RunTimeException，@SentinelResource不管
+ 
+总结
+ @SentinelResource主管配置出错，运行出错该走异常走异常
+```
+
+`参数必须是基础类型和string`
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151746154.png" alt="image-20220115174645359" style="zoom:80%;" />
+
+### 系统规则
+
+[系统自适应限流 · alibaba/Sentinel Wiki · GitHub](https://github.com/alibaba/Sentinel/wiki/系统自适应限流#系统规则)
+
+### @SentinelResource
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

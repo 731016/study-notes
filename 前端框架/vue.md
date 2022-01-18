@@ -1269,3 +1269,169 @@ console.log(app.prototype.__proto__ === Vue.prototype) //true
 
 ## 单文件组件
 
+> :warning:main.js导入``import App from './App.vue'`需要在脚手架环境运行！！！
+>
+> `Uncaught SyntaxError: Cannot use import statement outside a module`
+
+### School.vue
+
+```vue
+<template>
+  <div>
+    <h2>学校名称：{{ name }}</h2>
+    <h2>学校地址：{{ address }}</h2>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "School",
+  data() {
+    return {
+      name: '湖北工程学院',
+      address: '湖北省孝感市'
+    }
+  }
+}
+</script>
+
+<style scoped>
+h2 {
+  color: #0dff1d;
+}
+</style>
+```
+
+### Student.vue
+
+```vue
+<template>
+  <div>
+    <h2>学生姓名：{{ name }}</h2>
+    <h2>学生年龄：{{ age }}</h2>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Student",
+  data() {
+    return {
+      name: '涂鏊飞',
+      age: '22'
+    }
+  }
+}
+</script>
+
+<style scoped>
+h2 {
+  color: #1c036c;
+  font-weight: 700;
+}
+</style>
+```
+
+### App.vue
+
+```vue
+<template>
+  <div>
+    <school></school>
+    <student></student>
+  </div>
+</template>
+
+<script>
+import School from './School'
+import Student from './Student'
+
+export default {
+  name: "App",
+  components: {
+    Student, School
+  }
+}
+</script>
+```
+
+### main.js
+
+```js
+import App from './App.vue'
+
+new Vue({
+    el: '#root',
+    components: {
+        App
+    },
+    template: `<app></app>`
+})
+```
+
+### index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单文件组件</title>
+</head>
+<body>
+<div id="root">
+</div>
+</body>
+<script src="https://cn.vuejs.org/js/vue.js"></script>
+<script src="./main.js"></script>
+</html>
+```
+
+# 使用vue脚手架
+
+## npm全局安装
+
+```powershell
+切换淘宝npm镜像
+npm config set registry https://registry.npm.taobao.org
+
+全局安装
+npm install -g @vue/cli
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201182056241.png" alt="image-20220118205555410" style="zoom:80%;" />
+
+```powershell
+切换到要创建的目录
+vue create xxx
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201182058974.png" alt="image-20220118205841228" style="zoom:80%;" />
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201182107400.png" alt="image-20220118210735858" style="zoom:80%;" />
+
+```powershell
+启动项目
+npm run serve
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201182109550.png" alt="image-20220118210930741" style="zoom:80%;" />
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201182109878.png" alt="image-20220118210955378" style="zoom:80%;" />
+
+## vue脚手架结构
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201182215086.png" alt="image-20220118221548669" style="zoom:80%;" />
+
+> 加入School和Student组件到components目录下
+>
+> 修改App.vue
+>
+> 修改main.js。注册app组件，加入template
+>
+> 运行npm run serve
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201182219098.png" alt="image-20220118221856055" style="zoom:80%;" />
+
+## render函数
+
