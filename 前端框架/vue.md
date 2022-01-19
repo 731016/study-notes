@@ -1423,6 +1423,8 @@ npm run serve
 
 <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201182215086.png" alt="image-20220118221548669" style="zoom:80%;" />
 
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201192033240.png" alt="image-20220119203348202" style="zoom:80%;" />
+
 > 加入School和Student组件到components目录下
 >
 > 修改App.vue
@@ -1434,4 +1436,239 @@ npm run serve
 <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201182219098.png" alt="image-20220118221856055" style="zoom:80%;" />
 
 ## render函数
+
+> vue.js与vue.runtime.xxx.js的区别
+>
+> （1）vue.js是完整版的vue，包含：核心功能+模板解析器
+>
+> （2）vue.runtime.xxx.js是运行版的vue，只包含：核心功能，没有模板解析器
+>
+> 没有模板解析器不能使用template配置项，需要使用render函数接收到的createElement函数去指定具体内容
+
+### main.js
+
+```js
+import Vue from 'vue'
+import App from './App.vue'
+
+Vue.config.productionTip = false
+
+new Vue({
+    /*
+    render(createElement){
+        return createElement('h2','helloworld');
+    }
+    */
+    render: h => h(App),
+}).$mount('#app')
+```
+
+### index.html
+
+```html
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+  </body>
+</html>
+```
+
+## 修改默认配置
+
+> vue脚手架隐藏了所有webpack配置，使用
+>
+> ```powershell
+> vue inspect > output.js
+> ```
+
+使用vue.config.js对脚手架进行个性化定制，[配置参考 | Vue CLI (vuejs.org)](https://cli.vuejs.org/zh/config/#lintonsave)
+
+```js
+module.exports = {
+    pages: {
+        index: {
+            // page 的入口
+            entry: 'src/main.js',
+        },
+    },
+    lintOnSave:false
+}
+```
+
+## ref属性
+
+> 用来给元素或子组件注册引用信息（id的替代者）
+>
+> 应用在html标签上获取的是真实Dom元素，应用在组件标签上是组件实例对象（vc）
+>
+> ```html
+> 使用方式
+> 标识 <h1 ref="xxx"></h1> 或 <School ref="xxx"></School>
+> 获取：this.$refs.xxx
+> ```
+
+```js
+<Student ref="Stu"></Student>
+<button @click="showDom" ref="btn">点击打印元素或组件</button>
+methods:{
+    showDom(){
+      console.log(this.$refs.Stu) //组件实例对象
+      console.log(this.$refs.btn) //真实dom元素
+    }
+  }
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201192104886.png" alt="image-20220119210406126" style="zoom:80%;" />
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201192103685.png" alt="image-20220119210332249" style="zoom:80%;" />
+
+## props配置
+
+> 让组件接收外部传过来的数据
+
+(1)传递数据
+
+```html
+<School :no="211" name="武汉纺织大学"></School>
+```
+
+(2)接收数据
+
+```js
+//（1）只接收
+props:['no','name','address']
+
+//（2）限制类型
+props:{
+    no:Number,
+    name:String,
+    address:String
+}
+
+//（3）限制类型，必要性，默认值
+props:{
+    no:{
+      type:Number,
+      required:false,
+      default:999
+    },
+    name:{
+      type:String,
+      required: true
+    },
+    address:{
+      type:String,
+      required:false,
+      default: '未知'
+    }
+}
+```
+
+> :warning:props是只读的，vue底层会监测你对props的修改，如果进行修改，就会发出警告，若业务需求确实需要修改，那么请复制props的内容到新的变量在data中，去进行修改
+
+### Shcool.vue
+
+```vue
+<template>
+  <div>
+    <h2>编号：{{ CurrentNo }}</h2>
+    <h2>学校名称：{{ name }}</h2>
+    <h2>学校地址：{{ address }}</h2>
+    <button @click="CurrentNo++">点我编号+1</button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "School",
+  data() {
+    return {
+      CurrentNo : this.no
+    }
+  },
+  // props:['no','name','address']
+  /*props:{
+    no:Number,
+    name:String,
+    address:String
+  },*/
+  props:{
+    no:{
+      type:Number,
+      required:false,
+      default:999
+    },
+    name:{
+      type:String,
+      required: true
+    },
+    address:{
+      type:String,
+      required:false,
+      default: '未知'
+    }
+  }
+}
+</script>
+
+<style scoped>
+h2 {
+  color: #0dff1d;
+}
+</style>
+```
+
+### app.vue
+
+```vue
+<template>
+  <div>
+    <School :no="211" name="武汉纺织大学"></School>
+  </div>
+</template>
+<script>
+import School from './components/School'
+export default {
+  name: "App",
+  components: {
+     School
+  }
+}
+</script>
+```
+
+## minin混入
+
+> 组件共用的配置提取成一个混入对象
+
+### 使用方法
+
+```js
+(1)定义混合
+export const mixin = {
+    data(){
+        return{
+            size: '18cm'
+        }
+    }
+}
+
+(2)使用混合
+import {mixin} from '../mixin';
+mixins:[mixin] //局部 -组件
+Vue.mixin(mixin) //全局 -main.js
+```
+
+## 插件
 
