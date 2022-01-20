@@ -1672,3 +1672,135 @@ Vue.mixin(mixin) //全局 -main.js
 
 ## 插件
 
+> 功能：用于增强vue
+>
+> 本质：包含install方法的一个对象，第一个参数是Vue，第二个以后的参数是传递的数据
+
+### 定义插件
+
+```js
+export default {
+    install(Vue,options) {
+        Vue.filters()
+        Vue.directive()
+        Vue.mixin()
+        Vue.prototype.$myMethod=function (){}
+    }
+}
+```
+
+### 使用插件
+
+```js
+Vue.use(plugin);
+```
+
+## scoped样式
+
+> 让样式在局部生效，防止冲突
+
+```html
+<style scoped></style>
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201202039365.png" alt="image-20220120203846463" style="zoom:80%;" />
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201202039883.png" alt="image-20220120203904943" style="zoom:80%;" />
+
+### 扩展
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201202046762.png" alt="image-20220120204617812" style="zoom:80%;" />
+
+```less
+<style lang="less" scoped>
+h2 {
+  color: #1c036c;
+  font-weight: 700;
+  h3{
+    font-size: 30px;
+  }
+}
+</style>
+默认vue不识别其他的语法，需要添加加载器
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201202048064.png" alt="image-20220120204754969" style="zoom:80%;" />
+
+```powershell
+npm view webpack versions #查看webpack版本
+npm view less-loader versions #查看less-loader版本
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201202051917.png" alt="image-20220120205116528" style="zoom:80%;" />
+
+### 安装less加载器
+
+```js
+npm i less-loader@7 #安装7以上版本
+npm install less save-dev
+```
+
+# TodoList案例关键点
+
+## 组件命令注意不要和html元素相同
+
+```html
+比如：Header
+```
+
+## 父组件里面的子组件的子组件import的路径
+
+```js
+import TodoItem from "@/components/TodoItem";
+```
+
+[(16条消息) Vue解决报错1_This relative module was not found: * ./components/Login.vue in ./src/router/index.js_xiaosi的博客-CSDN博客](https://blog.csdn.net/qq_24654501/article/details/113574302)
+
+## 父组件个子组件传值
+
+```html
+<TodoList :todos="todos"/>
+<script>
+data() {
+    return {
+      todos: [
+        {id: '001', title: '吃饭', done: false},
+        {id: '002', title: '睡觉', done: true},
+        {id: '003', title: '打游戏', done: false}
+      ]
+    }
+  }
+</script>
+
+<TodoItem v-for="item in todos" :key="todos.id" :item="item"/>
+<script>
+props:["todos"]
+</script>
+```
+
+## 子组件给父组件传值
+
+```html
+<TodoHeader :addTodo="addTodo"/>
+methods: {
+    addTodo(itemObj) {
+      this.todos.unshift(itemObj);
+    }
+  }
+
+<input type="text" v-model.trim="addTodoTitle" placeholder="请输入待办事项，按回车键" @keyup.enter="add($event)"/>
+<script>
+props: ['addTodo'],
+methods: {
+    add(event) {
+      if (this.addTodoTitle != '') {
+        const itemObj = {id: nanoid(), title: this.addTodoTitle, done: false};
+        this.addTodo(itemObj);
+      }
+    }
+  }
+</script>
+```
+
+> :warning:【data,props,methods,computed】不要有相同的名称！
+
