@@ -1740,6 +1740,8 @@ npm i less-loader@7 #安装7以上版本
 npm install less save-dev
 ```
 
+
+
 # TodoList案例关键点
 
 ## 组件命令注意不要和html元素相同
@@ -1776,6 +1778,34 @@ data() {
 <script>
 props:["todos"]
 </script>
+
+以下修改为$emit 父组件给子组件c
+-------
+<TodoHeader @addTodo="addTodo"/>
+<script>
+methods: {
+            // 增加
+            addTodo(itemObj) {
+                this.todos.unshift(itemObj);
+            }
+}
+</script>
+
+<script>
+<template>
+  <div class="header">
+    <input type="text" v-model.trim="addTodoTitle" placeholder="请输入待办事项，按回车键" @keyup.enter="add($event)"/>
+  </div>
+</template>
+methods: {
+    add(event) {
+      if (this.addTodoTitle != '') {
+        const itemObj = {id: nanoid(), title: this.addTodoTitle, done: false};
+        this.$emit('addTodo',itemObj);
+      }
+    }
+  }
+</script>
 ```
 
 ## 子组件给父组件传值
@@ -1803,4 +1833,194 @@ methods: {
 ```
 
 > :warning:【data,props,methods,computed】不要有相同的名称！
+
+
+
+## 点击复选框值改变
+
+> 暂时使用函数，父组件->子组件
+>
+> :stop_sign:不推荐使用v-model:checked="xxx",如果xxx是对象里面的值，可以，如果不是，vue不允许。因为vue监视的对象的改变的机制
+>
+> **v-model绑定的值不能是传过来的值，props的值是不能修改的**
+
+```html
+App.vue
+	TodoList.vue
+		TodoItem.vue
+
+App 传递给子组件
+<TodoList :todos="todos" :changeTodo="changeTodo"/>
+<script>
+    data() {
+            return {
+                todos: [
+                    {id: '001', title: '吃饭', done: false},
+                    {id: '002', title: '睡觉', done: true},
+                    {id: '003', title: '打游戏', done: false}
+                ]
+            }
+        },
+        methods: {
+            // 勾选或取消
+            changeTodo(id) {
+                this.todos.forEach((item) => {
+                    if (item.id == id) {
+                        item.done = !item.done;
+                    }
+                })
+            }
+        }
+</script>
+
+TodoList props接收，传递给子组件
+<TodoItem v-for="item in todos" :key="todos.id" :item="item" :changeTodo="changeTodo"/>
+<script>
+props:["changeTodo"]
+</script>
+
+TodoItem
+<input type="checkbox" v-model:checked="item.done" @change="doneChanged(item.id)"/>
+<script>
+    export default {
+        name: "TodoItem",
+        methods: {
+                doneChanged(id) {
+                    this.changeTodo(id);
+                }
+        },
+        props: ['changeTodo']
+    }
+</script>
+```
+
+
+
+# 组件自定义事件
+
+## 子组件向父组件传值
+
+### $emit实现
+
+```html
+通过父组件向子组件绑定一个自定义事件，等子组件触发这个事件，就触发getValue函数
+<TodoFooter v-on:customize="getValue"/>
+<!--简写-->
+<TodoFooter @customize="getValue"/>
+<!--只触发一次 <TodoFooter v-on:customize.once="getValue"/> -->
+<script>
+    data() {
+            return {
+                context: [
+                    {completed: '', unfinished: ''}
+                ]
+            }
+        }，
+methods: {
+            getValue(completed, unfinished) {
+                console.log('已完成数量：' + completed, '未完成数量：' + unfinished)
+            }
+        }
+</script>
+
+<button @click="fromFather()">from父组件传值</button>
+<script>
+methods:{
+    fromFather() {
+                this.$emit('customize',this.doneTotle, this.todos.length)
+            }
+}
+</script>
+```
+
+### ref实现
+
+```html
+<TodoFooter ref="inputValue"/>
+<script>
+methods: {
+            getValue(completed, unfinished) {
+                console.log('已完成数量：' + completed, '未完成数量：' + unfinished)
+},
+mounted() {
+            setTimeout(()=>{
+                this.$refs.inputValue.$on('customize', this.getValue);
+            },2000)；
+    		//只触发一次
+            //this.$refs.inputValue.$once('customize', this.getValue);
+}
+</script>
+
+<button @click="fromFather()">from父组件传值</button>
+<script>
+methods:{
+    fromFather() {
+          this.$emit('customize',this.doneTotle, this.todos.length)
+    }
+}
+</script>
+```
+
+## 解绑自定义事件
+
+```js
+//解绑单个自定义事件
+this.$off('customize')
+//解绑多个自定义事件
+this.$off(['xxx','xxx'])
+//解绑所有的自定义事件
+this.$off()
+```
+
+## 子组件向父组件传递的值显示在页面上
+
+> 赋值给data，使用插值语法显示到页面上
+
+```html
+<h2>{{context[0].completed}}{{context[0].unfinished}}</h2>
+<script>
+data() {
+            return {
+                todos: [
+                    {id: '001', title: '吃饭', done: false},
+                    {id: '002', title: '睡觉', done: true},
+                    {id: '003', title: '打游戏', done: false}
+                ],
+                context: [
+                    {completed: '', unfinished: ''}
+                ]
+            }
+        }
+        ,
+        methods: {
+            getValue(completed, unfinished) {
+                console.log('已完成数量：' + completed, '未完成数量：' + unfinished)
+                this.context[0].completed = completed;
+                this.context[0].unfinished = unfinished;
+            }
+        }
+        ,
+        mounted() {
+            setTimeout(() => {
+                this.$refs.inputValue.$on('customize', this.getValue);
+            }, 2000)
+        }
+</script>
+```
+
+> :warning:注意：回调函数简写时this指向
+>
+> ```js
+> this.$refs.inputValue.$on('customize', function(completed, unfinished){
+>     this的指向是触发事件的实例对象，谁触发customize就是谁
+> });
+> this.$refs.inputValue.$on('customize',(completed, unfinished)=>{
+>     this的指向是外面的组件实例对象
+> });
+> ```
+>
+> ```js
+> 绑定原生DOM事件
+> <Student> @click.native="xxx" </Student>
+> ```
 
