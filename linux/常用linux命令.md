@@ -134,6 +134,12 @@ https://blog.csdn.net/Tritoy/article/details/81705759
 #正常运行,不显示日志
 [root@localhost webapps]# sh ../bin/startup.sh
 #日志位于logs里面的catalina.out
+
+
+#从0开始安装tomcat
+https://mirrors.cnnic.cn/
+
+$ wegt https://mirrors.cnnic.cn/apache/tomcat/tomcat-8/v8.5.75/bin/apache-tomcat-8.5.75.tar.gz
 ```
 
 ### 安装redis
@@ -373,5 +379,77 @@ upstream testTomcat{
 ------------------------------------------------------------------------------
 #重启nginx
 $ /usr/local/nginx/sbin/nginx -s reload
+```
+
+### 安装rz
+
+```shell
+http://www.ohse.de/uwe/software/lrzsz.html
+
+wget http://www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz
+tar zxvf lrzsz-0.12.20.tar.gz && cd lrzsz-0.12.20
+./configure && make && make install
+#建立软连接(快捷方式)
+ln -s /usr/local/bin/lrz rz
+ln -s /usr/local/bin/lsz sz
+
+yum install -y lrzsz
+#文件发送到本地
+sz filename
+#文件上传到服务器
+rz
+```
+
+### 安装mysql
+
+```shell
+#更新yum源
+https://dev.mysql.com/downloads/repo/yum/
+rpm -vih mysql80-community-release-el8-3.noarch.rpm
+#检测yum是否安装成功
+repolist  enabled | grep "mysql.*-community.*"
+mysql-connectors-community MySQL Connectors Community
+mysql-tools-community      MySQL Tools Community
+mysql80-community          MySQL 8.0 Community Server
+
+#查看mysql哪些源是否被禁用
+yum repolist all | grep mysql
+mysql-cluster-8.0-community        MySQL Cluster 8.0 Community          disabled
+mysql-cluster-8.0-community-source MySQL Cluster 8.0 Community - Source disabled
+mysql-connectors-community         MySQL Connectors Community           enabled
+mysql-connectors-community-source  MySQL Connectors Community - Source  disabled
+mysql-tools-community              MySQL Tools Community                enabled
+mysql-tools-community-source       MySQL Tools Community - Source       disabled
+mysql-tools-preview                MySQL Tools Preview                  disabled
+mysql-tools-preview-source         MySQL Tools Preview - Source         disabled
+mysql80-community                  MySQL 8.0 Community Server           enabled
+mysql80-community-source           MySQL 8.0 Community Server - Source  disabled
+
+yum-config-manager --disable mysql80-community　　　　　　 ##禁用8.0版本的
+yum-config-manager --enable mysql56-community　　　　　　　##启用5.6版本的（当然启用哪个版本你自己定）
+
+#开始安装
+yum install mysql-community-server
+
+#报错
+All matches were filtered out by modular filtering for argument: mysql-community-server
+Error: Unable to find a match: mysql-community-server
+#再次执行安装
+
+service mysqld start　　　　　　　　#开启MySQL服务　　　　只要没有错误信息就表示已经正常启动了。
+service mysqld stop　　　　　　　　#关闭MySQL服务
+service mysqld restart　　　　　　#重启MySQL服务 
+service mysqld status　　　　　　#查看服务状态
+
+#临时密码
+grep 'temporary password' /var/log/mysqld.log
+
+[Note] [MY-010454] [Server] A temporary password is generated for root@localhost: =i.WyP.f*0*w
+#使用临时密码进入
+mysql -uroot -p=i.WyP.f*0*w
+alter user 'root'@'localhost' identified by 'xxx';
+
+#参考链接,禁用更新
+https://www.cnblogs.com/xsge/p/13827288.html
 ```
 
