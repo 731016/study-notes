@@ -8,6 +8,7 @@ netstat -lnp | grep 8080
 #查看指定进程信息
 ps -aux | grep tomcat
 ps -ef | grep tomcat
+lsof -i:pid
 #kill 进程
 kill -9 进程号
 ##执行sh文件 若权限,需要授权
@@ -33,8 +34,29 @@ P
 dd
 #删除当下向下几行
 ndd
+#从光标开始删除,到行尾
+$ ctrl+k
 #剪切光标所处位置到当前行末尾
 d$
+#复制选中的
+y
+#复制当前行
+yy
+#全选复制
+ggvG或者ggVG
+#全选删除
+dG
+#替换 g全局 c确认 s替换
+$ :%s/oldstring/newstring/g
+#移动到行尾
+$
+#给shell脚本文件赋权
+chmod 777 xxx
+#重命名文件
+$ rename oldfile newfile
+$ mv oldfile newfile
+#移动多个文件
+mv a b c -t 新的目录
 ```
 
 ### 打包
@@ -117,12 +139,6 @@ https://blog.csdn.net/Tritoy/article/details/81705759
 ### 安装redis
 
 ```shell
-
-```
-
-
-
-```shell
 $ wget http://download.redis.io/releases/redis-6.0.6.tar.gz
 $ mkdir redis
 $ tar -vxzf redis-6.0.6.tar.gz -C redis
@@ -158,5 +174,204 @@ make test
 Executing test client: wrong # args: should be "close channelId"
 
 #安装tcl8.6
+
+#启动
+进入src目录
+$ sh redis-server
+#客户端
+$ sh redis-cli
+#后台启动
+修改redis.conf文件内的daemonize yes
+$ ./redis-server ./redis.conf
+```
+
+### 安装kafka
+
+```shell
+wget http://labfile.oss.aliyuncs.com/courses/859/kafka_2.10-0.10.2.1.tgz
+
+tar -zxvf kafka_2.10-0.10.2.1.tgz 
+
+cd kafka_2.11-2.0.0/config/
+
+#server.properties
+broker.id=0
+port=9092 #端口号
+host.name=172.30.0.9 #服务器IP地址，修改为自己的服务器IP
+log.dirs=/usr/local/logs/kafka #日志存放路径，上面创建的目录
+zookeeper.connect=localhost:2181 #zookeeper地址和端口，单机配置部署，localhost:2181
+
+#zookeeper.properties
+mkdir /usr/local/kafka/zookeeper #创建zookeeper目录
+mkdir /usr/local/kafka/log/zookeeper #创建zookeeper日志目录
+cd /usr/local/kafka/config #进入配置目录
+vi zookeeper.properties #编辑修改相应的参数
+
+dataDir=/usr/local/kafka/zookeeper #zookeeper数据目录
+dataLogDir=/usr/local/kafka/log/zookeeper #zookeeper日志目录
+clientPort=2181
+maxClientCnxns=100
+tickTime=2000
+initLimit=10
+syncLimit=5
+
+#kafkastart.sh
+#!/bin/bash
+#启动zookeeper
+/root/tuaofei/kafka_2.11-2.0.0/bin/zookeeper-server-start.sh /root/tuaofei/kafka_2.11-2.0.0/config/zookeeper.properties &
+sleep 3
+#启动kafka
+/root/tuaofei/kafka_2.11-2.0.0/bin/kafka-server-start.sh /root/tuaofei/kafka_2.11-2.0.0/config/server.properties &
+
+#kafkastop.sh
+#!/bin/bash
+#启动zookeeper
+/root/tuaofei/kafka_2.11-2.0.0/bin/zookeeper-server-stop.sh /root/tuaofei/kafka_2.11-2.0.0/config/zookeeper.properties &
+sleep 3
+#启动kafka
+/root/tuaofei/kafka_2.11-2.0.0/bin/kafka-server-stop.sh /root/tuaofei/kafka_2.11-2.0.0/config/server.properties &
+
+#测试kafka脚本
+#参考链接
+https://segmentfault.com/a/1190000020723761
+https://www.jianshu.com/p/67f9b612dc3b
+###############################################################
+#!/bin/bash 
+kafka_input = "n" 
+while [[ $kafka_input != "y" ]]; do 
+        read -e -p "请选择:1)创建topic 2)查看topic 3)发送消息 4)消费消息 0)退出" user_input 
+        if [[ $user_input == "0" ]]; then exit;fi 
+        if [[ $user_input == "1" ]]; then 
+                 
+                #创建一个Topic,创建一个副本数为1，分区数为1的，名字为test的topic 
+                read -e -p "输入端口号:" zook_post 
+                read -e -p "输入要创建的副本数:" replication_factor 
+                read -e -p "输入要创建的分区数:" partitions 
+                read -e -p "输入要创建名称:" zook_name 
+                if [ $? -eq 0 ]; then 
+                        echo "创建topic完成!" 
+                        sleep 3 
+                else 
+                        echo "topic创建失败!" 
+                fi 
+        fi 
+        if [[ $user_input == "2" ]];then 
+                #查看topic 
+                /root/tuaofei/kafka_2.11-2.0.0/bin/kafka-topics.sh --list --zookeeper localhost:2181             
+                if [ $? -eq 0 ]; then 
+                        echo "查看topic" 
+                        sleep 3 
+                else 
+                        echo "查看topic失败!" 
+                fi 
+        fi 
+        if [[ $user_input == "3" ]]; then 
+                #发生消息 
+                /root/tuaofei/kafka_2.11-2.0.0/bin/kafka-console-producer.sh --broker-list hostname:9092 --topic test 
+                if [ $? -eq 0 ]; then 
+                        echo "已发送消息,准备消费消息" 
+                        sleep 3 
+                else 
+                        echo "发送消息失败!" 
+                fi 
+        fi 
+        if [[ $user_input == "4" ]]; then 
+                #消费消息 
+                /root/tuaofei/kafka_2.11-2.0.0/bin/kafka-console-consumer.sh --bootstrap-server hostname:9092 --topic test --from-beginning 
+                if [ $? -eq 0 ]; then 
+                        echo "已消费消息" 
+                        sleep 3 
+                else 
+                        echo "消费消息失败!" 
+                fi               
+        fi 
+done
+###############################################################
+```
+
+### 安装并测试nginx负载均衡
+
+```shell
+wget http://learning.happymmall.com/nginx/linux-nginx-1.10.2.tar.gz
+tar -zxvf linux-nginx-1.10.2.tar.gz
+
+cd nginx-1.10.2/
+./configure
+#编译
+make
+---------------------------------------------------------------------
+#报错
+make: *** No rule to make target `build', needed by `default'.  Stop.
+yum -y install make zlib-devel gcc-c++ libtool openssl openssl-devel
+重新编译
+---------------------------------------------------------------------
+#安装
+make install
+
+#开启服务并测试
+[root@localhost nginx-1.6.3]# cd /
+[root@localhost /]# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  newfile  newFile  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+[root@localhost /]# cd usr/
+[root@localhost usr]# ls
+bin  etc  games  include  lib  lib64  libexec  local  sbin  share  src  tmp
+[root@localhost usr]# cd local/
+[root@localhost local]# ls
+bin  etc  games  include  lib  lib64  libexec  man  nginx  sbin  share  src
+[root@localhost local]# cd nginx/
+[root@localhost nginx]# ls
+conf  html  logs  sbin
+[root@localhost nginx]# cd sbin/
+[root@localhost sbin]# ls
+nginx
+
+$ ./nginx
+#默认80端口,即可访问
+
+firewall-cmd --zone=public --add-port=80/tcp --permanent  
+
+# 命令含义：
+--zone #作用域
+--add-port=80/tcp  #添加端口，格式为：端口/通讯协议
+--permanent   #永久生效，没有此参数重启后失效
+ 
+# 重启防火墙
+    systemctl stop firewalld.service  
+    systemctl start firewalld.service  
+
+# 查看端口是否开放
+firewall-cmd --list-ports
+
+
+#nginx.conf
+--------------------------------------------------------------------
+upstream testTomcat{
+		#每个访问客户端固定一个后端服务器,防止session丢失
+        #ip-hash;
+        #web请求会被转发到连接数最少的服务器上
+        least_conn;
+        #设置分权,权重越高优先访问
+        server 192.168.42.220:8888 weight=1;
+        server 192.168.42.220:8887 weight=1;
+
+        }
+
+    server {
+        listen       80;
+        server_name  localhost;
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        location / {
+            root   html;
+            index  index.html index.htm;
+            #使用test分配规则,自定义添加的upstream节点
+            proxy_pass http://testTomcat/;
+        }
+------------------------------------------------------------------------------
+#重启nginx
+$ /usr/local/nginx/sbin/nginx -s reload
 ```
 
