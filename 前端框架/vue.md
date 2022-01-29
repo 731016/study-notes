@@ -1834,6 +1834,50 @@ methods: {
 
 > :warning:【data,props,methods,computed】不要有相同的名称！
 
+## 组件任意传值
+
+```js
+beforeCreate() {
+        Vue.prototype.$bus = this
+    }
+
+----------------------------------------------------------------
+methods: {
+            // 勾选或取消
+            changeTodo(id) {
+                this.todos.forEach((item) => {
+                    if (item.id == id) {
+                        item.done = !item.done;
+                    }
+                })
+            }
+            ,
+            deleteTodo(id) {
+                this.todos = this.todos.filter((item) => {
+                    return item.id != id;
+                })
+            }
+        }
+mounted() {
+            this.$bus.$on('changeTodo',this.changeTodo);
+            this.$bus.$on('deleteTodo',this.deleteTodo);
+        },
+        beforeDestroy() {
+            this.$bus.$off('changeTodo');
+            this.$bus.$off('deleteTodo');
+        }
+
+----------------------------------------------------------------
+methods: {
+            doneChanged(id) {
+                this.$bus.$emit('changeTodo',id);
+            },
+            delItem(id) {
+                this.$bus.$emit('deleteTodo',id);
+            }
+        },
+```
+
 
 
 ## 点击复选框值改变
@@ -1978,6 +2022,8 @@ this.$off()
 
 ```html
 <h2>{{context[0].completed}}{{context[0].unfinished}}</h2>
+<TodoFooter :todos="todos"
+            v-on:customize="getValue" ref="inputValue"/>
 <script>
 data() {
             return {
@@ -2023,4 +2069,84 @@ data() {
 > 绑定原生DOM事件
 > <Student> @click.native="xxx" </Student>
 > ```
+
+
+
+# 全局事件总线
+
+> 组件间通信方式，适用于**任意组件间通信**
+
+## 安装
+
+```js
+new Vue({
+    beforeCreate(){
+		Vue.prototype.$bus = this;	
+    }
+})
+```
+
+## 使用
+
+(1)**接收数据**：A组件想接收数据，则A组件中的$bus绑定自定义事件，事件的**回调留在A组件自身**
+
+```js
+methods(){
+    demo(data){}
+}
+mounted(){
+    this.$bus.$on('xxx',this.demo)
+}
+```
+
+(2)提供数据：`this.$bus.$emit('xxx',数据)`
+
+> 最好在`beforeDestroy`钩子中，用`$off`解绑当前组件所用到的事件
+
+
+
+# 消息订阅与发布
+
+> 组件间通信方式，适用于**任意组件间通信**
+
+## 使用步骤
+
+1.安装：pubsub `npm i pubsub.js`
+
+2.引入：`import pubsub from 'pubsub.js'`
+
+3.接收数据：A组件想接收数据，则A组件中订阅消息，订阅的回调留在A组件本身
+
+```js
+methods(){
+    demo(data){}
+    mounted(){
+        this.pid = pubsub.subscribe('xxx',this.demo)//订阅消息,可改为箭头函数，使用funtion(){}匿名函数的this作用域是unfiend
+    }
+}
+```
+
+4.提供数据：`pubsub.publish('xxx',数据)`
+
+5.最好在beforeDestory钩子中，用pubsub.unsubscribe(pid)取消订阅
+
+
+
+# $nextTick
+
+将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。它跟全局方法
+
+```js
+<input v-show="item.isEdit" type="text" v-model="item.title" @blur="alterTitle($event,item)" ref="inputTitle">
+
+editItem(item) {
+                if (item.hasOwnProperty('isEdit')) {
+                    item.isEdit = true;
+                }
+                this.$set(item, 'isEdit', true)
+                this.$nextTick(function () {
+                    this.$refs.inputTitle.focus();
+                });
+            }
+```
 
