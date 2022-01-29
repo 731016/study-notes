@@ -2,7 +2,7 @@
 
 ## 安装
 
-https://gitee.com/LovelyHzz/study-notes/blob/master/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md
+https://blog.csdn.net/qq_36018710/article/details/84622543
 
 ## 语法基础
 
