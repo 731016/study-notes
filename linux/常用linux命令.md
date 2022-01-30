@@ -1,25 +1,10 @@
-### 常用命令
+### 文件相关命令
 
 ```shell
 #解压
 tar -zxvf XXX.gz -C 指定目录
-#查看指定端口
-netstat -lnp | grep 8080
-#查看指定进程信息
-ps -aux | grep tomcat
-ps -ef | grep tomcat
-lsof -i:pid
-#kill 进程
-kill -9 进程号
-##执行sh文件 若权限,需要授权
-./
-sh
-#命令行上传文件
-rz
 #查看当前文件夹下的文件大小
 du -sh *
-#查看操作系统版本
-uname -a
 #创建层级文件夹
 mkdir -p xxx/xxx
 #撤销上一步的操作
@@ -50,14 +35,133 @@ dG
 $ :%s/oldstring/newstring/g
 #移动到行尾
 $
-#给shell脚本文件赋权
-chmod 777 xxx
 #重命名文件
 $ rename oldfile newfile
 $ mv oldfile newfile
 #移动多个文件
 mv a b c -t 新的目录
 ```
+
+### 软件安装命令
+
+```shell
+解压安装 tar , ./configuare ,make ,make install
+#查看软件是否安装
+npm -qa |grep xxx
+```
+
+### 权限命令
+
+```shell
+#给shell脚本文件赋权
+chmod 777 xxx
+##执行sh文件 若权限,需要授权
+./
+sh
+```
+
+### 进程命令
+
+```shell
+#查看指定端口
+netstat -lnp | grep 8080
+#查看指定进程信息
+ps -aux | grep tomcat
+ps -ef | grep tomcat
+lsof -i:pid
+#kill 进程
+kill -9 进程号
+
+#命令行上传文件
+rz
+
+#查看操作系统版本
+uname -a
+```
+
+### 防火墙命令
+
+```shell
+#参考链接
+https://blog.csdn.net/qq_39176597/article/details/111939051
+
+查看防火墙某个端口是否开放
+firewall-cmd --query-port=80/tcp
+
+开放防火墙端口80
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+
+关闭80端口
+
+firewall-cmd --zone=public --remove-port=80/tcp --permanent  
+
+配置立即生效
+firewall-cmd --reload 
+查看防火墙状态
+systemctl status firewalld
+
+关闭防火墙
+systemctl stop firewalld
+
+打开防火墙
+systemctl start firewalld
+
+开放一段端口
+firewall-cmd --zone=public --add-port=8121-8124/tcp --permanent
+
+查看开放的端口列表
+firewall-cmd --zone=public --list-ports
+
+#永久关闭防火墙：
+[root@CactiEZ ~]# systemctl disable firewald.service
+
+#永久开启防火墙：
+[root@CactiEZ ~]# systemctl enable firewald.service
+```
+
+### 端口命令
+
+```shell
+#参考链接
+https://blog.csdn.net/qq_41675254/article/details/85208057
+
+netstat命令各个参数说明如下：
+
+　　-t : (tcp)仅显示TCP相关选项
+
+　　-u :（UDP）仅显示UDP相关选项 
+
+　　-l : 仅显示监听套接字(所谓套接字就是使应用程序能够读写与收发通讯协议(protocol)与资料的程序)
+
+　　-p : 显示进程标识符和程序名称，每一个套接字/端口都属于一个程序。
+
+　　-n : 不进行DNS轮询，显示IP(可以加速操作),拒绝显示别名，能显示数字的全部转化为数字
+　　
+netstat -ntlp   //查看当前所有tcp端口
+
+#查看一台服务器上面哪些服务及端口
+netstat -lanp
+
+#查看一个服务有几个端口。比如要查看mysqld
+ps -ef |grep mysqld
+
+#查看某一端口的连接数量,比如3306端口
+netstat -pnt |grep :3306 |wc
+
+#查看某一端口的连接客户端IP 比如3306端口
+netstat -anp |grep 3306
+
+netstat -an 查看网络端口 
+
+lsof -i :port，使用lsof -i :port就能看见所指定端口运行的程序，同时还有当前连接。 
+
+nmap 端口扫描
+netstat -nupl  (UDP类型的端口)
+netstat -ntpl  (TCP类型的端口)
+netstat -anp 显示系统端口使用情况
+```
+
+
 
 ### 打包
 
@@ -68,6 +172,28 @@ war
 	(2)web application:archive √ 发布用,不可修改
 jar maven->clean->packagr 默认是jar ,路径在out里面
 	只能有主类的项目于可以运行,如spring需要有main方法
+```
+
+### 安装java
+
+```shell
+#查找java相关的列表
+yum -y list java*
+yum search jdk
+
+#安装jdk
+yum install xxx
+
+#安装完成验证
+[root@hzz-1019 downloads]# java -version
+openjdk version "11.0.13" 2021-10-19 LTS
+OpenJDK Runtime Environment 18.9 (build 11.0.13+8-LTS)
+OpenJDK 64-Bit Server VM 18.9 (build 11.0.13+8-LTS, mixed mode, sharing)
+
+
+#添加JAVAHOME
+yum安装的默认路径/usr/lib/jvm
+
 ```
 
 ### 运行tomcat
@@ -135,11 +261,26 @@ https://blog.csdn.net/Tritoy/article/details/81705759
 [root@localhost webapps]# sh ../bin/startup.sh
 #日志位于logs里面的catalina.out
 
+#jar包方式运行,日志重定向
+bohup java -jar jar包名.jar >日志文件名称.txt &
 
 #从0开始安装tomcat
 https://mirrors.cnnic.cn/
 
 $ wegt https://mirrors.cnnic.cn/apache/tomcat/tomcat-8/v8.5.75/bin/apache-tomcat-8.5.75.tar.gz
+
+#运行多台tomcat
+https://blog.csdn.net/hzy3344520/article/details/105081177
+
+#运行tomcat的3种方式
+https://blog.csdn.net/IT_TIfarmer/article/details/110524285
+(1)./startup.sh #当前会话启动
+(2)./catalina.sh run #带日志的当前会话启动
+(3) nohup ./startup.sh &
+	nohup ./startup.sh > log.file 2>&1 &  #后台永久启动
+>log.file是将command的输出重定向到log.file文件，即输出内容不打印到屏幕上，而是输出到log.file文件中。
+2>&1 是将标准出错重定向到标准输出，这里的标准输出已经重定向到了log.file文件，即将标准出错也输出到log.file文件中。最后一个&， 是让该命令在后台执行。
+试想2>1代表什么，2与>结合代表错误重定向，而1则代表错误重定向到一个文件1，而不代表标准输出；换成2>&1，&与1结合就代表标准输出了，就变成错误重定向到标准输出。
 ```
 
 ### 安装redis
@@ -451,5 +592,21 @@ alter user 'root'@'localhost' identified by 'xxx';
 
 #参考链接,禁用更新
 https://www.cnblogs.com/xsge/p/13827288.html
+
+#查看mysql版本
+mysql -V
+```
+
+### tab命令补全
+
+```shell
+# yum install bash-completion//也可以使用通配符安装：yum install bash-c*
+
+如果上述命令不行，可以试试下面这个命令
+yum  upgrade
+
+如果上述两个命令还是不行，可以将机器重启，或者重新登录
+由于我实验时用的是scureCRT，所以我选择使用login命令重新登录，随后sudo -i 进入root模式，可以使用tab补全命令
+$ login//重新登录
 ```
 
