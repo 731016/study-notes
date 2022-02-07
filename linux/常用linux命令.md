@@ -117,6 +117,39 @@ firewall-cmd --zone=public --list-ports
 
 #永久开启防火墙：
 [root@CactiEZ ~]# systemctl enable firewald.service
+
+
+```
+
+### 禁用/启用IP
+
+```shell
+#iptables
+参数-I是表示Insert（添加），-D表示Delete（删除）。后面跟的是规则，INPUT表示入站，...表示要封停的IP，DROP表示放弃连接。
+
+#要封停一个IP，使用下面这条命令：
+iptables -I INPUT -s xx.xx.xx.xx -j DROP
+
+#要解封一个IP，使用下面这条命令：
+iptables -D INPUT -s xx.xx.xx.xx -j DROP
+
+#查看当前的IP规则表：
+iptables --list
+iptables -L
+
+#清空封掉的IP地址
+iptables --flush
+
+#要添加IP段到封停列表中，使用下面的命令：
+iptables -I INPUT -s 121.0.0.0/8 -j DROP
+
+#firewall
+https://blog.csdn.net/ywd1992/article/details/80401630
+#禁止IP(111.225.149.121)访问机器
+firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source address="111.225.149.121" drop'
+
+#禁止一个IP段，比如禁止111.225..
+firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source address="111.225.0.0/16" drop'
 ```
 
 ### 端口命令
