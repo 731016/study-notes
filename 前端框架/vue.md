@@ -1,3 +1,5 @@
+
+
 [表单输入绑定 — Vue.js 中文文档 (bootcss.com)](https://vuejs.bootcss.com/guide/forms.html)
 
 ## 使用vue插件
@@ -1742,15 +1744,15 @@ npm install less save-dev
 
 
 
-# TodoList案例关键点
+## TodoList案例关键点
 
-## 组件命令注意不要和html元素相同
+### 组件命令注意不要和html元素相同
 
 ```html
 比如：Header
 ```
 
-## 父组件里面的子组件的子组件import的路径
+### 父组件里面的子组件的子组件import的路径
 
 ```js
 import TodoItem from "@/components/TodoItem";
@@ -1758,7 +1760,7 @@ import TodoItem from "@/components/TodoItem";
 
 [(16条消息) Vue解决报错1_This relative module was not found: * ./components/Login.vue in ./src/router/index.js_xiaosi的博客-CSDN博客](https://blog.csdn.net/qq_24654501/article/details/113574302)
 
-## 父组件个子组件传值
+### 父组件个子组件传值
 
 ```html
 <TodoList :todos="todos"/>
@@ -1808,7 +1810,7 @@ methods: {
 </script>
 ```
 
-## 子组件给父组件传值
+### 子组件给父组件传值
 
 ```html
 <TodoHeader :addTodo="addTodo"/>
@@ -1834,7 +1836,7 @@ methods: {
 
 > :warning:【data,props,methods,computed】不要有相同的名称！
 
-## 组件任意传值
+### 组件任意传值
 
 ```js
 beforeCreate() {
@@ -1880,7 +1882,7 @@ methods: {
 
 
 
-## 点击复选框值改变
+### 点击复选框值改变
 
 > 暂时使用函数，父组件->子组件
 >
@@ -1940,11 +1942,11 @@ TodoItem
 
 
 
-# 组件自定义事件
+## 组件自定义事件
 
-## 子组件向父组件传值
+### 子组件向父组件传值
 
-### $emit实现
+#### $emit实现
 
 ```html
 通过父组件向子组件绑定一个自定义事件，等子组件触发这个事件，就触发getValue函数
@@ -1977,7 +1979,7 @@ methods:{
 </script>
 ```
 
-### ref实现
+#### ref实现
 
 ```html
 <TodoFooter ref="inputValue"/>
@@ -2005,7 +2007,7 @@ methods:{
 </script>
 ```
 
-## 解绑自定义事件
+### 解绑自定义事件
 
 ```js
 //解绑单个自定义事件
@@ -2016,7 +2018,7 @@ this.$off(['xxx','xxx'])
 this.$off()
 ```
 
-## 子组件向父组件传递的值显示在页面上
+### 子组件向父组件传递的值显示在页面上
 
 > 赋值给data，使用插值语法显示到页面上
 
@@ -2072,11 +2074,11 @@ data() {
 
 
 
-# 全局事件总线
+## 全局事件总线
 
 > 组件间通信方式，适用于**任意组件间通信**
 
-## 安装
+### 安装
 
 ```js
 new Vue({
@@ -2086,7 +2088,7 @@ new Vue({
 })
 ```
 
-## 使用
+### 使用
 
 (1)**接收数据**：A组件想接收数据，则A组件中的$bus绑定自定义事件，事件的**回调留在A组件自身**
 
@@ -2105,11 +2107,11 @@ mounted(){
 
 
 
-# 消息订阅与发布
+## 消息订阅与发布
 
 > 组件间通信方式，适用于**任意组件间通信**
 
-## 使用步骤
+### 使用步骤
 
 1.安装：pubsub `npm i pubsub.js`
 
@@ -2132,7 +2134,7 @@ methods(){
 
 
 
-# $nextTick
+## $nextTick
 
 将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。它跟全局方法
 
@@ -2149,4 +2151,97 @@ editItem(item) {
                 });
             }
 ```
+
+## 过渡与动画
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202072103821.png" alt="image-20220207210255578" style="zoom:80%;" />
+
+### 用法
+
+`1.准备样式`
+
+#### 元素进入的样式
+
+1. v-enter：进入的起点
+2. v-enter-active：进入过程中
+3. v-enter-to：进入的终点
+
+#### 元素离开的样式
+
+1. v-leave：离开的起点
+2. v-leave-active：离开的过程中
+3. v-leave-to：离开的终点
+
+
+
+`2.使用<transition>包裹要过渡的元素，并配置name属性`
+
+```vue
+<transition name="hello">
+    <h1 v-show="isShow">
+        你好啊！
+    </h1>
+</transition>
+```
+
+`3.若有多个元素需要过渡，则需要使用<transition-group>，且每个元素都要指定key值`
+
+
+
+
+
+# Vue中的ajax
+
+## 配置代理 跨域问题
+
+通过 `vue.config.js` 中的 `devServer.proxy` 选项来配置
+
+```js
+module.exports = {
+  devServer: {
+    proxy: 'http://localhost:4000'
+  }
+}
+```
+
+> :warning: 问题：
+>
+> 1. 不能配置多个代理
+> 2. 本机存在与public里面的文件如果和请求地址相同，则不会发送请求到代理服务器
+
+如果你想要更多的代理控制行为，也可以使用一个 `path: options` 成对的对象
+
+```js
+module.exports = {
+  devServer: {
+    proxy: {
+      '/api': { //匹配所有以api开头的地址
+        target: 'http://119.2.453.423:8080',
+          pathRewrite:{'^/api',''},
+        ws: true,//用于支持websocket
+        changeOrigin: true//（请求头中的host值【真/假】）告诉要请求的服务器，来自哪个地址
+      },
+      '/foo': {
+        target: '<other_url>'
+      }
+    }
+  }
+}
+```
+
+## github案例
+
+
+
+# vuex
+
+
+
+# Vue UI组件库
+
+
+
+# vue-router
+
+
 

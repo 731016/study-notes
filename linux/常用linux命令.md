@@ -295,7 +295,7 @@ https://blog.csdn.net/Tritoy/article/details/81705759
 #日志位于logs里面的catalina.out
 
 #jar包方式运行,日志重定向
-bohup java -jar jar包名.jar >日志文件名称.txt &
+nohup java -jar jar包名.jar >日志文件名称.txt &
 
 #从0开始安装tomcat
 https://mirrors.cnnic.cn/
