@@ -150,7 +150,30 @@ firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source address="111.2
 
 #禁止一个IP段，比如禁止111.225..
 firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source address="111.225.0.0/16" drop'
+
+firewall-cmd --permanent --add-rich-rule="rule family="ipv4" source address="10.0.0.0/24" port protocol="tcp" port="80" reject"
+-----------------------------------------------------------------------------
+ rule：详细版
+　　　　　　[family="ipv4|ipv6"]
+　　　　　　[source |destination] address="address[/mask]" [invert="True|yes"]
+　　　　　　[[service name="service name" ]| [port port="number_or_range" protocol="tcp|udp"] | [protocol value="协议名"] ]
+　　　　　　[ icmp-block name="icmptype name" ]
+　　　　　　[masquerade]
+　　　　　　[forward-port port="number_or_range" protocol="tcp|udp" to-port="number_or_range" to-addr="address"]
+　　　　　　[log [prefix=prefix text] [level=log level] limit value=rate/duration]
+　　　　　　[audit]
+　　　　　　[accept | reject [type="reject type"] | drop]
+-----------------------------------------------------------------------------
 ```
+
+![img](https://img-blog.csdn.net/20180522112329733?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l3ZDE5OTI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
+```shell
+#拒绝所有ping请求
+firewall-cmd --permanent --add-rich-rule='rule protocol value=icmp drop'
+```
+
+
 
 ### 端口命令
 
@@ -295,7 +318,11 @@ https://blog.csdn.net/Tritoy/article/details/81705759
 #日志位于logs里面的catalina.out
 
 #jar包方式运行,日志重定向
+<<<<<<< .mine
+nohup java -jar jar包名.jar >日志文件名称.txt 2>&1 &
+=======
 nohup java -jar jar包名.jar >日志文件名称.txt &
+>>>>>>> .r188
 
 #从0开始安装tomcat
 https://mirrors.cnnic.cn/
@@ -314,6 +341,9 @@ https://blog.csdn.net/IT_TIfarmer/article/details/110524285
 >log.file是将command的输出重定向到log.file文件，即输出内容不打印到屏幕上，而是输出到log.file文件中。
 2>&1 是将标准出错重定向到标准输出，这里的标准输出已经重定向到了log.file文件，即将标准出错也输出到log.file文件中。最后一个&， 是让该命令在后台执行。
 试想2>1代表什么，2与>结合代表错误重定向，而1则代表错误重定向到一个文件1，而不代表标准输出；换成2>&1，&与1结合就代表标准输出了，就变成错误重定向到标准输出。
+
+#tomcat部署war包时，访问路径如何取消包名前缀
+https://blog.csdn.net/a624193873/article/details/103575732
 ```
 
 ### 安装redis
@@ -576,6 +606,8 @@ rz
 
 ### 安装mysql
 
+[MySQL的详细安装教程 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/188416607)
+
 ```shell
 #更新yum源
 https://dev.mysql.com/downloads/repo/yum/
@@ -628,7 +660,17 @@ https://www.cnblogs.com/xsge/p/13827288.html
 
 #查看mysql版本
 mysql -V
+
+#创建数据库
+CREATE DATABASE IF NOT EXISTS express default charset utf8mb4 COLLATE utf8mb4_general_ci;
+
+#远程访问数据库
+use mysql;
+update user set host='%' where user='root';
+flush PRIVILEGES;
 ```
+
+
 
 ### tab命令补全
 
