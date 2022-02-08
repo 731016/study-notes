@@ -2231,6 +2231,159 @@ module.exports = {
 
 ## github案例
 
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202082155048.png" alt="image-20220208215504930" style="zoom:80%;" />
+
+### App.vue
+
+```vue
+<template>
+  <div id="app">
+    <Search></Search>
+    <List></List>
+  </div>
+</template>
+
+<script>
+  import 'jquery/dist/jquery.min'
+  import 'bootstrap/dist/css/bootstrap.min.css'
+  import Search from './components/Search'
+  import List from './components/List'
+export default {
+  name: 'App',
+  components: {
+    Search,List,
+  }
+}
+</script>
+```
+
+### Search.vue
+
+```vue
+<template>
+    <div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Search github user</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="输入用户名"
+                       v-model="inputKeyWord">
+                <button type="submit" @click="searchUser()" class="btn btn-default">查询</button>
+            </div>
+
+    </div>
+</template>
+
+<script>
+    import axios from 'axios';
+
+    export default {
+        name: "Search",
+        data() {
+            return {
+                inputKeyWord: ''
+            }
+        },
+        methods: {
+            searchUser() {
+                console.log('触发点击事件',this.inputKeyWord);
+                this.$bus.$emit('updateListData',{isFirst: false,isLoading:true,errMsg:'',users:[]});
+                axios.get(`https://api.github.com/users?q=${this.inputKeyWord}`).then(
+                    response => {
+                        console.log('success',response.data)
+                        this.$bus.$emit('updateListData',{isLoading:false,errMsg:'',users:response.data});
+                    },
+                    error => {
+                        console.log('error',error.message)
+                        this.$bus.$emit('updateListData',{isLoading:false,errMsg:error.message,users:[]});
+
+                    }
+                )
+            }
+        }
+    }
+</script>
+```
+
+### List.vue
+
+```vue
+<template>
+    <div>
+        <div v-show="info.isFirst">欢迎使用！</div>
+        <div v-show="info.users.length!=0" v-for="user in info.users" :key="user.login">
+            <a :href="user.html_url">
+                <img :src="user.avatar_url" alt="..." class="img-thumbnail">
+            </a>
+            <p class="text-primary">{{user.login}}</p>
+        </div>
+        <div v-show="info.isLoading">加载中。。。</div>
+        <div v-show="info.isLoading">{{info.errMsg}}</div>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "List",
+        data() {
+            return {
+                info:{
+                    users: [],
+                    isFirst:true,
+                    isLoading:false,
+                    errMsg: ''
+                }
+            }
+        },
+        mounted() {
+            this.$bus.$on('updateListData', (dadaObj) => {
+                this.info={...this.info,...dadaObj};
+            })
+        }
+    }
+</script>
+
+<style scoped>
+    img {
+        width: 100px;
+        height: 100px;
+    }
+    div {
+        display: inline-block;
+        margin-left: 10px;
+    }
+</style>
+```
+
+
+
+## vue-resource
+
+```vue
+#下载插件
+npm i vue-resource
+
+#main.js
+-----------------
+<script>
+import vueResouce from 'vue-resource'
+Vue.use(vueResouce);
+</script>
+---------------------
+
+#使用
+<script>
+    this.$http.get("").then(
+{
+response=>{
+	response.data
+},error=>{
+	error.message
+}
+})
+</script>
+```
+
+
+
 
 
 # vuex
