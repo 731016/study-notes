@@ -685,3 +685,17 @@ yum  upgrade
 $ login//重新登录
 ```
 
+### yum
+
+```shell
+#安装报错 https://blog.csdn.net/m0_48455997/article/details/115480814
+error: rpmdb: BDB0113 Thread/process 16573/140310613138304 failed: BDB1507 Thread died in Berkeley DB library
+error: db5 error(-30973) from dbenv->failchk: BDB0087 DB_RUNRECOVERY: Fatal error, run database recovery
+error: cannot open Packages index using db5 -  (-30973)
+error: cannot open Packages database in /var/lib/rpm
+Error: Error: rpmdb open failed
+
+#yum makecache报错
+https://www.cnblogs.com/bpzblog/p/13918199.html
+```
+
