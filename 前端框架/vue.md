@@ -2384,9 +2384,110 @@ response=>{
 
 
 
+## solt插槽（默认）
+
+让父组件向子组件指定位置插入html结构，适用于 `父组件 ==> 子组件`
+
+```vue
+App.vue
+<Student>
+    <img src="xxx">
+</Student>
+
+Student.vue
+<template>
+	<div>
+        <h3>xxx</h3>
+        <slot>没有传递结构时，显示</slot>
+    </div>
+</template>
+```
+
+## 具名插槽
+
+```vue
+App.vue
+<Student>
+    <img slot="center" src="xxx">
+    <!--不生成dom元素-->
+    <template slot="footer" 或者 v-slot:footer（只能用在template上）>
+    	<img src="xxx">
+    	<h3>也想放在footer里面</h3>
+    </template>
+</Student>
+
+Student.vue
+<template>
+	<div>
+        <h3>xxx</h3>
+        <slot name="center">没有传递结构时，显示</slot>
+        <slot name="footer">没有传递结构时，显示</slot>
+    </div>
+</template>
+```
+
+## 作用域插槽
+
+数据在组件的自身，但根据数据生成的结构需要组件的使用者来决定
+
+```vue
+App.vue
+<Student>
+    #使用template的scope属性接收
+    <template scope="data"(新语法slot-scope="data") 或者es6解构赋值 scope="{games}",下面直接使用games>
+    	<ul>
+        	<li v-for="(item,index) in data.games" :key="index">{{item}}</li>
+   		</ul>
+    </template>
+    <template slot-scope="data">
+    	<ol>
+        	<li v-for="(item,index) in data.games" :key="index">{{item}}</li>
+   		</ol>
+    </template>
+</Student>
+
+Student.vue
+<template>
+	<div>
+        <h3>xxx</h3>
+        #向使用该插槽的组件传值
+        <slot :data="games">没有传递结构时，显示</slot>
+    </div>
+</template>
+<script>
+	new Vue({
+       data(){
+           return{
+               games:['GTA5','荒野','4399']
+           }
+       } 
+    });
+</script>
+```
+
 
 
 # vuex
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202092118357.png" alt="image-20220209211814287" style="zoom: 80%;" />
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202092121467.png" alt="image-20220209212121141" style="zoom:80%;" />
+
+
+
+## 什么时候需要使用？
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202092125676.png" alt="image-20220209212457508" style="zoom: 80%;" />
+
+**状态（数据）共享！**
+
+
+
+## vuex工作原理
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202092144381.png" alt="image-20220209214418769" style="zoom:80%;" />
+
+## 搭建vuex环境
 
 
 
