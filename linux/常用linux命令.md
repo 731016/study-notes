@@ -49,6 +49,8 @@ $ mv oldfile newfile
 mv a b c -t 新的目录
 #显示行号
 set nu
+#查找安装位置
+whereis pyton3
 ```
 
 ### 软件安装命令
