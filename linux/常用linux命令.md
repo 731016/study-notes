@@ -1,3 +1,10 @@
+```shell
+#上一条命令是否执行成功
+$? 0成功 其他失败
+#退出当前shell脚本
+exit 2
+```
+
 ### 文件相关命令
 
 ```shell
@@ -40,6 +47,8 @@ $ rename oldfile newfile
 $ mv oldfile newfile
 #移动多个文件
 mv a b c -t 新的目录
+#显示行号
+set nu
 ```
 
 ### 软件安装命令
@@ -697,5 +706,13 @@ Error: Error: rpmdb open failed
 
 #yum makecache报错
 https://www.cnblogs.com/bpzblog/p/13918199.html
+```
+
+### sshd修改默认端口
+
+```shell
+vim /etc/ssh/sshd_config
+在#Port 22下面修改要添加的端口
+systemctl restart sshd.service
 ```
 
