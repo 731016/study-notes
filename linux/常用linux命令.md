@@ -718,3 +718,26 @@ vim /etc/ssh/sshd_config
 systemctl restart sshd.service
 ```
 
+### 宝塔linux镜像
+
+```shell
+#进入服务器获取账号密码和访问链接
+sudo /etc/init.d/bt default
+==================================================================
+BT-Panel default info!
+==================================================================
+外网面板地址: xxx
+内网面板地址: xxx
+*以下仅为初始默认账户密码，若无法登录请执行bt命令重置账户/密码登录
+username: xxx
+password: xxx
+If you cannot access the panel,
+release the following panel port [8888] in the security group
+若无法访问面板，请检查防火墙/安全组是否有放行面板[8888]端口
+==================================================================
+
+1.查看面板入口：/etc/init.d/bt default
+
+2.关闭安全入口：rm -f /www/server/panel/data/admin_path.pl
+```
+
