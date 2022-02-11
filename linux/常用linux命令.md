@@ -128,8 +128,6 @@ firewall-cmd --zone=public --list-ports
 
 #永久开启防火墙：
 [root@CactiEZ ~]# systemctl enable firewald.service
-
-
 ```
 
 ### 禁用/启用IP
@@ -739,11 +737,20 @@ release the following panel port [8888] in the security group
 1.查看面板入口：/etc/init.d/bt default
 
 2.关闭安全入口：rm -f /www/server/panel/data/admin_path.pl
+
+#ftp问题
+https://blog.csdn.net/qq_18932003/article/details/104750239
+#安全组开发39000/40000 tcp端口
+#防火墙开放39000-40000 tcp端口
+#宝塔开发39000:40000 ftp端口
+#加密改成明文
 ```
 
 ### 安装wordpress
 
 ```shell
+#手动安装
+http://cloud.yundashi168.com/archives/250
 #使用宝塔linux安装
 https://developer.aliyun.com/article/638852
 ```
