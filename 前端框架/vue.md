@@ -2489,7 +2489,234 @@ Student.vue
 
 ## 搭建vuex环境
 
+```javascript
+创建文件 src/store/index.js
 
+//全局安装
+npm install -g @vue/cli
+//创建vue脚手架【2.6.11】我的vue是2.x版本的，如果是vue3，请下载vuex4.x的版本
+vue create 项目名
+//下载vuex插件
+//查看npm所有版本
+npm view vuex versions
+//此时下载指定版本
+npm i vuex@3.6.2
+```
+
+```javascript
+//index.js
+//引入vue
+import Vue from 'vue';
+//引入vuex
+import Vuex from 'vuex';
+//应用vuex插件
+Vue.use(Vuex);
+
+//准备actions对象-响应组件中用户的动作
+const actions = {}
+//准备mutations对象-修改state中的数据
+const mutations = {}
+//准备state对象-保存具体的数据
+const state = {}
+
+//创建store
+new Vuex.Store({
+    actions,
+    mutations,
+    state
+});
+export default store;
+```
+
+```javascript
+//main.js
+import Vue from 'vue'
+import App from './App.vue'
+import vueResouce from 'vue-resource'
+import store from './store/index'
+
+Vue.config.productionTip = false
+Vue.use(vueResouce);
+new Vue({
+    render: h => h(App),
+    store: store,
+    beforeCreate() {
+        Vue.prototype.$bus = this
+    }
+}).$mount('#app')
+```
+
+> :warning: 为什么不在main.js中引入vuex？
+>
+> 因为使用顺序要先使用vuex，才能使用store
+>
+> 不管是什么顺序，import会先解析，再执行其他代码，所以不能放在main.js中
+
+## 求和案例
+
+### Count.vue
+
+```html
+<template>
+    <div>
+        <h2>当前求和：{{$store.state.num}}</h2>
+        <select v-model.number="num">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        <button @click="add">+</button>
+        <button @click="reduce">-</button>
+        <button @click="addOdd">当前求和为奇数再加</button>
+        <button @click="addWait">等一等在加</button>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "Count",
+        data() {
+            return {
+                num: 1
+            }
+        },
+        methods: {
+            add() {
+                // this.$store.dispatch('jia', this.num);
+                //直接通知mutations，不需要actions
+                this.$store.commit('JIA', this.num);
+            },
+            reduce() {
+                // this.$store.dispatch('jian', this.num);
+                this.$store.commit('JIAN', this.num);
+            },
+            addOdd() {
+                this.$store.dispatch('jiaOdd', this.num);
+            },
+            addWait() {
+                this.$store.dispatch('jiaWait', this.num);
+            }
+        }
+    }
+</script>
+```
+
+### App.vue
+
+```html
+<template>
+  <div id="app">
+    <Count></Count>
+  </div>
+</template>
+
+<script>
+import Count from "./components/Count";
+export default {
+  name: 'App',
+  components: {
+    Count
+  }
+}
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
+```
+
+### index.js
+
+```js
+import Vue from "vue";
+//引入vuex
+import Vuex from 'vuex';
+//引入vuex插件
+Vue.use(Vuex);
+//用于响应组件中的动作
+const actions = {
+    // jia(content, value) {
+    //     content.commit('JIA', value);
+    // },
+    // jian(content, value) {
+    //     content.commit('JIAN', value);
+    // },
+    jiaOdd(content, value){
+        if (content.state.num %2 != 0){
+            content.commit('JIA', value);
+        }
+    },
+    jiaWait(content, value){
+        setTimeout(() => {
+            content.commit('JIA', value);
+        },500)
+    }
+};
+//用于操作数据
+const mutations = {
+    JIA(state, value) {
+        state.num += value;
+    },
+    JIAN(state, value) {
+        state.num -= value;
+    },
+
+};
+//用于存储数据
+const state = {
+    num: 0
+};
+//创建并暴露store（默认暴露）
+export default new Vuex.Store({
+    actions,
+    mutations,
+    state
+})
+```
+
+### main.js
+
+```js
+import Vue from 'vue'
+import App from './App.vue'
+import store from './store'
+
+Vue.config.productionTip = false;
+
+new Vue({
+    render: h => h(App),
+    store,
+    beforeCreate() {
+        Vue.prototype.$bus = this;
+    }
+}).$mount('#app')
+```
+
+
+
+### 遇到的坑!!!
+
+> vue2 => vuex3
+>
+> vue3 => vuex4
+>
+> ```````json
+> "dependencies": {
+>     "vue": "^2.6.11",
+>     "vuex": "^3.6.2"
+>   },
+>   "devDependencies": {
+>     "@vue/cli-plugin-babel": "~4.5.0",
+>     "@vue/cli-plugin-eslint": "~4.5.0",
+>     "@vue/cli-service": "~4.5.0",
+>   },
 
 # Vue UI组件库
 
