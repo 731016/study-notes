@@ -741,3 +741,10 @@ release the following panel port [8888] in the security group
 2.关闭安全入口：rm -f /www/server/panel/data/admin_path.pl
 ```
 
+### 安装wordpress
+
+```shell
+#使用宝塔linux安装
+https://developer.aliyun.com/article/638852
+```
+
