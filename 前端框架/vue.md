@@ -2492,7 +2492,7 @@ Student.vue
 ```javascript
 创建文件 src/store/index.js
 
-//全局安装
+//全局安装[--save生产环境]
 npm install -g @vue/cli
 //创建vue脚手架【2.6.11】我的vue是2.x版本的，如果是vue3，请下载vuex4.x的版本
 vue create 项目名
@@ -2551,6 +2551,14 @@ new Vue({
 > 因为使用顺序要先使用vuex，才能使用store
 >
 > 不管是什么顺序，import会先解析，再执行其他代码，所以不能放在main.js中
+
+## 基本使用
+
+组件读取vuex中的数据:`$store.state.num`
+
+组件修改vuex中的数据：`$store.dispathch('action中的方法名','数据')或 $store.commit('mutations中的方法名','数据')`
+
+> 若没有网络请求或者其他业务逻辑，组件中也可以越过actions，即不写`dispatch`，直接编号`commit`
 
 ## 求和案例
 
@@ -2699,24 +2707,446 @@ new Vue({
 }).$mount('#app')
 ```
 
-
-
 ### 遇到的坑!!!
 
 > vue2 => vuex3
 >
 > vue3 => vuex4
 >
+> 如果出现Object function 报错请检查vuex版本
+>
+> ```js
+> 卸载
+> npm uninstall vuex
+> ```
+>
 > ```````json
 > "dependencies": {
->     "vue": "^2.6.11",
->     "vuex": "^3.6.2"
->   },
->   "devDependencies": {
->     "@vue/cli-plugin-babel": "~4.5.0",
->     "@vue/cli-plugin-eslint": "~4.5.0",
->     "@vue/cli-service": "~4.5.0",
->   },
+>  "vue": "^2.6.11",
+>  "vuex": "^3.6.2"
+> },
+> "devDependencies": {
+>  "@vue/cli-plugin-babel": "~4.5.0",
+>  "@vue/cli-plugin-eslint": "~4.5.0",
+>  "@vue/cli-service": "~4.5.0",
+> }
+
+## getters
+
+```js
+//用于对state中数据的处理
+const getters = {
+    bigSum(state) {
+        return Math.PI * state.num;
+    }
+}
+//创建并暴露store（默认暴露）
+export default new Vuex.Store({
+    actions,
+    mutations,
+    state,
+    getters
+})
+```
+
+组件中读取数据：`$store.getters.bigSum`
+
+## mapState,mapGetters
+
+> mapState：映射state中的数据为计算属性
+>
+> mapGetters：映射getters中的数据为计算属性
+
+```js
+computed:{
+            //自己写计算属性
+             author() {
+                 return this.$store.state.author;
+             },
+             age(){
+                 return this.$store.state.age;
+             },
+             bigSum(){
+                 return this.$store.getters.bigSum;
+             },
+        },
+```
+
+```js
+import {mapState,mapGetters} from 'vuex'
+computed:{
+            //结借助mapState生成计算属性，从state中读取数据。对象写法
+             ...mapState({author:'author', age:'age'}),
+            //结借助mapState生成计算属性，从state中读取数据。数组写法
+            ...mapState(['author','age']),
+
+            ...mapGetters({bigSum:'bigSum'}),
+             ...mapGetters(['bigSum']),
+        },
+```
+
+## mapActions,mapMutations
+
+> mapActions：生成与`Actions`对话的方法，包含`$store.dispatch(xxx)`的函数
+>
+> mapMutations：生成与`mutations`对话的方法，包含`$store.commit(xxx)`的函数
+
+```js
+<button @click="add(num)">+</button>
+<button @click="reduce(num)">-</button>
+<button @click="addOdd(num)">当前求和为奇数再加</button>
+<button @click="addWait(num)">等一等在加</button>
+<!-- 需要自己传值 -->
+//负责传递的是事件对象
+import {mapMutations,mapActions} from 'vuex'
+methods: {
+            // add() {
+            //     // this.$store.dispatch('jia', this.num);
+            //     //直接通知mutations，不需要actions
+            //     this.$store.commit('JIA', this.num);
+            // },
+            // reduce() {
+            //     // this.$store.dispatch('jian', this.num);
+            //     this.$store.commit('JIAN', this.num);
+            // },
+            //借助Matations生成对应的方法，方法中会调用commit去联系Mutations(对象写法)
+            ...mapMutations({add:'JIA',reduce:'JIAN'}),
+            // addOdd() {
+            //     this.$store.dispatch('jiaOdd', this.num);
+            // },
+            // addWait() {
+            //     this.$store.dispatch('jiaWait', this.num);
+            // }
+            //借助mapActions生成对应的方法，方法中会调用dispatch去联系Action(对象写法)
+            ...mapActions({addOdd:'jiaOdd',addWait:'jiaWait'})
+        }
+```
+
+## 多组件共享数据
+
+> 使用`mapState`即可
+
+```js
+<h3 style="color: red">人员列表组件的总人数：{{personList.length}}</h3>
+computed: {
+	...mapState(['author','age','personList']),
+},
+----------------------------------------------------------------------
+h2 style="color: #0dff1d">求和：{{num}}</h2>
+computed: {
+    ...mapState({personList: 'personList',num:'num'})
+},
+```
+
+## vuex模块化 namespace
+
+```js
+export default {
+    namespaced: true, //开启命令空间，可以让mapxxx识别
+    actions: {...},
+    mutations: {...},
+    state: {...},
+    getters: {...}
+};
+```
+
+```js
+#模块化main.js
+import Vue from "vue";
+//引入vuex
+import Vuex from 'vuex';
+//引入vuex插件
+Vue.use(Vuex);
+
+import countOption from "./count";
+import personOption from "./person";
+
+//创建并暴露store（默认暴露）
+export default new Vuex.Store({
+    modules: {
+        person: personOption,
+        count: countOption
+    }
+})
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202121922990.png" alt="image-20220212192237604" style="zoom:80%;" />
+
+```js
+#count.js
+------------------------------
+export default {
+    namespaced: true,
+    actions: {
+        jiaOdd(content, value) {
+            if (content.state.num % 2 != 0) {
+                content.commit('JIA', value);
+            }
+        },
+        jiaWait(content, value) {
+            setTimeout(() => {
+                content.commit('JIA', value);
+            }, 500)
+        }
+    },
+    mutations: {
+        JIA(state, value) {
+            state.num += value;
+        },
+        JIAN(state, value) {
+            state.num -= value;
+        },
+    },
+    state: {
+        num: 0,
+        author: '涂鏊飞',
+        age: 22,
+    },
+    getters: {
+        bigSum(state) {
+            return Math.floor(Math.PI * state.num);
+        }
+    }
+};
+------------------------------
+#person.js
+------------------------------
+import axios from 'axios';
+import {nanoid} from "nanoid";
+
+export default {
+    namespaced: true,
+    actions: {
+        addPersonWang(context, value) {
+            if (value.cname.indexOf('王') !== -1) {
+                context.commit('ADD_PERSON', value);
+            } else {
+                console.log('只能添加姓【王】的');
+            }
+        },
+        addPersonServer(context) {
+            axios.get('https://api.uixsj.cn/hitokoto/get?type=social').then(
+                response => {
+                    context.commit('ADD_PERSON',{id:nanoid(),cname:response.data,clength: Math.round(Math.random(20) * 100) + "cm"})
+                },
+                error => {
+                    console.log(error.message)
+                }
+            )
+        }
+    },
+    mutations: {
+        ADD_PERSON(state, value) {
+            state.personList.unshift(value);
+        }
+    },
+    state: {
+        personList: [
+            {id: '7aafcdf', cname: '占山', clength: '18cm'},
+            {id: '34fergs', cname: '底层', clength: '12cm'},
+            {id: '54vdgfd', cname: '胜多负少的', clength: '13cm'},
+        ]
+    },
+    getters: {
+        showFirstPerson(state) {
+            return state.personList[0].cname;
+        }
+    }
+}
+```
+
+```html
+#Count.vue
+------------------------------------------------
+<template>
+    <div>
+        <code>作者：{{author}}</code>
+        <code>年龄：{{age}}</code>
+        <h2>当前求和：{{bigSum}}</h2>
+        <select v-model.number="num">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        <button @click="add(num)">+</button>
+        <button @click="reduce(num)">-</button>
+        <button @click="addOdd(num)">当前求和为奇数再加</button>
+        <button @click="addWait(num)">等一等在加</button>
+        <h3 style="color: red">人员列表组件的总人数：{{personList.length}}</h3>
+    </div>
+</template>
+
+<script>
+    import {mapState,mapGetters,mapMutations,mapActions} from 'vuex'
+    export default {
+        name: "Count",
+        data() {
+            return {
+                num: 1
+            }
+        },
+        computed:{
+            ...mapState('count',['author','age']),
+            ...mapState('person',['personList']),
+            ...mapGetters('count',{bigSum:'bigSum'}),
+        },
+        methods: {
+            ...mapMutations('count',{add:'JIA',reduce:'JIAN'}),
+            ...mapActions('count',{addOdd:'jiaOdd',addWait:'jiaWait'})
+        }
+    }
+</script>
+------------------------------------------------
+#Perason.vue
+------------------------------------------------
+<template>
+    <div>
+        <h2 style="color: #0dff1d">求和：{{num}}</h2>
+        <h3>列表第一个人：{{showFirstPerson}}</h3>
+        <h2>人员列表</h2>
+        <input type="text" placeholder="输入要添加的姓名" v-model="iname">
+        <button @click="addCname()">添加</button>
+        <button @click="addPersonWang()">添加姓王的</button>
+        <button @click="addPersonServer()">随机添加</button>
+        <ul>
+            <li v-for="p in personList" :key="p.id">【{{p.cname}}】--【{{p.clength}}】</li>
+        </ul>
+    </div>
+</template>
+
+<script>
+    import {nanoid} from 'nanoid'
+
+    export default {
+        name: "Person",
+        data() {
+            return {
+                iname: '',
+            }
+        },
+        computed: {
+            personList() {
+                return this.$store.state.person.personList;
+            },
+            num() {
+                return this.$store.state.count.num;
+            },
+            showFirstPerson() {
+                return this.$store.getters['person/showFirstPerson'];
+            },
+        },
+        methods: {
+            addCname() {
+                const personObj = {id: nanoid(), cname: this.iname, clength: Math.round(Math.random(20) * 100) + "cm"}
+                this.iname = '';
+                this.$store.commit('person/ADD_PERSON', personObj);
+            },
+            addPersonWang() {
+                const personObj = {id: nanoid(), cname: this.iname, clength: Math.round(Math.random(20) * 100) + "cm"}
+                this.iname = '';
+                return this.$store.dispatch('person/addPersonWang', personObj);
+            },
+            addPersonServer() {
+                this.$store.dispatch('person/addPersonServer');
+            }
+        }
+    }
+</script>
+```
+
+```js
+#App.vue
+<template>
+  <div id="app">
+    <Count></Count>
+    <Person></Person>
+  </div>
+</template>
+
+<script>
+import Count from "./components/Count";
+import Person from "./components/Person";
+export default {
+  name: 'App',
+  components: {
+    Count,Person
+  }
+}
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202121928996.png" alt="image-20220212192811480" style="zoom:80%;" />
+
+### 组件读取state数据
+
+```js
+#自己读取
+personList() {
+     return this.$store.state.person.personList;
+},
+#mapState读取
+...mapState('count',['author','age']),
+...mapState('person',['personList']),
+```
+
+### 组件读取getters数据
+
+```js
+#自己读取
+showFirstPerson() {
+   return this.$store.getters['person/showFirstPerson'];
+},
+#mapGetters读取
+...mapGetters('count',{bigSum:'bigSum'}),
+```
+
+### 组件调用dispatch
+
+```js
+#自己读取
+-----------------------自己传参
+addPersonWang() {
+  const personObj = {id: nanoid(), cname:this.iname,clength:Math.round(Math.random(20) * 100) + "cm"}
+  return this.$store.dispatch('person/addPersonWang', personObj);
+},
+-------------------------网络请求数据
+addPersonServer() {
+     this.$store.dispatch('person/addPersonServer');
+}
+
+#mapActions
+...mapActions('count',{addOdd:'jiaOdd',addWait:'jiaWait'})
+```
+
+### 组件调用commit
+
+```js
+#自己调用
+addCname() {
+   const personObj = {id: nanoid(), cname: this.iname, clength:Math.round(Math.random(20) * 100) + "cm"}
+    this.iname = '';
+    this.$store.commit('person/ADD_PERSON', personObj);
+},
+#mapMutations
+...mapMutations('count',{add:'JIA',reduce:'JIAN'}),
+```
+
+## 路由
+
+
+
+
 
 # Vue UI组件库
 
