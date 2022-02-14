@@ -68,6 +68,9 @@ git push origin master
 - [tomcat配置](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/Tomcat%E9%85%8D%E7%BD%AE.md)
 - [idea配置](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/IDEA%E9%85%8D%E7%BD%AE.md)
 - [maven配置](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/maven%E9%85%8D%E7%BD%AE.md)
+- [cmd编码-编码解决](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/cmd%E7%BC%96%E7%A0%81-%E7%BC%96%E7%A0%81%E8%A7%A3%E5%86%B3.md)
+- [单元测试](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95.md)
+- [压力测试](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95.md)
 
 ### JavaSE
 - [Debug](https://gitee.com/LovelyHzz/study-notes/blob/master/JavaSE/Debug.md)
@@ -123,9 +126,6 @@ git push origin master
 
 ### 消息队列
  -[RadditMQ](https://gitee.com/LovelyHzz/study-notes/blob/master/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/rabbitMQ.md)
-
-### 测试
--[JMeter压力测试](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95.md)
 
 ### Linux
 - [linux安装](https://gitee.com/LovelyHzz/study-notes/blob/master/linux/linux%E5%AE%89%E8%A3%85.md)
