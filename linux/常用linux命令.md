@@ -8,6 +8,8 @@ exit 2
 ### 文件相关命令
 
 ```shell
+#删除当前目录下的所有文件
+rm -rf * #注意：当前所处目录!!!
 #解压
 tar -zxvf XXX.gz -C 指定目录
 #查看当前文件夹下的文件大小
@@ -753,5 +755,11 @@ https://blog.csdn.net/qq_18932003/article/details/104750239
 http://cloud.yundashi168.com/archives/250
 #使用宝塔linux安装
 https://developer.aliyun.com/article/638852
+```
+
+### 安装npm
+
+```
+https://zhuanlan.zhihu.com/p/165514533
 ```
 
