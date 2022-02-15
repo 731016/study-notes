@@ -3142,17 +3142,48 @@ addCname() {
 ...mapMutations('count',{add:'JIA',reduce:'JIAN'}),
 ```
 
-## 路由
+
+
+# vue-router
+
+## 了解
+
+vue插件库，用来实现SPA应用（单页面）
+
+
+
+> 整个页面只有一个完整的页面
+>
+> 点击页面中导航链接，不会刷新页面，只做局部更新
+>
+> 数据通过ajax请求
+
+## 路由的理解
+
+1. 一组映射关系（key-value）
+2. key：路径，value：function或component
+
+### 前端路由
+
+value是compoent，展示页面内容。
+
+当浏览器路径改变时，展示对应的组件
+
+### 后端路由
+
+value是function，处理客户端提交的请求。
+
+服务器接收到请求，根据请求路径找到匹配的函数来处理请求，返回响应数据
+
+
+
+## 基本路由
 
 
 
 
 
 # Vue UI组件库
-
-
-
-# vue-router
 
 
 

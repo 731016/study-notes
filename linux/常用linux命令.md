@@ -8,6 +8,8 @@ exit 2
 ### 文件相关命令
 
 ```shell
+#查找文件
+$ find . -name 'my*'
 #删除当前目录下的所有文件
 rm -rf * #注意：当前所处目录!!!
 #解压
@@ -249,7 +251,7 @@ yum -y list java*
 yum search jdk
 
 #安装jdk
-yum install xxx
+yum install java-11-openjdk.x86_64
 
 #安装完成验证
 [root@hzz-1019 downloads]# java -version
@@ -260,7 +262,6 @@ OpenJDK 64-Bit Server VM 18.9 (build 11.0.13+8-LTS, mixed mode, sharing)
 
 #添加JAVAHOME
 yum安装的默认路径/usr/lib/jvm
-
 ```
 
 ### 运行tomcat
@@ -602,11 +603,11 @@ $ /usr/local/nginx/sbin/nginx -s reload
 http://www.ohse.de/uwe/software/lrzsz.html
 
 wget http://www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz
-tar zxvf lrzsz-0.12.20.tar.gz && cd lrzsz-0.12.20
+tar -xvf lrzsz-0.12.20.tar.gz && cd lrzsz-0.12.20
 ./configure && make && make install
 #建立软连接(快捷方式)
-ln -s /usr/local/bin/lrz rz
-ln -s /usr/local/bin/lsz sz
+ln -s /usr/local/bin/lrz /usr/bin/rz
+ln -s /usr/local/bin/lsz /usr/bin/sz
 
 yum install -y lrzsz
 #文件发送到本地
