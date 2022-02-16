@@ -2,7 +2,6 @@
 
 ## 介绍 :point_left: 
 编程学习记录
-Java方面
 
 ### 备用笔记网站：<a href="http://119.3.104.52:3000" target="_blank">小飞的学习笔记</a>
 
