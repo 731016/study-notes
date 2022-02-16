@@ -31,12 +31,16 @@
         alias: {
             '/.*/_sidebar.md': '/_sidebar.md'
         },
+        // 通过 {docsify-updated} 变量显示文档更新日期. 并且通过 formatUpdated配置日期格式
+        formatUpdated: '{MM}/{DD} {HH}:{mm}',
         //显示目录
         subMaxLevel: 2,
         //开启导航栏 _navbar.md
         loadNavbar: true,
         //使用封面 _coverpage.md
         coverpage: true,
+        // 小屏设备下合并导航栏到侧边栏
+        mergeNavbar: true,
         //全文搜索插件
         search: {
             placeholder: '搜索',
