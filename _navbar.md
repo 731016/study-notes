@@ -1,6 +1,7 @@
 * [首页](/)
 * [我的技术博客](http://xiaofei.work/)
 * [关于我](https://731016.github.io/)
+* [开源许可](https://gitee.com/LovelyHzz/doc/blob/master/README.md)
 * 代码库
     * [java学习代码Demo](https://gitee.com/LovelyHzz/code-demo/tree/master)
     * [Java常用配置文件模板](代码库/常用配置文件.md)
