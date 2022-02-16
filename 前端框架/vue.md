@@ -2489,6 +2489,15 @@ Student.vue
 
 ## 搭建vuex环境
 
+| vue-version | name       | version |
+| ----------- | ---------- | ------- |
+| Vue2.x      | Vuex       | 3.x     |
+| Vue2.x      | Vue-router | 3.x     |
+| Vue2.x      | Vue-cli    | 3.x 4.x |
+| Vue3.x      | Vuex       | 4.x     |
+| Vue3.x      | Vue-router | 4.x     |
+| Vue3.x      | Vuex-cli   | 4.x     |
+
 ```javascript
 创建文件 src/store/index.js
 
@@ -3179,7 +3188,147 @@ value是function，处理客户端提交的请求。
 
 ## 基本路由
 
+### 安装vue-router
 
+| vue-version | name       | version |
+| ----------- | ---------- | ------- |
+| Vue2.x      | Vuex       | 3.x     |
+| Vue2.x      | Vue-router | 3.x     |
+| Vue2.x      | Vue-cli    | 3.x 4.x |
+| Vue3.x      | Vuex       | 4.x     |
+| Vue3.x      | Vue-router | 4.x     |
+| Vue3.x      | Vuex-cli   | 4.x     |
+
+```powershell
+npm i vue-router@3.5.3
+```
+
+### 配置路由
+
+```js
+|-src
+|--router
+|---index.js
+===================================
+import VueRouter from 'vue-router';
+import About from "../components/About";
+import Home from "../components/Home"
+export default new VueRouter({
+    routes: [
+        {
+            path: '/about',
+            component: About
+        },
+        {
+            path: '/home',
+            component: Home
+        },
+    ]
+})
+==============================================
+#main.js
+import Vue from 'vue'
+import App from './App.vue'
+import VueRouter from 'vue-router'
+import router from './router'
+
+Vue.config.productionTip = false
+Vue.use(VueRouter)
+new Vue({
+    render: h => h(App),
+    router: router,
+}).$mount('#app')
+```
+
+```vue
+#App.vue
+========================================
+<template>
+  <div>
+    <div class="row">
+      <Banner/>
+    </div>
+    <div class="row">
+      <div class="col-xs-2 col-xs-offset-2">
+        <div class="list-group">
+            #实现切换active-class可配置被选中的样式
+          <router-link class="list-group-item" active-class="active" to="/about">About</router-link>
+          <router-link class="list-group-item" active-class="active" to="/home">Home</router-link>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="panel">
+          <div class="panel-body">
+              #指定展示位置
+            <router-view></router-view>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Banner from "./components/Banner";
+export default {
+  name: 'App',
+  components: {
+    Banner
+
+  }
+}
+</script>
+```
+
+```html
+#Home.vue,About.vue,Banner.vue
+<template>
+    <div>
+        <h2>我是About的内容</h2>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "About"
+    }
+</script>
+=============================================
+<template>
+    <div>
+        <h2>我是Home的内容</h2>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "Home"
+    }
+</script>
+================================
+<template>
+    <div class="col-xs-offset-2 col-xs-8">
+        <div class="page-header"><h2>Vue Router Demo</h2></div>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "Banner"
+    }
+</script>
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202162227994.png" alt="image-20220216222723142" style="zoom:80%;" />
+
+### 注意:warning:
+
+> 1. 路由组件通常存放在`pages`文件夹，一般组件通常存放在`components`文件夹
+> 2. 通过切换，“隐藏”了的路由组件，默认是被销毁的，需要的时候再去挂载
+> 3. 每个组件都有自己的`$route`属性，存储自己的路由信息
+> 4. 整个应用只有一个router，可通过组件的`$router`属性获取
+
+## 嵌套路由
 
 
 
