@@ -1,0 +1,8 @@
+* [首页](/README.md)
+* [我的技术博客](http://xiaofei.work/)
+* 代码库
+    * [java学习代码Demo](https://gitee.com/LovelyHzz/code-demo/tree/master)
+    * [Java常用配置文件模板](代码库/常用配置文件.md)
+    * [Java工具类](代码库/java工具类.md)
+    * [JavaScript基础算法](代码库/javascript.md)
+    * [Java基础算法](代码库/Java.md)

@@ -764,3 +764,9 @@ https://developer.aliyun.com/article/638852
 https://zhuanlan.zhihu.com/p/165514533
 ```
 
+### 安装Python
+
+```shell
+https://registry.npmmirror.com/binary.html?path=python/
+```
+
