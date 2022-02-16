@@ -12,6 +12,9 @@
 <body>
 <div id="app">笔记正在派送...</div>
 <script>
+    if (typeof navigator.serviceWorker !== 'undefined') {
+        navigator.serviceWorker.register('sw.js')
+    }
     window.$docsify = {
         name: 'study-notes',
         // 文档标题跳转链接
@@ -51,17 +54,17 @@
             hideOtherSidebarContent: true,
         },
         // 字数统计配置
-        count:{
-            countable:true,
-            fontsize:'1.2em',
-            color:'rgb(90,90,90)',
-            language:'chinese'
+        count: {
+            countable: true,
+            fontsize: '1.2em',
+            color: 'rgb(90,90,90)',
+            language: 'chinese'
         },
         //切换页面后是否自动跳转到页面顶部
         auto2top: true,
         plugins: [
-            function(hook, vm) {
-                hook.beforeEach(function(html) {
+            function (hook, vm) {
+                hook.beforeEach(function (html) {
                     var url =
                         'https://gitee.com/LovelyHzz/study-notes/tree/master/' +
                         vm.route.file;
@@ -81,6 +84,8 @@
 </script>
 <!-- Docsify v4 -->
 <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+<!--离线模式访问-->
+<script src="/sw.js"></script>
 
 <!--docsify内置的代码高亮工具是 Prism。Prism 默认支持的语言如下：
 Markup - markup, html, xml, svg, mathml, ssml, atom, rss
