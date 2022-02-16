@@ -57,8 +57,8 @@
  	* [常用linux部署命令](linux/常用linux命令.md)
     * [linux安装](linux/linux安装.md)
     * [正则表达式](linux/正则表达式.md)
-    * [配置Samba服务器](samba服务器.md)
-    * [Ununtu问题解答](ubuntu问题解答.md)
+    * [配置Samba服务器](linux/samba服务器.md)
+    * [Ununtu问题解答](linux/ubuntu问题解答.md)
     
 * 面试
     * [Java基础面试16问部分](面试/面试题.md)
