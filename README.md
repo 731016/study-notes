@@ -48,14 +48,6 @@ git commit -m "注释"
 ## 上传到远程仓库
 git push origin master
 ```
-### 博客 :books: 
-#### <ins>gitee</ins>
-[我的工作台 - Gitee.com](https://gitee.com/LovelyHzz/dashboard/projects)
-#### <ins>github</ins>
-[731016 / Repositories · GitHub](https://github.com/731016?tab=repositories)
-#### <ins>CSDN博客</ins>
-[小飞的博客_折腾的小飞_CSDN博客- 专升本c语言, 蓝桥杯,Java领域博主](https://blog.csdn.net/qq_41666142)
-
 
 ### 代码库 :computer: 
 - [java学习代码Demo](https://gitee.com/LovelyHzz/code-demo/tree/master)
