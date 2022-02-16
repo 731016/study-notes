@@ -30,7 +30,7 @@
     * [jQuery-Ajax](jQuery/Ajax.md)
 
 * JSP + servlet
-    *[JSP + servlet](jsp_servlet/jsp_servlet.md)
+    * [JSP + servlet](jsp_servlet/jsp_servlet.md)
 
 * 前端框架
     * [Vue](前端框架/vue.md)
@@ -66,13 +66,4 @@
     * [maven配置](开发环境/maven配置.md)
     * [cmd编码-编码解决](开发环境/cmd编码-编码解决.md.md)
     * [单元测试](开发环境/单元测试.md)
-    * [压力测试](开发环境/压力测试.md)
-    
-  
-* 代码库 [beta]
-    * [java学习代码Demo](https://gitee.com/LovelyHzz/code-demo/tree/master)
-    * [Java常用配置文件模板](代码库/常用配置文件.md)
-    * [Java工具类](代码库/java工具类.md)
-    * [JavaScript基础算法](代码库/javascript.md)
-    * [Java基础算法](代码库/Java.md)
-    
+    * [压力测试](开发环境/压力测试.md) 
