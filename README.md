@@ -1,4 +1,4 @@
-# 学习笔记 :tw-1f4d7: 
+# 学习笔记 :tw-1f4d7: <!-- {docsify-ignore-all} -->
 
 ## 介绍 :point_left: 
 编程学习记录

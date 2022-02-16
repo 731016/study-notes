@@ -6,15 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="description" content="Description">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <link rel="shortcut icon" href="favicon.ico"  type="image/x-icon"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
 </head>
 <body>
 <div id="app"></div>
 <script>
     window.$docsify = {
-        name: '',
-        repo: '',
+        name: 'study-notes',
+        repo: 'https://gitee.com/LovelyHzz/study-notes',
+        topMargin: 90, // default: 0 锚点对齐标题栏
+        // code复制按钮配置(放在配置第一行，防止失效)
+        copyCode: {
+            buttonText: '复制',
+            errorText: '❌！',
+            successText: '已复制！'
+        },
         //侧边栏 _sidebar.md
         loadSidebar: true,
         subMaxLevel: 2,
@@ -24,10 +31,44 @@
         },
         //显示目录
         subMaxLevel: 2,
-      //开启导航栏 _navbar.md
-      loadNavbar: true,
-      //使用封面 _coverpage.md
-      coverpage: true,
+        //开启导航栏 _navbar.md
+        loadNavbar: true,
+        //使用封面 _coverpage.md
+        coverpage: true,
+        //全文搜索插件
+        search: {
+            placeholder: '搜索',
+            noData: '搜索无结果！',
+            // 搜索标题的最大层级1-6
+            depth: 4,
+            // 是否隐藏其他侧边栏内容
+            hideOtherSidebarContent: true,
+        },
+        // 字数统计配置
+        count:{
+            countable:true,
+            fontsize:'1.2em',
+            color:'rgb(90,90,90)',
+            language:'chinese'
+        },
+        plugins: [
+            function(hook, vm) {
+                hook.beforeEach(function(html) {
+                    var url =
+                        'https://gitee.com/LovelyHzz/study-notes/tree/master/' +
+                        vm.route.file;
+                    var editHtml = '[📝 EDIT DOCUMENT](' + url + ')\n';
+
+                    return (
+                        editHtml +
+                        html +
+                        '\n----\n' +
+                        'Last modified {docsify-updated} ' +
+                        editHtml
+                    );
+                });
+            }
+        ]
     }
 </script>
 <!-- Docsify v4 -->
@@ -74,5 +115,14 @@ https://cdn.jsdelivr.net/npm/prismjs@1/components/
 <script src="//cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-vim.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-xml-doc.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-yaml.min.js"></script>
+<!--搜索插件-->
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+<!--代码复制到剪切板-->
+<!-- Latest v2.x.x -->
+<script src="https://unpkg.com/docsify-copy-code@2"></script>
+<!--分页导航-->
+<script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+<!--字数统计-->
+<script src="//unpkg.com/docsify-count/dist/countable.js"></script>
 </body>
 </html>
