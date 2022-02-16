@@ -7,6 +7,7 @@
     * [Java工具类](代码库/java工具类.md)
     * [JavaScript基础算法](代码库/javascript.md)
     * [Java基础算法](代码库/Java.md)
+    * [前端基础案例学习](https://gitee.com/LovelyHzz/webpage-basic-learning)
 * 演示网站
     * [快递代取系统](http://119.3.104.52:8080/)
     * [天天生鲜交易平台](http://119.3.104.52:8081/)
