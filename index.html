@@ -14,6 +14,8 @@
 <script>
     window.$docsify = {
         name: 'study-notes',
+        // 文档标题跳转链接
+        nameLink: '/',
         repo: 'https://gitee.com/LovelyHzz/study-notes',
         topMargin: 90, // default: 0 锚点对齐标题栏
         // code复制按钮配置(放在配置第一行，防止失效)
@@ -51,6 +53,8 @@
             color:'rgb(90,90,90)',
             language:'chinese'
         },
+        //切换页面后是否自动跳转到页面顶部
+        auto2top: true,
         plugins: [
             function(hook, vm) {
                 hook.beforeEach(function(html) {
