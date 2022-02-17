@@ -78,7 +78,31 @@
                         editHtml
                     );
                 });
-            }
+                //twemoji表情
+                hook.doneEach(function () {
+                    twemoji.parse(document);
+                })
+            },
+            //评论系统
+            function (hook, vm) {
+                // load livere
+                hook.beforeEach(function (content) {
+                    var comment = "<div id='lv-container' data-id='city' data-uid='MTAyMC81NTUyMy8zMTk5MA=='></div>\n\n----\n"
+                    return content + comment;
+                });
+                hook.doneEach(function () {
+                    (function (d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+                        if (typeof LivereTower === 'function') {
+                            return;
+                        }
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+                        e.parentNode.insertBefore(j, e);
+                    })(document, 'script');
+                });
+            },
         ]
     }
 </script>
@@ -86,6 +110,8 @@
 <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
 <!--离线模式访问-->
 <script src="/sw.js"></script>
+<!-- twemoji -->
+<script src="cdn.jsdelivr.net/gh/TaQini/docsify-twemoji@master/twemoji.min.js"></script>
 
 <!--docsify内置的代码高亮工具是 Prism。Prism 默认支持的语言如下：
 Markup - markup, html, xml, svg, mathml, ssml, atom, rss
