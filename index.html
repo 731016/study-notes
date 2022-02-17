@@ -17,6 +17,21 @@
     if (typeof navigator.serviceWorker !== 'undefined') {
         navigator.serviceWorker.register('sw.js')
     }
+    var gitalk = new Gitalk({
+        clientID: '1a185c54374782ddfb45',
+        clientSecret: 'edc20eb158b4a2640988d36cd0bf5f9307c5fd2c',
+        repo: 'GitTalkRepos',
+        owner: '731016',
+        admin: ['731016'],
+        title: location.hash.match(/#(.*?)([?]|$)/)[1],
+        id: location.hash.match(/#(.*?)([?]|$)/)[1],
+    })
+    // 监听URL中hash的变化，如果发现换了一个MD文件，那么刷新页面，解决整个网站使用一个gitalk评论issues的问题。
+    window.onhashchange = function (event) {
+        if (event.newURL.split('?')[0] !== event.oldURL.split('?')[0]) {
+            location.reload()
+        }
+    }
     window.$docsify = {
         name: 'study-notes',
         // 文档标题跳转链接
@@ -78,6 +93,7 @@
                         '\n----\n' +
                         '最后更新日期：{docsify-updated} ' +
                         editHtml
+                        + '<div id="gitalk-container"></div>'
                     );
                 });
                 //twemoji表情
