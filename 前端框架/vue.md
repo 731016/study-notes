@@ -3330,6 +3330,291 @@ export default {
 
 ## 嵌套路由
 
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202171958278.png" alt="image-20220217195817118" style="zoom:80%;" />
+
+### 配置多级路由
+
+```js
+import VueRouter from 'vue-router';
+import About from "../pages/About";
+import Home from "../pages/Home"
+import Message from "../pages/Message";
+import News from "../pages/News";
+export default new VueRouter({
+    routes: [
+        {
+            path: '/about',
+            component: About
+        },
+        {
+            path: '/home',
+            component: Home,
+            children: [
+                {
+                    path: 'message', //不能写成“/message”
+                    component: Message
+                },
+                {
+                    path: 'news', //不能写成“/news”
+                    component: News 
+                }
+            ]
+        },
+    ]
+})
+```
+
+### 跳转（要写完整路径）
+
+```html
+<template>
+    <div>
+        <h2>我是Home的内容</h2>
+        <ul class="nav nav-tabs">
+            <li>
+                <router-link class="list-group-item" active-class="active" to="/home/news">News</router-link>
+            </li>
+            <li>
+                <router-link class="list-group-item" active-class="active" to="/home/message">Message</router-link>
+            </li>
+        </ul>
+        <router-view></router-view>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "Home"
+    }
+</script>
+```
+
+
+
+## 路由传参
+
+### query参数
+
+```html
+<!--                路由跳转，携带参数，to的【字符串】写法-->
+<router-link :to="`/home/message/detail?id=${item.id}&title=${item.title}`">{{item.title}}</router-link>
+<!--                路由跳转，携带参数，to的【对象】写法-->
+<router-link :to="{
+     path:'/home/message/detail',
+     query: {
+               id:item.id,
+               title:item.title,
+            }
+    }">{{item.title}}</router-link>
+<script>
+data() {
+            return {
+                messageList: [
+                    {id: '001', title: '消息1'},
+                    {id: '002', title: '消息2'},
+                    {id: '003', title: '消息3'},
+                ]
+            }
+        }
+</script>
+#接收参数
+        <li>消息编号：{{$route.query.id}}</li>
+        <li>消息内容：{{$route.query.title}}</li>
+```
+
+
+
+### 命名路由
+
+> 使用`name`，跳转地址只能使用**to的对象写法**，用name属性。否则会被解析成path路径
+>
+> :stop_sign:~~:to="xiangqiang"~~
+
+```html
+<router-link :to="{
+                    //path:'/home/message/detail',
+                    name:'xiangqing', //使用name简化
+                    query: {
+                        id:item.id,
+                        title:item.title,
+                    }
+                }">{{item.title}}
+                </router-link>
+<script>
+    routes: [
+        {
+            path: '/home',
+            component: Home,
+            children: [
+                {
+                    path: 'message',
+                    component: Message,
+                    children: [
+                        {
+                            name:'xiangqing', //给路由命名
+                            path: 'detail',
+                            component: Detail,
+                        }
+                    ]
+                },
+            ]
+        },
+    ]
+</script>
+```
+
+### params参数
+
+> restful风格
+>
+> :warning:使用`params`参数,to的对象写法,<u>不能使用`path`属性</u>,**只能使用`name`属性**
+
+```html
+<router-link :to="`/home/message/detail/${item.id}/${item.title}`">{{item.title}}</router-link>
+<router-link :to="{
+                    // path:'/home/message/detail',
+                    name:'xiangqing',
+                    params: {
+                        id:item.id,
+                        title:item.title,
+                    }
+                }">{{item.title}}
+                </router-link>
+===================================================
+#route -> index.js
+<script>
+children: [
+                        {
+                            name:'xiangqing',
+                            path: 'detail/:id/:title', //占位符接收params参数
+                            component: Detail,
+                        }
+                    ]
+</script>
+#接收参数
+<li>消息编号：{{$route.params.id}}</li>
+<li>消息内容：{{$route.params.title}}</li>
+```
+
+### props配置
+
+> 使路由组件更方便的收到参数
+
+```js
+#route -> index.js
+======================================
+{
+     path: 'message',
+     component: Message,
+     children: [
+           {
+              name:'xiangqing',
+              path: 'detail',
+              component: Detail,
+               //第一种写法:props值为对象,该对象中所有的key-value会通过props传给Detail组件
+              props:{a:334},
+               //第二种:props值为布尔值,则把路由收到的所有params参数通过props传给Detail组件
+              props:true
+               //第三种:props值为函数,该函数返回的对象中每一组key-value都会通过props传给Detail组件
+              props($route){
+                    return{
+                           id:$route.query.id,
+                            title:$route.query.title,
+                          }
+                      }
+               }
+      ]
+}
+=====================================
+#Message.vue
+<router-link :to="`/home/message/detail?id=${item.id}&title=${item.title}`">{{item.title}}</router-link>
+=====================================
+#Detail.vue
+<template>
+    <ul>
+                <li>消息编号：{{id}}</li>
+                <li>消息内容：{{title}}</li>
+    </ul>
+</template>
+
+<script>
+    export default {
+        name: "Detail",
+        props:['id','title']
+    }
+</script>
+```
+
+
+
+## router-link的replace属性
+
+> 控制路由跳转时操作浏览器历史记录的模式
+
+1. push:追加历史记录(默认)
+2. replace:替换当前记录
+
+### 开启
+
+```html
+<router-link :replace="true" class="list-group-item" active-class="active" to="/about">About</router-link>
+==============或者简写
+<router-link replace class="list-group-item" active-class="active" to="/about">About</router-link>
+```
+
+
+
+## 编程式路由导航
+
+> 不借助`<router-link>`实现路由跳转
+
+```html
+<button @click="push(item)">push</button>
+<button @click="replace(item)">replace</button>
+<script>
+methods: {
+            push(item) {
+                //参数和to里面的ca
+                this.$router.push({
+                    name: 'xiangqing',
+                    query: {
+                        id: item.id,
+                        title: item.title,
+                    }
+                })
+            },
+            replace(item) {
+                this.$router.replace({
+                    name: 'xiangqing',
+                    query: {
+                        id: item.id,
+                        title: item.title,
+                    }
+                })
+            }
+        }
+</script>
+========================================
+<button @click="back">后退</button>
+<button @click="forward">前进</button>
+<button @click="go">前进</button>
+<script>
+methods:{
+            back(){
+                this.$router.back();
+            },
+            forward(){
+                this.$router.forward()
+            },
+            go(){
+                this.$router.go(-1)
+            }
+        }
+</script>
+```
+
+
+
 
 
 # Vue UI组件库
