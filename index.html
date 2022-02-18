@@ -14,12 +14,6 @@
 
 <!-- Docsify v4 -->
 <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-<!--离线模式访问-->
-<script src="/sw.js"></script>
-<!-- twemoji -->
-<script src="cdn.jsdelivr.net/gh/TaQini/docsify-twemoji@master/twemoji.min.js"></script>
-<!--统计网站访问量-->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <!--docsify内置的代码高亮工具是 Prism。Prism 默认支持的语言如下：
 Markup - markup, html, xml, svg, mathml, ssml, atom, rss
 CSS - css
@@ -70,7 +64,12 @@ https://cdn.jsdelivr.net/npm/prismjs@1/components/
 <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
 <!--字数统计-->
 <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
-
+<!--离线模式访问-->
+<script src="/sw.js"></script>
+<!-- twemoji -->
+<script src="cdn.jsdelivr.net/gh/TaQini/docsify-twemoji@master/twemoji.min.js"></script>
+<!--统计网站访问量-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <script>
     if (typeof navigator.serviceWorker !== 'undefined') {
         navigator.serviceWorker.register('sw.js')
@@ -153,10 +152,7 @@ https://cdn.jsdelivr.net/npm/prismjs@1/components/
                     '<footer>',
                     '<span id="busuanzi_container_site_pv" style=\'display:none\'>\n' +
                     '  本站访客数<span style="color: brown" id="busuanzi_value_site_uv"></span>人次\n' +
-                    '</span>\n' +
-                    '<span id="busuanzi_container_site_uv" style=\'display:none\'>\n' +
-                    '  本站访客数<span id="busuanzi_value_site_uv"></span>人次\n' +
-                    '</span>',
+                    '</span>' +
                     '</footer>'
                 ].join('');
 
