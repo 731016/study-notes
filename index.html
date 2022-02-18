@@ -75,6 +75,33 @@ https://cdn.jsdelivr.net/npm/prismjs@1/components/
     if (typeof navigator.serviceWorker !== 'undefined') {
         navigator.serviceWorker.register('sw.js')
     }
+    const now = new Date();
+
+    function createtime() {
+        var grt = new Date("03/16/2020 15:13:00");
+        now.setTime(now.getTime() + 250);
+        days = (now - grt) / 1000 / 60 / 60 / 24;
+        dnum = Math.floor(days);
+        hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+        hnum = Math.floor(hours);
+        if (String(hnum).length == 1) {
+            hnum = "0" + hnum;
+        }
+        minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes);
+        if (String(mnum).length == 1) {
+            mnum = "0" + mnum;
+        }
+        seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds);
+        if (String(snum).length == 1) {
+            snum = "0" + snum;
+        }
+        document.getElementById("times").innerHTML = dnum + " 天 " + hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+
+    setInterval("createtime()", 250);
+    //网站运行时间源代码来自https://www.itrhx.com/
     window.$docsify = {
         name: 'study-notes',
         // 文档标题跳转链接
@@ -151,9 +178,21 @@ https://cdn.jsdelivr.net/npm/prismjs@1/components/
                 var footer = [
                     '<hr/>',
                     '<footer>',
-                    '<span id="busuanzi_container_site_pv" style=\'display:none\'>\n' +
-                    '  本站总访问量<span style="color: brown" id="busuanzi_value_site_uv"></span>人次\n' +
-                    '</span>' +
+                    '<div style="text-align: center;">\n' +
+                    '    <a href="#" title="已经运行了那么久了？？">\n' +
+                    '        <div class="github-badge"><span class="badge-subject">运行时间</span><span class="badge-value bg-blueviolet"><span\n' +
+                    '                id="times">很久了~~</span></span></div>\n' +
+                    '    </a>\n' +
+                    '    </br>\n' +
+                    '    <a href="#" title="好多人~~~">\n' +
+                    '        <div class="github-badge"><span class="badge-subject">访问次数：</span><span class="badge-value bg-yellow"><span\n' +
+                    '                id="busuanzi_value_site_pv">很多次~~~</span></span></div>\n' +
+                    '    </a>\n' +
+                    '    <a href="#" title="好多人~~~">\n' +
+                    '        <div class="github-badge"><span class="badge-subject">访客人数：</span><span class="badge-value bg-yellow"><span\n' +
+                    '                id="busuanzi_value_site_uv">很多人~~~</span></span></div>\n' +
+                    '    </a>\n' +
+                    '</div>' +
                     '</footer>'
                 ].join('');
 
