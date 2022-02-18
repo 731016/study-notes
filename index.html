@@ -95,6 +95,7 @@
 <script src="log.js"></script>
 <!-- Docsify v4 -->
 <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 <!--docsify内置的代码高亮工具是 Prism。Prism 默认支持的语言如下：
 Markup - markup, html, xml, svg, mathml, ssml, atom, rss
 Markup - markup, html, xml, svg, mathml, ssml, atom, rss
@@ -136,7 +137,6 @@ https://cdn.jsdelivr.net/npm/prismjs@1/components/
 <script src="//cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-xml-doc.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-yaml.min.js"></script>
 <!--搜索插件-->
-<script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
 <!--代码复制到剪切板-->
 <!-- Latest v2.x.x -->
@@ -180,8 +180,6 @@ https://cdn.jsdelivr.net/npm/prismjs@1/components/
         }
         document.getElementById("times").innerHTML = dnum + " 天 " + hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
     }
-
-    setInterval("createtime()", 250);
 
     window.$docsify = {
         name: 'study-notes',
@@ -299,6 +297,7 @@ https://cdn.jsdelivr.net/npm/prismjs@1/components/
             }
         ]
     }
+    setInterval("createtime()", 250);
 </script>
 </body>
 </html>
