@@ -8,8 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-    <!--    Social Share分享插件-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 </head>
 <body>
 <div id="app">笔记正在派送...</div>
@@ -73,9 +71,6 @@ https://cdn.jsdelivr.net/npm/prismjs@1/components/
 <script src="cdn.jsdelivr.net/gh/TaQini/docsify-twemoji@master/twemoji.min.js"></script>
 <!--统计网站访问量-->
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<!--Social Share分享插件-->
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
 <script>
     if (typeof navigator.serviceWorker !== 'undefined') {
         navigator.serviceWorker.register('sw.js')
@@ -154,7 +149,6 @@ https://cdn.jsdelivr.net/npm/prismjs@1/components/
             function (hook) {
                 //单个用户多次点击只记录一次
                 var footer = [
-                    '<div class="social-share"></div>\n' +
                     '<hr/>',
                     '<footer>',
                     '<span id="busuanzi_container_site_pv" style=\'display:none\'>\n' +
