@@ -8,8 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-    <!--    vssue评论-->
-    <link rel="stylesheet" href="https://unpkg.com/vssue/dist/vssue.min.css">
     <style>
         footer a {
             text-decoration: none;
@@ -95,9 +93,6 @@
 <div id="app">笔记正在派送...</div>
 <!--控制台打印-->
 <script src="log.js"></script>
-<!--    vssue评论-->
-<script src="https://unpkg.com/vue/dist/vue.runtime.min.js"></script>
-<script src="https://unpkg.com/vssue/dist/vssue.gitee.min.js"></script>
 <!--允许使用外链脚本-->
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/external-script.min.js"></script>
 <!-- Docsify v4 -->
@@ -306,22 +301,6 @@ https://cdn.jsdelivr.net/npm/prismjs@1/components/
             }
         ]
     }
-    //vssue评论系统
-    new Vue({
-        el: '#vssue',
-        render: h => h('Vssue', {
-            props: {
-                title: 'gitee-vssue',
-                options: {
-                    locale: 'en',
-                    owner: 'LovelyHzz',
-                    repo: 'gitee-vssue',
-                    clientId: '38a7e3cfec47b9eaff693ca35037b676f8dda09ceb3421b2b0460900c7577bb3',
-                    clientSecret: 'beda39ffbc11a79d9415da19defbfe9b6b456fe75afb8ea3fcee9abbbc505370',
-                },
-            }
-        })
-    })
 </script>
 </body>
 </html>
