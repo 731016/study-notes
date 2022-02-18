@@ -2,7 +2,6 @@
  * xiaofei.work Console      *
  *--------------------*/
 xiaofeiConsole()
-setInterval(xiaofeiConsole, 10000);
 function xiaofeiConsole() {
     console.clear();
     console.group("感谢你来访问我的网页："+location.href+"  ！！");

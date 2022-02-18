@@ -93,6 +93,7 @@
 </head>
 <body>
 <div id="app">笔记正在派送...</div>
+<div id="gitalk-container"></div>
 <!--控制台打印-->
 <script src="log.js"></script>
 <!--gittalk评论-->
@@ -257,14 +258,12 @@ https://cdn.jsdelivr.net/npm/prismjs@1/components/
                         vm.route.file;
                     var editHtml = '[📝 EDIT DOCUMENT](' + url + ')\n';
 
-                    var gitTalk = '<div id="gitalk-container"></div>';
-
                     return (
                         editHtml +
                         html +
                         '\n----\n' +
                         '最后更新日期：{docsify-updated} ' +
-                        editHtml + gitTalk
+                        editHtml
                     );
                 });
                 //twemoji表情
