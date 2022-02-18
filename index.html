@@ -8,8 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-    <!--    评论系统-->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
     <style>
         footer a {
             text-decoration: none;
@@ -93,12 +91,8 @@
 </head>
 <body>
 <div id="app">笔记正在派送...</div>
-<div id="gitalk-container"></div>
 <!--控制台打印-->
 <script src="log.js"></script>
-<!--gittalk评论-->
-<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
 <!--允许使用外链脚本-->
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/external-script.min.js"></script>
 <!-- Docsify v4 -->
@@ -163,16 +157,6 @@ https://cdn.jsdelivr.net/npm/prismjs@1/components/
     if (typeof navigator.serviceWorker !== 'undefined') {
         navigator.serviceWorker.register('sw.js')
     }
-
-    var gitalk = new Gitalk({
-        clientID: '1a185c54374782ddfb45',
-        clientSecret: 'edc20eb158b4a2640988d36cd0bf5f9307c5fd2c',
-        repo: 'GitTalkRepos',
-        owner: '731016',
-        admin: ['731016'],
-        // facebook-like distraction free mode
-        distractionFreeMode: false
-    });
 
     const now = new Date();
 
