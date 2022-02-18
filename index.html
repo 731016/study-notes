@@ -257,12 +257,18 @@ https://cdn.jsdelivr.net/npm/prismjs@1/components/
                         vm.route.file;
                     var editHtml = '[📝 EDIT DOCUMENT](' + url + ')\n';
 
+                    var gitTalk = '<div id="gitalk-container"></div>';
+
                     return (
                         editHtml +
                         html +
                         '\n----\n' +
                         '最后更新日期：{docsify-updated} ' +
-                        editHtml
+                        editHtml +
+                                `
+                                <hr>
+                                <div id="gitalk-container"></div>
+                                `
                     );
                 });
                 //twemoji表情
@@ -306,7 +312,7 @@ https://cdn.jsdelivr.net/npm/prismjs@1/components/
                     </div>
                 </footer>
 
-                <div id="gitalk-container"></div>
+
                 `
                 ].join('');
 
