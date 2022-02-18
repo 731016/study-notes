@@ -9,6 +9,6 @@ function xiaofeiConsole() {
     console.log("%c ------------⚠--------------\n"+
         "%c  Power BY ⚡ %c xiaofei %c ⚡\n"+
         "%c ---------------------------\n"+
-        "%c💬有什么意见可以发邮件到%tu_aofei@163.com%c来联系我哦！聊别的也可以！💬",
+        "%c💬有什么意见可以发邮件到%ctu_aofei@163.com%c来联系我哦！聊别的也可以！💬",
         "font-size:20px;font-weight:900;","font-size:20px;font-weight:900;","font-size:20px;color:#C30AFF;font-weight:900;","font-size:20px;font-weight:900;","color:#867676;font-size:20px;font-weight:900;","font-size:20px;font-weight:900;","font-weight:100;","color:#C30AFF","font-weight:100;");
     console.groupEnd();}
