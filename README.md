@@ -143,3 +143,15 @@ git push origin master
 - [服务期和违约金](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E6%B3%95/%E6%9C%8D%E5%8A%A1%E6%9C%9F%E5%92%8C%E8%BF%9D%E7%BA%A6%E9%87%91.md)
 - [竞业限制和违约金](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E6%B3%95/%E7%AB%9E%E4%B8%9A%E9%99%90%E5%88%B6%E5%92%8C%E8%BF%9D%E7%BA%A6%E9%87%91.md)
     
+### 高等数学
+- [基本初等函数图形](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E5%9F%BA%E6%9C%AC%E5%88%9D%E7%AD%89%E5%87%BD%E6%95%B0%E5%9B%BE%E5%BD%A2.md)
+- [特殊值的三角函数值表](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E7%89%B9%E6%AE%8A%E5%80%BC%E7%9A%84%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0%E5%80%BC%E8%A1%A8.md)
+- [三角恒等变换](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E4%B8%89%E8%A7%92%E6%81%92%E7%AD%89%E5%8F%98%E6%8D%A2.md)
+- [诱导公式](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E8%AF%B1%E5%AF%BC%E5%85%AC%E5%BC%8F.md)
+- [一元三次方程展开](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E4%B8%80%E5%85%83%E4%B8%89%E6%AC%A1%E6%96%B9%E7%A8%8B%E5%B1%95%E5%BC%80.md)
+- [指数函数的运算法则](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%90%E7%AE%97%E6%B3%95%E5%88%99.md)
+- [华氏度F与摄氏度C的转换](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E5%8D%8E%E6%B0%8F%E5%BA%A6F%E4%B8%8E%E6%91%84%E6%B0%8F%E5%BA%A6C%E7%9A%84%E8%BD%AC%E6%8D%A2.md)
+- [函数、极限、连续](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E5%87%BD%E6%95%B0%E3%80%81%E6%9E%81%E9%99%90%E3%80%81%E8%BF%9E%E7%BB%AD.md)
+- [一元函数微分学](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E4%B8%80%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%AD%A6.md)
+- [一元函数积分学](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E4%B8%80%E5%85%83%E5%87%BD%E6%95%B0%E7%A7%AF%E5%88%86%E5%AD%A6.md)
+- [常微分方程](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B.md)
