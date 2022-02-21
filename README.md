@@ -132,3 +132,14 @@ git push origin master
 - [Java基础](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%9D%A2%E8%AF%95/Java%E5%9F%BA%E7%A1%80.md)
 - [群硕软件](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%9D%A2%E8%AF%95/%E7%BE%A4%E7%A1%95%E8%BD%AF%E4%BB%B6.md)
 - [赛德勤](https://gitee.com/LovelyHzz/study-notes/blob/master/%E9%9D%A2%E8%AF%95/%E8%B5%9B%E5%BE%B7%E5%8B%A4.md)
+
+### 高等数学
+
+### 劳动合同法
+- [《劳动合同法》的重要性和范围](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E6%B3%95/%E3%80%8A%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E6%B3%95%E3%80%8B%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7%E5%92%8C%E8%8C%83%E5%9B%B4.md)
+- [劳动合同的效力](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E6%B3%95/%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E7%9A%84%E6%95%88%E5%8A%9B.md)
+- [劳动合同的分类](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E6%B3%95/%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E7%9A%84%E5%88%86%E7%B1%BB.md)
+- [试用期](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E6%B3%95/%E8%AF%95%E7%94%A8%E6%9C%9F.md)
+- [服务期和违约金](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E6%B3%95/%E6%9C%8D%E5%8A%A1%E6%9C%9F%E5%92%8C%E8%BF%9D%E7%BA%A6%E9%87%91.md)
+- [竞业限制和违约金](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E6%B3%95/%E7%AB%9E%E4%B8%9A%E9%99%90%E5%88%B6%E5%92%8C%E8%BF%9D%E7%BA%A6%E9%87%91.md)
+    
