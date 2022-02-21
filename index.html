@@ -122,7 +122,7 @@
         if (String(snum).length == 1) {
             snum = "0" + snum;
         }
-        document.getElementById("times").innerHTML = dnum + " 天 " + hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("times").textContent = dnum + " 天 " + hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
     }
     setInterval("createtime()", 250);
     window.$docsify = {
