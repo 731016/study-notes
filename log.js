@@ -3,7 +3,7 @@
  *--------------------*/
 window.addEventListener('load',function () {
     function xiaofeiConsole() {
-        console.clear();
+        // console.clear();
         console.group("感谢你来访问我的网页：" + location.href + "  ！！");
         console.log("%c ------------⚠--------------\n" +
             "%c  Power BY ⚡ %c xiaofei %c ⚡\n" +
