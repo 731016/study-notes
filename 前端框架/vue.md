@@ -3615,7 +3615,80 @@ methods:{
 
 ## 缓存路由组件
 
+> 让不展示的路由组件保持挂载，不被销毁！
 
+```js
+<keep-alive include="News"> //include里面是【组件名】，不写默认对此处所有的路由生效
+    <router-view></router-view>
+</keep-alive>
+//缓存多个路由组件
+<keep-alive :include="['News','Message']">
+```
+
+## 路由独占的生命周期钩子
+
+> 捕获路由组件的激活状态
+
+```js
+activated 路由组件被激活时触发
+deactivated 路由组件失活时触发
+```
+
+```
+如果想要在被缓存数据的路由1组件中，激活一个定时器。当切走的时候，由于组件未被销毁，定时器还会执行，可使用deactivated销毁定时器
+```
+
+## 路由守卫-全局前置
+
+> 对路由进行权限控制
+>
+> 1. 全局守卫
+> 2. 独享守卫
+> 3. 组件内守卫
+
+
+
+### 全局守卫
+
+```js
+const router = new VueRouter({...})
+//初始化时、每次路由切换之前被调用
+router.beforeEach((to, from, next) => {
+    if (to.meta.isAuth) {
+        console.log(to, from)
+    } else {
+        next()
+    }
+})
+//初始化时、每次路由切换之后被调用
+router.afterEach((to, from) => {
+    document.title = to.name + from.name
+})
+export default router
+```
+
+### 独享守卫
+
+```js
+beforeEnter(to,from,next){
+     console.log(to,from,next)
+}
+```
+
+### 组件内守卫
+
+```js
+//通过路由规则，进入组件被调用
+beforeRouteEnter(to, from, next) {
+    console.log(to, from, next)
+},
+//通过路由规则，离开组件被调用
+beforeRouteLeave(to, from, next) {
+   console.log(to, from, next)
+}
+```
+
+## history模式和hash模式
 
 
 
