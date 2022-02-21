@@ -1,5 +1,4 @@
 * [首页](/)
-* [我的技术博客](http://xiaofei.work/)
 * [关于我](https://731016.github.io/)
 * [开源许可](https://gitee.com/LovelyHzz/doc/blob/master/README.md)
 * 刷题网站
