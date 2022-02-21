@@ -124,7 +124,7 @@
         }
         document.getElementById("times").innerHTML = dnum + " 天 " + hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
     }
-
+    setInterval("createtime()", 250);
     window.$docsify = {
         name: 'study-notes',
         // 文档标题跳转链接
@@ -234,14 +234,13 @@
 
                 `
                 ].join('');
-
                 hook.afterEach(function (html) {
                     return html + footer;
                 });
             }
         ]
     }
-    setInterval("createtime()", 250);
+
 </script>
 <!--控制台打印-->
 <script src="log.js"></script>
