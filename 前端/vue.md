@@ -3200,7 +3200,6 @@ value是function，处理客户端提交的请求。
 | Vue3.x      | Vuex-cli   | 4.x     |
 
 ```powershell
-npm view vue-router versions
 npm i vue-router@3.5.3
 ```
 
@@ -3357,7 +3356,7 @@ export default new VueRouter({
                 },
                 {
                     path: 'news', //不能写成“/news”
-                    component: News 
+                    component: News
                 }
             ]
         },
@@ -3691,9 +3690,108 @@ beforeRouteLeave(to, from, next) {
 
 ## history模式和hash模式
 
+1. #及其后面的内容就是hash值
+2. hash值不会包含在http请求中，hash值不会带给服务器
+3. hash模式：
+   1. 地址永远带着#，不美观
+   2. 若以后将地址通过第三方手机app共享，若app校验严格，则地址会标记为不合法
+   3. 兼容性较好
+4. history模式：
+   1. 地址干净，美观
+   2. 兼容性和hash模式比较略差
+   3. 应用部署上线时需要后端支持，解决刷新页面服务端404的问题
+
+```js
+npm run build #打包成html+css+js
+放在服务器上static或者public目录下,即可访问
+```
+
 
 
 # Vue UI组件库
 
+## element-ui的基本使用
+
+### 移动端
+
+Vant [介绍 - Vant Weapp (youzan.github.io)](https://youzan.github.io/vant-weapp/#/home)
+
+Cube UI [cube-ui Document (didi.github.io)](https://didi.github.io/cube-ui/#/zh-CN)
+
+Mint UI [Mint UI (mint-ui.github.io)](https://mint-ui.github.io/#!/zh-cn)
+
+### pc端
+
+Element UI [Element - 网站快速成型工具](https://element.eleme.cn/#/zh-CN)
+
+IView UI [iView - A high quality UI Toolkit based on Vue.js (iviewui.com)](https://www.iviewui.com/)
+
+Ant Design [Ant Design - 一套企业级 UI 设计语言和 React 组件库](https://ant.design/index-cn)
 
 
+
+## element-ui 按需引入
+
+借助 [babel-plugin-component](https://github.com/QingWei-Li/babel-plugin-component)，我们可以只引入需要的组件，以达到减小项目体积的目的。
+
+首先，安装 babel-plugin-component：
+
+```bash
+npm install babel-plugin-component -D
+```
+
+然后，将 `babel.config.js` 修改为：
+
+```json
+module.exports = {
+    presets: [
+        '@vue/cli-plugin-babel/preset',
+        ["es2015", {"modules": false}]
+    ],
+    plugins: [
+        [
+            "component",
+            {
+                "libraryName": "element-ui",
+                "styleLibraryName": "theme-chalk"
+            }
+        ]
+    ]
+}
+```
+
+接下来，如果你只希望引入部分组件，比如 Button 和 Select，那么需要在 main.js 中写入以下内容：
+
+```javascript
+import Vue from 'vue';
+import { Button, Select } from 'element-ui';
+import App from './App.vue';
+
+Vue.component(Button.name, Button);
+Vue.component(Select.name, Select);
+/* 或写为
+ * Vue.use(Button)
+ * Vue.use(Select)
+ */
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+});
+```
+
+> npm run serve启动报错！！！
+>
+> Error: Cannot find module 'babel-preset-es2015'
+>
+> ```
+> npm i babel-preset-es2015
+> ```
+>
+> Error: Plugin/Preset files are not allowed to export objects, only functions. In D:\360Downloads\web_workspace\web_projects_importments\router_test\node_modules\babel-preset-es
+> 2015\lib\index.js
+>
+> ```
+> 修改babel.config.js中的presets参数
+> 【es2015】 为 【@babel/preset-env】
+> ```
