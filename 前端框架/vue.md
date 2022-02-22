@@ -3200,6 +3200,7 @@ value是function，处理客户端提交的请求。
 | Vue3.x      | Vuex-cli   | 4.x     |
 
 ```powershell
+npm view vue-router versions
 npm i vue-router@3.5.3
 ```
 
