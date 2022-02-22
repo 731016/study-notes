@@ -67,6 +67,7 @@
     * [赛德勤](面试/赛德勤.md)
 
 * 开发环境
+    * [vscode配置](开发环境/vscode.md)
     * [tomcat配置](开发环境/Tomcat配置.md)
     * [idea配置](开发环境/IDEA配置.md)
     * [maven配置](开发环境/maven配置.md)

@@ -58,6 +58,7 @@ git push origin master
 - [前端案例学习](http://www.lvyestudy.com/)
 
 ### 开发环境 :recycle: 
+- [vscode配置](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode.md)
 - [tomcat配置](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/Tomcat%E9%85%8D%E7%BD%AE.md)
 - [idea配置](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/IDEA%E9%85%8D%E7%BD%AE.md)
 - [maven配置](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/maven%E9%85%8D%E7%BD%AE.md)
