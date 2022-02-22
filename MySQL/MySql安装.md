@@ -3,6 +3,8 @@
 ## 安装
 
 https://blog.csdn.net/qq_36018710/article/details/84622543
+<br>
+https://zhuanlan.zhihu.com/p/188416607
 
 ## 语法基础
 
