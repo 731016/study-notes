@@ -81,6 +81,12 @@ git push origin master
 - [网络编程](https://gitee.com/LovelyHzz/study-notes/blob/master/JavaSE/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.md)
 - [函数式接口](https://gitee.com/LovelyHzz/study-notes/blob/master/JavaSE/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3.md)
 
+### 反射
+- [反射](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%8F%8D%E5%B0%84/%E5%8F%8D%E5%B0%84.md)
+
+### 设计模式
+- [设计模式](https://gitee.com/LovelyHzz/study-notes/blob/master/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
+
 ### MySql
 - [MySQL安装](https://gitee.com/LovelyHzz/study-notes/blob/master/MySQL/MySql%E5%AE%89%E8%A3%85.md)
 - [MySQL基础](https://gitee.com/LovelyHzz/study-notes/blob/master/MySQL/MySQL%E5%9F%BA%E7%A1%80.md)
@@ -93,16 +99,8 @@ git push origin master
 ### JSP + servlet
 - [JSP + servlet](https://gitee.com/LovelyHzz/study-notes/blob/master/jsp_servlet/jsp_servlet.md)
 
-### Vue
-
+### 前端
 + [Vue](https://gitee.com/LovelyHzz/study-notes/blob/master/前端框架/vue.md)
-
-### 反射
-
-- [反射](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%8F%8D%E5%B0%84/%E5%8F%8D%E5%B0%84.md)
-
-### 设计模式
-- [设计模式](https://gitee.com/LovelyHzz/study-notes/blob/master/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
 
 ### SVN
 - [SVN](https://gitee.com/LovelyHzz/study-notes/blob/master/SVN/SVN.md)

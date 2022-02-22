@@ -33,7 +33,7 @@
 * JSP + servlet
     * [JSP + servlet](jsp_servlet/jsp_servlet.md)
 
-* 前端框架
+* 前端
     * [Vue](前端框架/vue.md)
     
 * SVN
