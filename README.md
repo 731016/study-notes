@@ -100,7 +100,8 @@ git push origin master
 - [JSP + servlet](https://gitee.com/LovelyHzz/study-notes/blob/master/JavaWeb/jsp_servlet.md)
 
 ### 前端
-+ [Vue](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%89%8D%E7%AB%AF/vue.md)
+- [HTML](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%89%8D%E7%AB%AF/HTML.md)
+- [Vue](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%89%8D%E7%AB%AF/vue.md)
 
 ### 版本控制
 - [SVN](https://gitee.com/LovelyHzz/study-notes/blob/master/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/SVN.md)
