@@ -96,13 +96,13 @@ git push origin master
 ### jQuery
 - [jQuery Ajax](https://gitee.com/LovelyHzz/study-notes/blob/master/jQuery/Ajax.md)
 
-### JSP + servlet
+### JavaWeb
 - [JSP + servlet](https://gitee.com/LovelyHzz/study-notes/blob/master/jsp_servlet/jsp_servlet.md)
 
 ### 前端
 + [Vue](https://gitee.com/LovelyHzz/study-notes/blob/master/前端框架/vue.md)
 
-### SVN
+### 版本控制
 - [SVN](https://gitee.com/LovelyHzz/study-notes/blob/master/SVN/SVN.md)
 
 ### SSM 框架

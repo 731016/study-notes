@@ -30,14 +30,14 @@
 * JQuery
     * [jQuery-Ajax](jQuery/Ajax.md)
 
-* JSP + servlet
-    * [JSP + servlet](jsp_servlet/jsp_servlet.md)
+* JavaWeb
+    * [JSP + servlet](JavaWeb/jsp_servlet.md)
 
 * 前端
-    * [Vue](前端框架/vue.md)
+    * [Vue](前端/vue.md)
     
-* SVN
-    * [SVN](SVN/SVN.md)
+* 版本控制
+    * [SVN](版本控制/SVN.md)
     
 * SSM 框架
     * [Mybatis](SSM框架/mybatis.md)
