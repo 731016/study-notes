@@ -13,7 +13,7 @@ https://code.visualstudio.com/
 
 ## 文件每次以新窗口打开
 
-文件每次以新窗口打开
+文件每次以新窗口打开<br>
 ![image-20220222103428862](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221034685.png)
 
 ## vscode插件
