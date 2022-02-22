@@ -3,7 +3,7 @@
 ## 介绍 :point_left: 
 编程学习记录，包括Java，JavaWeb，javascript，linux，Sql，Redis，Vue...
 
-### 备用笔记网站：<a href="http://119.3.104.52:3000" target="_blank">小飞的学习笔记</a>
+### 备用笔记网站：<a href="http://119.3.104.52:80" target="_blank">小飞的学习笔记</a>
 
 ## 目录 :pencil: 
 
