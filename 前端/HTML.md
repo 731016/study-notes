@@ -815,7 +815,7 @@ IE9使用需要转换为**块级元素**
 
 ![image-20220223140449041](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231404121.png)
 
-<table style="font-family:'Consolas';border:1px solid #8A8886;" cellspacing="0">
+<table style="font-family:'Consolas';" cellspacing="0">
     <tr style="background-color:#92D050;color: #fff">
         <th>属性</th>
         <th>值</th>
