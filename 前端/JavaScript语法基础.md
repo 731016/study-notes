@@ -6,7 +6,7 @@
 
  
 
-**作用**
+<span style="font-weight:700;color:blue">作用</span>
 
 - 表单动态校验（密码强度检测）     （ <span style="color:red">JS 产生最初的目的</span> ）
 - 网页特效
@@ -18,7 +18,7 @@
 
  
 
-**HTML/CSS/JS 的关系**
+<span style="font-weight:700;color:blue">HTML/CSS/JS 的关系</span>
 
 html/css 标记语言 -- **描述类语言**
 
@@ -26,7 +26,7 @@ js 脚本语言 -- **编程类语言**
 
  
 
-**浏览器执行 JS 简介**
+<span style="font-weight:700;color:blue">浏览器执行 JS 简介</span>
 
 浏览器分为**渲染引擎和js引擎**
 
@@ -38,7 +38,7 @@ js 脚本语言 -- **编程类语言**
 
  
 
-**js的组成**
+<span style="font-weight:700;color:blue">js的组成</span>
 
 **ECMAscript**（javascript语法）、**DOM**（页面文档对象模型）、**BOM**（浏览器对象模型）
 
@@ -47,7 +47,7 @@ js 脚本语言 -- **编程类语言**
 | DOM        | 通过 DOM 提供的接口可以对页面上的各种元素进行操作（大小、位置、颜色等） |
 | BOM        | 通过BOM可以操作浏览器窗口，比如弹出框、控制浏览器跳转、获取分辨率等 |
 
-**书写位置**
+<span style="font-weight:700;color:blue">书写位置</span>
 
 行内、内嵌、外部
 
@@ -57,39 +57,60 @@ js 脚本语言 -- **编程类语言**
 <script src="url"></script>（外联）
 ```
 
-在HTML中我们推荐使用**双引号**, JS 中我们推荐使用**单引号**
+在HTML中我们推荐使用<span style="font-weight:700;color:red">双引号</span>, JS 中我们推荐使用<span style="font-weight:700;color:red">单引号</span>
 
 
 
 # javascript注释
 
-**单行注释**
+<span style="font-weight:700;color:blue">单行注释</span>
 
  ```js
  // 单行注释 alt + /  
  ```
 
-**多行注释**
+<span style="font-weight:700;color:blue">多行注释</span>
 
  ```js
  <!-- 多行注释
  	alt + shift + a -->
  ```
 
-**vscode修改快捷键**
+<span style="font-weight:700;color:blue">vscode修改快捷键</span>
 
 *vscode* *→* *首选项按钮* *→* *键盘快捷方式* *→* *查找* *原来的快捷键* *→* *修改为新的快捷键* *→* *回车确认*
 
 # javascript输入输出语句
 
-| **方法**         | **说明**                                 | **归属** |
-| ---------------- | ---------------------------------------- | -------- |
-| alert(msg)       | 浏览器**弹出警示框**                     | 浏览器   |
-| console.log(msg) | 浏览器**控制台打印**输出信息             | 浏览器   |
-| prompt(info)     | 浏览器**弹出输入框**，用户可以输入       | 浏览器   |
-| confirm          | 浏览器**弹出确认框**，用户可以确认或取消 | 浏览器   |
+<table style="font-family:'Consolas';" cellspacing="0">
+    <tr style="background-color:#92D050;color: #fff">
+        <th>方法</th>
+        <th>说明</th>
+        <th>归属</th>
+    </tr>
+    <tr style="background-color:#FADBD2">
+        <td>alert(msg)</td>
+        <td>浏览器弹出警示框</td>
+        <td>浏览器</td>
+    </tr>
+    <tr style="background-color:#FADBD2">
+        <td>console.log(msg)</td>
+        <td>浏览器控制台打印输出信息</td>
+        <td>浏览器</td>
+    </tr>
+    <tr style="background-color:#FADBD2">
+        <td>prompt(info)</td>
+        <td>浏览器弹出输入框，用户可以输入</td>
+        <td>浏览器</td>
+    </tr>
+    <tr>
+        <td>confirm</td>
+        <td>浏览器弹出确认框，用户可以确认或取消</td>
+        <td>浏览器</td>
+    </tr>
+</table>
 
-**注意**
+<span style="font-weight:700;color:blue">注意</span>
 
 alert() 主要用来显示消息给**用户**
 
@@ -105,7 +126,7 @@ console.log() 用来给**程序员**自己看运行时的消息
 
 ## 变量的使用
 
-**声明变量**
+<span style="font-weight:700;color:blue">声明变量</span>
 
 ```js
 //声明一个 名称为age 的变量 
@@ -117,7 +138,7 @@ var age;
 
  
 
-**赋值**
+<span style="font-weight:700;color:blue">赋值</span>
 
   ```js
   //给 age  这个变量赋值为 10
@@ -129,7 +150,7 @@ var age;
 
  
 
-**变量的初始化**
+<span style="font-weight:700;color:blue">变量的初始化</span>
 
 ```js
 //声明一个变量并赋值， 我们称之为变量的初始化
@@ -139,7 +160,7 @@ var age  = 18;
 
 
 
-**变量语法扩展**
+<span style="font-weight:700;color:blue">变量语法扩展</span>
 
 **更新变量**
 
@@ -171,26 +192,26 @@ age = 81;
 
  
 
-**变量命名规范**
+<span style="font-weight:700;color:blue">变量命名规范</span>
 
 **规则**：
 
-- 由**字母**(A-Za-z)、**数字**(0-9)、**下划线**(_)、**美元符号**( $ )组成，如：usrAge, num01, _name
+- 由<span style="font-weight:700;color:red">字母</span>(A-Za-z)、<span style="font-weight:700;color:red">数字</span>(0-9)、<span style="font-weight:700;color:red">下划线</span>(_)、<span style="font-weight:700;color:red">美元符号</span>( $ )组成，如：usrAge, num01, _name
 - 严格区分大小写。var app; 和 var App; 是两个变量
 - 不能 以数字开头。 18age      是错误的
 - 不能 是关键字、保留字。例如：var、for、while
 - 变量名必须有意义。 MMD  BBD    nl  →       age 
 - 遵守驼峰命名法。首字母小写，后面单词的首字母需要大写。myFirstName
 
-**name尽量不要**使用
+<span style="font-weight:700;color:red">name尽量不要</span>使用
 
 
 
 ## let
 
-ES6中新增了用于声明变量的关键字
+ES6中新增了用于<span style="font-weight:700;background-color:yellow">声明变量</span>的关键字
 
-**let声明的变量只在所处于的块级有效**
+<span style="font-weight:700;color:red">let声明的变量只在所处于的块级有效</span>
 
 ```js
 if (true) { 
@@ -201,14 +222,14 @@ if (true) {
 
 **注意：**使用let关键字声明的变量才具有块级作用域，使用var声明的变量不具备块级作用域特性。
 
-**不存在变量提升**
+<span style="font-weight:700;color:red">不存在变量提升</span>
 
 ```js
 console.log(a); // a is not defined 
  let a = 20;
 ```
 
-**暂时性死区**
+<span style="font-weight:700;color:red">暂时性死区</span>
 
 利用let声明的变量会绑定在这个块级作用域，**不会受外界的影响**
 
@@ -262,7 +283,7 @@ let arr = [];
 
 
 
-**小结**
+<span style="font-weight:700;color:red">小结</span>
 
 - let关键字就是用来声明变量的
 - 使用let关键字声明的变量具有块级作用域
@@ -275,11 +296,11 @@ let arr = [];
 
 ## const
 
-声明常量，常量就是值（内存地址）不能变化的量
+<span style="font-weight:700;background-color:yellow">声明常量</span>，常量就是值（内存地址）不能变化的量
 
  
 
-**具有块级作用域**
+<span style="font-weight:700;color:red">具有块级作用域</span>
 
 ```js
 if (true) { 
@@ -288,13 +309,13 @@ if (true) {
  console.log(a) // a is not defined
 ```
 
-**声明常量时必须赋值**
+<span style="font-weight:700;color:red">声明常量时必须赋值</span>
 
 ```js
 const PI; // Missing initializer in const declaration
 ```
 
-**常量赋值后，值不能修改**
+<span style="font-weight:700;color:red">常量赋值后，值不能修改</span>
 
 ```js
 const PI = 3.14;
@@ -307,15 +328,15 @@ const PI = 3.14;
  ary = ['a', 'b']; // Assignment to constant variable.
 ```
 
-**小结**
+<span style="font-weight:700;color:blue">小结</span>
 
 - const声明的变量是一个常量
-- 既然是常量不能重新进行赋值，如果是**基本数据类型，不能**更改值**，如果是**复杂数据类型，不能**更改地址值**
+- 既然是常量不能重新进行赋值，如果是<span style="color:red">基本数据类型，不能</span><span style="font-weight:700;color:red">更改值</span>，如果是<span style="color:red">复杂数据类型，不能</span><span style="font-weight:700;color:red">更改地址值</span>
 - 声明 const时候**必须要给定值**
 
  
 
-**let、const、var** **的区别**
+<span style="font-weight:700;color:blue">let、const、var 的区别</span>
 
 - 使用 var 声明的**变量**，其作用域为该语句所在的**函数内**，且**存在变量提升**现象
 - 使用 let 声明的**变量**，其作用域为该语句所在的**代码块内**，**不存在变量**提升
@@ -331,25 +352,49 @@ JavaScript 是一种**弱类型**或者说动态语言
 
  
 
-变量的数据类型是由 JS引擎 根据 = **右边变量值的数据类型**来**判断** 的，运行完毕之后， 变量就确定了数据类型
+变量的数据类型是由 JS引擎 根据 = **右边变量值的数据类型**来<span style="font-weight:700;color:red">判断</span> 的，运行完毕之后， 变量就确定了数据类型
 
  
 
-**数据类型的分类**
+<span style="font-weight:700;color:blue">数据类型的分类</span>
 
-- 简单数据类型 （**Number**,**String**,**Boolean**,**Undefined**,**Null**）
+- 简单数据类型 （<span style="font-weight:700;color:red">Number,String,Boolean,Undefined,Null</span>）
+- 复杂数据类型 （<span style="font-weight:700;color:red">object</span>)
 
-- 复杂数据类型 （**object**)
+<table style="font-family:'Consolas';" cellspacing="0">
+    <tr style="background-color:#92D050;color: #fff">
+        <th>简单数据类型</th>
+        <th>说明</th>
+        <th>默认值</th>
+    </tr>
+    <tr>
+        <td style="font-weight:700">Number</td>
+        <td>数字型，包含 整数值和浮点型值，如21，0.21</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td style="font-weight:700">Boolean</td>
+        <td>布尔值类型，如true，false，等价于1和0</td>
+        <td>false</td>
+    </tr>
+    <tr>
+        <td style="font-weight:700">String</td>
+        <td>字符串类型，如"张三"，用户可以输入</td>
+        <td>""</td>
+    </tr>
+    <tr>
+        <td style="font-weight:700">Undefined</td>
+        <td>var a;声明了变量a 但是没有赋值，此时a=indefined</td>
+        <td>Undefined</td>
+    </tr>
+    <tr>
+        <td style="font-weight:700">Null</td>
+        <td>var a=null;声明变量a为空值</td>
+        <td></td>
+    </tr>
+</table>
 
-| **简单数据类型** | **说明**                                        | **默认值** |
-| ---------------- | ----------------------------------------------- | ---------- |
-| **Number**       | 数字型，包含 整数值和浮点型值，如21，0.21       | 0          |
-| **Boolean**      | 布尔值类型，如true，false，等价于1和0           | false      |
-| **String**       | 字符串类型，如"张三"                            | ""         |
-| **Undefined**    | var a;声明了变量a 但是没有赋值，此时a=indefined | indefined  |
-| **Null**         | var a=null;声明变量a为空值                      |            |
-
-**数字型** **Number**
+<span style="font-weight:700;color:blue">数字型 Number</span>
 
 JavaScript 数字类型既可以保存**整数**，也可以保存**小数**(浮点数）
 
@@ -389,7 +434,7 @@ JavaScript中数值的最大和最小值
 
 ![image-20220223105912816](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231059866.png)
 
-**字符串型** **String**
+<span style="font-weight:700;color:blue">字符串型 String</span>
 
 字符串型可以是引号中的任意文本，其语法为 **双引号** "" 和 **单引号**''
 
@@ -397,7 +442,7 @@ JavaScript中数值的最大和最小值
 
 （1）**字符串引号嵌套**
 
-JS 可以用**单引号嵌套双引号** ，或者用**双引号嵌套单引号** (**外双内单，外单内双**)
+JS 可以用**单引号嵌套双引号** ，或者用**双引号嵌套单引号** (<span style="font-weight:700;background-color:yellow">外双内单，外单内双</span>)
 
 ```js
 var strMsg = '我是"高帅富"程序猿';   // 可以用''包含""
@@ -410,7 +455,7 @@ var strMsg2 = "我是'高帅富'程序猿";  // 也可以用"" 包含''
 
 类似HTML里面的特殊字符，字符串中也有特殊字符，我们称之为转义符。
 
-转义符都是 `\ `开头的
+转义符都是 <span style="font-weight:700;color:red">\ </span>开头的
 
  
 
@@ -429,7 +474,7 @@ var strMsg2 = "我是'高帅富'程序猿";  // 也可以用"" 包含''
 
 （3）**字符串长度**
 
-字符串是由若干字符组成的，这些字符的数量就是字符串的长度。通过字符串的 **length** 属性可以获取整个字符串的长度
+字符串是由若干字符组成的，这些字符的数量就是字符串的长度。通过字符串的 <span style="font-weight:700;color:red">length </span>属性可以获取整个字符串的长度
 
 ```js
 var strMsg = "我是帅气多金的程序猿！";
@@ -442,7 +487,7 @@ alert(strMsg.length); // 显示 11
 
 - 多个字符串之间可以使用 + 进行拼接，其拼接方式为 字符串 + 任何类型 = 拼接之后的新字符串
 
-- 拼接前会把**与字符串相加的任何类型**转成字符串，再拼接成一个新的字符串
+- 拼接前会把**与字符串相加的任何类型**转成<span style="font-weight:700;color:red">字符串</span>，再拼接成一个新的字符串
 
 ```js
 //1.1 字符串 "相加"
@@ -460,7 +505,7 @@ console.log('pink老师' + age + '岁啦'); // pink老师18岁啦
 
 
 
-**布尔型Boolean**
+<span style="font-weight:700;color:blue">布尔型Boolean</span>
 
 布尔类型有两个值：true 和 false ，其中 true 表示真（对），而 false 表示假（错）
 
@@ -471,7 +516,7 @@ console.log(true + 1);  // 2
 console.log(false + 1); // 1
 ```
 
-**Undefined**和 **Null**
+<span style="font-weight:700;color:blue">Undefined和 Null</span>
 
 一个声明后没有被赋值的变量会有一个默认值undefined ( 如果进行相连或者相加时，注意结果）
 
@@ -497,8 +542,6 @@ console.log(true + vari);   //  1
 
 ### 获取变量的数据类型
 
-**获取检测变量的数据类型**
-
 `typeof` 可用来获取检测变量的数据类型
 
 ```js
@@ -510,7 +553,7 @@ console.log(typeof num) // 结果 number
 
 ![image-20220223110348072](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231103131.png)
 
-**字面量**
+<span style="font-weight:700;color:blue">字面量</span>
 
 字面量是在**源代码中一个固定值的表示法**，通俗来说，就是字面量表示如何表达这个值。
 
@@ -522,7 +565,7 @@ console.log(typeof num) // 结果 number
 
 ### 数据类型转换
 
-使用**表单、prompt** 获取过来的数据默认是字符串类型的，此时就不能直接简单的进行加法运算，而需要转换变量的数据类型
+使用**表单、prompt** 获取过来的数据默认是<span style="font-weight:700;color:red">字符串类型</span>的，此时就不能直接简单的进行加法运算，而需要转换变量的数据类型
 
  
 
@@ -536,21 +579,30 @@ console.log(typeof num) // 结果 number
 
 **转换为字符串**
 
-![image-20220223110507308](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231105360.png)
+| **方式**         | **说明**                     | **案例**                                              |
+| ---------------- | ---------------------------- | ----------------------------------------------------- |
+| toString()       | 转成字符串                   | var num=1; alert(num.toString());                     |
+| String()强制转换 | 转成字符串                   | var num=1; alert(num.String());                       |
+| 加号拼接字串     | 和字符串拼接的结果都是字符串 | var num=1; alert(num+"我是字符串");    alert(num+''); |
 
 - toString() 和 String() 使用方式不一样
-- 三种转换方式，更多第三种加号拼接字符串转换方式，     这一种方式也称之为**隐式转换**
+- 三种转换方式，更多第三种加号拼接字符串转换方式，     这一种方式也称之为<span style="font-weight:700;color:red">隐式转换</span>
 
 
 
-**转换为数字型**（重点）♥
+<span style="font-weight:700;color:green">转换为数字型</span>（重点）♥
 
-![image-20220223110540912](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231105963.png)
+| **方式**                 | **说明**                       | **案例**            |
+| ------------------------ | ------------------------------ | ------------------- |
+| parseInt(string)函数     | 将string类型 转成 整数数值型   | parseInt('78')      |
+| parseFloat(string)函数   | 将string类型 转成 浮点数值型   | parseFloat('78.21') |
+| Number()强制转换函数     | 将string类型转换成数值型       | Number('12')        |
+| js隐式转换（**- \* /**） | 利用算术运算符隐式转换为数值型 | '12'-0              |
 
 - 注意 parse**I**nt 和 parse**F**loat 单词的大小写，这2个是重点
 - 隐式转换是我们在进行算数运算的时候，JS 自动转换了数据类型
 
-**转换为布尔型**
+<span style="font-weight:700;color:blue">转换为布尔型</span>
 
 ![image-20220223110622977](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231106017.png)
 
@@ -571,7 +623,7 @@ console.log(Boolean(12)); // true
 
 ## Set数据结构
 
-ES6 提供了新的数据结构 Set。它类似于数组，但是**成员的值都是唯一**的，没有重复的值。
+ES6 提供了<span style="font-weight:700;color:red">新的数据结构 Set</span>。它类似于数组，但是<span style="font-weight:700;color:red">成员的值都是唯一的</span>，没有重复的值。
 
 **Set本身是一个构造函数**，用来生成 Set 数据结构
 
@@ -579,10 +631,53 @@ ES6 提供了新的数据结构 Set。它类似于数组，但是**成员的值�
  const s = new Set();
  ```
 
-Set函数可以**接受一个数组作为参数**，用来初始化。
+Set函数可以<span style="font-weight:700;color:red">接受一个数组作为参数</span>，用来初始化。
 
  ```js
  const set = new Set([1, 2, 3, 4, 4]);//{1, 2, 3, 4}
  ```
 
 **size**查看set里面值的数量
+
+
+
+<span style="font-weight:700;color:blue">实例方法</span>
+
+- <span style="font-weight:700;color:red">add(value)</span>：添加某个值，返回 Set 结构本身
+- <span style="font-weight:700;color:red">delete(value)</span>：删除某个值，返回一个布尔值，表示删除是否成功
+- <span style="font-weight:700;color:red">has(value)</span>：返回一个布尔值，表示该值**是否为** **Set** **的成员**
+- <span style="font-weight:700;color:red">clear()</span>：清除所有成员，没有返回值
+
+```js
+const s = new Set();
+  s.add(1).add(2).add(3); // 向 set 结构中添加值 
+  s.delete(2)             // 删除 set 结构中的2值   
+  s.has(1)                // 表示 set 结构中是否有1这个值 返回布尔值 
+  s.clear()               // 清除 set 结构中的所有值
+  //注意：删除的是元素的值，不是代表的索引
+```
+
+<span style="font-weight:700;color:blue">遍历</span>
+
+Set 结构的实例与数组一样，也拥有forEach方法，用于对每个成员执行某种操作，没有返回值。
+
+```js
+s.forEach(value => console.log(value))
+```
+
+forEach 方法会依次为集合中的元素执行回调函数，就算元素的值是 undefined 。
+
+
+
+**回调函数**有三个参数:
+
+- 元素的值
+- 元素的索引
+- 正在遍历的集合对象
+
+但是由于集合对象中<span style="font-weight:700;color:red">没有索引(keys)</span>，所以前两个参数都是<span style="font-weight:700;color:red">Set</span>中元素的值(values)，之所以这样设计回调函数是为了和[Map](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map/forEach) 以及[Array](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)的 forEach 函数用法保持一致。
+
+
+
+## 解释型语言和编译型语言
+
