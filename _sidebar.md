@@ -36,6 +36,7 @@
 * 前端
     * [HTML](前端/HTML.md)
     * [CSS](前端/CSS.md)
+    * [Javascript语法基础](前端/JavaScript语法基础.md)
     * [Vue](前端/vue.md)
     
 * 版本控制
