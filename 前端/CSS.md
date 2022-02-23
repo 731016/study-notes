@@ -192,7 +192,7 @@ CSS（Cascading Style Sheet），CSS样式表或层叠样式表（级联样式�
 
 <span style="color:blue;font-weight:700">通配符选择器</span>
 
-用<span style="color:red;font-weight:700">*****</span>号标识
+用<span style="color:red;font-weight:700">*</span>号标识
 
 **基本语法**
 
@@ -2186,43 +2186,45 @@ content / cursor / border-radius / box-shadow / text-shadow / background:linear-
    ![image-20220222174531724](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221745828.png)
    
 ### 堆叠顺序（z-index）
-   
+
 在使用**定位**布局时，可能会**出现盒子重叠的情况**。
-   
+
 加了定位的盒子，默认**<span style="background-color:yellow;font-family:'Consolas'">后来者居上</span>**， 后面的盒子会压住前面的盒子
-   
+
 应用 **<span style="background-color:yellow;font-family:'Consolas';color:red">z-index</span>** 层叠等级属性可以**调整盒子的堆叠顺序**
-   
+
 ![image-20220222174604386](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221746468.png)
-   
+
 **z-index 的特性如下**
-   
+
 1. **属性值**：**正整数**、**负整数**或 **0**，默认值是     0，<span style="background-color:yellow;font-family:'Consolas'">数值越大，盒子越靠上</span>；
    
 2. 如果**属性值相同**，则按照书写顺序，**后来居上**；
    
 3. **数字后面<span style="background-color:yellow;font-family:'Consolas'">不能加单位</span>**
    
-**注意**：z-index 只能应用于<span style="color:green;font-family:'Consolas'">**<u>相对定位</u>**、**<u>绝对定位</u>**和**<u>固定定位</u>**</span>的元素，<span style="background-color:yellow;font-family:'Consolas'">其他**标准流**、**浮动**和**静态定位**无效</span>
-   
 
-   
+**注意**：z-index 只能应用于<span style="color:green;font-family:'Consolas'">**<u>相对定位</u>**、**<u>绝对定位</u>**和**<u>固定定位</u>**</span>的元素，<span style="background-color:yellow;font-family:'Consolas'">其他**标准流**、**浮动**和**静态定位**无效</span>
+
+
+
 ### 定位改变display属性
-   
+
 - 可以用<span style="color:red;font-family:'Consolas'">inline-block </span>转换为行内块
    - 可以用浮动 <span style="color:red;font-family:'Consolas'">    float    </span> 默认转换为行内块（类似，并不完全一样，因为浮动是脱标的）
 - <span style="color:red;font-family:'Consolas'">绝对定位和固定定位</span>也和浮动类似，     默认转换的特性 转换为行内块
-   
+  
     
-   
+  
+
 一个行内的盒子，如果加了**浮动**、**固定定位**和**绝对定位**，不用转换，就可以给这个盒子直接设置宽度和高度等
-   
+
  
-   
+
 **<span style="color:blue;font-family:'Consolas'">同时注意</span>**
-   
+
 **<span style="background-color:#C3D69B;font-family:'Consolas'">浮动元素、绝对定位(固定定位）元素的都不会触发外边距合并</span>**的问题。 （我们以前是用padding border overflow解决的）
-   
+
 也就是说，我们给盒子改为了浮动或者定位，就不会有垂直外边距合并的问题了
 
 
