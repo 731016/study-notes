@@ -141,15 +141,15 @@
         notFoundPage: true,
         //侧边栏 _sidebar.md
         loadSidebar: true,
-        subMaxLevel: 2,
         //_sidebar.md 的加载逻辑是从每层目录下获取文件，如果当前目录不存在该文件则回退到上一级目录.配置 alias 避免不必要的回退过程
         alias: {
             '/.*/_sidebar.md': '/_sidebar.md'
         },
         // 通过 {docsify-updated} 变量显示文档更新日期. 并且通过 formatUpdated配置日期格式
         formatUpdated: '{MM}/{DD} {HH}:{mm}',
+        maxLevel: 6,
         //显示目录
-        subMaxLevel: 2,
+        subMaxLevel: 6,
         //开启导航栏 _navbar.md
         loadNavbar: true,
         //使用封面 _coverpage.md
