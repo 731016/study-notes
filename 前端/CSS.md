@@ -2796,15 +2796,25 @@ n可以是数字、关键字、公式
 
 ### 伪元素选择器
 
-| **选择符** | **简介**                 |
-| ---------- | ------------------------ |
-| `::before` | 在元素内部的前面插入内容 |
-| `::after`  | 在元素内部的后面插入内容 |
+<table style="font-family:'Consolas';" cellspacing="0">
+    <tr style="background-color:#92D050;color: #fff">
+        <th>选择符</th>
+        <th>简介</th>
+    </tr>
+    <tr>
+        <td>::before</td>
+        <td>在元素内部的前面插入内容</td>
+    </tr>
+    <tr>
+        <td>::after</td>
+        <td>在元素内部的后面插入内容</td>
+    </tr>
+</table>
 
-- before和after必须有 **content属性**
-- before和after创建一个元素，但是属于行内元素
+- before和after必须有 **<span style="color:red">content属性</span>**
+- before和after创建一个元素，但是属于<span style="background-color:yellow">行内元素</span>
 - 在dom看不见创建的元素，被称为**伪元素**
-- 伪元素和标签选择器一样，**权重=1**
+- 伪元素和标签选择器一样，**<span style="background-color:yellow">权重=1</span>**
 
 <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230927734.png" alt="image-20220223092727642" style="zoom:80%;" />
 
@@ -2822,11 +2832,11 @@ n可以是数字、关键字、公式
 
 #### 移动 translate
 
-可以改变元素在页面中的位置，类似**定位**
+可以改变元素在页面中的位置，类似**<span style="background-color:yellow">定位</span>**
 
 ![image-20220223092840019](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230928082.png)
 
-**语法**
+**<span style="color:blue">语法</span>**
 
 ```css
 transform: translate(x,y);或者分开写
@@ -2834,12 +2844,12 @@ transform: translateX(n);
 transform: translateY(n);
 ```
 
-**重点**
+**<span style="color:red">重点</span>**
 
 - 定义2D转换中的移动，沿着X和Y轴移动元素
-- translate最大的优点：**不会影响到其他元素的位置**
+- translate最大的优点：**<span style="background-color:yellow">不会影响到其他元素的位置</span>**
 - translate中的百分比单位是相对于自身元素的translate:(50%,50%);
-- **对行内标签没有效果**
+- **对<span style="background-color:yellow">行内</span>标签没有效果**
 
  
 
@@ -2851,15 +2861,15 @@ transform: translateY(n);
 
 ![image-20220223093017668](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230930732.png)
 
-**语法**
+**<span style="color:blue">语法</span>**
 
 ```css
 transform: rotate(度数);
 ```
 
-**重点**
+**<span style="color:red">重点</span>**
 
-- rotate里面跟度数，单位是**deg** rotate(45deg)
+- rotate里面跟度数，单位是**<span style="background-color:yellow">deg</span>** rotate(45deg)
 - 角度为正时，顺时针，负时，为逆时针
 - 默认旋转的中心点是元素的中心点
 
@@ -2867,15 +2877,15 @@ transform: rotate(度数);
 
 设置元素转换的中心点
 
-**语法**
+**<span style="color:blue">语法</span>**
 
 ```css
 transform-origin: x y;  
 ```
 
-**重点**
+**<span style="color:red">重点</span>**
 
-- 注意后面的参数x 和 y 用**空格隔开**
+- 注意后面的参数x 和 y 用**<span style="background-color:yellow">空格隔开</span>**
 - x y 默认转换的中心点是元素的中心点 （50%，50%）
 - 可以给x y 设置 **像素** 或者 **方位名词** （top bottom left right center）
 
@@ -2887,20 +2897,20 @@ transform-origin: x y;
 
 ![image-20220223093204758](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230932825.png)
 
-**语法**
+**<span style="color:blue">语法</span>**
 
  ```css
   transform: scale(x,y);  
  ```
 
-**注意**
+**<span style="color:red">注意</span>**
 
-- x和y用**逗号分隔**
+- x和y用**<span style="background-color:yellow">逗号分隔</span>**
 - transform：scale(1,1)     宽和高都放大一倍，相对于没有放大
 - transform：scale(2,2)     宽和高都放大了2倍
 - transform：scale(2) **只写一个参数，相当于第二个参数和第一个一样**
 - transform：scale(0.5,0.5)     缩小
-- 优点：**可以设置转换中心点，默认以中心点缩放，不影响其他盒子** 
+- 优点：**可以设置转换中心点，默认以中心点缩放，<span style="background-color:yellow">不影响其他盒子</span>** 
 
 #### 综合写法
 
@@ -2910,9 +2920,9 @@ transform-origin: x y;
   transform: translate() rotate() scale();  
  ```
 
-- 其**顺序**会影响转换的效果（先旋转会改变坐标轴方向）
+- 其**<span style="color:red">顺序</span>**会影响转换的效果（先旋转会改变坐标轴方向）
 
-- 同时有位移和其他属性时，要把**<u>位移放到最前面</u>**
+- 同时有位移和其他属性时，要把**<u><span style="background-color:yellow">位移放到最前面</span></u>**
 
 
 
@@ -2922,12 +2932,12 @@ transform-origin: x y;
 
 #### 动画的基本使用
 
-##### 基本使用
+**<span style="color:blue">基本使用</span>**
 
 - 定义动画
 - 调用动画
 
-##### 用keyframes定义动画（类似定义类选择器）
+**<span style="color:blue">用keyframes定义动画（类似定义类选择器）</span>**
 
 ```css
 @keyframes 动画名称 {
@@ -2940,7 +2950,7 @@ transform-origin: x y;
 }
 ```
 
-##### 元素使用动画
+**<span style="color:blue">元素使用动画</span>**
 
 ```css
 div {
@@ -2984,35 +2994,74 @@ div {
 
 #### 动画序列
 
-（1）0% 是动画的**开始**，100% 是动画的**完成**
+（1）0% 是动画的**<span style="color:red">开始</span>**，100% 是动画的**完成**
 
-（2）在 **@keyframes** 中规定某项CSS样式，就能创建由当前样式逐渐改为新样式的动画效果
+（2）在 **<span style="color:red">@keyframes</span>** 中规定某项CSS样式，就能创建由当前样式逐渐改为新样式的动画效果
 
 （3）动画是使元素从一种样式逐渐变化为另一种样式的效果；可以改变任意多的样式和**次数**
 
-（4）用百分比规定变化发生的时间，或用关键词"form"和"to"，等同于**0%**和**100%**
+（4）用百分比规定变化发生的时间，或用关键词"<span style="background-color:yellow">form</span>"和"<span style="background-color:yellow">to</span>"，等同于**0%**和**100%**
 
 #### 动画属性
 
-| @keyframes                | 规定动画                                                     |
-| ------------------------- | ------------------------------------------------------------ |
-| animation                 | 所有动画属性的简写属性，除了**animation-play-state**属性     |
-| **animation-name**        | @keyframes动画的名称**【必要】**                             |
-| **animation-duration**    | 动画完成一个周期所花费的秒或毫秒，默认是0**【必要】**        |
-| animation-timing-function | 动画的速度曲线，默认是"ease" <br> ![image-20220223094223054](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230942151.png)<br> ![image-20220223094446593](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230944676.png) |
-| animation-delay           | 动画何时开始，默认是0                                        |
-| animation-iteration-count | 动画被播放的次数，默认是1，还有**infinite**(∞)               |
-| animation-direction       | 动画是否在下一个周期逆向播放，默认是"normal"，**alternate**(逆播放) |
-| **animation-play-state**  | **动画是否正在运行或暂停，默认是"running"，还有"paused"**    |
-| animation-fill-mode       | 动画结束状态，保持**forwards** 回到起始**backwards**         |
+<table style="font-family:'Consolas';" cellspacing="0">
+    <tr style="background-color:#92D050;color: #fff">
+        <th>属性</th>
+        <th>描述</th>
+    </tr>
+    <tr>
+        <td>@keyframes</td>
+        <td>规定动画</td>
+    </tr>
+    <tr>
+        <td>animation</td>
+        <td>@keyframes动画的名称【必要】</td>
+    </tr>
+    <tr style="background-color:#F4B183">
+        <td>animation-name</td>
+        <td>@keyframes动画的名称【必要】</td>
+    </tr>
+    <tr style="background-color:#F4B183">
+        <td>animation-duration</td>
+        <td>动画完成一个周期所花费的秒或毫秒，默认是0【必要】</td>
+    </tr>
+    <tr>
+        <td>animation-timing-function</td>
+        <td>
+            动画的速度曲线，默认是"ease"
+            <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230942151.png" alt="image-20220223094223054">
+            <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230944676.png" alt="image-20220223094446593">
+        </td>
+    </tr>
+    <tr>
+        <td>animation-delay</td>
+        <td>动画何时开始，默认是0</td>
+    </tr>
+    <tr>
+        <td>animation-iteration-count</td>
+        <td>动画被播放的次数，默认是1，还有infinite(∞)</td>
+    </tr>
+    <tr>
+        <td>animation-direction</td>
+        <td>动画是否在下一个周期逆向播放，默认是"normal"，alternate(逆播放)</td>
+    </tr>
+    <tr style="background-color:#B2A1C7">
+        <td>animation-play-state</td>
+        <td>动画是否正在运行或暂停，默认是"running"，还有"paused"</td>
+    </tr>
+    <tr>
+        <td>animation-fill-mode</td>
+        <td>动画结束状态，保持forwards 回到起始backwards</td>
+    </tr>
+</table>
 
-##### 简写属性
+**<span style="color:blue">简写属性</span>**
 
 ```css
 animation: 动画名称 持续时间 运动曲线 何时开始 播放次数 是否反方向 动画次数或者结束的状态;
 ```
 
-##### 热点图
+**<span style="color:red">热点图</span>**
 
 放大时会向四周扩散
 
@@ -3023,7 +3072,7 @@ left: 50%;
 transform: translate(-50%,-50%);
 ```
 
-添加多个动画，用逗号分隔
+<span style="background-color:yellow">添加多个动画，用逗号分隔</span>
 
 ```css
 animation: w 5s steps(6) infinite forwards,move 3s forwards;
@@ -3052,11 +3101,11 @@ transform: translate3d(x,y,z);/*x、y、z分别指要移动的轴的方向的距
 
 #### 透视 perspective
 
-**透视写在被观察元素的父盒子上面**
+**<span style="color:red">透视写在被观察元素的父盒子上面</span>**
 
-**d**：视距，人眼睛到屏幕的距离
+**<span style="color:red">d</span>**：视距，人眼睛到屏幕的距离
 
-**z**：z轴，物体距离屏幕的距离，z轴越大（正值）看到的物体越大
+**<span style="color:red">z</span>**：z轴，物体距离屏幕的距离，z轴越大（正值）看到的物体越大
 
 #### 3D旋转 rotate3d
 
@@ -3077,7 +3126,7 @@ transform: rotate3d(1,1,0,45deg);矢量
 
 `transform-style：flat；`子元素不开启3d立体空间 默认
 
-`transform-style：preserve-3d；`子元素开启立体空间
+<span style="background-color:yellow">**`transform-style：preserve-3d；`**</span>子元素开启立体空间
 
 写给父级，影响子盒子
 
@@ -3089,14 +3138,14 @@ transform: rotate3d(1,1,0,45deg);矢量
 
  
 
-#### 私有前缀
+**<span style="color:blue">私有前缀</span>**
 
 - **-moz-**：firefox浏览器私有属性
 - **-ms-**：ie浏览器私有属性
 - **-webkit-**：safari、chrome私有属性
 - **-o-**：Opera私有属性
 
-#### 提倡写法
+**<span style="color:blue">提倡写法</span>**
 
 ```css
 -moz-border-radius:10px;
@@ -3107,7 +3156,7 @@ border-radius:10px;
 
 ### 背景线性渐变 gradient background
 
-**语法**
+**<span style="color:red">语法</span>**
 
 ```css
 background: linear-gradient(left, #FA5A55, #FFCE51);
@@ -3119,7 +3168,7 @@ background: -webkit-linear-gradient(起始方向, 颜色1, 颜色2, ...);
 
 起始方向可以是：方位名词 或者 度数，如果省略默认为top
 
-CSS **linear-gradient()** 函数用于创建一个表示两种或多种颜色线性渐变的图片。其结果属于[<gradient>](https://developer.mozilla.org/zh-CN/docs/Web/CSS/gradient)数据类型，是一种特别的[<image>](https://developer.mozilla.org/zh-CN/docs/Web/CSS/image)数据类型。
+CSS **linear-gradient()** 函数用于创建一个表示两种或多种颜色线性渐变的图片。其结果属于<span style="color:blue">[<gradient>](https://developer.mozilla.org/zh-CN/docs/Web/CSS/gradient)数据类型，是一种特别的[<image>](https://developer.mozilla.org/zh-CN/docs/Web/CSS/image)数据类型。</span>
 
 ```css
 /* 渐变轴为45度，从蓝色渐变到红色 */
