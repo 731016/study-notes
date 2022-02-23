@@ -927,7 +927,7 @@ height = 内容的高度
 **border-box**
 
  [width](https://developer.mozilla.org/zh-CN/docs/Web/CSS/width) 和 [height](https://developer.mozilla.org/zh-CN/docs/Web/CSS/height) 属性包括内容，内边距和边框，但不包括外边距。这是当文档处于 Quirks模式 时Internet Explorer使用的[盒模型](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model)。注意，填充和边框将在盒子内 , 例如, .box {width: 350px; border: 10px solid black;} 导致在浏览器中呈现的宽度为350px的盒子。内容框不能为负，并且被分配到0，使得不可能使用border-box使元素消失。
- 
+
  尺寸计算公式：
 
 *width* *= border + padding +* *内容的宽度*
@@ -1792,9 +1792,773 @@ content / cursor / border-radius / box-shadow / text-shadow / background:linear-
 | **scroll**  | 不管超出内容否，总是显示滚动条             |
 | **auto**    | 超出自动显示滚动条，不超出不显示滚动条     |
 
+## css用户界面样式
+
+- 更改用户的鼠标样式 (滚动条因为兼容性非常差，我们不研究) 
+- 表单轮廓等。
+- 防止表单域拖拽
+
+### 鼠标样式cursor
+
+设置或检索在对象上移动的鼠标指针采用何种系统预定义的光标形状
+
+| **属性值**      | **描述**  |
+| --------------- | --------- |
+| **default**     | 小白 默认 |
+| **pointer**     | 小手      |
+| **move**        | 移动      |
+| **text**        | 文本      |
+| **not-allowed** | 禁止      |
+
+```html
+<ul>
+        <li style="cursor:default">我是小白</li>
+        <li style="cursor:pointer">我是小手</li>
+        <li style="cursor:move">我是移动</li>
+        <li style="cursor:text">我是文本</li>
+        <li style="cursor:not-allowed">我是文本</li>
+</ul>
+```
+
+### 轮廓线outline
+
+![image-20220223090347339](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230903409.png)
+
+是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用
+
+```css
+outline : outline-color ||outline-style || outline-width
+
+取消轮廓线
+outline: 0; 或者 outline: none;
+```
+
+### 防止拖拽文本域resize
+
+![image-20220223090442141](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230904195.png)
+
+```html
+<textarea  style="resize: none;"></textarea>
+```
 
 
 
+## vertical-align垂直对齐
+
+- 有宽度的块级元素居中对齐，是margin: 0 auto;
+- 让文字居中对齐，是 text-align: center;
+
+ 
+
+它只针对于**行内元素**或者**行内块元素**
+
+![image-20220223090532597](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230905669.png)
+
+```css
+vertical-align : baseline |top |middle |bottom
+```
+
+**通常用来控制图片表单与文字的对齐**
 
 
+
+### 图片、表单和文字对齐
+
+默认的图片会和文字基线对齐
+
+![image-20220223090628316](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230906381.png)
+
+### 去除图片底侧空白缝隙
+
+**原因**
+
+图片或者表单等行内块元素，他的底线会和父级盒子的基线对齐
+
+就是图片底侧会有一个空白缝隙
+
+
+
+**解决**
+
+- 给img     `vertical-align:middle | top| bottom`等等； 让图片不要和基线对齐
+- 给img 添加 `display：block;` 转换为块级元素就不会存在问题了
+
+
+
+## 溢出的文字省略号显示
+
+### white-space
+
+设置或检索对象内文本显示方式。通常我们使用于强制一行显示内容
+
+```css
+white-space:normal; 默认处理方式
+
+white-space:nowrap;　强制在同一行内显示所有文本，直到文本结束或者遭遇br标签对象才换行
+```
+
+### text-overflow 文字溢出
+
+设置或检索是否使用一个省略标记（...）标示对象内文本的溢出
+
+```css
+text-overflow : clip ；不显示省略标记（...），而是简单的裁切
+
+text-overflow：ellipsis ； 当对象内文本溢出时显示省略标记（...）
+```
+
+![image-20220223090834008](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230908072.png)
+
+
+
+## CSS精灵技术（sprite)
+
+**为了有效地<u>减少</u>服务器接受和发送请求的次数，<u>提高</u>页面的加载速度**
+
+
+
+CSS 精灵其实是将网页中的一些背景图像**整合到一张大图**中（精灵图），然而，各个网页元素通常只需要精灵图中不同位置的某个小图，要想精确**定位到精灵图中的某个小图**
+
+ 
+
+- background-image
+- background-repeat
+- background-position属性进行背景定位
+- 其中最关键的是使用`background-position` 属性精确地定位
+
+ 
+
+css精灵技术**主要针对于背景图片**，插入的图片img 是不需要这个技术的。
+
+精确测量，每个小背景图片的大小和 位置
+
+给盒子指定小背景图片时， 背景定位基本都是 **负值**
+
+```css
+div{
+    background:url(../images/abcd.jpg)no-repeat;
+    float:left;
+}
+.h{
+    width:101px;
+    height:106px;
+    background-position:-220px-141px;
+}
+.z{
+    width:115px;
+    height:97px;
+    background-position:-485px-560px;
+}
+```
+
+![image-20220223091404243](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230914310.png)
+
+**png格式为透明背景**
+
+**72px为网页显示像素**
+
+
+
+## 滑动门
+
+为了使各种特殊形状的背景能够自适应元素中文本内容的多少，出现了CSS滑动门技术
+
+### 核心技术
+
+利用CSS精灵（主要是背景位置）和 **盒子padding撑开宽度**, 以便能适应不同字数的导航栏
+
+ 
+
+### 总结
+
+1. a     设置 背景左侧，padding撑开合适宽度
+2. span 设置背景右侧， padding撑开合适宽度 剩下由文字继续撑开宽度
+3. 之所以a包含span就是因为 整个导航都是可以点击的
+
+```css
+<body>
+    <div class="nav">
+        <ul>
+            <li>
+                <a href="#">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>帮助与反馈</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>公众平台</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>开发平台</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+ 
+
+
+* {
+    padding: 0;
+    margin: 0;
+}
+li {
+    list-style: none;
+    margin: 5px;
+    float: left;
+}
+li a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #fff;
+    line-height: 33px;
+}
+body {
+    background: url(../images/wx.jpg) repeat-x;
+}
+.nav {
+    margin-top: 20px;
+}
+.nav a {
+    display: inline-block;
+    height: 33px;
+    background: url(../images/to.png) no-repeat;
+    padding-left: 15px;
+}
+.nav a span {
+    display: inline-block;
+    height: 33px;
+    background: url(../images/to.png) no-repeat top right;
+    padding-right: 15px;
+}
+.nav a:hover {
+    background-image: url(../images/ao.png);
+}
+.nav a:hover span {
+    background-image: url(../images/ao.png);
+}
+```
+
+## margin负值
+
+**负边距+定位：水平垂直居中**
+
+### 压住盒子相邻边框
+
+```css
+margin-left:-1px;
+margin-top:-1px;
+```
+
+```css
+使用div盒子鼠标经过样式会出现问题
+div:hover {
+border:1px solid #f40;
+}
+使用相对定位-保留位置
+div:hover {
+    border:1px solid #f40;
+    position: relative;
+}
+如果已经存在相对定位，使用z-index: 1
+```
+
+```css
+CSS三角形
+width:0;
+height:0;
+border-top: 10px solid red;
+border-right: 10px solid green;
+border-bottom: 10px solid blue;
+border-left: 10px solid pink;
+```
+
+1. 我们用css 边框可以模拟三角效果
+
+1. **宽度高度为0**
+
+1. 我们**4个边框都要写**，     只保留需要的边框颜色，其余的不能省略，都改为 `transparent` 透明就好了
+2. 为了照顾兼容性 低版本的浏览器，加上 `font-size:0; line-height: 0;`
+
+
+
+## 过渡
+
+过渡（transition)
+
+是CSS3中具有颠覆性的特征之一，我们可以在不使用 Flash 动画或 JavaScript 的情况下，当元素从一种样式变换为另一种样式时为元素添加效果
+
+ 
+
+过渡动画：是从一个状态 渐渐的过渡到另外一个状态
+
+ 
+
+经常和 `:hover` 一起 搭配使用
+
+**语法格式**:
+
+```css
+transition: 要过渡的属性  花费时间  运动曲线  何时开始;
+```
+
+| **属性**                   | **描述**                                   | **CSS** |
+| -------------------------- | ------------------------------------------ | ------- |
+| transition                 | 简写属性，用于在一个属性中设置四个过渡属性 | 3       |
+| transition-property        | 规定应用过渡的 CSS 属性的名称              | 3       |
+| transition-duration        | 定义过渡效果花费的时间，默认是  0          | 3       |
+| transition-timing-function | 规定过渡效果的时间曲线，默认是  "ease"     | 3       |
+| transition-delay           | 规定过渡效果何时开始，默认是  0            | 3       |
+
+### 属性
+
+属性就是你想要**变化的** **css** **属性**， 宽度高度 背景颜色 内外边距都可以 
+
+如果想要所有的属性都变化过渡， 写一个**all** 就可以
+
+### 花费时间
+
+transition-duration 花费时间 单位是 秒（必须写单位） s ms 比如 0.5s 这个s单位必须写 ms 毫秒
+
+### 运动曲线
+
+默认是 ease
+
+![image-20220223092012176](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230920257.png)
+
+### 何时开始
+
+默认是 0s 鼠标触发就立即开始 可以设置 延迟触发时间
+
+```css
+div {
+    width: 200px;
+    height: 100px;
+    background-color: pink;
+    /* transition: 要过渡的属性  花费时间  运动曲线  何时开始; */
+	/*如果有多组属性，使用逗号隔开*/
+    transition: width 0.6s ease 0s, height 0.3s ease-in 1s;
+    /* transtion 过渡的意思  这句话写到div里面而不是 hover里面 */
+}
+div:hover {  /* 鼠标经过盒子，我们的宽度变为400 */
+    width: 600px;
+    height: 300px
+}
+transition: all 0.6s;  /* 所有属性都变化用all 就可以了  后面俩个属性可以省略 */
+```
+
+
+
+## 获得焦点元素
+
+`:focus` 伪类 选择器用于选取获得焦点的元素 。 我们这里主要针对的是 **表单元素**
+
+:hover
+
+**语法**：
+
+```css
+.total input {
+    border: 1px solid #ccc;
+    height: 30px;
+    width: 40px;
+    transition: all .5s;
+}
+/*这个input 获得了焦点*/
+.total input:focus {
+    width: 80px;
+    border: 1px solid skyblue;
+}
+```
+
+
+
+## css3
+
+### 属性选择器
+
+| **选择符**      | **简介**                                        |
+| --------------- | ----------------------------------------------- |
+| `E[att]  `      | 选择**具有`att属性`**的E元素                    |
+| `E[att="val"]`  | 选择具有att属性且属性值**等于`val`**的E元素     |
+| `E[att^="val"]` | 匹配具有att属性、且属性值**以`val开头`**的E元素 |
+| `E[att$="val"]` | 匹配具有att属性、且属性值**以`val结尾`**的E元素 |
+| `E[att="val"]`  | 匹配具有att属性、且属性值中**含有val**的E元素   |
+
+类选择器、属性选择器、伪类选择器 **权重=10**
+
+### 结构伪类选择器
+
+| **选择符**         | **简介**                                   |
+| ------------------ | ------------------------------------------ |
+| `E:first-child`    | 匹配**父元素**中的**<u>第一个</u>子元素E** |
+| `E:last-child`     | 匹配**父元素**中**<u>最后一个</u>E元素**   |
+| `E:nth-child(n)`   | 匹配**父元素**中的**<u>第n个</u>子元素E**  |
+| `E:first-of-type`  | **<u>指定类型</u>E的第一个**               |
+| `E:last-of-type`   | **<u>指定类型</u>E的最后一个**             |
+| `E:nth-of-type(n)` | **<u>指定类型</u>E的第n个**                |
+
+n可以是数字、关键字、公式
+
+- 关键词[even]偶数 odd 奇数
+- n为公式，则从0开始计算
+- 第0个元素或超出元素的个数会被忽略
+
+| **公式** | **取值**                       |
+| -------- | ------------------------------ |
+| 2n       | 偶数                           |
+| 2n+1     | 奇数                           |
+| 5n       | 5 10  15…                      |
+| n+5      | 从第5个开始（包含第5个）到最后 |
+| -n+5     | 前5个（包含第5个）             |
+
+### 伪元素选择器
+
+| **选择符** | **简介**                 |
+| ---------- | ------------------------ |
+| `::before` | 在元素内部的前面插入内容 |
+| `::after`  | 在元素内部的后面插入内容 |
+
+- before和after必须有 **content属性**
+- before和after创建一个元素，但是属于行内元素
+- 在dom看不见创建的元素，被称为**伪元素**
+- 伪元素和标签选择器一样，**权重=1**
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230927734.png" alt="image-20220223092727642" style="zoom:80%;" />
+
+### 2D转换 transform
+
+**转换（transform）**：可以实现元素的位移、旋转、缩放等效果
+
+- 移动：transform
+- 旋转：rotate
+- 缩放：scale
+
+ 
+
+2D转换：改变标签在二维平面上的位置和形状的一种技术
+
+#### 移动 translate
+
+可以改变元素在页面中的位置，类似**定位**
+
+![image-20220223092840019](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230928082.png)
+
+**语法**
+
+```css
+transform: translate(x,y);或者分开写
+transform: translateX(n);
+transform: translateY(n);
+```
+
+**重点**
+
+- 定义2D转换中的移动，沿着X和Y轴移动元素
+- translate最大的优点：**不会影响到其他元素的位置**
+- translate中的百分比单位是相对于自身元素的translate:(50%,50%);
+- **对行内标签没有效果**
+
+ 
+
+**盒子居中对齐，可使用`transform:translate(-50%, -50%)`来代替盒子尺寸改变外边距固定的写法**
+
+#### 旋转 rotate
+
+让元素在二维平面内顺时针旋转或逆时针旋转
+
+![image-20220223093017668](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230930732.png)
+
+**语法**
+
+```css
+transform: rotate(度数);
+```
+
+**重点**
+
+- rotate里面跟度数，单位是**deg** rotate(45deg)
+- 角度为正时，顺时针，负时，为逆时针
+- 默认旋转的中心点是元素的中心点
+
+#### 转换中心点 transform-origin
+
+设置元素转换的中心点
+
+**语法**
+
+```css
+transform-origin: x y;  
+```
+
+**重点**
+
+- 注意后面的参数x 和 y 用**空格隔开**
+- x y 默认转换的中心点是元素的中心点 （50%，50%）
+- 可以给x y 设置 **像素** 或者 **方位名词** （top bottom left right center）
+
+
+
+#### 缩放 scale
+
+可以放大和缩小
+
+![image-20220223093204758](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230932825.png)
+
+**语法**
+
+ ```css
+  transform: scale(x,y);  
+ ```
+
+**注意**
+
+- x和y用**逗号分隔**
+- transform：scale(1,1)     宽和高都放大一倍，相对于没有放大
+- transform：scale(2,2)     宽和高都放大了2倍
+- transform：scale(2) **只写一个参数，相当于第二个参数和第一个一样**
+- transform：scale(0.5,0.5)     缩小
+- 优点：**可以设置转换中心点，默认以中心点缩放，不影响其他盒子** 
+
+#### 综合写法
+
+- 同时使用多个转换，其**格式**为
+
+ ```css
+  transform: translate() rotate() scale();  
+ ```
+
+- 其**顺序**会影响转换的效果（先旋转会改变坐标轴方向）
+
+- 同时有位移和其他属性时，要把**<u>位移放到最前面</u>**
+
+
+
+### 动画 animation
+
+动画（animation）可通过设置多个节点来精确控制一个或一组动画
+
+#### 动画的基本使用
+
+##### 基本使用
+
+- 定义动画
+- 调用动画
+
+##### 用keyframes定义动画（类似定义类选择器）
+
+```css
+@keyframes 动画名称 {
+     0% {
+        width: 100px;
+    }
+    100% {
+        width: 300px;
+    }
+}
+```
+
+##### 元素使用动画
+
+```css
+div {
+    width: 200px;
+    height: 200px;
+    background-color: aqua;
+    margin: 100px auto;
+    /* 调用动画 */
+    animation-name: 动画名称;
+    /* 持续时间 */
+    animation-duration: 持续时间;
+}
+```
+
+```css
+@keyframes move {
+    0% {
+        transform: translate(0,0);
+    }
+    25% {
+        transform: translate(1000px,0);
+    }
+    50% {
+         transform: translate(1000px,100px);
+    }
+    75% {
+        transform: translate(0px,100px);
+    }
+    100% {
+        transform: translate(0,0px);
+    }
+}
+div {
+    width: 200px;
+    height: 200px;
+    background-color: palegreen;
+    animation-name: move;
+    animation-duration: 3s;
+}
+```
+
+#### 动画序列
+
+（1）0% 是动画的**开始**，100% 是动画的**完成**
+
+（2）在 **@keyframes** 中规定某项CSS样式，就能创建由当前样式逐渐改为新样式的动画效果
+
+（3）动画是使元素从一种样式逐渐变化为另一种样式的效果；可以改变任意多的样式和**次数**
+
+（4）用百分比规定变化发生的时间，或用关键词"form"和"to"，等同于**0%**和**100%**
+
+#### 动画属性
+
+| @keyframes                | 规定动画                                                     |
+| ------------------------- | ------------------------------------------------------------ |
+| animation                 | 所有动画属性的简写属性，除了**animation-play-state**属性     |
+| **animation-name**        | @keyframes动画的名称**【必要】**                             |
+| **animation-duration**    | 动画完成一个周期所花费的秒或毫秒，默认是0**【必要】**        |
+| animation-timing-function | 动画的速度曲线，默认是"ease" <br> ![image-20220223094223054](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230942151.png)<br> ![image-20220223094446593](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230944676.png) |
+| animation-delay           | 动画何时开始，默认是0                                        |
+| animation-iteration-count | 动画被播放的次数，默认是1，还有**infinite**(∞)               |
+| animation-direction       | 动画是否在下一个周期逆向播放，默认是"normal"，**alternate**(逆播放) |
+| **animation-play-state**  | **动画是否正在运行或暂停，默认是"running"，还有"paused"**    |
+| animation-fill-mode       | 动画结束状态，保持**forwards** 回到起始**backwards**         |
+
+##### 简写属性
+
+```css
+animation: 动画名称 持续时间 运动曲线 何时开始 播放次数 是否反方向 动画次数或者结束的状态;
+```
+
+##### 热点图
+
+放大时会向四周扩散
+
+```css
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+```
+
+添加多个动画，用逗号分隔
+
+```css
+animation: w 5s steps(6) infinite forwards,move 3s forwards;
+```
+
+
+
+### 3D转换
+
+**三维坐标系**
+
+立体空间，由3个轴组成
+
+![image-20220223094710177](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230947263.png)
+
+![image-20220223094724360](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230947433.png)
+
+#### 3D移动 translate3d
+
+```css
+transform: translateX(100px); /*仅在x轴移动*/
+transform: translateY(100px);/*仅在y轴移动*/
+transform: translateZ(100px);/*仅在x轴移动（注意：translateZ一般用px单位）*/
+transform: translate3d(x,y,z);/*x、y、z分别指要移动的轴的方向的距离*/
+```
+
+#### 透视 perspective
+
+**透视写在被观察元素的父盒子上面**
+
+**d**：视距，人眼睛到屏幕的距离
+
+**z**：z轴，物体距离屏幕的距离，z轴越大（正值）看到的物体越大
+
+#### 3D旋转 rotate3d
+
+让元素在三维平面沿着x轴，y轴，z轴或者自定义轴进行旋转
+
+```css
+transform: translate3d(100px,100px,-800px);
+transform: rotateX(45deg);/*沿着x轴正方向旋转45度*/
+transform: rotateY(45deg);/*沿着y轴正方向旋转45度*/
+transform: rotateZ(45deg);/*沿着z轴正方向旋转45度*/
+transform: rotate3d(x,y,z,deg);/*沿着自定义轴旋转deg角度（了解）*/
+transform: rotate3d(1,1,0,45deg);矢量
+```
+
+#### 3D呈现 transform-style
+
+控制子元素是否开启三维立体环境
+
+`transform-style：flat；`子元素不开启3d立体空间 默认
+
+`transform-style：preserve-3d；`子元素开启立体空间
+
+写给父级，影响子盒子
+
+
+
+### 浏览器私有前缀
+
+为了兼容老版本
+
+ 
+
+#### 私有前缀
+
+- **-moz-**：firefox浏览器私有属性
+- **-ms-**：ie浏览器私有属性
+- **-webkit-**：safari、chrome私有属性
+- **-o-**：Opera私有属性
+
+#### 提倡写法
+
+```css
+-moz-border-radius:10px;
+-webkit-border-radius:10px;
+-o-border-radius:10px;
+border-radius:10px;
+```
+
+### 背景线性渐变 gradient background
+
+**语法**
+
+```css
+background: linear-gradient(left, #FA5A55, #FFCE51);
+background: -webkit-linear-gradient(left top, #FA5A55, #FFCE51);
+background: -webkit-linear-gradient(起始方向, 颜色1, 颜色2, ...);
+```
+
+背景渐变必须添加浏览器私有前缀
+
+起始方向可以是：方位名词 或者 度数，如果省略默认为top
+
+CSS **linear-gradient()** 函数用于创建一个表示两种或多种颜色线性渐变的图片。其结果属于[<gradient>](https://developer.mozilla.org/zh-CN/docs/Web/CSS/gradient)数据类型，是一种特别的[<image>](https://developer.mozilla.org/zh-CN/docs/Web/CSS/image)数据类型。
+
+```css
+/* 渐变轴为45度，从蓝色渐变到红色 */
+linear-gradient(45deg, blue, red);
+
+/* 从右下到左上、从蓝色渐变到红色 */
+linear-gradient(to left top, blue, red);
+
+/* 从下到上，从蓝色开始渐变、到高度40%位置是绿色渐变开始、最后以红色结束 */
+linear-gradient(0deg, blue, green 40%, red);
+
+/*从#DAECF9开始到#DAECF9结束，#DAECF9从40%开始，#DAECF9从80%开始*/
+background: -webkit-linear-gradient(top, #DAECF9, #DAECF9, #C6E3F8 40%, #DAECF9 80%);
+```
+
+![image-20220223095243331](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230952403.png)
 
