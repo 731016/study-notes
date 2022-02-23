@@ -3103,9 +3103,9 @@ transform: translate3d(x,y,z);/*x、y、z分别指要移动的轴的方向的距
 
 **<span style="color:red">透视写在被观察元素的父盒子上面</span>**
 
-**<span style="color:red">d</span>**：视距，人眼睛到屏幕的距离
+<span style="color:red">d</span>：视距，人眼睛到屏幕的距离
 
-**<span style="color:red">z</span>**：z轴，物体距离屏幕的距离，z轴越大（正值）看到的物体越大
+<span style="color:red">z</span>：z轴，物体距离屏幕的距离，z轴越大（正值）看到的物体越大
 
 #### 3D旋转 rotate3d
 
@@ -3126,7 +3126,7 @@ transform: rotate3d(1,1,0,45deg);矢量
 
 `transform-style：flat；`子元素不开启3d立体空间 默认
 
-<span style="background-color:yellow">**`transform-style：preserve-3d；`**</span>子元素开启立体空间
+<span style="background-color:yellow">`transform-style：preserve-3d；`</span>子元素开启立体空间
 
 写给父级，影响子盒子
 
