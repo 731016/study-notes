@@ -294,7 +294,7 @@ p {
 
 当需要设置英文字体时，<span style="background-color:yellow">**英文字体名必须位于中文字体名之前**；</span>
 
-若字体名中包含<span style="color:red">**空格**、**#**、**$**</span>等符号，则该字体必须**加**英文状态下的**单引号或双引号**
+若字体名中包含<span style="color:red;font-weight:700">空格、#、$</span>等符号，则该字体必须**加**英文状态下的**单引号或双引号**
 
 
 
@@ -1055,7 +1055,7 @@ background: rgba(0, 0, 0, 0.3);
 
 想要设置一个可继承的属性，只需将它应用于父元素
 
-子元素可以继承父元素的样式（**`text-，font-，line-`这些元素<span style="background-color:yellow;font-family:'Consolas'">开头</span>**的可以继承，以及<span style="color:red;font-family:'Consolas'">`color`</span>属性）
+子元素可以继承父元素的样式（`text-，font-，line-`这些元素<span style="background-color:yellow;font-family:'Consolas'">开头</span>的可以继承，以及<span style="color:red;font-family:'Consolas'">`color`</span>属性）
 
  
 
@@ -1394,7 +1394,7 @@ padding属性用于设置内边距 **是指** **边框与内容之间的距离**
 
 ### padding不会影响盒子大小的情况
 
-如果**没有给一个盒子指定<span style="background-color:yellow;font-family:'Consolas'">宽度</span>**， 此时，如果给这个盒子指定padding， 则不会撑开盒子
+如果没有给一个盒子指定<span style="background-color:yellow;font-family:'Consolas';font-weight:700">宽度</span>， 此时，如果给这个盒子指定padding， 则不会撑开盒子
 
 ![image-20220222170511403](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221705470.png)
 
