@@ -7,14 +7,14 @@
     * [牛客网](https://www.nowcoder.com/)
 * 代码库
     * [java学习代码Demo](https://gitee.com/LovelyHzz/code-demo/tree/master)
-    * [Java常用配置文件模板](代码库/常用配置文件.md)
-    * [Java工具类](代码库/java工具类.md)
-    * [JavaScript基础算法](代码库/javascript.md)
-    * [Java基础算法](代码库/Java.md)
+    * [Java常用配置文件模板](#/代码库/常用配置文件.md)
+    * [Java工具类](#/代码库/java工具类.md)
+    * [JavaScript基础算法](#/代码库/javascript.md)
+    * [Java基础算法](#/代码库/Java.md)
     * [HTML+CSS+JS+JQuery案例学习](https://gitee.com/LovelyHzz/webpage-basic-learning)
     * [前端案例学习](http://www.lvyestudy.com/)
 * 开发工具
-    * [vscode插件](开发环境/vscode.md)
+    * [vscode插件](#/开发环境/vscode.md)
 * 演示网站
     * [快递代取系统](http://119.3.104.52:8080/)
     * [天天生鲜交易平台](http://119.3.104.52:8081/)
