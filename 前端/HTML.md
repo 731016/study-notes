@@ -1,10 +1,10 @@
 文档
 
-### W3C
+**W3C**
 
 https://www.w3school.com.cn
 
-### MDN
+**MDN**
 
 https://developer.mozilla.org/zh-CN
 
@@ -207,8 +207,9 @@ https://www.runoob.com/tags/tag-a.html
     bbbbbbbbbbbbb,
     ddddddddddddd.
 </pre>
-按照书写格式显示
 ```
+
+按照<span style="background-color:yellow">书写格式显示</span>
 
 ### 特殊字符
 
@@ -227,7 +228,7 @@ https://www.runoob.com/tags/tag-a.html
 相对路径
 
 - 同一级路径，图片引用的时候，直接写出图片的名字就可以了
-- 上一级目录`../`
+- 上一级目录<span style="background-color:yellow">../</span>
 
 绝对路径
 
@@ -243,17 +244,19 @@ https://www.runoob.com/tags/tag-a.html
 </table>
 ```
 
-**tr**标签：定义表格中的行,嵌套在tale标签中
+<span style="color:red">**tr**</span>标签：定义表格中的<span style="background-color:yellow">行</span>,嵌套在tale标签中
 
-**td**标签：定义表格中的单元格，嵌套在`<tr></tr>`内
+<span style="color:red">**td**</span>标签：定义<span style="background-color:yellow">表格中的单元格</span>，嵌套在`<tr></tr>`内
 
-### 操作table元素的方法
+
+
+<span style="color:blue">**操作table元素的方法**</span>
 
 https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLTableElement
 
-| `tableObject.cells[]`  | `cells` 集合返回表格中所有**单元格的一个数组**。             |
+| `tableObject.cells[]`  | `cells` 集合返回表格中所有<span style="color:red">**单元格的一个数组**</span>。 |
 | ---------------------- | ------------------------------------------------------------ |
-| `tableObject.rows[]`   | rows 集合返回表格中**所有行**（TableRow 对象）**的一个数组**，即一个 HTMLCollection。 |
+| `tableObject.rows[]`   | rows 集合返回表格中<span style="color:red">**所有行**</span>（TableRow 对象）<span style="color:red">**的一个数组**</span>，即一个 HTMLCollection。 |
 | `tableObject.rowIndex` | 行下标                                                       |
 
 ## 表格属性
@@ -262,7 +265,7 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLTableElement
 
 ![image-20220222153926211](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221539274.png)
 
-### 表头单元格标签`<th>`
+<span style="color:blue">**表头单元格标签**`<th>`</span>
 
 ```html
 <tr>
@@ -274,7 +277,7 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLTableElement
 
 ![image-20220222154016365](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221540418.png)
 
-### 表格标题caption
+<span style="color:blue">**表格标题**caption</span>
 
 ```html
 <caption>个人信息表</caption>
@@ -360,13 +363,13 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLTableElement
 
 ## 合并单元格
 
-### 跨**行**合并
+跨<span style="color:red">**行**</span>合并
 
 ```html
 rowspan="合并单元格的个数"  
 ```
 
-### 跨**列**合并
+跨<span style="color:red">**列**</span>合并
 
 ```html
 colspan="合并单元格的个数"  
@@ -416,7 +419,7 @@ colspan="合并单元格的个数"
 
 ## 划分表格结构
 
-定义表格的头部，内部必须拥有`<tr>`标签
+定义表格的头部，<span style="background-color:yellow">内部必须拥有<ins style="color:red">`<tr>`</ins>标签</span>
 
 ```html
 <thead>
@@ -468,7 +471,7 @@ colspan="合并单元格的个数"
 
 ## 列表标签
 
-### 无序列表
+**无序列表**
 
 ```html
 <ul>
@@ -481,7 +484,7 @@ colspan="合并单元格的个数"
 
 `<li>与<li>`之间相当于一个容器，可容纳所有元素
 
-### 有序列表
+**有序列表**
 
 ```html
 <ol>
@@ -491,7 +494,7 @@ colspan="合并单元格的个数"
 </ol>
 ```
 
-### 自定义列表
+**自定义列表**
 
 ```html
 <dl>
@@ -506,7 +509,7 @@ colspan="合并单元格的个数"
 
 ## 表单标签
 
-一个完整的<u>表单</u>由**表单控件**、**提示信息**和**表单域**构成
+一个完整的<u>表单</u>由<span style="background-color:yellow">表单</span>**控件、提示信息**和**表单域**构成
 
 ```html
 <input type="属性值" value="你好">
@@ -531,9 +534,9 @@ type属性用来指定控件类型
 | checked   | checked      | 定义选择控件默认被选中的项  |
 | maxlength | 正整数       | 控件允许输入的最多字符数    |
 
-### name属性
+**name属性**
 
-单选按钮可通过设置**相同的name属性值**
+单选按钮可通过设置<span style="background-color:yellow">**相同的name属性值**</span>
 
   ![img](data:image/png;base64,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)  
 
@@ -578,17 +581,17 @@ checked属性表示默认选中状态
 
 ## label标签
 
-### 概念
+**概念**
 
 label标签为input元素定义标注
 
-### 作用
+**作用**
 
 用于绑定一个表单标签，当点击label标签时，被绑定的表单元素就会获得焦点
 
-**当鼠标点击label标签里面的文字时，光标会定位到指定的表单里面**
+<span style="background-color:yellow">**当鼠标点击label标签里面的文字时，光标会定位到指定的表单里面**</span>
 
-### 绑定元素
+**绑定元素**
 
 - label直接包括input表单
 
@@ -614,7 +617,7 @@ label标签为input元素定义标注
 
 ![image-20220222155131590](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221551646.png)
 
-### 作用
+<span style="color:blue">**作用**</span>
 
 通过textarea控件可以轻松地创建多行文本输入框
 
@@ -622,7 +625,7 @@ label标签为input元素定义标注
 
 **禁止拖动**
 
-```html
+```css
 resize: none;
 ```
 
@@ -649,9 +652,11 @@ resize: none;
 ```
 
 - `<select>`中至少包含一对option
-- 在option中定义selected="selected"时，当前项**即为默认选择项**
+- 在option中定义selected="selected"时，当前项<span style="background-color:yellow">**即为默认选择项**</span>
 
-### 分组
+
+
+**分组**
 
 ```html
 <select name="" id="pro">
@@ -680,7 +685,7 @@ resize: none;
 </form>
 ```
 
-### 常用属性
+<span style="color:blue">**常用属性**</span>
 
 | **属性** | **属性值** | **作用**                                    |
 | -------- | ---------- | ------------------------------------------- |
@@ -693,6 +698,8 @@ resize: none;
 ## html 5
 
 html5 mdn 介绍：https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML
+
+
 
 ### 语义化标签
 
@@ -716,11 +723,11 @@ IE9使用需要转换为**块级元素**
 | `<audio>`          | 音频     |
 | `<video>`          | 视频     |
 
-### 音频格式
+<span style="color:blue">**音频格式**</span>
 
 ![image-20220222155621556](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221556617.png)
 
-### 音频标签语法格式
+<span style="color:red">**音频标签语法格式**</span>
 
 ```html
 <audio src="文件地址" controls="controls"></audio>
@@ -731,22 +738,22 @@ IE9使用需要转换为**块级元素**
 </audio>
 ```
 
-### 音频标签常见属性
+<span style="color:blue">**音频标签常见属性**</span>
 
-| **属性** | **值**   | **描述**                     |
-| -------- | -------- | ---------------------------- |
-| autoplay | autoplay | 音频在就绪后马上播放         |
-| controls | controls | 向用户显示控件，比如播放按钮 |
-| loop     | loop     | 每当音频结束时，重新开始播放 |
-| src      | url      | 要播放音频的url              |
+| **属性**                                                     | **值**   | **描述**                     |
+| ------------------------------------------------------------ | -------- | ---------------------------- |
+| <span style="color:red;font-family:'Consolas'">autoplay</span> | autoplay | 音频在就绪后马上播放         |
+| <span style="color:red;font-family:'Consolas'">controls</span> | controls | 向用户显示控件，比如播放按钮 |
+| <span style="color:red;font-family:'Consolas'">loop</span>   | loop     | 每当音频结束时，重新开始播放 |
+| <span style="color:red;font-family:'Consolas'">src</span>    | url      | 要播放音频的url              |
 
 谷歌浏览器禁用`autoplay="autoplay"`
 
-### 视频格式
+<span style="color:blue">**视频格式**</span>
 
 ![image-20220222155749756](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221557815.png)
 
-### 视频标签语法格式
+<span style="color:red">**视频标签语法格式**</span>
 
 ```html
 <video src="文件地址" controls="controls"></video>
@@ -757,36 +764,36 @@ IE9使用需要转换为**块级元素**
 </video>
 ```
 
-### 视频标签常见属性
+<span style="color:blue">**视频标签常见属性**</span>
 
-| **属性** | **值**       | **描述**                           |
-| -------- | ------------ | ---------------------------------- |
-| autoplay | autoplay     | 视频在就绪后马上播放               |
-| controls | controls     | 向用户显示播放控件                 |
-| width    | pixels(像素) | 设置播放器宽度                     |
-| height   | pixels(像素) | 设置播放器高度                     |
-| loop     | loop         | 播放完是否继续播放该视频，循环播放 |
-| preload  | proload      | 是否等加载完再播放                 |
-| src      | url          | 视频url地址                        |
-| poster   | lmgurl       | 加载等待的画面图片                 |
-| muted    | muted        | 静音播放                           |
+| **属性**                                                     | **值**       | **描述**                           |
+| ------------------------------------------------------------ | ------------ | ---------------------------------- |
+| <span style="color:red;font-family:'Consolas'">autoplay</span> | autoplay     | 视频在就绪后马上播放               |
+| <span style="color:red;font-family:'Consolas">controls</span> | controls     | 向用户显示播放控件                 |
+| <span style="color:red;font-family:'Consolas">width</span>   | pixels(像素) | 设置播放器宽度                     |
+| <span style="color:red;font-family:'Consolas">height</span>  | pixels(像素) | 设置播放器高度                     |
+| <span style="color:red;font-family:'Consolas">loop</span>    | loop         | 播放完是否继续播放该视频，循环播放 |
+| <span style="color:red;font-family:'Consolas">preload</span> | proload      | 是否等加载完再播放                 |
+| <span style="color:red;font-family:'Consolas">src</span>     | url          | 视频url地址                        |
+| <span style="color:red;font-family:'Consolas">poster</span>  | lmgurl       | 加载等待的画面图片                 |
+| <span style="color:red;font-family:'Consolas">muted</span>   | muted        | 静音播放                           |
 
 谷歌浏览器禁用`autoplay="autoplay"`
 
 ### 表单属性
 
-| **属性****值**    | **说明**                    |
-| ----------------- | --------------------------- |
-| type="email"      | 限制用户输入必须为Email类型 |
-| type="url"        | 限制用户输入必须为url类型   |
-| type="date"       | 限制用户输入必须为日期类型  |
-| type="time"       | 限制用户输入必须为时间类型  |
-| type="month"      | 限制用户输入必须为月类型    |
-| type="week"       | 限制用户输入必须为周类型    |
-| **type="number"** | 限制用户输入必须为数字类型  |
-| **type="tel"**    | 手机号码                    |
-| **type="search"** | 搜索框                      |
-| type="color"      | 生成一个颜色选择表单        |
+| 属性值                                                       | 说明                        |
+| ------------------------------------------------------------ | --------------------------- |
+| <span style="color:red;font-family:'Consolas">type="email"</span> | 限制用户输入必须为Email类型 |
+| <span style="color:red;font-family:'Consolas">type="url"</span> | 限制用户输入必须为url类型   |
+| <span style="color:red;font-family:'Consolas">type="date"</span> | 限制用户输入必须为日期类型  |
+| <span style="color:red;font-family:'Consolas">type="time"</span> | 限制用户输入必须为时间类型  |
+| <span style="color:red;font-family:'Consolas">type="month"</span> | 限制用户输入必须为月类型    |
+| <span style="color:red;font-family:'Consolas">type="week"</span> | 限制用户输入必须为周类型    |
+| <span style="color:red;font-family:'Consolas">**type="number"**</span> | 限制用户输入必须为数字类型  |
+| <span style="color:red;font-family:'Consolas">**type="tel"**</span> | 手机号码                    |
+| <span style="color:red;font-family:'Consolas'">**type="search"**</span> | 搜索框                      |
+| <span style="color:red;font-family:'Consolas">type="color"</span> | 生成一个颜色选择表单        |
 
 ```html
 <form action="">
