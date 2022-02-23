@@ -144,7 +144,13 @@ span标签一行<span style="background-color:yellow">可放置多个</span>
 
 ### 文本格式化标签
 
-![image-20220222152809668](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221528708.png)
+| <b></b> `<strong></strong>` | 文字以<span style="color:red;font-weight:700">粗体</span>方式显示 |
+| --------------------------- | ------------------------------------------------------------ |
+| `<em></em>` <i></i>         | 文字以<span style="color:red;font-weight:700">斜体</span>方式显示 |
+| <s></s> `<del></del>`       | 文字以加<span style="color:red;font-weight:700">删除线</span>方式显示 |
+| <u></u> `<ins></ins>`       | 文字以加<span style="color:red;font-weight:700">下划线</span>方式显示 |
+
+
 
 ### 标签属性
 
@@ -158,9 +164,49 @@ span标签一行<span style="background-color:yellow">可放置多个</span>
 
 https://www.runoob.com/tags/tag-img.html
 
-![image-20220222152925399](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221529442.png)
+<table style="font-family:'Consolas';" cellspacing="0">
+    <tr style="background-color:#92D050;color: #fff">
+        <th>属性</th>
+        <th>属性值</th>
+        <th>描述</th>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">src</span></td>
+        <td>URL</td>
+        <td>图像的路径</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">alt</span></td>
+        <td>文本</td>
+        <td>图像不能显示时的替换文本</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">title</span></td>
+        <td>文本</td>
+        <td>鼠标悬停时显示的内容</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">width</span></td>
+        <td>像素（XHTML不支持%页面百分比）</td>
+        <td>设置图像的宽度</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">height</span></td>
+        <td>像素（XHTML不支持%页面百分比）</td>
+        <td>设置图像的高度（一般不设置）</td>
+    </tr>
+    <tr style="background-color:#F4B183;">
+        <td><span style="font-weight: 700;color:red">border</span></td>
+        <td>数字</td>
+        <td>设置图像边框的宽度</td>
+    </tr>
+</table>
 
-![image-20220222152943975](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221529013.png)
+**注意**：
+
+1. 标签可以拥有**多个属性**，必须写在开始标签中，位于标签名后面
+2. 属性之间**不分先后顺序**，标签名与属性、属性与属性之间均以**空格**分开
+3. 采取<span style="background-color:yellow">键值对</span>的格式 key="value"的格式
 
 ### 链接标签
 
@@ -170,7 +216,29 @@ https://www.runoob.com/tags/tag-img.html
 
 https://www.runoob.com/tags/tag-a.html
 
-![image-20220222153129623](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221531682.png)
+<table style="font-family:'Consolas';" cellspacing="0">
+    <tr style="background-color:#92D050;color: #fff">
+        <th>属性</th>
+        <th>作用</th>
+    </tr>
+    <tr>
+        <td style="font-weight:700">href</td>
+        <td>指定链接目标的URL地址</td>
+    </tr>
+    <tr>
+        <td style="font-weight:700">target</td>
+        <td>指定链接页面打开方式，_self（默认），<strong>_blank</strong>（在<span style="background-color:yellow">新窗口打开</span>）</td>
+    </tr>
+</table>
+
+**注意**：
+
+1. 可以为图像、表格、音频、视频等**各种网页元素添加超链接**
+2. \#空链接
+3. 外部链接，http://www.baidu.com
+4. 内部链接，内部页面名称
+
+
 
 ### 注释标签
 
@@ -196,7 +264,11 @@ https://www.runoob.com/tags/tag-a.html
 <base target="_blank">
 ```
 
-![image-20220222153325128](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221533170.png)
+<span style="background-color:yellow">所有链接</span>默认添加`_blank`
+
+注意：<span style="color:red">**跳转锚点也是链接！！！**</span>
+
+
 
 ### 预格式化文本
 
@@ -261,7 +333,53 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLTableElement
 
 ## 表格属性
 
-![image-20220222153909991](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221539063.png)
+<table style="font-family:'Consolas';" cellspacing="0">
+    <tr style="background-color:#92D050;color: #fff">
+        <th>属性名</th>
+        <th>含义</th>
+        <th>常用属性值</th>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">border="0"</span></td>
+        <td>设置表格的边框（默认0无边框）</td>
+        <td>像素值</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">cellspacing="0"</span></td>
+        <td>设置单元格与单元格之间的空白间距</td>
+        <td>像素值（默认2px）</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">cellpadding="0"</span></td>
+        <td>设置单元格内容与单元格边框之间的空白边距</td>
+        <td>像素值（默认1px）</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">width="500"</span></td>
+        <td>设置表格的宽度</td>
+        <td>像素值</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">height="200"</span></td>
+        <td>设置表格的高度</td>
+        <td>像素值</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700;color:red">align="center"</span></td>
+        <td>设置表格在网页中的水平对齐方式</td>
+        <td>left,center,right</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700;color:red">border-collapse:collapse;</span></td>
+        <td>是用来决定表格的边框是分开的还是合并的</td>
+        <td>
+            <span style="font-weight: 700;">collapse</span><br>
+				&nbsp;&nbsp;相邻的单元格共用同一条边框（采用 collapsed-border 表格渲染模型）。<br>
+            <span style="font-weight: 700;">separate</span><br>
+				&nbsp;&nbsp;默认值。每个单元格拥有独立的边框（采用 separated-border 表格渲染模型）。
+        </td>
+    </tr>
+</table>
 
 ![image-20220222153926211](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221539274.png)
 
@@ -517,22 +635,75 @@ colspan="合并单元格的个数"
 type属性用来指定控件类型
 ```
 
-| **属性**  | **属性值**   | **描述**                    |
-| --------- | ------------ | --------------------------- |
-| **type**  | text         | 单行文本输入框              |
-|           | password     | 密码输入框                  |
-|           | radio        | 单选按钮                    |
-|           | checkbox     | 复选框                      |
-|           | button       | 普通按钮                    |
-|           | submit       | 提交按钮                    |
-|           | reset        | 重置按钮                    |
-|           | image        | 图像形式的提交按钮          |
-|           | file         | 文件域                      |
-| name      | 由用户自定义 | 控件的名称                  |
-| value     | 由用户自定义 | input控件中的默认文本值     |
-| size      | 正整数       | input控件在页面中的显示宽度 |
-| checked   | checked      | 定义选择控件默认被选中的项  |
-| maxlength | 正整数       | 控件允许输入的最多字符数    |
+<table style="font-family:'Consolas';" cellspacing="0">
+    <tr style="background-color:#92D050;color: #fff">
+        <th>属性</th>
+        <th>属性值</th>
+        <th>描述</th>
+    </tr>
+    <tr>
+        <td rowspan="9"><span style="font-weight: 700;color:red">type</span></td>
+        <td>text</td>
+        <td>单行文本输入框</td>
+    </tr>
+    <tr>
+        <td>password</td>
+        <td>密码输入框</td>
+    </tr>
+    <tr>
+        <td>radio</td>
+        <td>单选按钮</td>
+    </tr>
+    <tr>
+        <td>checkbox</td>
+        <td>复选框</td>
+    </tr>
+    <tr>
+        <td>button</td>
+        <td>普通按钮</td>
+    </tr>
+    <tr>
+        <td>submit</td>
+        <td>提交按钮</td>
+    </tr>
+    <tr>
+        <td>reset</td>
+        <td>重置按钮</td>
+    </tr>
+    <tr>
+        <td>image</td>
+        <td>图像形式的提交按钮</td>
+    </tr>
+    <tr>
+        <td>file</td>
+        <td>文件域</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700;">name</span></td>
+        <td>由用户自定义</td>
+        <td>控件的名称</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700;">value</span></td>
+        <td>由用户自定义</td>
+        <td>input控件中的默认文本值</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700;">size</span></td>
+        <td>正整数</td>
+        <td>input控件在页面中的显示宽度</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700;">checked</span></td>
+        <td>checked</td>
+        <td>定义选择控件默认被选中的项</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700;">maxlength</span></td>
+        <td>正整数</td>
+        <td>控件允许输入的最多字符数</td>
+    </tr>
+</table>
 
 **name属性**
 
@@ -674,7 +845,7 @@ resize: none;
     </select>
 ```
 
-![汊 市  湖 北 省  汊 市  广 市  湖 南 省  长 沙 市 ](data:image/png;base64,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)
+![image-20220223150311842](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231503914.png)
 
 ## from表单域
 
@@ -687,13 +858,36 @@ resize: none;
 
 <span style="color:blue">**常用属性**</span>
 
-| **属性** | **属性值** | **作用**                                    |
-| -------- | ---------- | ------------------------------------------- |
-| action   | url地址    | 指定接收并处理表单数据的服务器程序的url地址 |
-| method   | Get/post   | 设置表单数据的提交方式                      |
-| name     | 名称       | 指定表单的名称，区分同一个页面的多个表单    |
+<table style="font-family:'Consolas';" cellspacing="0">
+    <tr style="background-color:#92D050;color: #fff">
+        <th>属性</th>
+        <th>属性值</th>
+        <th>作用</th>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">action</span></td>
+        <td>url地址</td>
+        <td>指定接收并处理表单数据的服务器程序的url地址</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">method</span></td>
+        <td>get/post</td>
+        <td>设置表单数据的提交方式</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">name</span></td>
+        <td>名称</td>
+        <td>指定表单的名称，区分同一个页面的多个表单</td>
+    </tr>
+</table>
 
-![image-20220222155356151](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221553202.png)
+- <span style="background-color:orange">get请求</span>通常表示<span style="color:red">**获取数据**</span>
+- <span style="background-color:orange">post请求</span>通常表示<span style="color:red">**提交数据**</span>
+- <span style="background-color:orange">get请求</span>发送的<span style="color:red">数据都写在地址栏上，用户可见</span>
+- <span style="background-color:orange">post请求</span>发送的<span style="color:red">数据用户不可见</span>
+- <span style="color:red">get请求不能提交大量数据</span>，但<span style="background-color:orange">post可以</span>，因此不要混用
+
+
 
 ## html 5
 
@@ -740,12 +934,33 @@ IE9使用需要转换为**块级元素**
 
 <span style="color:blue">**音频标签常见属性**</span>
 
-| **属性**                                                     | **值**   | **描述**                     |
-| ------------------------------------------------------------ | -------- | ---------------------------- |
-| <span style="color:red;font-family:'Consolas'">autoplay</span> | autoplay | 音频在就绪后马上播放         |
-| <span style="color:red;font-family:'Consolas'">controls</span> | controls | 向用户显示控件，比如播放按钮 |
-| <span style="color:red;font-family:'Consolas'">loop</span>   | loop     | 每当音频结束时，重新开始播放 |
-| <span style="color:red;font-family:'Consolas'">src</span>    | url      | 要播放音频的url              |
+<table style="font-family:'Consolas';" cellspacing="0">
+    <tr style="background-color:#92D050;color: #fff">
+        <th>属性</th>
+        <th>属性值</th>
+        <th>作用</th>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">autoplay</span></td>
+        <td>autoplay</td>
+        <td>音频在就绪后马上播放</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">controls</span></td>
+        <td>controls</td>
+        <td>向用户显示控件，比如播放按钮</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">loop</span></td>
+        <td>loop</td>
+        <td>每当音频结束时，重新开始播放</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">src</span></td>
+        <td>url</td>
+        <td>要播放音频的url</td>
+    </tr>
+</table>
 
 谷歌浏览器禁用`autoplay="autoplay"`
 
@@ -766,34 +981,109 @@ IE9使用需要转换为**块级元素**
 
 <span style="color:blue">**视频标签常见属性**</span>
 
-| **属性**                                                     | **值**       | **描述**                           |
-| ------------------------------------------------------------ | ------------ | ---------------------------------- |
-| <span style="color:red;font-family:'Consolas'">autoplay</span> | autoplay     | 视频在就绪后马上播放               |
-| <span style="color:red;font-family:'Consolas">controls</span> | controls     | 向用户显示播放控件                 |
-| <span style="color:red;font-family:'Consolas">width</span>   | pixels(像素) | 设置播放器宽度                     |
-| <span style="color:red;font-family:'Consolas">height</span>  | pixels(像素) | 设置播放器高度                     |
-| <span style="color:red;font-family:'Consolas">loop</span>    | loop         | 播放完是否继续播放该视频，循环播放 |
-| <span style="color:red;font-family:'Consolas">preload</span> | proload      | 是否等加载完再播放                 |
-| <span style="color:red;font-family:'Consolas">src</span>     | url          | 视频url地址                        |
-| <span style="color:red;font-family:'Consolas">poster</span>  | lmgurl       | 加载等待的画面图片                 |
-| <span style="color:red;font-family:'Consolas">muted</span>   | muted        | 静音播放                           |
+<table style="font-family:'Consolas';" cellspacing="0">
+    <tr style="background-color:#92D050;color: #fff">
+        <th>属性</th>
+        <th>属性值</th>
+        <th>作用</th>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">autoplay</span></td>
+        <td>autoplay</td>
+        <td>视频在就绪后马上播放</td>
+    </tr>
+    <tr style="background-color:#F4B183;">
+        <td><span style="font-weight: 700;color:red">controls</span></td>
+        <td>controls</td>
+        <td>向用户显示控件，比如播放按钮</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">width</span></td>
+        <td>pixels(像素)</td>
+        <td>设置播放器宽度</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">height</span></td>
+        <td>pixels(像素)</td>
+        <td>设置播放器宽度</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">loop</span></td>
+        <td>loop</td>
+        <td>播放完是否继续播放该视频，循环播放</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">preload</span></td>
+        <td>preload</td>
+        <td>是否等加载完再播放</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">src</span></td>
+        <td>url</td>
+        <td>视频url地址</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">poster</span></td>
+        <td>lmgurl</td>
+        <td>加载等待的画面图片</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">muted</span></td>
+        <td>muted</td>
+        <td>静音播放</td>
+    </tr>
+</table>
 
 谷歌浏览器禁用`autoplay="autoplay"`
 
 ### 表单属性
 
-| 属性值                                                       | 说明                        |
-| ------------------------------------------------------------ | --------------------------- |
-| <span style="color:red;font-family:'Consolas">type="email"</span> | 限制用户输入必须为Email类型 |
-| <span style="color:red;font-family:'Consolas">type="url"</span> | 限制用户输入必须为url类型   |
-| <span style="color:red;font-family:'Consolas">type="date"</span> | 限制用户输入必须为日期类型  |
-| <span style="color:red;font-family:'Consolas">type="time"</span> | 限制用户输入必须为时间类型  |
-| <span style="color:red;font-family:'Consolas">type="month"</span> | 限制用户输入必须为月类型    |
-| <span style="color:red;font-family:'Consolas">type="week"</span> | 限制用户输入必须为周类型    |
-| <span style="color:red;font-family:'Consolas">**type="number"**</span> | 限制用户输入必须为数字类型  |
-| <span style="color:red;font-family:'Consolas">**type="tel"**</span> | 手机号码                    |
-| <span style="color:red;font-family:'Consolas'">**type="search"**</span> | 搜索框                      |
-| <span style="color:red;font-family:'Consolas">type="color"</span> | 生成一个颜色选择表单        |
+<table style="font-family:'Consolas';" cellspacing="0">
+    <tr style="background-color:#92D050;color: #fff">
+        <th>属性值</th>
+        <th>说明</th>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">type="email"</span></td>
+        <td>限制用户输入必须为email类型</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">type="url"</span></td>
+        <td>限制用户输入必须为url类型</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">type="date"</span></td>
+        <td>限制用户输入必须为日期类型</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">type="time"</span></td>
+        <td>限制用户输入必须为时间类型</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">type="month"</span></td>
+        <td>限制用户输入必须为月类型</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">type="week"</span></td>
+        <td>限制用户输入必须为周类型</td>
+    </tr>
+    <tr style="background-color:#F4B183;">
+        <td><span style="font-weight: 700;color:red;">type="search"</span></td>
+        <td>搜索框</td>
+    </tr>
+    <tr style="background-color:#F4B183;">
+        <td><span style="font-weight: 700;color:red;">type="number"</span></td>
+        <td>限制用户输入必须为数字类型</td>
+    </tr>
+    <tr style="background-color:#F4B183;">
+        <td><span style="font-weight: 700;color:red;">type="tel"</span></td>
+        <td>手机号码</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">type="color"</span></td>
+        <td>生成一个颜色选择表单</td>
+    </tr>
+</table>
 
 ```html
 <form action="">
