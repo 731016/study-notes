@@ -5,48 +5,12 @@
 
 ### :fire:备用笔记网站[推荐访问]：<a href="http://xiaofei.work/" target="_blank">小飞的学习笔记</a>
 
-## 目录 :pencil: 
+## 目录 :pencil:
 
-### git上传代码
-
-  [简单解决 gitee 上传限制问题 - jaychou、 - 博客园 (cnblogs.com)](https://www.cnblogs.com/jaychou-/p/14983818.html#:~:text=我们使用代码来上,10m以内的文件)
-
-  [vscode链接github&gitee](https://blog.csdn.net/qq_38981614/article/details/115013188)
-
-  [git同时设置gitee和github push代码](https://cloud.tencent.com/developer/article/1774890)
-
-  [ssh测试连接超时 10053](https://www.xuebuyuan.com/2159862.html)
-
-  [git push 443问题（我自己的端口4780）](https://blog.csdn.net/m0_46979525/article/details/120825786)
-
-  [not a git repository](https://blog.csdn.net/wenb1bai/article/details/89363588)
-
-  [git push No configured push destination](https://blog.csdn.net/COCOLI_BK/article/details/97921497)
-
-  ```Git
-  重置账户和密码
-  git config --system --unset credential.helper
-  // 如果需要更大的范围
-  git config --global --unset credential.helper)
-  ```
-
-```Git
-## 克隆仓库 
-git clone 仓库地址
-
-## cd进入克隆的仓库
-cd 进入文件目录
-把添加的东西放入 仓库内
-
-## 添加到缓存区
-git add .
-
-## 提交到本地仓库
-git commit -m "注释"
-
-## 上传到远程仓库
-git push origin master
-```
+### 项目
+- [快递代取系统](https://github.com/jitwxs/express)
+- [天天生鲜交易平台](https://gitee.com/LovelyHzz/daily-fresh-trading-platform/tree/master)
+- [Lie flat房屋出租平台](https://gitee.com/LovelyHzz/rent_house)
 
 ### 代码库 :computer: 
 - [java学习代码Demo](https://gitee.com/LovelyHzz/code-demo/tree/master)
@@ -107,6 +71,7 @@ git push origin master
 
 ### 版本控制
 - [SVN](https://gitee.com/LovelyHzz/study-notes/blob/master/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/SVN.md)
+- [Git](https://gitee.com/LovelyHzz/study-notes/blob/master/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/Git.md)
 
 ### SSM 框架
 - [Mybatis](https://gitee.com/LovelyHzz/study-notes/blob/master/SSM%E6%A1%86%E6%9E%B6/mybatis.md)
