@@ -764,7 +764,7 @@ console.log(0.07 * 100);   // 结果不是 7，  而是：7.000000000000001
 
 
 
-## 递增和递减运算符
+### 递增和递减运算符
 
 <span style="color:#2E75B5;font-family:'Consolas';font-weight:700">递增和递减运算符概述</span>
 
@@ -800,7 +800,7 @@ var  num = 10;
 alert(10 + num++);  // 20
 ```
 
-## 比较运算符
+### 比较运算符
 
 <span style="color:#2E75B5;font-family:'Consolas';font-weight:700">比较运算符概述</span>
 
@@ -817,7 +817,7 @@ console.log(18 == '18');
 console.log(18 === '18');
 ```
 
-## 逻辑运算符
+### 逻辑运算符
 
 <span style="color:#2E75B5;font-family:'Consolas';font-weight:700">逻辑运算符概述</span>
 
@@ -854,7 +854,7 @@ console.log(isOk);  // false
 
  
 
-### 逻辑与
+逻辑与
 
 语法： 表达式1 && 表达式2
 
@@ -867,7 +867,7 @@ console.log( 0 && 456 );          // 0
 console.log( 123 && 456&& 789 );  // 789
 ```
 
-### 逻辑或
+逻辑或
 
 语法： 表达式1 || 表达式2
 
@@ -880,7 +880,7 @@ console.log( 0 ||  456 );          //  456
 console.log( 123 || 456 || 789 );  //  123
 ```
 
-## 赋值运算符
+### 赋值运算符
 
 用来把数据赋值给变量的运算符
 
@@ -893,7 +893,7 @@ age -= 5;  // 相当于 age = age - 5;
 age *= 10; // 相当于 age = age * 10;
 ```
 
-## 运算符优先级
+### 运算符优先级
 
 - 一元运算符里面的<span style="background-color:yellow;font-family:'Consolas';font-weight:700">逻辑非</span>优先级很**高**
 - 逻辑与比逻辑或优先级高
@@ -945,3 +945,788 @@ age *= 10; // 相当于 age = age * 10;
         <td>,</td>
     </tr>
 </table>
+
+## 流程控制
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">概念</span>
+
+在一个程序执行的过程中，各条代码的执行顺序对程序的结果是有直接影响的
+
+流程控制就是来控制代码按照一定结构顺序来执行
+
+流程控制主要有三种结构
+
+![image-20220303211420293](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032114357.png)
+
+### 顺序流程控制
+
+顺序结构是程序中最简单、最基本的流程控制，它没有特定的语法结构，程序会按照代码的先后顺序，依次执行，程序中大多数的代码都是这样执行的
+
+### 分支流程控制
+
+### 分支结构
+
+由上到下执行代码的过程中，根据不同的条件，执行不同的路径代码（执行代码多选一的过程），从而得到不同的结果
+
+ 
+
+JS 语言提供了两种分支结构语句：<span style="background-color:yellow;font-family:'Consolas'">if 语句、switch 语句</span>
+
+
+
+**if语句**
+
+```js
+// 条件成立执行代码，否则什么也不做
+if (条件表达式) {
+    // 条件成立执行的代码语句
+}
+```
+
+**执行流程**
+
+![image-20220303211703771](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032117815.png)
+
+**if else语句（双分支语句）**
+
+```js
+// 条件成立  执行 if 里面代码，否则执行else 里面的代码
+if (条件表达式) {
+    // [如果] 条件成立执行的代码
+} else {
+    // [否则] 执行的代码
+}
+```
+
+**执行流程**
+
+![image-20220303211738462](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032117510.png)
+
+**if else if** **语句(多分支语句)**
+
+```js
+// 适合于检查多重条件。
+if (条件表达式1) {
+    语句1；
+} else if (条件表达式2)  {
+    语句2；
+} else if (条件表达式3)  {
+   语句3；
+ ....
+} else {
+    // 上述条件都不成立执行此处代码
+}
+```
+
+**执行逻辑**
+
+![image-20220303211822653](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032118703.png)
+
+### 三元表达式
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">语法结构</span>
+
+```js
+表达式1 ? 表达式2 : 表达式3;
+```
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">执行思路</span>
+
+- 如果表达式1为 true ，则返回表达式2的值，如果表达式1为 false，则返回表达式3的值
+- 简单理解：     就类似于 if else （双分支） 的简写
+
+
+
+### switch分支流程控制
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">语法结构</span>
+
+```js
+switch( 表达式 ){ 
+    case value1:
+        // 表达式 等于 value1 时要执行的代码
+        break;
+    case value2:
+        // 表达式 等于 value2 时要执行的代码
+        break;
+    default:
+        // 表达式 不等于任何一个 value 时要执行的代码
+}
+```
+
+- switch ：开关     转换 ， case ：小例子 选项
+- 关键字 switch 后面括号内可以是**表达式**或**值**，     通常是一个变量
+- 关键字 case , 后跟一个选项的表达式或值，后面跟一个冒号
+- switch 表达式的值会与结构中的 case 的值做比较     
+- 如果存在匹配全等(===) ，则与该 case 关联的代码块会被执行，并在遇到 break 时停止，整个 switch 语句代码执行结束
+- 如果所有的 case 的值都和表达式的值不匹配，则执行 default     里的代码
+
+注意： **执行case里面的语句时，如果没有break，则继续执行下一个case里面的语句**
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">switch 语句和 if else if 语句的区别</span>
+
+- 一般情况下，它们两个语句可以相互替换
+- switch...case 语句通常处理 case为比较确定值的情况， 而 if…else…语句更加灵活，常用于范围判断(大于、等于某个范围)
+- switch 语句进行条件判断后直接执行到程序的条件语句，效率更高。而if…else 语句有几种条件，就得判断多少次。
+- 当分支比较少时，if… else语句的执行效率比 switch语句高。
+- 当分支比较多时，switch语句的执行效率比较高，而且结构更清晰。     
+
+
+
+## 循环
+
+### for循环
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">语法结构</span>
+
+```js
+for(初始化变量; 条件表达式; 操作表达式 ){
+     //循环体
+ }
+```
+
+<table style="font-family:'Consolas';" cellspacing="0">
+    <tr style="background-color:#92D050;color: #fff">
+        <th>名称</th>
+        <th>作用</th>
+    </tr>
+    <tr>
+        <td>初始化变量</td>
+        <td>通常被用于初始化一个计数器，该表达式可以使用 var 关键字声明新的变量，这个变量帮我们来记录次</td>
+    </tr>
+    <tr>
+        <td>条件表达式</td>
+        <td>用于确定每一次循环是否能被执行。如果结果是 true 就继续循环，否则退出循环</td>
+    </tr>
+    <tr>
+        <td>操作表达式</td>
+        <td>用于确定每一次循环是否能被执行。如果结果是 true 就继续循环，否则退出循环
+</td>
+    </tr>
+</table>
+
+执行条件表达式，如果为<span style="font-weight:700;color:green;font-family:'Consolas'">true</span>，则执行循环体语句，否则退出循环，循环结束
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">断点调试的流程：</span>
+
+1、浏览器中按 F12--> sources -->找到需要调试的文件-->在程序的某一行设置断点
+
+2、Watch: 监视，通过watch可以监视变量的值的变化，非常的常用
+
+3、摁下F11，程序单步执行，让程序一行一行的执行，这个时候，观察watch中变量的值的变化
+
+### 双重for循环
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">双重 for 循环语法</span>
+
+```js
+for (外循环的初始; 外循环的条件; 外循环的操作表达式) {
+    for (内循环的初始; 内循环的条件; 内循环的操作表达式) {  
+       需执行的代码;
+   }
+}
+```
+
+### while循环
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">语法结构</span>
+
+```js
+while (条件表达式) {
+    // 循环体代码 
+}
+```
+
+<span style="background-color:yellow;font-family:'Consolas'">先执行条件表达式</span>，如果结果为 <span style="font-weight:700;color:green;font-family:'Consolas'">true</span>，则执行循环体代码；如果为 <span style="font-weight:700;color:red;font-family:'Consolas'">false</span>，则退出循环，执行后面代码
+
+### do-while循环
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">语法结构</span>
+
+```js
+do {
+    // 循环体代码 - 条件表达式为 true 时重复执行循环体代码
+} while(条件表达式);
+```
+
+<span style="background-color:yellow;font-family:'Consolas'">先执行一次**循环体**代码</span>
+
+再执行条件表达式，如果结果为 <span style="font-weight:700;color:green;font-family:'Consolas'">true</span>，则继续执行循环体代码，如果为 <span style="font-weight:700;color:red;font-family:'Consolas'">false</span>，则退出循环，继续执行后面代码
+
+### continue、break
+
+**continue** 关键字用于立即跳出**本次循环**，继续下一次循环
+
+**break** 关键字用于立即跳出**整个循环**（循环结束）
+
+
+
+## 代码规范
+
+变量、函数的命名必须要有意义
+
+<span style="background-color:yellow;font-family:'Consolas'">变量</span>的名称一般用**名词**
+
+<span style="background-color:yellow;font-family:'Consolas'">函数</span>的名称一般用**动词**
+
+
+
+### 操作符规范
+
+```js
+// 操作符的左右两侧各保留一个空格
+for (var i = 1; i <= 5; i++) {
+   if (i == 3) {
+       break; // 直接退出整个 for 循环，跳到整个for循环下面的语句
+   }
+   console.log('我正在吃第' + i + '个包子呢');
+}
+```
+
+**关键词、操作符之间后加空格**
+
+![image-20220303213456345](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032134396.png)
+
+### 单行注释规范
+
+```js
+for (var i = 1; i <= 5; i++) {
+   if (i == 3) {
+       break; // 单行注释前面注意有个空格
+   }
+   console.log('我正在吃第' + i + '个包子呢');
+}
+```
+
+## 数组
+
+### 创建数组
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">利用<span style="color:#C00000;font-family:'Consolas';font-weight:700;">new</span>创建数组</span>
+
+```js
+var 数组名=new Array();
+var arr=new Array(); //创建一个新的空数组
+```
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">利用数组<span style="color:#C00000;font-family:'Consolas';font-weight:700;">字面量</span>创建数组</span>
+
+```js
+//1. 使用数组字面量方式创建空的数组
+var  数组名 = [];
+//2. 使用数组字面量方式创建带初始值的数组
+var  数组名 = ['小白','小黑','大黄','瑞奇'];
+```
+
+- 数组的字面量是**方括号** **[ ]** 
+- 声明数组并赋值称为数组的初始化
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">数组元素的类型</span>
+
+数组中可以存放<span style="background-color:yellow;font-family:'Consolas';font-weight:700;">任意类型</span>的数据，例如字符串，数字，布尔值等
+
+
+
+### 获取数组中的元素
+
+索引 (下标) ：用来访问数组元素的序号（数组下标从 0 开始）
+
+数组可以通过索引来访问、设置、修改对应的数组元素，可以通过“数组名[索引]”的形式来获取数组中的元素
+
+### 遍历数组
+
+```js
+var arr = ['red','green', 'blue'];
+        for(var i = 0; i < arr.length; i++)
+        {
+            Console.log(arrStus[i]);
+        }
+```
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">数组的长度</span>
+
+数组的长度：默认情况下表示数组中元素的个数
+
+使用“<span style="color:red;font-family:'Consolas';font-weight:700;">数组名.length</span>”可以访问数组元素的数量（数组长度）
+
+- 数组的length属性可以被修改
+- 如果设置的length属性值**大于**数组的元素个数，则会在数组末尾**出现空白元素**
+- 如果设置的length属性值**小于**数组的元素个数，则会把**超过该值的数组元素删除**
+
+### 数组中的新增元素
+
+**修改length长度**
+
+ ```js
+ 数组.length=新的长度
+ ```
+
+**修改数组索引号**
+
+```js
+数组[ 数组.length ] = 新数据;
+var arr=['涂','鏊','飞'];
+        arr[arr.length]='胡';
+        arr[arr.length]='梓';
+        arr[arr.length]='卓';
+        for(var i=0;i<arr.length;i++){
+            console.log(arr[i]);
+    }
+```
+
+### 数组方法**forEach**遍历数组
+
+```js
+arr.forEach(function(value, index, array) {
+        //参数一是:数组元素
+        //参数二是:数组元素的索引
+        //参数三是:当前的数组
+    })
+    //相当于数组遍历的 for循环 没有返回值
+```
+
+### 数组方法filter过滤数组
+
+```js
+var arr = [12, 66, 4, 88, 3, 7];
+var newArr = arr.filter(function(value, index, array) {
+    //参数一是:数组元素
+    //参数二是:数组元素的索引
+    //参数三是:当前的数组
+    return value >= 20;
+});
+console.log(newArr); //[66,88] //返回值是一个新数组
+```
+
+### 数组方法some
+
+```js
+some 查找数组中是否有满足条件的元素
+var arr = [10, 30, 4];
+var flag = arr.some(function(value, index, array) {
+    //参数一是:数组元素
+    //参数二是:数组元素的索引
+    //参数三是:当前的数组
+    return value < 3;
+});
+console.log(flag); //false返回值是布尔值,只要查找到满足条件的一个元素就立马终止循环
+```
+
+### some和forEach区别
+
+- 如果查询数组中唯一的元素, 用some方法更合适,在some 里面 遇到 return true 就是终止遍历 迭代效率更高
+
+- **在forEach,filter   里面 return 不会终止迭代**
+
+### 解构赋值
+
+ES6中允许从**数组中提取值**，按照对应位置，对变量赋值，**对象**也可以实现解构
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">数组解构</span>
+
+```js
+let [a, b, c] = [1, 2, 3];
+  console.log(a)//1
+  console.log(b)//2
+  console.log(c)//3
+ //如果解构不成功，变量的值为undefined
+```
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">对象解构</span>
+
+```js
+let person = { name: 'zhangsan', age: 20 }; 
+  let { name, age } = person;
+  console.log(name); // 'zhangsan' 
+  console.log(age); // 20
+  let {name: myName, age: myAge} = person; // myName myAge 属于别名
+  console.log(myName); // 'zhangsan' 
+  console.log(myAge); // 20
+```
+
+**小结**
+
+- 解构赋值就是把数据结构分解，然后给变量进行赋值
+- 如果结构不成功，变量跟数值个数不匹配的时候，变量的值为**undefined**
+- 数组解构用中括号包裹，多个变量用逗号隔开，对象解构用花括号包裹，多个变量用逗号隔开
+- 利用解构赋值能够让我们方便的去取对象中的属性跟方法
+
+### 剩余参数
+
+剩余参数语法允许我们<span style="color:#C00000;font-family:'Consolas';font-weight:700;">将一个不定数量的参数表示为一个数组</span>，不定参数定义方式，这种方式很方便的去声明不知道参数情况下的一个函数
+
+```js
+function sum (first, ...args) {
+      console.log(first); // 10
+      console.log(args); // [20, 30] 
+  }
+  sum(10, 20, 30)
+```
+
+剩余参数和解构配合使用
+
+```js
+let students = ['wangwu', 'zhangsan', 'lisi'];
+ let [s1, ...s2] = students; 
+ console.log(s1);  // 'wangwu' 
+ console.log(s2);  // ['zhangsan', 'lisi']
+```
+
+
+
+## 函数
+
+**封装了一段可被重复调用执行的代码块**
+
+通过此代码块可以**实现大量代码的重复使用**
+
+### 函数的使用
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">声明函数</span>
+
+```js
+//声明函数（命名函数）
+function 函数名(){
+     //函数体代码
+}
+```
+
+- function 是声明函数的关键字,必须**小写**
+- 由于函数一般是为了实现某个功能才定义的，     所以通常我们将**函数名命名为动词**，比如 getSum
+
+### 调用函数
+
+```js
+//调用函数
+函数名(); //通过调用函数名来执行函数体代码
+```
+
+- 调用的时候千万不要忘记添加**小括号**
+- 只有调用函数时才会执行函数体代码
+
+```js
+/* 1. 普通函数 */
+function fn() {
+    console.log('人生的巅峰');
+}
+fn();
+
+/* 2. 对象的方法 */
+var o = {
+    sayHi: function() {
+        console.log('人生的巅峰');
+    }
+}
+o.sayHi();
+
+/* 3. 构造函数*/
+function Star() {};
+new Star();
+
+/* 4. 绑定事件函数*/
+btn.onclick = function() {}; // 点击了按钮就可以调用这个函数
+
+/* 5. 定时器函数*/
+setInterval(function() {}, 1000);
+这个函数是定时器自动1秒钟调用一次
+
+/* 6. 立即执行函数(自调用函数)*/
+    (function() {
+    console.log('人生的巅峰');
+})();
+```
+
+### 函数的封装
+
+函数的封装是把一个或者多个功能通过函数的方式封装起来，对外**只提供一个简单的函数接口**
+
+### 函数的参数语法
+
+- 形参：函数定义时设置接收调用时传入
+- 实参：函数调用时传入小括号内的真实数据
+
+![image-20220303214742085](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032147150.png)
+
+参数的作用 : 在函数内部某些值不能固定，我们可以通过参数在调用函数时传递不同的值进去
+
+```js
+// 带参数的函数声明
+function 函数名(形参1, 形参2 , 形参3...) { // 可以定义任意多的参数，用逗号分隔
+  // 函数体
+}
+// 带参数的函数调用
+函数名(实参1, 实参2, 实参3...); 
+```
+
+- 调用的时候实参值是传递给形参的
+- 形参简单理解为：不用声明的变量
+- 实参和形参的多个参数之间用逗号（,）分隔
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">函数形参和实参数量不匹配时</span>
+
+![image-20220303214827482](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032148539.png)
+
+注意：在JavaScript中，形参的默认值是undefined
+
+**小结：**
+
+- 函数可以带参数也可以不带参数
+- 声明函数的时候，函数名括号里面的是形参，形参的默认值为 undefined
+- 调用函数的时候，函数名括号里面的是实参
+- 多个参数中间用逗号分隔
+- 形参的个数可以和实参个数不匹配，但是结果不可预计，我们尽量要匹配
+
+### 函数的返回值
+
+返回值：函数调用整体代表的数据；函数执行完成后可以通过return语句将指定数据返回
+
+```js
+// 声明函数
+function 函数名（）{
+    ...
+    return  需要返回的值；
+}
+// 调用函数
+函数名();    // 此时调用函数就可以得到函数体内return 后面的值
+```
+
+- 在使用 return 语句时，函数会停止执行，并返回指定的值
+- 如果函数没有 return ，返回的值是 undefined
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">break ,continue ,return 的区别</span>
+
+- break ：结束当前的循环体（如 for、while）
+- continue ：跳出本次循环，继续执行下次循环（如 for、while）
+- return ：不仅可以退出循环，还能够返回 return 语句中的值，同时还可以结束当前的函数体内的代码
+
+### arguments的使用
+
+当<span style="background-color:yellow;font-family:'Consolas';font-weight:700;">不确定</span>有多少个**参数**传递的时候，可以用arguments来获取
+
+arguments为当前函数的**内置对象**，所有函数都内置了，arguments对象中存储了传递的所有实参
+
+arguments展示形式是一个**伪数组**，可以进行遍历
+
+- **具有length属性**
+- **按索引方式存储数据**
+- **不具有数组的push，pop等方法**
+
+注意：在函数内部使用该对象，用此对象<span style="background-color:yellow;font-family:'Consolas';font-weight:700;">获取函数调用时传递的实参</span>
+
+```js
+var argFun = function(...arguments) {
+            var sum = 0;
+            for (var i = 0; i < arguments.length; i++) {
+                sum += arguments[i];
+            }
+            return sum;
+        }
+        var sum = argFun(1, 2, 3);
+        console.log(sum);
+```
+
+### 函数的三种声明方式
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">自定义函数方式(命名函数)</span>
+
+利用函数关键字 function 自定义函数方式
+
+```js
+// 声明定义方式
+function fn() {...}
+// 调用  
+fn();
+```
+
+- 因为有名字，所以也被称为**命名**函数
+- <span style="background-color:yellow;font-family:'Consolas';font-weight:400;">调用函数的代码</span>**既可以放到**声明函数的**前面**，也可以**放在**声明函数的**后面**
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">函数表达式方式(匿名函数</span>
+
+利用函数表达式方式的写法如下： 
+
+```js
+// 这是函数表达式写法，匿名函数后面跟分号结束
+ var fn = function(){...}；
+ // 调用的方式，函数调用必须写到函数体下面
+ fn();
+```
+
+因为函数没有名字，所以也被称为**匿名**函数
+
+- 这个fn 里面存储的是一个函数     
+- 函数表达式方式原理跟声明变量方式是一致的
+- **函数调用**的代码<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">必须写到函数体后面</span>
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">方式3 new Function()</span>
+
+```js
+var f = new Function('a', 'b', 'console.log(a + b)');
+ f(1, 2);
+ var fn = new Function('参数1','参数2'..., '函数体')
+```
+
+**注意**
+ Function 里面参数都必须是**字符串格式**
+
+ 第三种方式执行效率低，也不方便书写，因此较少使用
+ **所有函数都是** **Function** **的实例(对象)** 
+ 函数也属于对象
+
+```js
+//立即执行函数
+    ( function(){} ());
+    ( function(){} ) ();
+```
+
+### 递归
+
+**递归：**如果一个函数在内部可以调用其本身，那么这个函数就是递归函数。简单理解:函数内部自己调用自己, 这个函数就是递归函数
+
+**注意：**递归函数的作用和循环效果一样，由于递归很容易发生“栈溢出”错误（stack overflow），所以必须要加退出条件return
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">利用递归求1~n的阶乘</span>
+
+```js
+ //利用递归函数求1~n的阶乘 1 * 2 * 3 * 4 * ..n
+  function fn(n) {
+      if (n == 1) { //结束条件
+        return 1;
+      }
+      return n * fn(n - 1);
+  }
+  console.log(fn(3));
+```
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">利用递归求斐波那契数列</span>
+
+```js
+// 利用递归函数求斐波那契数列(兔子序列)  1、1、2、3、5、8、13、21...
+ // 用户输入一个数字 n 就可以求出 这个数字对应的兔子序列值
+ // 我们只需要知道用户输入的n 的前面两项(n-1 n-2)就可以计算出n 对应的序列值
+ function fb(n) {
+   if (n === 1 || n === 2) {
+         return 1;
+   }
+   return fb(n - 1) + fb(n - 2);
+ }
+ console.log(fb(3));
+```
+
+### 箭头函数
+
+ES6中<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">新增</span>的定义函数的方式
+
+```js
+() => {} //()：代表是函数； =>：必须要的符号，指向哪一个代码块；{}：函数体
+ const fn = () => {}//代表把一个函数赋值给fn
+```
+
+函数体中**只有一句代码**，且代码的执行结果就是**返回值**，可以<span style="color:red;font-family:'Consolas';font-weight:700;">省略大括号</span>
+
+```js
+function sum(num1, num2) { 
+      return num1 + num2; 
+  }
+  //es6写法
+  const sum = (num1, num2) => num1 + num2;
+```
+
+如果**形参只有一个**，可以<span style="color:red;font-family:'Consolas';font-weight:700;">省略小括号</span>
+
+```js
+function fn (v) {
+      return v;
+  } 
+ //es6写法
+  const fn = v => v;
+```
+
+箭头函数<span style="color:red;font-family:'Consolas';font-weight:400;">不绑定this关键字</span>，箭头函数中的this，<span style="color:red;font-family:'Consolas';font-weight:700;">指向的是函数定义位置的上下文this</span>
+
+**箭头函数不会创建自己的this,它只会从**<span style="color:red;font-family:'Consolas';font-weight:700;">自己的作用域链的上一层继承this。</span>
+
+```js
+const obj = { name: '张三'} 
+  function fn () { 
+      console.log(this);//this 指向 是obj对象
+      return () => { 
+          console.log(this);//this 指向 的是箭头函数定义的位置，那么这个箭头函数定义在fn里面，而这个fn指向是的obj对象，所以这个this也指向是obj对象
+      } 
+  } 
+  const resFn = fn.call(obj); 
+  resFn();
+```
+
+**小结**
+
+- 箭头函数中不绑定this，箭头函数中的this指向是它所定义的位置，可以简单理解成，定义箭头函数中的作用域的this指向谁，它就指向谁
+- 箭头函数的优点在于解决了this执行环境所造成的一些问题。比如：解决了匿名函数this指向的问题（匿名函数的执行环境具有全局性），包括setTimeout和setInterval中使用this所造成的问题
+
+**面试题**
+
+```js
+var age = 100;
+ var obj = {
+     age: 20,
+     say: () => {
+         alert(this.age)
+     }
+ }
+ obj.say();//箭头函数this指向的是被声明的作用域里面，而对象没有作用域的，所以箭头函数虽然在对象中被定义，但是this指向的是全局作用域
+```
+
+## 作用域
+
+代码名称的可用性范围
+
+ 
+
+**全局作用域**
+
+整个script标签，单个js文件
+
+ 
+
+**局部作用域**
+
+函数内部
+
+ 
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">块级作用域 {}</span>
+
+**函数外可以调用函数内部的局部变量**
+
+es6新增
+
+### 变量的作用域
+
+**全局变量**
+
+全局作用域下的变量
+
+ 
+
+浏览器关闭时，才销毁
+
+ 
+
+**在函数内部，**<span style="color:#C00000;font-family:'Consolas';font-weight:700;">没有直接声明，直接赋值的变量，也是全局变量</span>
+
+ 
+
+**局部变量**
+
+- 局部作用域下的变量，函数内部
+- 只能在函数内部使用
+- 形参也是局部变量
+
+ 
+
+程序执行完毕，即销毁
+
+### 作用域链
+
+内部函数访问外部函数的变量，采用链式查找的方式
+
