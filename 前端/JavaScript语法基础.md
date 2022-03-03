@@ -681,3 +681,14 @@ forEach 方法会依次为集合中的元素执行回调函数，就算元素的
 
 ## 解释型语言和编译型语言
 
+<span style="color:#2E75B5;font-family:'Consolas'">**概述** </span>
+
+计算机不能直接理解任何除机器语言以外的语言，所以必须要把程序员所写的程序语言翻译成机器语言才能执行程序。程序语言翻译成机器语言的工具，被称为**翻译器**
+
+![image-20220303204421807](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032044020.png)
+
+- 翻译器翻译的方式有两种：一个是<span style="color:red">编译</span>，另外一个是<span style="color:red">解释</span>。两种方式之间的区别在于<span style="background-color:yellow">翻译的时间点不同</span>
+- **编译器**是在代码执行<span style="background-color:yellow">**之前**进行编译</span>，生成中间代码文件
+- **解释器**是在运行时<span style="background-color:yellow">**进行**及时解释</span>，并立即执行(当编译器以解释方式运行的时候，也称之为解释器)
+
+ 
