@@ -681,7 +681,7 @@ forEach 方法会依次为集合中的元素执行回调函数，就算元素的
 
 ## 解释型语言和编译型语言
 
-<span style="color:#2E75B5;font-family:'Consolas'">**概述** </span>
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">概述 </span>
 
 计算机不能直接理解任何除机器语言以外的语言，所以必须要把程序员所写的程序语言翻译成机器语言才能执行程序。程序语言翻译成机器语言的工具，被称为**翻译器**
 
@@ -691,4 +691,257 @@ forEach 方法会依次为集合中的元素执行回调函数，就算元素的
 - **编译器**是在代码执行<span style="background-color:yellow">**之前**进行编译</span>，生成中间代码文件
 - **解释器**是在运行时<span style="background-color:yellow">**进行**及时解释</span>，并立即执行(当编译器以解释方式运行的时候，也称之为解释器)
 
+ <span style="color:#2E75B5;font-family:'Consolas';font-weight:700">执行过程</span>
+
+![image-20220303204855300](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032048350.png)
+
+## 关键字和保留字
+
+ <span style="color:#2E75B5;font-family:'Consolas';font-weight:700">标识符</span>
+
+标识(zhi)符：就是指开发人员为变量、属性、函数、参数取的名字
+
  
+
+**标识符**<span style="color:red">不能是关键字或保留字</span>
+
+ 
+
+ <span style="color:#2E75B5;font-family:'Consolas';font-weight:700">关键字</span>
+
+关键字：是指 JS本身**已经使用**了的字，<span style="color:red">不能再用它们充当变量名、方法名</span>
+
+ 
+
+包括：
+
+<span style="font-family:Consolas">break、case、catch、continue、default、delete、do、else、finally、for、function、if、in、instanceof、new、return、switch、this、throw、try、typeof、var、void、while、with 等</span>
+
+ 
+
+ <span style="color:#2E75B5;font-family:'Consolas';font-weight:700">保留字</span>
+
+保留字：实际上就是**预留的“**<span style="color:red">关键字</span>”，意思是现在虽然还不是关键字，但是未来可能会成为关键字，同样不能使用它们当变量名或方法名
+
+ 
+
+包括：
+
+<span style="font-family:Consolas">boolean、byte、char、class、const、debugger、double、enum、export、extends、fimal、float、goto、implements、import、int、interface、long、mative、package、private、protected、public、short、static、super、synchronized、throws、transient、volatile 等</span>
+
+ 
+
+注意：如果将保留字用作变量名或函数名，那么除非将来的浏览器实现了该保留字，否则很可能收不到任何错误消息。当浏览器将其实现后，该单词将被看做关键字，如此将出现关键字错误
+
+
+
+## 运算符
+
+### 算数运算符
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">算术运算符概述</span>
+
+算术运算使用的符号，用于执行两个变量或值的算术运算
+
+![image-20220303205406136](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032054192.png)
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">浮点数的**精度**问题</span>
+
+浮点数值的最高精度是 17 位小数，但在进行算术计算时其精确度远远不如整数
+
+```js
+var result = 0.1 + 0.2;    // 结果不是 0.3，而是：0.30000000000000004
+console.log(0.07 * 100);   // 结果不是 7，  而是：7.000000000000001
+```
+
+<span style="color:red;font-weight:700">不要直接判断两个浮点数是否相等 !</span>
+
+
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">表达式和返回值</span>
+
+表达式：是由数字、运算符、变量等以能求得数值的有意义排列方法所得的组合  表达式最终都会有一个结果，返回给开发者，称为返回值
+
+
+
+## 递增和递减运算符
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">递增和递减运算符概述</span>
+
+在 JavaScript 中，递增（++）和递减（ -- ）既可以放在变量前面，也可以放在变量后面
+
+放在变量前面时，我们可以称为前置递增（递减）运算符
+
+放在变量后面时，我们可以称为后置递增（递减）运算符
+
+ 
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">递增运算符</span>
+
+前置递增运算符
+
+++num 前置递增，就是自加1，类似于 num = num + 1，但是 ++num 写起来更简单
+
+使用口诀：先自加，后返回值
+
+```js
+var  num = 10;
+alert(++num + 10);   // 21
+```
+
+后置递增运算符
+
+num++ 后置递增，就是自加1，类似于 num = num + 1 ，但是 num++ 写起来更简单
+
+使用口诀：先返回原值，后自加
+
+```js
+var  num = 10;
+alert(10 + num++);  // 20
+```
+
+## 比较运算符
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">比较运算符概述</span>
+
+比较运算符（关系运算符）是两个数据进行比较时所使用的运算符，比较运算后，会返回一个布尔值（true / false）作为比较运算的结果
+
+![image-20220303210042828](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032100876.png)
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">等号比较</span>
+
+![image-20220303210107601](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032101648.png)
+
+```js
+console.log(18 == '18');
+console.log(18 === '18');
+```
+
+## 逻辑运算符
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">逻辑运算符概述</span>
+
+逻辑运算符是用来进行布尔值运算的运算符，其返回值也是布尔值。后面开发中经常用于多个条件的判断
+
+![image-20220303210301261](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032103306.png)
+
+逻辑与&&
+
+两边都是 true才返回 true，否则返回 false
+
+ 
+
+逻辑或 ||
+
+两边都是 true才返回 true，否则返回 false
+
+ 
+
+逻辑非 ！
+
+逻辑非（!）也叫作取反符，用来取一个布尔值相反的值，如 true 的相反值是 false
+
+```js
+var isOk = !true;
+console.log(isOk);  // false
+```
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700">短路运算（逻辑中断）</span>
+
+**短路运算的原理**
+
+当有多个表达式（值）时,**左边的表达式值可以确定结果**时,就<span style="background-color:yellow;font-family:'Consolas'">不再继续运算右边</span>的表达式的值
+
+ 
+
+### 逻辑与
+
+语法： 表达式1 && 表达式2
+
+- 如果第一个表达式的值为**真**，则返回**表达式2**
+- 如果第一个表达式的值为**假**，则返回**表达式1**
+
+```js
+console.log( 123 && 456 );        // 456
+console.log( 0 && 456 );          // 0
+console.log( 123 && 456&& 789 );  // 789
+```
+
+### 逻辑或
+
+语法： 表达式1 || 表达式2
+
+- 如果第一个表达式的值为**真**，则返回**表达式1**
+- 如果第一个表达式的值为**假**，则返回**表达式2**
+
+```js
+console.log( 123 || 456 );         //  123
+console.log( 0 ||  456 );          //  456
+console.log( 123 || 456 || 789 );  //  123
+```
+
+## 赋值运算符
+
+用来把数据赋值给变量的运算符
+
+![image-20220303210538688](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032105739.png)
+
+```js
+var age = 10;
+age += 5;  // 相当于 age = age + 5;
+age -= 5;  // 相当于 age = age - 5;
+age *= 10; // 相当于 age = age * 10;
+```
+
+## 运算符优先级
+
+- 一元运算符里面的<span style="background-color:yellow;font-family:'Consolas';font-weight:700">逻辑非</span>优先级很**高**
+- 逻辑与比逻辑或优先级高
+
+<table style="font-family:'Consolas';" cellspacing="0">
+    <tr style="background-color:#92D050;color: #fff">
+        <th>优先级</th>
+        <th>运算符</th>
+        <th>顺序</th>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">1</span></td>
+        <td>小括号</td>
+        <td>()</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">2</span></td>
+        <td>一元运算符</td>
+        <td>++ -- !</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">3</span></td>
+        <td>算术运算符</td>
+        <td style="font-weight:700">先 * / % 后 + -</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">4</span></td>
+        <td>关系运算符</td>
+        <td>>= > < <=</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">5</span></td>
+        <td>相等运算符</td>
+        <td>== != === !==</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">6</span></td>
+        <td>逻辑运算符</td>
+        <td style="font-weight:700">先 && 后 ||</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">7</span></td>
+        <td>赋值运算符</td>
+        <td>=</td>
+    </tr>
+    <tr>
+        <td><span style="font-weight: 700">8</span></td>
+        <td>逗号运算符</td>
+        <td>,</td>
+    </tr>
+</table>
