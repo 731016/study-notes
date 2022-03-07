@@ -1730,3 +1730,1778 @@ es6新增
 
 内部函数访问外部函数的变量，采用链式查找的方式
 
+## 预解析
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">概念</span>
+
+JavaScript 代码是由浏览器中的 JavaScript 解析器来执行的
+
+JavaScript 解析器在运行 JavaScript 代码的时候
+
+分为两步：<span style="background-color:yellow;font-family:'Consolas';font-weight:700;">预解析</span>和代码执行
+
+-   预解析：在当前作用域下, JS 代码执行之前，浏览器会默认把带有 var 和 function 声明的变量在内存中进行提前声明或者定义
+-   代码执行： 从上到下执行JS语句
+
+**预解析会把变量和函数的声明在代码执行之前执行完成**
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">函数表达式声明函数问题</span>
+
+函数表达式创建函数，会执行变量提升，此时接收函数的变量名无法正确的调用
+
+![image-20220307134220655](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071342874.png)
+
+### 变量预解析
+
+预解析也叫做变量、函数提升
+
+变量提升（变量预解析）： 变量的声明会被提升到当前作用域的最上面，变量的赋值不会提升
+
+![image-20220307134315087](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071343138.png)
+
+### 函数预解析
+
+函数提升： <span style="background-color:yellow;font-family:'Consolas';font-weight:700;">函数的声明</span>会被提升到当前作用域的最上面，但是不会调用函数
+
+![image-20220307134422528](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071344592.png)
+
+```js
+f1();
+console.log(c);
+console.log(b);
+console.log(a);
+function f1(){
+  var a=b=c=9;
+  console.log(a);
+  console.log(b);
+  console.log(c);
+}
+---------------------------------------
+//相当于
+function f1(){
+  var a=9;b=9;c=9;
+  console.log(a);
+  console.log(b);
+  console.log(c);
+}
+f1();
+console.log(c);//打印全局变量c
+console.log(b);//全局变量b
+console.log(a);//局部变量a
+```
+
+![image-20220307134454079](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071344137.png)
+
+## 对象
+
+<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">概念</span>
+
+在 JavaScript 中，对象是一组无序的相关属性和方法的集合，所有的事物都是对象，例如字符串、数值、数组、函数等
+
+ 
+
+对象是由**属性**和**方法**组成的
+
+- 属性：事物的特征
+- 方法：事物的行为
+
+```js
+var obj = {
+    "name":"张三疯",
+    "sex":"男",
+    "age":128,
+    "height":154
+}
+```
+
+### 创建对象的三种方式
+
+属性是对象的一部分，而变量不是对象的一部分，变量是单独存储数据的容器
+
+- 变量：单独声明赋值，单独存在
+- 属性：对象里面的变量称为属性，不需要声明，用来描述该对象的特征
+
+ 
+
+方法是对象的一部分，函数不是对象的一部分，函数是单独封装操作的容器
+
+ 
+
+- 函数：单独存在的，通过“函数名()”的方式就可以调用
+- 方法：对象里面的函数称为方法，方法不需要声明，使用“对象.方法名()”的方式就可以调用，方法用来描述该对象的行为和功能
+
+#### 使用字面量创建对象
+
+就是花括号 { } 里面包含了表达这个具体事物（对象）的属性和方法；{ } 里面采取键值对的形式表示
+
+- 键：相当于属性名
+- 值：相当于属性值，可以是任意类型的值（数字类型、字符串类型、布尔类型，函数类型等）
+
+```js
+var star = {
+    name : 'pink',
+    age : 18,
+    sex : '男',
+    sayHi : function(){
+        alert('大家好啊~');
+    }
+};
+```
+
+<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">对象的使用</span>
+
+**对象的属性**
+
+对象中存储**具体数据**的 "键值对"中的 "键"称为对象的属性，即对象中存储具体数据的项
+
+###  
+
+**对象的方法**
+
+对象中存储**函数**的 "键值对"中的 "键"称为对象的方法，即对象中存储函数的项
+
+ 
+
+**访问对象的属性**
+
+对象里面的属性调用 : <span style="background-color:yellow;font-family:'Consolas';font-weight:700;">对象.属性名</span>
+
+对象里面属性的另一种调用方式 : <span style="background-color:yellow;font-family:'Consolas';font-weight:700;">对象['属性名']</span>，注意方括号里面的属性必须加引号 
+ 示例代码如下：
+
+```js
+console.log(star.name)     // 调用名字属性
+console.log(star['name'])  // 调用名字属性
+```
+
+<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">调用对象的方法</span>
+
+对象里面的方法调用：<span style="background-color:yellow;font-family:'Consolas';font-weight:700;">对象.方法名()</span> ，注意这个方法名字后面一定加括号 
+ 示例代码如下：
+
+```js
+star.sayHi(); // 调用 sayHi 方法,注意，一定不要忘记带后面的括号
+```
+
+
+
+#### 利用new object创建对象
+
+<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">创建空对象</span>
+
+```js
+var andy = new Obect();
+```
+
+通过内置构造函数Object创建对象，此时andy变量已经保存了创建出来的空对象
+
+<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">给空对象添加属性和方法</span>
+
+通过对象操作属性和方法的方式，来为对象增加属性和方法
+ 示例代码如下：
+
+```js
+andy.name = 'pink';
+andy.age = 18;
+andy.sex = '男';
+andy.sayHi = function(){
+    alert('大家好啊~');
+}
+```
+
+**注意**：
+
+- Object() ：第一个字母大写     
+- new     Object() ：需要 new 关键字
+- 使用的格式：对象.属性 = 值;
+
+
+
+#### 利用构造函数创建对象
+
+<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">构造函数</span>
+
+是一种特殊的函数，主要用来**初始化对象**，即为对象成员变量赋初始值，它总与 new 运算符一起使用
+
+
+
+我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面
+
+ 
+
+**构造函数的封装格式**：
+
+```js
+function 构造函数名(形参1,形参2,形参3) {
+      this.属性名1 = 参数1;
+      this.属性名2 = 参数2;
+      this.属性名3 = 参数3;
+      this.方法名 = 函数体;
+}
+```
+
+**构造函数的调用格式**
+
+```js
+var obj = new 构造函数名(实参1，实参2，实参3);
+```
+
+以上代码中，obj即接收到构造函数创建出来的对象。
+
+```js
+function Hero(name,type,blood){
+            this.name=name;
+            this.type=type;
+            this.blood=blood;
+            this.Attack=function(attack){
+                this.attack=attack;
+            }
+        }
+        var lianpo=new Hero('廉颇','力量型','500血量');
+        lianpo.Attack('近战');
+        var houyi=new Hero('后裔','射手型','100血量');
+        houyi.Attack('远程');
+        console.log(lianpo,houyi);
+```
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">注意事项</span>
+
+1. 构造函数约定**首字母大写**。
+2. 函数内的属性和方法前面需要添加     **this** ，表示当前对象的属性和方法
+3. 构造函数中**不需要** **return** **返回结果**
+4. 当我们创建对象的时候，**必须用** **new** **来调用构造函数**
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">其他</span>
+
+构造函数，如 Stars()，抽象了对象的公共部分，封装到了函数里面，它泛指某一大类（class） 创建对象，如 new Stars()，特指某一个，通过 new 关键字创建对象的过程我们也称为对象实例化
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">new关键字的作用</span>
+
+1. 在构造函数代码开始执行之前，创建一个空对象
+2. 修改this的指向，把this指向创建出来的空对象
+3. 执行函数的代码
+4. 在函数完成之后，返回this---即创建出来的对象
+
+
+
+#### Object原型对象
+
+在Object对象的**prototype对象里封装的函数**，这些函数可以被任何对象调用。
+
+ ```js
+ obj.hasOwnProperty(‘field’)：判断某对象是否含有特定的自身属性。
+ 
+ obj2.isPrototypeOf（obj1）：判断一个对象是否存在于另一个对象的原型链上。
+ 
+ obj.propertyIsEnumerable(‘field’)：判断一个对象的某一个属性是否是枚举类型的。
+ 
+ obj.toLocaleString()：将一个对象转换为本地字符串。
+ 
+ obj.toString()：将一个对象转换为字符串。
+ 
+ obj.valueOf()：返回对象的值，一般由js引擎、Function、Object级别函数调用，请不要覆盖、调用。
+ ```
+
+
+
+### 遍历对象
+
+<span style="background-color:yellow;font-family:'Consolas';font-weight:700;">for...in</span> 语句用于对数组或者对象的属性进行循环操作
+
+```js
+for (变量 in 对象名字) {
+    // 在此执行代码
+}
+```
+
+语法中的变量是自定义的，它需要符合命名规范，通常我们会将这个变量写为 k 或者 key
+
+```js
+for (var k in obj) {
+    console.log(k);      // 这里的 k 是属性名
+    console.log(obj[k]); // 这里的 obj[k] 是属性值
+}
+```
+
+### 面向过程与面向对象
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">面向过程</span>
+
+面向过程就是分析出解决问题所需要的步骤，然后用函数把这些步骤一步一步实现，使用的时候再一个一个的依次调用就可以了
+
+ 
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">面向对象</span>
+
+面向对象是把事务分解成为一个个对象，然后由对象之间分工与合作
+
+ 
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">面向过程与面向对象对比</span>
+
+|      | **面向过程**                                                 | **面向对象**                                                 |
+| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 优点 | 性能比面向对象高，适合跟硬件联系很紧密的东西，例如单片机就采用的面向过程编程 | 易维护、易复用、易扩展，由于面向对象有**封装**、**继承**、**多态**性的特性，可以设计出低耦合的系统，使系统 更加灵活、更加易于维护 |
+| 缺点 | 不易维护、不易复用、不易扩展                                 | 性能比面向过程低                                             |
+
+
+
+## Object.defineProperty
+
+<span style="color:red;font-family:'Consolas';font-weight:700;">Object.defineProperty</span>设置或修改对象中的属性
+
+![image-20220307135739115](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071357179.png)
+
+```js
+Object.defineProperty(对象， 修改或新增的属性名， {
+        value: 修改或新增的属性的值,
+        writable: true / false, //如果值为false 不允许修改这个属性值
+        enumerable: false, //enumerable 如果值为false 则不允许遍历
+        configurable: false //configurable 如果为false 则不允许删除这个属性 属性是否可以被删除或是否可以再次修改特性
+    })
+```
+
+## global对象
+
+![image-20220307135824458](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071358517.png)
+
+```js
+Eval 转换为表达式
+IsNan 判断是否数字
+EncodeURI 字符串编码
+DecodeURI 解码
+```
+
+![image-20220307135912768](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071359829.png)
+
+## 内置对象
+
+JavaScript 中的对象分为3种：
+
+- **自定义对象**
+- **内置对象**
+- **浏览器对象**
+
+前面两种对象是JS 基础 内容，属于 ECMAScript； 第三个浏览器对象属于 JS 独有的
+
+### 查文档
+
+Mozilla 开发者网络（MDN）提供了有关开放网络技术（Open Web）的信息，包括 HTML、CSS 和万维网及 HTML5 应用的 API
+
+MDN:https://developer.mozilla.org/zh-CN/
+
+### Math对象
+
+Math 对象<span style="background-color:yellow;font-family:'Consolas';font-weight:700;">不是构造函数</span>，它具有**数学常数和函数的属性和方法**。跟数学相关的运算（求绝对值，取整、最大值等）可以使用 Math 中的成员
+
+| **属性、方法名**      | **功能**                                 |
+| --------------------- | ---------------------------------------- |
+| Math.PI               | 圆周率                                   |
+| Math.floor()          | 向下取整                                 |
+| Math.ceil()           | 向上取整                                 |
+| Math.round()          | 四舍五入版 就近取整 注意  -3.5 结果是 -3 |
+| Math.abs()            | 绝对值                                   |
+| Math.max()/Math.min() | 求最大和最小值                           |
+| Math.random()         | 获取范围在[0,1)内的随机值                |
+
+.5会取大的值，其他值都是四舍五入
+
+```js
+console.log('-1.5：'+Math.round(-1.5));
+console.log('-1.6：'+Math.round(-1.6));
+```
+
+![image-20220307140122102](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071401167.png)
+
+**获取指定范围内的随机整数**：
+
+```js
+function getRandom(min, max) {
+   return Math.floor(Math.random() * (max - min + 1)) + min;
+这个值不小于 min（有可能等于），并且小于（不等于）max 
+}
+```
+
+[得到一个两数之间的随机整数，包括两个数在内](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math/random#得到一个两数之间的随机整数，包括两个数在内)
+
+```js
+function getRandomIntInclusive(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min; //含最大值，含最小值 
+        }
+
+function getRandomNum(min, max) {
+            return parseInt(Math.random() * (max - min + 1)) + min;
+        }
+```
+
+### 日期对象
+
+Date是一个<span style="background-color:yellow;font-family:'Consolas';font-weight:700;">构造函数</span>，所以使用时**需要实例化**后才能使用其中具体方法和属性
+
+Date 实例用来处理日期和时间
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">使用Date实例化日期对象</span>
+
+**获取当前时间必须实例化**
+
+```js
+var now=new Date();
+```
+
+**获取指定时间的日期对象**
+
+```js
+var future = new Date('2019-5-1 18:03:00');
+```
+
+注意：如果创建实例时并未传入参数，则得到的日期对象是**当前时间对应的日期对象**
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">使用Date实例的方法和属性</span>
+
+![image-20220307140455859](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071404939.png)
+
+```js
+function DateTime() {
+            let date = new Date();
+            let year = date.getFullYear();
+            let month = date.getMonth() + 1; // [0-11]
+            let day = date.getDate();
+            let hour = date.getHours();
+            let minutes = date.getMinutes();
+            let senconds = date.getSeconds();
+            return year + '年' + month + '月' + day + '日' + hour + '时' + minutes + '分' + senconds + '秒';
+        }
+        console.log(DateTime());
+        let day = date.getDay(); //一周第几天
+        let millisecond = date.getTime(); // 获取当前时间的毫秒值
+        console.log(day);
+        console.log(millisecond);
+        let localTime = date.toLocaleDateString(); //获取本机时间
+        console.log(localTime);
+        let localdate = date.toLocaleTimeString(); //获取本机日期
+        console.log(localdate);
+        console.log(date.toLocaleString());
+```
+
+![image-20220307140520822](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071405881.png)
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">通过Date实例获取总毫秒数</span>
+
+**总毫秒数的含义**
+
+基于1970年1月1日（世界标准时间）起的毫秒数
+
+ 
+
+获取总毫秒数
+
+```js
+// 实例化Date对象
+var now = new Date();
+// 1. 用于获取对象的原始值
+console.log(date.valueOf()) 
+console.log(date.getTime()) 
+// 2. 简单写可以这么做
+var now = + new Date();         
+// 3. HTML5中提供的方法，有兼容性问题
+var now = Date.now();
+```
+
+![image-20220307140612689](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071406763.png)
+
+```js
+function countDown(time){
+    var nowtime=+ new Date();
+    var inputtime=+new Date(time);
+    var counttime=(inputtime-nowtime)/1000;
+    var d=parseInt(counttime/60/60/24);
+    d=d<10?'0'+d:d;
+    var h=parseInt(counttime/60/60%24);
+    h=h<10?'0'+h:h;
+    var m=parseInt(counttime/60%60);
+    m=m<10?'0'+m:m;
+    var s=parseInt(counttime%60);
+    s=s<10?'0'+s:s;
+    return d+'天'+h+'时'+m+'分'+s+'秒';
+}
+console.log(countDown('2021-3-21 18:30:00'));
+```
+
+![image-20220307140630776](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071406839.png)
+
+```js
+function  countDown(time) {
+            var  nowtime = + new  Date();
+            var  inputtime = +new  Date(time);
+            var  counttime = (inputtime - nowtime) / 1000;
+            var  d = parseInt(counttime / 60 / 60 / 24);
+            d = d < 10 ? '0' + d : d;
+            var  h = parseInt(counttime / 60 / 60 % 24);
+            h = h < 10 ? '0' + h : h;
+            var  m = parseInt(counttime / 60 % 60);
+            m = m < 10 ? '0' + m : m;
+            var  s = parseInt(counttime % 60);
+            s = s < 10 ? '0' + s : s;
+            return  d + '天' + h + '时' + m + '分' + s + '秒';
+        }
+        setInterval(function() {
+            console.log(countDown('2021-7-12 17:18:00'));
+        }, 1000);
+```
+
+### 数组对象
+
+#### 创建数组的两种方式
+
+<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">字面量方式</span>
+
+```js
+var arr = [1,"test",true];
+```
+
+<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">new Array()</span>
+
+```js
+var arr = new Array();
+```
+
+注意：上面代码中arr创建出的是一个空数组，如果需要**使用构造函数Array**<span style="background-color:yellow;font-family:'Consolas';font-weight:700;">创建非空数组</span>，可以在创建数组时传入参数，参数传递规则如下：
+
+- 如果只传入**一个参数**，则参数规定了**数组的长度**
+- 如果传入了**多个参数**，则参数称为**数组的元素**
+
+#### 检测是否为数组
+
+<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">instanceof 运算符</span>
+
+判断一个对象是否是某个构造函数的实例
+
+```js
+var arr = [1, 23];
+var obj = {};
+console.log(arr instanceof Array); // true
+console.log(obj instanceof Array); // false
+```
+
+<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">Array.isArray()</span>
+
+判断一个对象是否为数组，isArray() 是 HTML5 中提供的方法
+
+```js
+var arr = [1, 23];
+var obj = {};
+console.log(Array.isArray(arr));   // true
+console.log(Array.isArray(obj));   // false
+```
+
+#### 添加删除数组元素的方法
+
+![image-20220307141014432](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071410515.png)
+
+#### 数组排序
+
+![image-20220307141059301](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071410367.png)
+
+注意：sort方法需要传入参数来设置升序、降序排序
+
+- 如果传入“**function(a,b){ return a-b;}**”，则为升序
+- 如果传入“**function(a,b){ return b-a;}**”，则为降序
+
+#### 数组索引方法
+
+![image-20220307141140053](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071411121.png)
+
+**去除重复元素**
+
+```js
+function Delete_Duplicate_Elements(arr){
+    var newarr=[];
+    for(var i=0;i<arr.length;i++){
+        if(newarr.indexOf(arr[i])==-1)
+        {
+            newarr.push(arr[i]);
+        }
+    }
+    return newarr;
+}
+```
+
+#### 数组转换为字符串
+
+![image-20220307141233015](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071412085.png)
+
+注意：join方法如果不传入参数，则按照 “<span style="background-color:yellow;font-family:'Consolas';font-weight:700;"> , </span>”拼接元素
+
+#### 其他方法
+
+![image-20220307141324125](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071413193.png)
+
+#### Array的扩展方法
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">扩展运算符. . .（展开语法）</span>
+
+扩展运算符可以将<span style="color:red;font-family:'Consolas';font-weight:700;">数组</span>或者<span style="color:red;font-family:'Consolas';font-weight:700;">对象</span>转为<span style="color:red;font-family:'Consolas';font-weight:700;">用逗号分隔的参数序列</span>
+
+```js
+let ary = [1, 2, 3];
+  ...ary  // 1, 2, 3
+  console.log(...ary);    // 1 2 3,相当于下面的代码
+  console.log(1,2,3);
+```
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">扩展运算符可以应用于<span style="background-color:yellow;font-family:'Consolas';font-weight:700;">合并数组</span></span>
+
+```js
+// 方法一 
+  let ary1 = [1, 2, 3];
+  let ary2 = [3, 4, 5];
+  let ary3 = [...ary1, ...ary2];
+  // 方法二 
+  ary1.push(...ary2);
+```
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">将类数组或可遍历对象转换为真正的数组</span>
+
+```js
+let oDivs = document.getElementsByTagName('div'); 
+ oDivs = [...oDivs];
+```
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">构造函数方法：Array.<span style="color:red;font-family:'Consolas';font-weight:700;">from()</span></span>
+
+将<span style="color:red;font-family:'Consolas';font-weight:700;">伪数组</span>或<span style="color:red;font-family:'Consolas';font-weight:700;">可遍历对象</span>**转换为真正的数组**
+
+```js
+//定义一个集合
+ let arrayLike = {
+     '0': 'a',
+     '1': 'b',
+     '2': 'c',
+     length: 3
+ }; 
+ //转成数组
+ let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
+```
+
+方法还可以接受第二个参数，作用类似于数组的map方法，**用来对每个元素进行处理**，将处理后的值放入返回的数组
+
+```js
+let arrayLike = { 
+      "0": 1,
+      "1": 2,
+      "length": 2
+  }
+  let newAry = Array.from(arrayLike, item => item *2)//[2,4]
+```
+
+注意：如果是对象，那么属性需要写对应的索引
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">实例方法：<span style="color:red;font-family:'Consolas';font-weight:700;">find()</span></span>
+
+用于找出**第一个**符合条件的数组成员，如果没有找到返回**undefined**
+
+```js
+let ary = [{
+      id: 1,
+      name: '张三'
+  }, { 
+      id: 2,
+      name: '李四'
+  }]; 
+  let target = ary.find((item, index) => item.id == 2);//找数组里面符合条件的值，当数组中元素id等于2的查找出来，注意，只会匹配第一个
+```
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">实例方法：<span style="color:red;font-family:'Consolas';font-weight:700;">findIndex()</span></span>
+
+用于找出**第一个**符合条件的数组成员的**位置**，如果没有找到返回**-1**
+
+```js
+let ary = [1, 5, 10, 15];
+ let index = ary.findIndex((value, index) => value > 9); 
+ console.log(index); // 2
+```
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">实例方法：<span style="color:red;font-family:'Consolas';font-weight:700;">includes()</span></span>
+
+判断某个数组**是否包含**给定的值，返回**布尔值**。
+
+```js
+[1, 2, 3].includes(2) // true 
+[1, 2, 3].includes(4) // false
+```
+
+### 获取对象的属性名
+
+<span style="color:red;font-family:'Consolas';font-weight:700;">Object.keys</span>(对象) 获取到当前对象中的属性名 ，返回值是一个**数组**
+
+```js
+var obj = {
+        id: 1,
+        pname: '小米',
+        price: 1999,
+        num: 2000
+    };
+    var result = Object.keys(obj)
+    console.log(result) //[id，pname,price,num]
+```
+
+## 字符串对象
+
+![image-20220307142144297](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071421387.png)
+
+<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">字符串的不可变性</span>
+
+指的是里面的值不可变，虽然看上去可以改变内容，但其实是地址变了，内存中新开辟了一个内存空间
+
+避免大量拼接字符串！
+
+![image-20220307142233200](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071422280.png)
+
+<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">根据字符返回索引及发现次数</span>
+
+```js
+function lookup_element(str){
+    var s=prompt('输入要查找的字符');
+    var count=0;
+    var index=str.indexOf(s);
+    while(index !== -1){
+        console.log(index);
+        count++;
+        index=str.indexOf(s,index+1);
+    }
+    console.log('0出现的次数：'+count);
+}
+```
+
+<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">根据位置返回字符</span>
+
+![image-20220307142322869](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071423952.png)
+
+![image-20220307142336369](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071423445.png)
+
+![image-20220307142347763](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071423859.png)
+
+![image-20220307142400035](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071424136.png)
+
+```js
+var str = new String('html');
+        console.log(str.length); // 字符长度
+        console.log(str.charAt(2)); // 返回指定位置的字符 参数为下标
+        console.log(str.charCodeAt(2)); // 返回指定字符的unicode编码 参数下标
+        console.log(str.concat('123456')); // 连接字符串
+        console.log(str.slice(1, 3)); // 根据下标 返回字符串 包含前一个下标，不包含后一个下标
+        console.log(str.substring(1, 3)); //  返回两个索引号之间的字符 包含前一个下标，不包含后一个下标
+        console.log(str.substr(1, 1)); // 从第一个参数开始截取，后一个参数为要截取的长度
+        console.log(str.indexOf('t')); // (从前往后)根据字符找到下标，未找到返回-1
+        console.log(str.lastIndexOf('r')); // (从后往前)根据字符找到下标，未找到返回-1
+        console.log(str.trim()); // 删除字符串两端空格
+        console.log(str.toUpperCase()); //转大写
+        console.log(str.toLowerCase()); // 转小写
+        console.log(str.split('t')); //分割字符串数组
+        console.log(str.split('t')[0]); //分割字符串数组
+        console.log(str.split('t')[1]); //分割字符串数组
+```
+
+![image-20220307142420063](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071424132.png)
+
+### **trim**方法去除字符串两端的空格
+
+**返回新字符串**
+
+```js
+var str = '   hello   '
+console.log(str.trim()) //hello 去除两端空格
+var str1 = '   he l l o   '
+console.log(str.trim()) //he l l o  去除两端空格
+```
+
+### String的扩展方法
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">模板字符串</span>
+
+ES6新增的**创建字符串**的方式，使用<span style="color:red;font-family:'Consolas';font-weight:700;">反引号``</span>定义
+
+ ```js
+ let name = `zhangsan`;
+ ```
+
+模板字符串中可以**解析变量**
+
+```js
+let name = '张三'; 
+ let sayHello = `hello,my name is ${name}`; // hello, my name is zhangsan
+```
+
+模板字符串中**可以换行**
+
+```js
+let result = { 
+      name: 'zhangsan', 
+      age: 20,
+      sex: '男' 
+  } 
+  let html = ` <div>
+      <span>${result.name}</span>
+      <span>${result.age}</span>
+      <span>${result.sex}</span>
+  </div> `;
+```
+
+在模板字符串中可以**调用函数**
+
+```js
+const sayHello = function () { 
+     return '哈哈哈哈 追不到我吧 我就是这么强大';
+  }; 
+  let greet = `${sayHello()} 哈哈哈哈`;
+  console.log(greet); // 哈哈哈哈 追不到我吧 我就是这么强大 哈哈哈哈
+```
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">实例方法：<span style="color:red;font-family:'Consolas';font-weight:700;">startsWith()</span> 和 <span style="color:red;font-family:'Consolas';font-weight:700;">endsWith()</span></span>
+
+- startsWith()：表示**参数字符串是否在原字符串的<span style="color:red;font-family:'Consolas';font-weight:700;">头部</span>**，**返回布尔值**
+- endsWith()：表示**参数字符串是否在原字符串的<span style="color:red;font-family:'Consolas';font-weight:700;">尾部</span>**，**返回布尔值**
+
+```js
+let str = 'Hello world!';
+ str.startsWith('Hello') // true 
+ str.endsWith('!')       // true
+```
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">实例方法：<span style="color:red;font-family:'Consolas';font-weight:700;">repeat()</span></span>
+
+repeat方法表示将**原字符串重复n次**，
+
+```js
+返回一个新字符串
+ 'x'.repeat(3)      // "xxx" 
+ 'hello'.repeat(2)  // "hellohello"
+```
+
+## 基本包装类型
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">简单类型（基本数据类型，值类型）</span>
+
+在存储时变量中存储的是<span style="background-color:yellow;font-family:'Consolas';font-weight:700;">值本身</span>，包括string，number，boolean，undefined，null(对象)
+
+## 复杂数据类型
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">复杂数据类型（引用类型）</span>
+
+在存储时变量中存储的仅仅是<span style="background-color:yellow;font-family:'Consolas';font-weight:700;">地址（引用）</span>，通过new关键字创建的对象（系统对象，自定义对象），如Object，Array，Date等
+
+## 堆栈
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">堆栈控件分配类别</span>
+
+（1）栈（操作系统）：由操作系统自动分配释放存放函数的参数值、局部变量的值等；其操作方式类似于数据结构中的栈
+
+（2）堆（操作系统）：存储复杂类型（对象），一般由程序员分配释放，若程序员不释放，由垃圾回收机制回收
+
+![image-20220307143128841](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071431916.png)
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">简单数据类型的存储方式</span>
+
+值类型变量的数据直接存放在变量（栈空间）中
+
+![image-20220307143200269](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071432343.png)
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">复杂数据类型的存储方式</span>
+
+**引用类型变量**（栈空间）里**存放**的是<span style="background-color:yellow;font-family:'Consolas';font-weight:700;">地址</span>，真正的**对象实例**存放在<span style="background-color:yellow;font-family:'Consolas';font-weight:700;">堆空间</span>中
+
+## 简单类型传参
+
+函数的形参可看作一个变量，当把一个值类型变量作为参数传给函数的形参时，实际是把<span style="background-color:yellow;font-family:'Consolas';font-weight:700;">变量在栈空间里的值</span>复制了一份给形参，如果在方法内部对形参做任何修改，都不会影响到外部变量
+
+```js
+function fn(a){
+    a++;
+    console.log(a);
+}
+var x=10;
+fn(x);
+console.log(x);
+```
+
+![image-20220307143348666](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071433738.png)
+
+## 复杂数据类型传参
+
+函数的形参可看作一个变量，当把引用类型变量传给形参时，其实是把变量在**栈空间里保存的<span style="background-color:yellow;font-family:'Consolas';font-weight:700;">堆地址</span>**复制给形参，形参和实参其实保存的是同一个堆地址，即操作的是同一个对象
+
+```js
+function Person(name) {
+    this.name = name;
+}
+function f1(x) { // x = p
+    console.log(x.name); // 2. 这个输出什么 ?    
+    x.name = "张学友";
+    console.log(x.name); // 3. 这个输出什么 ?    
+}
+var p = new Person("刘德华");
+console.log(p.name);    // 1. 这个输出什么 ?   
+f1(p);
+console.log(p.name);    // 4. 这个输出什么 ? 
+```
+
+![image-20220307143435414](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071434479.png)
+
+## 构造函数和原型
+
+### 静态成员和实例成员
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">实例成员</span>
+
+实例成员就是构造函数<span style="color:#C00000;font-family:'Consolas';font-weight:700;">内部</span>通过<span style="color:#C00000;font-family:'Consolas';font-weight:700;">this添加的成员</span> 如下列代码中uname age sing 就是实例成员,实例成员<span style="color:#C00000;font-family:'Consolas';font-weight:700;">只能通过**实例化的对象**来访问</span>
+
+```js
+function Star(uname, age) {
+    this.uname = uname;
+    this.age = age;
+    this.sing = function() {
+        console.log('我会唱歌');
+    }
+}
+var ldh = new Star('刘德华', 18);
+console.log(ldh.uname); //实例成员只能通过实例化的对象来访问
+```
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">静态成员</span>
+
+静态成员 <span style="color:red;font-family:'Consolas';font-weight:700;">在构造函数本身上添加的成员</span> 如下列代码中 sex 就是静态成员,静态成员<span style="color:red;font-family:'Consolas';font-weight:700;">只能通过**构造函数**来访问</span>
+
+```js
+function Star(uname, age) {
+    this.uname = uname;
+    this.age = age;
+    this.sing = function() {
+        console.log('我会唱歌');
+    }
+}
+Star.sex = '男';
+var ldh = new Star('刘德华', 18);
+console.log(Star.sex); //静态成员只能通过构造函数来访问
+```
+
+### 构造函数的问题
+
+![image-20220307143732101](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071437183.png)
+
+### 构造函数原型prototype
+
+构造函数通过原型分配的函数是所有对象所<span style="color:red;font-family:'Consolas';font-weight:700;">**共享的**</span>
+
+JavaScript 规定，每一个<span style="color:blue;font-family:'Consolas';font-weight:700;">构造函数</span>都有一个<span style="color:red;font-family:'Consolas';font-weight:700;">prototype属性</span>，指向另一个对象
+
+注意这个prototype就是一个对象，这个对象的所有属性和方法，都会被构造函数所拥有
+
+我们可以把那些不变的方法，直接定义在 prototype 对象上，这样所有对象的实例就可以<span style="color:red;font-family:'Consolas';font-weight:700;">共享</span>这些<span style="background-color:yellow;font-family:'Consolas';font-weight:700;">方法</span>
+
+```js
+function Star(uname, age) {
+    this.uname = uname;
+    this.age = age;
+}
+Star.prototype.sing = function() {
+    console.log('我会唱歌');
+}
+var ldh = new Star('刘德华', 18);
+var zxy = new Star('张学友', 19);
+ldh.sing();
+zxy.sing();
+```
+
+![image-20220307143955633](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071439704.png)
+
+### 对象原型
+
+对象都会有一个属性 <span style="color:red;font-family:'Consolas';font-weight:700;">`__proto__`</span> 指向<span style="color:red;font-family:'Consolas';font-weight:700;">构造函数的 prototype 原型对象</span>，之所以我们对象可以使用构造函数 prototype 原型对象的属性和方法，就是因为对象有 `__proto__ `原型的存在。
+
+`__proto__`对象原型和原型对象 prototype 是等价的
+
+`__proto__`对象原型的意义就在于为对象的查找机制提供一个方向，或者说一条路线，但是它是一个非标准属性，因此实际开发中，不可以使用这个属性，它只是内部指向原型对象 prototype
+
+![image-20220307144137084](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071441163.png)
+
+```js
+function Star(uname, age) {
+    this.uname = uname;
+    this.age = age;
+}
+Star.prototype.sing = function() {
+    console.log('我会唱歌');
+}
+var ldh = new Star('刘德华 ', 18);
+var zxy = new Star('张学友 ', 19);
+ldh.sing();
+console.log(ldh);
+console.log(ldh.__proto__ === Star.prototype);
+```
+
+![image-20220307144155780](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071441856.png)
+
+### constructor构造函数
+
+```js
+对象原型（ __proto__）和构造函数（prototype）原型对象里面都有一个属性 constructor 属性 ，constructor 我们称为构造函数，因为它指回构造函数本身。
+
+constructor 主要用于记录该对象引用于哪个构造函数，它可以让原型对象重新指向原来的构造函数。
+
+一般情况下，对象的方法都在构造函数的原型对象中设置。如果有多个对象的方法，我们可以给原型对象采取对象形式赋值，但是这样就会覆盖构造函数原型对象原来的内容，这样修改后的原型对象 constructor 就不再指向当前构造函数了。此时，我们可以在修改后的原型对象中，添加一个 constructor 指向原来的构造函数。
+```
+
+如果我们修改了原来的原型对象,给原型对象赋值的是一个对象,则必须手动的利用constructor指回原来的构造函数
+
+```js
+function Star(uname, age) {
+    this.uname = uname;
+    this.age = age;
+}
+//很多情况下，需要手动的利用constructor属性 指回 原来的构造函数
+Star.prototype = {
+    //如果修改了原来的原型对象，给原型对象赋值的是一个对象，则必须手动利用constructor指回原来的构造函数
+    constructor: Star, //手动设置指回原来的构造函数
+    sing: function() {
+        console.log('我会唱歌');
+    },
+    movie: function() {
+        console.log('我会演电影');
+    }
+}
+var zxy = new Star('张学友', 19);
+console.log(zxy);
+```
+
+![image-20220307144924276](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071449366.png)
+
+### 构造函数实例和原型对象三角关系
+
+1. **构造函数**的<span style="color:red;font-family:'Consolas';font-weight:700;">prototype属性</span>指向了**构造函数**<span style="color:red;font-family:'Consolas';font-weight:700;">原型对象</span>
+
+2. **实例对象**是由<span style="background-color:yellow;font-family:'Consolas';font-weight:500;">构造函数</span>创建的,**实例对象**的<span style="color:red;font-family:'Consolas';font-weight:700;">`__proto__`属性</span>指向了<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">构造函数</span>的<span style="color:red;font-family:'Consolas';font-weight:700;">原型对象</span>
+
+3. <span style="background-color:yellow;font-family:'Consolas';font-weight:400;">构造函数</span>的<span style="color:red;font-family:'Consolas';font-weight:700;">原型对象</span>的<span style="color:red;font-family:'Consolas';font-weight:700;">constructor属性</span>指向了**构造函数**,**实例对象**的<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">原型的<span style="color:red;font-family:'Consolas';font-weight:700;">constructor属性</span></span>也指向了<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">构造函数</span>
+
+![image-20220307145246090](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071452186.png)
+
+### 原型链
+
+每一个实例对象又有一个<span style="color:red;font-family:'Consolas';font-weight:700;">proto属性</span>，指向的构造函数的原型对象，构造函数的原型对象也是一个对象，也有**proto**属性，这样一层一层往上找就形成了<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">原型链</span>
+
+![image-20220307145408423](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071454520.png)
+
+### 原型链和成员的查找机制
+
+任何**对象**都有<span style="color:red;font-family:'Consolas';font-weight:700;">原型对象</span>,也就是<span style="color:red;font-family:'Consolas';font-weight:700;">prototype属性</span>,任何**原型对象**也是一个**对象**,该对象就有<span style="color:red;font-family:'Consolas';font-weight:700;">proto属性</span>,这样一层一层往上找,就形成了一条链,我们称此为<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">原型链</span>
+
+
+
+当**访问一个对象的属性（包括方法）**时，首先查找这个<span style="color:red;font-family:'Consolas';font-weight:700;">对象自身</span>有没有该属性
+
+ 
+
+如果没有就<span style="color:red;font-family:'Consolas';font-weight:700;">查找它的原型</span>（也就是 __proto__指向的 prototype 原型对象）
+
+ 
+
+如果还没有就<span style="color:red;font-family:'Consolas';font-weight:700;">查找原型对象的原型</span>（Object的原型对象）
+
+ 
+
+依此类推一直找到 <span style="color:red;font-family:'Consolas';font-weight:700;">Object </span>为止（null）
+
+
+
+`__proto__`对象原型的意义就在于为对象成员查找机制提供一个方向，或者说一条路线
+
+### 原型对象中this的指向
+
+**构造函数中的this**和**原型对象的this**,都指向我们<span style="color:red;font-family:'Consolas';font-weight:700;">new出来的实例对象</span>
+
+```js
+function Star(uname, age) {
+    this.uname = uname;
+    this.age = age;
+}
+var that;
+Star.prototype.sing = function() {
+    console.log('我会唱歌');
+    that = this;
+}
+var ldh = new Star('刘德华', 18);
+// 1. 在构造函数中,里面this指向的是对象实例 ldh
+console.log(that === ldh); //true
+// 2.原型对象函数里面的this 指向的是 实例对象 ldh
+```
+
+![image-20220307145714100](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071457182.png)
+
+### 通过原型为数组扩展内置方法
+
+```js
+Array.prototype.sum = function() {
+    var sum = 0;
+    for (var i = 0; i < this.length; i++) {
+        sum += this[i];
+    }
+    return sum;
+};
+//此时数组对象中已经存在sum()方法了 可以始终 数组.sum()进行数据的求和
+```
+
+
+
+## 对象与类
+
+<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">对象</span>
+
+对象是由**属性**和**方法**组成的：是一个<span style="color:red;font-family:'Consolas';font-weight:700;">无序键值对的集合</span>,指的是一个<span style="color:red;font-family:'Consolas';font-weight:700;">具体的事物</span>
+
+- 属性：事物的<span style="color:red;font-family:'Consolas';font-weight:700;">特征</span>，在对象中用<span style="color:red;font-family:'Consolas';font-weight:700;">属性</span>来表示（常用名词）
+- 方法：事物的<span style="color:red;font-family:'Consolas';font-weight:700;">行为</span>，在对象中用<span style="color:red;font-family:'Consolas';font-weight:700;">方法</span>来表示（常用动词）
+
+ 
+
+<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">创建对象</span>
+
+```js
+//字面量创建对象
+var ldh = {
+    name: '刘德华',
+    age: 18
+}
+console.log(ldh);
+//构造函数创建对象
+function Star(name, age) {
+    this.name = name;
+    this.age = age;
+}
+var ldh = new Star('刘德华', 18) //实例化对象
+console.log(ldh);
+```
+
+![image-20220307145936973](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071459054.png)
+
+### 创建类
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">类</span>
+
+在 ES6 中新增加了类的概念，可以使用 <span style="color:red;font-family:'Consolas';font-weight:700;">class</span> 关键字声明一个类，之后以这个类来实例化对象。
+
+<span style="color:red;font-family:'Consolas';font-weight:700;">类</span>抽象了对象的公共部分，它<span style="color:red;font-family:'Consolas';font-weight:700;">泛指</span>某一大类（class）
+
+<span style="color:red;font-family:'Consolas';font-weight:700;">对象特指</span>某一个，通过类实例化一个具体的对象
+
+
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">创建类</span>
+
+**语法**
+
+```js
+//步骤1使用class关键字
+class name {
+    //class body
+}
+//步骤2 使用定义的类创建实例 注意new关键字
+var xx = new name();
+```
+
+<span style="color:red;font-family:'Consolas';font-weight:700;">constructor()</span>方法是类的构造方法（默认），<span style="color:red;font-family:'Consolas';font-weight:700;">用于传递参数返回实例对象</span>，通过new命令生成对象实例时，自动调用此方法。如果没有定义，类内部会自动创建一个<span style="color:red;font-family:'Consolas';font-weight:700;">constructor()</span>
+
+ 
+
+示例
+
+```js
+//1.创建类 class 创建一个 明星类
+class Star {
+    //类的共有属性放到constructor里面
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+//2.利用类创建对象 new
+var ldh = new Star('刘德华', 18);
+console.log(ldh);
+```
+
+![image-20220307150225325](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071502411.png)
+
+
+
+### 类创建添加属性和方法
+
+```js
+//1.创建类class 创建一个类
+class Star {
+    //类的共有属性放到constructor里面 constructor是 构造器或者构造函数
+    constructor(uname, age) {
+            this.uname = uname;
+            this.age = age;
+        } //方法与方法之间不需要添加逗号
+    sing(song) {
+        console.log(this.uname + '唱' + song);
+    }
+}
+//2.利用类创建对象 new
+var ldh = new Star('刘德华', '18');
+console.log(ldh); //Star{uname:"刘德华",age:18}
+ldh.sing('冰雨');
+```
+
+![image-20220307150254694](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071502769.png)
+
+**注意:**
+
+- 通过class 关键字创建类, 类名我们还是习惯性定义<span style="color:red;font-family:'Consolas';font-weight:700;">首字母大写</span>
+- 类里面有个<span style="color:red;font-family:'Consolas';font-weight:700;">constructor 函数</span>,可以<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">接受传递过来的参数,同时返回实例对象</span>
+- constructor 函数 只要 new 生成实例时,就会自动调用这个函数, 如果我们**不写这个函数**,类也会<span style="color:red;font-family:'Consolas';font-weight:700;">自动生成</span>这个函数
+- **多个函数方法之间不需要添加逗号分隔**
+- 生成实例 <span style="color:red;font-family:'Consolas';font-weight:700;">new 不能省略</span>
+- 语法规范, 创建类 类名后面不要加小括号,生成实例 类名后面加小括号, 构造函数不需要加function
+
+### 类的继承
+
+**语法**
+
+```js
+//父类
+class Father {
+}
+//子类继承父类
+class Son extends Father {
+}
+```
+
+示例
+
+```js
+class Father {
+    constructor(surname) {
+        this.surname = surname;
+    }
+    say() {
+        console.log('你的姓名是' + this.surname);
+    }
+}
+class Son extends Father {
+    //这样子类就继承了父类的属性和方法
+}
+var damao = new Son('刘');
+damao.say();
+```
+
+![image-20220307150452298](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071504379.png)
+
+<span style="color:red;font-family:'Consolas';font-weight:700;">子类使用super关键字访问父类的方法</span>
+
+```js
+//定义了父类
+class Father {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    sum() {
+        console.log(this.x + this.y);
+    }
+}
+//子元素继承父类
+class Son extends Father {
+    constructor(x, y) {
+        super(x, y); //使用super调用父类中的构造函数
+    }
+}
+var son = new Son(1, 2);
+son.sum();
+```
+
+![image-20220307150543115](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071505198.png)
+
+**注意:** 
+
+（1）继承中,如果**实例化子类输出一个方法**,先看子类有没有这个方法,如果有就<span style="color:red;font-family:'Consolas';font-weight:700;">先执行子类的</span>
+
+（2）继承中,如果子类里面没有,就去查找父类有没有这个方法,如果有,就执行父类的这个方法(就近原则)
+
+（3）如果子类想要继承父类的方法,同时在自己内部扩展自己的方法,利用super 调用父类的构造函数,<span style="color:red;font-family:'Consolas';font-weight:700;">super 必须在子类this之前调用</span>
+
+```js
+//父类有加法方法
+class Father {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    sum() {
+        console.log(this.x + this.y);
+    }
+}
+//子类继承父类的加法方法 同时扩展减法方法
+class Son extends Father {
+    constructor(x, y) {
+        //利用super调用父类的构造函数super必须在子类this之前调用，放到this之后会报错
+        super(x, y);
+	      this.x = x;
+        this.y = y;
+    }
+    subtract() {
+        console.log(this.x - this.y);
+    }
+}
+var son = new Son(5, 3);
+son.subtract();
+son.sum();
+```
+
+![image-20220307150634713](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071506793.png)
+
+(4) 时刻注意this的指向问题,类里面的<span style="color:red;font-family:'Consolas';font-weight:700;">共有的属性</span>和<span style="color:red;font-family:'Consolas';font-weight:700;">方法一定要加this使用</span>
+
+- <span style="color:red;font-family:'Consolas';font-weight:700;">constructor中的this</span>指向的是new出来的<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">实例对象 </span>
+- <span style="color:red;font-family:'Consolas';font-weight:700;">自定义的方法</span>,一般也指向的new出来的<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">实例对象</span>
+- <span style="color:red;font-family:'Consolas';font-weight:700;">绑定事件之后this</span>指向的就是<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">触发事件的事件源</span>
+
+（5）在 ES6 中类没有变量提升，所以必须先定义类，才能通过类实例化对象
+
+## 继承
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">call()</span>
+
+- call()可以调用函数
+- call()可以修改this的指向,使用call()的时候     参数一是修改后的this指向,参数2,参数3..使用逗号隔开连接
+
+```js
+function fn(x, y) {
+    console.log(this);
+    console.log(x + y);
+}
+var o = {
+    name: 'andy'
+};
+fn.call(o, 1, 2); //调用了函数此时的this指向了对象o
+```
+
+![image-20220307151627543](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071516626.png)
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">子构造函数继承父构造函数的属性</span>
+
+1. 先定义一个父构造函数
+2. 再定义一个子构造函数
+3. 子构造函数继承父构造函数的属性(使用call方法)
+
+```js
+//1.父构造函数
+function Father(uname, age) {
+    //this 指向父构造函数的对象实例
+    this.uname = uname;
+    this.age = age;
+}
+//2.子构造函数
+function Son(uname, age, score) {
+    //this 指向子构造函数的对象实例
+    // 3. 使用call方式实现子继承父的属性
+    Father.call(this, uname, age);
+    this.score = score;
+}
+var son = new Son('胡梓卓', 18, 100);
+console.log(son);
+```
+
+![image-20220307151701988](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071517082.png)
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">借用原型对象继承方法</span>
+
+1. 先定义一个父构造函数
+2. 再定义一个子构造函数
+3. 子构造函数继承父构造函数的属性(使用call方法)
+
+```js
+// 1. 父构造函数
+function Father(uname, age) {
+    // this 指向父构造函数的对象实例
+    this.uname = uname;
+    this.age = age;
+}
+Father.prototype.money = function() {
+    console.log(100000);
+};
+// 2 .子构造函数 
+function Son(uname, age, score) {
+    // this 指向子构造函数的对象实例
+    Father.call(this, uname, age);
+    this.score = score;
+}
+// Son.prototype = Father.prototype;  这样直接赋值会有问题,如果修改了子原型对象,父原型对象也会跟着一起变化
+Son.prototype = new Father();
+// 如果利用对象的形式修改了原型对象,别忘了利用constructor 指回原来的构造函数
+Son.prototype.constructor = Son;
+// 这个是子构造函数专门的方法
+Son.prototype.exam = function() {
+    console.log('孩子要考试');
+}
+var son = new Son('刘德华', 18, 100);
+console.log(son);
+```
+
+![image-20220307151734910](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071517010.png)
+
+
+
+## 严格模式
+
+JavaScript 除了提供正常模式外，还提供了严格模式（strict mode）。
+
+ 
+
+ES5 的严格模式是采用具有限制性 JavaScript变体的一种方式，即在严格的条件下运行 JS 代码。
+
+ 
+
+严格模式在 IE10 以上版本的浏览器中才会被支持，旧版本浏览器中会被忽略。
+
+ 
+
+严格模式对正常的 JavaScript 语义做了一些更改： 
+
+1.消除了 Javascript 语法的一些不合理、不严谨之处，减少了一些怪异行为。
+
+2.消除代码运行的一些不安全之处，保证代码运行的安全。
+
+3.提高编译器效率，增加运行速度。
+
+4.禁用了在 ECMAScript 的未来版本中可能会定义的一些语法，为未来新版本的 Javascript 做好铺垫。比如一些保留字如：class,enum,export, extends, import, super 不能做变量名
+
+### 开启严格模式
+
+严格模式可以应用到<span style="color:red;font-family:'Consolas';font-weight:700;">整个脚本</span>或<span style="color:red;font-family:'Consolas';font-weight:700;">个别函数</span>中。因此在使用时，我们可以将严格模式分为为脚本开启严格模式和为函数开启严格模式两种情况。
+
+- <span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">情况一 :为脚本开启严格模式</span>
+
+有的 script 脚本是严格模式，有的 script 脚本是正常模式，这样不利于文件合并，所以可以将整个脚本文件放在一个立即执行的匿名函数之中。这样独立创建一个作用域而不影响其他 script 脚本文件。
+
+```js
+(function (){
+   //在当前的这个自调用函数中有开启严格模式，当前函数之外还是普通模式
+ "use strict";
+        var num = 10;
+ function fn() {}
+ })();
+ //或者 
+ <script>
+   "use strict"; //当前script标签开启了严格模式
+ </script>
+ <script>
+             //当前script标签未开启严格模式
+ </script>
+```
+
++ <span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">情况二: 为函数开启严格模式</span>
+
+要给某个函数开启严格模式，需要把“use strict”; (或 'use strict'; ) 声明放在函数体所有语句之前。
+
+```js
+function fn(){
+ "use strict";
+ return "123";
+ } 
+ //当前fn函数开启了严格模式
+```
+
+
+
+### 严格模式中的变化
+
+**文档参考**：
+
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode
+
+```js
+'use strict'
+    num = 10
+    console.log(num) //严格模式后使用未声明的变量
+        -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+        var num2 = 1;
+    delete num2; //严格模式不允许删除变量
+    -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    function fn() {
+        console.log(this); // 严格模式下全局作用域中函数中的 this 是 undefined
+    }
+    fn();
+    -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
+    function Star() {
+        this.sex = '男';
+    }
+    // Star();严格模式下,如果 构造函数不加new调用, this 指向的是undefined 如果给他赋值则 会报错.
+    var ldh = new Star();
+    console.log(ldh.sex);
+    -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    setTimeout(function() {
+        console.log(this); //严格模式下，定时器 this 还是指向 window
+    }, 2000);
+```
+
+函数内的参数不能同名
+函数必须声明在顶层（不允许在非函数代码块[if，for]内声明函数）
+
+
+
+## 高阶函数
+
+高阶函数是对其他函数进行操作的函数，它<span style="color:red;font-family:'Consolas';font-weight:700;">接收函数作为参数</span>或<span style="color:red;font-family:'Consolas';font-weight:700;">将函数作为返回值输出</span>
+
+![image-20220307152109660](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071521754.png)
+
+此时fn 就是一个高阶函数
+
+函数也是一种数据类型，同样可以作为参数，传递给另外一个参数使用。最典型的就是作为回调函数。
+
+同理函数也可以作为返回值传递回来
+
+## 闭包
+
+闭包（closure）指<span style="color:red;font-family:'Consolas';font-weight:700;">有权访问另一个函数作用域中变量的函数</span>。
+
+简单理解就是 ，一个作用域可以访问另外一个函数内部的局部变量
+
+![image-20220307152146067](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071521170.png)
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">闭包的作用</span>
+
+作用：**延伸变量的作用范围**
+
+```js
+function fn() {
+        var num = 10;
+        function fun() {
+            console.log(num);
+        }
+        return fun;
+    }
+    var f = fn();
+    f();
+```
+
+## 正则表达式
+
+正则表达式（ **Regular Expression** ）是用于<span style="color:red;font-family:'Consolas';font-weight:700;">匹配字符串中字符组合的模式</span>。
+
+在JavaScript中，正则表达式也是**对象**。
+
+ 
+
+正则表通常被用来检索、替换那些符合某个模式（规则）的文本，例如验证表单：用户名表单只能输入英文字母、数字或者下划线， 昵称输入框中可以输入中文(<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">匹配</span><span style="color:red;font-family:'Consolas';font-weight:700;">reg.test()</span>)。
+
+ 
+
+此外，正则表达式还常用于过滤掉页面内容中的一些敏感词(<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">替换</span><span style="color:red;font-family:'Consolas';font-weight:700;">reg.replace(regexp,'新字符')</span>)，或从字符串中获取我们想要的特定部分(<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">提取</span><span style="color:red;font-family:'Consolas';font-weight:700;">match(reg)</span>)等 。
+
+其他语言也会使用正则表达式，本阶段我们主要是利用JavaScript 正则表达式完成表单验证
+
+ 
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">正则表达式的特点</span>
+
+1. 灵活性、逻辑性和功能性非常的强。
+2. 可以迅速地用极简单的方式达到字符串的复杂控制。
+3. 对于刚接触的人来说，比较晦涩难懂。比如：^\w+([-+.]\w+)*@\w+([-.]\w+)*.\w+([-.]\w+)*$
+4. 实际开发,一般都是直接复制写好的正则表达式. 但是要求会使用正则表达式并且根据实际情况修改正则表达式. 比如用户名: /^[a-z0-9_-]{3,16}$/
+
+### 在js中的使用
+
+在 JavaScript 中，可以通过两种方式创建一个正则表达式。
+
+（1）<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">通过调用<span style="color:red;font-family:'Consolas';font-weight:700;">RegExp对象</span>的构造函数创建</span>
+
+```js
+ var regexp = new RegExp(/123/);
+ console.log(regexp);
+```
+
+（2）<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">利用<span style="color:red;font-family:'Consolas';font-weight:700;">字面量</span>创建 正则表达式</span>
+
+```js
+var rg = /123/;
+```
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">测试正则表达式 </span>
+
+<span style="color:red;font-family:'Consolas';font-weight:700;">test() 正则对象方法</span>，用于**检测字符串是否符合该规则**，该对象会返回 **true** 或 false，其参数是测试字符串。
+
+```js
+var rg = /123/;
+ console.log(rg.test(123));//匹配字符中是否出现123  出现结果为true
+ console.log(rg.test('abc'));//匹配字符中是否出现123 未出现结果为false
+```
+
+![image-20220307152631048](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071526138.png)
+
+#### 正则表达式中的特殊字符
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">正则表达式的组成</span>
+
+一个正则表达式可以由**简单的字符**构成，比如 /abc/，也可以是**简单和特殊字符**的组合，比如 /ab*c/ 。其中特殊字符也被称为<span style="color:red;font-family:'Consolas';font-weight:700;">元字符</span>，在正则表达式中是具有**特殊意义**的专用符号，如 ^ 、$ 、+ 等
+
+ 
+
+特殊字符非常多，可以参考：
+
+[MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions)
+
+ 
+
+jQuery 手册：正则表达式部分
+
+[正则测试工具](https://tool.oschina.net/regex)
+
+
+
+#### 边界符
+
+正则表达式中的边界符（位置符）用来**提示字符所处的位置**，主要有两个字符
+
+| **边界符** | **说明**                       |
+| ---------- | ------------------------------ |
+| ^          | 表示匹配行首的文本（以谁开始） |
+| $          | 表示匹配行尾的文本（以谁结束） |
+
+如果 ^和 $ 在一起，表示必须是精确匹配。
+
+```js
+var rg = /abc/; // 正则表达式里面不需要加引号 不管是数字型还是字符串型
+    // /abc/ 只要包含有abc这个字符串返回的都是true
+    console.log(rg.test('abc'));
+    console.log(rg.test('abcd'));
+    console.log(rg.test('aabcd'));
+    console.log('---------------------------');
+    var reg = /^abc/;
+    console.log(reg.test('abc')); // true
+    console.log(reg.test('abcd')); // true
+    console.log(reg.test('aabcd')); // false
+    console.log('---------------------------');
+    var reg1 = /^abc$/; // 精确匹配 要求必须是 abc字符串才符合规范
+    console.log(reg1.test('abc')); // true
+    console.log(reg1.test('abcd')); // false
+    console.log(reg1.test('aabcd')); // false
+    console.log(reg1.test('abcabc')); // false
+```
+
+#### 字符类
+
+字符类表示有一系列字符可供选择，**只要匹配其中一个**就可以了。所有可供选择的字符都放在方括号内。
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">[] 方括号</span>
+
+表示有一系列字符可供选择，只要匹配其中一个就可以了
+
+```js
+var rg = /[abc]/; // 只要包含有a 或者 包含有b 或者包含有c 都返回为true
+    console.log(rg.test('andy')); //true
+    console.log(rg.test('baby')); //true
+    console.log(rg.test('color')); //true
+    console.log(rg.test('red')); //false
+    var rg1 = /^[abc]$/; // 三选一 只有是a 或者是 b  或者是c 这三个字母才返回 true
+    console.log(rg1.test('aa')); //false
+    console.log(rg1.test('a')); //true
+    console.log(rg1.test('b')); //true
+    console.log(rg1.test('c')); //true
+    console.log(rg1.test('abc')); //true
+    -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    var reg = /^[a-z]$/ //26个英文字母任何一个字母返回 true  - 表示的是a 到z 的范围  
+    console.log(reg.test('a')); //true
+    console.log(reg.test('z')); //true
+    console.log(reg.test('A')); //false
+    -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
+    //字符组合
+    var reg1 = /^[a-zA-Z0-9]$/; // 26个英文字母(大写和小写都可以)任何一个字母返回 true  
+    -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    //取反 方括号内部加上 ^ 表示取反，只要包含方括号内的字符，都返回 false 。
+    var reg2 = /^[^a-zA-Z0-9]$/;
+    console.log(reg2.test('a')); //false
+    console.log(reg2.test('B')); //false
+    console.log(reg2.test(8)); //false
+    console.log(reg2.test('!')); //true
+```
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">量词符</span>
+
+量词符用来<span style="color:red;font-family:'Consolas';font-weight:700;">设定某个模式出现的次数</span>。
+
+| **量词** | **说明**        |
+| -------- | --------------- |
+| *        | 重复0次或更多次 |
+| +        | 重复1次或更多次 |
+| ?        | 重复0次或1次    |
+| {n}      | 重复n次         |
+| {n,}     | 重复n次或更多次 |
+| {n,m}    | 重复n到m次      |
+
+ 
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">括号总结</span>
+
+1.大括号 量词符. 里面表示重复次数
+
+2.中括号 字符集合。匹配方括号中的任意字符. 
+
+3.小括号表示优先级
+
+[正则表达式在线测试](https://c.runoob.com/)
+
+
+
+#### 预定义类
+
+预定义类指的是**某些常见模式的简写方式**
+
+![image-20220307153006089](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071530203.png)
+
+```js
+验证座机号码
+ var reg = /^\d{3}-\d{8}|\d{4}-\d{7}$/;
+ var reg = /^\d{3,4}-\d{7,8}$/;
+```
+
+### 正则表达式中的替换
+
+replace() 方法可以实现**替换字符串操作**，用来替换的**参数**可以是**一个字符串**或是一个**正则表达式**。
+
+![image-20220307153045980](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071531710.png)
+
+```js
+var str = 'andy和red';
+ var newStr = str.replace('andy', 'baby');
+ console.log(newStr)//baby和red
+ //等同于 此处的andy可以写在正则表达式内
+ var newStr2 = str.replace(/andy/, 'baby');
+ console.log(newStr2)//baby和red
+ //全部替换
+ var str = 'abcabc'
+ var nStr = str.replace(/a/,'哈哈')
+ console.log(nStr) //哈哈bcabc
+ //全部替换g
+ var nStr = str.replace(/a/a,'哈哈')
+ console.log(nStr) //哈哈bc哈哈bc
+ //忽略大小写i
+ var str = 'aAbcAba';
+ var newStr = str.replace(/a/gi,'哈哈')//"哈哈哈哈bc哈哈b哈哈"
+```
+
+**案例:过滤敏感词汇**
+
+```js
+ <textarea name="" id="message"></textarea> <button>提交</button>
+ <div></div>
+ <script>
+     var text = document.querySelector('textarea');
+     var btn = document.querySelector('button');
+     var div = document.querySelector('div');
+     btn.onclick = function() {
+         div.innerHTML = text.value.replace(/激情|gay/g, '**');
+     }
+ </script>
+```
