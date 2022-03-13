@@ -472,3 +472,255 @@ element.setAttribute('属性'); 主要设置**自定义的属性**（标准）
 
 ![image-20220307172325432](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071723477.png)
 
+
+
+### H5自定义属性
+
+<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">自定义属性的目的</span>
+
+为了保存并使用数据；有些数据可以保存到页面中而不用保存到数据库中
+
+
+
+通过`getAttribute('属性')`获取
+
+
+
+<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">新增：设置H5自定义属性</span>
+
+H5规定自定义属性<span style="color:#C00000;font-family:'Consolas';font-weight:700;">data-</span>开头做为属性名并且赋值
+
+```js
+比如 <div data-index="1"></div>
+或者使用JS设置
+element.setAttribute('data-index',2)
+```
+
+<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">获取H5自定义属性</span>
+
+兼容性获取 `element.getAttribute('data-index')`;
+
+H5新增element.``dataset.index` 或者 element.`dataset['index']`` ie11才开始支持
+
+可以通过 HTMLElement.`dataset.testValue`( 或者是 HTMLElement.`dataset["testValue"]` ) 来访问，
+
+```js
+var div=document.querySelector('div');
+div.getAttribute('data-list-name');
+//自定义属性有多个 - 链接的单词，获取属性采用驼峰命名法
+div.dataset['listName'];
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132047556.png" alt="image-20220313204709985" style="zoom:80%;" />
+
+## 节点操作
+
+网页中的所有内容都是节点（标签、属性、文本、注释等），在DOM 中，节点使用 node 来表示
+
+ 
+
+HTML DOM 树中的所有节点均可通过 JavaScript 进行访问，所有 HTML 元素（节点）均可被修改，也可以创建或删除
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132048963.png" alt="image-20220313204806224" style="zoom:80%;" />
+
+一般地，节点至少拥有nodeType（节点类型）、nodeName（节点名称）和nodeValue（节点值）这三个基本属性
+
+- **元素**节点 nodeType 为 1
+- **属性**节点 nodeType 为 2
+- **文本**节点 nodeType 为 3（文本节点包含文字、空格、换行等）
+
+实际开发中，节点操作<span style="color:#C00000;font-family:'Consolas';font-weight:700;">主要操作的是元素节点</span>
+
+### 节点层级
+
+利用 DOM 树可以把节点划分为不同的层级关系，常见的是**父子兄层级关系**
+
+![image-20220313204859279](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132049163.png)
+
+### 父级节点
+
+`node.parentNode`
+
+parentNode 属性可返回某节点的父节点，注意是<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">**最近的一个父节点**</span>
+
+如果指定的节点没有父节点则返回null
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132050238.png" alt="image-20220313205004259" style="zoom:80%;" />
+
+### 子节点
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">所有子节点</span>
+
+（1）`parentNode.childNodes`（标准）
+
+parentNode.childNodes 返回包含指定节点的子节点的集合，该集合为即时更新的集合
+
+**注意**
+
+返回值<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">**包含了所有的子节点**</span>，包括元素节点，文本节点等
+
+如果只想要获得里面的元素节点，则需要专门处理。所以不提倡使用childNodes
+
+
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">子元素节点</span>
+
+（2）`parentNode.children`（非标准）
+
+parentNode.children 是一个只读属性，返回所有的子元素节点；它<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">**只返回子元素节点**</span>，其余节点不返回
+
+各个浏览器支持使用
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132052182.png" alt="image-20220313205249283" style="zoom:80%;" />
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">第1个子节点</span>
+
+（3）`parentNode.firstChild`
+
+firstChild返回第一个子节点，找不到则返回null。同样，也是**包含所有的节点**
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">最后1个子节点</span>
+
+（4）`parentNode.lastChild`
+
+lastChild返回最后一个子节点，找不到则返回null。同样，也是**包含所有的节点**
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">第1个子元素节点</span>
+
+（5）`parentNode.firstElementChild`
+
+firstElementChild返回第一个子元素节点，找不到则返回null
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">最后1个子元素节点</span>
+
+（6）`parentNode.lastElementChild`
+
+lastElementChild返回最后一个子元素节点，找不到则返回null
+
+
+
+**注意**
+
+firstElementChild和lastElementChild两种方法有<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">兼容性问题</span>，IE9以上支持
+
+
+
+**解决方案**
+
+（1）如果想要**第一个子元素节点**，可使用`parentNode.children[0]`
+
+（2）如果想要**最后一个子元素节点**，可使用`parentNode.children[parentNode.children.length - 1]`
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132056811.png" alt="image-20220313205644697" style="zoom:80%;" />
+
+### 兄弟节点
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">下一个兄弟节点</span>
+
+（1）`node.nextSibling`
+
+nextSibling 返回当前元素的下一个兄弟节点，找不到则返回null。同样，也是**包含所有的节点**
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">上一个兄弟节点</span>
+
+（2）`node.previousSibling`
+
+previousSibling 返回当前元素上一个兄弟节点，找不到则返回null。同样，也是**包含所有的节点**
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132058188.png" alt="image-20220313205823261" style="zoom:80%;" />
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">下一个兄弟元素节点（兼容性）</span>
+
+（3）`node.nextElementSibling`
+
+nextElementSibling 返回当前元素下一个兄弟元素节点，找不到返回null
+
+ 
+
+<span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">上一个兄弟元素节点（兼容性）</span>
+
+（4）`node.previousElementSibling`
+
+previousElementSibling 返回当前元素上一个兄弟元素节点，找不到返回null
+
+
+
+**注意**
+
+nextElementSibling和previousElementSibling存在**兼容性**问题，IE9以上才支持
+
+**解决方法：**
+
+封装一个兼容性函数
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132059516.png" alt="image-20220313205946167" style="zoom:80%;" />
+
+### 创建节点
+
+`document.createElement('tagName')`
+
+document.createElement()方法创建有tagName指定的HTML元素。因为这些元素原先不存在，是根据我们的需求动态生成的，称为<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">**动态创建元素节点**</span>
+
+
+
+### 添加节点
+
+（1）`node.appendChild（child）`
+
+node.appendChild()方法将一个节点添加到指定父节点的子节点列表<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">**末尾**</span>
+
+ 
+
+（2）`node.insertBefore(child,指定元素)`
+
+node.insertBefore()方法将一个节点添加到父节点的指定子节点<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">**前面**</span>
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132102958.png" alt="image-20220313210252634" style="zoom:80%;" />
+
+**select添加节点，通过Otions构造函数**
+
+```js
+<script>
+        var arrPro = ['湖北省', '湖南省', '四川省', '广东省'];
+        function createPro() {
+            var pro = document.getElementById('pro');
+            for (let i = 0; i < arrPro.length; i++) {
+                pro.options.add(new Option(arrPro[i], i));
+            }
+        };
+        window.addEventListener('load', function() {
+            createPro();
+        });
+    </script>
+</head>
+<body>
+    <select name="" id="pro">
+        
+    </select>
+</body>
+```
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132103891.png" alt="image-20220313210350111" style="zoom:80%;" />
+
+### 删除节点
+
+`node.remove()`**删除所有子节点**
+
+**node.removeChild(child)** 方法从 node节点中删除一个**子节点**，返回删除的节点
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132104243.png" alt="image-20220313210437492" style="zoom:80%;" />
+
+### 复制（克隆）节点
+
+`node.cloneNode()` 方法返回调用该方法的一个副本。称为克隆节点/拷贝节点
+
+**注意**
+
+1.如果括号参数为<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">**空**</span>或者为<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">**false**</span>，则是**浅拷贝**，即只克隆复制节点本身，不克隆里面的子节点
+
+2.如何括号参数为<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">**true**</span>，则是**深拷贝**，会复制节点本身以及里面所有的子节点
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132106462.png" alt="image-20220313210622748" style="zoom: 80%;" />
+
+### 创建元素的三种方式
+
