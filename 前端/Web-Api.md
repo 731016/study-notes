@@ -724,3 +724,204 @@ node.insertBefore()方法将一个节点添加到父节点的指定子节点<spa
 
 ### 创建元素的三种方式
 
+```js
+document.write()
+element.innerHTML
+document.createElement()
+```
+
+**区别**
+
+1. document.write是直接将内容写入页面的内容流，但是文档流执行完毕，则它会导致页面全部重绘
+2. innerHTML 是将内容写入某个DOM节点，不会导致页面全部重绘
+3. innerHTML 创建多个元素效率更高（不要拼接字符串，采取数组形式拼接），结构稍微复杂
+4. createElement() 创建多个元素效率稍低一点，但是结构更清晰
+
+**总结**
+
+**不同浏览器下，innerHTML 效率要比 createElement高**
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203271949519.png" alt="image-20220327194940835" style="zoom:80%;" />
+
+#### innerTHML和createElement效率对比
+
+innerHTML字符串拼接方式（效率低）
+
+```js
+function fn() {
+            var d1 = +new Date();
+            var str = '';
+            for (var i = 0; i < 1000; i++) {
+                document.body.innerHTML += '<div style="width:100px; height:2px; border:1px solid blue;"></div>';
+            }
+            var d2 = +new Date();
+            console.log(d2 - d1); //2263
+        }
+        fn();
+    </script>
+```
+
+createElement方式（效率一般）
+
+```js
+function fn() {
+            var d1 = +new Date();
+    
+            for (var i = 0; i < 1000; i++) {
+                var div = document.createElement('div');
+                div.style.width = '100px';
+                div.style.height = '2px';
+                div.style.border = '1px solid red';
+                document.body.appendChild(div);
+            }
+            var d2 = +new Date();
+            console.log(d2 - d1);//23
+        }
+        fn();
+```
+
+innerHTML数组方式（效率高）
+
+```js
+function fn() {
+            var d1 = +new Date();
+            var array = [];
+            for (var i = 0; i < 1000; i++) {
+                array.push('<div style="width:100px; height:2px; border:1px solid blue;"></div>');
+            }
+            document.body.innerHTML = array.join('');
+            var d2 = +new Date();
+            console.log(d2 - d1); //7
+        }
+        fn();
+```
+
+#### 浅拷贝 深拷贝
+
+浅拷贝只是拷贝一层
+
+深拷贝拷贝多层
+
+ 
+
+**浅拷贝** `Object.assign(新对象,要拷贝的对象)` ES6新增
+
+利用**递归函数**进行深拷贝
+
+```js
+var data = [{
+        name: '胡梓卓',
+        age: 18,
+        bir: [{
+            date: '1999 - 10 - 19',
+            address: '湖北省天门市皂市镇白龙寺西路20号'
+        }]
+    }, {
+        name: '涂鏊飞',
+        age: 21,
+        bir: [{
+            date: '2000 - 1 - 11',
+            address: '湖北省天门市皂市镇舒滩村二组1号'
+        }],
+    }];
+    var arr = {};
+    Object.assign(arr, data);
+    console.log('浅拷贝');
+    data[0].age = 999;
+    console.log(arr)
+    console.log('-----分割线-----');
+    function deepCopy(newDate, oldData) {
+        for (var k in oldData) {
+            var item = oldData[k];
+            if (item instanceof Array) {
+                newDate[k] = [];
+                deepCopy(newDate[k], item);
+            } else if (item instanceof Object) {
+                newDate[k] = {};
+                deepCopy(newDate[k], item);
+            } else {
+                newDate[k] = item;
+            }
+        }
+    }
+    function getId(json, name) {
+        var newArray = {};
+        json.forEach(function(item) {
+            if (item.name == name) {
+                newArray = item;
+            } else if (item.bir && item.bir.length > 0) {
+                newArray = getId(item.bir, name)
+            }
+        });
+        return newArray;
+    }
+    // console.log(getId(data, '涂鏊飞'));
+    deepCopy(arr, data);
+    // data.bir.date = '1999-10-19';
+    console.log('深拷贝');
+    data[0].age = 888;
+    console.log(arr);
+```
+
+#### insertAdjacent(HTML/Text/Element)
+
+**语法**
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/Element/insertAdjacentHTML#语法
+
+```js
+element.insertAdjacentHTML(position, text);
+```
+
+**insertAdjacentHTML()** 方法将指定的文本解析为 [Element](https://developer.mozilla.org/zh-CN/docs/Web/API/Element) 元素，并将结果节点插入到DOM树中的指定位置。它不会重新解析它正在使用的元素，因此它不会破坏元素内的现有元素。这避免了额外的序列化步骤，使其比直接使用innerHTML操作更快。
+
+```js
+element.insertAdjacentText(position,element)
+```
+
+`insertAdjacentText()` 方法将一个给定的文本节点插入在相对于被调用的元素给定的位置
+返回值：Void
+
+```js
+element.insertAdjacentElement(position,element)
+```
+
+`insertAdjacentElement()` 方法将一个给定的元素节点插入到相对于被调用的元素的给定的一个位置
+返回值：插入的元素，插入失败则返回null
+
+----
+
+**position**
+
+一个 [DOMString](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)，表示插入内容相对于元素的位置，并且必须是以下字符串之一：
+
+- 'beforebegin'：元素自身的前面。
+- '**afterbegin**'：插入元素内部的第一个子节点之前。
+- '**beforeend**'：插入元素内部的最后一个子节点之后。
+- 'afterend'：元素自身的后面。
+
+**text**
+
+是要被解析为HTML或XML元素，并插入到DOM树中的 [DOMString](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)。
+
+**Element**
+
+要插入到树中的元素
+
+------
+
+[位置名称的可视化](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/insertAdjacentHTML#位置名称的可视化)
+
+```js
+<!-- beforebegin -->
+<p>
+  <!-- afterbegin -->
+  foo
+  <!-- beforeend -->
+</p>
+<!-- afterend -->
+注意： beforebegin和afterend位置，仅在节点在树中且节点具有一个parent元素时工作
+```
+
+## 事件操作
+
