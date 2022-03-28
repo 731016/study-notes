@@ -472,46 +472,37 @@ element.setAttribute('属性'); 主要设置**自定义的属性**（标准）
 
 ![image-20220307172325432](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071723477.png)
 
-
-
 ### H5自定义属性
 
-<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">自定义属性的目的</span>
+**自定义属性的目的**
 
 为了保存并使用数据；有些数据可以保存到页面中而不用保存到数据库中
-
-
 
 通过`getAttribute('属性')`获取
 
 
 
-<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">新增：设置H5自定义属性</span>
+**新增：设置H5自定义属性**
 
-H5规定自定义属性<span style="color:#C00000;font-family:'Consolas';font-weight:700;">data-</span>开头做为属性名并且赋值
+H5规定自定义属性**data-**开头做为属性名并且赋值
 
-```js
+```html
 比如 <div data-index="1"></div>
 或者使用JS设置
 element.setAttribute('data-index',2)
 ```
 
-<span style="color:#008AC1;font-family:'Consolas';font-weight:700;">获取H5自定义属性</span>
+**获取H5自定义属性**
 
 兼容性获取 `element.getAttribute('data-index')`;
 
-H5新增element.``dataset.index` 或者 element.`dataset['index']`` ie11才开始支持
+H5新增`element.dataset.index` 或者 `element.dataset['index']` ie11才开始支持 
 
-可以通过 HTMLElement.`dataset.testValue`( 或者是 HTMLElement.`dataset["testValue"]` ) 来访问，
 
-```js
-var div=document.querySelector('div');
-div.getAttribute('data-list-name');
-//自定义属性有多个 - 链接的单词，获取属性采用驼峰命名法
-div.dataset['listName'];
-```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132047556.png" alt="image-20220313204709985" style="zoom:80%;" />
+可以通过 `HTMLElement.dataset.testValue` ( 或者是 `HTMLElement.dataset["testValue"]` ) 来访问
+
+<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203281540147.png" alt="image-20220328153959913" style="zoom:80%;" />
 
 ## 节点操作
 
@@ -924,4 +915,3 @@ element.insertAdjacentElement(position,element)
 ```
 
 ## 事件操作
-
