@@ -4,8 +4,6 @@ http://c.biancheng.net/spring_mvc/process.html
 
 ![image-20211124233848858](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233848858.png)
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233848858.png">
-
 > + 客户端（浏览器）发送请求，直接请求到 `DispatcherServlet`。
 > + `DispatcherServlet` 根据请求信息调用 `HandlerMapping`，解析请求对应的 `Handler`。
 > + 解析到对应的 `Handler`（也就是我们平常说的 `Controller` 控制器）后，开始由 `HandlerAdapter` 适配器处理。
