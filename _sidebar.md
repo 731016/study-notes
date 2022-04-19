@@ -35,6 +35,7 @@
     * [CSS](前端/CSS.md)
     * [Javascript语法基础](前端/JavaScript语法基础.md)
     * [Web API](前端/Web-Api.md)
+    * [JQuery](前端/Jquery.md)
     * [Vue](前端/vue.md)
 
 * JQuery
