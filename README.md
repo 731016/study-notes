@@ -57,9 +57,6 @@
 - [JDBC组件](https://gitee.com/LovelyHzz/study-notes/blob/master/MySQL/JDBC%E7%BB%84%E4%BB%B6.md)
 - [控制台购物商城实现](https://gitee.com/LovelyHzz/study-notes/blob/master/MySQL/%E8%B4%AD%E7%89%A9%E5%95%86%E5%9F%8E.md)
 
-### jQuery
-- [jQuery Ajax](https://gitee.com/LovelyHzz/study-notes/blob/master/jQuery/Ajax.md)
-
 ### JavaWeb
 - [JSP + servlet](https://gitee.com/LovelyHzz/study-notes/blob/master/JavaWeb/jsp_servlet.md)
 
@@ -68,7 +65,11 @@
 - [CSS](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%89%8D%E7%AB%AF/CSS.md)
 - [Javascript语法基础](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%89%8D%E7%AB%AF/JavaScript%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80.md)
 - [Web API](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%89%8D%E7%AB%AF/Web-Api.md)
+- [JQuery]()
 - [Vue](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%89%8D%E7%AB%AF/vue.md)
+
+### jQuery
+- [jQuery Ajax](https://gitee.com/LovelyHzz/study-notes/blob/master/jQuery/Ajax.md)
 
 ### 版本控制
 - [SVN](https://gitee.com/LovelyHzz/study-notes/blob/master/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/SVN.md)

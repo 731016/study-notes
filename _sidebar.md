@@ -26,9 +26,6 @@
     * [MySQL基础](MySQL/MySQL基础.md)
     * [JDBC组件](MySQL/JDBC组件.md)
     * [控制台购物商城实现](MySQL/购物商城.md)
-    
-* JQuery
-    * [jQuery-Ajax](jQuery/Ajax.md)
 
 * JavaWeb
     * [JSP + servlet](JavaWeb/jsp_servlet.md)
@@ -39,6 +36,9 @@
     * [Javascript语法基础](前端/JavaScript语法基础.md)
     * [Web API](前端/Web-Api.md)
     * [Vue](前端/vue.md)
+
+* JQuery
+    * [jQuery-Ajax](jQuery/Ajax.md)
     
 * 版本控制
     * [SVN](版本控制/SVN.md)
