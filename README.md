@@ -65,10 +65,10 @@
 - [CSS](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%89%8D%E7%AB%AF/CSS.md)
 - [Javascript语法基础](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%89%8D%E7%AB%AF/JavaScript%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80.md)
 - [Web API](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%89%8D%E7%AB%AF/Web-Api.md)
-- [JQuery](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%89%8D%E7%AB%AF/Jquery.md)
 - [Vue](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%89%8D%E7%AB%AF/vue.md)
 
 ### jQuery
+- [JQuery基础](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%89%8D%E7%AB%AF/Jquery.md)
 - [jQuery Ajax](https://gitee.com/LovelyHzz/study-notes/blob/master/jQuery/Ajax.md)
 
 ### 版本控制
