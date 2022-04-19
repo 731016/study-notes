@@ -30,6 +30,18 @@
 - [单元测试](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95.md)
 - [压力测试](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95.md)
 
+### C语言
+- [c语言]()
+
+### python
+- [python]()
+
+### 计算机网络
+- [计算机网络]()
+
+### SQLServer
+- [SQLServer]()
+
 ### JavaSE
 - [Debug](https://gitee.com/LovelyHzz/study-notes/blob/master/JavaSE/Debug.md)
 - [Java基础](https://gitee.com/LovelyHzz/study-notes/blob/master/JavaSE/Java%E5%9F%BA%E7%A1%80.md)
@@ -66,6 +78,9 @@
 - [Javascript语法基础](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%89%8D%E7%AB%AF/JavaScript%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80.md)
 - [Web API](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%89%8D%E7%AB%AF/Web-Api.md)
 - [Vue](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%89%8D%E7%AB%AF/vue.md)
+- [移动布局基础]()
+- [前后端交互]()
+- [前端项目注意事项]()
 
 ### jQuery
 - [JQuery基础](https://gitee.com/LovelyHzz/study-notes/blob/master/%E5%89%8D%E7%AB%AF/Jquery.md)
