@@ -1,17 +1,5 @@
 * [首页](/README.md)
 
-* c语言
-    * [c语言](c语言/c.md)
-    
-* SQLServer
-    * [SQLServer](SQLServer/SqlServer.md)
-    
-* Python
-    * [Python](Python/pyhton.md)
-    
-* 计算机网络
-    * [计算机网络](计算机网络/network.md)
-
 * JavaSE
     * [Java基础](JavaSE/Java基础.md)
     * [面向对象编程](JavaSE/面向对象编程.md)
@@ -95,6 +83,18 @@
     * [cmd编码-编码解决](开发环境/cmd编码-编码解决.md.md)
     * [单元测试](开发环境/单元测试.md)
     * [压力测试](开发环境/压力测试.md) 
+    
+* c语言
+    * [c语言](c语言/c.md)
+    
+* SQLServer
+    * [SQLServer](SQLServer/SqlServer.md)
+    
+* Python
+    * [Python](Python/pyhton.md)
+    
+* 计算机网络
+    * [计算机网络](计算机网络/network.md)
 
 * 劳动合同法
     * [<<劳动合同法>>的重要性和范围](劳动合同法/《劳动合同法》的重要性和范围.md)
