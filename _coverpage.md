@@ -5,4 +5,8 @@
 <a href="https://gitee.com/LovelyHzz" target="_blank"><img src="https://img.shields.io/badge/Gitee-LovelyHzz-red"></a>
 <a href="https://github.com/731016" target="_blank"><img src="https://img.shields.io/github/stars/731016?style=social"></a>
 
-[Start Reading](/README.md)
+<div style="margin: 0 auto;color: #e05d44">
+    <a href="javascript:;">演示网站 暂停使用！</a>
+</div>
+
+[开始阅读](/README.md)
