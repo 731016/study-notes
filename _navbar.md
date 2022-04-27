@@ -15,8 +15,6 @@
 * 开发工具
     * [vscode插件](#/开发环境/vscode.md)
 * 演示网站
-    * <a href="http://119.3.104.52:8080/" target="_blank">基于vue的快递代取系统【新】</a>>
-    * [基于vue的快递代取系统【新】](http://119.3.104.52:8080/)
-    * [快递代取系统](http://xiaofei.work:8080/)
-    * [天天生鲜交易平台](http://xiaofei.work:8081/)
-    * [Lie flat房屋出租平台](http://xiaofei.work:8082/)
+    * <a href="http://119.3.104.52:8080/" target="_blank" style="font-weight: 700;">基于vue的快递代取系统【毕业设计】</a>
+    * <a href="http://119.3.104.52:8081/" target="_blank" style="font-weight: 400;pointer-events: none;cursor: not-allowed;">天天生鲜交易平台</a>
+    * <a href="http://119.3.104.52:8082/" target="_blank" style="font-weight: 400;pointer-events: none;cursor: not-allowed;">Lie flat房屋出租平台</a>
