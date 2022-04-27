@@ -15,6 +15,7 @@
 * 开发工具
     * [vscode插件](#/开发环境/vscode.md)
 * 演示网站
+    * [基于vue的快递代取系统【新】](http://xiaofei.work:8080/)
     * [快递代取系统](http://xiaofei.work:8080/)
     * [天天生鲜交易平台](http://xiaofei.work:8081/)
     * [Lie flat房屋出租平台](http://xiaofei.work:8082/)
