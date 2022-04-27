@@ -181,17 +181,15 @@
                         'https://gitee.com/LovelyHzz/study-notes/tree/master/' +
                         vm.route.file;
                     var editHtml = '[📝 EDIT DOCUMENT](' + url + ')\n';
+                    var comment = "<div id='lv-container' data-id='city' data-uid='MTAyMC81NTUyMy8zMTk5MA=='></div>\n\n----\n"
                     return (
                         editHtml +
                         html +
                         '\n----\n' +
                         '最后更新日期：{docsify-updated} ' +
-                        editHtml
+                        editHtml + comment
                     );
                 });
-            },
-            //尾部html
-            function (hook) {
                 //单个用户多次点击只记录一次
                 var footer = [
                     `
@@ -229,17 +227,6 @@
                 });
                 hook.doneEach(function () {
                     setInterval("createtime()", 250);
-                });
-            },
-            // 评论系统
-            function (hook, vm) {
-                // load livere
-                hook.beforeEach(function (content) {
-                    var comment = "<div id='lv-container' data-id='city' data-uid='MTAyMC81NTUyMy8zMTk5MA=='></div>\n\n----\n"
-                    return content + comment;
-                });
-
-                hook.doneEach(function () {
                     (function (d, s) {
                         var j, e = d.getElementsByTagName(s)[0];
                         if (typeof LivereTower === 'function') {
