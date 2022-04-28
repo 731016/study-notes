@@ -1,7 +1,10 @@
 # 学习笔记 :green_book: <!-- {docsify-ignore-all} -->
 
 ## 介绍 :point_left: 
-编程学习记录，包括Java，JavaWeb，javascript，linux，Sql，Redis，Vue...
+编程学习记录，包括Java，JavaWeb，javascript，linux，Sql，Redis，Vue，Git，C语言，Python，面试资料...
+<div style="">
+    很杂的资料库。。。
+</div>
 
 #### :fire:<span>备用笔记网站</span><i style="color:#3a3ac5">[推荐访问]：</i><a href="http://xiaofei.work/" target="_blank" style="font-size: 18px;text-decoration: auto;color: indianred;font-weight: 600;">小飞的学习笔记</a>
 
