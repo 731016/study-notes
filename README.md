@@ -11,7 +11,7 @@
 ## 目录 :pencil:
 
 ### 项目
-- [快递代取系统](https://github.com/jitwxs/express)
+- [快递代取系统](https://gitee.com/LovelyHzz/Express-pick-up-system)
 - [天天生鲜交易平台](https://gitee.com/LovelyHzz/daily-fresh-trading-platform/tree/master)
 - [Lie flat房屋出租平台](https://gitee.com/LovelyHzz/rent_house)
 
