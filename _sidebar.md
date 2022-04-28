@@ -26,6 +26,9 @@
     * [MySQL基础](MySQL/MySQL基础.md)
     * [JDBC组件](MySQL/JDBC组件.md)
     * [控制台购物商城实现](MySQL/购物商城.md)
+    
+* SQLServer
+    * [SQLServer](SQLServer/SqlServer.md)
 
 * JavaWeb
     * [JSP + servlet](JavaWeb/jsp_servlet.md)
@@ -86,9 +89,6 @@
     
 * c语言
     * [c语言](c语言/c.md)
-    
-* SQLServer
-    * [SQLServer](SQLServer/SqlServer.md)
     
 * Python
     * [Python](Python/pyhton.md)

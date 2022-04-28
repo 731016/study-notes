@@ -39,9 +39,6 @@
 ### 计算机网络
 - [计算机网络](https://gitee.com/LovelyHzz/study-notes/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/network.md)
 
-### SQLServer
-- [SQLServer](https://gitee.com/LovelyHzz/study-notes/blob/master/SQLServer/SqlServer.md)
-
 ### JavaSE
 - [Debug](https://gitee.com/LovelyHzz/study-notes/blob/master/JavaSE/Debug.md)
 - [Java基础](https://gitee.com/LovelyHzz/study-notes/blob/master/JavaSE/Java%E5%9F%BA%E7%A1%80.md)
@@ -62,6 +59,9 @@
 
 ### 设计模式
 - [设计模式](https://gitee.com/LovelyHzz/study-notes/blob/master/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
+
+### SQLServer
+- [SQLServer](https://gitee.com/LovelyHzz/study-notes/blob/master/SQLServer/SqlServer.md)
 
 ### MySql
 - [MySQL安装](https://gitee.com/LovelyHzz/study-notes/blob/master/MySQL/MySql%E5%AE%89%E8%A3%85.md)
