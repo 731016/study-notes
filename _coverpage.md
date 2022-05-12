@@ -1,5 +1,5 @@
 ![logo](/_media/icon.svg)
-> 小飞的学习笔记
+> 程序猿【小飞】的学习笔记
 
 <a href="https://blog.csdn.net/qq_41666142" target="_blank"><img src="https://img.shields.io/badge/CSDN-512%2C161%20%E8%A2%AB%E8%AE%BF%E9%97%AE-important"></a>
 <a href="https://gitee.com/LovelyHzz" target="_blank"><img src="https://img.shields.io/badge/Gitee-LovelyHzz-9cf"></a>
