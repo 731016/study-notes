@@ -1,8 +1,8 @@
 # 学习笔记 :green_book: <!-- {docsify-ignore-all} -->
 
 ## 介绍 :point_left: 
-<span style="display:block;font-family: 'Consolas';font-weight: 600;">编程学习记录，包括Java，JavaWeb，javascript，linux，Sql，Redis，Vue，Git，C语言，Python，计算机网络，面试资料...</span>
-<span style="display:block;font-family: 'Consolas';font-weight: 600;">其他，包括高等数学，劳动合同法...</span>
+<span style="display:block;font-family: 'Consolas';font-weight: 600;color:#2c68a5">编程学习记录，包括Java，JavaWeb，javascript，linux，Sql，Redis，Vue，Git，C语言，Python，计算机网络，面试资料...</span>
+<span style="display:block;font-family: 'Consolas';font-weight: 600;color:#73889d">其他，包括高等数学，劳动合同法...</span>
 <div style="font-family: monospace;color: brown;font-weight: 600;">
     很杂的资料库。。。
 </div>
