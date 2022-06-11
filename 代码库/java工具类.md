@@ -19,7 +19,7 @@ List<CheckhouseRecord> checkhouseRecordList = (List<CheckhouseRecord>) JSON.pars
 
 [commons常用工具包的使用&guava工具类使用 - QiaoZhi - 博客园 (cnblogs.com)](https://www.cnblogs.com/qlqwjy/p/9467178.html)
 
-![image-20211124221558400](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124221558400.png)
+![image-20211124221558400](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124221558400.png)
 
 ```Java
 // 判断是否包含 空格 ""(空字符串) null 不能判断"null"字符串

@@ -8,7 +8,7 @@
 
 新建系统变量 **MAVEN_HOME**，变量值：自己的安装文件夹
 
-![image-20211124221930804](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124221930804.png)
+![image-20211124221930804](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124221930804.png)
 
 编辑系统变量 **Path**，添加变量值：
 
@@ -16,7 +16,7 @@
 ;%MAVEN_HOME%\bin
 ```
 
-![image-20211124221947523](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124221947523.png)
+![image-20211124221947523](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124221947523.png)
 
 ```PowerShell
 mvn -version
@@ -59,15 +59,15 @@ apache-maven-3.6.3\conf\settings.xml
 
 ## IDEA配置maven
 
-## <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112292132356.png" alt="image-20211124222700068" style="zoom:67%;" />
+## <img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112292132356.png" alt="image-20211124222700068" style="zoom:67%;" />
 
 # 运行maven项目
 
-![image-20211124222731245](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202111271735488.png)
+![image-20211124222731245](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202111271735488.png)
 
-![image-20211124222757353](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124222757353.png)
+![image-20211124222757353](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124222757353.png)
 
-![image-20211124222821518](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202111271735229.png)
+![image-20211124222821518](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202111271735229.png)
 
 # 依赖
 
@@ -170,7 +170,7 @@ apache-maven-3.6.3\conf\settings.xml
         </dependency>
 ```
 
-![image-20211124222857539](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124222857539.png)
+![image-20211124222857539](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124222857539.png)
 
 # 依赖管理
 
@@ -362,11 +362,11 @@ war
 
 ## 新建web模块
 
-![image-20211124222923709](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124222923709.png)
+![image-20211124222923709](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124222923709.png)
 
 ## 配置web目录
 
-![image-20211124222946844](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124222946844.png)
+![image-20211124222946844](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124222946844.png)
 
 ## maven编译,打包,安装
 
@@ -374,11 +374,11 @@ https://blog.csdn.net/zhan107876/article/details/93197985
 
 ## 复制打包好的.war文件
 
-![image-20211127173751201](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202111271737102.png)
+![image-20211127173751201](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202111271737102.png)
 
 ## 设置tomcat管理用户名密码
 
-![image-20211124223204383](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124223204383.png)
+![image-20211124223204383](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124223204383.png)
 
 ```XML
 <role rolename="manager-gui"/>
@@ -387,7 +387,7 @@ https://blog.csdn.net/zhan107876/article/details/93197985
 
 ## cmd启动tomcat
 
-![image-20211124223216479](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124223216479.png)
+![image-20211124223216479](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124223216479.png)
 
 ```PowerShell
 startup 启动

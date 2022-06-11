@@ -8,9 +8,9 @@ https://www.w3school.com.cn
 
 https://developer.mozilla.org/zh-CN
 
-![image-20220223111429169](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231114270.png)
+![image-20220223111429169](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202231114270.png)
 
-![image-20220223111442894](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231114956.png)
+![image-20220223111442894](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202231114956.png)
 
 ## 网页的形成
 
@@ -24,7 +24,7 @@ https://tongji.baidu.com/research/site
 
 负责<span style="background-color:yellow">读取网页内容</span>，整理讯息，计算网页的显示方式并显示页面
 
-![image-20220222151857260](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221518441.png)
+![image-20220222151857260](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221518441.png)
 
 
 
@@ -32,7 +32,7 @@ https://tongji.baidu.com/research/site
 
 三层标准：结构（html）、表现（css）、行为（javascript）
 
-![image-20220222151951999](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221519079.png)
+![image-20220222151951999](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221519079.png)
 
 ## html骨架标签
 
@@ -44,7 +44,7 @@ https://tongji.baidu.com/research/site
 
 ## html元素标签分类
 
-![image-20220222152059864](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221520909.png)
+![image-20220222152059864](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221520909.png)
 
 ## html标签关系
 
@@ -82,7 +82,7 @@ http://www.sublimetext.com/
 
 字符集：多个字符的集合
 
-![image-20220222152321613](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221523668.png)
+![image-20220222152321613](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221523668.png)
 
 ## 标签的语义化（含义）
 
@@ -109,7 +109,7 @@ http://www.sublimetext.com/
 <h6>标题文本</h6>
 ```
 
-![image-20220223112808916](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231128983.png)
+![image-20220223112808916](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202231128983.png)
 
 <span style="color:blue">**（2）段落标签** </span>
 
@@ -247,7 +247,7 @@ https://www.runoob.com/tags/tag-a.html
 快捷键：ctrl+/   ctrl+shift+/
 ```
 
-![image-20220222153207816](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221532879.png)
+![image-20220222153207816](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221532879.png)
 
 ### 锚点
 
@@ -256,7 +256,7 @@ https://www.runoob.com/tags/tag-a.html
 <h2 id="id">跳转</h2>
 ```
 
-![image-20220222153247074](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221532141.png)
+![image-20220222153247074](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221532141.png)
 
 ### base标签
 
@@ -291,7 +291,7 @@ https://www.runoob.com/tags/tag-a.html
 | <            | 小于号   | `&lt;  `       |
 | >            | 大于号   | ` &gt;  `      |
 
-![image-20220222153507674](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221535750.png)
+![image-20220222153507674](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221535750.png)
 
 
 
@@ -381,7 +381,7 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLTableElement
     </tr>
 </table>
 
-![image-20220222153926211](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221539274.png)
+![image-20220222153926211](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221539274.png)
 
 <span style="color:blue">**表头单元格标签**`<th>`</span>
 
@@ -393,7 +393,7 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLTableElement
 </tr>
 ```
 
-![image-20220222154016365](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221540418.png)
+![image-20220222154016365](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221540418.png)
 
 <span style="color:blue">**表格标题**caption</span>
 
@@ -401,11 +401,11 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLTableElement
 <caption>个人信息表</caption>
 ```
 
-![image-20220222154045744](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221540801.png)
+![image-20220222154045744](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221540801.png)
 
 ### 案例-小说排行榜
 
-![image-20220222154119207](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221541271.png)
+![image-20220222154119207](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221541271.png)
 
 ```html
 <body>
@@ -499,7 +499,7 @@ colspan="合并单元格的个数"
 > 2. 根据 先上 后下  先左 后右 的原则找到目标单元格 写上合并方式 还有要合并的单元格数量
 > 3. 删除多余的单元格
 
-![image-20220222154338996](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221543048.png)
+![image-20220222154338996](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221543048.png)
 
 ```html
 <body>
@@ -623,7 +623,7 @@ colspan="合并单元格的个数"
 </dl>
 ```
 
-![image-20220222154634309](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221546350.png)
+![image-20220222154634309](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221546350.png)
 
 ## 表单标签
 
@@ -719,7 +719,7 @@ type属性用来指定控件类型
 
 复选按钮可选择多个
 
-![image-20220222154850623](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221548668.png)
+![image-20220222154850623](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221548668.png)
 
 ```html
 爱好：
@@ -742,7 +742,7 @@ checked属性表示默认选中状态
 图片提交按钮：<input type="image" src="image/btn.png">
 ```
 
-![image-20220222154937318](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221549372.png)
+![image-20220222154937318](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221549372.png)
 
 ```html
 上传文件：<input type="file">
@@ -786,7 +786,7 @@ label标签为input元素定义标注
 用户留言：<textarea></textarea>
 ```
 
-![image-20220222155131590](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221551646.png)
+![image-20220222155131590](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221551646.png)
 
 <span style="color:blue">**作用**</span>
 
@@ -845,7 +845,7 @@ resize: none;
     </select>
 ```
 
-![image-20220223150311842](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231503914.png)
+![image-20220223150311842](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202231503914.png)
 
 ## from表单域
 
@@ -908,7 +908,7 @@ html5 mdn 介绍：https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML
 
 IE9使用需要转换为**块级元素**
 
-![image-20220222155529139](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221555201.png)
+![image-20220222155529139](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221555201.png)
 
 ### 多媒体标签
 
@@ -919,7 +919,7 @@ IE9使用需要转换为**块级元素**
 
 <span style="color:blue">**音频格式**</span>
 
-![image-20220222155621556](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221556617.png)
+![image-20220222155621556](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221556617.png)
 
 <span style="color:red">**音频标签语法格式**</span>
 
@@ -966,7 +966,7 @@ IE9使用需要转换为**块级元素**
 
 <span style="color:blue">**视频格式**</span>
 
-![image-20220222155749756](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221557815.png)
+![image-20220222155749756](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221557815.png)
 
 <span style="color:red">**视频标签语法格式**</span>
 
@@ -1103,7 +1103,7 @@ IE9使用需要转换为**块级元素**
 </form>
 ```
 
-![image-20220223140449041](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231404121.png)
+![image-20220223140449041](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202231404121.png)
 
 <table style="font-family:'Consolas';" cellspacing="0">
     <tr style="background-color:#92D050;color: #fff">

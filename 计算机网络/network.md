@@ -53,11 +53,11 @@
 
 OSI的体系结构
 
-![image-20220428172325404](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281723488.png)
+![image-20220428172325404](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281723488.png)
 
 TCP/IP的体系结构
 
-![image-20220428172338858](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281724552.png)
+![image-20220428172338858](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281724552.png)
 
 五层协议的体系结构
 
@@ -165,17 +165,17 @@ CSMA/CD 协议的要点
 
 P(X)=X^4 + X + 1 --> 10000+10+1=10011
 
-![image-20220428172848311](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281728361.png)
+![image-20220428172848311](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281728361.png)
 
 **除数5位，被除数添加4【5-1】个0**
 
-![image-20220428172921939](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281729982.png)
+![image-20220428172921939](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281729982.png)
 
 除法运算得出的余数，就是添加在**数据后面**的**检验序列**
 
 余数不为0，接收端能够发现
 
-![image-20220428172949127](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281729167.png)
+![image-20220428172949127](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281729167.png)
 
 余数不为0，接收端能够发现
 
@@ -183,7 +183,7 @@ P(X)=X^4 + X + 1 --> 10000+10+1=10011
 
 1000+1=1001
 
-![image-20220428173048321](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281730356.png)
+![image-20220428173048321](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281730356.png)
 
 **除数4位，被除数添加3【4-1】个0**
 
@@ -194,7 +194,7 @@ P(X)=X^4 + X + 1 --> 10000+10+1=10011
 端到端的传播时延=（1km）/（200 000km/s）=5 µs
  争用期2₹（₹是以太网单程端到端的传播时延）
 
-![image-20220428173144257](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281731285.png)
+![image-20220428173144257](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281731285.png)
 
 =L/C![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGkAAAARCAIAAABRkRXBAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHrSURBVFhHY/z//z/DKCALMEHpUUA6GA078sFo2JEPCIXdrRnmjOjAaf4DqCyl4O4cG8bC/VDOkAMEwu7l+f3c069+////ZIOoevfF//9/7cpiN1FWgEoTAgTC5u7+BQyzcxyhPAaG/YXQ2AGCIRCkBMJOPHzlvgwtDoa7l3Z/8jPTY2BgVTLM05SDylII9k9JZUhwVIZwQMHsdHr2HWC9Dwb9iCAdtADqVPzg4+ZYhtjNH6E84sGd2dYMBfugHHSwrwBJDq/KQQqIqit+n927ytFRhw/KxQSgRIMCCOe4u3NqTyPl10dXj1prUyk90wsQFXbXz25X8DLGU8gppxyBxgUUEMxxKPkVGJJ3T0NZQwgQE3YPzm574GmsCeUBwbvjbQ5iHIwcYv7zb/0GCZCc7vZvmlDQnAIPOgZlZVOGo1cfQXlDBUATCm7w68F8Twaz6TehXCC4OlHXevrNX79erotlx18K4ijFgMLWiFoBAkBKh1iJRzDswH4CAoRn789zBDdXwHJQFg4A0wwF0KABVhIYQQcCKKqHQDASV8+iABLCDhsAhdBQq1GxA6LqClSgoG3/bsPBaz9+v7p06JKNNrHtZBgA1StDofFGBICGIUng7b5KbV4GBl7thBU3f0HFRiAYHb8jFzAwAAB5jUgM9WiGlQAAAABJRU5ErkJggg==)
 
@@ -206,13 +206,13 @@ P(X)=X^4 + X + 1 --> 10000+10+1=10011
 
 > 3-33 在图中，以太网交换机有6个接口，分别接到5台主机和一个路由器
 >
-> ![image-20220428173218068](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281732476.png)
+> ![image-20220428173218068](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281732476.png)
 >
 > 在下面表的"动作"一栏中，表示先后发送了4个帧。假定在开始时，以太网交换机的交换表是空的。
 >
 > 试把该表中其他的栏目都填写完。
 
-![image-20220428173334212](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281733247.png)
+![image-20220428173334212](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281733247.png)
 
 **第4章**
 
@@ -268,11 +268,11 @@ TCP交给IP的数据3200 bit=1040+1040+1040+80，必须划分**4**个数据报�
 
 > 4-41 假定网络中的路由器B的路由表由如下的项目（"目的网络"，"距离"，"下一跳路由器"）
 
-![image-20220428173813159](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281738196.png)
+![image-20220428173813159](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281738196.png)
 
 现在B收到从C发来的路由信息（'目的网络'，'距离'）
 
-![image-20220428173838572](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281738606.png)
+![image-20220428173838572](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281738606.png)
 
 试求出路由器B更新后的路由表（详细说明步骤）
 
@@ -297,11 +297,11 @@ TCP交给IP的数据3200 bit=1040+1040+1040+80，必须划分**4**个数据报�
 
 > 4-42 假定网络中的路由器A的路由表有如下的项目
 >
-> ![image-20220428174014893](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281740930.png)
+> ![image-20220428174014893](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281740930.png)
 >
 > 现在收到从C发来的路由信息
 >
-> ![image-20220428174029044](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281740079.png)
+> ![image-20220428174029044](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281740079.png)
 >
 > 试求出路由器A更新后的路由表（详细说明步骤）
 
@@ -323,11 +323,11 @@ TCP交给IP的数据3200 bit=1040+1040+1040+80，必须划分**4**个数据报�
 
 分组转发算法（**传统分类IP地址**）【p134】
 
-![image-20220428174226147](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281742190.png)
+![image-20220428174226147](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281742190.png)
 
 **划分子网**下的分组转发算法【p140】
 
-![image-20220428174242500](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281742546.png)
+![image-20220428174242500](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281742546.png)
 
 （3）RIP/OSPF【p154，159】
 
@@ -470,11 +470,11 @@ IP数据报的数据部分=UDP首部+UDP用户数据报的数据部分
 
 14、目前互联网上使用的事实上的国际标准是（ ）。A.OSI B.**TCP/IP** C.SNA D.IEEE
 
-![image-20220428174634100](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281746157.png)
+![image-20220428174634100](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281746157.png)
 
 ### 第二章--物理层
 
-![image-20220428175007627](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281750710.png)
+![image-20220428175007627](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281750710.png)
 
 ### **第三章--数据链路层**
 
@@ -502,7 +502,7 @@ IP数据报的数据部分=UDP首部+UDP用户数据报的数据部分
 22. **MAC**地址共定义有（**48**）**bit**
 23. 用户使用拨号电话线与Modem接入因特网时，一般都是使用（       ）协议。A.ISP B.**PPP** C.PPPOE D.CSMA/CD
 
-![image-20220428175157990](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281751066.png)
+![image-20220428175157990](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281751066.png)
 
 ### **第四章--网络层**
 
@@ -558,9 +558,9 @@ IP数据报的数据部分=UDP首部+UDP用户数据报的数据部分
 
 23.BGP中，用来与相邻的另一个BGP发言人建立关系的报文是（ ）。A.**打开报文**B.更新报文C.保活报文D.通知报文
 
-![image-20220428175322040](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281753105.png)
+![image-20220428175322040](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281753105.png)
 
-![image-20220428175333955](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281753012.png)
+![image-20220428175333955](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281753012.png)
 
 ### 第五章--运输层
 
@@ -786,7 +786,7 @@ C.固定接收窗口
 
 D.以上都不是
 
-![image-20220428175608565](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281756617.png)
+![image-20220428175608565](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281756617.png)
 
 ### **第六章--应用层**
 
@@ -818,5 +818,5 @@ D.cn是常用的顶级域名代码
 
 10.系统对WWW 网页存储的默认格式是(  HTML   )
 
-![image-20220428175635895](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281756953.png)
+![image-20220428175635895](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281756953.png)
 

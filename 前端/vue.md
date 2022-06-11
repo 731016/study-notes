@@ -10,7 +10,7 @@
 
 ## 关闭生成环境Tip
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112191550766.png" alt="image-20211219155006661" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112191550766.png" alt="image-20211219155006661" style="zoom:80%;" />
 
 > :no_entry: 此笔记适用于`vue 2.x` ！！！
 
@@ -461,7 +461,7 @@ vm.$watch('flag',function(){
 
 ## watch与computed的区别
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112292130387.png" alt="image-20211229213007245" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112292130387.png" alt="image-20211229213007245" style="zoom:80%;" />
 
 
 
@@ -491,11 +491,11 @@ vm.$watch('flag',function(){
 > }
 > ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112302227752.png" alt="image-20211230222709222" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112302227752.png" alt="image-20211230222709222" style="zoom:80%;" />
 
 ## 绑定style样式
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112302227641.png" alt="image-20211230222746668" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112302227641.png" alt="image-20211230222746668" style="zoom:80%;" />
 
 > :style(v-bind:style)
 >
@@ -505,7 +505,7 @@ vm.$watch('flag',function(){
 >
 >   **样式对象：**
 >
->   <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112302226467.png" alt="image-20211230222623754" style="zoom:80%;" />
+>   <img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112302226467.png" alt="image-20211230222623754" style="zoom:80%;" />
 
 ## 条件渲染
 
@@ -553,17 +553,17 @@ vm.$watch('flag',function(){
      </ul>
  ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201032147953.png" alt="image-20220103214659565" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201032147953.png" alt="image-20220103214659565" style="zoom:80%;" />
 
 ### key作用与原理
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201032214054.png" alt="image-20220103221441441" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201032214054.png" alt="image-20220103221441441" style="zoom:80%;" />
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201032218974.png" alt="image-20220103221758075" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201032218974.png" alt="image-20220103221758075" style="zoom:80%;" />
 
 ### key的原理
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201032221122.png" alt="image-20220103222148681" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201032221122.png" alt="image-20220103222148681" style="zoom:80%;" />
 
 ### 列表过滤
 
@@ -673,7 +673,7 @@ vm.$watch('flag',function(){
 
 ## vue检测数据的原理
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201042157082.png" alt="image-20220104215723138" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201042157082.png" alt="image-20220104215723138" style="zoom:80%;" />
 
 > + vue会监视data中所有层次的数据
 
@@ -864,7 +864,7 @@ Vue.set(),vm.$set()
 
 
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201102140108.png" alt="image-20220110214027981" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201102140108.png" alt="image-20220110214027981" style="zoom:80%;" />
 
 什么时候调用此指令？
 
@@ -893,11 +893,11 @@ Vue.set(),vm.$set()
 
 ### `创建-挂载-更新-销毁`流程
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201112215165.png" alt="image-20220111221542241" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201112215165.png" alt="image-20220111221542241" style="zoom:80%;" />
 
 
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201112150055.png" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201112150055.png" style="zoom:80%;" />
 
 ```vue
 vue2.x 模板必须包含一个根节点，vue3.x已解决
@@ -1081,7 +1081,7 @@ new Vue({
 </script>
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201122134138.png" alt="image-20220112213414805" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201122134138.png" alt="image-20220112213414805" style="zoom:80%;" />
 
 
 
@@ -1215,7 +1215,7 @@ const school = Vue.extend({options}) => const school = {options}
 </html>
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201132032520.png" alt="image-20220113203249371" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201132032520.png" alt="image-20220113203249371" style="zoom:80%;" />
 
 ## VueComponent构造函数
 
@@ -1232,7 +1232,7 @@ const school = Vue.extend({options}) => const school = {options}
     data,methods,watch,comptued指向【Vue实例对象】
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201132109292.png" alt="image-20220113210933616" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201132109292.png" alt="image-20220113210933616" style="zoom:80%;" />
 
 ### vue实例与组件实例
 
@@ -1254,7 +1254,7 @@ function Demo() {
     console.log(d.c);
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201132125803.png" alt="image-20220113212458368" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201132125803.png" alt="image-20220113212458368" style="zoom:80%;" />
 
 > ```js
 > (VueComponent.prototype.__proto__ === Vue.prototype
@@ -1267,7 +1267,7 @@ console.log(app.prototype.__proto__ === Vue.prototype) //true
 
 **让组件实例对象可以访问到vue原型上的属性和方法**
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201132142296.png" alt="image-20220113214210545" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201132142296.png" alt="image-20220113214210545" style="zoom:80%;" />
 
 
 
@@ -1403,31 +1403,31 @@ npm config set registry https://registry.npm.taobao.org
 npm install -g @vue/cli
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201182056241.png" alt="image-20220118205555410" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201182056241.png" alt="image-20220118205555410" style="zoom:80%;" />
 
 ```powershell
 切换到要创建的目录
 vue create xxx
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201182058974.png" alt="image-20220118205841228" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201182058974.png" alt="image-20220118205841228" style="zoom:80%;" />
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201182107400.png" alt="image-20220118210735858" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201182107400.png" alt="image-20220118210735858" style="zoom:80%;" />
 
 ```powershell
 启动项目
 npm run serve
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201182109550.png" alt="image-20220118210930741" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201182109550.png" alt="image-20220118210930741" style="zoom:80%;" />
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201182109878.png" alt="image-20220118210955378" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201182109878.png" alt="image-20220118210955378" style="zoom:80%;" />
 
 ## vue脚手架结构
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201182215086.png" alt="image-20220118221548669" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201182215086.png" alt="image-20220118221548669" style="zoom:80%;" />
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201192033240.png" alt="image-20220119203348202" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201192033240.png" alt="image-20220119203348202" style="zoom:80%;" />
 
 > 加入School和Student组件到components目录下
 >
@@ -1437,7 +1437,7 @@ npm run serve
 >
 > 运行npm run serve
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201182219098.png" alt="image-20220118221856055" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201182219098.png" alt="image-20220118221856055" style="zoom:80%;" />
 
 ## render函数
 
@@ -1533,9 +1533,9 @@ methods:{
   }
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201192104886.png" alt="image-20220119210406126" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201192104886.png" alt="image-20220119210406126" style="zoom:80%;" />
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201192103685.png" alt="image-20220119210332249" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201192103685.png" alt="image-20220119210332249" style="zoom:80%;" />
 
 ## props配置
 
@@ -1707,13 +1707,13 @@ Vue.use(plugin);
 <style scoped></style>
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201202039365.png" alt="image-20220120203846463" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201202039365.png" alt="image-20220120203846463" style="zoom:80%;" />
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201202039883.png" alt="image-20220120203904943" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201202039883.png" alt="image-20220120203904943" style="zoom:80%;" />
 
 ### 扩展
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201202046762.png" alt="image-20220120204617812" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201202046762.png" alt="image-20220120204617812" style="zoom:80%;" />
 
 ```less
 <style lang="less" scoped>
@@ -1728,14 +1728,14 @@ h2 {
 默认vue不识别其他的语法，需要添加加载器
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201202048064.png" alt="image-20220120204754969" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201202048064.png" alt="image-20220120204754969" style="zoom:80%;" />
 
 ```powershell
 npm view webpack versions #查看webpack版本
 npm view less-loader versions #查看less-loader版本
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201202051917.png" alt="image-20220120205116528" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201202051917.png" alt="image-20220120205116528" style="zoom:80%;" />
 
 ### 安装less加载器
 
@@ -2156,7 +2156,7 @@ editItem(item) {
 
 ## 过渡与动画
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202072103821.png" alt="image-20220207210255578" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202072103821.png" alt="image-20220207210255578" style="zoom:80%;" />
 
 ### 用法
 
@@ -2233,7 +2233,7 @@ module.exports = {
 
 ## github案例
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202082155048.png" alt="image-20220208215504930" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202082155048.png" alt="image-20220208215504930" style="zoom:80%;" />
 
 ### App.vue
 
@@ -2471,15 +2471,15 @@ Student.vue
 
 # vuex
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202092118357.png" alt="image-20220209211814287" style="zoom: 80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202092118357.png" alt="image-20220209211814287" style="zoom: 80%;" />
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202092121467.png" alt="image-20220209212121141" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202092121467.png" alt="image-20220209212121141" style="zoom:80%;" />
 
 
 
 ## 什么时候需要使用？
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202092125676.png" alt="image-20220209212457508" style="zoom: 80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202092125676.png" alt="image-20220209212457508" style="zoom: 80%;" />
 
 **状态（数据）共享！**
 
@@ -2487,7 +2487,7 @@ Student.vue
 
 ## vuex工作原理
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202092144381.png" alt="image-20220209214418769" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202092144381.png" alt="image-20220209214418769" style="zoom:80%;" />
 
 ## 搭建vuex环境
 
@@ -2881,7 +2881,7 @@ export default new Vuex.Store({
 })
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202121922990.png" alt="image-20220212192237604" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202121922990.png" alt="image-20220212192237604" style="zoom:80%;" />
 
 ```js
 #count.js
@@ -3097,7 +3097,7 @@ export default {
 </style>
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202121928996.png" alt="image-20220212192811480" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202121928996.png" alt="image-20220212192811480" style="zoom:80%;" />
 
 ### 组件读取state数据
 
@@ -3321,7 +3321,7 @@ export default {
 </script>
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202162227994.png" alt="image-20220216222723142" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202162227994.png" alt="image-20220216222723142" style="zoom:80%;" />
 
 ### 注意:warning:
 
@@ -3332,7 +3332,7 @@ export default {
 
 ## 嵌套路由
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202171958278.png" alt="image-20220217195817118" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202171958278.png" alt="image-20220217195817118" style="zoom:80%;" />
 
 ### 配置多级路由
 

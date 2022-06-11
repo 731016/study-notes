@@ -105,7 +105,7 @@ $(document).ready(function() {
 
 **只有** **jQuery** **对象才能使用** **jQuery** **方法，**DOM **对象则使用原生的** **JavaScirpt** **方法**
 
-![image-20220419104953161](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204191049369.png)
+![image-20220419104953161](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204191049369.png)
 
 ### jQuery对象和DOM对象转换
 

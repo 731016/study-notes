@@ -2,11 +2,11 @@
 
 https://www.python.org/
 
-![image-20220428180256069](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281802133.png)
+![image-20220428180256069](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281802133.png)
 
 ## 设计第一个小游戏
 
-![image-20220428180329112](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281803225.png)
+![image-20220428180329112](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281803225.png)
 
 ```python
 """ 用python设计第一个游戏 """
@@ -23,7 +23,7 @@ else:
 print("游戏结束，不玩啦^_^")
 ```
 
-![image-20220428180406652](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281804756.png)
+![image-20220428180406652](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281804756.png)
 
 **将字符串转换为整数**
 
@@ -31,11 +31,11 @@ print("游戏结束，不玩啦^_^")
 
 **比较运算符**
 
-![image-20220428180437006](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281804052.png)
+![image-20220428180437006](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281804052.png)
 
 ## 变量
 
-![image-20220428180522709](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281805822.png)
+![image-20220428180522709](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281805822.png)
 
 ### 创建并访问变量
 
@@ -84,7 +84,7 @@ SyntaxError: invalid syntax
 
 ## 字符串
 
-![image-20220428180651687](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281806792.png)
+![image-20220428180651687](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281806792.png)
 
 ### 字符串
 
@@ -240,7 +240,7 @@ for 变量 in 可迭代对象：
 
 可迭代对象：指那些元素可以被单独提取出来的对象
 
-![image-20220428181434924](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281814958.png)
+![image-20220428181434924](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281814958.png)
 
 **range**()
 
@@ -260,7 +260,7 @@ range(start,stop,step)
 
 **只有一个参数**
 
-![image-20220428181520429](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281815461.png)
+![image-20220428181520429](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281815461.png)
 
 **list**是将可迭代对象以列表的形式展示出来
 
@@ -268,11 +268,11 @@ range(start,stop,step)
 
 **指定起始数值和结束数值**
 
-![image-20220428181539276](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281815311.png)
+![image-20220428181539276](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281815311.png)
 
 **增加步长**
 
-![image-20220428181554457](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281815488.png)
+![image-20220428181554457](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281815488.png)
 
 ```python
 打印1+2+3+4+…+100的计算结果
@@ -286,19 +286,19 @@ print(sum)
 
 当这个关键字后的条件为假时，程序自动崩溃并抛出AssertionError异常
 
-![image-20220428181646678](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281816709.png)
+![image-20220428181646678](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281816709.png)
 
 ### break语句
 
 中止当前循环，跳出循环体
 
-![image-20220428182103114](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281821149.png)
+![image-20220428182103114](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281821149.png)
 
 ### continue语句
 
 跳出本轮循环并开始下一轮循环（开始前测试循环条件）
 
-![image-20220428182124664](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281821700.png)
+![image-20220428182124664](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281821700.png)
 
 ### else语句
 
@@ -315,7 +315,7 @@ else：
       条件不成立时执行的内容
 ```
 
-![image-20220428182155616](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204281821652.png)
+![image-20220428182155616](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204281821652.png)
 
 ## 随机数
 
@@ -620,27 +620,27 @@ small=x if 条件 else y
 
 使用中括号将数据包裹起来（数据之间使用逗号分隔）
 
-![image-20220507100137194](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071001121.png)
+![image-20220507100137194](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071001121.png)
 
 上面创建的是匿名的列表，无法使用
 
 可使用变量名
 
-![image-20220507100218704](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071002882.png)
+![image-20220507100218704](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071002882.png)
 
 列表**支持各种不同的数据存放**
 
-![image-20220507100315345](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071003720.png)
+![image-20220507100315345](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071003720.png)
 
 可创建空列表
 
-![image-20220507100342996](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071003354.png)
+![image-20220507100342996](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071003354.png)
 
 **向列表添加元素**
 
 （1）使用**append()**方法：向列表末尾添加元素
 
-![image-20220507100430473](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071004072.png)
+![image-20220507100430473](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071004072.png)
 
 append()属于列表对象的一个方法
 
@@ -650,7 +650,7 @@ append()方法**只支持一个参数**
 
 （2）添加多个数据，可使用**extend()**方法向列表末尾添加多个元素：
 
-![image-20220507100522243](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071005282.png)
+![image-20220507100522243](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071005282.png)
 
 extend()使用一个列表来扩充另一个列表，参数是另一个列表
 
@@ -662,49 +662,49 @@ extend()使用一个列表来扩充另一个列表，参数是另一个列表
 
 【2】待插入的元素值
 
-![image-20220507100608218](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071006711.png)
+![image-20220507100608218](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071006711.png)
 
 **从列表获取元素**
 
 通过索引值可直接获取列表中的某一个元素
 
-![image-20220507100637873](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071006535.png)
+![image-20220507100637873](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071006535.png)
 
 访问列表最后一个元素，使用**len()函数**获取该列表长度，减1，即为最后一个元素的索引值
 
-![image-20220507100706122](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071007238.png)
+![image-20220507100706122](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071007238.png)
 
 当索引值为负数时，表示从列表的末尾反向索引
 
-![image-20220507100727039](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071007750.png)
+![image-20220507100727039](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071007750.png)
 
 若要交换位置
 
-![image-20220507100753717](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071007117.png)
+![image-20220507100753717](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071007117.png)
 
 若开发抽奖功能
 
 random的choice()方法可从一个非空的序列中随机获取一个元素
 
-![image-20220507100829423](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071008922.png)
+![image-20220507100829423](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071008922.png)
 
 列表可以包含另一个列表，若要获取内部子列表的某一个元素，可使用两次索引
 
-![image-20220507100848648](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071008751.png)
+![image-20220507100848648](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071008751.png)
 
 **从列表删除元素**
 
 **remove()**方法：指定一个待删除的元素
 
-![image-20220507100943620](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071009878.png)
+![image-20220507100943620](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071009878.png)
 
 **pop()**方法:取出并删除元素，参数为索引值
 
-![image-20220507101008989](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071010237.png)
+![image-20220507101008989](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071010237.png)
 
 **del**语句：可删除元素和整个变量
 
-![image-20220507101029642](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071010102.png)
+![image-20220507101029642](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071010102.png)
 
 **列表切片**
 
@@ -712,11 +712,11 @@ random的choice()方法可从一个非空的序列中随机获取一个元素
 
 结束位置上的元素不包含
 
-![image-20220507101059135](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071011042.png)
+![image-20220507101059135](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071011042.png)
 
 若想获取列表最后几个元素
 
-![image-20220507101140943](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071011303.png)
+![image-20220507101140943](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071011303.png)
 
 列表切片不会修改自身的组成结构和数据，只是为列表创建一个新的拷贝并返回
 
@@ -726,7 +726,7 @@ random的choice()方法可从一个非空的序列中随机获取一个元素
 
 列表切片可接受第三个参数，代表步长，默认值为**1**
 
-![image-20220507101233365](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071012934.png)
+![image-20220507101233365](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071012934.png)
 
 直接作用于原始列表的操作
 
@@ -738,39 +738,39 @@ random的choice()方法可从一个非空的序列中随机获取一个元素
 
 当列表包含多个元素，默认从第一个元素开始比较
 
-![image-20220507101323165](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071013709.png)
+![image-20220507101323165](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071013709.png)
 
 连接操作符（+）：并不能实现列表添加新元素的操作
 
-![image-20220507101346709](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071013097.png)
+![image-20220507101346709](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071013097.png)
 
 重复操作符（*）
 
-![image-20220507101511907](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071015246.png)
+![image-20220507101511907](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071015246.png)
 
 成员关系操作符（in,not in）：只能判断一个层次的成员关系
 
-![image-20220507101536099](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071015999.png)
+![image-20220507101536099](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071015999.png)
 
 去除列表中重复的数据
 
-![image-20220507101614110](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071016820.png)
+![image-20220507101614110](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071016820.png)
 
 **count()**方法：统计某个元素在列表中出现的次数
 
-![image-20220507101709812](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071017988.png)
+![image-20220507101709812](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071017988.png)
 
 **index()**方法：返回某个元素在列表中第一次出现的索引值
 
-![image-20220507101636610](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071016264.png)
+![image-20220507101636610](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071016264.png)
 
 **reverse()**方法：将整个列表翻转
 
-![image-20220507101734795](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071017137.png)
+![image-20220507101734795](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071017137.png)
 
 **sort()**方法：对列表进行排序
 
-![image-20220507101752766](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071017759.png)
+![image-20220507101752766](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071017759.png)
 
 
 
@@ -788,7 +788,7 @@ random的choice()方法可从一个非空的序列中随机获取一个元素
 
 【3】sort(reverse=False)默认
 
-![image-20220507101815412](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071018453.png)
+![image-20220507101815412](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071018453.png)
 
 ### 元组
 
@@ -798,15 +798,15 @@ random的choice()方法可从一个非空的序列中随机获取一个元素
 
 创建元组大部分时候使用小括号
 
-![image-20220507101915557](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071019870.png)
+![image-20220507101915557](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071019870.png)
 
 访问元组也是通过索引值访问一个或多个元素
 
-![image-20220507101932819](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071019220.png)
+![image-20220507101932819](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071019220.png)
 
 复制一个元组，可通过切片实现
 
-![image-20220507101953126](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071019318.png)
+![image-20220507101953126](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071019318.png)
 
 元组的标识符
 
@@ -814,7 +814,7 @@ random的choice()方法可从一个非空的序列中随机获取一个元素
 
 小括号可省略
 
-![image-20220507102014566](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071020685.png)
+![image-20220507102014566](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071020685.png)
 
 **更新和删除元组**
 
@@ -822,11 +822,11 @@ random的choice()方法可从一个非空的序列中随机获取一个元素
 
 **id()**函数用于返回指定对象的唯一ID值
 
-![image-20220507102043280](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071020942.png)
+![image-20220507102043280](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071020942.png)
 
 使用del语句删除整个元组
 
-![image-20220507102108607](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071021678.png)
+![image-20220507102108607](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071021678.png)
 
 很少使用del去删除整个元组，Pyhton的垃圾回收机制会对某个对象不再被使用的时候自动进行清理
 
@@ -834,11 +834,11 @@ random的choice()方法可从一个非空的序列中随机获取一个元素
 
 切片也可应用于字符串
 
-![image-20220507102141643](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071021935.png)
+![image-20220507102141643](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071021935.png)
 
 字符串一旦确定就不能修改，只能使用切片
 
-![image-20220507102202731](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071022400.png)
+![image-20220507102202731](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071022400.png)
 
 旧的字符串还在，变量名指向拼接后的字符串；旧的字符串失去变量的引用，Python的垃圾回收机制将其释放
 
@@ -848,7 +848,7 @@ random的choice()方法可从一个非空的序列中随机获取一个元素
 | -------------- | ---------------------------- |
 | **casefold()** | 将字符串的所有字符修改为小写 |
 
-![image-20220507102242472](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071022734.png)
+![image-20220507102242472](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071022734.png)
 
 修改字符串并不是修改原字符串，而是返回字符串修改后的一个拷贝
 
@@ -856,45 +856,45 @@ random的choice()方法可从一个非空的序列中随机获取一个元素
 | ----------------------------- | ------------------------------------------------------------ |
 | **count(sub,[,start[,end]])** | 返回sub参数在字符串里面出现的次数     start和end参数可选，指定统计范围 |
 
-![image-20220507102316660](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071023825.png)
+![image-20220507102316660](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071023825.png)
 
 | **方法**                                                     | **含义**                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | **find(sub[,start[,end]]) **    **index(sub[,start[,end]])** | 检查sub参数是否包含在字符串中，如果有则返回第一个出现位置的索引值，否则返回-1；index方法找不到将抛出ValueError异常  start和end参数可选，指定统计范围 |
 
-![image-20220507102408725](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071024997.png)
+![image-20220507102408725](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071024997.png)
 
 | **方法**                     | **含义**                                                     |
 | ---------------------------- | ------------------------------------------------------------ |
 | **replace(old,new[,count])** | 将字符串中的old参数指定的字符串替换成new参数指定的字符串     count参数可选，表示最多替换次数不超过count |
 
-![image-20220507102432791](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071024077.png)
+![image-20220507102432791](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071024077.png)
 
 | **方法**                        | **含义**                                                     |
 | ------------------------------- | ------------------------------------------------------------ |
 | **split(sep=None,maxsplit=-1)** | 以空白字符作为分隔符对字符串进行分割     sep参数指定分隔符，默认是空白字符     maxsplit参数设置最大分割次数，默认是不限制 |
 
-![image-20220507102501851](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071025165.png)
+![image-20220507102501851](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071025165.png)
 
 | **方法**           | **含义**                                                     |
 | ------------------ | ------------------------------------------------------------ |
 | **join(iterable)** | 以字符串作为分隔符，插入到iterable参数迭代出来的所有字符串之间     如果iterable中包含任何非字符串值，将抛出TypeError异常 |
 
-![image-20220507102528231](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071025861.png)
+![image-20220507102528231](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071025861.png)
 
 #### 格式化 format
 
 format()方法接收位置参数和关键字参数，均传递到一个名为replacement的字段，在字符串内用大括号{}表示
 
-![image-20220507102605108](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071026225.png)
+![image-20220507102605108](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071026225.png)
 
 若将位置参数和关键字参数综合使用，位置参数必须在关键字参数之前，否则会报错
 
-![image-20220507102625327](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071026804.png)
+![image-20220507102625327](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071026804.png)
 
 要打印大括号
 
-![image-20220507102646042](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071026991.png)
+![image-20220507102646042](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071026991.png)
 
 #### 格式化操作符：%
 
@@ -910,11 +910,11 @@ format()方法接收位置参数和关键字参数，均传递到一个名为rep
 | **%e**  **%E** | 用科学计数法格式化浮点数             |
 | **%g**  **%G** | 根据值得大小决定使用%f或%e           |
 
-![image-20220507102723107](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071027476.png)
+![image-20220507102723107](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071027476.png)
 
 使用格式化方法拼接字符串
 
-![image-20220507102741396](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071027429.png)
+![image-20220507102741396](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071027429.png)
 
 拼接字符串的三种方法
 
@@ -933,7 +933,7 @@ format()方法接收位置参数和关键字参数，均传递到一个名为rep
 | **#**    | 在八进制数前面显示'0o'，在十六进制数前面显示'0x'或'0X' |
 | **0**    | 显示的数字前面填充'0'代替空格                          |
 
-![image-20220507102809336](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071028572.png)
+![image-20220507102809336](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071028572.png)
 
 #### Python的转义字符以及含义
 
@@ -957,7 +957,7 @@ format()方法接收位置参数和关键字参数，均传递到一个名为rep
 
 `list([iterable])`用于把一个迭代对象转换为列表
 
-![image-20220507102910439](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071029213.png)
+![image-20220507102910439](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071029213.png)
 
 **tuple([iterable])**用于把一个迭代对象转换为元组
 
@@ -965,13 +965,13 @@ format()方法接收位置参数和关键字参数，均传递到一个名为rep
 
 `len(sub)`返回sun参数的长度
 
-![image-20220507103037566](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071030173.png)
+![image-20220507103037566](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071030173.png)
 
 **max()-保证序列或参数的数据类型统一**
 
 用于返回序列或参数集合中的最大值
 
-![image-20220507103111881](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071031036.png)
+![image-20220507103111881](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071031036.png)
 
  
 
@@ -979,35 +979,35 @@ format()方法接收位置参数和关键字参数，均传递到一个名为rep
 
 用于返回序列或参数集合中的最小值
 
-![image-20220507103141934](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071031006.png)
+![image-20220507103141934](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071031006.png)
 
 **sum(iterable[,start])**
 
 用于返回序列iterable的所有元素值的总和，可选参数start默认值为0
 
-![image-20220507103208333](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071032685.png)
+![image-20220507103208333](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071032685.png)
 
 **sorted(iterable,key=None,reverse=False)**
 
 用于返回一个排序的新列表；内建方法sort()是实现列表原地排序
 
-![image-20220507103241246](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071032398.png)
+![image-20220507103241246](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071032398.png)
 
 **reversed(sequence)**
 
 用于返回迭代序列的值；列表的内建方法是原地翻转，reversed（）是返回一个翻转的迭代器对象
 
-![image-20220507103306329](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071033551.png)
+![image-20220507103306329](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071033551.png)
 
 **enumerate(iterable)**
 
 生成由二元组（元素数量为2的元组）构成的一个迭代对象，每个二元组由可迭代参数的索引号及其对应的元素组成
 
-![image-20220507103336094](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071033346.png)
+![image-20220507103336094](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071033346.png)
 
 `zip(iter1[,iter2][…])`用于返回由各个可迭代参数**共同组成的元组**
 
-![image-20220507103413195](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071034488.png)
+![image-20220507103413195](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071034488.png)
 
 ## 函数
 
@@ -1028,13 +1028,13 @@ myfirstfunction()
 
 **函数的参数**
 
-![image-20220507103541442](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071035534.png)
+![image-20220507103541442](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071035534.png)
 
 **函数的返回值**
 
 使用return返回，若无返回值默认返回none；若返回多个值默认以元组的形式进行打包；也可利用列表返回
 
-![image-20220507103609509](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071036796.png)
+![image-20220507103609509](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071036796.png)
 
 ### 形参和实参
 
@@ -1043,17 +1043,17 @@ myfirstfunction()
 
 ### 函数文档
 
-![image-20220507103643840](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071036101.png)
+![image-20220507103643840](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071036101.png)
 
 文档字符串可通过特殊属性`__doc__`获取
 
-![image-20220507103707378](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071037556.png)
+![image-20220507103707378](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071037556.png)
 
 **获取函数文档**
 
 `help()`
 
-![image-20220507103732734](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071037820.png)
+![image-20220507103732734](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071037820.png)
 
 ### 关键字参数
 
@@ -1063,27 +1063,27 @@ myfirstfunction()
 
 传入实参时，明确指定形参的关键字参数
 
-![image-20220507103759753](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071038972.png)
+![image-20220507103759753](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071038972.png)
 
 ### 默认参数
 
 定义函数时，位置参数必须在默认参数前面
 
-![image-20220507103827368](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071038623.png)
+![image-20220507103827368](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071038623.png)
 
 ### 收集参数（可变参数）
 
 在参数前面加上星号（*）
 
-![image-20220507103900326](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071039605.png)
+![image-20220507103900326](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071039605.png)
 
 把标志为收集参数的参数们打包成一个**元组**
 
-![image-20220507103920415](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071039463.png)
+![image-20220507103920415](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071039463.png)
 
 若定义的函数中带有收集参数，可将**其他参数设置为默认参数**
 
-![image-20220507103940526](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071039509.png)
+![image-20220507103940526](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071039509.png)
 
 sep参数：指定多个参数之间的分隔符，默认是空格
 
@@ -1099,7 +1099,7 @@ flush参数：指定是否强制刷新缓存
 
 在实参中的作用是“解包”
 
-![image-20220507104008233](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071040211.png)
+![image-20220507104008233](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071040211.png)
 
 两个星号（**）的收集函数表示将参数们打包成字典的形式
 
@@ -1108,11 +1108,11 @@ flush参数：指定是否强制刷新缓存
 - 元组
 - 字典
 
-![image-20220507104054951](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071040956.png)
+![image-20220507104054951](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071040956.png)
 
 当参数带两个星号（**）时，传递给函数的任意数量的key=value实参会被打包进一个字典中
 
-![image-20220507104111507](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071041925.png)
+![image-20220507104111507](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071041925.png)
 
 ## 变量的作用域
 
@@ -1136,13 +1136,13 @@ flush参数：指定是否强制刷新缓存
 
 可**修改全局变量的值**
 
-![image-20220507104222297](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071042340.png)
+![image-20220507104222297](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071042340.png)
 
 ### 内嵌函数
 
 Python函数定义是支持嵌套的
 
-![image-20220507104252794](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071042101.png)
+![image-20220507104252794](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071042101.png)
 
 内部函数整个作用域都在外部函数之内
 
@@ -1150,7 +1150,7 @@ Python函数定义是支持嵌套的
 
 在嵌套函数中，**内部函数可以引用外部函数局部变量**
 
-![image-20220507104312582](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071043910.png)
+![image-20220507104312582](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071043910.png)
 
 ### LEGB原则
 
@@ -1169,7 +1169,7 @@ Python函数定义是支持嵌套的
 
 使用**nonlocal**关键字可声明变量**不是局部变量**
 
-![image-20220507104355015](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071043293.png)
+![image-20220507104355015](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071043293.png)
 
 ### 装饰器
 
@@ -1204,7 +1204,7 @@ def eat():
 eat()
 ```
 
-![image-20220507104437733](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071044967.png)
+![image-20220507104437733](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071044967.png)
 
 多参数问题可使用收集参数解决，调用时使用（*）解包
 
@@ -1308,7 +1308,7 @@ list(filter(lambda x:x%2,range(10)))
 list(map(lambda x,y:x+y,[1,3,5],[10,30,50,66,88]))
 ```
 
-![image-20220507104746602](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071047939.png)
+![image-20220507104746602](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071047939.png)
 
 ### 递归
 
@@ -1395,7 +1395,7 @@ n=int(input("输入层数:"))
 hanoi(n,'x','y','z')
 ```
 
-![image-20220507105229023](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071052519.png)
+![image-20220507105229023](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071052519.png)
 
 ## 字典和集合
 
@@ -1407,7 +1407,7 @@ hanoi(n,'x','y','z')
 
 **创建和访问字典**
 
-![image-20220507105316211](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071053615.png)
+![image-20220507105316211](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071053615.png)
 
 字典使用大括号**{}**定义；字典由"**键**"和"值"共同构成构成，每一对键值组合成为"项"
 
@@ -1415,27 +1415,27 @@ hanoi(n,'x','y','z')
 
 声明一个空字典
 
-![image-20220507105346431](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071053598.png)
+![image-20220507105346431](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071053598.png)
 
 也可以使用**dict()内置函数**来创建字典
 
 参数可以是一个序列（不能是多个），必须要**打包成一个元组（或列表）**
 
-![image-20220507105412219](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071054562.png)
+![image-20220507105412219](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071054562.png)
 
 可通过提供具有映射关系的参数创建字典
 
-![image-20220507105430852](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071054819.png)
+![image-20220507105430852](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071054819.png)
 
 **键的位置不能加字符串的引号！**
 
 访问字典里的值，把相应的键放入方括号，若该键不在映射中，则抛出KeyError
 
-![image-20220507105451508](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071054714.png)
+![image-20220507105451508](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071054714.png)
 
 还有一种创建方法，直接给字典的键赋值，若键值存在，则改写键对应的值；若不存在，则创建一个新的键并赋值
 
-![image-20220507105512137](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071055563.png)
+![image-20220507105512137](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071055563.png)
 
 字典中不允许同一个键出现两次，最后一个值会覆盖前面的值
 
@@ -1445,7 +1445,7 @@ hanoi(n,'x','y','z')
 
 创键字典的5种方法
 
-![image-20220507105534438](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071055698.png)
+![image-20220507105534438](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071055698.png)
 
 字典不支持**拼接**和**重复**操作
 
@@ -1460,7 +1460,7 @@ hanoi(n,'x','y','z')
 - 字典的键
 - （可选）传入键的对应值；默认none
 
-![image-20220507105612049](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071056499.png)
+![image-20220507105612049](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071056499.png)
 
 （2）keys(),values(),items()
 
@@ -1470,31 +1470,31 @@ Values()返回字典中所有的值
 
 Items()返回字典中所有的键值对
 
-![image-20220507105635649](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071056076.png)
+![image-20220507105635649](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071056076.png)
 
 （3）get(key[,default])
 
 当**键值不存在时**，返回**none**
 
-![image-20220507105658349](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071056325.png)
+![image-20220507105658349](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071056325.png)
 
 希望找不到数据时返回指定的值
 
-![image-20220507105712588](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071057756.png)
+![image-20220507105712588](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071057756.png)
 
 若不知道一个键是否在字典中，可以使用**成员资格操作符**（in或not in）
 
-![image-20220507105730165](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071057485.png)
+![image-20220507105730165](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071057485.png)
 
 清空字典，使用**clear()**方法
 
-![image-20220507105744709](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071057771.png)
+![image-20220507105744709](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071057771.png)
 
 （4）copy()
 
 拷贝（浅拷贝）整个字典
 
-![image-20220507105810096](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071058370.png)
+![image-20220507105810096](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071058370.png)
 
 （5）pop(key,[,default])和popitem()
 
@@ -1502,19 +1502,19 @@ Pop()给定键弹出对应的值
 
 Popitem()弹出一个项
 
-![image-20220507105837197](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071058283.png)
+![image-20220507105837197](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071058283.png)
 
 （6）setdefault(key[,default])
 
 Setdefault()在字典中找不到相应的键时，会**自动添加**
 
-![image-20220507110029465](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071100656.png)
+![image-20220507110029465](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071100656.png)
 
 （7）update([other])
 
 更新字典
 
-![image-20220507110049194](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071100291.png)
+![image-20220507110049194](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071100291.png)
 
 ### 创建集合
 
@@ -1537,11 +1537,11 @@ Setdefault()在字典中找不到相应的键时，会**自动添加**
 - 使用**大括号{}**括起来
 - 使用**set()内置函数**
 
-![image-20220507110133536](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071101578.png)
+![image-20220507110133536](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071101578.png)
 
 Set()能去除重复元素
 
-![image-20220507110148590](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071101644.png)
+![image-20220507110148590](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071101644.png)
 
 将无序的集合转换成列表不能保证原来的列表顺序
 
@@ -1549,7 +1549,7 @@ Set()能去除重复元素
 
 可使用迭代把集合中的数据依次读出来
 
-![image-20220507110214001](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071102117.png)
+![image-20220507110214001](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071102117.png)
 
 也可以使用in和not in判断元素是否在集合中存在
 
@@ -1557,13 +1557,13 @@ Set()能去除重复元素
 
 使用remove()方法可以删除集合中已知的元素
 
-![image-20220507110236449](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071102827.png)
+![image-20220507110236449](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071102827.png)
 
 ### 不可变集合
 
 使用**frozenset()函数**
 
-![image-20220507110304207](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071103555.png)
+![image-20220507110304207](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071103555.png)
 
 ## 永久存储
 
@@ -1584,7 +1584,7 @@ Set()能去除重复元素
 | '+'          | **可读写模式**（可添加到其他模式中使用）             |
 | 'U'          | 通用换行符支持                                       |
 
-![image-20220507110348272](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071103322.png)
+![image-20220507110348272](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071103322.png)
 
 **文件对象的方法**
 
@@ -1634,7 +1634,7 @@ open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, clo
 
 描述符
 
-![image-20220507110502806](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071105091.png)
+![image-20220507110502806](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071105091.png)
 
 
 

@@ -191,7 +191,7 @@ request.getRequestDispatcher("JSP页面").forward(request,response);
 %>
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231407722.png" alt="image-20211124231407722" style="zoom:67%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231407722.png" alt="image-20211124231407722" style="zoom:67%;" />
 
 ### (2) setContentType
 
@@ -319,7 +319,7 @@ web.xml中添加如下代码:
 
 应用场景:统计网站访问人数
 
-![image-20211124231600164](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231600164.png)
+![image-20211124231600164](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231600164.png)
 
 ### (1)`getAttribute,setAttribute`
 
@@ -621,7 +621,7 @@ public class StudentServiceImpl implements StudentService {
 %>
 ```
 
-![image-20211124231827467](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231827467.png)
+![image-20211124231827467](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231827467.png)
 
 ## 查询数据-列出用户列表
 
@@ -722,7 +722,7 @@ public Student selectOne(String stuName) throws SQLException;
 </html>
 ```
 
-![image-20211124231748488](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231748488.png)
+![image-20211124231748488](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231748488.png)
 
 ## 用户登录
 
@@ -956,11 +956,11 @@ public Integer delOne(String stuName) throws SQLException;
 %>
 ```
 
-![image-20211124231956550](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231956550.png)
+![image-20211124231956550](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231956550.png)
 
 ## 用户信息修改
 
-![image-20211124232006233](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232006233.png)
+![image-20211124232006233](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124232006233.png)
 
 - 业务逻辑层`Service`
 
@@ -1476,11 +1476,11 @@ public Integer alterOne(Student student) throws SQLException;
 
 ## 传统注册
 
-![image-20211124232100341](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232100341.png)
+![image-20211124232100341](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124232100341.png)
 
 ## 注解注册
 
-![image-20211124232112397](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232112397.png)
+![image-20211124232112397](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124232112397.png)
 
 **输出**
 
@@ -1497,7 +1497,7 @@ HttpSession session = request.getSession();
 
 ## 超链接传递数据到servlet
 
-![image-20211124232125745](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232125745.png)
+![image-20211124232125745](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124232125745.png)
 
 ## EL表达式
 
@@ -1522,11 +1522,11 @@ https://mvnrepository.com/artifact/taglibs/standard/1.1.2
 
 **遍历<c:forEach>**集合
 
-![image-20211124232202999](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232202999.png)
+![image-20211124232202999](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124232202999.png)
 
 ## JS选中表单，显示信息
 
-![image-20211124232214317](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232214317.png)
+![image-20211124232214317](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124232214317.png)
 
 ## 上传图片
 
@@ -1536,7 +1536,7 @@ upload_bill.jar
 
 **网站根目录**
 
-![image-20211124232225602](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232225602.png)
+![image-20211124232225602](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124232225602.png)
 
 - `form`表单
 
@@ -1657,7 +1657,7 @@ GROUP BY eid
 limit 5,5
 ```
 
-![image-20211124232255310](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124232255310.png)
+![image-20211124232255310](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124232255310.png)
 
 ```Java
 public List<Employee> selectAllEmployee(Integer index, Integer size) throws SQLException {

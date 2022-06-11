@@ -118,7 +118,7 @@
 （2）树中除根外的所有结点有且仅有一个双亲
 ```
 
-![image-20220427105028797](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204271050979.png)
+![image-20220427105028797](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204271050979.png)
 
 -->**网状模型**：用有向图结构表示实体类型及实体间联系的数据模型
 
@@ -127,7 +127,7 @@
 （1）编写的应用程序复杂，数据独立性差
 ```
 
-![image-20220427105124231](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204271051277.png)
+![image-20220427105124231](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204271051277.png)
 
 -->**关系模型**：用二维表的形式表示实体和实体间联系的数据模型
 
@@ -165,7 +165,7 @@ E-R图（**E-R模型**）：实体集及实体集联系的图
 
 相互关系
 
-![image-20220427105327226](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204271053353.png)
+![image-20220427105327226](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204271053353.png)
 
 -->**模式（逻辑模式/概念模式）**：是数据库中全体数据的逻辑结构和特征的描述，是所有用户的公共数据视图；
 
@@ -248,7 +248,7 @@ E-R图（**E-R模型**）：实体集及实体集联系的图
 
 若数据表中的列信息符合第一范式，则数据表中的字段都是单一的，不可再分的
 
-![image-20220427105735368](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204271057446.png)
+![image-20220427105735368](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204271057446.png)
 
 
 
@@ -301,7 +301,7 @@ BCNF
 
 （3）用户定义的完整性约束：反映具体应用中数据的语义要求
 
-![image-20220427110041834](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204271100991.png)
+![image-20220427110041834](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204271100991.png)
 
 ## 第三章 创建和管理数据库
 
@@ -742,7 +742,7 @@ show database
 
 创建班级表，数据表结构如图：
 
-![image-20220427115009442](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204271150504.png)
+![image-20220427115009442](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204271150504.png)
 
 ```sql
 	use db_2012

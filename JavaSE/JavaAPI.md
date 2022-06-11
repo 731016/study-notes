@@ -394,7 +394,7 @@ System.out.println(st1);
 ```
 
 
-![image-20211124231236063](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231236063.png)
+![image-20211124231236063](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231236063.png)
 
 ## replaceAll
 
@@ -420,7 +420,7 @@ char[] chars=st1.toCharArray();
 ```
 
 
-![image-20211124231247085](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231247085.png)
+![image-20211124231247085](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231247085.png)
 
 ## getBytes
 
@@ -434,7 +434,7 @@ byte[] bytes=st1.getBytes();
 ```
 
 
-![image-20211124231256956](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231256956.png)
+![image-20211124231256956](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231256956.png)
 
 
 ## indexOf
@@ -452,7 +452,7 @@ String st1 = "food kood";
 ```
 
 
-![image-20211124231306066](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231306066.png)
+![image-20211124231306066](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231306066.png)
 
 ## substring
 
@@ -479,7 +479,7 @@ String[] st2 = st1.split("o");
 ```
 
 
-![image-20211124231318155](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231318155.png)
+![image-20211124231318155](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231318155.png)
 
 ```java
 //提取网址信息
@@ -499,7 +499,7 @@ for (int i = 0; i < par.length; i++) {
 ```
 
 
-![image-20211124231327340](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231327340.png)
+![image-20211124231327340](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231327340.png)
 
 
 
@@ -537,7 +537,7 @@ System.out.println(" ".isBlank());
 ```
 
 
-![image-20211124231336482](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231336482.png)
+![image-20211124231336482](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231336482.png)
 
 ## valueOf
 

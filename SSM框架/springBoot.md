@@ -216,7 +216,7 @@ public class App {
 }
 ```
 
-![img](https://gitee.com/LovelyHzz/imgSave/raw/master/note/05WH]RR%LYP2(4$}O()P2VN.jpg)
+![img](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/05WH]RR%LYP2(4$}O()P2VN.jpg)
 
 ## pageHelper分页
 
@@ -272,7 +272,7 @@ Thymeleaf在Spring Boot项目中放入到resources/templates中。这个文件�
 
 https://developer.aliyun.com/article/769977
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211125152255043.png" alt="image-20211125152255043" style="zoom: 80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211125152255043.png" alt="image-20211125152255043" style="zoom: 80%;" />
 
 ```java
 th:text 属性 向HTML标签内部输出信息
@@ -344,7 +344,7 @@ Th:href （了解）
 </table>
 ```
 
-![image-20211125161114924](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211125161114924.png)
+![image-20211125161114924](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211125161114924.png)
 
 ## yml静态资源设置
 
@@ -481,7 +481,7 @@ public class DemoScheduled {
 }
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202111291106557.png" alt="image-20211129110620409" style="zoom: 67%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202111291106557.png" alt="image-20211129110620409" style="zoom: 67%;" />
 
 ## Quartz
 

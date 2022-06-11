@@ -38,7 +38,7 @@ https://clin.icourse163.org/help.html（帮助说明）
 
 ## ASCII
 
-![image-20220507111328942](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071113132.png)
+![image-20220507111328942](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071113132.png)
 
 ## 第1章程序设计概述
 
@@ -259,19 +259,19 @@ eg：PROLOG语言
 
 （a）顺序结构
 
-![image-20220507112230699](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071122268.png)
+![image-20220507112230699](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071122268.png)
 
 （b）选择结构
 
-![image-20220507112246323](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071122537.png)
+![image-20220507112246323](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071122537.png)
 
 （c）当型循环结构
 
-![image-20220507112302074](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071123289.png)
+![image-20220507112302074](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071123289.png)
 
 （d）直到型循环结构
 
-![image-20220507112316686](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071123745.png)
+![image-20220507112316686](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071123745.png)
 
 ### 三种基本结构和改进的流程图（掌握）
 
@@ -900,7 +900,7 @@ A本身是整型变量，仍然是整型变量；
 
 在同一优先级别中，运算的先后则由结合方向决定；
 
-![image-20220507113329046](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205071133850.png)
+![image-20220507113329046](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205071133850.png)
 
 ## 第3章程序结构
 
@@ -1012,7 +1012,7 @@ printf("格式控制字符串",输出表列);
 
 （1）printf的一般表示形式：
 
-![image-20220510214416797](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205102144488.png)
+![image-20220510214416797](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205102144488.png)
 
 （2）格式字符
 
@@ -1094,7 +1094,7 @@ y=2,37777777776,fffffffe,4294967294转换成二进制，不带负号
 %-.nf，输出的数值向左靠，右端补空格
 ```
 
-![image-20220510214751600](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205102147352.png)
+![image-20220510214751600](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205102147352.png)
 
 F的值为123.456，而输出的是123.456001，由于实数在内存中的存储误差引起的
 
@@ -1102,17 +1102,17 @@ F的值为123.456，而输出的是123.456001，由于实数在内存中的存�
 
 %e，规范化指数形式输出，6位小数，【指数占5位，其中“e”占1位，指数符号占1位，指数占3位】
 
-![image-20220510214839511](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205102148591.png)
+![image-20220510214839511](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205102148591.png)
 
 输出实数占14列，随系统改变
 
 %m.ne和%-m.ne
 
-![image-20220510214912035](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205102149559.png)
+![image-20220510214912035](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205102149559.png)
 
 9）g格式符，用来输出实数，根据实数的大小，自动选取f格式或e格式（输出时选占宽度较小的一种），不输出无意义的0
 
-![image-20220510214952436](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205102149191.png)
+![image-20220510214952436](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205102149191.png)
 
 ```
 说明：
@@ -1133,7 +1133,7 @@ F的值为123.456，而输出的是123.456001，由于实数在内存中的存�
 | `空格` | `输出值为正时加空格，为负时加符号`                           |
 | `#`    | 对c,s,d,u类无影响；  <br />对o类，在输出时加前缀0；  <br />对x类，输出时加前缀0x；`   <br />对e、f、g类，当结果有小数时给出小数点 |
 
-![image-20220510215139176](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205102151720.png)
+![image-20220510215139176](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205102151720.png)
 
 2.标准输入函数scanf
 
@@ -1219,7 +1219,7 @@ getchar();
 
 > 【例3.10】从键盘输入一个大写字符，要求用小写字母输出。程序如下：
 >
-> ![image-20220512185208032](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121852407.png)
+> ![image-20220512185208032](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121852407.png)
 >
 > 【例3.11】输入三角形的两边的长度及其夹角，求三角形的三边及面积
 >
@@ -1229,7 +1229,7 @@ getchar();
 >
 > 面积：s=1/2×absin(alfa)
 >
-> ![image-20220512185254202](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121852776.png)
+> ![image-20220512185254202](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121852776.png)
 
 #### 选择结构（分支结构）（掌握）
 
@@ -1243,7 +1243,7 @@ if(表达式) 语句;
 
 > 【例3.15】找出两个整数中的较大数（单分支结构）
 >
-> ![image-20220512185403540](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121854381.png)
+> ![image-20220512185403540](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121854381.png)
 
 （2）if语句双分支结构
 
@@ -1254,7 +1254,7 @@ else       语句2;
 
 > 【例3.16】找出两个整数中的较大数（双分支结构）
 >
-> ![image-20220512185447479](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121854904.png)
+> ![image-20220512185447479](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121854904.png)
 
 2.if语句的嵌套
 
@@ -1272,11 +1272,11 @@ else 语句n;
 
 > 【例3.17】根据其ASCII码判断该字符属于控制字符（<32）、数字字符、大写字符、小写字符还是其他字符
 >
-> ![image-20220512185555345](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121855540.png)
+> ![image-20220512185555345](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121855540.png)
 >
-> ![image-20220512185612346](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121856853.png)
+> ![image-20220512185612346](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121856853.png)
 >
-> ![image-20220512185629336](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121856173.png)
+> ![image-20220512185629336](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121856173.png)
 
 （2）嵌套的if-else结构
 
@@ -1301,13 +1301,13 @@ if(表达式3) 语句3;
 
 > 【例3.18】比较两个数的大小关系
 >
-> ![image-20220512185736374](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121857741.png)
+> ![image-20220512185736374](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121857741.png)
 >
 > 【例3.19】求一元二次方程：ax^2+bx+c=0的根1e-6足够接近0（为数字“1”）
 >
-> ![image-20220512185811088](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121858806.png)
+> ![image-20220512185811088](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121858806.png)
 >
-> ![image-20220512185828596](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121858625.png)
+> ![image-20220512185828596](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121858625.png)
 
 ```c
 注意：
@@ -1339,7 +1339,7 @@ if(表达式3) 语句3;
 
 > 【例3.20】输出两者中的较大者
 >
-> ![image-20220512185944207](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121859861.png)
+> ![image-20220512185944207](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121859861.png)
 
 #### switch语句（掌握）
 
@@ -1361,7 +1361,7 @@ switch（表达式）
 
 > 【例3.21】根据输入的整数，判断并输出是星期几
 >
-> ![image-20220512190054442](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121900222.png)
+> ![image-20220512190054442](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121900222.png)
 
 **程序说明：**
 1）**switch语句的表达式**可为**整型、实型、枚举型**，每个case语句后面的常量表达式的类型必须与switch后面的条件表达式类型相同；
@@ -1388,15 +1388,15 @@ switch（表达式）
 
 > 【例3.22】输入三个整数x、y、z，把这三个数由小到大输出
 >
-> ![image-20220512190246875](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121902565.png)
+> ![image-20220512190246875](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121902565.png)
 >
 > 【例3.23】计算器程序，输入运算数和四则运算符，输出计算结果
 >
-> ![image-20220512190307663](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121903157.png)
+> ![image-20220512190307663](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121903157.png)
 >
 > 【例3.24】求奖金
 >
-> ![image-20220512190327037](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121903627.png)
+> ![image-20220512190327037](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121903627.png)
 
 #### 循环结构程序设计
 
@@ -1410,7 +1410,7 @@ switch（表达式）
 
 > 【例3.25】用goto语句和if语句构成循环，求1+2+3+…+99+100的值
 >
-> ![image-20220512190412196](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121904980.png)
+> ![image-20220512190412196](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121904980.png)
 
 程序中的goto语句是无条件转移语句
 
@@ -1446,7 +1446,7 @@ while后面用圆括号括起来的表达式，可为c语言任何表达式，�
 
 > 【例3.26】用while语句，求1+2+3+…+99+100的值
 >
-> ![image-20220512190604768](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121906053.png)
+> ![image-20220512190604768](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121906053.png)
 
 1）i为循环变量，sum为累加变量，使用时先**赋初值**；
 2）第一次循环时，循环条件的值为0，则循环一次也不执行；
@@ -1455,7 +1455,7 @@ while后面用圆括号括起来的表达式，可为c语言任何表达式，�
 
 > 【例3.27】统计输入的字符个数
 >
-> ![image-20220512190701058](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121907620.png)
+> ![image-20220512190701058](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121907620.png)
 
 getchar()!='\n'，表明只要不按下enter键就继续循环
 
@@ -1464,9 +1464,9 @@ getchar()!='\n'，表明只要不按下enter键就继续循环
 	2）不加“{}”，while语句的范围只到while后面的第一个分号处；
 	3）避免死循环；
 
-> ![image-20220512192409644](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121924186.png)
+> ![image-20220512192409644](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121924186.png)
 >
-> ![image-20220512190754147](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121907357.png)
+> ![image-20220512190754147](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121907357.png)
 
 #### do-while语句构成的循环结构（掌握）
 
@@ -1513,7 +1513,7 @@ for(循环变量赋初值;循环条件;循环变量增值;) 语句;
 
 > 【例3.30】打印200以内能被3整除的所有整数，每行打印10个数。
 >
-> ![image-20220512190941515](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121909118.png)
+> ![image-20220512190941515](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121909118.png)
 
 #### 循环的嵌套（掌握）
 
@@ -1524,7 +1524,7 @@ for(循环变量赋初值;循环条件;循环变量增值;) 语句;
 
 > 【例3.31】在屏幕上输出所有的3位以内的二进制数
 >
-> ![image-20220512191028344](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121910696.png)
+> ![image-20220512191028344](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121910696.png)
 
 #### break语句和continue语句（掌握）
 
@@ -1534,7 +1534,7 @@ break语句只能用于switch语句或循环语句中，作用是跳出switch语
 
 > 【例3.32】找出第一个各位之和与各位之积相等的三位数
 >
-> ![image-20220512191116178](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121911628.png)
+> ![image-20220512191116178](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121911628.png)
 
 **注意：**
 
@@ -1548,7 +1548,7 @@ continue语句只能用在循环体中，用于结束本次循环；
 
 > 【例3.33】输出20以内不能被7整除的数
 >
-> ![image-20220512191157907](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121911380.png)
+> ![image-20220512191157907](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121911380.png)
 
 **continue语句用于结束本次循环，并回到循环入口处，判断循环条件是否成立；**
 
@@ -1565,23 +1565,23 @@ continue语句只能用在循环体中，用于结束本次循环；
 > isdigit(c)判断数字字符
 > ```
 >
-> ![image-20220512191316572](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121913197.png)
+> ![image-20220512191316572](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121913197.png)
 >
 > 【例3.35】求s=a+aa+aaa+aaaa+aaa...a的值，其中a是一个数字。例如2+22+222+2222+22222(此时共有5个数相加)，几个数相加由键盘输入
 >
-> ![image-20220512191343557](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121913183.png)
+> ![image-20220512191343557](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121913183.png)
 >
 > 
 >
-> ![image-20220512191549474](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121915677.png)
+> ![image-20220512191549474](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121915677.png)
 >
-> ![image-20220512191456485](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121914843.png)
+> ![image-20220512191456485](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121914843.png)
 >
-> ![image-20220512191611720](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121916597.png)
+> ![image-20220512191611720](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121916597.png)
 >
-> ![image-20220512191626350](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121916621.png)
+> ![image-20220512191626350](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121916621.png)
 >
-> ![image-20220512191640124](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121916196.png)
+> ![image-20220512191640124](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121916196.png)
 
 #### 选择、冒泡排序
 
@@ -1756,23 +1756,23 @@ EPS：用来表示无限小值，用来保证精度，可预先定义
 
 > 【例4.3】从键盘上输入8个整数，用**冒泡排序法**对8个数排序（由**小到大**），并在屏幕上显示出来。
 >
-> ![image-20220512192543968](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121925573.png)
+> ![image-20220512192543968](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121925573.png)
 >
 > **改进的冒泡排序法**
 >
-> ![image-20220512192606621](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121926138.png)
+> ![image-20220512192606621](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121926138.png)
 >
 > 【例4.4】假设数组a中有10个互不相同且按从小到大排列的数，从键盘上再输入一个同类型的数x，在数组a中查找x，如果找到，输出相应的下标，否则输出“未找到”。
 >
 > （1）顺序查找
 >
-> ![image-20220512192640774](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121926380.png)
+> ![image-20220512192640774](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121926380.png)
 >
 > （2）对半查找【要求数组**有序排列**】
 >
 > 基本思想：首先比较x和数组a的中间元素，若相等，则查找成功；否则，若x较小，则它只可能在数组a的前半部分，反之它只可能在数组a的后半部分；
 >
-> ![image-20220512192707310](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121927851.png)
+> ![image-20220512192707310](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121927851.png)
 
 ### 二维数组的定义
 
@@ -1835,11 +1835,11 @@ c语言允许使用多维数组
 
 > 【例4.6】有一个3 * 4的矩阵，要求编程序求出其中值最大的那个元素的值，以及其所在的行号和列号
 >
-> ![image-20220512192932597](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121929990.png)
+> ![image-20220512192932597](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121929990.png)
 >
 > 【例4.7】有5个学生，学习3门课程，已知所有学生的各科成绩。编程求出每个学生的平均成绩及每门课程的平均成绩。
 >
-> ![image-20220512193002465](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121930077.png)
+> ![image-20220512193002465](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121930077.png)
 
 ### 字符数组
 
@@ -2045,11 +2045,11 @@ strstr(str1,str2) 函数用于判断字符串str2是否是str1的子串。如果
 
 > 【例4.9】输入两个字符串，按照从小到大的顺序将其连接并保存，然后输出连接字符串。要求：不改变原始字符串的内容；用字符串处理函数完成所有功能。
 >
-> ![image-20220512193608080](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121936569.png)
+> ![image-20220512193608080](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121936569.png)
 >
 > 【例4.10】已知字符串s，要求从s中指定位置截取指定长度的子串放入字符串t。所谓子串，指的是在某字符串中截取若干个连续字符组成的字符串，原始串称为主串或母串。
 >
-> ![image-20220512193632551](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121936190.png)
+> ![image-20220512193632551](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121936190.png)
 
 ## 第5章 指针
 
@@ -2072,7 +2072,7 @@ strstr(str1,str2) 函数用于判断字符串str2是否是str1的子串。如果
 
 **void指针**
 
-![image-20220512193739379](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121937734.png)
+![image-20220512193739379](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121937734.png)
 
 ###  指针变量的定义与应用
 
@@ -2179,7 +2179,7 @@ a_pointer = &a;
 
    通过调用**malloc**和**calloc**函数可以在内存中开辟动态存储单元并返回存储单元的起始地址
 
-   ![image-20220512194125125](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121941831.png)
+   ![image-20220512194125125](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121941831.png)
 
    4. **对指针变量的操作**
 
@@ -2279,9 +2279,9 @@ a[i] | *(a+i) | *(p+i) | p[i]
 
 **p[i]能表示数组元素a[i]的前提条件是p指向数组a的首元素**，如当p指向元素a[3]时，p[2]就是a[5]
 
-![image-20220512194538390](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121945631.png)
+![image-20220512194538390](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121945631.png)
 
-![image-20220512194554539](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121945349.png)
+![image-20220512194554539](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121945349.png)
 
 编程时需注意指针变量运算后的结果。若使p指向数组a的首元素（即p=a）,则
 (1）**p++（或p+=1）**，**使p指向下一个元素**，即a[1]。若再执行*p，则得到元素a[1]的值
@@ -2311,7 +2311,7 @@ a[i] | *(a+i) | *(p+i) | p[i]
 
 a或a+0代表第0行的首地址，即&a[0]；a+1代表第一行的首地址，即&a[1]
 
-![image-20220512194954779](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121949692.png)
+![image-20220512194954779](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121949692.png)
 
 对第0行首地址与第一行首地址a与a+1，地址之差为一行的4个元素占得字节数16，此时加1后指针移动一行，共跳过4个数组元素
 
@@ -2319,7 +2319,7 @@ a或a+0代表第0行的首地址，即&a[0]；a+1代表第一行的首地址，�
 
 各行对应的**一维数组名a[0]、a[2]、a[3]可看作指向列的指针**（列指针）**，基类型**为数组的基类型，即**整型**
 
-![image-20220512195037736](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121950836.png)
+![image-20220512195037736](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121950836.png)
 
 2. **二维数组元素地址的表示方法**
 
@@ -2331,17 +2331,17 @@ int a[3][4],i,j;
 则元素a[i][j]（0<=i<3,0<=j<4）的地址有五种表示方法求得：
 ```
 
-![image-20220512195115640](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121951547.png)
+![image-20220512195115640](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121951547.png)
 
 ```c
 a数组元素a[i][j]有五种表示方法引用
 ```
 
-![image-20220512195134888](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121951869.png)
+![image-20220512195134888](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121951869.png)
 
 3. **指向二维数组元素的指针变量**
 
-![image-20220512195156128](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121951027.png)
+![image-20220512195156128](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121951027.png)
 
 4. **指向二维数组行的指针变量(数组指针)**
 
@@ -2350,7 +2350,7 @@ a数组元素a[i][j]有五种表示方法引用
 	“*”：其后的变量时指针类型
 	“长度”：二维数组分解为多个一维数组时，一维数组的长度，也就是二维数组的列数
 
-![image-20220512195252866](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121952956.png)
+![image-20220512195252866](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121952956.png)
 
 若对p赋值：p=a，表示p指向二维数组a的第0行，而p+i则指向数组的第i行
 
@@ -2360,13 +2360,13 @@ a数组元素a[i][j]有五种表示方法引用
 
 ​		指向二维数组行的指针变量是单个的变量
 
-![image-20220512195341982](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121953111.png)
+![image-20220512195341982](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121953111.png)
 
-![image-20220512195355124](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121953028.png)
+![image-20220512195355124](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121953028.png)
 
-![image-20220512195407513](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121954540.png)
+![image-20220512195407513](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121954540.png)
 
-![image-20220512195420823](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121954654.png)
+![image-20220512195420823](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121954654.png)
 
 5. **指针数组**
 
@@ -2382,11 +2382,11 @@ a数组元素a[i][j]有五种表示方法引用
 
 指针数组类型表示多个指针（一组有序指针）
 
-![image-20220512195453089](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121954046.png)
+![image-20220512195453089](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121954046.png)
 
-![image-20220512195506287](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121955195.png)
+![image-20220512195506287](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121955195.png)
 
-![image-20220512195519511](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121955404.png)
+![image-20220512195519511](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121955404.png)
 
 ### 指针与字符串
 
@@ -2394,22 +2394,22 @@ a数组元素a[i][j]有五种表示方法引用
 
 单个字符串的处理
 
-![image-20220512195555963](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121955036.png)
+![image-20220512195555963](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121955036.png)
 
-![image-20220512195617051](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121956908.png)
+![image-20220512195617051](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121956908.png)
 
 
 
 同时处理多个字符串
 
-![image-20220512195642012](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121956874.png)
+![image-20220512195642012](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121956874.png)
 
 **字符指针数组中的各个指针所指向的字符串是长度不规则的；**
 若使用二维数组时，每列下标应相同；
 
 字符指针数组的列下标应定为n+1（加1为预留字符串结束标识符的空间），故字符指针数组浪费了很大的存储空间
 
-![image-20220512195714211](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121957261.png)
+![image-20220512195714211](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121957261.png)
 
 
 
@@ -2417,7 +2417,7 @@ a数组元素a[i][j]有五种表示方法引用
 
 ​		定义一个指向的指针变量的格式如下：类型说明符 **指针变量名
 
-![image-20220512195750103](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121957076.png)
+![image-20220512195750103](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121957076.png)
 
 **指针数组的元素只能存放地址**
 
@@ -2452,7 +2452,7 @@ a数组元素a[i][j]有五种表示方法引用
 		}
 ```
 
-![image-20220512195821015](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205121958811.png)
+![image-20220512195821015](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205121958811.png)
 
 ### const与指针
 
@@ -2490,7 +2490,7 @@ a数组元素a[i][j]有五种表示方法引用
 }
 ```
 
-![image-20220512200104263](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122001165.png)
+![image-20220512200104263](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122001165.png)
 
 
 
@@ -2517,7 +2517,7 @@ a数组元素a[i][j]有五种表示方法引用
 		}
 ```
 
-![image-20220512200142316](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122001180.png)
+![image-20220512200142316](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122001180.png)
 
 **指向常量的常量指针**
 
@@ -2536,7 +2536,7 @@ a数组元素a[i][j]有五种表示方法引用
 		}
 ```
 
-![image-20220512200234025](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122002454.png)
+![image-20220512200234025](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122002454.png)
 
 **指向“指向常量的常量指针”的指针**
 
@@ -2556,7 +2556,7 @@ a数组元素a[i][j]有五种表示方法引用
 		}
 ```
 
-![image-20220512200304418](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122003324.png)
+![image-20220512200304418](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122003324.png)
 
 ### 指针总结
 
@@ -2655,7 +2655,7 @@ const int *p
 
 结构体类型声明的一般形式为
 
-![image-20220512200432674](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122004597.png)
+![image-20220512200432674](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122004597.png)
 
 说明：
 
@@ -2681,11 +2681,11 @@ const int *p
 
 1. **结构体类型变量的定义**
 
-![image-20220512200702199](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122007169.png)
+![image-20220512200702199](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122007169.png)
 
 2. **结构体变量的引用**
 
-![image-20220512200737399](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122007204.png)
+![image-20220512200737399](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122007204.png)
 
 3. 结构体变量的初始化
 
@@ -2695,7 +2695,7 @@ const int *p
 
 注意：初值的数据类型必须和结构体变量中相应成员类型一致
 
-![image-20220512200813392](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122008228.png)
+![image-20220512200813392](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122008228.png)
 
 4. **结构体变量占用内存的大小**
 
@@ -2709,7 +2709,7 @@ sizeof （变量或类型说明符）；
 
 1. **定义结构体数组**
 
-![image-20220512200927091](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122009958.png)
+![image-20220512200927091](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122009958.png)
 
 数组各元素在内存中连续存放，结构体数组所占内存大小为结构体类型的大小乘以数组元素的数量
 
@@ -2721,7 +2721,7 @@ sizeof （变量或类型说明符）；
 初始化格式：结构体数组[n]={{初值表1},{初值表2},...,{初值表n}}；
 ```
 
-![image-20220512201010539](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122010461.png)
+![image-20220512201010539](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122010461.png)
 
 3. **结构体程序应用举例**
 
@@ -2764,13 +2764,13 @@ sizeof （变量或类型说明符）；
    		}
    ```
 
-   ![image-20220512201105513](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122011533.png)
+   ![image-20220512201105513](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122011533.png)
 
 ### 结构体与指针
 
 1. **指向结构体变量的指针**
 
-![image-20220512201133943](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122011892.png)
+![image-20220512201133943](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122011892.png)
 
 程序主要输出结构体变量student1的各个成员的值，采用三种方法：
 
@@ -2781,7 +2781,7 @@ sizeof （变量或类型说明符）；
 
 2. **指向结构体数组的指针**
 
-![image-20220512201206217](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122012998.png)
+![image-20220512201206217](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122012998.png)
 
 说明：
 
@@ -2827,15 +2827,15 @@ p=(struct student *)stu[0].num;
 
 （1）用结构体变量表示a，b，c三个结点
 
-![image-20220512201431415](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122014389.png)
+![image-20220512201431415](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122014389.png)
 
 （2）声明一个指向该种类型的结构体指针作为表头
 
-![image-20220512201446802](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122014852.png)
+![image-20220512201446802](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122014852.png)
 
 （3）每一个节点中包含同种类型的指针变量用以存放下一个节点的地址
 
-![image-20220512201508755](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122015596.png)
+![image-20220512201508755](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122015596.png)
 
 静态链表： a , b , c 先定义，在内存中开辟固定的且不一定连续的存储单元，不是临时开辟，不能用完释放
 
@@ -2948,7 +2948,7 @@ int main()
 }
 ```
 
-![image-20220512201600388](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122016918.png)
+![image-20220512201600388](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122016918.png)
 
 ```
 尾插法
@@ -3063,7 +3063,7 @@ int main()
 }
 ```
 
-![image-20220512201634250](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122016084.png)
+![image-20220512201634250](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122016084.png)
 
 ```c
 void addBook(struct Book **library)//接收头指针的地址
@@ -3325,7 +3325,7 @@ int main()
 }
 ```
 
-![image-20220512201739689](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122017589.png)
+![image-20220512201739689](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122017589.png)
 
 #### 建立动态链表
 
@@ -3455,7 +3455,7 @@ int main()
 主函数调用-->print(head);
 ```
 
-![image-20220512201936296](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122019174.png)
+![image-20220512201936296](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122019174.png)
 
 **删除一个结点**
 
@@ -3510,7 +3510,7 @@ int main()
 	    print(head);
 ```
 
-![image-20220512202014961](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122020892.png)
+![image-20220512202014961](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122020892.png)
 
 **插入一个结点**
 
@@ -3555,7 +3555,7 @@ int main()
 	    print(head);
 ```
 
-![image-20220512202042415](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122020404.png)
+![image-20220512202042415](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122020404.png)
 
 #### 清空链表和销毁链表
 
@@ -3656,7 +3656,7 @@ int cleanernode(struct age *head)//清空链表
 
 1. **共用体类型变量的定义**
 
-![image-20220512202220610](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122022534.png)
+![image-20220512202220610](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122022534.png)
 
 共用体类型的变量占用内存空间的大小等于**成员分量中最长的分量**所占用内存的长度
 
@@ -3666,7 +3666,7 @@ int cleanernode(struct age *head)//清空链表
 
 注意：只能**引用共用体变量中的成员**，不能整体引用共用体变量
 
-![image-20220512202317802](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122023821.png)
+![image-20220512202317802](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122023821.png)
 
 3. **共用体类型数据的特点**
 
@@ -3702,7 +3702,7 @@ int cleanernode(struct age *head)//清空链表
 	}
 ```
 
-![image-20220512202358589](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122023516.png)
+![image-20220512202358589](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122023516.png)
 
 
 
@@ -3712,17 +3712,17 @@ int cleanernode(struct age *head)//清空链表
 
 1. **枚举类型的定义形式：**
 
-   ![image-20220512202429962](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122024173.png)
+   ![image-20220512202429962](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122024173.png)
 
 2. **枚举变量的定义**
 
 (1)间接定义
 
-![image-20220512202503605](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122025646.png)
+![image-20220512202503605](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122025646.png)
 
 （2）直接定义
 
-![image-20220512202522532](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122025469.png)
+![image-20220512202522532](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122025469.png)
 
 枚举变量中colour1、colour2的值只可能是Red、Blue、Yellow、White中的一个
 
@@ -3734,7 +3734,7 @@ int cleanernode(struct age *head)//清空链表
 
 （2）**枚举变量是常量，不能赋值，只能在定义时由程序指定**
 
-![image-20220512202601400](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122026181.png)
+![image-20220512202601400](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122026181.png)
 
 
 
@@ -3742,7 +3742,7 @@ int cleanernode(struct age *head)//清空链表
 
 别名
 
-![image-20220512202626359](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122026790.png)
+![image-20220512202626359](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122026790.png)
 
 说明：
 
@@ -3779,7 +3779,7 @@ int cleanernode(struct age *head)//清空链表
 << = > >> =  &= ^= |=
 ```
 
-![image-20220512202833757](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122028526.png)
+![image-20220512202833757](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122028526.png)
 
 （4）a<<2或a&0x00ff不能改变a的值
 
@@ -3793,9 +3793,9 @@ int cleanernode(struct age *head)//清空链表
 
 **参与运算的数据都以补码方式出现**
 
-![image-20220512202941488](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122029333.png)
+![image-20220512202941488](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122029333.png)
 
-![image-20220512202954764](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122029652.png)
+![image-20220512202954764](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122029652.png)
 
 2. **按位或（|）**
 
@@ -3803,7 +3803,7 @@ int cleanernode(struct age *head)//清空链表
 
 对应位置的值均为0时才为0，否则为1
 
-![image-20220512203018717](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122030645.png)
+![image-20220512203018717](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122030645.png)
 
 3. **异或（^）【XOR运算符】**
 
@@ -3811,7 +3811,7 @@ int cleanernode(struct age *head)//清空链表
 
 规则：参加运算的两个运算数中相对应的二进制位上两数相同，则该位的结果为0（假）；若两数不同，则该位的结果为1（真）
 
-![image-20220512203044949](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122030822.png)
+![image-20220512203044949](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122030822.png)
 
 4. **取反（~）**
 
@@ -3829,11 +3829,11 @@ int cleanernode(struct age *head)//清空链表
 
 左移时，右端补0，高位左移时溢出，舍弃
 
-![image-20220512203141861](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122031710.png)
+![image-20220512203141861](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122031710.png)
 
 6. **右移（>>）**
 
-![image-20220512203201284](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122032236.png)
+![image-20220512203201284](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122032236.png)
 
 7. **不同长度的数据进行位运算时的规则**
 
@@ -3867,13 +3867,13 @@ int cleanernode(struct age *head)//清空链表
 
 自定义函数的定义形式：
 
-![image-20220512203329819](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122033838.png)
+![image-20220512203329819](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122033838.png)
 
-![image-20220512203353817](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122033630.png)
+![image-20220512203353817](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122033630.png)
 
 ### 函数的一般调用
 
-![image-20220512203417169](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122034038.png)
+![image-20220512203417169](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122034038.png)
 
 ### 函数参数的传递方式
 
@@ -3901,7 +3901,7 @@ int cleanernode(struct age *head)//清空链表
 
 【2】数组名作为函数的形参和实参使用
 
-![image-20220512203452273](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122034109.png)
+![image-20220512203452273](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122034109.png)
 
 **数组名作函数参数**
 
@@ -3911,13 +3911,13 @@ int cleanernode(struct age *head)//清空链表
 
 能够接受并存放地址值的只能是指针变量，c语言编译系统都是**将形参数组名作为指针变量**来处理的
 
-![image-20220512203509998](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122035852.png)
+![image-20220512203509998](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122035852.png)
 
 函数的形参为数组名时，数组名后的“**[]**”不能省略
 
-![image-20220512203527197](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122035029.png)
+![image-20220512203527197](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122035029.png)
 
-![image-20220512203546260](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122035183.png)
+![image-20220512203546260](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122035183.png)
 
 ### 函数的嵌套与递归调用
 
@@ -3927,11 +3927,11 @@ int cleanernode(struct age *head)//清空链表
 
 函数不允许嵌套定义，但可嵌套调用
 
-![image-20220512203627190](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122036029.png)
+![image-20220512203627190](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122036029.png)
 
-![image-20220512203644742](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122036734.png)
+![image-20220512203644742](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122036734.png)
 
-![image-20220512203701960](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122037748.png)
+![image-20220512203701960](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122037748.png)
 
 ### 函数与指针（主函数传参）
 
@@ -3942,7 +3942,7 @@ int cleanernode(struct age *head)//清空链表
 | `int  (*p[3])(int)`    | `函数指针数组，函数返回值为int型  变量`    |
 | `int  *（*p[3]）(int)` | `函数指针数组，函数返回值为int型  指针`    |
 
-![image-20220512203739285](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122037253.png)
+![image-20220512203739285](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122037253.png)
 
 ```c
 数组逆序
@@ -3978,7 +3978,7 @@ int main()
 }
 ```
 
-![image-20220512203802110](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122038966.png)
+![image-20220512203802110](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122038966.png)
 
 ```c
 分别求数组中奇数元素与偶数元素的和
@@ -4011,7 +4011,7 @@ int main()
 	}
 ```
 
-![image-20220512203835417](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122038550.png)
+![image-20220512203835417](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122038550.png)
 
 要使用被调函数向主调函数返回多个值，可通过数组名作形参来实现
 说明：
@@ -4056,7 +4056,7 @@ int main()
 		}
 ```
 
-![image-20220512203923324](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122039149.png)
+![image-20220512203923324](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122039149.png)
 
 **实参为指针变量，形参为数组名**
 
@@ -4094,7 +4094,7 @@ int main()
 				}
 ```
 
-![image-20220512203952033](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122039868.png)
+![image-20220512203952033](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122039868.png)
 
 ```c
 用选择法对10个整数按降序排序
@@ -4147,7 +4147,7 @@ int main()
 }
 ```
 
-![image-20220512204028926](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122040748.png)
+![image-20220512204028926](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122040748.png)
 
 ```c
 使用main函数调用swap函数交换主函数中变量a、b的内容
@@ -4170,7 +4170,7 @@ int main()
 				}
 ```
 
-![image-20220512204054213](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122040980.png)
+![image-20220512204054213](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122040980.png)
 
 **实参维数组名，形参为数组**
 
@@ -4239,9 +4239,9 @@ int main()
 				}
 ```
 
-![image-20220512204235123](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122042934.png)
+![image-20220512204235123](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122042934.png)
 
-![image-20220512204249947](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122042398.png)
+![image-20220512204249947](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122042398.png)
 
 ```
 注意：
@@ -4287,7 +4287,7 @@ int *p()-->说明p为函数名，函数的返回值类型为指针
 				}
 ```
 
-![image-20220512204332648](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122043510.png)
+![image-20220512204332648](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122043510.png)
 
 **函数指针和指向函数的指针变量**
 
@@ -4300,11 +4300,11 @@ int *p()-->说明p为函数名，函数的返回值类型为指针
 (*指针变量名) (实参表);
 ```
 
-![image-20220512204413321](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122044389.png)
+![image-20220512204413321](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122044389.png)
 
 **函数指针作为参数**
 
-![image-20220512204435899](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122044636.png)
+![image-20220512204435899](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122044636.png)
 
 **函数指针作为返回值**
 
@@ -4348,7 +4348,7 @@ int main()
 }
 ```
 
-![image-20220512204502334](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122045292.png)
+![image-20220512204502334](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122045292.png)
 
 ```c
 求a和b中较大者，用指针形式实现对函数调用的方法
@@ -4377,7 +4377,7 @@ int main()
 				}
 ```
 
-![image-20220512204527755](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122045624.png)
+![image-20220512204527755](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122045624.png)
 
 "pmax=max"表示把被调函数的入口地址（函数名）赋予函数指针变量
 
@@ -4527,7 +4527,7 @@ int main (void)
 	}
 ```
 
-![image-20220512204841107](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122048577.png)
+![image-20220512204841107](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122048577.png)
 
 ```c
 	利用结构变量求解两个复数之积：（3+4i）*（5+6i）
@@ -4551,7 +4551,7 @@ int main (void)
 	}
 ```
 
-![image-20220512204907471](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122049420.png)
+![image-20220512204907471](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122049420.png)
 
 **用指向结构体变量的指针做参数**
 
@@ -4618,7 +4618,7 @@ int main()
 }
 ```
 
-![image-20220512205005168](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122050062.png)
+![image-20220512205005168](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122050062.png)
 
 ```c
 		手机中有一个简单的通讯录工具，用于管理联系人的基本信息，其基本功能包括新建联系人、查询联系人等。编写程序实现
@@ -4710,7 +4710,7 @@ int main()
 		}
 ```
 
-![image-20220512205036145](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122050013.png)
+![image-20220512205036145](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122050013.png)
 
 ### 变量的作用域
 
@@ -4753,27 +4753,27 @@ extern(外部)
 
 **局部变量**
 
-![image-20220512205232190](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122052092.png)
+![image-20220512205232190](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122052092.png)
 
 **全局变量**
 
-![image-20220512205258333](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122052665.png)
+![image-20220512205258333](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122052665.png)
 
 **自动变量**
 
-![image-20220512205315677](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122053766.png)
+![image-20220512205315677](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122053766.png)
 
 **寄存器变量**
 
-![image-20220512205337110](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122053119.png)
+![image-20220512205337110](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122053119.png)
 
 **静态变量**
 
-![image-20220512205355385](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122053245.png)
+![image-20220512205355385](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122053245.png)
 
 ### 内部函数和外部函数
 
-![image-20220512205412670](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122054727.png)
+![image-20220512205412670](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122054727.png)
 
 ### 预处理命令
 
@@ -4793,15 +4793,15 @@ extern(外部)
 “宏”分为不带参数的宏（无参宏）和带参数的宏（有参宏）
 ```
 
-![image-20220512205510264](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122055166.png)
+![image-20220512205510264](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122055166.png)
 
 **带参数的宏定义**
 
-![image-20220512205528523](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122055350.png)
+![image-20220512205528523](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122055350.png)
 
 ### 文件包含
 
-![image-20220512205551663](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122055964.png)
+![image-20220512205551663](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122055964.png)
 
 ### 条件编译
 
@@ -4945,7 +4945,7 @@ fopen函数的一般调用形式：fopen(文件名,文件使用方式);
 
 函数返回一个FILE类型结构体的指针
 
-![image-20220512210014907](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122100847.png)
+![image-20220512210014907](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122100847.png)
 
 
 
@@ -4993,7 +4993,7 @@ putc/getc --> 宏的实现
 
 **fputc(putc)函数**
 
-![image-20220512210225570](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122102654.png)
+![image-20220512210225570](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122102654.png)
 
 ```c
 【例8.1】从键盘输入的文本按原样输出到file1.dat文件中，用字符*作为键盘输入结束标志
@@ -5019,11 +5019,11 @@ putc/getc --> 宏的实现
 		}
 ```
 
-![image-20220512210254045](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122102838.png)
+![image-20220512210254045](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122102838.png)
 
 **fgetc(getc)函数**
 
-![image-20220512210310963](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122103918.png)
+![image-20220512210310963](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122103918.png)
 
 ```c
 		【例8.2】如果把一个已存在磁盘上的file1.dat文本文件中的内容，原样在屏幕上显示出来
@@ -5049,9 +5049,9 @@ putc/getc --> 宏的实现
 		}
 ```
 
-![image-20220512210332385](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122103590.png)
+![image-20220512210332385](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122103590.png)
 
-![image-20220512210345231](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122103033.png)
+![image-20220512210345231](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122103033.png)
 
 ```c
 【例8.3】将一个磁盘文件file1.dat中的内容复制到另一个磁盘文件file2.dat中
@@ -5083,11 +5083,11 @@ putc/getc --> 宏的实现
 
 **fgets函数和fputs函数**
 
-![image-20220512210415290](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122104221.png)
+![image-20220512210415290](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122104221.png)
 
 **fread函数和fwrite函数**
 
-![image-20220512210435090](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122104021.png)
+![image-20220512210435090](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122104021.png)
 
 ```c
 	【例8.4】从键盘输入5个学生的有关数据，然后把它们转存到磁盘文件上去
@@ -5135,7 +5135,7 @@ putc/getc --> 宏的实现
 	}
 ```
 
-![image-20220512210457014](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122104889.png)
+![image-20220512210457014](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122104889.png)
 
 fread和fwrite函数一般用于二进制文件的输入输出
 
@@ -5145,7 +5145,7 @@ fread和fwrite函数一般用于二进制文件的输入输出
 
 **fprintf函数和fscanf函数**
 
-![image-20220512210530101](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122105142.png)
+![image-20220512210530101](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122105142.png)
 
 ### 文件的定位
 
@@ -5189,7 +5189,7 @@ fopen打开文件时，文件位置指针总是指向文件的开头
 
 **fseek函数**
 
-![image-20220512210639740](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122106606.png)
+![image-20220512210639740](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122106606.png)
 
 ```c
 fseek(fp,100L,0);  //将位置指针移到离文件头100个字节处
@@ -5233,7 +5233,7 @@ fseek(fp,-10L,2);  //将位置指针从文件末尾处向后退10个字节
 	}
 ```
 
-![image-20220512210714706](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202205122107726.png)
+![image-20220512210714706](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202205122107726.png)
 
 **ftell函数**
 

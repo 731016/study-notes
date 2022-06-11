@@ -8,37 +8,37 @@
 
 ## 添加用户
 
-![image-20211124233019129](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233019129.png)
+![image-20211124233019129](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233019129.png)
 
 # 3. 创建仓库
 
-![image-20211124233029478](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233029478.png)
+![image-20211124233029478](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233029478.png)
 
 ## 权限设置
 
-![image-20211124233043308](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233043308.png)
+![image-20211124233043308](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233043308.png)
 
 ## 绑定用户
 
-![image-20211124233056681](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233056681.png)
+![image-20211124233056681](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233056681.png)
 
 # 4. 下载
 
-![image-20211124233108915](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233108915.png)
+![image-20211124233108915](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233108915.png)
 
 ```Git
 SVN Update 更新
 ```
 
-![image-20211124233123121](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233123121.png)
+![image-20211124233123121](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233123121.png)
 
 # 5. 上传
 
-![image-20211124233137202](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233137202.png)
+![image-20211124233137202](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233137202.png)
 
 ### 清除身份验证数据
 
-![image-20211124233156070](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233156070.png)
+![image-20211124233156070](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233156070.png)
 
 # IDEA使用SVN
 
@@ -50,7 +50,7 @@ SVN Update 更新
 
 [windows下svn强制写日志hook脚本增强版（空格过滤）_goldboar的专栏-CSDN博客](https://blog.csdn.net/goldboar/article/details/7086964)
 
-![image-20211124233208368](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233208368.png)
+![image-20211124233208368](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233208368.png)
 
 ```shell
 @echo off  

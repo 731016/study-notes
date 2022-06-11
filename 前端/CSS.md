@@ -272,7 +272,7 @@ body {
 }
 ```
 
-![image-20220222162250866](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221622911.png)
+![image-20220222162250866](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221622911.png)
 
 <span style="color:blue;font-weight:700">4.字体</span>
 
@@ -615,7 +615,7 @@ opacity属性指定了一个元素的**不透明度**。换言之，opacity属�
 }
 ```
 
-![image-20220222163318811](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221633888.png)
+![image-20220222163318811](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221633888.png)
 
 ### 子元素选择器
 
@@ -638,7 +638,7 @@ opacity属性指定了一个元素的**不透明度**。换言之，opacity属�
 }
 ```
 
-![image-20220222163429952](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221634019.png)
+![image-20220222163429952](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221634019.png)
 
 ### 交集选择器（不常用）
 
@@ -646,7 +646,7 @@ opacity属性指定了一个元素的**不透明度**。换言之，opacity属�
 
 交集选择器由两个选择器构成，找到的标签必须满足：既有标签一的特点，也有标签二的特点
 
-![image-20220222163500928](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221635017.png)
+![image-20220222163500928](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221635017.png)
 
 交际选择器 是并且的意思。即…又…的意思
 
@@ -656,7 +656,7 @@ p.one是类名为one的段落标签
 
 ### 并集选择器
 
-![image-20220222163538697](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221635781.png)
+![image-20220222163538697](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221635781.png)
 
 ```css
 比如  .one, p , #test {color: #F00;}  
@@ -702,7 +702,7 @@ a:active
 
 a链接具有默认样式，<span style="background-color:yellow;font-family:'consolas'">**需要给链接单独指定样式**</span>
 
-![image-20220222163743584](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221637640.png)
+![image-20220222163743584](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221637640.png)
 
 
 
@@ -848,13 +848,13 @@ a {
 }
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231623628.png" alt="image-20220223162350559" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202231623628.png" alt="image-20220223162350559" style="zoom:80%;" />
 
 
 
 ## 单行文本垂直居中
 
-![image-20220223162425794](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231624876.png)
+![image-20220223162425794](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202231624876.png)
 
 
 
@@ -874,7 +874,7 @@ a {
 
 
 
-![image-20220222164856123](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221648169.png)
+![image-20220222164856123](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221648169.png)
 
 ```html
 <a href="#">体育</a>
@@ -1073,7 +1073,7 @@ background: rgba(0, 0, 0, 0.3);
 
 ### 权重计算公式
 
-![image-20220222165738714](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221657768.png)
+![image-20220222165738714](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221657768.png)
 
 <table style="font-family:'Consolas';" cellspacing="0">
     <tr style="background-color:#92D050;color: #fff">
@@ -1110,7 +1110,7 @@ background: rgba(0, 0, 0, 0.3);
 
 ### 权重叠加
 
-![image-20220222165836094](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221658152.png)
+![image-20220222165836094](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221658152.png)
 
 <span style="background-color:yellow;font-family:'Consolas'">**注意**</span>
 
@@ -1128,7 +1128,7 @@ background: rgba(0, 0, 0, 0.3);
 
 （2）如果**没有选中**，那么<span style="background-color:yellow;font-family:'Consolas'">权重是0</span>，因为继承的权重为0
 
-![image-20220223163942563](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231639632.png)
+![image-20220223163942563](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202231639632.png)
 
 ```html
 <div class="demo">
@@ -1146,7 +1146,7 @@ p {
 }
 ```
 
-![image-20220223163957877](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231639957.png)
+![image-20220223163957877](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202231639957.png)
 
 ```html
 /* 21 */
@@ -1186,11 +1186,11 @@ p {
 - 盒子内容与边框的距离是内边距（类似单元格的     cellpadding)
 - 盒子与盒子之间的距离是外边距（类似单元格的     cellspacing）
 
-![image-20220222170709121](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221707173.png)
+![image-20220222170709121](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221707173.png)
 
 <span style="color:#C00000;font-family:'Consolas">**盒子模型box-sizing**</span>
 
-![image-20220222170645385](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221706454.png)
+![image-20220222170645385](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221706454.png)
 
 **content-box**
 
@@ -1333,7 +1333,7 @@ border-collapse:collapse; 表示相邻边框合并在一起
 
 ## 内边距padding
 
-![image-20220222170548566](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221705618.png)
+![image-20220222170548566](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221705618.png)
 
 padding属性用于设置内边距 **是指** **边框与内容之间的距离**
 
@@ -1396,11 +1396,11 @@ padding属性用于设置内边距 **是指** **边框与内容之间的距离**
 
 如果没有给一个盒子指定<span style="background-color:yellow;font-family:'Consolas';font-weight:700">宽度</span>， 此时，如果给这个盒子指定padding， 则不会撑开盒子
 
-![image-20220222170511403](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221705470.png)
+![image-20220222170511403](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221705470.png)
 
 ## 外边距margin
 
-![image-20220222170733145](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221707207.png)
+![image-20220222170733145](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221707207.png)
 
 margin属性用于设置外边距。 margin就是控制**盒子和盒子之间的距离**
 
@@ -1438,7 +1438,7 @@ margin属性用于设置外边距。 margin就是控制**盒子和盒子之间�
 
 常用三种写法：
 
-![image-20220222170825529](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221708585.png)
+![image-20220222170825529](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221708585.png)
 
 
 
@@ -1479,7 +1479,7 @@ div {
 
 ### 清除元素的默认内外边距
 
-![image-20220222170933739](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221709802.png)
+![image-20220222170933739](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221709802.png)
 
 ```css
 * {
@@ -1504,7 +1504,7 @@ div {
 
 <span style="background-color:yellow;font-family:'Consolas'">**取两个值中的较大者**</span>这种现象被称为相邻块元素垂直外边距的合并（也称外边距塌陷）
 
-![image-20220222171040644](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221710712.png)
+![image-20220222171040644](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221710712.png)
 
 **解决方案：<span style="background-color:yellow;font-family:'Consolas'">尽量给只给一个盒子添加margin值</span>**
 
@@ -1516,7 +1516,7 @@ div {
 
 合并后的外边距为两者中的**较大**者
 
-![image-20220222171130322](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221711389.png)
+![image-20220222171130322](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221711389.png)
 
 **解决方案：**
 
@@ -1562,7 +1562,7 @@ width 没有问题（嗨皮）我们经常使用宽度剩余法 高度剩余法�
 - 用选区 拖动 可以 测量 大小 
 - ctrl+ d 可以取消选区     或者旁边空白处点击一下也可以取消选区
 
-![image-20220222171403781](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221714859.png)
+![image-20220222171403781](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221714859.png)
 
 ## 去掉列表默认的样式
 
@@ -1592,7 +1592,7 @@ li { list-style: none; }
 
 <span style="background-color:yellow;font-family:'Consolas'">矩形就只用 用 高度的一半就好</span>
 
-![image-20220222171546998](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221715058.png)
+![image-20220222171546998](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221715058.png)
 
 ```html
 <p class="test">今日特价</p>
@@ -1632,7 +1632,7 @@ border-radius: 左上角 右上角  右下角  左下角;
 box-shadow:水平阴影 垂直阴影 模糊距离（虚实）  阴影尺寸（影子大小）  阴影颜色  内/外阴影；
 ```
 
-![image-20220222171706717](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221717809.png)
+![image-20220222171706717](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221717809.png)
 
 前两个属性是必须写的。其余的可以省略
 
@@ -1721,7 +1721,7 @@ CSS 提供了 **3** **种机制**来设置盒子的摆放位置，分别是**普
     </tr>
 </table>
 
-![image-20220222172056533](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221720618.png)
+![image-20220222172056533](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221720618.png)
 
 浮动——特性<span style="background-color:yellow;font-family:'Consolas"> **float属性会改变元素display属性**</span>
 
@@ -1756,7 +1756,7 @@ CSS 提供了 **3** **种机制**来设置盒子的摆放位置，分别是**普
 
 不会与父盒子的边框重叠，也不会超过父盒子的内边距
 
-![image-20220222172217548](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221722619.png)
+![image-20220222172217548](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221722619.png)
 
 <span style="color:#2E75B5;font-family:'Consolas'">**（2）浮动元素与兄弟盒子的关系**</span>
 
@@ -1766,7 +1766,7 @@ CSS 提供了 **3** **种机制**来设置盒子的摆放位置，分别是**普
 
 **普通流**的，那么**当前盒子**会显示在前一个兄弟盒子的下方
 
-![image-20220222172247817](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221722882.png)
+![image-20220222172247817](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221722882.png)
 
 浮动只会影响**当前**的或者是**后面**的<span style="background-color:yellow;font-family:'Consolas'">标准流</span>盒子，<span style="background-color:yellow;font-family:'Consolas'">**不会影响前面的标准流**</span>
 
@@ -1778,7 +1778,7 @@ CSS 提供了 **3** **种机制**来设置盒子的摆放位置，分别是**普
 
 ## 清除浮动
 
-![image-20220222172536746](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221725824.png)
+![image-20220222172536746](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221725824.png)
 
 <span style="color:#2E75B5;font-family:'Consolas'">**总结**</span>
 
@@ -1942,7 +1942,7 @@ PSD格式是Photoshop的专用格式，里面可以存放图层、通道、遮�
 
 ## PS切片工具
 
-![image-20220222173339731](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221733815.png)
+![image-20220222173339731](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221733815.png)
 
 ## 切图插件
 
@@ -2024,13 +2024,13 @@ content / cursor / border-radius / box-shadow / text-shadow / background:linear-
 
 <span style="color:#2E75B5;font-family:'Consolas'">**Chrome提示的常见布局错误**</span>
 
-![image-20220222173749849](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221737944.png)
+![image-20220222173749849](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221737944.png)
 
-![image-20220222173811870](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221738972.png)
+![image-20220222173811870](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221738972.png)
 
-![image-20220222173825466](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221738556.png)
+![image-20220222173825466](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221738556.png)
 
-![image-20220222173840948](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221738051.png)
+![image-20220222173840948](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221738051.png)
 
 ## 定位
 
@@ -2096,7 +2096,7 @@ content / cursor / border-radius / box-shadow / text-shadow / background:linear-
 | absolute | **绝对**定位 |
 | fixed    | **固定**定位 |
 
-![image-20220222174009262](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221740342.png)
+![image-20220222174009262](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221740342.png)
 
 | **定位模式**     | **是否脱标占有位置** | **移动位置基准**       | **模式转换（行内块）** | **使用情况**             |
 | ---------------- | -------------------- | ---------------------- | ---------------------- | ------------------------ |
@@ -2121,7 +2121,7 @@ content / cursor / border-radius / box-shadow / text-shadow / background:linear-
 
 **相对定位**是元素**相对**于它 原来在标准流中的位置 来说的
 
-![image-20220222174111139](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221741235.png)
+![image-20220222174111139](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221741235.png)
 
 **相对定位的特点**
 
@@ -2142,13 +2142,13 @@ content / cursor / border-radius / box-shadow / text-shadow / background:linear-
 1. **完全脱标** —— 完全不占位置； 
 2. **父元素<span style="background-color:yellow;font-family:'Consolas'">没有定位</span>**，则以**浏览器**为准定位（Document     文档）
 
-![image-20220222174247717](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221742814.png)
+![image-20220222174247717](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221742814.png)
 
 3. **父元素要有定位**
 
    将元素依据最近的**<span style="background-color:yellow;font-family:'Consolas'">已经定位</span>**（绝对、固定或相对定位）的**<span style="background-color:yellow;font-family:'Consolas'">父元素</span>**（祖先）进行定位
 
-   ![image-20220222174318626](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221743724.png)
+   ![image-20220222174318626](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221743724.png)
 
    **绝对定位的特点**
 
@@ -2165,13 +2165,13 @@ content / cursor / border-radius / box-shadow / text-shadow / background:linear-
 
    **注意**：**绝对定位/固定定位的盒子**不能通过设置 `margin: auto` 设置**水平居中**
 
-   ![image-20220222174412134](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221744221.png)
+   ![image-20220222174412134](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221744221.png)
 
    <span style="background-color:yellow;font-family:'Consolas'">left: 50%;</span>：让**盒子的左侧**移动到**父级元素的水平中心位置**
 
    <span style="background-color:yellow;font-family:'Consolas'">margin-left: -100px;</span>：让盒子**向左**移动**<span style="background-color:yellow;font-family:'Consolas'">自身宽度的一半</span>**
 
-   ![image-20220222174434756](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221744841.png)
+   ![image-20220222174434756](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221744841.png)
 
    ### 固定定位（fixed）
 
@@ -2183,7 +2183,7 @@ content / cursor / border-radius / box-shadow / text-shadow / background:linear-
 - 跟**父元素没有任何关系**；<span style="background-color:yellow;font-family:'Consolas'">单独使用</span>的
    - **不随滚动条滚动**
 
-   ![image-20220222174531724](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221745828.png)
+   ![image-20220222174531724](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221745828.png)
    
 ### 堆叠顺序（z-index）
 
@@ -2193,7 +2193,7 @@ content / cursor / border-radius / box-shadow / text-shadow / background:linear-
 
 应用 **<span style="background-color:yellow;font-family:'Consolas';color:red">z-index</span>** 层叠等级属性可以**调整盒子的堆叠顺序**
 
-![image-20220222174604386](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221746468.png)
+![image-20220222174604386](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221746468.png)
 
 **z-index 的特性如下**
 
@@ -2243,7 +2243,7 @@ content / cursor / border-radius / box-shadow / text-shadow / background:linear-
 
 隐藏之后，**<span style="background-color:yellow;font-family:'Consolas">不再保留位置</span>**
 
-![image-20220223172723356](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231727457.png)
+![image-20220223172723356](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202231727457.png)
 
 **（2）visibility可见性**
 
@@ -2257,7 +2257,7 @@ content / cursor / border-radius / box-shadow / text-shadow / background:linear-
 
 隐藏之后，**<span style="background-color:yellow;font-family:'Consolas">继续保留原有位置</span>**
 
-![image-20220223172949631](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231729731.png)
+![image-20220223172949631](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202231729731.png)
 
 **（3）overflow溢出**
 
@@ -2337,7 +2337,7 @@ content / cursor / border-radius / box-shadow / text-shadow / background:linear-
 
 **<span style="color:#2E75B5;font-family:'Consolas'">轮廓线outline</span>**
 
-![image-20220223090347339](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230903409.png)
+![image-20220223090347339](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202230903409.png)
 
 是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用
 
@@ -2350,7 +2350,7 @@ outline: 0; 或者 outline: none;
 
 **<span style="color:#2E75B5;font-family:'Consolas'">防止拖拽文本域resize</span>**
 
-![image-20220223090442141](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230904195.png)
+![image-20220223090442141](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202230904195.png)
 
 ```html
 <textarea  style="resize: none;"></textarea>
@@ -2367,7 +2367,7 @@ outline: 0; 或者 outline: none;
 
 它只针对于<span style="background-color:yellow;font-family:'Consolas'">**行内元素**或者**行内块元素**</span>
 
-![image-20220223090532597](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230905669.png)
+![image-20220223090532597](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202230905669.png)
 
 ```css
 vertical-align : baseline |top |middle |bottom
@@ -2381,7 +2381,7 @@ vertical-align : baseline |top |middle |bottom
 
 默认的图片会和文字基线对齐
 
-![image-20220223090628316](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230906381.png)
+![image-20220223090628316](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202230906381.png)
 
 **<span style="color:#008AC1;font-family:'Consolas'">去除图片底侧空白缝隙</span>**
 
@@ -2422,7 +2422,7 @@ text-overflow : clip ；不显示省略标记（...），而是简单的裁切
 text-overflow：ellipsis ； 当对象内文本溢出时显示省略标记（...）
 ```
 
-![image-20220223090834008](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230908072.png)
+![image-20220223090834008](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202230908072.png)
 
 
 
@@ -2466,7 +2466,7 @@ div{
 }
 ```
 
-![image-20220223091404243](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230914310.png)
+![image-20220223091404243](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202230914310.png)
 
 <span style="background-color:yellow;font-family:'Consolas'">**png格式为透明背景**</span>
 
@@ -2671,7 +2671,7 @@ transition-duration 花费时间 单位是 秒（必须写单位） s ms 比如 
 
 默认是 ease
 
-![image-20220223092012176](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230920257.png)
+![image-20220223092012176](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202230920257.png)
 
 **何时开始**
 
@@ -2792,7 +2792,7 @@ n可以是数字、关键字、公式
 - n为公式，则从0开始计算
 - 第0个元素或超出元素的个数会被忽略
 
-![image-20220223175220503](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231752596.png)
+![image-20220223175220503](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202231752596.png)
 
 ### 伪元素选择器
 
@@ -2816,7 +2816,7 @@ n可以是数字、关键字、公式
 - 在dom看不见创建的元素，被称为**伪元素**
 - 伪元素和标签选择器一样，**<span style="background-color:yellow">权重=1</span>**
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230927734.png" alt="image-20220223092727642" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202230927734.png" alt="image-20220223092727642" style="zoom:80%;" />
 
 ### 2D转换 transform
 
@@ -2834,7 +2834,7 @@ n可以是数字、关键字、公式
 
 可以改变元素在页面中的位置，类似**<span style="background-color:yellow">定位</span>**
 
-![image-20220223092840019](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230928082.png)
+![image-20220223092840019](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202230928082.png)
 
 **<span style="color:blue">语法</span>**
 
@@ -2859,7 +2859,7 @@ transform: translateY(n);
 
 让元素在二维平面内顺时针旋转或逆时针旋转
 
-![image-20220223093017668](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230930732.png)
+![image-20220223093017668](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202230930732.png)
 
 **<span style="color:blue">语法</span>**
 
@@ -2895,7 +2895,7 @@ transform-origin: x y;
 
 可以放大和缩小
 
-![image-20220223093204758](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230932825.png)
+![image-20220223093204758](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202230932825.png)
 
 **<span style="color:blue">语法</span>**
 
@@ -3029,8 +3029,8 @@ div {
         <td>animation-timing-function</td>
         <td>
             动画的速度曲线，默认是"ease"
-            <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230942151.png" alt="image-20220223094223054">
-            <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230944676.png" alt="image-20220223094446593">
+            <img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202230942151.png" alt="image-20220223094223054">
+            <img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202230944676.png" alt="image-20220223094446593">
         </td>
     </tr>
     <tr>
@@ -3086,9 +3086,9 @@ animation: w 5s steps(6) infinite forwards,move 3s forwards;
 
 立体空间，由3个轴组成
 
-![image-20220223094710177](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230947263.png)
+![image-20220223094710177](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202230947263.png)
 
-![image-20220223094724360](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230947433.png)
+![image-20220223094724360](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202230947433.png)
 
 #### 3D移动 translate3d
 
@@ -3184,5 +3184,5 @@ linear-gradient(0deg, blue, green 40%, red);
 background: -webkit-linear-gradient(top, #DAECF9, #DAECF9, #C6E3F8 40%, #DAECF9 80%);
 ```
 
-![image-20220223095243331](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202230952403.png)
+![image-20220223095243331](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202230952403.png)
 

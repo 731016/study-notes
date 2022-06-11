@@ -199,7 +199,7 @@ public class Demo {
 ```
 
 
-![image-20211124230407014](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124230407014.png)
+![image-20211124230407014](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124230407014.png)
 
 <br />
 
@@ -879,7 +879,7 @@ public class Demo2 {
 ```
 
 
-![image-20211124230429079](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124230429079.png)
+![image-20211124230429079](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124230429079.png)
 
 <br />
 
@@ -1269,7 +1269,7 @@ public class Demo4 {
 ```
 
 
-![image-20211124230446373](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124230446373.png)
+![image-20211124230446373](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124230446373.png)
 
 
 > 需求说明：从控制台接收3名学员的信息，每条信息存储到一个Student对象中，将多个Student对象存储到一个集合中。输入完毕后，将所有学员信息存储到文件Student.txt中。每名学员信息存储一行，多个属性值中间用逗号隔开。

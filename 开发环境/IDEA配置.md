@@ -54,11 +54,11 @@ Settings ->
 
 # 标签全部显示
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112292132906.png" alt="image-20211124221757311" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112292132906.png" alt="image-20211124221757311" style="zoom:80%;" />
 
 # IDEA运行程序无效
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112292132112.png" alt="image-20211124221824624" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112292132112.png" alt="image-20211124221824624" style="zoom:80%;" />
 
 # 自定义文件，方法注释
 
@@ -70,7 +70,7 @@ Settings ->
 
 `Translation` 翻译插件
 
-![image-20211124221844192](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202111271734433.png)
+![image-20211124221844192](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202111271734433.png)
 
 ## lombok
 
@@ -92,7 +92,7 @@ Settings ->
 
 ## 代码提示  
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112292132970.png" alt="image-20211124221905121" style="zoom:80%;" />                   
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112292132970.png" alt="image-20211124221905121" style="zoom:80%;" />                   
 
 
 

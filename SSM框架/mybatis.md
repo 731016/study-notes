@@ -164,7 +164,7 @@ public class MybatisUtils {
 </dependency>
 ```
 
-![image-20211124233231786](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233231786.png)
+![image-20211124233231786](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233231786.png)
 
 ## 增删改查
 
@@ -215,7 +215,7 @@ public class MybatisUtils {
 </mapper>
 ```
 
-![image-20211124233245087](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233245087.png)
+![image-20211124233245087](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233245087.png)
 
 ## `<foreach>`
 
@@ -305,7 +305,7 @@ private SqlSession sqlSession = null;
     }
 ```
 
-![image-20211124233309505](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233309505.png)
+![image-20211124233309505](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233309505.png)
 
 ### lib问题
 
@@ -313,7 +313,7 @@ private SqlSession sqlSession = null;
 
 **解决**
 
-![image-20211124233347604](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233347604.png)
+![image-20211124233347604](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233347604.png)
 
 ### 映射xml和java文件放在一起
 
@@ -364,7 +364,7 @@ private SqlSession sqlSession = null;
 
 ## `<where>`
 
-![image-20211124233359969](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233359969.png)
+![image-20211124233359969](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233359969.png)
 
 ```XML
 <select id="checkRecordVoAsCondition" parameterType="CheckRecordVo" resultType="CheckhouseRecord">

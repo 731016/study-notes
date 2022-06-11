@@ -36,7 +36,7 @@ W3C 已经定义了一系列的 DOM 接口，通过这些 DOM 接口可以改变
 
 **DOM树**
 
-![image-20220307154436854](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071544894.png)
+![image-20220307154436854](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071544894.png)
 
 DOM树 又称为文档树模型，把文档映射成树形结构，通过节点对象对其处理，处理的结果可以加入到当前的页面。
 
@@ -58,7 +58,7 @@ DOM树 又称为文档树模型，把文档映射成树形结构，通过节点�
 
 返回值：**元素对象** 或 <span style="color:#008AC1;font-family:'Consolas';font-weight:700;">null</span>
 
-![image-20220307154654332](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071546375.png)
+![image-20220307154654332](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071546375.png)
 
 **返回元素对象，方便查看**
 
@@ -81,7 +81,7 @@ console.dir();
 console.log(document.getElementsByClassName('con')); //根据类名返回html集合
 ```
 
-![image-20220307154959890](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071549921.png)
+![image-20220307154959890](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071549921.png)
 
 ### 根据<span style="color:red;font-family:'Consolas';font-weight:700;">name</span>获取元素
 
@@ -98,7 +98,7 @@ console.log(document.getElementsByClassName('con')); //根据类名返回html集
 console.log(document.getElementsByName('username')); // 通过name获取,返回节点列表,类型为数组
 ```
 
-![image-20220307155100147](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071551183.png)
+![image-20220307155100147](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071551183.png)
 
 ### 根据<span style="font-weight:700;color:#00B050;font-family:'Consolas'">标签名</span>获取元素
 
@@ -147,7 +147,7 @@ console.log(document.getElementsByName('username')); // 通过name获取,返回�
 </body>
 ```
 
-![image-20220307155233161](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071552192.png)
+![image-20220307155233161](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071552192.png)
 
 注意：getElementsByTagName()获取到是**动态集合**，即：当页面增加了标签，这个集合 中也就增加了元素
 
@@ -164,7 +164,7 @@ document.querySelector('选择器');
 document.querySelectorAll('选择器');
 ```
 
-![image-20220307155309799](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071553829.png)
+![image-20220307155309799](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071553829.png)
 
 ```js
 <body>
@@ -244,7 +244,7 @@ JavaScript 使我们有能力创建动态页面，而事件是可以被 JavaScri
 - 事件类型（什么事件）： 例如 click 点击事件
 - 事件处理程序（做啥）：事件触发后要执行的代码(函数形式)，事件处理函数
 
-![image-20220307155525478](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071555525.png)
+![image-20220307155525478](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071555525.png)
 
 ### 执行事件的步骤
 
@@ -254,11 +254,11 @@ JavaScript 使我们有能力创建动态页面，而事件是可以被 JavaScri
 
 （3）添加事件处理程序（采用函数赋值形式）
 
-![image-20220307155545404](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071555451.png)
+![image-20220307155545404](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071555451.png)
 
 ### 常见鼠标事件
 
-![image-20220307155600501](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071556545.png)
+![image-20220307155600501](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071556545.png)
 
 ## 操作元素
 
@@ -266,7 +266,7 @@ JavaScript的 DOM 操作可以改变网页内容、结构和样式，我们可�
 
 注意：这些操作都是通过元素对象的属性实现的
 
-![image-20220307155622772](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071556815.png)
+![image-20220307155622772](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071556815.png)
 
 ### 改变元素内容（获取或设置）
 
@@ -321,7 +321,7 @@ innerText会去除空格和换行，而innerHTML会保留空格和换行
 
 innerText不会识别html，而innerHTML会识别
 
-![image-20220307160139926](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071601980.png)
+![image-20220307160139926](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071601980.png)
 
 ### 常用元素的属性操作
 
@@ -343,7 +343,7 @@ id、alt、title
 
 **元素对象.属性名=值**
 
-![image-20220307160310880](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071603937.png)
+![image-20220307160310880](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071603937.png)
 
 ### 表单元素的属性操作
 
@@ -361,7 +361,7 @@ type、<span style="color:#C00000;font-family:'Consolas';font-weight:700;">value
 
 表单元素中有一些属性如：disabled、checked、selected，元素对象的这些属性的值是**布尔型**
 
-![image-20220307160500517](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071605560.png)
+![image-20220307160500517](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071605560.png)
 
 <span style="color:#008AC1;font-family:'Consolas';font-weight:700;">获取select下拉列表的值</span>
 
@@ -402,7 +402,7 @@ options 获取所有<option></option>数组，通过得到的value，用下标�
 
 （2）修改style样式操作，产生的是行内样式，css权重比较高
 
-![image-20220307160823469](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071608516.png)
+![image-20220307160823469](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071608516.png)
 
 <span style="color:#008AC1;font-family:'Consolas';font-weight:700;">(2）通过操作className属性</span>
 
@@ -420,13 +420,13 @@ options 获取所有<option></option>数组，通过得到的value，用下标�
 
 （3）className会直接更改元素的类名，会覆盖原先的类名（要保留原先的类，可使用多类名选择器）
 
-![image-20220307162231534](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071622587.png)
+![image-20220307162231534](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071622587.png)
 
 ## 排他操作
 
 <span style="color:#008AC1;font-family:'Consolas';font-weight:700;">排他思想</span>
 
-![image-20220307162547094](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071625124.png)
+![image-20220307162547094](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071625124.png)
 
 如果有同一组元素，我们想要某一个元素实现某种样式， 需要用到循环的排他思想算法：
 
@@ -434,7 +434,7 @@ options 获取所有<option></option>数组，通过得到的value，用下标�
 2. **给当前元素设置样式** （留下我自己）
 3. 注意顺序不能颠倒，首先干掉其他人，再设置自己
 
-![image-20220307162602767](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071626813.png)
+![image-20220307162602767](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071626813.png)
 
 ## 自定义属性操作
 
@@ -450,7 +450,7 @@ options 获取所有<option></option>数组，通过得到的value，用下标�
 
 - element.getAttribute('属性'); 主要获得自定义的属性（标准）
 
-![image-20220307172049949](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071720008.png)
+![image-20220307172049949](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071720008.png)
 
 <span style="color:#008AC1;font-family:'Consolas';font-weight:700;">设置属性值</span>
 
@@ -464,13 +464,13 @@ options 获取所有<option></option>数组，通过得到的value，用下标�
 
 element.setAttribute('属性'); 主要设置**自定义的属性**（标准）
 
-![image-20220307172259330](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071722383.png)
+![image-20220307172259330](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071722383.png)
 
 <span style="color:#008AC1;font-family:'Consolas';font-weight:700;">移除属性</span>
 
 `element.removeAttribute('属性');`
 
-![image-20220307172325432](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071723477.png)
+![image-20220307172325432](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071723477.png)
 
 ### H5自定义属性
 
@@ -502,7 +502,7 @@ H5新增`element.dataset.index` 或者 `element.dataset['index']` ie11才开始�
 
 可以通过 `HTMLElement.dataset.testValue` ( 或者是 `HTMLElement.dataset["testValue"]` ) 来访问
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203281540147.png" alt="image-20220328153959913" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203281540147.png" alt="image-20220328153959913" style="zoom:80%;" />
 
 ## 节点操作
 
@@ -512,7 +512,7 @@ H5新增`element.dataset.index` 或者 `element.dataset['index']` ie11才开始�
 
 HTML DOM 树中的所有节点均可通过 JavaScript 进行访问，所有 HTML 元素（节点）均可被修改，也可以创建或删除
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132048963.png" alt="image-20220313204806224" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203132048963.png" alt="image-20220313204806224" style="zoom:80%;" />
 
 一般地，节点至少拥有nodeType（节点类型）、nodeName（节点名称）和nodeValue（节点值）这三个基本属性
 
@@ -526,7 +526,7 @@ HTML DOM 树中的所有节点均可通过 JavaScript 进行访问，所有 HTML
 
 利用 DOM 树可以把节点划分为不同的层级关系，常见的是**父子兄层级关系**
 
-![image-20220313204859279](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132049163.png)
+![image-20220313204859279](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203132049163.png)
 
 ### 父级节点
 
@@ -536,7 +536,7 @@ parentNode 属性可返回某节点的父节点，注意是<span style="backgrou
 
 如果指定的节点没有父节点则返回null
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132050238.png" alt="image-20220313205004259" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203132050238.png" alt="image-20220313205004259" style="zoom:80%;" />
 
 ### 子节点
 
@@ -562,7 +562,7 @@ parentNode.children 是一个只读属性，返回所有的子元素节点；它
 
 各个浏览器支持使用
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132052182.png" alt="image-20220313205249283" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203132052182.png" alt="image-20220313205249283" style="zoom:80%;" />
 
 <span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">第1个子节点</span>
 
@@ -602,7 +602,7 @@ firstElementChild和lastElementChild两种方法有<span style="background-color
 
 （2）如果想要**最后一个子元素节点**，可使用`parentNode.children[parentNode.children.length - 1]`
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132056811.png" alt="image-20220313205644697" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203132056811.png" alt="image-20220313205644697" style="zoom:80%;" />
 
 ### 兄弟节点
 
@@ -618,7 +618,7 @@ nextSibling 返回当前元素的下一个兄弟节点，找不到则返回null�
 
 previousSibling 返回当前元素上一个兄弟节点，找不到则返回null。同样，也是**包含所有的节点**
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132058188.png" alt="image-20220313205823261" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203132058188.png" alt="image-20220313205823261" style="zoom:80%;" />
 
 <span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">下一个兄弟元素节点（兼容性）</span>
 
@@ -644,7 +644,7 @@ nextElementSibling和previousElementSibling存在**兼容性**问题，IE9以上
 
 封装一个兼容性函数
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132059516.png" alt="image-20220313205946167" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203132059516.png" alt="image-20220313205946167" style="zoom:80%;" />
 
 ### 创建节点
 
@@ -666,7 +666,7 @@ node.appendChild()方法将一个节点添加到指定父节点的子节点列�
 
 node.insertBefore()方法将一个节点添加到父节点的指定子节点<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">**前面**</span>
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132102958.png" alt="image-20220313210252634" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203132102958.png" alt="image-20220313210252634" style="zoom:80%;" />
 
 **select添加节点，通过Otions构造函数**
 
@@ -691,7 +691,7 @@ node.insertBefore()方法将一个节点添加到父节点的指定子节点<spa
 </body>
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132103891.png" alt="image-20220313210350111" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203132103891.png" alt="image-20220313210350111" style="zoom:80%;" />
 
 ### 删除节点
 
@@ -699,7 +699,7 @@ node.insertBefore()方法将一个节点添加到父节点的指定子节点<spa
 
 **node.removeChild(child)** 方法从 node节点中删除一个**子节点**，返回删除的节点
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132104243.png" alt="image-20220313210437492" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203132104243.png" alt="image-20220313210437492" style="zoom:80%;" />
 
 ### 复制（克隆）节点
 
@@ -711,7 +711,7 @@ node.insertBefore()方法将一个节点添加到父节点的指定子节点<spa
 
 2.如何括号参数为<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">**true**</span>，则是**深拷贝**，会复制节点本身以及里面所有的子节点
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203132106462.png" alt="image-20220313210622748" style="zoom: 80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203132106462.png" alt="image-20220313210622748" style="zoom: 80%;" />
 
 ### 创建元素的三种方式
 
@@ -732,7 +732,7 @@ document.createElement()
 
 **不同浏览器下，innerHTML 效率要比 createElement高**
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203271949519.png" alt="image-20220327194940835" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203271949519.png" alt="image-20220327194940835" style="zoom:80%;" />
 
 #### innerTHML和createElement效率对比
 
@@ -1038,7 +1038,7 @@ eventTatget.onclick=null;
 - eventTarget.**removeEventListener**(type,listener[,useCapture]);
 - eventTarget.**detachEvent**(eventNameWith**On**,callback);
 
-![image-20220407155240427](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071552626.png)
+![image-20220407155240427](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071552626.png)
 
 **删除事件兼容性解决方案**
 
@@ -1077,7 +1077,7 @@ html中的标签都是相互嵌套的，我们可以将元素想象成一个盒�
 
 比如：我们给页面中的一个div注册了单击事件，当你单击了div时，也就单击了body，单击了html，单击了document
 
-![image-20220407155343430](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071553513.png)
+![image-20220407155343430](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071553513.png)
 
 - 事件冒泡：IE最早提出，事件开始时由最具体的元素接收，然后逐级向上传播到DOM最顶层节点的过程
 - 事件捕获：网景最早提出，由DOM最顶层节点开始，然后逐级向下传播到最具体的元素接收的过程
@@ -1110,7 +1110,7 @@ html中的标签都是相互嵌套的，我们可以将元素想象成一个盒�
 2. **当前目标阶段**
 3. **冒泡阶段**
 
-![image-20220407155456025](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071554094.png)
+![image-20220407155456025](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071554094.png)
 
 注意
 
@@ -1225,7 +1225,7 @@ eventTarget.onclick=function(event){
 >
 > 只要“||”前面为true, 不管“||”后面是true 还是 false，都返回 “||” 前面的值
 
-![image-20220407155749952](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071557023.png)
+![image-20220407155749952](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071557023.png)
 
 #### 事件对象的属性和方法
 
@@ -1254,17 +1254,17 @@ eventTarget.onclick=function(event){
 
 而**target指向的是子元素**，因为他是**触发事件的那个具体元素对象**
 
-![image-20220407155856543](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071558612.png)
+![image-20220407155856543](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071558612.png)
 
 **事件冒泡下的e.target和this**
 
-![image-20220407155919293](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071559366.png)
+![image-20220407155919293](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071559366.png)
 
 ### 阻止默认行为
 
 html中一些标签有默认行为，例如a标签被单击后，默认会进行页面跳转
 
-![image-20220407155947128](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071559197.png)
+![image-20220407155947128](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071559197.png)
 
 **JQuery禁止表单提交**
 
@@ -1286,7 +1286,7 @@ $("#sub").click(function(e) {
 
 **e.cancelBubble=true;**
 
-![image-20220407160039297](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071600380.png)
+![image-20220407160039297](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071600380.png)
 
 **阻止事件冒泡的兼容性处理**
 
@@ -1311,7 +1311,7 @@ if(e && e.stopPropagation){
 
 **js事件中的代理**
 
-![image-20220407160143691](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071601774.png)
+![image-20220407160143691](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071601774.png)
 
 **事件委托的原理**
 
@@ -1322,7 +1322,7 @@ if(e && e.stopPropagation){
 - 我们只操作了一次 DOM ，提高了程序的性能
 - 动态新创建的子元素，也拥有事件
 
-![image-20220407160217442](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071602516.png)
+![image-20220407160217442](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071602516.png)
 
 ### 常用鼠标事件
 
@@ -1358,7 +1358,7 @@ document.addEventListener('selectstart',function(e)){
 }
 ```
 
-![image-20220407160348401](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071603481.png)
+![image-20220407160348401](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071603481.png)
 
 ### 鼠标事件对象
 
@@ -1400,9 +1400,9 @@ document.addEventListener('selectstart',function(e)){
 
 #### 案例-跟随鼠标的天使
 
-![image-20220407165932298](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071659381.png)
+![image-20220407165932298](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071659381.png)
 
-![image-20220407165947093](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071659190.png)
+![image-20220407165947093](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071659190.png)
 
 ### 常用键盘事件
 
@@ -1419,7 +1419,7 @@ document.addEventListener('selectstart',function(e)){
 
 （3）三个事件的**执行顺序**：**keydown -> keypress -> keyup**
 
-![image-20220407170021119](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071700198.png)
+![image-20220407170021119](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071700198.png)
 
 #### 键盘事件对象
 
@@ -1456,7 +1456,7 @@ document.addEventListener('selectstart',function(e)){
     </script>
 ```
 
-![image-20220407170133288](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071701361.png)
+![image-20220407170133288](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071701361.png)
 
 #### 双击禁止选定文字
 
@@ -1482,7 +1482,7 @@ input.select();
 
 ### BOM的构成
 
-![image-20220407170324762](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071703839.png)
+![image-20220407170324762](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071703839.png)
 
 ### 顶级对象window
 
@@ -1534,7 +1534,7 @@ IE9以上支持！
 
 页面图片较多，从用户访问到onload触发可能需要较长时间，交互效果无法实现，可使用DOMContentLoaded事件
 
-![image-20220407171448004](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071714085.png)
+![image-20220407171448004](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071714085.png)
 
 #### 调整窗口大小事件
 
@@ -1552,7 +1552,7 @@ window.onresize是调整窗口大小加载事件，当触发时调用函数
 
 （2）利用此事件完成响应式布局。**window.innerWidth**当前屏幕的宽度
 
-![image-20220407171545079](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071715154.png)
+![image-20220407171545079](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071715154.png)
 
 ### 定时器
 
@@ -1583,7 +1583,7 @@ setTimeout() 这个调用函数称为**回调函数callback**
 
 （4）定时器可能有很多，需要给定时器赋值一个标识符
 
-![image-20220407171710196](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071717275.png)
+![image-20220407171710196](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071717275.png)
 
 **停止定时器**
 
@@ -1597,7 +1597,7 @@ clearTimeout()方法取消了先前通过调用setTimeout()建立的定时器
 
 （2）参数timeoutID为定时器的标识符
 
-![image-20220407171758261](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071717333.png)
+![image-20220407171758261](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071717333.png)
 
 #### setInterval()闹钟定时器
 
@@ -1621,7 +1621,7 @@ setInterval()方法重复调用一个函数，每隔这个时间，就调用一�
 
 （5）第一次执行也是间隔毫秒数之后执行，之后每隔毫秒数就执行一次
 
-![image-20220407171905668](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071719746.png)
+![image-20220407171905668](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071719746.png)
 
 **停止定时器**
 
@@ -1683,7 +1683,7 @@ this的指向在函数定义的时候是确定不了的，只有函数执行的�
 
 一般指向我们的调用者
 
-![image-20220407172053949](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071720034.png)
+![image-20220407172053949](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071720034.png)
 
 #### 改变函数内部的this指向
 
@@ -1705,7 +1705,7 @@ fn(1, 2) // 此时的this指向的是window 运行结果为3
 fn.call(o, 1, 2) //此时的this指向的是对象o,参数使用逗号隔开,运行结果为3
 ```
 
-![image-20220407172138617](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071721695.png)
+![image-20220407172138617](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071721695.png)
 
 **apply方法**
 
@@ -1713,7 +1713,7 @@ apply() 方法调用一个函数。简单理解为调用函数的方式，但是
 
 应用场景: 经常跟**数组**有关系
 
-![image-20220407172202945](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071722032.png)
+![image-20220407172202945](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071722032.png)
 
 
 
@@ -1725,7 +1725,7 @@ bind() 方法不会调用函数,但是能改变函数内部this 指向,返回的
 
 应用场景:不调用函数,但是还想改变this指向
 
-![image-20220407172305928](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071723015.png)
+![image-20220407172305928](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071723015.png)
 
 **call、apply、bind三者的异同**
 
@@ -1777,7 +1777,7 @@ JS的异步是通过回调函数实现的
 
 异步任务相关**回调函数**添加到**任务队列**中（任务队列也称为消息队列）
 
-![image-20220407172440521](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071724608.png)
+![image-20220407172440521](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071724608.png)
 
 **JS执行机制**
 
@@ -1785,7 +1785,7 @@ JS的异步是通过回调函数实现的
 2. 异步任务（回调函数）放入任务队列中
 3. 一旦执行栈中的所有同步任务执行完毕，系统就会按次序读取**任务队列**中的异步任务，结束等待状态，进入执行栈，开始执行
 
-![image-20220407172523746](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071725866.png)
+![image-20220407172523746](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071725866.png)
 
 ### location对象
 
@@ -1832,7 +1832,7 @@ http://www.itcast.cn/index.html?name=andy&age=18#link
 | location.replace() | 替换当前页面，不记录历史，无法后退                 |
 | location.reload()  | 重新加载页面，刷新、F5，参数为true 强制刷新ctrl+f5 |
 
-![image-20220407172730984](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071727079.png)
+![image-20220407172730984](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071727079.png)
 
 ### navigator对象
 
@@ -1969,7 +1969,7 @@ offset 翻译过来就是偏移量， 我们使用 offset系列相关属性可�
 | element.offsetWidth  | 返回自身包括padding、**边框**、内容区的宽度，返回数值不带单位 |
 | element.offsetHeight | 返回自身包括padding、**边框**、内容区的高度，返回数值不带单位 |
 
-![image-20220407173201667](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071732762.png)
+![image-20220407173201667](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071732762.png)
 
 **模态框拖拽**
 
@@ -2129,7 +2129,7 @@ client 翻译过来就是客户端，我们使用 client 系列的相关属性�
 | element.clientWidth | 返回自身包括padding、内容区的宽度，不含边框，返回数值不带单位 |
 | element.clineHeight | 返回自身包括padding、内容区的宽度，不含边框，返回数值不带单位 |
 
-![image-20220407173405786](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071734880.png)
+![image-20220407173405786](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071734880.png)
 
 **仿淘宝固定右侧侧边栏**
 
@@ -2187,15 +2187,15 @@ client 翻译过来就是客户端，我们使用 client 系列的相关属性�
 
 **html文字大小**
 
-![image-20220407173555374](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071735489.png)
+![image-20220407173555374](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071735489.png)
 
 **设置html元素的文字大小（rem大小）**
 
-![image-20220407173621021](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071736127.png)
+![image-20220407173621021](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071736127.png)
 
 **页面尺寸改变时，重新设置rem大小**
 
-![image-20220407173648326](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071736434.png)
+![image-20220407173648326](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071736434.png)
 
 下面三种情况都会刷新页面都会触发 load 事件
 
@@ -2221,7 +2221,7 @@ client 翻译过来就是客户端，我们使用 client 系列的相关属性�
 
 **移动端浏览器不支持0.5px写法，适配**
 
-![image-20220407173729922](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071737041.png)
+![image-20220407173729922](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071737041.png)
 
 ### 元素滚动scroll
 
@@ -2236,7 +2236,7 @@ scroll 翻译过来就是滚动的，我们使用 scroll 系列的相关属性�
 
 页面被卷去的头部：可以通过**window.pageYOffset** 获得 如果是被卷去的左侧**window.pageXOffset**
 
-![image-20220407173800830](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071738925.png)
+![image-20220407173800830](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071738925.png)
 
 **页面被卷去的头部**
 
@@ -2266,7 +2266,7 @@ function getScroll() {
 
 ### **三大系列总结**
 
-![image-20220407173853850](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071738953.png)
+![image-20220407173853850](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071738953.png)
 
 他们主要用法：
 
@@ -2728,7 +2728,7 @@ focus.classList.toggle('current');
 3. 移动端移动，可以使用translate 移动
 4. 想要图片优雅的移动，请添加过渡效果
 
-![image-20220407174447947](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071744049.png)
+![image-20220407174447947](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071744049.png)
 
 1. 自动播放功能-无缝滚动
 2. 注意，我们判断条件是要等到图片滚动完毕再去判断，就是过渡完成后判断
@@ -2738,14 +2738,14 @@ focus.classList.toggle('current');
 6. 如果索引号小于0， 说明是倒着走， 索引号等于2 
 7. 此时图片，去掉过渡效果，然后移动
 
-![image-20220407174516380](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071745481.png)
+![image-20220407174516380](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071745481.png)
 
 1. 小圆点跟随变化效果
 2. 把ol里面li带有current类名的选出来去掉类名 remove
 3. 让当前索引号的小li 加上 current  add
 4. 但是，是等着过渡结束之后变化，所以这个写到 transitionend 事件里面
 
-![image-20220407174539633](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071745720.png)
+![image-20220407174539633](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071745720.png)
 
 1. 手指滑动轮播图
 2. 本质就是ul跟随手指移动，简单说就是移动端拖动元素
@@ -2758,16 +2758,16 @@ focus.classList.toggle('current');
 9. 如果是左滑就播放下一张 （index++）
 10. 如果是右滑就播放上一张 (index--)
 
-![image-20220407174600220](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071746331.png)
+![image-20220407174600220](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071746331.png)
 
-![image-20220407174614304](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071746402.png)
+![image-20220407174614304](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071746402.png)
 
 1. 滚动某个地方显示
 2. 事件：scroll页面滚动事件 
 3. 如果被卷去的头部（window.pageYOffset ）大于某个数值
 4. 点击，window.scroll(0,0) 返回顶部
 
-![image-20220407174628372](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071746471.png)
+![image-20220407174628372](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071746471.png)
 
 #### click延时解决方案
 
@@ -2818,7 +2818,7 @@ focus.classList.toggle('current');
 
 （3）使用插件。fastclick 插件解决300ms 延迟
 
-![image-20220407174739376](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071747474.png)
+![image-20220407174739376](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071747474.png)
 
 ### 移动端常用开发插件
 
@@ -2840,7 +2840,7 @@ JS 插件是 js 文件，它遵循一定规范编写，方便程序展示效果�
 
 **插件的使用**
 
-![image-20220407174806293](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202204071748392.png)
+![image-20220407174806293](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202204071748392.png)
 
 **Swiper 插件的使用**
 

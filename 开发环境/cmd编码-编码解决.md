@@ -6,7 +6,7 @@
 
 
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112071615577.png" alt="image-20211207161515216" style="zoom: 80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112071615577.png" alt="image-20211207161515216" style="zoom: 80%;" />
 
 ### jdk 环境变量设置
 

@@ -6,11 +6,11 @@
 
 ## 新建项目
 
-![image-20211124223240393](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124223240393.png)
+![image-20211124223240393](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124223240393.png)
 
 ## 添加tomcat!
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124223308753.png" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124223308753.png" style="zoom:80%;" />
 
 ## 部署项目
 
@@ -25,13 +25,13 @@
 java.util.logging.ConsoleHandler.encoding = GBK
 ```
 
-![image-20211124223501748](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124223501748.png)
+![image-20211124223501748](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124223501748.png)
 
 
 
 ## tomcat热更新
 
-![image-20211124223515518](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202111271738701.png)
+![image-20211124223515518](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202111271738701.png)
 
 # 简单的web页面
 

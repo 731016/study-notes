@@ -59,7 +59,7 @@ public class App {
 
 ## 注册中心、生产者、消费者
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112040854320.png" alt="image-20211201164137119" style="zoom: 67%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112040854320.png" alt="image-20211201164137119" style="zoom: 67%;" />
 
 ### Eureka客户端
 
@@ -127,7 +127,7 @@ eureka:
 
 我们关停一个服务，很可能会在Eureka面板看到一条警告： 
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112100006420.png" alt="image-20211201165431134" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112100006420.png" alt="image-20211201165431134" style="zoom:80%;" />
 
 这是触发了Eureka的自我保护机制。当服务未按时进行心跳续约时，Eureka会统计服务实例最近15分钟心跳续约的 比例是否低于了85%。
 
@@ -772,7 +772,7 @@ Hystrix解决雪崩问题的手段主要是服务降级，包括：
 
 + 服务熔断
 
-  <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112021121673.png" alt="image-20211202112059571" style="zoom: 80%;" />
+  <img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112021121673.png" alt="image-20211202112059571" style="zoom: 80%;" />
 
 1. Hystrix为每个依赖服务调用分配一个小的线程池，如果线程池已满调用将被立即拒绝，默认不采用排队，加速 失败判定时间。 
 
@@ -795,7 +795,7 @@ Hystrix的服务熔断机制，可以实现弹性容错；当服务请求情况�
 
 通过断路的方式，将后续 请求直接拒绝，一段时间（默认5秒）之后允许部分请求通过，如果调用成功则回到断路器关闭状态，否则继续打开，拒绝请求的服务。
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112021122698.png" alt="image-20211202112224630" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112021122698.png" alt="image-20211202112224630" style="zoom:80%;" />
 
 状态机有3个状态： 
 
@@ -890,7 +890,7 @@ public class UserFallback implements UsersFeignClient {
 
 
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211202104808569.png" alt="image-20211202104808569" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211202104808569.png" alt="image-20211202104808569" style="zoom:80%;" />
 
 ### 启动类
 
@@ -899,7 +899,7 @@ public class UserFallback implements UsersFeignClient {
 @EnableHystrix
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211209234833610.png" alt="image-20211209234833610" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211209234833610.png" alt="image-20211209234833610" style="zoom:80%;" />
 
 
 
@@ -962,31 +962,31 @@ feign:
 
 ### 支持负载均衡
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112100006806.png" alt="image-20211202110903538" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112100006806.png" alt="image-20211202110903538" style="zoom:80%;" />
 
 ### 支持熔断器
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112100006439.png" alt="image-20211202111251538" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112100006439.png" alt="image-20211202111251538" style="zoom:80%;" />
 
 1）首先，要定义一个类，实现刚才编写的UserFeignClient，作为fallback的处理类
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112100006484.png" alt="image-20211202111421278" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112100006484.png" alt="image-20211202111421278" style="zoom:80%;" />
 
 
 
 2）然后在UserFeignClient中，指定刚才编写的实现类
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112100005798.png" alt="image-20211202111438322" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112100005798.png" alt="image-20211202111438322" style="zoom:80%;" />
 
 ### 请求压缩
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112021115877.png" alt="image-20211202111507613" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112021115877.png" alt="image-20211202111507613" style="zoom:80%;" />
 
 ###  日志级别(了解)
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112100005822.png" alt="image-20211203091327038" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112100005822.png" alt="image-20211203091327038" style="zoom:80%;" />
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112100005585.png" alt="image-20211203091420949" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112100005585.png" alt="image-20211203091420949" style="zoom:80%;" />
 
 ```yaml
 logging:
@@ -1064,7 +1064,7 @@ public class DashBoardApp {
 
 > 访问：http://localhost:端口/hystrix
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112101436850.png" alt="image-20211210143614813" style="zoom: 67%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112101436850.png" alt="image-20211210143614813" style="zoom: 67%;" />
 
 
 
@@ -1188,15 +1188,15 @@ spring:
 
 ### 过滤器
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112031029825.png" alt="image-20211203102946775" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112031029825.png" alt="image-20211203102946775" style="zoom:80%;" />
 
 > http://127.0.0.1:10010/queryOne/123 -> http://127.0.0.1:10010/user/queryOne/123
 
 
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112031031278.png" alt="image-20211203103154652" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112031031278.png" alt="image-20211203103154652" style="zoom:80%;" />
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112100005183.png" alt="image-20211203103210440" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112100005183.png" alt="image-20211203103210440" style="zoom:80%;" />
 
 
 
@@ -1448,7 +1448,7 @@ C:\Users\折腾的小飞>curl -X POST "http://localhost:20001/actuator/refresh"
 
 ## Spring Cloud Bus服务总线
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112131420956.png" alt="image-20211213142046120" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112131420956.png" alt="image-20211213142046120" style="zoom:80%;" />
 
 ### 配置一个消费者
 
@@ -1626,5 +1626,5 @@ curl -X POST "http://localhost:3344/actuator/bus-refresh/config-client:"
 
 
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202112131423741.png" alt="image-20211213142337248" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202112131423741.png" alt="image-20211213142337248" style="zoom:80%;" />
 

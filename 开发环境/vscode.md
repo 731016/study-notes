@@ -2,19 +2,19 @@
 
 https://code.visualstudio.com/
 
-![image-20220222103018273](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221030368.png)
+![image-20220222103018273](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221030368.png)
 
 ## 放大缩小视图
 
 ```ctrl + + 和ctrl + -```
-![image-20220222103147842](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221033026.png)
+![image-20220222103147842](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221033026.png)
 
 当光标点击到某一行时，默认选中全行，可以直接复制剪切
 
 ## 文件每次以新窗口打开
 
 文件每次以新窗口打开<br>
-![image-20220222103428862](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202221034685.png)
+![image-20220222103428862](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202221034685.png)
 
 ## vscode插件
 

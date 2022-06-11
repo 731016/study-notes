@@ -136,7 +136,7 @@ Spring通过DI（依赖注入）实现IOC（控制反转），常用的注入方
 
 
 
-![image-20211124233440712](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233440712.png)
+![image-20211124233440712](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233440712.png)
 
 ```xml-dtd
 <bean id="studentService" class="com.service.impl.StudentServiceImpl" scope="prototype">
@@ -169,7 +169,7 @@ public class StudentServiceImpl implements StudentService {
 
 ## JdbcTemplate
 
-![image-20211124233544224](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233544224.png)
+![image-20211124233544224](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233544224.png)
 
 
 
@@ -602,7 +602,7 @@ public class Demo {
 
 ### 注解
 
-![image-20211124233644417](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233644417.png)
+![image-20211124233644417](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233644417.png)
 
 
 
@@ -869,7 +869,7 @@ test
 </web-app>
 ```
 
-![image-20211124233714938](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233714938.png)
+![image-20211124233714938](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233714938.png)
 
 ```xml-dtd
 <bean id="studentService" class="com.service.impl.StudentServiceImpl"></bean>
@@ -1568,7 +1568,7 @@ public class BankServiceImpl implements BankService {
 
 ## aop自定义通知和事务处理比较
 
-![image-20211124233740825](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233740825.png)
+![image-20211124233740825](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233740825.png)
 
 # Hibernate + spring
 
@@ -2630,7 +2630,7 @@ public class Test2 {
 
 版本要一致！
 
-![image-20211124233825158](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233825158.png)
+![image-20211124233825158](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233825158.png)
 
 ```java
 忽略不存在的部门编号

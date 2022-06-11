@@ -38,7 +38,7 @@ jdk包括jvm（虚拟机）和jre（java运行环境）以及一些程序需要�
 ```
 
 
-![image-20211124230517845](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124230517845.png)
+![image-20211124230517845](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124230517845.png)
 
 # 记事本运行Java程序
 
@@ -235,11 +235,11 @@ byte short int float double long char boolean
 ```
 
 
-![image-20211124230539376](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124230539376.png)
+![image-20211124230539376](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124230539376.png)
 
 ### float类型和double类型的比较
 
-![image-20211124230551916](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124230551916.png)
+![image-20211124230551916](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124230551916.png)
 
 ```Java
 System.out.println(f1(2.34F, 2.34));
@@ -252,11 +252,11 @@ return "float类型的" + a + "和dobule类型的" + b + "比较结果为" + (a 
 ```
 
 
-![image-20211124230607776](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124230607776.png)
+![image-20211124230607776](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124230607776.png)
 
 堆是在程序**运⾏时** 在内存中申请的空间（可理解为动态的过程）；切记，不是在编译时；
 
-![image-20211124230617903](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124230617903.png)
+![image-20211124230617903](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124230617903.png)
 
 
 
@@ -286,11 +286,11 @@ return "float类型的" + a + "和dobule类型的" + b + "比较结果为" + (a 
 
 # ASCII
 
-![image-20211124230656425](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124230656425.png)
+![image-20211124230656425](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124230656425.png)
 
 
 
-![image-20211124230708287](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124230708287.png)
+![image-20211124230708287](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124230708287.png)
 
 # 运算符
 
@@ -345,7 +345,7 @@ X>1 || x<3 只要等号两侧任一结果为true，最后结果为true;且左侧
 
 ## 位运算符
 
-![image-20211124230726781](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124230726781.png)
+![image-20211124230726781](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124230726781.png)
 
 ## 三元运算符
 
@@ -426,7 +426,7 @@ do {}while (true);
 ```
 
 
-![image-20211124230740626](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124230740626.png)
+![image-20211124230740626](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124230740626.png)
 
 ## 嵌套循环
 
@@ -524,7 +524,7 @@ Java将内存分为**堆内存** 和**栈内存**
 ```
 
 
-![image-20211124230756460](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124230756460.png)
+![image-20211124230756460](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124230756460.png)
 
 ### 数组声明
 
@@ -701,7 +701,7 @@ public class CreateArray {
 ```
 
 
-![image-20211124230855126](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124230855126.png)
+![image-20211124230855126](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124230855126.png)
 
 
 #### 比较数组
@@ -743,7 +743,7 @@ public class SortArray {
 ```
 
 
-![image-20211124230957031](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124230957031.png)
+![image-20211124230957031](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124230957031.png)
 
 #### 数组检索
 
@@ -782,7 +782,7 @@ public class _4SearchArray {
 ```
 
 
-![image-20211124231008876](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231008876.png)
+![image-20211124231008876](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231008876.png)
 
 
 #### 数组转流
@@ -815,7 +815,7 @@ public class _5StreamArray {
 ```
 
 
-![image-20211124231021904](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231021904.png)
+![image-20211124231021904](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231021904.png)
 
 #### 打印数组
 
@@ -842,7 +842,7 @@ public class _6PrintArray {
 ```
 
 
-![image-20211124231034272](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231034272.png)
+![image-20211124231034272](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231034272.png)
 
 ```Java
 // 1
@@ -870,7 +870,7 @@ String[][] deepArr=new String[][]{{"折腾","的"},{"小飞"}};
 System.out.println(Arrays.deepToString(deepArr));
 ```
 
-![image-20211124231048140](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231048140.png)
+![image-20211124231048140](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231048140.png)
 
 #### 数组转List
 
@@ -886,7 +886,7 @@ System.out.println(Arrays.deepToString(deepArr));
 ```
 
 
-![image-20211124231059096](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231059096.png)
+![image-20211124231059096](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231059096.png)
 
 #### setAll
 
@@ -916,7 +916,7 @@ public class _8SetAll {
 ```
 
 
-![image-20211124231109336](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231109336.png)
+![image-20211124231109336](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231109336.png)
 
 #### parallelPrefix
 
@@ -957,7 +957,7 @@ public class _9ParallelPrefix {
 ```
 
 
-![image-20211124231119886](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231119886.png)
+![image-20211124231119886](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231119886.png)
 
 # 方法
 
@@ -977,7 +977,7 @@ public static void 方法名(){
 
 ### 参数和返回值
 
-![image-20211124231133407](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124231133407.png)
+![image-20211124231133407](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124231133407.png)
 
 ### 关于参数
 

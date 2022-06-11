@@ -16,7 +16,7 @@
   </component>
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201142207801.png" alt="image-20220114220733108" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201142207801.png" alt="image-20220114220733108" style="zoom:80%;" />
 
 ### 下载安装
 
@@ -29,14 +29,14 @@
 startup.cmd -m standalone
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201142105169.png" alt="image-20220114210518577" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201142105169.png" alt="image-20220114210518577" style="zoom:80%;" />
 
 ```powershell
 账号密码 nacos
 访问地址：localhost:8848/nacos
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201142106515.png" alt="image-20220114210607358" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201142106515.png" alt="image-20220114210607358" style="zoom:80%;" />
 
 
 
@@ -413,7 +413,7 @@ public class OrderNacosMain83 {
 }
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201142245322.png" alt="image-20220114224458857" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201142245322.png" alt="image-20220114224458857" style="zoom:80%;" />
 
 ### nacos作为配置中心（基本配置）
 
@@ -549,7 +549,7 @@ public class NacosConfigClientMain3377
 
 [Nacos Spring Cloud 快速开始](https://nacos.io/zh-cn/docs/quick-start-spring-cloud.html)
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201142259444.png" alt="image-20220114225923631" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201142259444.png" alt="image-20220114225923631" style="zoom:80%;" />
 
 ```yaml
 nacos-config-client-dev.yaml
@@ -559,25 +559,25 @@ spring.profile.active为当前环境对应的profile
 file-exetension为配置内容的数据格式
 ```
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201142314380.png" alt="image-20220114231414735" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201142314380.png" alt="image-20220114231414735" style="zoom:80%;" />
 
 #### 配置新增
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201142311313.png" alt="image-20220114231059614" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201142311313.png" alt="image-20220114231059614" style="zoom:80%;" />
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201142311945.png" alt="image-20220114231135596" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201142311945.png" alt="image-20220114231135596" style="zoom:80%;" />
 
 #### 查看信息
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201142326641.png" alt="image-20220114232606747" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201142326641.png" alt="image-20220114232606747" style="zoom:80%;" />
 
 ### 分类配置
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201142329851.png" alt="image-20220114232945907" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201142329851.png" alt="image-20220114232945907" style="zoom:80%;" />
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201142330104.png" alt="image-20220114233009497" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201142330104.png" alt="image-20220114233009497" style="zoom:80%;" />
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201142329445.png" alt="image-20220114232912572" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201142329445.png" alt="image-20220114232912572" style="zoom:80%;" />
 
 最外层的namespace是可以用于区分部署环境的，Group和DataID逻辑上区分两个目标对象
 
@@ -600,7 +600,7 @@ file-exetension为配置内容的数据格式
 
 **配置多个文件**
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201142337714.png" alt="image-20220114233725300" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201142337714.png" alt="image-20220114233725300" style="zoom:80%;" />
 
 ###### application.yml
 
@@ -612,25 +612,25 @@ spring:
 
 ##### group
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201142341113.png" alt="image-20220114234142649" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201142341113.png" alt="image-20220114234142649" style="zoom:80%;" />
 
 ###### bootstrap.yml
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201142343119.png" alt="image-20220114234302282" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201142343119.png" alt="image-20220114234302282" style="zoom:80%;" />
 
 ##### namespace
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201142346960.png" alt="image-20220114234634158" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201142346960.png" alt="image-20220114234634158" style="zoom:80%;" />
 
 ###### bootstrap.yml
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201142351350.png" alt="image-20220114235106096" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201142351350.png" alt="image-20220114235106096" style="zoom:80%;" />
 
 ## nacos集群和持久化配置
 
 [Nacos支持三种部署模式](https://nacos.io/zh-cn/docs/deployment.html)
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201150005562.png" alt="image-20220115000529379" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201150005562.png" alt="image-20220115000529379" style="zoom:80%;" />
 
 默认自带嵌入式数据库derby
 
@@ -655,23 +655,23 @@ db.password=root
 
 #### sql脚本
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201150013022.png" alt="image-20220115001346159" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201150013022.png" alt="image-20220115001346159" style="zoom:80%;" />
 
 #### 修改配置
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201150021741.png" alt="image-20220115002153799" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201150021741.png" alt="image-20220115002153799" style="zoom:80%;" />
 
 
 
 ## Sentinel熔断与限流
 
- <img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151443872.png" alt="image-20220115144314805" style="zoom:80%;" />
+ <img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151443872.png" alt="image-20220115144314805" style="zoom:80%;" />
 
 [Releases · alibaba/Sentinel · GitHub](https://github.com/alibaba/Sentinel/releases)
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151450541.png" alt="image-20220115145001993" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151450541.png" alt="image-20220115145001993" style="zoom:80%;" />
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151451924.png" alt="image-20220115145120117" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151451924.png" alt="image-20220115145120117" style="zoom:80%;" />
 
 ### 初始化工程
 
@@ -804,19 +804,19 @@ public class MainApp8401
 
 
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151502745.png" alt="image-20220115150240039" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151502745.png" alt="image-20220115150240039" style="zoom:80%;" />
 
 ### 流控规则
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151510285.png" alt="image-20220115151017641" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151510285.png" alt="image-20220115151017641" style="zoom:80%;" />
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151510129.png" alt="image-20220115151049664" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151510129.png" alt="image-20220115151049664" style="zoom:80%;" />
 
 #### 流控模式
 
 ##### 直接（快速失败）
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151515187.png" alt="image-20220115151539003" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151515187.png" alt="image-20220115151539003" style="zoom:80%;" />
 
 ```txt
 Blocked by Sentinel (flow limiting)
@@ -824,7 +824,7 @@ Blocked by Sentinel (flow limiting)
 
 ##### 关联
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151603420.png" alt="image-20220115160350007" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151603420.png" alt="image-20220115160350007" style="zoom:80%;" />
 
 大批量线程高并发访问B，导致A失效
 
@@ -838,11 +838,11 @@ Blocked by Sentinel (flow limiting)
 
 ##### 预热
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151653080.png" alt="image-20220115165342077" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151653080.png" alt="image-20220115165342077" style="zoom:80%;" />
 
 [流量控制 · alibaba/Sentinel Wiki · GitHub](https://github.com/alibaba/Sentinel/wiki/流量控制)
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151636281.png" alt="image-20220115163619492" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151636281.png" alt="image-20220115163619492" style="zoom:80%;" />
 
 > 默认 coldFactor 为 3，即请求QPS从(threshold / 3) 开始，经多少预热时长才逐渐升至设定的 QPS 阈值。
 >
@@ -855,7 +855,7 @@ Blocked by Sentinel (flow limiting)
 
  [流量控制 · alibaba/Sentinel Wiki · GitHub](https://github.com/alibaba/Sentinel/wiki/流量控制)
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151654763.png" alt="image-20220115165404742" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151654763.png" alt="image-20220115165404742" style="zoom:80%;" />
 
 ### 降级规则
 
@@ -870,13 +870,13 @@ Sentinel 熔断降级会在调用链路中某个资源出现不稳定状态时�
 
 
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151657550.png" alt="image-20220115165739076" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151657550.png" alt="image-20220115165739076" style="zoom:80%;" />
 
 #### RT
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151715960.png" alt="image-20220115171547867" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151715960.png" alt="image-20220115171547867" style="zoom:80%;" />
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151716734.png" alt="image-20220115171630272" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151716734.png" alt="image-20220115171630272" style="zoom:80%;" />
 
 ```
 按照上述配置，
@@ -891,23 +891,23 @@ Sentinel 熔断降级会在调用链路中某个资源出现不稳定状态时�
 
 #### 异常比例
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151715839.png" alt="image-20220115171527648" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151715839.png" alt="image-20220115171527648" style="zoom:80%;" />
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151717870.png" alt="image-20220115171728000" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151717870.png" alt="image-20220115171728000" style="zoom:80%;" />
 
 按照上述配置，
 单独访问一次，必然来一次报错一次(int age  = 10/0)，调一次错一次；
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151718635.png" alt="image-20220115171820648" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151718635.png" alt="image-20220115171820648" style="zoom:80%;" />
 
 开启jmeter后，直接高并发发送请求，多次调用达到我们的配置条件了。
 断路器开启(保险丝跳闸)，微服务不可用了，不再报错error而是服务降级了。
 
 #### 异常数
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151719169.png" alt="image-20220115171933488" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151719169.png" alt="image-20220115171933488" style="zoom:80%;" />
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151720858.png" alt="image-20220115172006007" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151720858.png" alt="image-20220115172006007" style="zoom:80%;" />
 
 ### 热点key限流
 
@@ -915,7 +915,7 @@ Sentinel 熔断降级会在调用链路中某个资源出现不稳定状态时�
 
 热点即经常访问的数据，很多时候我们希望统计或者限制某个热点数据中访问频次最高的TopN数据，并对其访问进行限流或者其它操作
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151738816.png" alt="image-20220115173802312" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151738816.png" alt="image-20220115173802312" style="zoom:80%;" />
 
 ```java
 @SentinelResource
@@ -930,7 +930,7 @@ int age = 10/0,这个是java运行时报出的运行时异常RunTimeException，
 
 `参数必须是基础类型和string`
 
-<img src="https://gitee.com/LovelyHzz/imgSave/raw/master/note/202201151746154.png" alt="image-20220115174645359" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201151746154.png" alt="image-20220115174645359" style="zoom:80%;" />
 
 ### 系统规则
 

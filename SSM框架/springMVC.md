@@ -2,7 +2,7 @@
 
 http://c.biancheng.net/spring_mvc/process.html
 
-![image-20211124233848858](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124233848858.png)
+![image-20211124233848858](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124233848858.png)
 
 > + 客户端（浏览器）发送请求，直接请求到 `DispatcherServlet`。
 > + `DispatcherServlet` 根据请求信息调用 `HandlerMapping`，解析请求对应的 `Handler`。
@@ -200,17 +200,17 @@ public class Test1 {
 
 https://www.cnblogs.com/kitor/p/10987217.html
 
-![image-20211124234102729](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124234102729.png)
+![image-20211124234102729](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124234102729.png)
 
 ## 请求重定向
 
 https://blog.csdn.net/weixin_39973810/article/details/84847922
 
-![image-20211124234135022](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124234135022.png)
+![image-20211124234135022](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124234135022.png)
 
 
 
-![image-20211124234146818](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124234146818.png)
+![image-20211124234146818](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124234146818.png)
 
 ## @ModelAttribute
 
@@ -566,7 +566,7 @@ PageInfo<Employee> pageInfo = new PageInfo<>(list,3);
 </html>
 ```
 
-![image-20211124234203933](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124234203933.png)
+![image-20211124234203933](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124234203933.png)
 
 ## 当需要接收集合类型时
 
@@ -1190,7 +1190,7 @@ Boolean login(String username);
 
 ### 多个拦截器的执行顺序
 
-![image-20211124234224028](https://gitee.com/LovelyHzz/imgSave/raw/master/note/image-20211124234224028.png)
+![image-20211124234224028](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/image-20211124234224028.png)
 
 ## 防止多表单提交
 

@@ -258,7 +258,7 @@ var arr = [];
 
 **经典面试题图解**
 
-![image-20220223105411858](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231054916.png)
+![image-20220223105411858](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202231054916.png)
 
 此题的关键点在于变量i是全局的，函数执行时输出的都是全局作用域下的i值
 
@@ -277,7 +277,7 @@ let arr = [];
 
 **经典面试题图解**
 
-![image-20220223105454353](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231054406.png)
+![image-20220223105454353](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202231054406.png)
 
 此题的关键点在于**每次循环都会产生一个块级作用域**，每个块级作用域中的变量都是不同的，函数执行时输出的是自己上一级（循环产生的块级作用域）作用域下的i值
 
@@ -342,7 +342,7 @@ const PI = 3.14;
 - 使用 let 声明的**变量**，其作用域为该语句所在的**代码块内**，**不存在变量**提升
 - 使用 const 声明的是**常量**，在后面出现的代码中**不能再修改该常量的值**
 
-![image-20220223105722004](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231057063.png)
+![image-20220223105722004](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202231057063.png)
 
 
 
@@ -432,7 +432,7 @@ JavaScript中数值的最大和最小值
 
 用来判断一个变量是否为非数字的类型，返回 true 或者 false
 
-![image-20220223105912816](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231059866.png)
+![image-20220223105912816](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202231059866.png)
 
 <span style="font-weight:700;color:blue">字符串型 String</span>
 
@@ -551,7 +551,7 @@ console.log(typeof num) // 结果 number
 
 不同类型的返回值
 
-![image-20220223110348072](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231103131.png)
+![image-20220223110348072](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202231103131.png)
 
 <span style="font-weight:700;color:blue">字面量</span>
 
@@ -604,7 +604,7 @@ console.log(typeof num) // 结果 number
 
 <span style="font-weight:700;color:blue">转换为布尔型</span>
 
-![image-20220223110622977](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202202231106017.png)
+![image-20220223110622977](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202202231106017.png)
 
 - 代表空、否定的值会被转换为 false ，如 ''、0、NaN、null、undefined 
 - 其余值都会被转换为 true
@@ -685,7 +685,7 @@ forEach 方法会依次为集合中的元素执行回调函数，就算元素的
 
 计算机不能直接理解任何除机器语言以外的语言，所以必须要把程序员所写的程序语言翻译成机器语言才能执行程序。程序语言翻译成机器语言的工具，被称为**翻译器**
 
-![image-20220303204421807](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032044020.png)
+![image-20220303204421807](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203032044020.png)
 
 - 翻译器翻译的方式有两种：一个是<span style="color:red">编译</span>，另外一个是<span style="color:red">解释</span>。两种方式之间的区别在于<span style="background-color:yellow">翻译的时间点不同</span>
 - **编译器**是在代码执行<span style="background-color:yellow">**之前**进行编译</span>，生成中间代码文件
@@ -693,7 +693,7 @@ forEach 方法会依次为集合中的元素执行回调函数，就算元素的
 
  <span style="color:#2E75B5;font-family:'Consolas';font-weight:700">执行过程</span>
 
-![image-20220303204855300](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032048350.png)
+![image-20220303204855300](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203032048350.png)
 
 ## 关键字和保留字
 
@@ -743,7 +743,7 @@ forEach 方法会依次为集合中的元素执行回调函数，就算元素的
 
 算术运算使用的符号，用于执行两个变量或值的算术运算
 
-![image-20220303205406136](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032054192.png)
+![image-20220303205406136](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203032054192.png)
 
 <span style="color:#2E75B5;font-family:'Consolas';font-weight:700">浮点数的**精度**问题</span>
 
@@ -806,11 +806,11 @@ alert(10 + num++);  // 20
 
 比较运算符（关系运算符）是两个数据进行比较时所使用的运算符，比较运算后，会返回一个布尔值（true / false）作为比较运算的结果
 
-![image-20220303210042828](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032100876.png)
+![image-20220303210042828](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203032100876.png)
 
 <span style="color:#2E75B5;font-family:'Consolas';font-weight:700">等号比较</span>
 
-![image-20220303210107601](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032101648.png)
+![image-20220303210107601](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203032101648.png)
 
 ```js
 console.log(18 == '18');
@@ -823,7 +823,7 @@ console.log(18 === '18');
 
 逻辑运算符是用来进行布尔值运算的运算符，其返回值也是布尔值。后面开发中经常用于多个条件的判断
 
-![image-20220303210301261](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032103306.png)
+![image-20220303210301261](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203032103306.png)
 
 逻辑与&&
 
@@ -884,7 +884,7 @@ console.log( 123 || 456 || 789 );  //  123
 
 用来把数据赋值给变量的运算符
 
-![image-20220303210538688](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032105739.png)
+![image-20220303210538688](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203032105739.png)
 
 ```js
 var age = 10;
@@ -956,7 +956,7 @@ age *= 10; // 相当于 age = age * 10;
 
 流程控制主要有三种结构
 
-![image-20220303211420293](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032114357.png)
+![image-20220303211420293](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203032114357.png)
 
 ### 顺序流程控制
 
@@ -985,7 +985,7 @@ if (条件表达式) {
 
 **执行流程**
 
-![image-20220303211703771](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032117815.png)
+![image-20220303211703771](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203032117815.png)
 
 **if else语句（双分支语句）**
 
@@ -1000,7 +1000,7 @@ if (条件表达式) {
 
 **执行流程**
 
-![image-20220303211738462](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032117510.png)
+![image-20220303211738462](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203032117510.png)
 
 **if else if** **语句(多分支语句)**
 
@@ -1020,7 +1020,7 @@ if (条件表达式1) {
 
 **执行逻辑**
 
-![image-20220303211822653](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032118703.png)
+![image-20220303211822653](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203032118703.png)
 
 ### 三元表达式
 
@@ -1185,7 +1185,7 @@ for (var i = 1; i <= 5; i++) {
 
 **关键词、操作符之间后加空格**
 
-![image-20220303213456345](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032134396.png)
+![image-20220303213456345](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203032134396.png)
 
 ### 单行注释规范
 
@@ -1445,7 +1445,7 @@ setInterval(function() {}, 1000);
 - 形参：函数定义时设置接收调用时传入
 - 实参：函数调用时传入小括号内的真实数据
 
-![image-20220303214742085](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032147150.png)
+![image-20220303214742085](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203032147150.png)
 
 参数的作用 : 在函数内部某些值不能固定，我们可以通过参数在调用函数时传递不同的值进去
 
@@ -1464,7 +1464,7 @@ function 函数名(形参1, 形参2 , 形参3...) { // 可以定义任意多的�
 
 <span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">函数形参和实参数量不匹配时</span>
 
-![image-20220303214827482](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203032148539.png)
+![image-20220303214827482](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203032148539.png)
 
 注意：在JavaScript中，形参的默认值是undefined
 
@@ -1748,7 +1748,7 @@ JavaScript 解析器在运行 JavaScript 代码的时候
 
 函数表达式创建函数，会执行变量提升，此时接收函数的变量名无法正确的调用
 
-![image-20220307134220655](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071342874.png)
+![image-20220307134220655](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071342874.png)
 
 ### 变量预解析
 
@@ -1756,13 +1756,13 @@ JavaScript 解析器在运行 JavaScript 代码的时候
 
 变量提升（变量预解析）： 变量的声明会被提升到当前作用域的最上面，变量的赋值不会提升
 
-![image-20220307134315087](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071343138.png)
+![image-20220307134315087](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071343138.png)
 
 ### 函数预解析
 
 函数提升： <span style="background-color:yellow;font-family:'Consolas';font-weight:700;">函数的声明</span>会被提升到当前作用域的最上面，但是不会调用函数
 
-![image-20220307134422528](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071344592.png)
+![image-20220307134422528](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071344592.png)
 
 ```js
 f1();
@@ -1789,7 +1789,7 @@ console.log(b);//全局变量b
 console.log(a);//局部变量a
 ```
 
-![image-20220307134454079](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071344137.png)
+![image-20220307134454079](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071344137.png)
 
 ## 对象
 
@@ -2049,7 +2049,7 @@ for (var k in obj) {
 
 <span style="color:red;font-family:'Consolas';font-weight:700;">Object.defineProperty</span>设置或修改对象中的属性
 
-![image-20220307135739115](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071357179.png)
+![image-20220307135739115](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071357179.png)
 
 ```js
 Object.defineProperty(对象， 修改或新增的属性名， {
@@ -2062,7 +2062,7 @@ Object.defineProperty(对象， 修改或新增的属性名， {
 
 ## global对象
 
-![image-20220307135824458](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071358517.png)
+![image-20220307135824458](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071358517.png)
 
 ```js
 Eval 转换为表达式
@@ -2071,7 +2071,7 @@ EncodeURI 字符串编码
 DecodeURI 解码
 ```
 
-![image-20220307135912768](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071359829.png)
+![image-20220307135912768](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071359829.png)
 
 ## 内置对象
 
@@ -2110,7 +2110,7 @@ console.log('-1.5：'+Math.round(-1.5));
 console.log('-1.6：'+Math.round(-1.6));
 ```
 
-![image-20220307140122102](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071401167.png)
+![image-20220307140122102](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071401167.png)
 
 **获取指定范围内的随机整数**：
 
@@ -2159,7 +2159,7 @@ var future = new Date('2019-5-1 18:03:00');
 
 <span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">使用Date实例的方法和属性</span>
 
-![image-20220307140455859](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071404939.png)
+![image-20220307140455859](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071404939.png)
 
 ```js
 function DateTime() {
@@ -2184,7 +2184,7 @@ function DateTime() {
         console.log(date.toLocaleString());
 ```
 
-![image-20220307140520822](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071405881.png)
+![image-20220307140520822](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071405881.png)
 
 <span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">通过Date实例获取总毫秒数</span>
 
@@ -2208,7 +2208,7 @@ var now = + new Date();
 var now = Date.now();
 ```
 
-![image-20220307140612689](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071406763.png)
+![image-20220307140612689](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071406763.png)
 
 ```js
 function countDown(time){
@@ -2228,7 +2228,7 @@ function countDown(time){
 console.log(countDown('2021-3-21 18:30:00'));
 ```
 
-![image-20220307140630776](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071406839.png)
+![image-20220307140630776](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071406839.png)
 
 ```js
 function  countDown(time) {
@@ -2297,11 +2297,11 @@ console.log(Array.isArray(obj));   // false
 
 #### 添加删除数组元素的方法
 
-![image-20220307141014432](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071410515.png)
+![image-20220307141014432](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071410515.png)
 
 #### 数组排序
 
-![image-20220307141059301](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071410367.png)
+![image-20220307141059301](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071410367.png)
 
 注意：sort方法需要传入参数来设置升序、降序排序
 
@@ -2310,7 +2310,7 @@ console.log(Array.isArray(obj));   // false
 
 #### 数组索引方法
 
-![image-20220307141140053](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071411121.png)
+![image-20220307141140053](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071411121.png)
 
 **去除重复元素**
 
@@ -2329,13 +2329,13 @@ function Delete_Duplicate_Elements(arr){
 
 #### 数组转换为字符串
 
-![image-20220307141233015](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071412085.png)
+![image-20220307141233015](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071412085.png)
 
 注意：join方法如果不传入参数，则按照 “<span style="background-color:yellow;font-family:'Consolas';font-weight:700;"> , </span>”拼接元素
 
 #### 其他方法
 
-![image-20220307141324125](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071413193.png)
+![image-20220307141324125](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071413193.png)
 
 #### Array的扩展方法
 
@@ -2448,7 +2448,7 @@ var obj = {
 
 ## 字符串对象
 
-![image-20220307142144297](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071421387.png)
+![image-20220307142144297](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071421387.png)
 
 <span style="color:#008AC1;font-family:'Consolas';font-weight:700;">字符串的不可变性</span>
 
@@ -2456,7 +2456,7 @@ var obj = {
 
 避免大量拼接字符串！
 
-![image-20220307142233200](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071422280.png)
+![image-20220307142233200](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071422280.png)
 
 <span style="color:#008AC1;font-family:'Consolas';font-weight:700;">根据字符返回索引及发现次数</span>
 
@@ -2476,13 +2476,13 @@ function lookup_element(str){
 
 <span style="color:#008AC1;font-family:'Consolas';font-weight:700;">根据位置返回字符</span>
 
-![image-20220307142322869](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071423952.png)
+![image-20220307142322869](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071423952.png)
 
-![image-20220307142336369](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071423445.png)
+![image-20220307142336369](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071423445.png)
 
-![image-20220307142347763](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071423859.png)
+![image-20220307142347763](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071423859.png)
 
-![image-20220307142400035](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071424136.png)
+![image-20220307142400035](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071424136.png)
 
 ```js
 var str = new String('html');
@@ -2503,7 +2503,7 @@ var str = new String('html');
         console.log(str.split('t')[1]); //分割字符串数组
 ```
 
-![image-20220307142420063](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071424132.png)
+![image-20220307142420063](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071424132.png)
 
 ### **trim**方法去除字符串两端的空格
 
@@ -2599,13 +2599,13 @@ repeat方法表示将**原字符串重复n次**，
 
 （2）堆（操作系统）：存储复杂类型（对象），一般由程序员分配释放，若程序员不释放，由垃圾回收机制回收
 
-![image-20220307143128841](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071431916.png)
+![image-20220307143128841](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071431916.png)
 
 <span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">简单数据类型的存储方式</span>
 
 值类型变量的数据直接存放在变量（栈空间）中
 
-![image-20220307143200269](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071432343.png)
+![image-20220307143200269](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071432343.png)
 
 <span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">复杂数据类型的存储方式</span>
 
@@ -2625,7 +2625,7 @@ fn(x);
 console.log(x);
 ```
 
-![image-20220307143348666](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071433738.png)
+![image-20220307143348666](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071433738.png)
 
 ## 复杂数据类型传参
 
@@ -2646,7 +2646,7 @@ f1(p);
 console.log(p.name);    // 4. 这个输出什么 ? 
 ```
 
-![image-20220307143435414](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071434479.png)
+![image-20220307143435414](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071434479.png)
 
 ## 构造函数和原型
 
@@ -2687,7 +2687,7 @@ console.log(Star.sex); //静态成员只能通过构造函数来访问
 
 ### 构造函数的问题
 
-![image-20220307143732101](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071437183.png)
+![image-20220307143732101](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071437183.png)
 
 ### 构造函数原型prototype
 
@@ -2713,7 +2713,7 @@ ldh.sing();
 zxy.sing();
 ```
 
-![image-20220307143955633](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071439704.png)
+![image-20220307143955633](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071439704.png)
 
 ### 对象原型
 
@@ -2723,7 +2723,7 @@ zxy.sing();
 
 `__proto__`对象原型的意义就在于为对象的查找机制提供一个方向，或者说一条路线，但是它是一个非标准属性，因此实际开发中，不可以使用这个属性，它只是内部指向原型对象 prototype
 
-![image-20220307144137084](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071441163.png)
+![image-20220307144137084](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071441163.png)
 
 ```js
 function Star(uname, age) {
@@ -2740,7 +2740,7 @@ console.log(ldh);
 console.log(ldh.__proto__ === Star.prototype);
 ```
 
-![image-20220307144155780](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071441856.png)
+![image-20220307144155780](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071441856.png)
 
 ### constructor构造函数
 
@@ -2774,7 +2774,7 @@ var zxy = new Star('张学友', 19);
 console.log(zxy);
 ```
 
-![image-20220307144924276](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071449366.png)
+![image-20220307144924276](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071449366.png)
 
 ### 构造函数实例和原型对象三角关系
 
@@ -2784,13 +2784,13 @@ console.log(zxy);
 
 3. <span style="background-color:yellow;font-family:'Consolas';font-weight:400;">构造函数</span>的<span style="color:red;font-family:'Consolas';font-weight:700;">原型对象</span>的<span style="color:red;font-family:'Consolas';font-weight:700;">constructor属性</span>指向了**构造函数**,**实例对象**的<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">原型的<span style="color:red;font-family:'Consolas';font-weight:700;">constructor属性</span></span>也指向了<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">构造函数</span>
 
-![image-20220307145246090](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071452186.png)
+![image-20220307145246090](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071452186.png)
 
 ### 原型链
 
 每一个实例对象又有一个<span style="color:red;font-family:'Consolas';font-weight:700;">proto属性</span>，指向的构造函数的原型对象，构造函数的原型对象也是一个对象，也有**proto**属性，这样一层一层往上找就形成了<span style="background-color:yellow;font-family:'Consolas';font-weight:400;">原型链</span>
 
-![image-20220307145408423](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071454520.png)
+![image-20220307145408423](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071454520.png)
 
 ### 原型链和成员的查找机制
 
@@ -2836,7 +2836,7 @@ console.log(that === ldh); //true
 // 2.原型对象函数里面的this 指向的是 实例对象 ldh
 ```
 
-![image-20220307145714100](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071457182.png)
+![image-20220307145714100](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071457182.png)
 
 ### 通过原型为数组扩展内置方法
 
@@ -2882,7 +2882,7 @@ var ldh = new Star('刘德华', 18) //实例化对象
 console.log(ldh);
 ```
 
-![image-20220307145936973](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071459054.png)
+![image-20220307145936973](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071459054.png)
 
 ### 创建类
 
@@ -2929,7 +2929,7 @@ var ldh = new Star('刘德华', 18);
 console.log(ldh);
 ```
 
-![image-20220307150225325](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071502411.png)
+![image-20220307150225325](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071502411.png)
 
 
 
@@ -2953,7 +2953,7 @@ console.log(ldh); //Star{uname:"刘德华",age:18}
 ldh.sing('冰雨');
 ```
 
-![image-20220307150254694](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071502769.png)
+![image-20220307150254694](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071502769.png)
 
 **注意:**
 
@@ -2995,7 +2995,7 @@ var damao = new Son('刘');
 damao.say();
 ```
 
-![image-20220307150452298](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071504379.png)
+![image-20220307150452298](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071504379.png)
 
 <span style="color:red;font-family:'Consolas';font-weight:700;">子类使用super关键字访问父类的方法</span>
 
@@ -3020,7 +3020,7 @@ var son = new Son(1, 2);
 son.sum();
 ```
 
-![image-20220307150543115](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071505198.png)
+![image-20220307150543115](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071505198.png)
 
 **注意:** 
 
@@ -3058,7 +3058,7 @@ son.subtract();
 son.sum();
 ```
 
-![image-20220307150634713](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071506793.png)
+![image-20220307150634713](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071506793.png)
 
 (4) 时刻注意this的指向问题,类里面的<span style="color:red;font-family:'Consolas';font-weight:700;">共有的属性</span>和<span style="color:red;font-family:'Consolas';font-weight:700;">方法一定要加this使用</span>
 
@@ -3086,7 +3086,7 @@ var o = {
 fn.call(o, 1, 2); //调用了函数此时的this指向了对象o
 ```
 
-![image-20220307151627543](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071516626.png)
+![image-20220307151627543](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071516626.png)
 
 <span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">子构造函数继承父构造函数的属性</span>
 
@@ -3112,7 +3112,7 @@ var son = new Son('胡梓卓', 18, 100);
 console.log(son);
 ```
 
-![image-20220307151701988](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071517082.png)
+![image-20220307151701988](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071517082.png)
 
 <span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">借用原型对象继承方法</span>
 
@@ -3148,7 +3148,7 @@ var son = new Son('刘德华', 18, 100);
 console.log(son);
 ```
 
-![image-20220307151734910](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071517010.png)
+![image-20220307151734910](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071517010.png)
 
 
 
@@ -3254,7 +3254,7 @@ https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode
 
 高阶函数是对其他函数进行操作的函数，它<span style="color:red;font-family:'Consolas';font-weight:700;">接收函数作为参数</span>或<span style="color:red;font-family:'Consolas';font-weight:700;">将函数作为返回值输出</span>
 
-![image-20220307152109660](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071521754.png)
+![image-20220307152109660](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071521754.png)
 
 此时fn 就是一个高阶函数
 
@@ -3268,7 +3268,7 @@ https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode
 
 简单理解就是 ，一个作用域可以访问另外一个函数内部的局部变量
 
-![image-20220307152146067](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071521170.png)
+![image-20220307152146067](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071521170.png)
 
 <span style="color:#2E75B5;font-family:'Consolas';font-weight:700;">闭包的作用</span>
 
@@ -3338,7 +3338,7 @@ var rg = /123/;
  console.log(rg.test('abc'));//匹配字符中是否出现123 未出现结果为false
 ```
 
-![image-20220307152631048](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071526138.png)
+![image-20220307152631048](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071526138.png)
 
 #### 正则表达式中的特殊字符
 
@@ -3458,7 +3458,7 @@ var rg = /[abc]/; // 只要包含有a 或者 包含有b 或者包含有c 都返�
 
 预定义类指的是**某些常见模式的简写方式**
 
-![image-20220307153006089](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071530203.png)
+![image-20220307153006089](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071530203.png)
 
 ```js
 验证座机号码
@@ -3470,7 +3470,7 @@ var rg = /[abc]/; // 只要包含有a 或者 包含有b 或者包含有c 都返�
 
 replace() 方法可以实现**替换字符串操作**，用来替换的**参数**可以是**一个字符串**或是一个**正则表达式**。
 
-![image-20220307153045980](https://gitee.com/LovelyHzz/imgSave/raw/master/note/202203071531710.png)
+![image-20220307153045980](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202203071531710.png)
 
 ```js
 var str = 'andy和red';
