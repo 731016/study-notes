@@ -99,11 +99,11 @@ template模板下可以不用写div标签
 
 !> 注意点
 
-1. 尽量不要与vue2配置混合使用
-   + vue2配置（data、methods、computed）**可以访问到**setup中的属性、方法
-   + 但在setup中**不能访问**到vue2配置（data、methods、computed）
-   + 如果有重名，setup优先
-2. setup不能是一个async函数，因为返回值不再是return的对象，而是promise，模板看不到return对象中的属性
+1. !> 尽量不要与vue2配置混合使用
+   + !> vue2配置（data、methods、computed）**可以访问到**setup中的属性、方法
+   + !> 但在setup中**不能访问**到vue2配置（data、methods、computed）
+   + !> 如果有重名，setup优先
+2. !> setup不能是一个async函数，因为返回值不再是return的对象，而是promise，模板看不到return对象中的属性
 
 
 
