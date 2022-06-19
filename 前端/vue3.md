@@ -308,10 +308,21 @@ const xxx = ref(initValue)
 
 #### vue2
 
+![image-20220619221747826](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note202206192217442.png)
+
+```js
+this.$set | this.$delete
+Vue.set | Vue.delete
+
+//通过数组下标修改
+Vue.set(obj.age,0,18)
+obj.splice() //数组api修改
+```
+
 
 
 #### vue3
 
 -----
 
-145。。
+147。。
