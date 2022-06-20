@@ -319,7 +319,36 @@ Vue.set(obj.age,0,18)
 obj.splice() //数组api修改
 ```
 
+```js
+let obj = {
+        id: 3434234354,
+        age: 22
+    }
 
+    let p = {}
+    Object.defineProperty(p, 'id', {
+        configurable: true,
+        get() {
+            return obj.name
+        },
+        set(v) {
+            console.log('修改了id属性')
+            obj.name = v
+        }
+    })
+    Object.defineProperty(p, 'age', {
+        configurable: true,
+        get() {
+            return obj.age
+        },
+        set(v) {
+            console.log('修改了age属性')
+            obj.age = v
+        }
+    })
+```
+
+![image-20220620231652237](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note202206202316004.png)
 
 #### vue3
 
