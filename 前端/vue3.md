@@ -352,6 +352,26 @@ let obj = {
 
 #### vue3
 
------
+```js
+const p = new Proxy(obj, {
+    	//target源对象，propName属性名，receiver代理对象
+        get(target, propName, receiver) {
+            console.log(`读取${propName}属性`)
+            return target[propName]
+        },
+        set(target, propName, value, receiver) {
+            console.log(`修改${propName}属性`)
+            target[propName] = value
+        },
+        deleteProperty(target, propName) {
+            console.log(`删除${propName}属性`)
+            delete target[propName]
+        }
+    })
+```
 
-147。。
+![image-20220621232530939](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note202206212325016.png)
+
+
+
+147
