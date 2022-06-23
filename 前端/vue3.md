@@ -105,7 +105,121 @@ template模板下可以不用写div标签
    + 如果有重名，setup优先
 2. setup不能是一个async函数，因为返回值不再是return的对象，而是promise，模板看不到return对象中的属性
 
+#### 注意
 
+不使用props接收的值会在$attrs里面
+
+插槽存在$slots里面，虚拟dom $VNOTE
+
+
+
+##### setup的执行时机
+
++ 在beforeCreate之前执行一次，this是undefined
+
+##### setup的参数
+
++ props：值为对象，包含；组件外部传递进来，且组件内部声明接收了的属性
+
++ content：上下为对象
+
+​	attrs：值为对象，包含：组件外部传递进来，但没有在props配置中声明的属性，相当于this.$attrs
+
+​	slots：收到的插槽内容，相当于this.$slots
+
+​	emit：分发自定义事件的函数，相当于this.$emit
+
+```js
+#App.vue
+<template>
+    <div class="app">
+        <h2>我是app组件</h2>
+        <Demo school="湖北工程学院" no="125" @hello="helloMsg">
+            <span>涂鏊飞</span>
+            <template v-slot:tuaofei>
+                <span>172</span>
+            </template>
+        </Demo>
+    </div>
+</template>
+
+<script>
+    import Demo from "./components/Demo";
+
+    export default {
+        name: 'App',
+        components: {
+            Demo
+        },
+        setup() {
+
+            function helloMsg(value) {
+                alert(`触发了hello事件，接收到消息${value}`)
+            }
+
+            return {
+                helloMsg
+            }
+        }
+    }
+</script>
+<style>
+    .app {
+        background-color: gray;
+        padding: 10px;
+    }
+</style>
+```
+
+```js
+#Demo.vue
+<template>
+    <div class="demo">
+        <h2>我是Demo组件</h2>
+        <button @click="test">触发hello自定义事件</button>
+    </div>
+</template>
+
+<script>
+    import {ref} from "vue";
+
+    export default {
+        name: 'Demo',
+        props:['school','no'],
+        emits:['hello'],
+        beforeCreate() {
+            console.log('---beforeCreate---')
+            console.log(this)
+        },
+        setup(props,content) {
+            console.log('---setup---')
+            console.log(props,content)
+            let obj = ref({
+                type: 'Java开发工程师',
+                salary: 15000
+            })
+
+            function test() {
+                content.emit('hello',666)
+            }
+
+            //返回一个对象
+            return {
+                obj,
+                test
+            }
+        }
+    }
+</script>
+<style>
+    .demo {
+        background-color: gold;
+        padding: 10px;
+    }
+</style>
+```
+
+![image-20220623214848348](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note202206232148202.png)
 
 ### ref函数
 
@@ -304,6 +418,28 @@ const xxx = ref(initValue)
 
 
 
+### reactive与ref对比
+
+#### **定义数据角度**
+
+ref定义：**基本类型数据**
+
+reactive定义：**对象（或数组）类型数据**
+
+ref也可以定义对象（或数组）类型数据，它内部会自动通过`reactive`转为**代理对象**
+
+#### 原理角度
+
+ref通过Object.deineProperty()的get与set来实现响应式（数据劫持）
+
+reactive通过`Proxy`实现响应式（数据劫持），并通过`Reflect`操作源对象内部的数据
+
+#### 使用角度
+
+ref定义的数据：操作数据需要`.value`，读取数据时模板中直接读取不需要`.value`
+
+reactive定义的数据：操作数据与读取数据：**均不需要**`.value`
+
 ### 响应式数据原理
 
 #### vue2
@@ -352,6 +488,10 @@ let obj = {
 
 #### vue3
 
+通过Proxy（代理）：拦截对象中任意属性的变化，包括：属性值的读写、添加、删除
+
+通过Reflect（反射）：对源对象的属性进行操作
+
 ```js
 const p = new Proxy(obj, {
     	//target源对象，propName属性名，receiver代理对象
@@ -372,6 +512,222 @@ const p = new Proxy(obj, {
 
 ![image-20220621232530939](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note202206212325016.png)
 
+```js
+let obj = {a: 1, b: 2}
+    Reflect.set(obj, 'a', 100)
+    Reflect.get(obj, 'a', 100)
+    Reflect.deleteProperty(obj, 'a')
+
+const r1 = Reflect.defineProperty(obj, 'b', {
+        get() {
+            return 3
+        },
+        set(value) {
+            obj.b = value
+        }
+    })
+    console.log(r1)
+    const r2 = Reflect.defineProperty(obj, 'b', {
+        get() {
+            return 4
+        },
+        set(value) {
+            obj.b = value
+        }
+    })
+    console.log(r2)
+```
 
 
-147
+
+### computed计算属性
+
+```js
+<div class="demo1">
+        职位：
+        <input type="text" v-model="obj.type">
+        薪资：
+        <input type="text" v-model="obj.salary">
+        全名
+        <input class="fill_name" v-model="obj.fullName">
+    </div>
+import {reactive, computed} from "vue";
+
+    export default {
+        name: 'Demo',
+        setup(props, content) {
+            let obj = reactive({
+                type: 'Java开发工程师',
+                salary: 15000
+            })
+
+            obj.fullName = computed(() => {
+                return obj.type + '@@@' + obj.salary
+            })
+
+            obj.fullName = computed({
+                get(){
+                    return obj.type + '@@@' + obj.salary
+                },
+                set(value){
+                    const fillName = value.split('@@@')
+                    obj.salary = fillName[1]
+                    obj.type = fillName[0]
+                }
+            })
+
+            //返回一个对象
+            return {
+                obj
+            }
+        }
+    }
+```
+
+![image-20220623221049161](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note202206232210676.png)
+
+
+
+### watch监视属性
+
+
+
+#### 监视ref
+
+```html
+<div class="demo2">
+        <h2>求和：{{sum}}</h2>
+        <button @click="sum++">加1</button>
+    </div>
+    <div class="demo3">
+        <h2>求和：{{msg}}</h2>
+        <button @click="msg+='?'">修改msg</button>
+    </div>
+<script>
+import {ref, reactive, computed, watch} from "vue";
+    setup(props, content) {
+            let sum = ref(0)
+            let msg = ref("xxx")
+            //简写形式 监视ref定义的一个响应式数据【情况一】
+            watch(sum,(newValue,oldValue)=>{
+                console.log(newValue, oldValue)
+            })
+        	//监视ref定义的多个响应式数据【情况二】
+            watch([sum, msg], (newValue, oldValue) => {
+                console.log(newValue, oldValue)
+            }, {immediate: true, deep: true})
+            //返回一个对象
+            return {
+                obj,
+                sum,
+                msg
+            }
+</script>
+```
+
+![image-20220623223106772](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note202206232231011.png)
+
+#### 监视reactive
+
+```html
+<div class="demo1">
+        职位：
+        <input type="text" v-model="obj.type">
+        薪资：
+        <input type="text" v-model="obj.salary">
+     	<input v-model="obj.job.a">
+        <button @click="obj.type = 'java开发'">修改职位</button>
+        <button @click="obj.salary = '$10000'">修改薪资</button>
+    	<button @click="obj.job.a++">修改对象obj里面的a属性</button>
+    </div>
+<script>
+		setup(props, content) {
+
+            let obj = reactive({
+                type: 'Java开发工程师',
+                salary: 15000,
+                job:{
+                    a:'111'
+                }
+            })
+            //监视reactive定义的数据的全部属性【情况三】
+            //1.无法获取oldValue 2.深度监视配置无效
+            watch(obj,(newValue,oldValue)=>{
+                console.log(newValue, oldValue)
+            },{deep:false})
+            //返回一个对象
+            return {
+                obj,
+            }
+        }
+    }
+    </script>
+```
+
+![image-20220623224950137](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note202206232249567.png)
+
+```html
+薪资：
+<input type="text" v-model="obj.salary">
+<button @click="obj.salary++">修改薪资</button>
+<script>
+    setup(){
+        let obj = reactive({
+                type: 'Java开发工程师',
+                salary: 15000,
+                job: {
+                    a: '111'
+                }
+            })
+    //监视reactive定义的数据的某个属性【情况四】
+			watch(() => {
+                return obj.salary
+            }, (newValue, oldValue) => {
+                console.log(newValue, oldValue)
+            })
+    //监视reactive定义的数据的某些属性【情况五】
+    watch(() => obj.salary,()=>obj.type, (newValue, oldValue) => {
+                console.log(newValue, oldValue)
+            })
+        //特殊情况，监视的某个属性是对象时，需要配置deep【监视的是reactive的对象属性所以deep生效】
+    watch(() => obj.job, (newValue, oldValue) => {
+                console.log(newValue, oldValue)
+            },{deep:true})
+    }
+</script>
+```
+
+![image-20220623225556117](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note202206232255417.png)
+
+![image-20220623230456909](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note202206232304653.png)
+
+#### value的问题
+
+```js
+let obj1 = ref({
+                type: 'Java开发工程师',
+                salary: 15000,
+                job: {
+                    a: '111'
+                }
+            })
+            let sum = ref(0)
+            
+            watch(sum,(newValue,oldValue)=>{
+                console.log(newValue, oldValue)
+            })
+
+            watch(obj1, (newValue, oldValue) => {
+                console.log(newValue, oldValue)
+            }, {deep: false})
+			
+            watch(obj1.value, (newValue, oldValue) => {
+                console.log(newValue, oldValue)
+            })
+```
+
+
+
+### wactchEffect函数
+
+154
