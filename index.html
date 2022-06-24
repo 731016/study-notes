@@ -177,6 +177,17 @@
         plugins: [
             function (hook, vm) {
                 console.log('plugins初始化函数')
+                setInterval("createtime()", 250)
+                (function (d, s) {
+                    var j, e = d.getElementsByTagName(s)[0];
+                    if (typeof LivereTower === 'function') {
+                        return;
+                    }
+                    j = d.createElement(s);
+                    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                    j.async = true;
+                    e.parentNode.insertBefore(j, e);
+                })(document, 'script');
                 hook.beforeEach(function (html) {
                     var url =
                         'https://gitee.com/LovelyHzz/study-notes/tree/master/' +
@@ -229,17 +240,6 @@
                     console.log('afterEach调用')
                 });
                 hook.doneEach(function () {
-                    setInterval("createtime()", 250);
-                    (function (d, s) {
-                        var j, e = d.getElementsByTagName(s)[0];
-                        if (typeof LivereTower === 'function') {
-                            return;
-                        }
-                        j = d.createElement(s);
-                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                        j.async = true;
-                        e.parentNode.insertBefore(j, e);
-                    })(document, 'script');
                     console.log('doneEach调用')
                 });
             },
