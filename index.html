@@ -176,6 +176,7 @@
         auto2top: true,
         plugins: [
             function (hook, vm) {
+                console.log('plugins初始化函数')
                 hook.beforeEach(function (html) {
                     var url =
                         'https://gitee.com/LovelyHzz/study-notes/tree/master/' +
@@ -224,6 +225,10 @@
                 `
                 ].join('');
                 hook.afterEach(function (html, next) {
+                    next((html + footer));
+                    console.log('afterEach调用')
+                });
+                hook.doneEach(function () {
                     setInterval("createtime()", 250);
                     (function (d, s) {
                         var j, e = d.getElementsByTagName(s)[0];
@@ -235,10 +240,6 @@
                         j.async = true;
                         e.parentNode.insertBefore(j, e);
                     })(document, 'script');
-                    next((html + footer));
-                    console.log('afterEach调用')
-                });
-                hook.doneEach(function () {
                     console.log('doneEach调用')
                 });
             },
