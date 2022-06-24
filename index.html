@@ -177,17 +177,8 @@
         plugins: [
             function (hook, vm) {
                 console.log('plugins初始化函数')
+                var sign = 0;
                 setInterval("createtime()", 250)
-                (function (d, s) {
-                    var j, e = d.getElementsByTagName(s)[0];
-                    if (typeof LivereTower === 'function') {
-                        return;
-                    }
-                    j = d.createElement(s);
-                    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                    j.async = true;
-                    e.parentNode.insertBefore(j, e);
-                })(document, 'script');
                 hook.beforeEach(function (html) {
                     var url =
                         'https://gitee.com/LovelyHzz/study-notes/tree/master/' +
@@ -202,6 +193,7 @@
                         editHtml + comment
                     );
                     console.log('beforeEach调用')
+                    sign++
                 });
                 //单个用户多次点击只记录一次
                 var footer = [
@@ -238,8 +230,22 @@
                 hook.afterEach(function (html, next) {
                     next((html + footer));
                     console.log('afterEach调用')
+                    sign++
                 });
                 hook.doneEach(function () {
+                    sign++
+                    if (sign <= 0) {
+                        (function (d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+                            if (typeof LivereTower === 'function') {
+                                return;
+                            }
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script')
+                    }
                     console.log('doneEach调用')
                 });
             },
