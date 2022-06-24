@@ -228,12 +228,7 @@
                 `
                 ].join('');
                 hook.afterEach(function (html, next) {
-                    next((html + footer));
-                    console.log('afterEach调用')
-                    sign++
-                });
-                hook.doneEach(function () {
-                    sign++
+                    next((html + footer))
                     if (sign <= 0) {
                         (function (d, s) {
                             var j, e = d.getElementsByTagName(s)[0];
@@ -246,6 +241,11 @@
                             e.parentNode.insertBefore(j, e);
                         })(document, 'script')
                     }
+                    console.log('afterEach调用')
+                    sign++
+                });
+                hook.doneEach(function () {
+                    sign++
                     console.log('doneEach调用')
                 });
             },
