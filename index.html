@@ -189,6 +189,7 @@
                         '最后更新日期：{docsify-updated} ' +
                         editHtml + comment
                     );
+                    console.log('beforeEach调用')
                 });
                 //单个用户多次点击只记录一次
                 var footer = [
@@ -235,9 +236,10 @@
                         e.parentNode.insertBefore(j, e);
                     })(document, 'script');
                     next((html + footer));
+                    console.log('afterEach调用')
                 });
                 hook.doneEach(function () {
-
+                    console.log('doneEach调用')
                 });
             },
         ],
