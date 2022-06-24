@@ -224,9 +224,6 @@
                 ].join('');
                 hook.afterEach(function (html, next) {
                     setInterval("createtime()", 250);
-                    next((html + footer));
-                });
-                hook.doneEach(function () {
                     (function (d, s) {
                         var j, e = d.getElementsByTagName(s)[0];
                         if (typeof LivereTower === 'function') {
@@ -237,6 +234,10 @@
                         j.async = true;
                         e.parentNode.insertBefore(j, e);
                     })(document, 'script');
+                    next((html + footer));
+                });
+                hook.doneEach(function () {
+
                 });
             },
         ],
