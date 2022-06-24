@@ -176,6 +176,7 @@
         auto2top: true,
         plugins: [
             function (hook, vm) {
+                // 执行顺序 afterEach doneEach
                 console.log('plugins初始化函数')
                 var sign = 0;
                 setInterval("createtime()", 250)
