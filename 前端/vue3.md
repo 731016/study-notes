@@ -57,7 +57,7 @@ template模板下可以不用写div标签
 
 
 
-## 组合式Api
+## 常用的组合式Api
 
 ### setup
 
@@ -730,4 +730,212 @@ let obj1 = ref({
 
 ### wactchEffect函数
 
-154
+不用指明要监视哪个属性，监视的回调中用到哪个属性，就监视哪个属性
+
+只要指定的回调中用到的数据发送变化，就重新执行回调
+
+```js
+import {ref, reactive, computed, watch,watchEffect} from "vue";
+let obj = reactive({
+                type: 'Java开发工程师',
+                salary: 15000,
+                job: {
+                    a: '111'
+                }
+            })
+            let sum = ref(0)
+            let msg = ref("xxx")
+            watchEffect(()=>{
+                const x =sum.value
+                const salary = obj.salary
+                console.log(x,salary)
+            })
+```
+
+### vue3生命周期
+
+![image-20220624224149640](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note202206242241887.png)
+
+
+
+vue3可以继续使用vue2中的生命周期钩子，但有两个被更名
+
+```js
+beforeDestroy -> beforeUnmount
+destroyed -> unmounted
+```
+
+vue3提供了组合式api形式的生命周期钩子
+
+```js
+beforeCreate -> setup()
+created -> setup()
+
+beforeMount   -> onBeforeMount
+mounted       -> onMounted
+beforeUpdate  -> onBeforeUpdate
+updated       -> onUpdated
+beforeUnmount -> onBeforeUnmount
+unmounted     -> onUnmounted
+```
+
+同时使用vue2的配置项和vue3的组合式api，vue3的<u>组合式api触发时机会比配置项早</u>
+
+```js
+setup(props, content) {
+            onBeforeMount(()=>{
+                
+            })
+            onMounted(()=>{
+                
+            })
+            onBeforeUpdate(()=>{
+                
+            })
+            onUpdated(()=>{
+                
+            })
+            onBeforeUnmount(()=>{
+                
+            })
+            onUnmounted(()=>{
+                
+            })
+}
+```
+
+
+
+### 自定义hook函数
+
+本质是一个函数，把setup中使用的组合式api进行封装
+
+类似于vue2中的mixin
+
+```js
+import {reactive, onMounted, onBeforeUnmount} from 'vue'
+
+export default function () {
+    let point = reactive({
+        x: 0,
+        y: 0
+    })
+
+    function savePoint(event) {
+        point.x = event.pageX
+        point.y = event.pageY
+        console.log(event.pageX, event.pageY)
+    }
+
+    onMounted(() => {
+        window.addEventListener('click', savePoint)
+    })
+    onBeforeUnmount(() => {
+        window.removeEventListener('click', savePoint)
+    })
+
+    return point
+}
+-------------------------------------------------------
+#使用
+import usePoint from "./hooks/usePoint";
+setup(){
+    const point = usePoint()
+    return{
+        point
+    }
+}
+```
+
+
+
+### toRef
+
+作用：创建一个ref对象，其value值指向另一个对象中的某个属性
+
+语法：`const name = toRef(person,'name')`
+
+应用：将响应式对象中的某个属性单独提供给外部使用
+
+扩展：toRefs与toRef功能一致，但可以批量创建多个对象，语法：`toRefs(person)`（一层）
+
+```html
+        <h1>{{obj}}</h1>
+        <h2>职位：{{type}}</h2>
+        <h2>薪资：{{salary}}</h2>
+        <h3>a:{{a}}</h3>
+        <button @click="type = obj.type+='!'">修改职位</button>
+        <button @click="salary++">修改薪资</button>
+        <button @click="a++">修改对象obj里面的a属性</button>
+<script>
+setup() {
+            let obj = reactive({
+                type: 'Java开发工程师',
+                salary: 15000,
+                job: {
+                    a: '111'
+                }
+            })
+
+            //返回一个对象
+            return {
+                obj,
+                ...toRefs(obj),
+                'a': toRef(obj.job, 'a')
+                //不能这样使用，ref对属性进行包装生产新的ref对象不指向原来的对象属性
+                'a':ref(obj.job,'a')
+            }
+        }
+    </script>
+```
+
+
+
+## 不常用的Composition API
+
+### shallowReactive
+
+只处理对象最外层属性的响应式
+
+### shallowRef
+
+只处理基本数据类型的响应式，不进行对象的响应式处理
+
+
+
+直接替换传入的对象，可以触发页面更新
+
+
+
+**使用场景？**
+
+有一个对象数据，结构比较深，但变化时只是外层属性变化 -> shallowReactive
+
+有一个对象数据，后续功能不会修改该对象中的属性，而是生成新的对象来替换 -> shallowRef
+
+
+
+----
+
+### readonly
+
+让响应式数据变为只读的（深只读）
+
+### shallowReadonly
+
+让响应式数据变为只读的（浅只读）
+
+
+
+**使用场景？**
+
+不希望数据被修改时
+
+---
+
+### toRaw
+
+
+
+### markRaw
+
