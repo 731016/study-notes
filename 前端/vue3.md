@@ -935,7 +935,146 @@ setup() {
 
 ### toRaw
 
+作用：将一个由`reactive`生成的响应式对象转为普通对象，对ref无效
 
+使用场景：用于读取响应式对象对应的普通对象，对这个普通对象的所有操作，不会引起页面更新
 
 ### markRaw
+
+作用：标记一个对象，使其永远不会再成功响应式对象
+
+使用场景：
+
+	1. 有些值不应被设置为响应式的，例如复杂的第三方类库axios
+	1. 当渲染具有不可变数据源的大列表时，跳过响应式转换课提高性能
+
+```html
+<template>
+    <div class="demo1">
+        <h3 v-show="obj.car">车的信息{{obj.car}}</h3>
+        <button @click="addCar()">添加一台车</button>
+        <button @click="modifyCarName()">修改车的名字</button>
+        <button @click="modifyCarPrice()">修改车的价格</button>
+    </div>
+</template>
+
+<script>
+    import {
+        reactive,
+        markRaw
+    } from "vue";
+
+    export default {
+        name: 'Demo',
+        setup() {
+            let obj = reactive({
+                type: 'Java开发工程师',
+                salary: 15000,
+                job: {
+                    a: '111'
+                }
+            })
+
+            function addCar() {
+                let car = {name: '本田', price: 40}
+                obj.car = markRaw(car)
+            }
+
+            function modifyCarName() {
+                obj.car.name += '?'
+                console.log(obj.car.name)
+            }
+
+            function modifyCarPrice() {
+                obj.car.price --
+                console.log(obj.car.price)
+            }
+
+            //返回一个对象
+            return {
+                obj,
+                addCar,
+                modifyCarName,
+                modifyCarPrice
+            }
+        }
+    }
+</script>
+```
+
+
+
+### customRef
+
+```html
+<template>
+    <h2>我是Test组件</h2>
+    <input type="text" v-model="text">
+    <h3 v-show="text">{{test}}</h3>
+</template>
+
+<script>
+    import {customRef} from 'vue'
+
+    export default {
+        name: "Test",
+        setup() {
+            let text = myRef('hello', 500)
+
+            function myRef(value, delay) {
+                let timer
+                return customRef((track, trigger) => {
+                    return {
+                        get() {
+                            track()
+                            return value
+                        },
+                        set(newValue) {
+                            clearTimeout(timer)
+                            timer = setTimeout(() => {
+                                value = newValue
+                                trigger()
+                            }, delay)
+                        }
+                    }
+                })
+            }
+
+            return {
+                text
+            }
+        }
+    }
+```
+
+
+
+### provide,inject
+
+实现祖孙组件间通信
+
+父组件有一个provide选项来提供数据，后代组件有一个inject选项来使用
+
+```js
+#祖组件
+setup(){
+    let car = reactive({name:'本田',parce:30})
+    provide('car',car)
+}
+#孙组件
+const = inject('car')
+return {car}
+```
+
+
+
+### 响应式数据的判断
+
+`isRef`检查值是否为一个 ref 对象
+
+`isReactive`检查对象是否是由 [`reactive`](https://v3.cn.vuejs.org/api/basic-reactivity.html#reactive) 创建的响应式代理
+
+`isReadonly`检查对象是否是由 [`readonly`](https://v3.cn.vuejs.org/api/basic-reactivity.html#readonly) 创建的只读代理
+
+`isProxy`检查对象是否是由 [`reactive`](https://v3.cn.vuejs.org/api/basic-reactivity.html#reactive) 或 [`readonly`](https://v3.cn.vuejs.org/api/basic-reactivity.html#readonly) 创建的 proxy
 
