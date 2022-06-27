@@ -1078,3 +1078,250 @@ return {car}
 
 `isProxy`检查对象是否是由 [`reactive`](https://v3.cn.vuejs.org/api/basic-reactivity.html#reactive) 或 [`readonly`](https://v3.cn.vuejs.org/api/basic-reactivity.html#readonly) 创建的 proxy
 
+
+
+## Composition API 与 Option 
+
+
+
+传统的配置式api，新增或修改需求，需要修改data，methods，computed
+
+组合式api可以使代码，函数及相关功能代码在一起
+
+## API
+
+## 新的组件
+
+### Fragment
+
+在vue2中：组件必须有一个根标签
+
+在vue3中：组件可以没有根标签，内部会将多个标签包含在一个Fragment虚拟元素中
+
+好处：减少标签层级，减小内存占用
+
+![image-20220627205554726](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note202206272055920.png)
+
+
+
+### Teleport
+
+一种可以将组件html结构移动到指定位置的技术
+
+```html
+<Teleport to="移动位置">
+            html结构
+</Teleport>
+```
+
+
+
+```html
+#App.vue
+<template>
+    <div class="app">
+        <h2>我是app组件</h2>
+        <Test></Test>
+    </div>
+</template>
+
+<script>
+    import Test from "./components/Test";
+
+    export default {
+        name: 'App',
+        components: {
+            Test
+        }
+    }
+</script>
+<style>
+    .app {
+        background-color: red;
+        padding: 10px;
+    }
+</style>
+```
+
+```html
+#Test.vue
+<template>
+    <div class="test">
+        <h2>我是Test组件</h2>
+        <Demo></Demo>
+    </div>
+</template>
+
+<script>
+    import Demo from "./Demo";
+
+    export default {
+        name: "Test",
+        components: {
+            Demo
+        }
+    }
+</script>
+
+<style scoped>
+    .test {
+        background-color: yellow;
+        padding: 10px;
+    }
+</style>
+```
+
+```html
+#Deno.vue
+<template>
+    <div class="demo">
+        <h3>我是Demo组件</h3>
+        <button @click="open()">点击弹窗</button>
+        <Teleport to="body">
+            <div v-show="flag" class="mark">
+                <div class="popUp">
+                    <h3>内容</h3>
+                    <h3>内容1</h3>
+                    <h3>内容2</h3>
+                    <h3>内容3</h3>
+                    <h3>内容4</h3>
+                    <button @click="close()">点击关闭</button>
+                </div>
+            </div>
+        </Teleport>
+    </div>
+</template>
+
+<script>
+    import {ref, Teleport} from 'vue'
+
+    export default {
+        name: 'Demo',
+        setup() {
+            let flag = ref(false)
+
+            function open() {
+                flag.value = true
+            }
+
+            function close() {
+                flag.value = false
+            }
+
+            return {
+                flag,
+                open,
+                close,
+                Teleport
+            }
+        }
+    }
+</script>
+<style>
+    .demo {
+        background-color: blue;
+        padding: 10px;
+    }
+
+    .mark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .popUp {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        right: 0;
+        bottom: 0;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: 300px;
+        text-align: center;
+        background-color: greenyellow;
+    }
+</style>
+```
+
+![image-20220627214533106](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note202206272145625.png)
+
+
+
+### Suspence
+
+等待异步组件渲染一些额外内容
+
++ 异步引入组件
+
+  ```js
+  import {defineAsyncComponent} from 'vue'
+  const Demo = defineAsyncComponent(() => import('./components/Demo'))
+  ```
+
+  
+
++ 使用`Suspence`包裹组件，并配置好`default`与`fallback`
+
+```html
+<Suspense>
+            <template v-slot:default>
+                <Demo></Demo>
+            </template>
+            <template v-slot:fallback>
+                加载中。。。
+            </template>
+        </Suspense>
+```
+
+
+
+## 全局api的修改
+
+[事件 API | Vue.js (vuejs.org)](https://v3.cn.vuejs.org/guide/migration/events-api.html)
+
+| 2.x 全局 API               | 3.x 实例 API (`app`)                                         |
+| -------------------------- | ------------------------------------------------------------ |
+| Vue.config                 | app.config                                                   |
+| Vue.config.productionTip   | *移除* ([见下方](https://v3.cn.vuejs.org/guide/migration/global-api.html#config-productiontip-移除)) |
+| Vue.config.ignoredElements | app.config.compilerOptions.isCustomElement ([见下方](https://v3.cn.vuejs.org/guide/migration/global-api.html#config-ignoredelements-替换为-config-iscustomelement)) |
+| Vue.component              | app.component                                                |
+| Vue.directive              | app.directive                                                |
+| Vue.mixin                  | app.mixin                                                    |
+| Vue.use                    | app.use ([见下方](https://v3.cn.vuejs.org/guide/migration/global-api.html#插件开发者须知)) |
+| Vue.prototype              | app.config.globalProperties ([见下方](https://v3.cn.vuejs.org/guide/migration/global-api.html#vue-prototype-替换为-config-globalproperties)) |
+| Vue.extend                 | *移除* ([见下方](https://v3.cn.vuejs.org/guide/migration/global-api.html#vue-extend-移除)) |
+
+所有其他不全局改变行为的全局 API 现在都是具名导出，文档见[全局 API Treeshaking](https://v3.cn.vuejs.org/guide/migration/global-api-treeshaking.html)。
+
+
+
+## 其他修改
+
+data选择始终被声明为一个函数
+
+
+
+过渡类名 `v-enter` 修改为 `v-enter-from`、过渡类名 `v-leave` 修改为 `v-leave-from`。
+
+
+
+不再支持使用数字 (即键码) 作为 `v-on` 修饰符
+
+不再支持 `config.keyCodes`
+
+
+
+`v-on` 的 `.native` 修饰符已被移除
+
+
+
+从 Vue 3.0 开始，过滤器已移除，且不再支持。
+
+
+
+
+
