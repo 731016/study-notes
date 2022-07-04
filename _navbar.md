@@ -1,6 +1,5 @@
 * [首页](/)
 * [关于我](https://731016.github.io/)
-* [开源许可](https://gitee.com/LovelyHzz/doc/blob/master/README.md)
 * 刷题网站
     * [学习算法、大数据、人工智能、面向对象编程](https://www.lintcode.com/)
     * [名企 BAT 真题](https://www.acmcoder.com/#/practice/company)
@@ -10,7 +9,7 @@
     * [Java工具类](#/代码库/java工具类.md)
     * [JavaScript基础算法](#/代码库/javascript.md)
     * [Java基础算法](#/代码库/Java.md)
-    * [HTML+CSS+JS+JQuery案例学习](https://gitee.com/LovelyHzz/webpage-basic-learning)
+    * [HTML+CSS+JS+JQuery案例学习](https://github.com/731016/webpage-basic-learning)
     * [前端案例学习](http://www.lvyestudy.com/)
 * 开发工具
     * [vscode插件](#/开发环境/vscode.md)
