@@ -1,141 +1,157 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>计算机知识杂货铺</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <meta name="description" content="Description">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="description" content="小飞的学习笔记xiaofei.work-专为计算机相关专业的学生提供学习的平台！">
-    <meta name="Keywords" content="笔记,编程,前端,后端,Java,高等数学,html,css,javascript,vue,jquery,spring,小飞的学习笔记">
-    <meta name="baidu-site-verification" content="code-KriBdcEG74"/>
-    <meta name="referrer" content="no-referrer">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    />
+    <meta
+      name="description"
+      content="小飞的学习笔记xiaofei.work-专为计算机相关专业的学生提供学习的平台！"
+    />
+    <meta
+      name="Keywords"
+      content="笔记,编程,前端,后端,Java,高等数学,html,css,javascript,vue,jquery,spring,小飞的学习笔记"
+    />
+    <meta name="baidu-site-verification" content="code-KriBdcEG74" />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"
+    />
 
     <style>
-        footer a {
-            text-decoration: none;
-        }
+      footer a {
+        text-decoration: none;
+      }
 
-        .github-badge {
-            display: inline-block;
-            border-radius: 4px;
-            text-shadow: none;
-            font-size: 12px;
-            color: #fff;
-            line-height: 15px;
-            background-color: #ABBAC3;
-            margin-bottom: 5px;
-        }
+      .github-badge {
+        display: inline-block;
+        border-radius: 4px;
+        text-shadow: none;
+        font-size: 12px;
+        color: #fff;
+        line-height: 15px;
+        background-color: #abbac3;
+        margin-bottom: 5px;
+      }
 
-        .github-badge .badge-subject {
-            display: inline-block;
-            background-color: #4D4D4D;
-            padding: 4px 4px 4px 6px;
-            border-top-left-radius: 4px;
-            border-bottom-left-radius: 4px;
-        }
+      .github-badge .badge-subject {
+        display: inline-block;
+        background-color: #4d4d4d;
+        padding: 4px 4px 4px 6px;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+      }
 
-        .github-badge .badge-value {
-            display: inline-block;
-            padding: 4px 6px 4px 4px;
-            border-top-right-radius: 4px;
-            border-bottom-right-radius: 4px;
-        }
+      .github-badge .badge-value {
+        display: inline-block;
+        padding: 4px 6px 4px 4px;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
 
-        .github-badge .bg-brightgreen {
-            background-color: #4DC820 !important;
-        }
+      .github-badge .bg-brightgreen {
+        background-color: #4dc820 !important;
+      }
 
-        .github-badge .bg-orange {
-            background-color: #FFA500 !important;
-        }
+      .github-badge .bg-orange {
+        background-color: #ffa500 !important;
+      }
 
-        .github-badge .bg-yellow {
-            background-color: #D8B024 !important;
-        }
+      .github-badge .bg-yellow {
+        background-color: #d8b024 !important;
+      }
 
-        .github-badge .bg-blueviolet {
-            background-color: #8833D7 !important;
-        }
+      .github-badge .bg-blueviolet {
+        background-color: #8833d7 !important;
+      }
 
-        .github-badge .bg-pink {
-            background-color: #F26BAE !important;
-        }
+      .github-badge .bg-pink {
+        background-color: #f26bae !important;
+      }
 
-        .github-badge .bg-red {
-            background-color: #e05d44 !important;
-        }
+      .github-badge .bg-red {
+        background-color: #e05d44 !important;
+      }
 
-        .github-badge .bg-blue {
-            background-color: #007EC6 !important;
-        }
+      .github-badge .bg-blue {
+        background-color: #007ec6 !important;
+      }
 
-        .github-badge .bg-lightgrey {
-            background-color: #9F9F9F !important;
-        }
+      .github-badge .bg-lightgrey {
+        background-color: #9f9f9f !important;
+      }
 
-        .github-badge .bg-grey, .github-badge .bg-gray {
-            background-color: #555 !important;
-        }
+      .github-badge .bg-grey,
+      .github-badge .bg-gray {
+        background-color: #555 !important;
+      }
 
-        .github-badge .bg-lightgrey, .github-badge .bg-lightgray {
-            background-color: #9f9f9f !important;
-        }
+      .github-badge .bg-lightgrey,
+      .github-badge .bg-lightgray {
+        background-color: #9f9f9f !important;
+      }
     </style>
     <script>
-        var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?1c47bfb627fa9414e1963d73e2015017";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?1c47bfb627fa9414e1963d73e2015017";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
     </script>
-</head>
-<body>
-<div id="app">笔记正在努力加载中。。。</div>
-<script>
-    if (typeof navigator.serviceWorker !== 'undefined') {
-        navigator.serviceWorker.register('sw.js')
-    }
-    const now = new Date();
+  </head>
+  <body>
+    <div id="app">笔记正在努力加载中。。。</div>
+    <script>
+      if (typeof navigator.serviceWorker !== "undefined") {
+        navigator.serviceWorker.register("sw.js");
+      }
+      const now = new Date();
 
-    function createtime() {
+      function createtime() {
         var grt = new Date("01/27/2022 16:08:00");
         now.setTime(now.getTime() + 250);
         days = (now - grt) / 1000 / 60 / 60 / 24;
         dnum = Math.floor(days);
-        hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+        hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
         hnum = Math.floor(hours);
         if (String(hnum).length == 1) {
-            hnum = "0" + hnum;
+          hnum = "0" + hnum;
         }
-        minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+        minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
         mnum = Math.floor(minutes);
         if (String(mnum).length == 1) {
-            mnum = "0" + mnum;
+          mnum = "0" + mnum;
         }
-        seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        seconds =
+          (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
         snum = Math.round(seconds);
         if (String(snum).length == 1) {
-            snum = "0" + snum;
+          snum = "0" + snum;
         }
         // document.getElementById("times").textContent = dnum + " 天 " + hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
-        document.querySelector('#times').textContent = dnum + " 天 " + hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
-    }
+        document.querySelector("#times").textContent =
+          dnum + " 天 " + hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+      }
 
-    window.$docsify = {
-        name: 'study-notes',
+      window.$docsify = {
+        name: "study-notes",
         // 文档标题跳转链接
-        nameLink: '/',
-        repo: 'https://github.com/731016/study-notes',
+        nameLink: "/",
+        repo: "https://github.com/731016/study-notes",
         // code复制按钮配置(放在配置第一行，防止失效)
         copyCode: {
-            buttonText: '复制',
-            errorText: '❌！',
-            successText: '已复制！'
+          buttonText: "复制",
+          errorText: "❌！",
+          successText: "已复制！",
         },
         //找不到页面加载_404.md，notFoundPage: 'my404.md'
         notFoundPage: true,
@@ -143,10 +159,10 @@
         loadSidebar: true,
         //_sidebar.md 的加载逻辑是从每层目录下获取文件，如果当前目录不存在该文件则回退到上一级目录.配置 alias 避免不必要的回退过程
         alias: {
-            '/.*/_sidebar.md': '/_sidebar.md'
+          "/.*/_sidebar.md": "/_sidebar.md",
         },
         // 通过 {docsify-updated} 变量显示文档更新日期. 并且通过 formatUpdated配置日期格式
-        formatUpdated: '{MM}/{DD} {HH}:{mm}',
+        formatUpdated: "{MM}/{DD} {HH}:{mm}",
         maxLevel: 6,
         //显示目录
         subMaxLevel: 3,
@@ -158,47 +174,60 @@
         mergeNavbar: true,
         //全文搜索插件
         search: {
-            placeholder: '搜索',
-            noData: '搜索无结果！',
-            // 搜索标题的最大层级1-6
-            depth: 4,
-            // 是否隐藏其他侧边栏内容
-            hideOtherSidebarContent: true,
+          placeholder: "搜索",
+          noData: "搜索无结果！",
+          // 搜索标题的最大层级1-6
+          depth: 4,
+          // 是否隐藏其他侧边栏内容
+          hideOtherSidebarContent: true,
         },
         // 字数统计配置
         count: {
-            countable: true,
-            fontsize: '1.2em',
-            color: 'rgb(90,90,90)',
-            language: 'chinese'
+          countable: true,
+          fontsize: "1.2em",
+          color: "rgb(90,90,90)",
+          language: "chinese",
         },
         //切换页面后是否自动跳转到页面顶部
         auto2top: true,
         plugins: [
-            function (hook, vm) {
-                // 执行顺序 afterEach doneEach
-                console.log('plugins初始化函数')
-                var sign = 0;
-                setInterval("createtime()", 250)
-                hook.beforeEach(function (html) {
-                    var url =
-                        'https://github.com/731016/study-notes/blob/master/' +
-                        vm.route.file;
-                    var editHtml = '[📝 EDIT DOCUMENT](' + url + ')\n';
-                    var comment = "<div id='lv-container' data-id='city' data-uid='MTAyMC81NTUyMy8zMTk5MA=='></div>\n\n----\n"
-                    return (
-                        editHtml +
-                        html +
-                        '\n----\n' +
-                        '最后更新日期：{docsify-updated} ' +
-                        editHtml + comment
-                    );
-                    console.log('beforeEach调用')
-                    sign++
-                });
-                //单个用户多次点击只记录一次
-                var footer = [
-                    `
+        //   EditOnGithubPlugin.create(
+        //     "https://github.com/731016/study-notes/blob/master/",
+        //     null,
+        //     function (file) {
+        //       if (file.indexOf("en") === -1) {
+        //         return "编辑";
+        //       } else {
+        //         return "edit on git";
+        //       }
+        //     }
+        //   ),
+          function (hook, vm) {
+            // 执行顺序 afterEach doneEach
+            console.log("plugins初始化函数");
+            var sign = 0;
+            setInterval("createtime()", 250);
+            hook.beforeEach(function (html) {
+              var url =
+                "https://github.com/731016/study-notes/blob/master/" +
+                vm.route.file;
+              var editHtml = "[📝 EDIT DOCUMENT](" + url + ")\n";
+              var comment =
+                "<div id='lv-container' data-id='city' data-uid='MTAyMC81NTUyMy8zMTk5MA=='></div>\n\n----\n";
+              return (
+                editHtml +
+                html +
+                "\n----\n" +
+                "最后更新日期：{docsify-updated} " +
+                editHtml +
+                comment
+              );
+              console.log("beforeEach调用");
+              sign++;
+            });
+            //单个用户多次点击只记录一次
+            var footer = [
+              `
                     <hr/>
                     <footer>
                     <div style="text-align: center;">
@@ -226,38 +255,39 @@
                     </div>
                     <hr>
                 </footer>
-                `
-                ].join('');
-                hook.afterEach(function (html, next) {
-                    next((html + footer))
-                    if (sign <= 0) {
-                        (function (d, s) {
-                            var j, e = d.getElementsByTagName(s)[0];
-                            if (typeof LivereTower === 'function') {
-                                return;
-                            }
-                            j = d.createElement(s);
-                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                            j.async = true;
-                            e.parentNode.insertBefore(j, e);
-                        })(document, 'script')
-                    }
-                    console.log('afterEach调用')
-                    sign++
-                });
-                hook.doneEach(function () {
-                    sign++
-                    console.log('doneEach调用')
-                });
-            },
+                `,
+            ].join("");
+            hook.afterEach(function (html, next) {
+              next(html + footer);
+              if (sign <= 0) {
+                (function (d, s) {
+                  var j,
+                    e = d.getElementsByTagName(s)[0];
+                  if (typeof LivereTower === "function") {
+                    return;
+                  }
+                  j = d.createElement(s);
+                  j.src = "https://cdn-city.livere.com/js/embed.dist.js";
+                  j.async = true;
+                  e.parentNode.insertBefore(j, e);
+                })(document, "script");
+              }
+              console.log("afterEach调用");
+              sign++;
+            });
+            hook.doneEach(function () {
+              sign++;
+              console.log("doneEach调用");
+            });
+          },
         ],
-    }
-</script>
-<!--控制台打印-->
-<script src="log.js"></script>
-<!-- Docsify v4 -->
-<script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-<!--docsify内置的代码高亮工具是 Prism。Prism 默认支持的语言如下：
+      };
+    </script>
+    <!--控制台打印-->
+    <script src="log.js"></script>
+    <!-- Docsify v4 -->
+    <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+    <!--docsify内置的代码高亮工具是 Prism。Prism 默认支持的语言如下：
 Markup - markup, html, xml, svg, mathml, ssml, atom, rss
 Markup - markup, html, xml, svg, mathml, ssml, atom, rss
 CSS - css
@@ -265,19 +295,19 @@ C-like - clike
 JavaScript - javascript, js
 https://cdn.jsdelivr.net/npm/prismjs@1/components/
 -->
-<!--搜索插件-->
-<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-<!--代码复制到剪切板-->
-<!-- Latest v2.x.x -->
-<script src="//unpkg.com/docsify-copy-code@2"></script>
-<!--分页导航-->
-<script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
-<!--字数统计-->
-<script src="//unpkg.com/docsify-count/dist/countable.js"></script>
-<!--离线模式访问-->
-<script src="/sw.js"></script>
-<!--外联脚本插件-->
-<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/external-script.min.js"></script>
-<!--<script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>-->
-</body>
+    <!--搜索插件-->
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+    <!--代码复制到剪切板-->
+    <!-- Latest v2.x.x -->
+    <script src="//unpkg.com/docsify-copy-code@2"></script>
+    <!--分页导航-->
+    <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+    <!--字数统计-->
+    <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
+    <!--离线模式访问-->
+    <script src="/sw.js"></script>
+    <!--外联脚本插件-->
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/external-script.min.js"></script>
+    <!--<script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>-->
+  </body>
 </html>
