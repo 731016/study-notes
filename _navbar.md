@@ -1,5 +1,5 @@
 * [首页](/)
-* [关于我](https://731016.github.io/)
+<!-- * [关于我](https://731016.github.io/) -->
 * 刷题网站
     * [学习算法、大数据、人工智能、面向对象编程](https://www.lintcode.com/)
     * [名企 BAT 真题](https://www.acmcoder.com/#/practice/company)
