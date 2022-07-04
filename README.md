@@ -13,8 +13,8 @@
 
 ### 项目
 - [快递代取系统](https://gitee.com/LovelyHzz/Express-pick-up-system)
-- [天天生鲜交易平台](https://gitee.com/LovelyHzz/daily-fresh-trading-platform/tree/master)
-- [Lie flat房屋出租平台](https://gitee.com/LovelyHzz/rent_house)
+- [天天生鲜交易平台](https://github.com/731016/daily-fresh-trading-platform)
+- [Lie flat房屋出租平台](https://github.com/731016/rent_house)
 
 ### 代码库 :computer: 
 - [java学习代码Demo](https://gitee.com/LovelyHzz/code-demo/tree/master)
