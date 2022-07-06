@@ -191,21 +191,10 @@
         //切换页面后是否自动跳转到页面顶部
         auto2top: true,
         plugins: [
-        //   EditOnGithubPlugin.create(
-        //     "https://github.com/731016/study-notes/blob/master/",
-        //     null,
-        //     function (file) {
-        //       if (file.indexOf("en") === -1) {
-        //         return "编辑";
-        //       } else {
-        //         return "edit on git";
-        //       }
-        //     }
-        //   ),
           function (hook, vm) {
             // 执行顺序 afterEach doneEach
-            console.log("plugins初始化函数");
             var sign = 0;
+            console.log("plugins初始化函数",sign);
             setInterval("createtime()", 250);
             hook.beforeEach(function (html) {
               var url =
@@ -214,6 +203,8 @@
               var editHtml = "[📝 EDIT DOCUMENT](" + url + ")\n";
               var comment =
                 "<div id='lv-container' data-id='city' data-uid='MTAyMC81NTUyMy8zMTk5MA=='></div>\n\n----\n";
+              console.log("beforeEach调用",sign);
+              sign++;
               return (
                 editHtml +
                 html +
@@ -222,8 +213,6 @@
                 editHtml +
                 comment
               );
-              console.log("beforeEach调用");
-              sign++;
             });
             //单个用户多次点击只记录一次
             var footer = [
@@ -259,7 +248,8 @@
             ].join("");
             hook.afterEach(function (html, next) {
               next(html + footer);
-              if (sign <= 0) {
+              // 评论插件在第一次初始化的时候，afterEach会执行两次
+              if (sign != 1) {
                 (function (d, s) {
                   var j,
                     e = d.getElementsByTagName(s)[0];
@@ -272,12 +262,10 @@
                   e.parentNode.insertBefore(j, e);
                 })(document, "script");
               }
-              console.log("afterEach调用");
-              sign++;
+              console.log("afterEach调用",sign);
             });
             hook.doneEach(function () {
-              sign++;
-              console.log("doneEach调用");
+              console.log("doneEach调用",sign);
             });
           },
         ],
