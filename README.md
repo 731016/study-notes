@@ -12,7 +12,7 @@
 ## 目录 :pencil:
 
 ### 项目
-- [快递代取系统](https://github.com/731016/express-pickup-system)
+- [快递代取系统](https://github.com/731016/Express-pick-up-system)
 - [天天生鲜交易平台](https://github.com/731016/daily-fresh-trading-platform)
 - [Lie flat房屋出租平台](https://github.com/731016/rent_house)
 
