@@ -7,7 +7,7 @@
 
 [ssh测试连接超时 10053](https://www.xuebuyuan.com/2159862.html)
 
-[git push err 10054]([(204条消息) Git报错：fatal: unable to access xxxxx OpenSSL SSL_read: Connection was reset, errno 10054_提手的博客-CSDN博客_fatal: unable to access ***: openssl ssl_read: con](https://blog.csdn.net/superxmh/article/details/118459957))
+[git push err 10054](https://blog.csdn.net/superxmh/article/details/118459957)
 
 [git push 443问题（我自己的端口4780）](https://blog.csdn.net/m0_46979525/article/details/120825786)
 
