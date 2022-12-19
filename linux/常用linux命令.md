@@ -597,6 +597,68 @@ upstream testTomcat{
 $ /usr/local/nginx/sbin/nginx -s reload
 ```
 
+#### nginx无法访问，但是进程正常运行
+
+```
+可能是nginx没有添加到系统服务
+在 /etc/init.d/下创建名为nginx的启动脚本
+```
+
+```bash
+#!/bin/bash
+#
+# chkconfig: - 85 15
+# description: Nginx is a World Wide Web server.
+# processname: nginx
+
+nginx=/usr/local/nginx/sbin/nginx
+conf=/usr/local/nginx/conf/nginx.conf
+case $1 in
+start)
+echo -n "Starting Nginx"
+$nginx -c $conf
+echo " done"
+;;
+stop)
+echo -n "Stopping Nginx"
+killall -9 nginx
+echo " done"
+;;
+test)
+$nginx -t -c $conf
+;;
+reload)
+echo -n "Reloading Nginx"
+ps auxww | grep nginx | grep master | awk '{print $2}' | xargs kill -HUP
+echo " done"
+;;
+restart)
+$0 stop
+$0 start
+;;
+show)
+ps -aux|grep nginx
+;;
+*)
+echo -n "Usage: $0 {start|restart|reload|stop|test|show}"
+;;
+esac
+```
+
+```bash
+设置执行权限：chmod +x /etc/init.d/nginx
+注册成服务：chkconfig --add nginx
+设置开机启动：chkconfig nginx on
+
+之后，就可以使用以下命令了
+service nginx start
+service nginx stop
+service nginx restart
+service nginx reload
+```
+
+
+
 ### 安装rz
 
 ```shell
