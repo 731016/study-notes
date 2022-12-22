@@ -30,12 +30,9 @@ git config --global --unset https.proxy
 #### OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443
 
 ```bash
-git config --global http.sslVerifyfalse
-
+git config --global http.sslVerify "false"
 git config --global --unset http.proxy
-
 git config --global --unset https.proxy
-
 git config --global http.sslBackend "openssl"
 ```
 
