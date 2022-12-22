@@ -7,9 +7,44 @@
 
 [ssh测试连接超时 10053](https://www.xuebuyuan.com/2159862.html)
 
-[git push err 10054](https://blog.csdn.net/superxmh/article/details/118459957)
+#### OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 10054Failed to connect to github
 
-[git push 443问题（我自己的端口4780）](https://blog.csdn.net/m0_46979525/article/details/120825786)
+```bash
+执行 git config http.sslVerify "false"
+执行 git config --global --unset http.proxy 命令
+	或git config --global --unset https.proxy
+```
+
+#### Failed to connect to github.com port 443: Timed out
+
+```bash
+1.配置git proxy
+git config --global http.proxy 127.0.0.1:1080为全局的 git 项目都设置代理
+git config --local http.proxy 127.0.0.1:1080 为某个 git 项目单独设置代理
+
+取消代理
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+```
+
+#### OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443
+
+```bash
+git config --global http.sslVerifyfalse
+
+git config --global --unset http.proxy
+
+git config --global --unset https.proxy
+
+git config --global http.sslBackend "openssl"
+```
+
+#### fatal: Out of memory, malloc failed (tried to allocate 3625993192 bytes)
+
+```bash
+git config --global http.postBuffer number
+这里的number，你要根据报错中提示的字节数来设定，不然是不行的，必须跟他报错推荐设置字节一致
+```
 
 [not a git repository](https://blog.csdn.net/wenb1bai/article/details/89363588)
 
