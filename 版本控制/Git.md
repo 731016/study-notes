@@ -7,33 +7,25 @@
 
 [ssh测试连接超时 10053](https://www.xuebuyuan.com/2159862.html)
 
-#### OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 10054Failed to connect to github
+[not a git repository](https://blog.csdn.net/wenb1bai/article/details/89363588)
+
+[git push No configured push destination](https://blog.csdn.net/COCOLI_BK/article/details/97921497)
+
+[修改git远程地址](https://blog.csdn.net/ShelleyLittlehero/article/details/95980669)
+
+#### 443,10054
 
 ```bash
-执行 git config http.sslVerify "false"
-执行 git config --global --unset http.proxy 命令
-	或git config --global --unset https.proxy
-```
-
-#### Failed to connect to github.com port 443: Timed out
-
-```bash
-1.配置git proxy
-git config --global http.proxy 127.0.0.1:1080为全局的 git 项目都设置代理
-git config --local http.proxy 127.0.0.1:1080 为某个 git 项目单独设置代理
-
-取消代理
-git config --global --unset http.proxy
-git config --global --unset https.proxy
-```
-
-#### OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443
-
-```bash
+#OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 10054 Failed to connect to github
+#Failed to connect to github.com port 443: Timed out
+#OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443
+#网络太拉了
+# 先设置这两个参数
+git config --global http.sslBackend "openssl" 
 git config --global http.sslVerify "false"
+# 以后运行这两个就可以了
 git config --global --unset http.proxy
 git config --global --unset https.proxy
-git config --global http.sslBackend "openssl"
 ```
 
 #### fatal: Out of memory, malloc failed (tried to allocate 3625993192 bytes)
@@ -43,14 +35,9 @@ git config --global http.postBuffer number
 这里的number，你要根据报错中提示的字节数来设定，不然是不行的，必须跟他报错推荐设置字节一致
 ```
 
-[not a git repository](https://blog.csdn.net/wenb1bai/article/details/89363588)
-
-[git push No configured push destination](https://blog.csdn.net/COCOLI_BK/article/details/97921497)
-
-[修改git远程地址](https://blog.csdn.net/ShelleyLittlehero/article/details/95980669)
+#### 重置账户和密码
 
   ```Git
-  重置账户和密码
   git config --system --unset credential.helper
   // 如果需要更大的范围
   git config --global --unset credential.helper)
