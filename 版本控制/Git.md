@@ -43,7 +43,20 @@ git config --global http.postBuffer number
   git config --global --unset credential.helper)
   ```
 
-```Git
+```bash
+#查看git配置
+	#查看仓库级的 config，命令：
+git config –local -l
+#查看全局级的 config，命令：
+git config –global -l
+#查看系统级的 config，命令：
+git config –system -l
+#查看当前生效的配置，  命令：
+git config -l
+
+#查看远程仓库地址
+git remote -v
+
 ## 克隆仓库
 git clone 仓库地址
 
