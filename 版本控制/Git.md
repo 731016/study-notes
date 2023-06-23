@@ -26,6 +26,14 @@ git config --global http.sslVerify "false"
 # 以后运行这两个就可以了
 git config --global --unset http.proxy
 git config --global --unset https.proxy
+
+如果配置了代理访问github
+配置一个http/https代理,端口是代理软件的端口
+git config --global http.proxy 127.0.0.1:4780
+git config --global https.proxy 127.0.0.1:4780
+或者
+git config --global http.proxy socks5 127.0.0.1:4781
+git config --global https.proxy socks5 127.0.0.1:4781
 ```
 
 #### fatal: Out of memory, malloc failed (tried to allocate 3625993192 bytes)
