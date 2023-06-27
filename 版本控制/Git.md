@@ -31,7 +31,7 @@ git config --global --unset https.proxy
 配置一个http/https代理,端口是代理软件的端口
 git config --global http.proxy 127.0.0.1:4780
 git config --global https.proxy 127.0.0.1:4780
-或者
+或者配置socks代理
 git config --global http.proxy socks5 127.0.0.1:4781
 git config --global https.proxy socks5 127.0.0.1:4781
 ```
