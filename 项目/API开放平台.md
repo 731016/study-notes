@@ -9,6 +9,16 @@ https://www.aliyundrive.com/drive/folder/647899ed6f74bf84662e48e5bce8a53bdbe2862
 
 
 
+### 主要技术栈
+
+sdk开发
+
+spring clond
+
+dubbo
+
+
+
 代码库
 
 [1-鱼皮 · GitLab (code-nav.cn)](http://gitlab.code-nav.cn/root)
