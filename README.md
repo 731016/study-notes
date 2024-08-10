@@ -17,127 +17,130 @@
 - [Lie flat房屋出租平台](https://github.com/731016/rent_house)
 
 ### 代码库 :computer: 
-- [Java常用配置文件模板](https://github.com/731016/study-notes//blob/master/%E4%BB%A3%E7%A0%81%E5%BA%93/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.md)
-- [Java工具类](https://github.com/731016/study-notes//blob/master/%E4%BB%A3%E7%A0%81%E5%BA%93/java%E5%B7%A5%E5%85%B7%E7%B1%BB.md)
-- [JavaScript基础算法](https://github.com/731016/study-notes//blob/master/%E4%BB%A3%E7%A0%81%E5%BA%93/javascript.md)
-- [Java基础算法](https://github.com/731016/study-notes//blob/master/%E4%BB%A3%E7%A0%81%E5%BA%93/Java.md)
+- [Java常用配置文件模板](/代码库/常用配置文件.md)
+- [Java工具类](/代码库/java工具类.md)
+- [JavaScript基础算法](/代码库/javascript.md)
+- [Java基础算法](/代码库/Java.md)
 - [HTML+CSS+JS+JQuery案例学习](https://gitee.com/LovelyHzz/webpage-basic-learning)
 - [前端案例学习](http://www.lvyestudy.com/)
 
 ### 开发环境 :recycle: 
-- [vscode配置](https://github.com/731016/study-notes//blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/vscode.md)
-- [tomcat配置](https://github.com/731016/study-notes//blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/Tomcat%E9%85%8D%E7%BD%AE.md)
-- [idea配置](https://github.com/731016/study-notes//blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/IDEA%E9%85%8D%E7%BD%AE.md)
-- [maven配置](https://github.com/731016/study-notes//blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/maven%E9%85%8D%E7%BD%AE.md)
-- [cmd编码-编码解决](https://github.com/731016/study-notes//blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/cmd%E7%BC%96%E7%A0%81-%E7%BC%96%E7%A0%81%E8%A7%A3%E5%86%B3.md)
-- [单元测试](https://github.com/731016/study-notes//blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95.md)
-- [压力测试](https://github.com/731016/study-notes//blob/master/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95.md)
+- [vscode配置](/开发环境/vscode.md)
+- [tomcat配置](/开发环境/Tomcat配置.md)
+- [idea配置](/开发环境/IDEA配置.md)
+- [maven配置](/开发环境/maven配置.md)
+- [cmd编码-编码解决](/开发环境/cmd编码-编码解决.md)
+- [单元测试](/开发环境/单元测试.md)
+- [压力测试](/开发环境/压力测试.md)
 
 ### C语言
-- [c语言](https://github.com/731016/study-notes//blob/master/c%E8%AF%AD%E8%A8%80/c.md)
+- [c语言](/c语言/c.md)
 
 ### python
-- [python](https://github.com/731016/study-notes//blob/master/Python/pyhton.md)
+- [python](/python/pyhton.md)
 
 ### 计算机网络
-- [计算机网络](https://github.com/731016/study-notes//blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/network.md)
+- [计算机网络](/计算机网络/network.md)
 
 ### JavaSE
-- [Debug](https://github.com/731016/study-notes//blob/master/JavaSE/Debug.md)
-- [Java基础](https://github.com/731016/study-notes//blob/master/JavaSE/Java%E5%9F%BA%E7%A1%80.md)
-- [面向对象编程](https://github.com/731016/study-notes//blob/master/JavaSE/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B.md)
-- [JavaAPI](https://github.com/731016/study-notes//blob/master/JavaSE/JavaAPI.md)
-- [包装类型](https://github.com/731016/study-notes//blob/master/JavaSE/%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B.md)
-- [数据结构](https://github.com/731016/study-notes//blob/master/JavaSE/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.md)
-- [集合](https://github.com/731016/study-notes//blob/master/JavaSE/%E9%9B%86%E5%90%88.md)
-- [泛型](https://github.com/731016/study-notes//blob/master/JavaSE/%E6%B3%9B%E5%9E%8B.md)
-- [异常处理](https://github.com/731016/study-notes//blob/master/JavaSE/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.md)
-- [IO流](https://github.com/731016/study-notes//blob/master/JavaSE/IO%E6%B5%81.md)
-- [线程](https://github.com/731016/study-notes//blob/master/JavaSE/%E7%BA%BF%E7%A8%8B.md)
-- [网络编程](https://github.com/731016/study-notes//blob/master/JavaSE/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.md)
-- [函数式接口](https://github.com/731016/study-notes//blob/master/JavaSE/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3.md)
+- [Debug](/javase/debug.md)
+- [Java基础](/javase/java基础/.md)
+- [面向对象编程](/javase/面向对象编程.md)
+- [JavaAPI](/javase/javaapi.md)
+- [包装类型](/javase/包装类型.md)
+- [数据结构](/javase/数据结构.md)
+- [集合](/javase/集合.md)
+- [泛型](/javase/泛型.md)
+- [异常处理](/javase/异常处理.md)
+- [IO流](/javase/io流.md)
+- [线程](/javase/线程.md)
+- [网络编程](/javase/网络编程.md)
+- [函数式接口](/javase/函数式接口.md)
 
 ### 反射
-- [反射](https://github.com/731016/study-notes//blob/master/%E5%8F%8D%E5%B0%84/%E5%8F%8D%E5%B0%84.md)
+- [反射](/反射/反射.md)
 
 ### 设计模式
-- [设计模式](https://github.com/731016/study-notes//blob/master/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
+- [设计模式](/设计模式/设计模式.md)
 
 ### SQLServer
-- [SQLServer](https://github.com/731016/study-notes//blob/master/SQLServer/SqlServer.md)
+- [SQLServer](/sqlserver/sqlserver.md)
 
 ### MySql
-- [MySQL安装](https://github.com/731016/study-notes//blob/master/MySQL/MySql%E5%AE%89%E8%A3%85.md)
-- [MySQL基础](https://github.com/731016/study-notes//blob/master/MySQL/MySQL%E5%9F%BA%E7%A1%80.md)
-- [JDBC组件](https://github.com/731016/study-notes//blob/master/MySQL/JDBC%E7%BB%84%E4%BB%B6.md)
-- [控制台购物商城实现](https://github.com/731016/study-notes//blob/master/MySQL/%E8%B4%AD%E7%89%A9%E5%95%86%E5%9F%8E.md)
+- [MySQL安装](/mysql/mysql安装.md)
+- [MySQL基础](/mysql/mysql基础.md)
+- [JDBC组件](/mysql/jdbc组件.md)
+- [控制台购物商城实现](/mysql/购物商城.md)
 
 ### JavaWeb
-- [JSP + servlet](https://github.com/731016/study-notes//blob/master/JavaWeb/jsp_servlet.md)
+- [JSP + servlet](/javaweb/jsp_servlet.md)
 
 ### 前端
-- [HTML](https://github.com/731016/study-notes//blob/master/%E5%89%8D%E7%AB%AF/HTML.md)
-- [CSS](https://github.com/731016/study-notes//blob/master/%E5%89%8D%E7%AB%AF/CSS.md)
-- [Javascript语法基础](https://github.com/731016/study-notes//blob/master/%E5%89%8D%E7%AB%AF/JavaScript%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80.md)
-- [Web API](https://github.com/731016/study-notes//blob/master/%E5%89%8D%E7%AB%AF/Web-Api.md)
-- [Vue2](https://github.com/731016/study-notes//blob/master/%E5%89%8D%E7%AB%AF/vue2.md)
-- [Vue3](https://github.com/731016/study-notes//blob/master/%E5%89%8D%E7%AB%AF/vue3.md)
-- [移动布局基础](https://github.com/731016/study-notes//blob/master/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E5%B8%83%E5%B1%80%E5%9F%BA%E7%A1%80.md)
-- [前后端交互](https://github.com/731016/study-notes//blob/master/%E5%89%8D%E7%AB%AF/%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92.md)
-- [前端项目注意事项](https://github.com/731016/study-notes//blob/master/%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.md)
+- [HTML](/前端/html.md)
+- [CSS](/前端/css.md)
+- [Javascript语法基础](/前端/javascript语法基础.md)
+- [Web API](/前端/web-api.md)
+- [Vue2](/前端/vue2.md)
+- [Vue3](/前端/vue3.md)
+- [移动布局基础](/前端/移动布局基础.md)
+- [前后端交互](/前端/前后端交互.md)
+- [前端项目注意事项](/前端/前端项目注意事项.md)
 
 ### jQuery
-- [JQuery基础](https://github.com/731016/study-notes//blob/master/%E5%89%8D%E7%AB%AF/Jquery.md)
-- [jQuery Ajax](https://github.com/731016/study-notes//blob/master/jQuery/Ajax.md)
+- [JQuery基础](/jQuery/jquery.md)
+- [jQuery Ajax](/jQuery/ajax.md)
 
 ### 版本控制
-- [SVN](https://github.com/731016/study-notes//blob/master/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/SVN.md)
-- [Git](https://github.com/731016/study-notes//blob/master/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/Git.md)
+- [SVN](/版本控制/avn.md)
+- [Git](/版本控制/git.md)
+
 
 ### SSM 框架
-- [Mybatis](https://github.com/731016/study-notes//blob/master/SSM%E6%A1%86%E6%9E%B6/mybatis.md)
-- [spring](https://github.com/731016/study-notes//blob/master/SSM%E6%A1%86%E6%9E%B6/spring.md)
-- [springMVC](https://github.com/731016/study-notes//blob/master/SSM%E6%A1%86%E6%9E%B6/springMVC.md)
-- [springBoot](https://github.com/731016/study-notes//blob/master/SSM%E6%A1%86%E6%9E%B6/springBoot.md)
-- [springClond](https://github.com/731016/study-notes//blob/master/SSM%E6%A1%86%E6%9E%B6/springclond.md)
-- [springClond Alibaba](https://github.com/731016/study-notes//blob/master/SSM%E6%A1%86%E6%9E%B6/springClond%20Alibaba.md)
+- [Mybatis](/SSM框架/mybatis.md)
+- [spring](/SSM框架/spring.md)
+- [springMVC](/SSM框架/springmvc.md)
+- [springBoot](/SSM框架/springboot.md)
+- [springClond](/SSM框架/springclond.md)
+- [springClond Alibaba](/SSM框架/springclond-alibaba.md)
 
 ### redis
-- [Redis](https://github.com/731016/study-notes//blob/master/Redis/redis.md)
+- [Redis](/redis/redis.md)
 
 ### 消息队列
- -[RadditMQ](https://github.com/731016/study-notes//blob/master/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/rabbitMQ.md)
+- [RadditMQ](/消息队列/rabbitmq.mq)
 
 ### Linux
-- [linux安装](https://github.com/731016/study-notes//blob/master/linux/linux%E5%AE%89%E8%A3%85.md)
-- [正则表达式](https://github.com/731016/study-notes//blob/master/linux/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.md)
-- [samba服务器](https://github.com/731016/study-notes//blob/master/linux/samba%E6%9C%8D%E5%8A%A1%E5%99%A8.md)
-- [ubuntu问题解答](https://github.com/731016/study-notes//blob/master/linux/ubuntu%E9%97%AE%E9%A2%98%E8%A7%A3%E7%AD%94.md)
-- [linux 常用命令](https://github.com/731016/study-notes//blob/master/linux/%E5%B8%B8%E7%94%A8linux%E5%91%BD%E4%BB%A4.md)
+- [linux安装](/linux/linux安装.md)
+- [正则表达式](/linux/正则表达式.md)
+- [samba服务器](/linux/samba服务器.md)
+- [ubuntu问题解答](/linux/ubuntu问题解答.md)
+- [linux 常用命令](/linux/常用linux命令.md)
 
 ### 面试 :briefcase: 
-- [Java基础面试16问部分](https://github.com/731016/study-notes//blob/master/%E9%9D%A2%E8%AF%95/%E9%9D%A2%E8%AF%95%E9%A2%98.md)
-- [Java基础](https://github.com/731016/study-notes//blob/master/%E9%9D%A2%E8%AF%95/Java%E5%9F%BA%E7%A1%80.md)
-- [群硕软件](https://github.com/731016/study-notes//blob/master/%E9%9D%A2%E8%AF%95/%E7%BE%A4%E7%A1%95%E8%BD%AF%E4%BB%B6.md)
-- [赛德勤](https://github.com/731016/study-notes//blob/master/%E9%9D%A2%E8%AF%95/%E8%B5%9B%E5%BE%B7%E5%8B%A4.md)
+- [Java基础面试16问部分](/面试/面试题.md)
+- [Java基础](/面试/java基础.md)
+- [群硕软件](/面试/群硕软件.md)
+- [赛德勤](/面试/赛德勤.md)
 
 ### 劳动合同法
-- [《劳动合同法》的重要性和范围](https://github.com/731016/study-notes//blob/master/%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E6%B3%95/%E3%80%8A%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E6%B3%95%E3%80%8B%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7%E5%92%8C%E8%8C%83%E5%9B%B4.md)
-- [劳动合同的效力](https://github.com/731016/study-notes//blob/master/%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E6%B3%95/%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E7%9A%84%E6%95%88%E5%8A%9B.md)
-- [劳动合同的分类](https://github.com/731016/study-notes//blob/master/%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E6%B3%95/%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E7%9A%84%E5%88%86%E7%B1%BB.md)
-- [试用期](https://github.com/731016/study-notes//blob/master/%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E6%B3%95/%E8%AF%95%E7%94%A8%E6%9C%9F.md)
-- [服务期和违约金](https://github.com/731016/study-notes//blob/master/%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E6%B3%95/%E6%9C%8D%E5%8A%A1%E6%9C%9F%E5%92%8C%E8%BF%9D%E7%BA%A6%E9%87%91.md)
-- [竞业限制和违约金](https://github.com/731016/study-notes//blob/master/%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C%E6%B3%95/%E7%AB%9E%E4%B8%9A%E9%99%90%E5%88%B6%E5%92%8C%E8%BF%9D%E7%BA%A6%E9%87%91.md)
-    
+- [《劳动合同法》的重要性和范围](/劳动合同法/劳动合同法的重要性和范围.md)
+- [劳动合同的效力](/劳动合同法/劳动合同的效力.md)
+- [劳动合同的分类](/劳动合同法/劳动合同的分类.md)
+- [试用期](/劳动合同法/试用期.md)
+- [服务期和违约金](/劳动合同法/服务期和违约金.md)
+- [竞业限制和违约金](/劳动合同法/竞业限制和违约金.md)
 ### 高等数学
-- [基本初等函数图形](https://github.com/731016/study-notes//blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E5%9F%BA%E6%9C%AC%E5%88%9D%E7%AD%89%E5%87%BD%E6%95%B0%E5%9B%BE%E5%BD%A2.md)
-- [特殊值的三角函数值表](https://github.com/731016/study-notes//blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E7%89%B9%E6%AE%8A%E5%80%BC%E7%9A%84%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0%E5%80%BC%E8%A1%A8.md)
-- [三角恒等变换](https://github.com/731016/study-notes//blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E4%B8%89%E8%A7%92%E6%81%92%E7%AD%89%E5%8F%98%E6%8D%A2.md)
-- [诱导公式](https://github.com/731016/study-notes//blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E8%AF%B1%E5%AF%BC%E5%85%AC%E5%BC%8F.md)
-- [一元三次方程展开](https://github.com/731016/study-notes//blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E4%B8%80%E5%85%83%E4%B8%89%E6%AC%A1%E6%96%B9%E7%A8%8B%E5%B1%95%E5%BC%80.md)
-- [指数函数的运算法则](https://github.com/731016/study-notes//blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%90%E7%AE%97%E6%B3%95%E5%88%99.md)
-- [华氏度F与摄氏度C的转换](https://github.com/731016/study-notes//blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E5%8D%8E%E6%B0%8F%E5%BA%A6F%E4%B8%8E%E6%91%84%E6%B0%8F%E5%BA%A6C%E7%9A%84%E8%BD%AC%E6%8D%A2.md)
-- [函数、极限、连续](https://github.com/731016/study-notes//blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E5%87%BD%E6%95%B0%E3%80%81%E6%9E%81%E9%99%90%E3%80%81%E8%BF%9E%E7%BB%AD.md)
-- [一元函数微分学](https://github.com/731016/study-notes//blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E4%B8%80%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%AD%A6.md)
-- [一元函数积分学](https://github.com/731016/study-notes//blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E4%B8%80%E5%85%83%E5%87%BD%E6%95%B0%E7%A7%AF%E5%88%86%E5%AD%A6.md)
-- [常微分方程](https://github.com/731016/study-notes//blob/master/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B.md)
+- [基本初等函数图形](/高等数学/基本初等函数图形.md)
+- [特殊值的三角函数值表](/高等数学/特殊值的三角函数值表.md)
+- [三角恒等变换](/高等数学/三角恒等变换.md)
+- [诱导公式](/高等数学/诱导公式.md)
+- [一元三次方程展开](/高等数学/一元三次方程展开.md)
+- [指数函数的运算法则](/高等数学/指数函数的运算法则.md)
+- [华氏度F与摄氏度C的转换](/高等数学/华氏度f与摄氏度c的转换.md)
+- [函数、极限、连续](/高等数学/函数极限连续.md)
+- [一元函数微分学](/高等数学/一元函数微分学.md)
+- [一元函数积分学](/高等数学/一元函数积分学.md)
+- [常微分方程](/高等数学/常微分方程.md)
+
+### 软件设计师
+- [软件设计师](软件设计师/软件设计师.md)

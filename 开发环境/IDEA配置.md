@@ -68,6 +68,9 @@ Settings ->
 
 [技巧 | 如何用 IDEA 提升十倍开发效率？ (qq.com)](https://mp.weixin.qq.com/s?__biz=MzI1NDczNTAwMA==&mid=2247484184&idx=1&sn=1b064ad5e4d560ebf6f9a95cc0a10488&chksm=e9c1e4efdeb66df9e0e81e35af969ec5d31f463a3bc82ba61b7bf6d29585c8a549438dbe3dfe#rd)
 
+
+[自动切换输入法](https://plugins.jetbrains.com/plugin/20575-smart-input/)
+
 `Translation` 翻译插件
 
 ![image-20211124221844192](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202111271734433.png)
