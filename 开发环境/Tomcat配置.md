@@ -18,6 +18,8 @@
 
 ## 控制台乱码
 
+[IDEA控制台乱码问题](https://blog.csdn.net/u011511756/article/details/107147491)
+
 修改**tomcat目录**下的`logging.properties`文件的
 
 ```React

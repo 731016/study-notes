@@ -1,6 +1,10 @@
 # IDEA配置
 
+[idea下载](https://www.jetbrains.com/idea/download/other.html#soujer.com)
+
 # JDK
+
+[jdk下载](https://www.oracle.com/java/technologies/downloads/?er=221886)
 
 ```PowerShell
 配置环境变量(系统变量)

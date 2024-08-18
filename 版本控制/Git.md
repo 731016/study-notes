@@ -1,4 +1,6 @@
 ## git常见问题
+[初次使用git配置以及git如何使用ssh密钥（将ssh密钥添加到github）](https://www.cnblogs.com/superGG1990/p/6844952.html)
+
 [简单解决 gitee 上传限制问题 - jaychou、 - 博客园 (cnblogs.com)](https://www.cnblogs.com/jaychou-/p/14983818.html#:~:text=我们使用代码来上,10m以内的文件)
 
 [vscode链接github&gitee](https://blog.csdn.net/qq_38981614/article/details/115013188)
