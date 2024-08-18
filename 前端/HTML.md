@@ -324,7 +324,7 @@ https://www.runoob.com/tags/tag-a.html
 
 <span style="color:blue">**操作table元素的方法**</span>
 
-https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLTableElement
+https://developer.mozilla.org/zh-CN/Web/API/HTMLTableElement
 
 | `tableObject.cells[]`  | `cells` 集合返回表格中所有<span style="color:red">**单元格的一个数组**</span>。 |
 | ---------------------- | ------------------------------------------------------------ |
@@ -891,7 +891,7 @@ resize: none;
 
 ## html 5
 
-html5 mdn 介绍：https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML
+html5 mdn 介绍：https://developer.mozilla.org/zh-CN/Web/Guide/HTML/HTML
 
 
 

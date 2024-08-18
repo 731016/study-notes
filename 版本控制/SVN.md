@@ -44,7 +44,7 @@ SVN Update 更新
 
 [IDEA中使用SVN IDEA配置SVN步骤_BlogGao-CSDN博客_idea svn](https://blog.csdn.net/weixin_49343190/article/details/112519073?utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1.no_search_link&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1.no_search_link)
 
-[TortoiseSVN](https://tortoisesvn.net/docs/release/TortoiseSVN_zh_CN/index.html)
+[TortoiseSVN](https://tortoisesvn.net/release/TortoiseSVN_zh_CN/index.html)
 
 # HOOK
 

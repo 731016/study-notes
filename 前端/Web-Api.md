@@ -12,7 +12,7 @@ Web API 是浏览器提供的一套操作**浏览器功能**和**页面元素**�
 
  
 
-MDN 详细 API : https://developer.mozilla.org/zh-CN/docs/Web/API
+MDN 详细 API : https://developer.mozilla.org/zh-CN/Web/API
 
  
 
@@ -858,13 +858,13 @@ var data = [{
 
 **语法**
 
-https://developer.mozilla.org/zh-CN/docs/Web/API/Element/insertAdjacentHTML#语法
+https://developer.mozilla.org/zh-CN/Web/API/Element/insertAdjacentHTML#语法
 
 ```js
 element.insertAdjacentHTML(position, text);
 ```
 
-**insertAdjacentHTML()** 方法将指定的文本解析为 [Element](https://developer.mozilla.org/zh-CN/docs/Web/API/Element) 元素，并将结果节点插入到DOM树中的指定位置。它不会重新解析它正在使用的元素，因此它不会破坏元素内的现有元素。这避免了额外的序列化步骤，使其比直接使用innerHTML操作更快。
+**insertAdjacentHTML()** 方法将指定的文本解析为 [Element](https://developer.mozilla.org/zh-CN/Web/API/Element) 元素，并将结果节点插入到DOM树中的指定位置。它不会重新解析它正在使用的元素，因此它不会破坏元素内的现有元素。这避免了额外的序列化步骤，使其比直接使用innerHTML操作更快。
 
 ```js
 element.insertAdjacentText(position,element)
@@ -884,7 +884,7 @@ element.insertAdjacentElement(position,element)
 
 **position**
 
-一个 [DOMString](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)，表示插入内容相对于元素的位置，并且必须是以下字符串之一：
+一个 [DOMString](https://developer.mozilla.org/zh-CN/Web/API/DOMString)，表示插入内容相对于元素的位置，并且必须是以下字符串之一：
 
 - 'beforebegin'：元素自身的前面。
 - '**afterbegin**'：插入元素内部的第一个子节点之前。
@@ -893,7 +893,7 @@ element.insertAdjacentElement(position,element)
 
 **text**
 
-是要被解析为HTML或XML元素，并插入到DOM树中的 [DOMString](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)。
+是要被解析为HTML或XML元素，并插入到DOM树中的 [DOMString](https://developer.mozilla.org/zh-CN/Web/API/DOMString)。
 
 **Element**
 
@@ -901,7 +901,7 @@ element.insertAdjacentElement(position,element)
 
 ------
 
-[位置名称的可视化](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/insertAdjacentHTML#位置名称的可视化)
+[位置名称的可视化](https://developer.mozilla.org/zh-CN/Web/API/Element/insertAdjacentHTML#位置名称的可视化)
 
 ```js
 <!-- beforebegin -->

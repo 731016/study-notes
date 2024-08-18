@@ -15,7 +15,7 @@ List<CheckhouseRecord> checkhouseRecordList = (List<CheckhouseRecord>) JSON.pars
 
 [Maven Repository: org.apache.commons » commons-lang3 (mvnrepository.com)](https://mvnrepository.com/artifact/org.apache.commons/commons-lang3)
 
-[Overview (Apache Commons Lang 3.11 API)](http://commons.apache.org/proper/commons-lang/javadocs/api-release/index.html)
+[Overview (Apache Commons Lang 3.11 API)](http://commons.apache.org/proper/commons-lang/javaapi-release/index.html)
 
 [commons常用工具包的使用&guava工具类使用 - QiaoZhi - 博客园 (cnblogs.com)](https://www.cnblogs.com/qlqwjy/p/9467178.html)
 

@@ -927,7 +927,7 @@ public class QueryAllStuSvl extends HttpServlet {
 
 # spring AOP
 
-https://toscode.gitee.com/JavaGuide/JavaGuide/blob/master/docs/java/basis/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3.md#31-jdk-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6
+https://toscode.gitee.com/JavaGuide/JavaGuide/blob/master/java/basis/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3.md#31-jdk-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6
 
 ## JDK动态代理
 

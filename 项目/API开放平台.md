@@ -27,7 +27,7 @@ dubbo
 
 ## 使用技术文档
 
-[开始使用 - Ant Design Pro](https://pro.ant.design/zh-CN/docs/getting-started/)
+[开始使用 - Ant Design Pro](https://pro.ant.design/zh-CN/getting-started/)
 
 
 
@@ -95,7 +95,7 @@ timestamp：时间戳，校验是否在事件的之内
 
 ## API网关
 
-使用前缀匹配断言：https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#the-path-route-predicate-factory
+使用前缀匹配断言：https://docs.spring.io/spring-cloud-gateway/current/reference/html/#the-path-route-predicate-factory
 
 ```yaml
 spring:

@@ -2,7 +2,7 @@
 
 [入门_MyBatis中文网](https://mybatis.net.cn/getting-started.html)
 
-[mybatis基础 · 语雀 (yuque.com)](https://www.yuque.com/docs/share/c93efd30-fc24-41a3-aa5d-cbb472d0687b#4CZlQ)
+[mybatis基础 · 语雀 (yuque.com)](https://www.yuque.com/share/c93efd30-fc24-41a3-aa5d-cbb472d0687b#4CZlQ)
 
 
 

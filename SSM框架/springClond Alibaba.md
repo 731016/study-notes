@@ -547,7 +547,7 @@ public class NacosConfigClientMain3377
 
 #### `dataId`字段配置规则
 
-[Nacos Spring Cloud 快速开始](https://nacos.io/zh-cn/docs/quick-start-spring-cloud.html)
+[Nacos Spring Cloud 快速开始](https://nacos.io/zh-cn/quick-start-spring-cloud.html)
 
 <img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201142259444.png" alt="image-20220114225923631" style="zoom:80%;" />
 
@@ -628,7 +628,7 @@ spring:
 
 ## nacos集群和持久化配置
 
-[Nacos支持三种部署模式](https://nacos.io/zh-cn/docs/deployment.html)
+[Nacos支持三种部署模式](https://nacos.io/zh-cn/deployment.html)
 
 <img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202201150005562.png" alt="image-20220115000529379" style="zoom:80%;" />
 

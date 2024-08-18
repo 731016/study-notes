@@ -15,7 +15,6 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/vue.css">
   <link rel="stylesheet" href="https://unpkg.com/docsify-toc@1.0.0/dist/toc.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css" />
-  <!-- <link rel="stylesheet" href="//unpkg.com/docsify-link-preview/src/style.css" /> -->
   <style>
     footer a {
       text-decoration: none;
@@ -208,10 +207,10 @@
         bottom: 52,
         offset: 25
       },
-      // //链接预览
-      // linkpreview: {
-      //   key: "b8cbd68166c6cb13a26b0dabbfa6856e",
-      // },
+      //链接预览
+      linkpreview: {
+        key: "b8cbd68166c6cb13a26b0dabbfa6856e",
+      },
       // 使用vueGlobalOptions来指定 Vue options ，用于未明确挂载vueMounts、vueComponents或markdown脚本的Vue内容。对全局data的更改将持续存在，并反映在任何使用全局引用的地方
       vueGlobalOptions: {
         data() {
@@ -336,13 +335,15 @@ https://cdn.jsdelivr.net/npm/prismjs@1/components/
   <!-- 侧边栏插件 -->
   <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
   <!-- 链接预览 -->
-  <!-- <script src="//unpkg.com/docsify-link-preview/src/index.js"></script> -->
+  <script src="//unpkg.com/docsify-link-preview/src/index.js"></script>
   <!-- 页脚信息插件 -->
   <script src="//cdn.jsdelivr.net/npm/@alertbox/docsify-footer/dist/docsify-footer.min.js"></script>
   <!-- 回到顶部功能 -->
   <script src="//unpkg.com/docsify-scroll-to-top/dist/docsify-scroll-to-top.min.js"></script>
   <!-- 访问量统计 -->
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <!-- 首页横幅插件 -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/docsify-top-banner-plugin@latest/dist/index.js"></script> -->
 </body>
 
 </html>

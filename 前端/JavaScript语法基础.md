@@ -42,7 +42,7 @@ js 脚本语言 -- **编程类语言**
 
 **ECMAscript**（javascript语法）、**DOM**（页面文档对象模型）、**BOM**（浏览器对象模型）
 
-| ECMAscript | https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/JavaScript_technologies_overview |
+| ECMAscript | https://developer.mozilla.org/zh-CN/Web/JavaScript/JavaScript_technologies_overview |
 | :--------- | ------------------------------------------------------------ |
 | DOM        | 通过 DOM 提供的接口可以对页面上的各种元素进行操作（大小、位置、颜色等） |
 | BOM        | 通过BOM可以操作浏览器窗口，比如弹出框、控制浏览器跳转、获取分辨率等 |
@@ -675,7 +675,7 @@ forEach 方法会依次为集合中的元素执行回调函数，就算元素的
 - 元素的索引
 - 正在遍历的集合对象
 
-但是由于集合对象中<span style="font-weight:700;color:red">没有索引(keys)</span>，所以前两个参数都是<span style="font-weight:700;color:red">Set</span>中元素的值(values)，之所以这样设计回调函数是为了和[Map](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map/forEach) 以及[Array](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)的 forEach 函数用法保持一致。
+但是由于集合对象中<span style="font-weight:700;color:red">没有索引(keys)</span>，所以前两个参数都是<span style="font-weight:700;color:red">Set</span>中元素的值(values)，之所以这样设计回调函数是为了和[Map](https://developer.mozilla.org/zh-CN/Web/JavaScript/Reference/Global_Objects/Map/forEach) 以及[Array](https://developer.mozilla.org/zh-CN/Web/JavaScript/Reference/Global_Objects/Array/forEach)的 forEach 函数用法保持一致。
 
 
 
@@ -2121,7 +2121,7 @@ function getRandom(min, max) {
 }
 ```
 
-[得到一个两数之间的随机整数，包括两个数在内](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math/random#得到一个两数之间的随机整数，包括两个数在内)
+[得到一个两数之间的随机整数，包括两个数在内](https://developer.mozilla.org/zh-CN/Web/JavaScript/Reference/Global_Objects/Math/random#得到一个两数之间的随机整数，包括两个数在内)
 
 ```js
 function getRandomIntInclusive(min, max) {
@@ -3218,7 +3218,7 @@ function fn(){
 
 **文档参考**：
 
-https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode
+https://developer.mozilla.org/zh-CN/Web/JavaScript/Reference/Strict_mode
 
 ```js
 'use strict'
@@ -3350,7 +3350,7 @@ var rg = /123/;
 
 特殊字符非常多，可以参考：
 
-[MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions)
+[MDN](https://developer.mozilla.org/zh-CN/Web/JavaScript/Guide/Regular_Expressions)
 
  
 

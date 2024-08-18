@@ -121,7 +121,7 @@ request.getRequestDispatcher("JSP页面").forward(request,response);
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="https://cdn.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.16/favicon.ico">
-    <link rel="canonical" href="https://getbootstrap.com/docs/3.4/examples/signin/">
+    <link rel="canonical" href="https://getbootstrap.com/3.4/examples/signin/">
 
     <title>Signin Template for Bootstrap</title>
 
@@ -1113,7 +1113,7 @@ public Integer alterOne(Student student) throws SQLException;
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="https://cdn.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.16/favicon.ico">
-    <link rel="canonical" href="https://getbootstrap.com/docs/3.4/examples/signin/">
+    <link rel="canonical" href="https://getbootstrap.com/3.4/examples/signin/">
 
     <title>Signin Template for Bootstrap</title>
 

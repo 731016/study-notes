@@ -500,7 +500,7 @@ p {
 
 ### 文字阴影
 
-**text-shadow**为文字添加阴影。可以为文字与<span style="font-family:'Consolas';color:#005282"> [text-decorations](https://developer.mozilla.org/zh-CN/docs/Web/CSS/text-decoration) 添加多个阴影，阴影值之间用逗号隔开。每个阴影值由元素在X和Y方向的偏移量、模糊半径和颜色值组成。</span>
+**text-shadow**为文字添加阴影。可以为文字与<span style="font-family:'Consolas';color:#005282"> [text-decorations](https://developer.mozilla.org/zh-CN/Web/CSS/text-decoration) 添加多个阴影，阴影值之间用逗号隔开。每个阴影值由元素在X和Y方向的偏移量、模糊半径和颜色值组成。</span>
 
 ### 背景透明
 
@@ -514,11 +514,11 @@ opacity属性指定了一个元素的**不透明度**。换言之，opacity属�
 
 
 
-[属性值](https://developer.mozilla.org/zh-CN/docs/Web/CSS/opacity#values)
+[属性值](https://developer.mozilla.org/zh-CN/Web/CSS/opacity#values)
 
 `<number>`
 
-<span style="font-family:'Consolas';color:#005282"> [<number>](https://developer.mozilla.org/zh-CN/docs/Web/CSS/number) 是一个0.0到1.0范围内的数字值,这个数值既包含也代表通道的透明度，也就是alpha通道的值。任何一个溢出这个取值区间的值，尽管有效，但会被解析为在取值范围内最靠近它的值。</span>
+<span style="font-family:'Consolas';color:#005282"> [<number>](https://developer.mozilla.org/zh-CN/Web/CSS/number) 是一个0.0到1.0范围内的数字值,这个数值既包含也代表通道的透明度，也就是alpha通道的值。任何一个溢出这个取值区间的值，尽管有效，但会被解析为在取值范围内最靠近它的值。</span>
 
 <table style="font-family:'Consolas';" cellspacing="0">
     <tr style="background-color:#92D050;color: #fff">
@@ -530,7 +530,7 @@ opacity属性指定了一个元素的**不透明度**。换言之，opacity属�
         <td>元素完全透明 (即元素不可见).</td>
     </tr>
     <tr>
-        <td>任何一个位于0.0-1.0之间的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/number">number</a> </td>
+        <td>任何一个位于0.0-1.0之间的 <a href="https://developer.mozilla.org/zh-CN/Web/CSS/number">number</a> </td>
         <td>元素半透明 (即元素后面的背景可见).</td>
     </tr>
     <tr>
@@ -1194,7 +1194,7 @@ p {
 
 **content-box**
 
-默认值，标准盒子模型。<span style="color:#008AC1;font-family:'Consolas'"> [width](https://developer.mozilla.org/zh-CN/docs/Web/CSS/width) 与 [height](https://developer.mozilla.org/zh-CN/docs/Web/CSS/height) 只包括内容的宽和高， 不包括边框（border），内边距（padding），外边距（margin）。注意: 内边距、边框和外边距都在这个盒子的外部。 比如说，</span>.box {width: 350px; border: 10px solid black;} 在浏览器中的渲染的实际宽度将是 370px。
+默认值，标准盒子模型。<span style="color:#008AC1;font-family:'Consolas'"> [width](https://developer.mozilla.org/zh-CN/Web/CSS/width) 与 [height](https://developer.mozilla.org/zh-CN/Web/CSS/height) 只包括内容的宽和高， 不包括边框（border），内边距（padding），外边距（margin）。注意: 内边距、边框和外边距都在这个盒子的外部。 比如说，</span>.box {width: 350px; border: 10px solid black;} 在浏览器中的渲染的实际宽度将是 370px。
 
  尺寸计算公式：
 
@@ -1210,7 +1210,7 @@ height = 内容的高度
 
 **border-box**
 
-<span style="color:#008AC1;font-family:'Consolas'"> [width](https://developer.mozilla.org/zh-CN/docs/Web/CSS/width) 和 [height](https://developer.mozilla.org/zh-CN/docs/Web/CSS/height) 属性包括内容，内边距和边框，但不包括外边距。这是当文档处于 Quirks模式 时Internet Explorer使用的[盒模型](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model)。注意，填充和边框将在盒子内 , 例如,</span> .box {width: 350px; border: 10px solid black;} 导致在浏览器中呈现的宽度为350px的盒子。内容框不能为负，并且被分配到0，使得不可能使用border-box使元素消失。
+<span style="color:#008AC1;font-family:'Consolas'"> [width](https://developer.mozilla.org/zh-CN/Web/CSS/width) 和 [height](https://developer.mozilla.org/zh-CN/Web/CSS/height) 属性包括内容，内边距和边框，但不包括外边距。这是当文档处于 Quirks模式 时Internet Explorer使用的[盒模型](https://developer.mozilla.org/en-US/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model)。注意，填充和边框将在盒子内 , 例如,</span> .box {width: 350px; border: 10px solid black;} 导致在浏览器中呈现的宽度为350px的盒子。内容框不能为负，并且被分配到0，使得不可能使用border-box使元素消失。
 
  尺寸计算公式：
 
@@ -3168,7 +3168,7 @@ background: -webkit-linear-gradient(起始方向, 颜色1, 颜色2, ...);
 
 起始方向可以是：方位名词 或者 度数，如果省略默认为top
 
-CSS **linear-gradient()** 函数用于创建一个表示两种或多种颜色线性渐变的图片。其结果属于<span style="color:blue">[<gradient>](https://developer.mozilla.org/zh-CN/docs/Web/CSS/gradient)数据类型，是一种特别的[<image>](https://developer.mozilla.org/zh-CN/docs/Web/CSS/image)数据类型。</span>
+CSS **linear-gradient()** 函数用于创建一个表示两种或多种颜色线性渐变的图片。其结果属于<span style="color:blue">[<gradient>](https://developer.mozilla.org/zh-CN/Web/CSS/gradient)数据类型，是一种特别的[<image>](https://developer.mozilla.org/zh-CN/Web/CSS/image)数据类型。</span>
 
 ```css
 /* 渐变轴为45度，从蓝色渐变到红色 */
