@@ -611,7 +611,7 @@
         onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
         <div class="cc-nav-title">
             <img src="https://static-production.npmjs.com/338e4905a2684ca96e08c7780fc68412.png" style="float: left; margin-right: 15px;height:35px;">
-            <div style="height: 40px; float: right;">Simplified HTTP request client</div>
+            <div style="height: 40px; float: right;">HTTP request</div>
         </div>
         <div class="cc-nav-des">Simplified HTTP request client.. Latest version: 2.88.2, last published: 5 years ago. Start using request in your project by running `npm i request`. There are 56331 other projects in the npm registry using request.</div>
     </div>
