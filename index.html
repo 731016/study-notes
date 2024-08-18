@@ -101,7 +101,7 @@
 </head>
 
 <body>
-  <div id="app">笔记正在努力加载中。。。</div>
+  <div id="app">🏃‍🏃‍🏃‍💨笔记正在努力加载中。。。</div>
   <script>
     if (typeof navigator.serviceWorker !== "undefined") {
       navigator.serviceWorker.register("sw.js");
@@ -164,11 +164,13 @@
       formatUpdated: "{MM}/{DD} {HH}:{mm}",
       maxLevel: 6,
       // 侧边栏展开层级
-      sidebarDisplayLevel: 1,
+      sidebarDisplayLevel: 0,
       //显示目录
       subMaxLevel: 3,
       //开启导航栏 _navbar.md
       loadNavbar: true,
+      // 让你的内容页在滚动到指定的锚点时，距离页面顶部有一定空间。
+      topMargin: 25,
       //使用封面 _coverpage.md
       coverpage: true,
       // 小屏设备下合并导航栏到侧边栏
@@ -197,6 +199,14 @@
         scope: '.markdown-section',
         headings: 'h1, h2, h3, h4, h5, h6',
         title: '点击跳转',
+      },
+      // 回到顶部
+      scrollToTop: {
+        auto: true,
+        text: '🔼',
+        right: 12,
+        bottom: 52,
+        offset: 25
       },
       // //链接预览
       // linkpreview: {
@@ -329,6 +339,10 @@ https://cdn.jsdelivr.net/npm/prismjs@1/components/
   <!-- <script src="//unpkg.com/docsify-link-preview/src/index.js"></script> -->
   <!-- 页脚信息插件 -->
   <script src="//cdn.jsdelivr.net/npm/@alertbox/docsify-footer/dist/docsify-footer.min.js"></script>
+  <!-- 回到顶部功能 -->
+  <script src="//unpkg.com/docsify-scroll-to-top/dist/docsify-scroll-to-top.min.js"></script>
+  <!-- 访问量统计 -->
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </body>
 
 </html>

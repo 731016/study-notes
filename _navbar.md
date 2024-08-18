@@ -3,6 +3,7 @@
     * [学习算法、大数据、人工智能、面向对象编程](https://www.lintcode.com/)
     * [名企 BAT 真题](https://www.acmcoder.com/#/practice/company)
     * [牛客网](https://www.nowcoder.com/)
+* [资源导航](docs/资源导航/link.md)
 * [Ai助手](https://www.yucongming.com/chat/1781191236741668865)
 * [关于我](https://731016.github.io/)
 <!-- * 演示网站 -->
