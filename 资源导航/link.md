@@ -1,4 +1,8 @@
-## 常用搜索
+### 常用搜索
+
+### 常用搜索
+
+### 常用搜索
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
 
@@ -10,7 +14,7 @@
             <img src="https://www.programcreek.com/common/static/images/pc-logo.png" style="float: left; margin-right: 15px;height:35px;">
             <div style="height: 40px; float: right;">搜代码</div>
         </div>
-        <div class="cc-nav-des">不知道某个类如何使用? 来这里搜索Java 代码吧...</div>
+        <div class="cc-nav-des" title='不知道某个类如何使用? 来这里搜索Java 代码吧...'>不知道某个类如何使用? 来这里搜索Java 代码吧...</div>
     </div>
 </a>
 
@@ -28,7 +32,7 @@
             <img src="https://avatars.githubusercontent.com/u/49927991?v=4?s=400" style="float: left; margin-right: 15px;height:35px;">
             <div style="height: 40px; float: right;">github技术博客</div>
         </div>
-        <div class="cc-nav-des">731016 has 16 repositories available. Follow their code on GitHub.</div>
+        <div class="cc-nav-des" title='731016 has 16 repositories available. Follow their code on GitHub.'>731016 has 16 repositories available. Follow their code on GitHub.</div>
     </div>
 </a>
 
@@ -40,7 +44,7 @@
             <img src="https://g.csdnimg.cn/static/logo/favicon32.ico" style="float: left; margin-right: 15px;height:35px;">
             <div style="height: 40px; float: right;">折腾的小飞-CSDN博客</div>
         </div>
-        <div class="cc-nav-des">专升本c语言, 蓝桥杯,Java,等方面的知识,折腾的小飞关注spring,前端框架,html5,前端,vue.js,html,后端,javascript,jquery,css3,intellij idea领域.</div>
+        <div class="cc-nav-des" title='专升本c语言, 蓝桥杯,Java,等方面的知识,折腾的小飞关注spring,前端框架,html5,前端,vue.js,html,后端,javascript,jquery,css3,intellij idea领域.'>专升本c语言, 蓝桥杯,Java,等方面的知识,折腾的小飞关注spring,前端框架,html5,前端,vue.js,html,后端,javascript,jquery,css3,intellij idea领域.</div>
     </div>
 </a>
 
@@ -55,7 +59,6 @@
         <div class="cc-nav-des"></div>
     </div>
 </a>
-
 
 <a href="https://www.code-nav.cn/" style="text-decoration: none;" target="_blank">
     <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
@@ -95,7 +98,7 @@
             <img src="https://developer.mozilla.org/mdn-social-share.cd6c4a5a.png" style="float: left; margin-right: 15px;height:35px;">
             <div style="height: 40px; float: right;">MDN Web Docs</div>
         </div>
-        <div class="cc-nav-des">由开发人员提供面向开发人员的资源，自 2005 年以来，记录 Web 技术，包括 CSS、HTML 和 JavaScript。</div>
+        <div class="cc-nav-des" title='由开发人员提供面向开发人员的资源，自 2005 年以来，记录 Web 技术，包括 CSS、HTML 和 JavaScript。'>由开发人员提供面向开发人员的资源，自 2005 年以来，记录 Web 技术，包括 CSS、HTML 和 JavaScript。</div>
     </div>
 </a>
 
@@ -123,6 +126,240 @@
     </div>
 </a>
 
+<a href="https://github.com/iluwatar/java-design-patterns" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/b77684acaa9d0b810f1711c1de45e5697599e681f3d72b0246d1e28afdbdf6d5/youlookwhat/DesignPattern" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Java设计模式</div>
+        </div>
+        <div class="cc-nav-des">Design patterns implemented in Java. Contribute to iluwatar/java-design-patterns development by creating an account on GitHub.</div>
+    </div>
+</a>
+
+<a href="https://github.com/doocs/advanced-java" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/32db4e6d5ab6a1a2b2d9cf2380530dcf76e1704253b679f69110fcd0483378e5/Snailclimb/JavaGuide" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Java学习+面试指南</div>
+        </div>
+        <div class="cc-nav-des">「Java学习+面试指南」一份涵盖大部分 Java 程序员所需要掌握的核心知识。</div>
+    </div>
+</a>
+
+<a href="https://github.com/Snailclimb/JavaGuide" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://repository-images.githubusercontent.com/151834062/46b36580-62dc-11e9-9c10-9d6410e77c1e" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Java进阶知识</div>
+        </div>
+        <div class="cc-nav-des">互联网 Java 工程师进阶知识完全扫盲：涵盖高并发、分布式、高可用、微服务、海量数据处理等领域知识</div>
+    </div>
+</a>
+
+<a href="https://github.com/TheAlgorithms/Java" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/334b73fd9e5dce2fbbf24d29fae7d5dfb8ef14313cd3c7603f0a4ae56112b1ae/TheAlgorithms/Java" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">算法+数据结构 java实现</div>
+        </div>
+        <div class="cc-nav-des">All Algorithms implemented in Java. Contribute to TheAlgorithms/Java development by creating an account on GitHub.</div>
+    </div>
+</a>
+
+<a href="https://github.com/crossoverJie/JCSprout" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/37b8738b5f252d7ad101397b28fac8c52c94b25c9f1e942cb3965f2bb3bcff4d/crossoverJie/JCSprout" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Java Core Sprout</div>
+        </div>
+        <div class="cc-nav-des">处于萌芽阶段的 Java 核心知识库</div>
+    </div>
+</a>
+
+<a href="https://github.com/ZhongFuCheng3y/athena" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/b8febaa8d27e5cf87c0329586f2bee789f9e5d62fa338379f0608c830c0e4c2c/ZhongFuCheng3y/athena" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Java后端知识图谱</div>
+        </div>
+        <div class="cc-nav-des">Java后端知识图谱🔥 帮助Java初学者成长. Contribute to ZhongFuCheng3y/athena development by creating an account on GitHub.</div>
+    </div>
+</a>
+
+<a href="https://github.com/aalansehaiyang/technology-talk" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/150c6426877103f57998c8603fb862776f6ae7e3dcae5f6594f69cd1b1aca046/aalansehaiyang/technology-talk" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">大厂面试专栏</div>
+        </div>
+        <div class="cc-nav-des">【大厂面试专栏】一份Java程序员需要的技术指南，这里有面试题、系统架构、职场锦囊、主流中间件等，让你成为更牛的自己！</div>
+    </div>
+</a>
+
+<a href="https://github.com/hollischuang/toBeTopJavaer" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/8f561c095ee80ce47712d07be1adaf5b8894f5dd0461d45d6959f329223f0864/hollischuang/toBeTopJavaer" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Java工程师成神之路</div>
+        </div>
+        <div class="cc-nav-des">To Be Top Javaer - Java工程师成神之路. Contribute to hollischuang/toBeTopJavaer development by creating an account on GitHub.</div>
+    </div>
+</a>
+
+<a href="https://github.com/qiurunze123/threadandjuc" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/031dcced4d24b9ea678b2fca53c698e8a2cc6f9dd35b20f17ddcb8eb3f552c56/qiurunze123/threadandjuc" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">高并发-高可靠-高性能</div>
+        </div>
+        <div class="cc-nav-des">⭐⭐⭐⭐高并发-高可靠-高性能three-high-import导入系统-高并发多线程进阶. Contribute to qiurunze123/threadandjuc development by creating an account on GitHub.</div>
+    </div>
+</a>
+
+<a href="https://github.com/xkcoding/spring-boot-demo" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://repository-images.githubusercontent.com/110211147/07434880-f674-11e9-8a41-ea65193450ec" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">实战 Spring Boot 的项目</div>
+        </div>
+        <div class="cc-nav-des">🚀一个用来深入学习并实战 Spring Boot 的项目。. Contribute to xkcoding/spring-boot-demo development by creating an account on GitHub.</div>
+    </div>
+</a>
+
+<a href="https://github.com/ityouknow/spring-boot-examples" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/061a40c2e0573481e1ddeb11b732620515e32b207db89a16356b90368e853f18/ityouknow/spring-boot-examples" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Spring Boot 快速简单上手教程</div>
+        </div>
+        <div class="cc-nav-des">about learning Spring Boot via examples. Spring Boot 教程、技术栈示例代码，快速简单上手教程.</div>
+    </div>
+</a>
+
+<a href="https://github.com/AobingJava/JavaFamily" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/d5df232a0de582187fcef4a8dc93055e49b90cc13c7002a92c7657c9ec63a1a2/AobingJava/JavaFamily" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Java面试+Java学习指南</div>
+        </div>
+        <div class="cc-nav-des">【Java面试+Java学习指南】 一份涵盖大部分Java程序员所需要掌握的核心知识。. Contribute to AobingJava/JavaFamily development by creating an account on GitHub.</div>
+    </div>
+</a>
+
+<a href="https://github.com/javagrowing/JGrowing" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/46b81be502420b7faed4411b2d543d4a03474a39b192092c2304a46e5c52fd4c/javagrowing/JGrowing" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Java成长路线</div>
+        </div>
+        <div class="cc-nav-des">Java成长路线，但学到不仅仅是Java。</div>
+    </div>
+</a>
+
+<a href="https://github.com/xingshaocheng/architect-awesome?tab=readme-ov-file" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/427f0d7c8b3d7b2e4a2f5e933a0088e5b5591df051d72b9698a14854ad70ce89/xingshaocheng/architect-awesome" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">后端架构师技术图谱</div>
+        </div>
+        <div class="cc-nav-des"></div>
+    </div>
+</a>
+
+<a href="https://github.com/CyC2018/CS-Notes?tab=readme-ov-file" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/371ebd7543554c130be0f636de332f022d9378f621b1ea8ef5b54e9513f4a574/CyC2018/CS-Notes" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">技术面试必备基础知识</div>
+        </div>
+        <div class="cc-nav-des">技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计.</div>
+    </div>
+</a>
+
+<a href="https://github.com/itwanger/toBeBetterJavaer" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/e5dcbc5c17bcd21561d03c7de8d6660cf044bfa467bf5c6dae8a30c52b43bb3f/itwanger/toBeBetterJavaer" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Java学习指南</div>
+        </div>
+        <div class="cc-nav-des">一份通俗易懂、风趣幽默的Java学习指南，内容涵盖Java基础、Java并发编程、Java虚拟机、Java企业级开发、Java面试等核心知识点。学Java，就认准二哥的Java进阶之路😄 - itwanger/toBeBetterJavaer</div>
+    </div>
+</a>
+
+<a href="https://github.phodal.com/#/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Phodal Huang</div>
+        </div>
+        <div class="cc-nav-des">个人博客,黄峰达（Phodal Huang）是一个创客、工程师、咨询师和作家。他毕业于西安文理学院电子信息工程专业，现作为一个咨询师就职于 ThoughtWorks 深圳。</div>
+    </div>
+</a>
+
+<a href="https://github.com/wuyouzhuguli/SpringAll" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/ed6811d9900a352278dedb67a75698c2bbd6bf76911570a2544cbd22ef018388/wuyouzhuguli/SpringAll" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">学习Spring Boot</div>
+        </div>
+        <div class="cc-nav-des">循序渐进，学习Spring Boot、Spring Boot Shiro、Spring Batch、Spring Cloud、Spring Cloud Alibaba、Spring Security、Spring Security OAuth2，博客Spring系列源码：https://mrbird.cc - wuyouzhuguli/SpringAll</div>
+    </div>
+</a>
+
+</div>
+
+### 图书
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+
+<a href="https://gitee.com/itwanger/JavaBooks" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Java程序员必读书单</div>
+        </div>
+        <div class="cc-nav-des"></div>
+    </div>
+</a>
+
 </div>
 
 ### 文档工具
@@ -140,7 +377,6 @@
         <div class="cc-nav-des">一个神奇的文档网站生成工具</div>
     </div>
 </a>
-
 
 <a href="https://xhhdd.cc/index.php/archives/80/" style="text-decoration: none;" target="_blank">
     <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
@@ -177,7 +413,6 @@
         <div class="cc-nav-des">Starlight 是一个基于 Astro 框架构建的全功能文档主题。 这个指南将帮助你开始一个新项目。 查看手动配置以将 Starlight 添加到现有的 Astro 项目中。</div>
     </div>
 </a>
-
 
 <a href="https://www.zybuluo.com/mdeditor" style="text-decoration: none;" target="_blank">
     <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
@@ -398,6 +633,114 @@
             <div style="height: 40px; float: right;">在线正则表达式测试</div>
         </div>
         <div class="cc-nav-des">OSCHINA.NET在线工具,ostools为开发设计人员提供在线工具，提供jsbin在线 CSS、JS 调试，在线 Java API文档,在线 PHP API文档,在线 Node.js API文档,Less CSS编译器，MarkDown编译器等其他在线工具</div>
+    </div>
+</a>
+
+<a href="https://www.jyshare.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://static.jyshare.com/images/c-runoob-logo.ico" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">菜鸟工具</div>
+        </div>
+        <div class="cc-nav-des">菜鸟工具，为开发设计人员提供在线工具，网址导航，提供在线PHP、Python、 CSS、JS 调试，中文简繁体转换，进制转换等工具。致力于打造国内专业WEB开发工具，集成开发环境，WEB开发教程。..</div>
+    </div>
+</a>
+
+<a href="https://123.w3cschool.cn/webtools" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://123.w3cschool.cn/statics/images/w3c/tools-logo.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">在线工具库</div>
+        </div>
+        <div class="cc-nav-des">为开发设计人员提供在线工具，提供开发人员工具,代码格式化、压缩、加密、解密,正则测试和生成,CSS在线工具,进制转换,二维码,照片压缩 等，W3Cschool网址资源收藏</div>
+    </div>
+</a>
+
+<a href="https://monitor.mozilla.org/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://monitor.mozilla.org/images/og-image.webp" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Mozilla Monitor</div>
+        </div>
+        <div class="cc-nav-des">检查邮箱外泄</div>
+    </div>
+</a>
+
+<a href="https://www.99cankao.com/numbers/twos-complement.php" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://www.99cankao.com/templates/images/logo.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">补码计算器</div>
+        </div>
+        <div class="cc-nav-des">补码运算，补码计算器，补码运算工具，补码怎么算，补码运算规则，补码运算溢出，二进制补码运算器，补码计算器下载，运算器，二进制补码</div>
+    </div>
+</a>
+
+<a href="https://www.geogebra.org/graphing" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://www.geogebra.org/apps/icons/graphing.ico" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Graphing Calculator</div>
+        </div>
+        <div class="cc-nav-des">图形计算器</div>
+    </div>
+</a>
+
+<a href="https://mwhois.chinaz.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://csstools.chinaz.com/tools/wap/img/mlogo/mwhois.gif" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">域名whois查询</div>
+        </div>
+        <div class="cc-nav-des">站长工具提供whois查询工具，汉化版的域名whois查询工具，帮您快速检测whois信息和whois反查信息。</div>
+    </div>
+</a>
+
+<a href="http://www.yishimei.cn/network/319.html" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">在线激活</div>
+        </div>
+        <div class="cc-nav-des">KMS在线激活Win11 / 10 / 8 / 7和Office / Visio / Project 2021~2010之DragonKMS神龙版-网络教程与技术</div>
+    </div>
+</a>
+
+<a href="https://tool.oschina.net/highlight" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">代码着色高亮</div>
+        </div>
+        <div class="cc-nav-des"></div>
+    </div>
+</a>
+
+<a href="https://x.threatbook.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://x.threatbook.com/public/asset/img/favicon.ico?t=1" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">威胁分析平台</div>
+        </div>
+        <div class="cc-nav-des">微步在线X情报社区是国内首个综合性威胁分析平台和威胁情报共享的开放社区，同时提供威胁情报查询、域名反查、IP反查，行业情报等服务，辅助个人及企业快速定位及排除安全隐患</div>
     </div>
 </a>
 
@@ -680,6 +1023,7 @@
 </div>
 
 ### 软件相关
+
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
 
 <a href="https://cloud.tencent.com/developer/article/1564305" style="text-decoration: none;" target="_blank">
@@ -695,7 +1039,6 @@
 </a>
 
 </div>
-
 
 ### 其它
 
