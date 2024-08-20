@@ -1,8 +1,10 @@
 * [首页](/)
 * 刷题网站
-    * [学习算法、大数据、人工智能、面向对象编程](https://www.lintcode.com/)
-    * [名企 BAT 真题](https://www.acmcoder.com/#/practice/company)
+    * [炼码](https://www.lintcode.com/)
+    * [赛码](https://www.acmcoder.com/#/practice/company)
     * [牛客网](https://www.nowcoder.com/)
+    * [力扣](https://leetcode.cn/)
+    * [剑指offer](https://www.nowcoder.com/exam/oj/ta?page=1&tpId=13&type=13)
 * [资源导航](资源导航/link.md)
 * [Ai助手](https://www.yucongming.com/chat/1781191236741668865)
 * [关于我](https://731016.github.io/)
