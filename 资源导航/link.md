@@ -537,6 +537,18 @@
     </div>
 </a>
 
+<a href="https://github.com/eugenp/tutorials" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/d2dd892d38e55f08fbe7c58355570daef8de51116144f64c433193e5958874f1/eugenp/tutorials" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Learn Spring Security OAuth</div>
+        </div>
+        <div class="cc-nav-des" title='Just Announced - "Learn Spring Security OAuth": . Contribute to eugenp/tutorials development by creating an account on GitHub.'>Just Announced - "Learn Spring Security OAuth": . Contribute to eugenp/tutorials development by creating an account on GitHub.</div>
+    </div>
+</a>
+
 <a href="https://github.com/AobingJava/JavaFamily" style="text-decoration: none;" target="_blank">
     <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
@@ -719,6 +731,20 @@
     </div>
 </a>
 
+<a href="https://cloud.tencent.com/developer/article/1780384" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://cloudcache.tencentcs.com/open_proj/proj_qcloud_v2/gateway/shareicons/cloud.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">启动Java程序jar包Shell脚本</div>
+        </div>
+        <div class="cc-nav-des" title='每次启动Java程序jar包的时候，难道你还在手敲java -jar xxserver.jar……？边敲边想着都需要追加哪些参数？'>每次启动Java程序jar包的时候，难道你还在手敲java -jar xxserver.jar……？边敲边想着都需要追加哪些参数？</div>
+    </div>
+</a>
+
+
+
 </div>
 
 #### 其它
@@ -737,12 +763,439 @@
     </div>
 </a>
 
+<a href="https://www.lanqiao.cn/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://dn-simplecloud.shiyanlou.com/assets/1724217856588_a0818b5f7adda8b4dfbbd91940e3455c" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">蓝桥云课</div>
+        </div>
+        <div class="cc-nav-des" title='蓝桥云课是国内领先的IT在线编程及在线实训学习平台，专业导师提供精选的实践项目，创新的技术使得学习者无需配置繁琐的本地环境，随时在线流畅使用。以就业为导向， 提供编程、运维、测试、云计算、大数据、数据库等全面的IT技术动手实践环境， 提供Linux、Python、Java、C语言、Node.js、Hadoop、PHP、Docker、Git、 R、SQL、MongoDB、Redis、Swift、Spark等千门热门课程。'>蓝桥云课是国内领先的IT在线编程及在线实训学习平台，专业导师提供精选的实践项目，创新的技术使得学习者无需配置繁琐的本地环境，随时在线流畅使用。以就业为导向， 提供编程、运维、测试、云计算、大数据、数据库等全面的IT技术动手实践环境， 提供Linux、Python、Java、C语言、Node.js、Hadoop、PHP、Docker、Git、 R、SQL、MongoDB、Redis、Swift、Spark等千门热门课程。</div>
+    </div>
+</a>
+
+<a href="https://cloud.tencent.com/edu/learning" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">云计算学习中心</div>
+        </div>
+        <div class="cc-nav-des" title='云计算学习中心是面向产业互联网生态用户的一站式学习成长平台，由腾讯内部技术专家出品体系化、高质量课程，结合真实云资源环境实验室，多元化教学方式，助力开发者云计算学习。'>云计算学习中心是面向产业互联网生态用户的一站式学习成长平台，由腾讯内部技术专家出品体系化、高质量课程，结合真实云资源环境实验室，多元化教学方式，助力开发者云计算学习。</div>
+    </div>
+</a>
+
+<a href="https://learn.microsoft.com/zh-cn/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://learn.microsoft.com/en-us/media/open-graph-image.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">培养开拓职业生涯新机遇的技能</div>
+        </div>
+        <div class="cc-nav-des" title='通过文档和培训习得技术技能、获得认证并与社区建立联系'>通过文档和培训习得技术技能、获得认证并与社区建立联系</div>
+    </div>
+</a>
+
 </div>
+
+### 技术文档
+
+#### Java
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+
+<a href="https://hutool.cn/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://plus.hutool.cn/images/logo_484.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Hutool工具库</div>
+        </div>
+        <div class="cc-nav-des" title='Hutool是一个功能丰富且易用的Java工具库，封装的工具涵盖了字符串、数字、集合、编码、日期、文件、IO、加密、数据库JDBC、JSON、HTTP客户端等一系列操作。'>Hutool是一个功能丰富且易用的Java工具库，封装的工具涵盖了字符串、数字、集合、编码、日期、文件、IO、加密、数据库JDBC、JSON、HTTP客户端等一系列操作。</div>
+    </div>
+</a>
+
+<a href="https://docs.spring.io/spring-cloud/docs/current/reference/html/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Spring Cloud</div>
+        </div>
+        <div class="cc-nav-des" title='Spring Cloud provides tools for developers to quickly build some of the common patterns in distributed systems (e.g. configuration management, service discovery, circuit breakers, intelligent routing, micro-proxy, control bus). Coordination of distributed systems leads to boiler plate patterns, and using Spring Cloud developers can quickly stand up services and applications that implement those patterns. They will work well in any distributed environment, including the developer’s own laptop, bare metal data centres, and managed platforms such as Cloud Foundry.'>Spring Cloud provides tools for developers to quickly build some of the common patterns in distributed systems (e.g. configuration management, service discovery, circuit breakers, intelligent routing, micro-proxy, control bus). Coordination of distributed systems leads to boiler plate patterns, and using Spring Cloud developers can quickly stand up services and applications that implement those patterns. They will work well in any distributed environment, including the developer’s own laptop, bare metal data centres, and managed platforms such as Cloud Foundry.</div>
+    </div>
+</a>
+
+<a href="https://doczhcn.gitbook.io/junit5/index/index-2/annotations" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://doczhcn.gitbook.io/junit5/~gitbook/ogimage/-LHHxZQRH9jSS6KxpxnC" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Junit 5官方文档中文版</div>
+        </div>
+        <div class="cc-nav-des" title='表示方法是测试方法。与JUnit4的@Test注解不同的是，这个注解没有声明任何属性，因为JUnit Jupiter中的测试扩展是基于他们自己的专用注解来操作的。除非被覆盖，否则这些方法可以继承。'>表示方法是测试方法。与JUnit4的@Test注解不同的是，这个注解没有声明任何属性，因为JUnit Jupiter中的测试扩展是基于他们自己的专用注解来操作的。除非被覆盖，否则这些方法可以继承。</div>
+    </div>
+</a>
+
+<a href="https://github.com/alibaba/spring-cloud-alibaba/blob/2.2.x/README-zh.md" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/1c81d40c47b15a5a084c7b4e08c2e9ed43ebf8f8d65c2051093b7404ef08fdd4/alibaba/spring-cloud-alibaba" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">spring-cloud-alibaba</div>
+        </div>
+        <div class="cc-nav-des" title='Spring Cloud Alibaba provides a one-stop solution for application development for the distributed solutions of Alibaba middleware. - alibaba/spring-cloud-alibaba'>Spring Cloud Alibaba provides a one-stop solution for application development for the distributed solutions of Alibaba middleware. - alibaba/spring-cloud-alibaba</div>
+    </div>
+</a>
+
+</div>
+
+#### Web
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+
+<a href="https://www.jquery123.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">jQuery API 中文文档</div>
+        </div>
+        <div class="cc-nav-des" title='jQuery：用更少的代码完成更多工作！jQuery 是一个最流行的 JavaScript 工具库。'>jQuery：用更少的代码完成更多工作！jQuery 是一个最流行的 JavaScript 工具库。</div>
+    </div>
+</a>
+
+<a href="https://cn.vuejs.org/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://vuejs.org/images/logo.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Vue.js</div>
+        </div>
+        <div class="cc-nav-des" title='Vue.js - 渐进式的 JavaScript 框架'>Vue.js - 渐进式的 JavaScript 框架</div>
+    </div>
+</a>
+
+<a href="https://router.vuejs.org/zh/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://router.vuejs.org/logo.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Vue Router</div>
+        </div>
+        <div class="cc-nav-des" title='Vue.js 的官方路由'>Vue.js 的官方路由</div>
+    </div>
+</a>
+
+<a href="https://cli.vuejs.org/zh/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://cli.vuejs.org/icons/apple-touch-icon-152x152.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Vue CLI</div>
+        </div>
+        <div class="cc-nav-des" title='🛠️ Vue.js 开发的标准工具'>🛠️ Vue.js 开发的标准工具</div>
+    </div>
+</a>
+
+<a href="https://cli.vuejs.org/zh/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://cli.vuejs.org/icons/apple-touch-icon-152x152.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Vue CLI</div>
+        </div>
+        <div class="cc-nav-des" title='🛠️ Vue.js 开发的标准工具'>🛠️ Vue.js 开发的标准工具</div>
+    </div>
+</a>
+
+<a href="https://ts.yayujs.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://ts.yayujs.com/icon-144x144.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">TypeScript中文文档</div>
+        </div>
+        <div class="cc-nav-des" title='TypeScript 系列文章由官方文档翻译、重难点解析、实践技巧与总结三个部分组成，预计 40 篇左右。目前已完成了官方文档 Handbooks 的翻译，正在准备重难点解读部分。'>TypeScript 系列文章由官方文档翻译、重难点解析、实践技巧与总结三个部分组成，预计 40 篇左右。目前已完成了官方文档 Handbooks 的翻译，正在准备重难点解读部分。</div>
+    </div>
+</a>
+
+<a href="https://www.nuxtjs.cn/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://nuxtjs.org/nuxt-card.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Nuxt.js</div>
+        </div>
+        <div class="cc-nav-des" title='Nuxt.js 是一个基于 Vue.js 的轻量级应用框架，可用来创建服务端渲染 (SSR) 应用，也可充当静态站点引擎生成静态站点应用，具有优雅的代码结构分层和热加载等特性。'>Nuxt.js 是一个基于 Vue.js 的轻量级应用框架，可用来创建服务端渲染 (SSR) 应用，也可充当静态站点引擎生成静态站点应用，具有优雅的代码结构分层和热加载等特性。</div>
+    </div>
+</a>
+
+<a href="https://cn.vitejs.dev/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://vitejs.dev/og-image.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Vite</div>
+        </div>
+        <div class="cc-nav-des" title='Next Generation Frontend Tooling'>Next Generation Frontend Tooling</div>
+    </div>
+</a>
+
+<a href="https://vant-ui.github.io/vant/v3/#/zh-CN" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://fastly.jsdelivr.net/npm/@vant/assets/logo.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Vant3</div>
+        </div>
+        <div class="cc-nav-des" title='轻量、可靠的移动端 Vue 组件库'>轻量、可靠的移动端 Vue 组件库</div>
+    </div>
+</a>
+
+<a href="https://pro.ant.design/zh-CN/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">ant design pro</div>
+        </div>
+        <div class="cc-nav-des" title='🏆 让中后台开发更简单'>🏆 让中后台开发更简单</div>
+    </div>
+</a>
+
+<a href="https://procomponents.ant.design/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://procomponents.ant.design/icon.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">procomponents</div>
+        </div>
+        <div class="cc-nav-des" title='🏆 让中后台开发更简单'>🏆 让中后台开发更简单</div>
+    </div>
+</a>
+
+<a href="https://umijs.org/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://umijs.org/images/og-home.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">UmiJS</div>
+        </div>
+        <div class="cc-nav-des" title='Umi是可扩展的企业级前端应用框架。Umi 以路由为基础的，同时支持配置式路由和约定式路由，保证路由的功能完备，并以此进行功能扩展。然后配以生命周期完善的插件体系，覆盖从源码到构建产物的每个生命周期，支持各种功能扩展和业务需求。'>Umi是可扩展的企业级前端应用框架。Umi 以路由为基础的，同时支持配置式路由和约定式路由，保证路由的功能完备，并以此进行功能扩展。然后配以生命周期完善的插件体系，覆盖从源码到构建产物的每个生命周期，支持各种功能扩展和业务需求。</div>
+    </div>
+</a>
+
+
+
+<a href="https://www.yarnpkg.cn/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://www.yarnpkg.cn/data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTE1NC44IDUxOCI+PHN0eWxlPi5zdDB7ZmlsbDojMmM4ZWJifS5zdDF7ZmlsbDojZmZmfTwvc3R5bGU+PHBhdGggY2xhc3M9InN0MCIgZD0iTTcxOC42IDI1Ny44Yy04IDI3LjYtMjAuOCA0Ny42LTM1LjIgNjMuNlYxODFjMC05LjYtOC40LTE3LjYtMjEuNi0xNy42LTUuNiAwLTEwLjQgMi44LTEwLjQgNi44IDAgMi44IDEuNiA1LjIgMS42IDEyLjh2NjQuNGMtNC44IDI4LTE2LjggNTQtMzIuOCA1NC0xMS42IDAtMTguNC0xMS42LTE4LjQtMzMuMiAwLTMzLjYgNC40LTUxLjIgMTEuNi04MC44IDEuNi02IDEzLjItMjItNi40LTIyLTIxLjIgMC0xOC40IDgtMjEuMiAxNC44IDAgMC0xMy40IDQ3LjYtMTMuNCA5MCAwIDM0LjggMTQuNiA1Ny42IDQxLjQgNTcuNiAxNy4yIDAgMjkuNi0xMS42IDM5LjItMjcuNlYzNTFjLTI2LjQgMjMuMi00OS42IDQzLjYtNDkuNiA4NCAwIDI1LjYgMTYgNDYgMzguNCA0NiAyMC40IDAgNDEuNi0xNC44IDQxLjYtNTYuOFYzNTVjMjEuNi0xOC44IDQ0LjgtNDIuNCA1OC40LTg4LjguNC0xLjYuNC0zLjYuNC00IDAtNy42LTcuNi0xNi40LTE0LTE2LjQtNCAwLTcuMiAzLjYtOS42IDEyem0tNzYuOCAxOThjLTYuNCAwLTEwLjQtOS42LTEwLjQtMjIgMC0yNCA4LjgtMzkuMiAyMS42LTUyLjR2NDIuOGMwIDcuNiAxLjYgMzEuNi0xMS4yIDMxLjZ6Ii8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTgzMy40IDMwMWMtOS42IDAtMTMuNi05LjYtMTMuNi0xOC40di02NmMwLTkuNi04LjQtMTcuNi0yMS42LTE3LjYtNS42IDAtMTAuNCAyLjgtMTAuNCA2LjggMCAyLjggMS42IDUuMiAxLjYgMTIuOHY2MS42Qzc4NSAyOTEuNCA3NzcuOCAzMDEgNzY3IDMwMWMtMTQgMC0yMi44LTEyLTIyLjgtMzIuOCAwLTU3LjYgMzUuNi04My42IDY2LTgzLjYgNCAwIDggLjggMTEuNi44IDQgMCA1LjItMi40IDUuMi05LjIgMC0xMC40LTcuNi0xNi44LTE4LjQtMTYuOC00OC44IDAtOTUuMiA0MC44LTk1LjIgMTA3LjYgMCAzNCAxNi40IDYwLjQgNDcuNiA2MC40IDE1LjIgMCAyNi40LTcuMiAzNC40LTE2LjQgNiA5LjYgMTYuOCAxNi40IDMwLjggMTYuNCAzNC40IDAgNTAuNC0zNiA1Ny4yLTYyLjQuNC0xLjYuNC0yLjQuNC0yLjggMC03LjYtNy42LTE2LjQtMTQtMTYuNC00IDAtOCAzLjYtOS42IDEyLTMuNiAxNy42LTEwLjggNDMuMi0yNi44IDQzLjJ6Ii8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTk0OSAzMjcuNGMzNC40IDAgNTAtMzYgNTcuMi02Mi40IDAtLjguNC0xLjYuNC0yLjggMC03LjYtNy42LTE2LjQtMTQtMTYuNC00IDAtOCAzLjYtOS42IDEyLTMuNiAxNy42LTEwLjQgNDMuMi0yOC44IDQzLjItMTAuOCAwLTE2LTEwLjQtMTYtMjEuNiAwLTQwIDE4LTg3LjIgMTgtOTIgMS42LTkuMi0xNC40LTIyLjQtMTkuMi0yMi40aC0yMC44Yy00IDAtOCAwLTIxLjItMS42LTQuNC0xNi40LTE1LjYtMjEuMi0yNS4yLTIxLjItMTAuNCAwLTIwIDcuMi0yMCAxOC40IDAgMTEuNiA3LjIgMjAgMTcuMiAyNS42LS40IDIwLjQtMiA1My42LTYuNCA2OS42LTMuNiAxMy42IDE3LjIgMjggMjIuNCAxMS4yIDcuMi0yMy4yIDkuNi01OCAxMC03My42aDM0LjhjLTEyLjggMzQuNC0yMCA2Mi44LTIwIDg4LjQgMCAzNS4yIDIyLjQgNDUuNiA0MS4yIDQ1LjZ6Ii8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTk4NC42IDMwOS44YzAgMTQuOCAxMS4yIDE3LjYgMTkuMiAxNy42IDExLjYgMCAxMS4yLTkuNiAxMS4yLTE3LjJ2LTU4LjRjMi44LTMxLjYgMjcuNi02NiAzOS4yLTY2IDcuNiAwIDguNCAxMC40IDguNCAyMi44djgxLjJjMCAyMC40IDEyLjQgMzcuNiAzMy42IDM3LjYgMzQuNCAwIDUxLjQtMzYgNTguMi02Mi40LjQtMS42LjQtMi40LjQtMi44IDAtNy42LTcuNi0xNi40LTE0LTE2LjQtNCAwLTggMy42LTkuNiAxMi0zLjYgMTcuNi0xMS44IDQzLjItMjcuOCA0My4yLTEwLjQgMC0xMC40LTE0LjgtMTAuNC0xOC40di04Mi44YzAtMTguNC02LjQtNDAuNC0zMy4yLTQwLjQtMTkuNiAwLTM0IDE3LjItNDQuOCAzOS42di0xOGMwLTkuNi04LjQtMTcuNi0yMS42LTE3LjYtNS42IDAtMTAuNCAyLjgtMTAuNCA2LjggMCAyLjggMS42IDUuMiAxLjYgMTIuOHYxMjYuOHpNMjU5IDBjMTQzIDAgMjU5IDExNiAyNTkgMjU5UzQwMiA1MTggMjU5IDUxOCAwIDQwMiAwIDI1OSAxMTYgMCAyNTkgMHoiLz48cGF0aCBjbGFzcz0ic3QxIiBkPSJNNDM1LjIgMzM3LjVjLTEuOC0xNC4yLTEzLjgtMjQtMjkuMi0yMy44LTIzIC4zLTQyLjMgMTIuMi01NS4xIDIwLjEtNSAzLjEtOS4zIDUuNC0xMyA3LjEuOC0xMS42LjEtMjYuOC01LjktNDMuNS03LjMtMjAtMTcuMS0zMi4zLTI0LjEtMzkuNCA4LjEtMTEuOCAxOS4yLTI5IDI0LjQtNTUuNiA0LjUtMjIuNyAzLjEtNTgtNy4yLTc3LjgtMi4xLTQtNS42LTYuOS0xMC04LjEtMS44LS41LTUuMi0xLjUtMTEuOS40QzI5My4xIDk2IDI4OS42IDkzLjggMjg2LjkgOTJjLTUuNi0zLjYtMTIuMi00LjQtMTguNC0yLjEtOC4zIDMtMTUuNCAxMS0yMi4xIDI1LjItMSAyLjEtMS45IDQuMS0yLjcgNi4xLTEyLjcuOS0zMi43IDUuNS00OS42IDIzLjgtMi4xIDIuMy02LjIgNC0xMC41IDUuNmguMWMtOC44IDMuMS0xMi44IDEwLjMtMTcuNyAyMy4zLTYuOCAxOC4yLjIgMzYuMSA3LjEgNDcuNy05LjQgOC40LTIxLjkgMjEuOC0yOC41IDM3LjUtOC4yIDE5LjQtOS4xIDM4LjQtOC44IDQ4LjctNyA3LjQtMTcuOCAyMS4zLTE5IDM2LjktMS42IDIxLjggNi4zIDM2LjYgOS44IDQyIDEgMS42IDIuMSAyLjkgMy4zIDQuMi0uNCAyLjctLjUgNS42LjEgOC42IDEuMyA3IDUuNyAxMi43IDEyLjQgMTYuMyAxMy4yIDcgMzEuNiAxMCA0NS44IDIuOSA1LjEgNS40IDE0LjQgMTAuNiAzMS4zIDEwLjZoMWM0LjMgMCA1OC45LTIuOSA3NC44LTYuOCA3LjEtMS43IDEyLTQuNyAxNS4yLTcuNCAxMC4yLTMuMiAzOC40LTEyLjggNjUtMzAgMTguOC0xMi4yIDI1LjMtMTQuOCAzOS4zLTE4LjIgMTMuNi0zLjMgMjIuMS0xNS43IDIwLjQtMjkuNHptLTIzLjggMTQuN2MtMTYgMy44LTI0LjEgNy4zLTQzLjkgMjAuMi0zMC45IDIwLTY0LjcgMjkuMy02NC43IDI5LjNzLTIuOCA0LjItMTAuOSA2LjFjLTE0IDMuNC02Ni43IDYuMy03MS41IDYuNC0xMi45LjEtMjAuOC0zLjMtMjMtOC42LTYuNy0xNiA5LjYtMjMgOS42LTIzcy0zLjYtMi4yLTUuNy00LjJjLTEuOS0xLjktMy45LTUuNy00LjUtNC4zLTIuNSA2LjEtMy44IDIxLTEwLjUgMjcuNy05LjIgOS4zLTI2LjYgNi4yLTM2LjkuOC0xMS4zLTYgLjgtMjAuMS44LTIwLjFzLTYuMSAzLjYtMTEtMy44Yy00LjQtNi44LTguNS0xOC40LTcuNC0zMi43IDEuMi0xNi4zIDE5LjQtMzIuMSAxOS40LTMyLjFzLTMuMi0yNC4xIDcuMy00OC44YzkuNS0yMi41IDM1LjEtNDAuNiAzNS4xLTQwLjZzLTIxLjUtMjMuOC0xMy41LTQ1LjJjNS4yLTE0IDcuMy0xMy45IDktMTQuNSA2LTIuMyAxMS44LTQuOCAxNi4xLTkuNSAyMS41LTIzLjIgNDguOS0xOC44IDQ4LjktMTguOHMxMy0zOS41IDI1LTMxLjhjMy43IDIuNCAxNyAzMiAxNyAzMnMxNC4yLTguMyAxNS44LTUuMmM4LjYgMTYuNyA5LjYgNDguNiA1LjggNjgtNi40IDMyLTIyLjQgNDkuMi0yOC44IDYwLTEuNSAyLjUgMTcuMiAxMC40IDI5IDQzLjEgMTAuOSAyOS45IDEuMiA1NSAyLjkgNTcuOC4zLjUuNC43LjQuN3MxMi41IDEgMzcuNi0xNC41YzEzLjQtOC4zIDI5LjMtMTcuNiA0Ny40LTE3LjggMTcuNS0uMyAxOC40IDIwLjIgNS4yIDIzLjR6Ii8+PC9zdmc+" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Yarn</div>
+        </div>
+        <div class="cc-nav-des" title='Yarn 是一个快速、可靠和安全的 JavaScript 依赖管理工具。'>Yarn 是一个快速、可靠和安全的 JavaScript 依赖管理工具。</div>
+    </div>
+</a>
+
+<a href="https://www.axios-http.cn/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Axios</div>
+        </div>
+        <div class="cc-nav-des" title='Axios 是一个基于 promise 的网络请求库，可以用于浏览器和 node.js'>Axios 是一个基于 promise 的网络请求库，可以用于浏览器和 node.js</div>
+    </div>
+</a>
+
+</div>
+
+#### 数据库
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+
+<a href="https://baomidou.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://baomidou.com/images/sponsors/flowlong.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">MyBatis-Plus</div>
+        </div>
+        <div class="cc-nav-des" title='MyBatis-Plus 是一个 MyBatis 的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生'>MyBatis-Plus 是一个 MyBatis 的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生</div>
+    </div>
+</a>
+
+<a href="https://dev.mysql.com/doc/refman/8.0/en/preface.html" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">MySQL 8.0 Reference Manual</div>
+        </div>
+        <div class="cc-nav-des" title='This is the Reference Manual for the MySQL Database System, version 8.0, through release 8.0.39. Differences between minor versions of MySQL 8.0 are noted in the present text with reference to release numbers (8.0.x). For license information, see the Legal Notices.'>This is the Reference Manual for the MySQL Database System, version 8.0, through release 8.0.39. Differences between minor versions of MySQL 8.0 are noted in the present text with reference to release numbers (8.0.x). For license information, see the Legal Notices.</div>
+    </div>
+</a>
+
+<a href="https://blog.mybatis.org/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://3.bp.blogspot.com/-HKtWXLIvvdk/T6VWCexS-qI/AAAAAAAAATo/QmRUDiFjWd0/s1600/mybatis-superbird-small.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">The MyBatis Blog</div>
+        </div>
+        <div class="cc-nav-des" title='A blog about the the MyBatis data mapper framework.'>A blog about the the MyBatis data mapper framework.</div>
+    </div>
+</a>
+
+</div>
+
+#### 其它
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+
+<a href="https://codeguide.bootcss.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">编码规范</div>
+        </div>
+        <div class="cc-nav-des" title='永远遵循同一套编码规范 -- 可以是这里列出的，也可以是你自己总结的。如果你发现本规范中有任何错误，敬请指正。通过 在 GitHub 上提交 issue 为本规范贡献力量。'>永远遵循同一套编码规范 -- 可以是这里列出的，也可以是你自己总结的。如果你发现本规范中有任何错误，敬请指正。通过 在 GitHub 上提交 issue 为本规范贡献力量。</div>
+    </div>
+</a>
+
+<a href="https://www.markdown.xyz/getting-started/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://www.markdown.xyz/assets/images/markdown-guide-og.jpg" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Markdown 入门指南</div>
+        </div>
+        <div class="cc-nav-des" title='Markdown 语法概述、工作原理以及用途。'>Markdown 语法概述、工作原理以及用途。</div>
+    </div>
+</a>
+
+<a href="https://cloud.tencent.com/developer/article/1621396" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://cloudcache.tencentcs.com/open_proj/proj_qcloud_v2/gateway/shareicons/cloud.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Swagger</div>
+        </div>
+        <div class="cc-nav-des" title='Swagger 是最流行的 API 开发工具，它遵循 OpenAPI Specification（OpenAPI 规范，也简称 OAS）。 Swagger 可以贯穿于整个 API 生态，如 API 的设计、编写 API 文档、测试和部署。 Swagger 是一种通用的，和编程语言无关的 API 描述规范。'>Swagger 是最流行的 API 开发工具，它遵循 OpenAPI Specification（OpenAPI 规范，也简称 OAS）。 Swagger 可以贯穿于整个 API 生态，如 API 的设计、编写 API 文档、测试和部署。 Swagger 是一种通用的，和编程语言无关的 API 描述规范。</div>
+    </div>
+</a>
+
+<a href="https://app.swaggerhub.com/search" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://app.swaggerhub.com/img/favicon-32x32.png?v=2" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">SwaggerHub</div>
+        </div>
+        <div class="cc-nav-des" title='Join thousands of developers who use SwaggerHub to build and design great APIs. Signup or login today.'>Join thousands of developers who use SwaggerHub to build and design great APIs. Signup or login today.</div>
+    </div>
+</a>
+
+<a href="https://doc.xiaominfo.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://doc.xiaominfo.com/images/website/knife4j-framework2.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Knife4j</div>
+        </div>
+        <div class="cc-nav-des" title='集Swagger2及OpenAPI3为一体的增强解决方案'>集Swagger2及OpenAPI3为一体的增强解决方案</div>
+    </div>
+</a>
+
+
+</div>
+
+
+
+
 
 ### 项目
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
 
+<a href="https://github.com/jitwxs/express" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/1872b6d0c3cd58fb28419114dfc95cfdbd2a82707c6d4bf0a3c9fc80e6442e57/jitwxs/express" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">快递代拿系统</div>
+        </div>
+        <div class="cc-nav-des" title='快递代拿系统，SpringBoot的最佳实践. Contribute to jitwxs/express development by creating an account on GitHub.'>快递代拿系统，SpringBoot的最佳实践. Contribute to jitwxs/express development by creating an account on GitHub.</div>
+    </div>
+</a>
+
+<a href="https://github.com/trending" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://github.githubassets.com/assets/github-logo-55c5b9a1fe52.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Build software better, together</div>
+        </div>
+        <div class="cc-nav-des" title='GitHub is where people build software. More than 100 million people use GitHub to discover, fork, and contribute to over 420 million projects.'>GitHub is where people build software. More than 100 million people use GitHub to discover, fork, and contribute to over 420 million projects.</div>
+    </div>
+</a>
+
+<a href="https://gitstar-ranking.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://avatars.githubusercontent.com/u/170270?v=4" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Top GitHub users and repositories</div>
+        </div>
+        <div class="cc-nav-des" title='Gitstar Ranking is a GitHub star ranking. You can see top 1000 users, organizations and repositories. Find your favorite user. See what is your rank.'>Gitstar Ranking is a GitHub star ranking. You can see top 1000 users, organizations and repositories. Find your favorite user. See what is your rank.</div>
+    </div>
+</a>
+
+<a href="https://github.com/topics/awesome" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://github.githubassets.com/assets/github-logo-55c5b9a1fe52.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Build software better</div>
+        </div>
+        <div class="cc-nav-des" title='GitHub is where people build software. More than 100 million people use GitHub to discover, fork, and contribute to over 420 million projects.'>GitHub is where people build software. More than 100 million people use GitHub to discover, fork, and contribute to over 420 million projects.</div>
+    </div>
+</a>
 
 </div>
 
@@ -762,11 +1215,35 @@
     </div>
 </a>
 
+<a href="https://m.ituring.com.cn/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://m.ituring.com.cn/favicon.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">图灵社区</div>
+        </div>
+        <div class="cc-nav-des"></div>
+    </div>
+</a>
+
 </div>
 
 ### 论文
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+
+<a href="https://xiezuocat.com/#/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://uranus-static.oss-accelerate.aliyuncs.com/xiezuocat/upgredBG.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">秘塔写作猫</div>
+        </div>
+        <div class="cc-nav-des" title='写作猫是新一代交互式中英文写作辅助平台，集智能文本纠错、改写润色、自动续写、智能配图为一体。'>写作猫是新一代交互式中英文写作辅助平台，集智能文本纠错、改写润色、自动续写、智能配图为一体。</div>
+    </div>
+</a>
 
 <a href="https://www.docin.com/" style="text-decoration: none;" target="_blank">
     <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
@@ -834,6 +1311,19 @@
     </div>
 </a>
 
+<a href="https://picgo.github.io/PicGo-Doc/zh/guide/config.html#%E4%B8%83%E7%89%9B%E5%9B%BE%E5%BA%8A" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://raw.githubusercontent.com/Molunerfinn/test/master/picgo/New%20LOGO-150.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">PicGo</div>
+        </div>
+        <div class="cc-nav-des">图片上传、管理新体验</div>
+    </div>
+</a>
+
+
 <a href="https://livere.com/" style="text-decoration: none;" target="_blank">
     <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
@@ -855,6 +1345,18 @@
             <div style="height: 40px; float: right;">链接预览</div>
         </div>
         <div class="cc-nav-des"></div>
+    </div>
+</a>
+
+<a href="https://docsearch.algolia.com/apply/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://docsearch.algolia.com/img/og_image.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">DocSearch</div>
+        </div>
+        <div class="cc-nav-des" title='The easiest way to add search to your documentation - Powered by Algolia'>The easiest way to add search to your documentation - Powered by Algolia</div>
     </div>
 </a>
 
@@ -903,6 +1405,18 @@
             <div style="height: 40px; float: right;">马克飞象</div>
         </div>
         <div class="cc-nav-des" title='专为印象笔记打造的 Markdown 编辑器'>专为印象笔记打造的 Markdown 编辑器</div>
+    </div>
+</a>
+
+<a href="https://www.wolai.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">wolai</div>
+        </div>
+        <div class="cc-nav-des" title='用 “我来” 搭建一站式协作平台，团队知识库、仪表台、工作流、内部应用、外部网站与个人云端笔记、待办……开箱即用'>用 “我来” 搭建一站式协作平台，团队知识库、仪表台、工作流、内部应用、外部网站与个人云端笔记、待办……开箱即用</div>
     </div>
 </a>
 
@@ -1494,6 +2008,18 @@
     </div>
 </a>
 
+<a href="https://www.dogfight360.com/blog/475/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">UsbEAm Hosts Editor</div>
+        </div>
+        <div class="cc-nav-des" title=''></div>
+    </div>
+</a>
+
 </div>
 
 ### 服务器
@@ -1776,11 +2302,125 @@
     </div>
 </a>
 
+<a href="https://cloud.tencent.com/developer/article/1902081" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://cloudcache.tencentcs.com/open_proj/proj_qcloud_v2/gateway/shareicons/cloud.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">SpringBoot实现热部署两种方式</div>
+        </div>
+        <div class="cc-nav-des" title='小宅作为一个Java程序员，在日常的工作中，经常需要修改代码，然后重启服务，在验证代码是否生效。如果是小项目还好，重启速度比较快，等待时间比较短。但是随着项目逐渐变大，并且被拆分成多个服务时，改动一些代码，可能需要重启多个服务才能生效。这样下来就耗费了大量的时间在等待服务重启。'>小宅作为一个Java程序员，在日常的工作中，经常需要修改代码，然后重启服务，在验证代码是否生效。如果是小项目还好，重启速度比较快，等待时间比较短。但是随着项目逐渐变大，并且被拆分成多个服务时，改动一些代码，可能需要重启多个服务才能生效。这样下来就耗费了大量的时间在等待服务重启。</div>
+    </div>
+</a>
+
 </div>
 
-### 其它
+### 找工作
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+
+<a href="https://www.ncss.cn/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://t1.chei.com.cn/ncss/jyxw/images/ksrk.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">国家大学生就业服务平台</div>
+        </div>
+        <div class="cc-nav-des" title='国家大学生就业服务平台是由教育部主管、教育部学生服务与素质发展中心运营的服务于高校毕业生及用人单位的公共就业服务平台。'>国家大学生就业服务平台是由教育部主管、教育部学生服务与素质发展中心运营的服务于高校毕业生及用人单位的公共就业服务平台。</div>
+    </div>
+</a>
+
+<a href="https://m.job592.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">职朋</div>
+        </div>
+        <div class="cc-nav-des" title='职朋，又名职业圈，真实职业资讯及职业交流平台，提供免费招聘，工资待遇，面试经验，教育口碑等职业资讯及职业交流'>职朋，又名职业圈，真实职业资讯及职业交流平台，提供免费招聘，工资待遇，面试经验，教育口碑等职业资讯及职业交流</div>
+    </div>
+</a>
+
+<a href="https://www.yingjiesheng.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://img01.51jobcdn.com/im/yjs/logo_arc.ico" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">应届生求职APP</div>
+        </div>
+        <div class="cc-nav-des" title='应届生求职网是中国领先的大学生求职网站，为应届毕业生提供大量校园招聘信息、兼职实习招聘信息以及校园宣讲会和校园招聘会信息，地区覆盖上海、北京、广州、深圳、武汉、南京、天津、成都等热门城市。'>应届生求职网是中国领先的大学生求职网站，为应届毕业生提供大量校园招聘信息、兼职实习招聘信息以及校园宣讲会和校园招聘会信息，地区覆盖上海、北京、广州、深圳、武汉、南京、天津、成都等热门城市。</div>
+    </div>
+</a>
+
+<a href="https://www.proginn.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://stacdn.proginn.com/favicon_new.ico" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">程序员客栈</div>
+        </div>
+        <div class="cc-nav-des" title='程序员客栈提供兼职程序员、程序员接私活、开发外包，程序员客栈是最大的程序员兼职平台，优质的程序员兼职网站，这里有BAT级兼职程序员、产品经理兼职、UI设计兼职，通过程序员兼职，程序员接私活，程序员接单等方式，解决创业公司程序员兼职、软件开发、产品设计等问题'>程序员客栈提供兼职程序员、程序员接私活、开发外包，程序员客栈是最大的程序员兼职平台，优质的程序员兼职网站，这里有BAT级兼职程序员、产品经理兼职、UI设计兼职，通过程序员兼职，程序员接私活，程序员接单等方式，解决创业公司程序员兼职、软件开发、产品设计等问题</div>
+    </div>
+</a>
+
+<a href="https://shixian.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://cdn.shixian.com/assets/apple-touch-icon-44d68c4ee0535c69c770e51f04f6aab1f377e832fbb4bd8d196f0ca267370386.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">实现网</div>
+        </div>
+        <div class="cc-nav-des" title='实现网为企业提供BAT等名企背景的、靠谱的开发设计兼职人才和自由职业者，满足企业项目外包、驻场开发、远程兼职、技术咨询等短期人力需求。已服务2000多家企业，包括好未来、方正、人人贷、秒拍等知名企业。'>实现网为企业提供BAT等名企背景的、靠谱的开发设计兼职人才和自由职业者，满足企业项目外包、驻场开发、远程兼职、技术咨询等短期人力需求。已服务2000多家企业，包括好未来、方正、人人贷、秒拍等知名企业。</div>
+    </div>
+</a>
+
+<a href="https://www.yuanjisong.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">猿急送</div>
+        </div>
+        <div class="cc-nav-des" title='猿急送为您提供兼职程序员、程序员接私活、企业开发外包信息，猿急送是一个高级技术共享平台，是优质的程序员兼职网站，这里汇聚BAT等知名互联网公司的技术开发、产品、UI设计大牛，通过程序员兼职，程序员接私活等方式，一对一为创业公司解决程序员、工程师等开发、产品设计人力问题。'>猿急送为您提供兼职程序员、程序员接私活、企业开发外包信息，猿急送是一个高级技术共享平台，是优质的程序员兼职网站，这里汇聚BAT等知名互联网公司的技术开发、产品、UI设计大牛，通过程序员兼职，程序员接私活等方式，一对一为创业公司解决程序员、工程师等开发、产品设计人力问题。</div>
+    </div>
+</a>
+
+<a href="https://zb.oschina.net/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">开源众包</div>
+        </div>
+        <div class="cc-nav-des" title='开源众包平台-靠谱的IT软件开发服务交易平台，拥有百万专业软件类技术服务商。采用共享经济的理念借助“众”的模式降低企业技术资源成本投入，通过高效的匹配撮合与专业的项目管理机制等多维度平台级服务保障，为您提供覆盖所有软件领域技术资源需求的有效对接及开发实施'>开源众包平台-靠谱的IT软件开发服务交易平台，拥有百万专业软件类技术服务商。采用共享经济的理念借助“众”的模式降低企业技术资源成本投入，通过高效的匹配撮合与专业的项目管理机制等多维度平台级服务保障，为您提供覆盖所有软件领域技术资源需求的有效对接及开发实施</div>
+    </div>
+</a>
+
+</div>
+
+### 考试
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+
+<a href="https://dasai.lanqiao.cn/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://static.shiyanlou.com/lanqiaobei-fe/dist/favico.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">蓝桥杯大赛</div>
+        </div>
+        <div class="cc-nav-des" title='蓝桥杯全国软件和信息技术专业人才大赛由工业和信息化部人才交流中心主办，包括北大、清华等在内的全国31个省市自治区1200多所院校参加，每年参赛人数超过30000人。蓝桥杯大赛本着“立足行业、突出实践、广泛参与、促进就业”的宗旨，着力于为行业提供公正、科学的全国性信息技术人才选拔和培养平台，培养和提升当代大学生的创新和实践能'>蓝桥杯全国软件和信息技术专业人才大赛由工业和信息化部人才交流中心主办，包括北大、清华等在内的全国31个省市自治区1200多所院校参加，每年参赛人数超过30000人。蓝桥杯大赛本着“立足行业、突出实践、广泛参与、促进就业”的宗旨，着力于为行业提供公正、科学的全国性信息技术人才选拔和培养平台，培养和提升当代大学生的创新和实践能</div>
+    </div>
+</a>
 
 <a href="https://bm.ruankao.org.cn/sign/welcome" style="text-decoration: none;" target="_blank">
     <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
@@ -1794,6 +2434,48 @@
     </div>
 </a>
 
+<a href="https://www.neea.edu.cn/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">中国教育考试网</div>
+        </div>
+        <div class="cc-nav-des"></div>
+    </div>
+</a>
+
+<a href="http://www.hbea.edu.cn/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">湖北省教育考试院</div>
+        </div>
+        <div class="cc-nav-des"></div>
+    </div>
+</a>
+
+<a href="https://zsb.e21.cn/bl/#/login" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">专升本补录平台</div>
+        </div>
+        <div class="cc-nav-des"></div>
+    </div>
+</a>
+
+</div>
+
+### 备案
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+
 <a href="https://beian.mps.gov.cn/#/" style="text-decoration: none;" target="_blank">
     <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
@@ -1803,6 +2485,176 @@
             <div style="height: 40px; float: right;">全国互联网安全管理服务平台</div>
         </div>
         <div class="cc-nav-des">备案</div>
+    </div>
+</a>
+
+</div>
+
+### 影视
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+
+<a href="https://yyets.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://im.99meiju.cn/yyets/2022/04/20220428054512498.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">人人影视</div>
+        </div>
+        <div class="cc-nav-des" title='提供最新影视剧介绍和影评，发布最新的字幕包括美剧,日剧,电影,动漫等，发布最新电影排行榜、本周电影口碑榜和高分电影TOP50'>提供最新影视剧介绍和影评，发布最新的字幕包括美剧,日剧,电影,动漫等，发布最新电影排行榜、本周电影口碑榜和高分电影TOP50</div>
+    </div>
+</a>
+
+</div>
+
+### 游戏
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+
+<a href="https://www.gamersky.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://imgs.gamersky.com/upimg/new_preview/2024/07/25/origin_202407251235146804.jpg" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">游民星空</div>
+        </div>
+        <div class="cc-nav-des" title='游民星空是国内单机游戏门户网站,提供特色的游戏资讯,大量游戏攻略,经验,评测文章,以及热门游戏资料专题'>游民星空是国内单机游戏门户网站,提供特色的游戏资讯,大量游戏攻略,经验,评测文章,以及热门游戏资料专题</div>
+    </div>
+</a>
+
+<a href="https://www.3dmgame.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">3DM游戏网</div>
+        </div>
+        <div class="cc-nav-des" title='单机游戏_单机游戏下载_单机游戏大全中文版下载_3DM游戏网'>单机游戏_单机游戏下载_单机游戏大全中文版下载_3DM游戏网</div>
+    </div>
+</a>
+
+<a href="http://gbtgame.ysepan.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">GBT乐赏游戏空间</div>
+        </div>
+        <div class="cc-nav-des" title=''></div>
+    </div>
+</a>
+
+<a href="https://steamdb.info/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Database of everything on Steam</div>
+        </div>
+        <div class="cc-nav-des" title=''></div>
+    </div>
+</a>
+
+<a href="http://www.uc129.com/xiazai/cnc/list_67_1.html" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="http://www.uc129.com/templets/default/css_mubanzhijia/images/logo.gif" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">命令与征服下载</div>
+        </div>
+        <div class="cc-nav-des" title='玩家喜爱的命令与征服系列游戏下载专区-提供命令与征服4，命令与征服3及泰伯利亚战争,凯恩之怒等各种版本的下载试玩。'>玩家喜爱的命令与征服系列游戏下载专区-提供命令与征服4，命令与征服3及泰伯利亚战争,凯恩之怒等各种版本的下载试玩。</div>
+    </div>
+</a>
+
+
+<a href="https://www.c5game.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">C5GAME游戏饰品交易平台</div>
+        </div>
+        <div class="cc-nav-des" title='C5GAME游戏饰品交易平台-CS2饰品交易_CS2饰品租赁_DOTA2饰品交易_STEAM游戏CDK'>C5GAME游戏饰品交易平台-CS2饰品交易_CS2饰品租赁_DOTA2饰品交易_STEAM游戏CDK</div>
+    </div>
+</a>
+
+<a href="https://www.asdscenario.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Rizered Hangar</div>
+        </div>
+        <div class="cc-nav-des" title='本网站为Rizered个人用于公开PC游戏《我是航空管制官》自制关卡、涂装和原创小说的网站。'>本网站为Rizered个人用于公开PC游戏《我是航空管制官》自制关卡、涂装和原创小说的网站。</div>
+    </div>
+</a>
+
+
+</div>
+
+### 学校相关
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+
+<a href="https://zhtj.youth.cn/zhtj/signin" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">智慧团建</div>
+        </div>
+        <div class="cc-nav-des" title=''></div>
+    </div>
+</a>
+
+<a href="https://my.chsi.com.cn/archive/index.jsp" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">学信档案</div>
+        </div>
+        <div class="cc-nav-des" title=''></div>
+    </div>
+</a>
+
+<a href="https://www.cdb.com.cn/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">国家开发银行</div>
+        </div>
+        <div class="cc-nav-des" title=''></div>
+    </div>
+</a>
+
+
+</div>
+
+### 其它
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+
+<a href="https://to-do.live.com/tasks/?app" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://res.cdn.office.net/todo/2115238_2.124.1/preview.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Microsoft To Do</div>
+        </div>
+        <div class="cc-nav-des" title='Microsoft To Do'>Microsoft To Do</div>
     </div>
 </a>
 
@@ -1818,6 +2670,42 @@
     </div>
 </a>
 
+<a href="https://ssrshare.github.io/2019/04/07/tor/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://ssrshare.github.io/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">暗网教程</div>
+        </div>
+        <div class="cc-nav-des" title='一招教你上暗网，赶快来探索把！'>一招教你上暗网，赶快来探索把！</div>
+    </div>
+</a>
+
+<a href="https://scp-wiki-cn.wikidot.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://scp-wiki-cn.wikidot.com/local--iosicon/iosicon_57.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">SCP基金会</div>
+        </div>
+        <div class="cc-nav-des" title='SCP基金会“最高机密”档案，解密以供欣赏。'>SCP基金会“最高机密”档案，解密以供欣赏。</div>
+    </div>
+</a>
+
+<a href="https://zh.flightaware.com/live/airport_status_bigmap.rvt?airport=ZHHH" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">FlightAware</div>
+        </div>
+        <div class="cc-nav-des" title='Microsoft To Do'>实时飞机运行情况</div>
+    </div>
+</a>
+
 <a href="https://opendocs.alipay.com/apis/api_1/alipay.trade.page.pay" style="text-decoration: none;" target="_blank">
     <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
@@ -1825,6 +2713,18 @@
         <div class="cc-nav-title">
             <img src="" style="float: left; margin-right: 15px;height:35px;">
             <div style="height: 40px; float: right;">支付宝API文档</div>
+        </div>
+        <div class="cc-nav-des" title=''></div>
+    </div>
+</a>
+
+<a href="https://open.alipay.com/develop/sandbox/app" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">支付宝沙箱</div>
         </div>
         <div class="cc-nav-des" title=''></div>
     </div>
