@@ -1,6 +1,17 @@
-<span id="busuanzi_container_site_pv" style='display:none'>
-    👀 本站总访问量：<span id="busuanzi_value_site_pv"></span> 次
-</span>
-<span id="busuanzi_container_site_uv" style='display:none'>
-    | 🚴‍♂️ 本站总访客数：<span id="busuanzi_value_site_uv"></span> 人
-</span>
+<div style="text-align: center;">
+    <a href="javascript:;" title="已经运行了那么久了？？">
+        <div class="github-badge">
+            <span class="badge-subject">运行时间</span>
+            <span class="badge-value bg-blueviolet">
+                <span id="times">很久了~~</span>
+            </span>
+        </div>
+    </a>
+    <a href="javascript:;" title="备案号">
+        <div class="github-badge">
+            <span class="badge-value">
+                <span id="times">鄂ICP备2024071306号</span>
+            </span>
+        </div>
+    </a>
+</div>

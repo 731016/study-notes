@@ -248,29 +248,11 @@
             );
           });
           //单个用户多次点击只记录一次
-          var footer = [
-            `
-                    <footer>
-                    <div style="text-align: center;">
-                        <a href="javascript:;" title="已经运行了那么久了？？">
-                            <div class="github-badge">
-                                <span class="badge-subject">运行时间</span>
-                                <span class="badge-value bg-blueviolet">
-                                    <span id="times">很久了~~</span>
-                                </span>
-                            </div>
-                        </a>
-                        </br>
-                    </div>
-                    <hr/>
-                    </footer>
-                `,
-          ].join("");
           hook.afterEach(function (html, next) {
             // 解析成 html 后调用。beforeEach 和 afterEach 支持处理异步逻辑
 
             // 异步处理完成后调用 next(html) 返回结果
-            next(html + footer);
+            next(html);
           });
 
           hook.doneEach(function () {
