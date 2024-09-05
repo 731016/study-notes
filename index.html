@@ -104,7 +104,7 @@
   <div id="app">🏃‍🏃‍🏃‍💨笔记正在努力加载中。。。</div>
   <script>
     if (typeof navigator.serviceWorker !== "undefined") {
-      navigator.serviceWorker.register("sw.js");
+      navigator.serviceWorker.register("./js/sw.js");
     }
     const now = new Date();
 
@@ -272,11 +272,11 @@
     };
   </script>
   <!--控制台打印-->
-  <script src="log.js"></script>
+  <script src="./js/log.js"></script>
   <!-- Docsify v4 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="./js/docsify@4.js"></script>
   <!--搜索插件-->
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="./js/search.min.js"></script>
   <!--代码复制到剪切板-->
   <!-- Latest v2.x.x -->
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code@3.0.0/dist/docsify-copy-code.min.js"></script>
@@ -285,20 +285,20 @@
   <!--字数统计-->
   <script src="https://cdn.jsdelivr.net/npm/countable@3.0.1/Countable.min.js"></script>
   <!--离线模式访问-->
-  <script src="/sw.js"></script>
+  <script src="./js/sw.js"></script>
   <!--外联脚本插件-->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/external-script.min.js"></script>
   <!-- 图片缩放  -->
-  <script src="//unpkg.com/docsify/lib/plugins/zoom-image.js"></script>
+  <script src="./js/zoom-image.js"></script>
   <!-- 代码高亮 -->
   <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
   <script src="//unpkg.com/prismjs/components/prism-java.min.js"></script>
   <script src="//unpkg.com/prismjs@1.29.0/components/prism-c.min.js"></script>
   <script src="//unpkg.com/prismjs@1.29.0/components/prism-javascript.min.js"></script>
   <!-- vue -->
-  <script src="//cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+  <script src="./js/vue.global.prod.js"></script>
   <!-- pdf预览 -->
-  <script src="//cdnjs.com/libraries/pdf.js"></script>
+  <script src="./js/pdf.js"></script>
   <!-- 文件标题导航栏 -->
   <script src="//cdn.jsdelivr.net/npm/docsify-toc@1.1.0/dist/toc.min.js"></script>
   <!-- 侧边栏插件 -->
