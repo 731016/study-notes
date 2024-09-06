@@ -8,7 +8,10 @@
 * [资源导航](资源导航/link.md)
 * 演示网站
     * [快递代取系统](http://43.136.170.4:10082/)
-* [Ai助手](https://www.yucongming.com/chat/1781191236741668865)
+* Ai助手
+    * [鱼聪明](https://www.yucongming.com/chat/1781191236741668865)
+    * [通义](https://tongyi.aliyun.com/qianwen/)
+    * [Kimi](https://kimi.moonshot.cn/)
 * [关于我](https://731016.github.io/)
 <!-- * 演示网站 -->
 <!-- * 注释
