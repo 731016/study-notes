@@ -40,25 +40,25 @@
 - [c语言](c语言/c.md)
 
 ### python
-- [python](python/pyhton.md)
+- [python](Python/pyhton.md)
 
 ### 计算机网络
 - [计算机网络](计算机网络/network.md)
 
 ### JavaSE
-- [Debug](javase/debug.md)
-- [Java基础](javase/java基础/.md)
-- [面向对象编程](javase/面向对象编程.md)
-- [JavaAPI](javase/javaapi.md)
-- [包装类型](javase/包装类型.md)
-- [数据结构](javase/数据结构.md)
-- [集合](javase/集合.md)
-- [泛型](javase/泛型.md)
-- [异常处理](javase/异常处理.md)
-- [IO流](javase/io流.md)
-- [线程](javase/线程.md)
-- [网络编程](javase/网络编程.md)
-- [函数式接口](javase/函数式接口.md)
+- [Java基础](JavaSE/Java基础.md)
+- [面向对象编程](JavaSE/面向对象编程.md)
+- [JavaAPI](JavaSE/JavaAPI.md)
+- [包装类型](JavaSE/包装类型.md)
+- [数据结构](JavaSE/数据结构.md)
+- [集合](JavaSE/集合.md)
+- [泛型](JavaSE/泛型.md)
+- [异常处理](JavaSE/异常处理.md)
+- [IO流](JavaSE/IO流.md)
+- [线程](JavaSE/线程.md)
+- [网络编程](JavaSE/网络编程.md)
+- [函数式接口](JavaSE/函数式接口.md)
+- [Debug](JavaSE/Debug.md)
 
 ### 反射
 - [反射](反射/反射.md)
@@ -67,22 +67,22 @@
 - [设计模式](设计模式/设计模式.md)
 
 ### SQLServer
-- [SQLServer](sqlserver/sqlserver.md)
+- [SQLServer](SQLServer/SqlServer.md)
 
 ### MySql
-- [MySQL安装](mysql/mysql安装.md)
-- [MySQL基础](mysql/mysql基础.md)
-- [JDBC组件](mysql/jdbc组件.md)
-- [控制台购物商城实现](mysql/购物商城.md)
+- [MySQL安装](MySQL/MySql安装.md)
+- [MySQL基础](MySQL/MySQL基础.md)
+- [JDBC组件](MySQL/JDBC组件.md)
+- [控制台购物商城实现](MySQL/购物商城.md)
 
 ### JavaWeb
-- [JSP + servlet](javaweb/jsp_servlet.md)
+- [JSP + servlet](JavaWeb/jsp_servlet.md)
 
 ### 前端
-- [HTML](前端/html.md)
-- [CSS](前端/css.md)
-- [Javascript语法基础](前端/javascript语法基础.md)
-- [Web API](前端/web-api.md)
+- [HTML](前端/HTML.md)
+- [CSS](前端/CSS.md)
+- [Javascript语法基础](前端/JavaScript语法基础.md)
+- [Web API](前端/Web-Api.md)
 - [Vue2](前端/vue2.md)
 - [Vue3](前端/vue3.md)
 - [移动布局基础](前端/移动布局基础.md)
@@ -90,8 +90,8 @@
 - [前端项目注意事项](前端/前端项目注意事项.md)
 
 ### jQuery
-- [JQuery基础](jQuery/jquery.md)
-- [jQuery Ajax](jQuery/ajax.md)
+- [JQuery基础](jQuery/Jquery.md)
+- [jQuery Ajax](jQuery/Ajax.md)
 
 ### 版本控制
 - [SVN](版本控制/avn.md)
@@ -101,16 +101,16 @@
 ### SSM 框架
 - [Mybatis](SSM框架/mybatis.md)
 - [spring](SSM框架/spring.md)
-- [springMVC](SSM框架/springmvc.md)
-- [springBoot](SSM框架/springboot.md)
+- [springMVC](SSM框架/springMVC.md)
+- [springBoot](SSM框架/springBoot.md)
 - [springClond](SSM框架/springclond.md)
-- [springClond Alibaba](SSM框架/springclond-alibaba.md)
+- [springClond Alibaba](SSM框架/springClond Alibaba.md)
 
 ### redis
-- [Redis](redis/redis.md)
+- [Redis](Redis/redis.md)
 
 ### 消息队列
-- [RadditMQ](消息队列/rabbitmq.mq)
+- [RadditMQ](消息队列/rabbitMQ.mq)
 
 ### Linux
 - [linux安装](linux/linux安装.md)
