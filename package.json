@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "docsify": "^4.13.1",
+    "docsify-cli": "^4.4.4",
     "medium-zoom": "^1.1.0"
   },
   "scripts": {
