@@ -199,11 +199,24 @@
         onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
         <div class="cc-nav-title">
             <img src="https://opengraph.githubassets.com/b7384d97bd9a462285f5c73be6caa1f17522ed6e3e5ec72c843dcae51db04372/helloqingfeng/Awsome-Front-End-learning-resource" style="float: left; margin-right: 15px;height:35px;">
-            <div style="height: 40px; float: right;">GitHub最全的前端资源汇总仓库</div>
+            <div style="height: 40px; float: right;">GitHub最全前端资源汇总</div>
         </div>
         <div class="cc-nav-des" title='octocat:GitHub最全的前端资源汇总仓库（包括前端学习、开发资源、求职面试等）. Contribute to helloqingfeng/Awsome-Front-End-learning-resource development by creating an account on GitHub.'>octocat:GitHub最全的前端资源汇总仓库（包括前端学习、开发资源、求职面试等）. Contribute to helloqingfeng/Awsome-Front-End-learning-resource development by creating an account on GitHub.</div>
     </div>
 </a>
+
+<a href="https://my.linkpreview.net/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">面试鸭刷题神器</div>
+        </div>
+        <div class="cc-nav-des" title='程序员求职面试刷题神器，高频编程题目免费刷'>程序员求职面试刷题神器，高频编程题目免费刷</div>
+    </div>
+</a>
+
 
 </div>
 
