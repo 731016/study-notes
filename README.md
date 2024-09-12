@@ -14,6 +14,9 @@
 ### 资源目录
 - [资源导航](资源导航/link.md)
 
+### 生产环境问题
+ - [cpu占用过高](生产环境/cpu占用过高.md)
+
 ### 项目
 - [快递代取系统](https://github.com/731016/Express-pick-up-system)
 - [天天生鲜交易平台](https://github.com/731016/daily-fresh-trading-platform)
