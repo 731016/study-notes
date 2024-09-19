@@ -44,7 +44,7 @@
   - [前端项目注意事项](前端/前端项目注意事项.md)
 
 - JQuery
-  - [JQuery 基础](前端/Jquery.md)
+  - [JQuery 基础](jQuery/Jquery.md)
   - [jQuery-Ajax](jQuery/Ajax.md)
 - 版本控制
   - [SVN](版本控制/SVN.md)

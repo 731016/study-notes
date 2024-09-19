@@ -7,7 +7,7 @@
     * [剑指offer](https://www.nowcoder.com/exam/oj/ta?page=1&tpId=13&type=13)
 * [资源导航](资源导航/link.md)
 * 演示网站
-    * [快递代取系统](http://43.136.170.4:10082/)
+    <!-- * [快递代取系统](http://43.136.170.4:10082/) -->
 * Ai助手
     * [鱼聪明](https://www.yucongming.com/chat/1781191236741668865)
     * [通义](https://tongyi.aliyun.com/qianwen/)
