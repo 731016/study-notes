@@ -12,10 +12,10 @@
   <meta name="baidu-site-verification" content="code-KriBdcEG74" />
   <meta name="referrer" content="no-referrer" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="//fastly.jsdelivr.net/npm/docsify/lib/themes/vue.css">
+  <link rel="stylesheet" href="./css/vue.css">
   <!-- 回到顶部插件css -->
-  <link rel="stylesheet" href="//fastly.jsdelivr.net/npm/docsify-toc@1.1.0/dist/toc.min.css">
-  <link rel="stylesheet" href="//fastly.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css" />
+  <link rel="stylesheet" href="./css/toc.min.css">
+  <link rel="stylesheet" href="./css/sidebar-folder.min.css" />
   <style>
     footer a {
       text-decoration: none;
@@ -137,15 +137,17 @@
 
     window.$docsify = {
       //文档标题，会显示在侧边栏顶部。
-      name: "study-notes",
+      name: "计算机知识杂货铺",
       // 文档标题跳转链接
       nameLink: "/",
       //在侧边栏中出现的网站图标，你可以使用CSS来更改大小
       // logo: '/_media/icon.svg',
       repo: "https://github.com/731016/study-notes",
+      //主题色
+      themeColor:"#405aff",
       //同时设置 loadSidebar 和 autoHeader 后，可以根据 _sidebar.md 的内容自动为每个页面增加标题
       loadSidebar: true,
-      autoHeader: true,
+      // autoHeader: true,
       // code复制按钮配置(放在配置第一行，防止失效)
       copyCode: {
         buttonText: "复制",
@@ -274,40 +276,38 @@
       ],
     };
   </script>
-    <!--控制台打印-->
-    <script src="./js/log.js"></script>
-   <!-- Docsify v4 -->
-   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-   <!--搜索插件-->
-   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-   <!--代码复制到剪切板-->
-   <!-- Latest v2.x.x -->
-   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code@3.0.0/dist/docsify-copy-code.min.js"></script>
-   <!--分页导航-->
-   <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <!--控制台打印-->
+  <script src="./js/log.js"></script>
+  <!-- Docsify v4 -->
+  <script src="./js/docsify@4.js"></script>
+  <!--搜索插件-->
+  <script src="./js/search.min.js"></script>
+  <!--代码复制到剪切板-->
+  <!-- Latest v2.x.x -->
+  <script src="./js/docsify-copy-code.min.js/"></script>
+  <!--分页导航-->
+  <script src="./js/docsify-pagination.min.js"></script>
    <!--字数统计-->
    <script src="https://cdn.jsdelivr.net/npm/docsify-count@latest/dist/countable.min.js"></script>
-   <!--离线模式访问-->
-   <script src="./js/sw.js"></script>
-   <!--外联脚本插件-->
-   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/external-script.min.js"></script>
-   <!-- 图片缩放  -->
-   <script src="//unpkg.com/docsify/lib/plugins/zoom-image.js"></script>
-   <!-- 代码高亮 -->
-   <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
-   <script src="//unpkg.com/prismjs/components/prism-java.min.js"></script>
-   <script src="//unpkg.com/prismjs@1.29.0/components/prism-c.min.js"></script>
-   <script src="//unpkg.com/prismjs@1.29.0/components/prism-javascript.min.js"></script>
-   <!-- vue -->
-   <script src="//cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
-   <!-- pdf预览 -->
-   <script src="//cdnjs.com/libraries/pdf.js"></script>
-   <!-- 侧边栏插件 -->
-   <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
-   <!-- 页脚信息插件 -->
-   <script src="//cdn.jsdelivr.net/npm/@alertbox/docsify-footer/dist/docsify-footer.min.js"></script>
-   <!-- 回到顶部功能 -->
-   <script src="//cdn.jsdelivr.net/npm/docsify-scroll-to-top@1.0.2/dist/docsify-scroll-to-top.min.js"></script>
+   <<!--外联脚本插件-->
+  <script src="./js/external-script.min.js"></script>
+  <!-- 图片缩放  -->
+  <script src="./js/zoom-image.js"></script>
+  <!-- 代码高亮 -->
+  <script src="./js/prism-bash.min.js"></script>
+  <script src="./js/prism-java.min.js"></script>
+  <script src=".js/prism-c.min.js"></script>
+  <script src=".js/prism-javascript.min.js"></script>
+  <!-- vue -->
+  <script src="./js/vue.global.prod.js"></script>
+  <!-- pdf预览 -->
+  <script src="./js/pdf.js"></script>
+  <!-- 侧边栏插件 -->
+  <script src="./js/docsify-sidebar-collapse.min.js"></script>
+  <!-- 页脚信息插件 -->
+  <script src="./js/docsify-footer.min.js"></script>
+  <!-- 回到顶部功能 -->
+  <script src="./js/docsify-scroll-to-top.min.js"></script>
 </body>
 
 </html>
