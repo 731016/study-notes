@@ -5,6 +5,6 @@
     "medium-zoom": "^1.1.0"
   },
   "scripts": {
-    "start": "docsify serve --port 10081"
+    "start": "docsify serve --port 10082"
   }
 }
