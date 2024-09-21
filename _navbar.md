@@ -13,7 +13,8 @@
     * [通义](https://tongyi.aliyun.com/qianwen/)
     * [Kimi](https://kimi.moonshot.cn/)
 * [关于我](https://731016.github.io/)
-<!-- * 演示网站 -->
+* 演示网站
+    * [用户中心](http://xiaofei.site:10088/)
 <!-- * 注释
     * <a href="http://119.3.104.52:8080/" target="_blank" style="font-weight: 700;">基于vue的快递代取系统【毕业设计】</a>
     * <a href="http://119.3.104.52:8081/" target="_blank" style="font-weight: 400;pointer-events: none;cursor: not-allowed;">天天生鲜交易平台</a>
