@@ -1198,6 +1198,19 @@
     </div>
 </a>
 
+<a href="https://docs.halo.run/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://docs.halo.run/img/favicon-96x96.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">halo</div>
+        </div>
+        <div class="cc-nav-des">Halo [ˈheɪloʊ]，强大易用的开源建站工具</div>
+    </div>
+</a>
+
+
 <a href="https://xhhdd.cc/index.php/archives/80/" style="text-decoration: none;" target="_blank">
     <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
