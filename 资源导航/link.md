@@ -1260,6 +1260,18 @@
     </div>
 </a>
 
+<a href="https://v6.51.la/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">51.LA网站统计V6</div>
+        </div>
+        <div class="cc-nav-des" title='免费、易用、专业的网站数据统计与营销分析平台，实时监测，精准洞察，专注用户行为分析，助力业务增长，提供更加精准全面的来路统计分析、数据报表可视化、网站分析能力、事件分析和渠道追踪归因，助力网站持续增长和赋能决策，超过300万用户和开发者的信赖选择。'>免费、易用、专业的网站数据统计与营销分析平台，实时监测，精准洞察，专注用户行为分析，助力业务增长，提供更加精准全面的来路统计分析、数据报表可视化、网站分析能力、事件分析和渠道追踪归因，助力网站持续增长和赋能决策，超过300万用户和开发者的信赖选择。</div>
+    </div>
+</a>
+
 <a href="https://docsearch.algolia.com/apply/" style="text-decoration: none;" target="_blank">
     <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
