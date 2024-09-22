@@ -80,18 +80,6 @@
     </div>
 </a>
 
-<a href="http://www.cxy521.com/#else_tool" style="text-decoration: none;" target="_blank">
-    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
-        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
-        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
-        <div class="cc-nav-title">
-            <img src="" style="float: left; margin-right: 15px;height:35px;">
-            <div style="height: 40px; float: right;">技术分享</div>
-        </div>
-        <div class="cc-nav-des" title='一个致力于一站式程序员学习工作娱乐导航网站，为程序员提供最新工具导航'>一个致力于一站式程序员学习工作娱乐导航网站，为程序员提供最新工具导航</div>
-    </div>
-</a>
-
 <a href="https://fishc.com.cn/" style="text-decoration: none;" target="_blank">
     <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
@@ -169,18 +157,6 @@
     </div>
 </a>
 
-<a href="https://github.com/CyC2018/CS-Notes?tab=readme-ov-file" style="text-decoration: none;" target="_blank">
-    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
-        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
-        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
-        <div class="cc-nav-title">
-            <img src="https://opengraph.githubassets.com/371ebd7543554c130be0f636de332f022d9378f621b1ea8ef5b54e9513f4a574/CyC2018/CS-Notes" style="float: left; margin-right: 15px;height:35px;">
-            <div style="height: 40px; float: right;">技术面试必备基础知识</div>
-        </div>
-        <div class="cc-nav-des" title='技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计.'>技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计.</div>
-    </div>
-</a>
-
 <a href="https://github.com/Advanced-Frontend/Daily-Interview-Question" style="text-decoration: none;" target="_blank">
     <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
@@ -190,18 +166,6 @@
             <div style="height: 40px; float: right;">前端大厂面试题</div>
         </div>
         <div class="cc-nav-des" title='我是依扬（木易杨），公众号「高级前端进阶」作者，每天搞定一道前端大厂面试题，祝大家天天进步，一年后会看到不一样的自己。 - Advanced-Frontend/Daily-Interview-Question'>我是依扬（木易杨），公众号「高级前端进阶」作者，每天搞定一道前端大厂面试题，祝大家天天进步，一年后会看到不一样的自己。 - Advanced-Frontend/Daily-Interview-Question</div>
-    </div>
-</a>
-
-<a href="https://github.com/helloqingfeng/Awsome-Front-End-learning-resource" style="text-decoration: none;" target="_blank">
-    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
-        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
-        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
-        <div class="cc-nav-title">
-            <img src="https://opengraph.githubassets.com/b7384d97bd9a462285f5c73be6caa1f17522ed6e3e5ec72c843dcae51db04372/helloqingfeng/Awsome-Front-End-learning-resource" style="float: left; margin-right: 15px;height:35px;">
-            <div style="height: 40px; float: right;">GitHub最全前端资源汇总</div>
-        </div>
-        <div class="cc-nav-des" title='octocat:GitHub最全的前端资源汇总仓库（包括前端学习、开发资源、求职面试等）. Contribute to helloqingfeng/Awsome-Front-End-learning-resource development by creating an account on GitHub.'>octocat:GitHub最全的前端资源汇总仓库（包括前端学习、开发资源、求职面试等）. Contribute to helloqingfeng/Awsome-Front-End-learning-resource development by creating an account on GitHub.</div>
     </div>
 </a>
 
@@ -220,101 +184,23 @@
 
 </div>
 
-
-### 博客
-<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
-
-<a href="https://github.com/liyupi" style="text-decoration: none;" target="_blank">
-    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
-        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
-        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
-        <div class="cc-nav-title">
-            <img src="https://avatars.githubusercontent.com/u/26037703?v=4?s=400" style="float: left; margin-right: 15px;height:35px;">
-            <div style="height: 40px; float: right;">liyupi</div>
-        </div>
-        <div class="cc-nav-des" title='speak less do more！前腾讯全栈开发，现科技公司创始人. liyupi has 82 repositories available. Follow their code on GitHub.'>speak less do more！前腾讯全栈开发，现科技公司创始人. liyupi has 82 repositories available. Follow their code on GitHub.</div>
-    </div>
-</a>
-
-<a href="https://www.itwanger.com/java.html" style="text-decoration: none;" target="_blank">
-    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
-        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
-        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
-        <div class="cc-nav-title">
-            <img src="" style="float: left; margin-right: 15px;height:35px;">
-            <div style="height: 40px; float: right;">java - 沉默王二博客</div>
-        </div>
-        <div class="cc-nav-des" title='本站为沉默王二的个人博客，内容涵盖有趣的Java后端技术，还有有益的程序人生。'>本站为沉默王二的个人博客，内容涵盖有趣的Java后端技术，还有有益的程序人生。</div>
-    </div>
-</a>
-
-<a href="https://www.kuangstudy.com/" style="text-decoration: none;" target="_blank">
-    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
-        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
-        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
-        <div class="cc-nav-title">
-            <img src="" style="float: left; margin-right: 15px;height:35px;">
-            <div style="height: 40px; float: right;">KuangStudy</div>
-        </div>
-        <div class="cc-nav-des" title='KuangStudy是一个致力于为每个想学习知识的人提供一个少走弯路的平台,包含优质体系课程、文章博客、专栏书写、技术论坛、资源下载等产品服务,提供有用、优质、完整内容的自学交流社区.'>KuangStudy是一个致力于为每个想学习知识的人提供一个少走弯路的平台,包含优质体系课程、文章博客、专栏书写、技术论坛、资源下载等产品服务,提供有用、优质、完整内容的自学交流社区.</div>
-    </div>
-</a>
-
-<a href="https://liaoxuefeng.com/" style="text-decoration: none;" target="_blank">
-    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
-        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
-        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
-        <div class="cc-nav-title">
-            <img src="https://liaoxuefeng.com/static/cover/java.jpg" style="float: left; margin-right: 15px;height:35px;">
-            <div style="height: 40px; float: right;">廖雪峰的官方网站</div>
-        </div>
-        <div class="cc-nav-des" title='廖雪峰的官方网站 (liaoxuefeng.com) 研究互联网产品和技术，提供原创中文精品教程'>廖雪峰的官方网站 (liaoxuefeng.com) 研究互联网产品和技术，提供原创中文精品教程</div>
-    </div>
-</a>
-
-<a href="https://github.phodal.com/#/" style="text-decoration: none;" target="_blank">
-    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
-        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
-        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
-        <div class="cc-nav-title">
-            <img src="" style="float: left; margin-right: 15px;height:35px;">
-            <div style="height: 40px; float: right;">Phodal Huang</div>
-        </div>
-        <div class="cc-nav-des" title='个人博客,黄峰达（Phodal Huang）是一个创客、工程师、咨询师和作家。他毕业于西安文理学院电子信息工程专业，现作为一个咨询师就职于 ThoughtWorks 深圳。'>个人博客,黄峰达（Phodal Huang）是一个创客、工程师、咨询师和作家。他毕业于西安文理学院电子信息工程专业，现作为一个咨询师就职于 ThoughtWorks 深圳。</div>
-    </div>
-</a>
-
-<a href="https://blog.csdn.net/l_ppp?spm=1001.2014.3001.5509" style="text-decoration: none;" target="_blank">
-    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
-        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
-        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
-        <div class="cc-nav-title">
-            <img src="https://g.csdnimg.cn/static/logo/favicon32.ico" style="float: left; margin-right: 15px;height:35px;">
-            <div style="height: 40px; float: right;">「零一」-CSDN博客</div>
-        </div>
-        <div class="cc-nav-des" title='「零一」擅长javascript,数据结构与算法,css,等方面的知识,「零一」关注react.js,前端框架,面试,css,vue.js,javascript领域.'>「零一」擅长javascript,数据结构与算法,css,等方面的知识,「零一」关注react.js,前端框架,面试,css,vue.js,javascript领域.</div>
-    </div>
-</a>
-
-<a href="https://docs.apachecn.org/" style="text-decoration: none;" target="_blank">
-    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
-        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
-        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
-        <div class="cc-nav-title">
-            <img src="https://data.dafeiyang.cn/images/logo/logo_green.webp" style="float: left; margin-right: 15px;height:35px;">
-            <div style="height: 40px; float: right;">导航文库 - ApacheCN</div>
-        </div>
-        <div class="cc-nav-des" title='ApacheCN - 导航文库'>ApacheCN - 导航文库</div>
-    </div>
-</a>
-
-</div>
-
 ### 学习教程
 
 #### Web
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+
+<a href="https://github.com/helloqingfeng/Awsome-Front-End-learning-resource" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/b7384d97bd9a462285f5c73be6caa1f17522ed6e3e5ec72c843dcae51db04372/helloqingfeng/Awsome-Front-End-learning-resource" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">GitHub最全前端资源汇总</div>
+        </div>
+        <div class="cc-nav-des" title='octocat:GitHub最全的前端资源汇总仓库（包括前端学习、开发资源、求职面试等）. Contribute to helloqingfeng/Awsome-Front-End-learning-resource development by creating an account on GitHub.'>octocat:GitHub最全的前端资源汇总仓库（包括前端学习、开发资源、求职面试等）. Contribute to helloqingfeng/Awsome-Front-End-learning-resource development by creating an account on GitHub.</div>
+    </div>
+</a>
 
 <a href="https://developer.mozilla.org/zh-CN/" style="text-decoration: none;" target="_blank">
     <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
@@ -763,6 +649,18 @@
 #### 其它
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+
+<a href="https://github.com/CyC2018/CS-Notes?tab=readme-ov-file" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/371ebd7543554c130be0f636de332f022d9378f621b1ea8ef5b54e9513f4a574/CyC2018/CS-Notes" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">技术面试必备基础知识</div>
+        </div>
+        <div class="cc-nav-des" title='技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计.'>技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计.</div>
+    </div>
+</a>
 
 <a href="https://www.icourse163.org/" style="text-decoration: none;" target="_blank">
     <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
@@ -1586,6 +1484,18 @@
 #### 其它
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+
+<a href="http://www.cxy521.com/#else_tool" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">技术分享</div>
+        </div>
+        <div class="cc-nav-des" title='一个致力于一站式程序员学习工作娱乐导航网站，为程序员提供最新工具导航'>一个致力于一站式程序员学习工作娱乐导航网站，为程序员提供最新工具导航</div>
+    </div>
+</a>
 
 <a href="https://sms-activate.io/cn/getNumber" style="text-decoration: none;" target="_blank">
     <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
