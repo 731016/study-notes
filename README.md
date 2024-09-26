@@ -26,7 +26,7 @@
 - [Java常用配置文件模板](代码库/常用配置文件.md)
 - [Java工具类](代码库/java工具类.md)
 - [JavaScript基础算法](代码库/javascript.md)
-- [Java基础算法](代码库/Java.md)
+- [Java基础算法](代码库/Java算法.md)
 - [HTML+CSS+JS+JQuery案例学习](https://gitee.com/LovelyHzz/webpage-basic-learning)
 - [前端案例学习](http://www.lvyestudy.com/)
 
