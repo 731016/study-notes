@@ -316,8 +316,8 @@ numberValueSubtract: function (arg1, arg2) {
 numberValueDivide: function (arg1, arg2) {
             if (arg2 === 0) return 0;
             var t1 = 0, t2 = 0, r1, r2;
-            if (utils.IsEmpty(arg1)) arg1 = 0;
-            if (utils.IsEmpty(arg2)) {
+            if (IsEmpty(arg1)) arg1 = 0;
+            if (IsEmpty(arg2)) {
                 arg2 = 1;
                 arg1 = 0;
             };
@@ -334,8 +334,8 @@ numberValueDivide: function (arg1, arg2) {
 #### 数值相乘
 ```javascript
 numberValueMultiply: function (arg1, arg2) {
-            if (utils.IsEmpty(arg1)) arg1 = 0;
-            if (utils.IsEmpty(arg2)) arg2 = 0;
+            if (IsEmpty(arg1)) arg1 = 0;
+            if (IsEmpty(arg2)) arg2 = 0;
             var m = 0, s1 = arg1.toString(), s2 = arg2.toString();
             try { m += s1.split(".")[1].length; } catch (e) { }
             try { m += s2.split(".")[1].length; } catch (e) { }
@@ -441,6 +441,105 @@ numberValueMultiply: function (arg1, arg2) {
         }
 ```
 
+#### 字符串转日期
+```javascript
+stringToDate: function (DateStr, format) {
+            if (IsEmpty(DateStr)) return "";
+            if (DateStr instanceof Date) {
+                return DateStr;
+            }
+            if (format == "yyyyMM") {
+                if (DateStr.length != 6) return "";
+                DateStr = DateStr.substring(0, 4) + "-" + DateStr.substring(4, 6);
+            }
+            var converted = Date.parse(DateStr);
+            var myDate = new Date(converted);
+            if (isNaN(myDate)) {
+                if (DateStr.indexOf(':') > 0 || (!IsEmpty(format) && format.toLowerCase().indexOf("h") > -1)) {
+                    var two = DateStr.split(' ');
+                    if (two.length != 2) {
+                        two = DateStr.split('T');
+                    }
+                    var nowDate = new Date();
+                    if (two.length == 1) {
+                        var tempValue = new Array();
+                        tempValue.push(nowDate.toString("yyyy-MM-dd"));
+                        tempValue.push(two[0]);
+                        two = tempValue;
+                    }
+                    if (two.length != 2) {
+                        return nowDate;
+                    }
+                    var d = two[0].split('-');
+                    var t = two[1].replace("Z", "").split(':');
+                    if (t.length == 3) {
+                        myDate = new Date(d[0], --d[1], d[2], t[0], t[1], t[2]);
+                    }
+                    else if (t.length == 2) {
+                        myDate = new Date(d[0], --d[1], d[2], t[0], t[1], "00");
+                    }
+                    else if (t.length == 1) {
+                        myDate = new Date(d[0], --d[1], d[2], t[0], "00", "00");
+                    }
+                    else if (t.length == 1) {
+                        myDate = new Date(d[0], --d[1], d[2], "00", "00", "00");
+                    }
+                }
+                else {
+                    var arys = DateStr.split('-');
+                    switch (arys.length) {
+                        case 1:
+                            if (!IsEmpty(format)) {
+                                var dn = new Date();
+                                if (format == "yyyyMM" && arys[0].length == 6) {
+                                    var temMonth = 0;
+                                    if (arys[0].substring(4, 5) == "0") {
+                                        temMonth = arys[0].substring(5, 6);
+                                    }
+                                    else {
+                                        temMonth = arys[0].substring(4, 6);
+                                    }
+                                    if (temMonth > 0) {
+                                        temMonth = parseInt(temMonth) - 1;
+                                    }
+                                    myDate = new Date(arys[0].substring(0, 4), temMonth, "01");
+                                }
+                                else if (format.indexOf("y") > -1) {
+                                    myDate = new Date(arys[0], 0, "01");
+                                } else if (format.indexOf("M") > -1) {
+                                    myDate = new Date(dn.getYear(), --arys[0], "01");
+                                } else if (format.toLowerCase().indexOf("h") > -1) {
+                                    myDate = new Date(dn.getYear(), dn.getMonth(), dn.getDate(), arys[0], "00", "00");
+                                } else if (format.indexOf("m") > -1) {
+                                    myDate = new Date(dn.getYear(), dn.getMonth(), dn.getDate(), "00", arys[0], "00");
+                                } else if (format.toLowerCase().indexOf("s") > -1) {
+                                    myDate = new Date(dn.getYear(), dn.getMonth(), dn.getDate(), "00", "00", arys[0]);
+                                }
+                            }
+                            break;
+                        case 2:
+                            if (CheckIsDate(DateStr + "-01")) {
+                                myDate = new Date(arys[0], --arys[1], "01");
+                            }
+                            else {
+                                return null;
+                            }
+                            break;
+                        default:
+                            if (CheckIsDate(DateStr)) {
+                                myDate = new Date(arys[0], --arys[1], arys[2]);
+                            }
+                            else {
+                                return null;
+                            }
+                            break;
+                    }
+                }
+            }
+            return myDate;
+        },
+```
+
 #### 获取日期的当月第一天
 ```javascript
 getFirstMonthDay: function (date) {
@@ -452,7 +551,7 @@ getFirstMonthDay: function (date) {
 #### 获取日期的当月最后一天
 ```javascript
 getLastMonthDay: function (date) {
-            if (utils.IsEmpty(date)) date = new Date();
+            if (IsEmpty(date)) date = new Date();
             return new Date(date.getFullYear(), date.getMonth() + 1, 0);
         }
 ```
