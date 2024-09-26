@@ -245,3 +245,236 @@ function  Delete_Duplicate_Elements(arr) {
     return  newarr;
 }
 ```
+
+
+#### JavaSript API | 腾讯位置服务
+[https://lbs.qq.com/webApi/javascriptGL/glGuide/glOverview](https://lbs.qq.com/webApi/javascriptGL/glGuide/glOverview)
+
+#### 获取URL参数
+```javascript
+QueryString: function (item, href) {
+            var str = location.search;
+            if (arguments.length == 2) str = href;
+            var svalue = str.match(new RegExp("[\?\&]" + item + "=([^\&]*)(\&?)", "i"));
+            return svalue ? unescape(svalue[1]) : svalue;
+        }
+        //获取url中"?"符后的字串
+        GetAllQueryString: function () {
+            var url = location.search;
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                return str;
+            }
+            return null;
+        }
+```
+
+#### 判断对象是否是NULL或者时undefined
+```javascript
+IsEmpty: function (val) {//判断对象是否是NULL或者时undefined
+            if (typeof (val) == 'undefined') return true;
+            if (val == null || val == "null" || val == "undefined") return true;
+            if ((val + "").replace(/　/g, "").trim() == "") return true;
+            return false;
+        }
+```
+
+#### 数值相加
+```javascript
+numberValueAdd: function (arg1, arg2) {
+            var r1, r2, m;
+            try { r1 = arg1.toString().split(".")[1].length; } catch (e) { r1 = 0; }
+            try { r2 = arg2.toString().split(".")[1].length; } catch (e) { r2 = 0; }
+            m = Math.pow(10, Math.max(r1, r2));
+            var r = this.numberValueMultiply(arg1, m) + this.numberValueMultiply(arg2, m);
+            var result = this.numberValueDivide(r, m);
+            if (isNaN(result)) {
+                result = 0;
+            }
+            return result;
+        }
+```
+
+#### 数值相减
+```javascript
+numberValueSubtract: function (arg1, arg2) {
+            var r1, r2, m;
+            try { r1 = arg1.toString().split(".")[1].length; } catch (e) { r1 = 0; }
+            try { r2 = arg2.toString().split(".")[1].length; } catch (e) { r2 = 0; }
+            m = Math.pow(10, Math.max(r1, r2));
+            var r = this.numberValueMultiply(arg1, m) - this.numberValueMultiply(arg2, m);
+            var result = this.numberValueDivide(r, m);
+            if (isNaN(result)) {
+                result = 0;
+            }
+            return result;
+        },
+```
+
+#### 数值相除
+```javascript
+numberValueDivide: function (arg1, arg2) {
+            if (arg2 === 0) return 0;
+            var t1 = 0, t2 = 0, r1, r2;
+            if (utils.IsEmpty(arg1)) arg1 = 0;
+            if (utils.IsEmpty(arg2)) {
+                arg2 = 1;
+                arg1 = 0;
+            };
+            try { t1 = arg1.toString().split(".")[1].length; } catch (e) { }
+            try { t2 = arg2.toString().split(".")[1].length; } catch (e) { }
+            with (Math) {
+                r1 = Number(arg1.toString().replace(".", ""));
+                r2 = Number(arg2.toString().replace(".", ""));
+                return (r1 / r2) * pow(10, t2 - t1);
+            }
+        }
+```
+
+#### 数值相乘
+```javascript
+numberValueMultiply: function (arg1, arg2) {
+            if (utils.IsEmpty(arg1)) arg1 = 0;
+            if (utils.IsEmpty(arg2)) arg2 = 0;
+            var m = 0, s1 = arg1.toString(), s2 = arg2.toString();
+            try { m += s1.split(".")[1].length; } catch (e) { }
+            try { m += s2.split(".")[1].length; } catch (e) { }
+            var result = Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m);
+            if (isNaN(result)) {
+                result = 0;
+            }
+            return result;
+        }
+```
+
+#### 数值相保留几位小数乘
+```javascript
+//保留几位小数
+        ChangeDp: function (val, dp) {
+            var f_x = parseFloat(val);
+            if (isNaN(f_x)) {
+                return 0;
+            }
+            var dpVal = Math.pow(10, dp);
+            f_x = this.numberValueDivide(Math.round(this.numberValueMultiply(f_x, dpVal)),dpVal);
+            return f_x;
+        }
+```
+
+#### 四舍六入，5看前，奇进偶不进
+```javascript
+//四舍六入，5看前，奇进偶不进
+        NumberValueRevision : function(val,length){
+            var carry = 0; //存放进位标志
+            var num,multiple; //num为原浮点数放大multiple倍后的数，multiple为10的length次方
+            var str = val + ''; //将调用该方法的数字转为字符串
+            var dot = str.indexOf("."); //找到小数点的位置
+            //找到要进行舍入的数的位置，手动判断奇偶，满足条件进位标志置为1
+            if(str.substr(dot+length+1,1)>5){ //>5进位
+                carry=1;
+            }else if(str.substr(dot+length+1,1)==5){
+                //看前一位奇偶
+                if(str.substr(dot+length,1) && str.substr(dot+length,1)%2==1){
+                    carry=1;
+                }
+                if(str.substr(dot+length,1)=="."){
+                    if(str.substr(dot+length-1,1) && str.substr(dot+length-1,1)%2==1){
+                        carry=1;
+                    }
+                }
+            }
+            multiple = Math.pow(10,length); //设置浮点数要扩大的倍数
+            num = Math.floor(this * multiple) + carry; //去掉舍入位后的所有数，然后加上我们的手动进位数
+            var result = num/multiple + ''; //将进位后的整数再缩小为原浮点数
+            /*
+            * 处理进位后无小数
+            */
+            dot = result.indexOf(".");
+            if(dot < 0 && length!=0){
+                result += '.';
+                dot = result.indexOf(".");
+            }
+            /*
+            * 处理多次进位
+            */
+            var len = result.length - (dot+1);
+            if(len < length){
+                for(var i = 0; i < length - len; i++){
+                    result += 0;
+                }
+            }
+            return result;
+        },
+```
+
+#### 校验是否为日期
+```javascript
+//校验是否为日期
+        CheckIsDate: function (s) {
+            var rg = new RegExp("^((((1[6-9]|[2-9]\\d)\\d{2})-(0?[13578]|1[02])-(0?[1-9]|[12]\d|3[01]))|(((1[6-9]|[2-9]\\d)\\d{2})-(0?[13456789]|1[012])-(0?[1-9]|[12]\\d|30))|(((1[6-9]|[2-9]\\d)\\d{2})-0?2-(0?[1-9]|1\\d|2[0-8]))|(((1[6-9]|[2-9]\\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))-0?2-29))$");
+            return this.CheckByRegex(s, rg);
+        }
+        CheckByRegex: function (s, rg) {
+            if (rg) {
+                if (s && s.match(rg)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+```
+
+#### 日期转字符串
+```javascript
+//校验是否为日期
+        CheckIsDate: function (s) {
+            var rg = new RegExp("^((((1[6-9]|[2-9]\\d)\\d{2})-(0?[13578]|1[02])-(0?[1-9]|[12]\d|3[01]))|(((1[6-9]|[2-9]\\d)\\d{2})-(0?[13456789]|1[012])-(0?[1-9]|[12]\\d|30))|(((1[6-9]|[2-9]\\d)\\d{2})-0?2-(0?[1-9]|1\\d|2[0-8]))|(((1[6-9]|[2-9]\\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))-0?2-29))$");
+            return this.CheckByRegex(s, rg);
+        }
+        CheckByRegex: function (s, rg) {
+            if (rg) {
+                if (s && s.match(rg)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+```
+
+#### 获取日期的当月第一天
+```javascript
+getFirstMonthDay: function (date) {
+            if (IsEmpty(date)) date = new Date();
+            return new Date(date.getFullYear(), date.getMonth(), 1);
+        }
+```
+
+#### 获取日期的当月最后一天
+```javascript
+getLastMonthDay: function (date) {
+            if (utils.IsEmpty(date)) date = new Date();
+            return new Date(date.getFullYear(), date.getMonth() + 1, 0);
+        }
+```
+
+#### 操作时间，加1天，1小时，1分钟
+```javascript
+addDay: function (date, num) {
+            if (date == null) date = new Date();
+            var newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds());
+            newDate.setDate(newDate.getDate() + num);
+            return newDate;
+        },
+        addHour: function (date, num) {
+            if (date == null) date = new Date();
+            var newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds());
+            newDate.setHours(newDate.getHours() + num);
+            return newDate;
+        },
+        addMinute: function (date, num) {
+            if (date == null) date = new Date();
+            var newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds());
+            newDate.setMinutes(newDate.getMinutes() + num);
+            return newDate;
+        },
+```
