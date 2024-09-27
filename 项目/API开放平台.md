@@ -1,29 +1,24 @@
 ## 项目学习地址
 笔记
-https://bcdh.yuque.com/staff-wpxfif/resource/sf3p8kuwhfi90pqq
 
+编程导航：https://www.code-nav.cn/course/1790979723916521474
 
-
-直播
-https://www.aliyundrive.com/drive/folder/647899ed6f74bf84662e48e5bce8a53bdbe2862f
+项目地址：
 
 
 
 ### 主要技术栈
 
-sdk开发
+springboot starter sdk开发
 
-spring clond
+api签名认证
 
-dubbo
+dubbo分布式（rpc nacos）
 
+spring cloud gateway微服务网关
 
-
-代码库
-
-[1-鱼皮 · GitLab (code-nav.cn)](http://gitlab.code-nav.cn/root)
-
-
+## 免费api接口平台
+https://api.btstu.cn/
 
 ## 使用技术文档
 
@@ -33,33 +28,70 @@ dubbo
 
 ## 开发SDK（spring boot starter）
 
+
+必须依赖
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-configuration-processor</artifactId>
+    <optional>true</optional>
+</dependency>
+```
+
+
 依赖，配置properties、yml配置提示
 
 Spring Configuration Processor
 
 ![image-20230604185533510](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note202306041855114.png)
 
-
-
 pom.xml移除build配置内容
 
 
 
 加载配置文件
-
-
-
 ![image-20230604185027330](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note202306041850926.png)
+```java
+@Configuration
+//读取application配置；设置所有配置前缀
+@ConfigurationProperties("yuapi.client")
+@Data
+//自动注册bean
+@ComponentScan
+public class YuApiClientConfig {
+
+    private String accessKey;
+
+    private String secretKey;
+
+    @Bean
+    public YuApiClient yuApiClient() {
+        return new YuApiClient(accessKey, secretKey);
+    }
+
+}
+```
 
 
 
 创建resources/META-INF/spring.factories文件加载的配置类
 
+copy配置类的路径，指定指定配置类
+
 ![image-20230604185055581](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note202306041850095.png)
+
+通过spring.factories配置，springboot在启动时会自动加载并实例化配置类
 
 mvn install 打包可以在项目中导入使用
 
 ![image-20230604185127840](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note202306041851070.png)
+
+
+在其他服务中bom中引入配置，在配置文件中即可使用
 
 
 
@@ -71,26 +103,38 @@ mvn install 打包可以在项目中导入使用
 
 一般通过request header传递参数
 
-
-
 accessKey：标识
 
-secretKey：密钥 ，不能用来传递
+secretKey：密钥 ，不能用来传递！！！
 
-用户请求参数
+用户请求参数：body
+
+防重放
 
 sign：签名，使用accessKey + 用户请求参数拼接 加密之后 后台也通过相同方式加密验证
 
-随机数：只能使用一次，防止重放攻击
+随机数nonce：只能使用一次，防止重放攻击
 
 timestamp：时间戳，校验是否在事件的之内
 
 
-
 这些可通过开发SDK，提取出来，免得每次都要写
 
+详细流程：
+新用户注册，分配 accessKey, secretKey，保存
 
+服务之间调用：通过用户信息查询accessKey, secretKey
 
+（1）请求sdk：组装参数：{accessKey，nonce：随机数，body，timestamp：时间戳，sign：通过body+secretKey生成}
+
+（2）请求接口服务：
+    1.accessKey：查询是否分配用户
+    2.timestamp：校验时间戳是否过期
+    3.body + secretKey（数据库查询，不允许在服务器之间传递）生成 sign，校验传递的sign是否正确
+
+外部系统调用：直接携带参数请求接口服务
+    1.通过用户信息查询accessKey, secretKey
+    2.根据获取的信息组装参数访问接口服务
 
 
 ## API网关
