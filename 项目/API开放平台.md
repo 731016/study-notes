@@ -5,6 +5,8 @@
 
 项目地址：https://github.com/731016/api-call
 
+完整示例项目地址：https://api.suki.vin/
+
 nacos下载地址：https://nacos.io/
 
 ### 主要技术栈
