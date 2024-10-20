@@ -2,7 +2,6 @@
 
 RPC：远程过程调用，简化调用
 
-代码仓库：https://github.com/731016/xiaofei.site-rpc
 
 
 ### 基本设计
@@ -548,9 +547,9 @@ public class RpcProviderExample {
 
 >  什么是序列化和反序列化？
 >
-> 序列化：将java对象转换为可传输的字节数组
+>  序列化：将java对象转换为可传输的字节数组
 >
-> 反序列化：将字节数组转换为java对象
+>  反序列化：将字节数组转换为java对象
 
 序列化方式
 
@@ -1166,3 +1165,432 @@ VertxOptions vertxOptions = new VertxOptions();
 + [VertxOptions (Vert.x Stack - Docs 4.5.10 API)](https://vertx.io/docs/apidocs/io/vertx/core/VertxOptions.html)
 
 + [Vert.x(六): Vert.x配置项VertxOptions的使用-CSDN博客](https://blog.csdn.net/mawei7510/article/details/83059684)
+
+
+
+## 全局配置加载
+
+在RPC框架运行过程中，有一些配置信息，比如注册中心的地址、序列化方式、网络服务器端口...，之前的项目中都是写死的，不利于维护。
+
+
+
+通过配置文件来进行**自定义配置**
+
+
+
+### 设计方案
+
+#### 配置项
+
+先提供一个简单的配置，后续再扩展
+
+```
+服务名称 name
+版本 version
+服务器主机名 serverHost
+服务器端口号 serverPort
+```
+
+
+
+了解常见的RPC框架配置
+
+1. 注册中心地址
+2. 服务接口
+3. 序列化方式
+4. 网络通信协议
+5. 超时设置
+6. 负载均衡策略
+7. 服务端线程模型
+
+
+
+参考：[API 配置 | Apache Dubbo](https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/reference-manual/config/api/api/)
+
+
+
+
+
+#### 读取配置文件
+
+可以使用java的properties，这里使用第三方工具hutool的setting模块
+
+参考：[设置文件-Setting | Hutool](https://doc.hutool.cn/pages/setting/example/#代码)
+
+
+
+一般情况，读取配置文件名称application。properties，还可以指定文件名称后缀来区分多环境，比如：application-prod.properties表示生产环境、application-test.properties表示测试环境
+
+
+
+### 开发实现
+
+#### 项目初始化
+
+（1）新增`rpc-core`模块，复用`rpc-system`代码
+
+（2）引入xml依赖，日志和单元测试
+
+`xiaofei.site-rpc`父级xml
+
+```xml
+<properties>
+        <logback-version>1.3.12</logback-version>
+        <junit-version>RELEASE</junit-version>
+    </properties>
+
+    <dependencyManagement>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit-version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+```
+
+`rpc-core`模块xml
+
+```xml
+<dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+```
+
+（3）将`rpc-consumer`和`rpc-provider`项目引入的rpc依赖`rpc-system`都替换为`rpc-core`
+
+```xml
+<dependency>
+            <groupId>xiaofei.site</groupId>
+            <artifactId>rpc-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+```
+
+#### 配置加载
+
+（1）在config包下新建配置类`RpcConfig`
+
+```java
+package site.xiaofei.config;
+
+import lombok.Data;
+
+/**
+ * @author tuaofei
+ * @description rpc框架配置
+ * @date 2024/10/20
+ */
+@Data
+public class RpcConfig {
+
+    /**
+     * 服务名称
+     */
+    private String name = "xaiofei.site-rpc";
+
+    /**
+     * 版本
+     */
+    private String version = "1.0.0";
+
+    /**
+     * 服务器主机名
+     */
+    private String serverHost = "localhost";
+
+    /**
+     * 服务器端口号
+     */
+    private Integer serverPort = 8080;
+}
+```
+
+(2)在utils包下新建工具类`ConfigUtils`，作用是读取配置文件并返回配置对象
+
+
+
+工具类尽量通用不和业务强绑定。比如支持要读取配置内容前缀，文件名后缀，传入环境...
+
+```java
+package site.xiaofei.utils;
+
+import cn.hutool.core.util.StrUtil;
+import cn.hutool.setting.dialect.Props;
+
+/**
+ * @author tuaofei
+ * @description 配置工具类
+ * @date 2024/10/20
+ */
+public class ConfigUtils {
+
+    /**
+     * 加载配置对象
+     *
+     * @param tClass
+     * @param prefix
+     * @param <T>
+     * @return
+     */
+    public static <T> T loadConfig(Class<T> tClass, String prefix) {
+        return loadConfig(tClass, prefix,"", "");
+    }
+
+    /**
+     * 加载配置对象，支持区分环境
+     *
+     * @param tClass
+     * @param prefix
+     * @param environment
+     * @param <T>
+     * @return
+     */
+    public static <T> T loadConfig(Class<T> tClass, String prefix, String fileSuffix, String environment) {
+        StringBuilder configFileBuilder = new StringBuilder("application");
+        if (StrUtil.isNotBlank(environment)) {
+            configFileBuilder.append("-").append(environment);
+        }
+        if (StrUtil.isNotBlank(fileSuffix)){
+            configFileBuilder.append(fileSuffix);
+        }else {
+            configFileBuilder.append(".properties");
+        }
+        Props props = new Props(configFileBuilder.toString());
+        return props.toBean(tClass, prefix);
+    }
+}
+```
+
+（3）在constant包中新建`RpcConstant`接口，用于存储rpc框架相关常量
+
+```java
+package site.xiaofei.constant;
+
+/**
+ * @author tuaofei
+ * @description Rpc相关常量
+ * @date 2024/10/20
+ */
+public interface RpcConstant {
+
+    /**
+     * 默认配置文件加载前缀
+     */
+    String DEFAULT_CONFIG_PREFIX = "rpc";
+}
+```
+
+可以读取到类似下面的配置
+
+```
+rpc.name=rpc-consumer
+rpc.version=1.0
+rpc.serverPort=8081
+```
+
+#### 维护全局配置对象
+
+在项目启动时，从配置文件读取配置并创建实例对象，之后就可以集中从这个配置对象获取信息，不用每次重新读取、并创建对象，减少性能开销
+
+
+
+使用单例模式
+
+
+
+一般会使用holder来维护全局配置对象实例，这里使用`RpcApplication`
+
+```java
+package site.xiaofei;
+
+import lombok.extern.slf4j.Slf4j;
+import site.xiaofei.config.RpcConfig;
+import site.xiaofei.constant.RpcConstant;
+import site.xiaofei.utils.ConfigUtils;
+
+/**
+ * @author tuaofei
+ * @description Rpc框架应用
+ * 相当于holder，存放全局变量。双检锁单例模式
+ * @date 2024/10/20
+ */
+@Slf4j
+public class RpcApplication {
+
+    private static volatile RpcConfig rpcConfig;
+
+    /**
+     * 框架初始化，支持传入自定义配置
+     *
+     * @param newRpcConfig
+     */
+    public static void init(RpcConfig newRpcConfig) {
+        rpcConfig = newRpcConfig;
+        log.info("rpc init,config = {}", newRpcConfig.toString());
+    }
+
+    /**
+     * 初始化
+     */
+    public static void init() {
+        RpcConfig newRpcConfig;
+        try {
+            newRpcConfig = ConfigUtils.loadConfig(RpcConfig.class, RpcConstant.DEFAULT_CONFIG_PREFIX);
+        } catch (Exception e) {
+            //配置记载失败，使用默认值
+            newRpcConfig = new RpcConfig();
+        }
+        init(newRpcConfig);
+    }
+
+    /**
+     * 获取配置
+     * 双重检查锁单例模式：单例模式最佳实践
+     * @return
+     */
+    public static RpcConfig getRpcConfig() {
+        if (rpcConfig == null) {
+            synchronized (RpcApplication.class) {
+                if (rpcConfig == null) {
+                    init();
+                }
+            }
+        }
+        return rpcConfig;
+    }
+
+}
+```
+
+上述代理就是双重检查锁单例模式的实现，支持在获取配置时才调用init方法实现懒加载。支持自己传入配置对象；如果没有，使用默认的加载配置
+
+```java
+RpcConfig rpcConfig = ConfigUtils.loadConfig(RpcConfig.class, "rpc");
+```
+
+### 测试
+
+#### 测试配置文件读取
+
+在`rpc-consumer`的resources目录创建配置文件`application.properties`
+
+```properties
+rpc.name=rpc-consumer
+rpc.version=1.0
+rpc.serverPort=8081
+```
+
+![image-20241020212214688](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241020212214688.png)
+
+创建`RpcConsumerEasyExample`，测试文件读取
+
+```java
+package site.xiaofei.consumer;
+
+import site.xiaofei.config.RpcConfig;
+import site.xiaofei.utils.ConfigUtils;
+
+/**
+ * @author tuaofei
+ * @description 简易服务消费者示例
+ * @date 2024/10/20
+ */
+public class RpcConsumerEasyExample {
+
+    public static void main(String[] args) {
+        RpcConfig rpcConfig = ConfigUtils.loadConfig(RpcConfig.class, "rpc");
+        System.out.println(rpcConfig);
+        
+    }
+}
+```
+
+#### 测试全局配置对象加载
+
+在`rpc-provider`创建`RpcProviderEasyExample`，能够根据配置动态在不同端口启动web服务
+
+```java'
+package site.xiaofei.provider;
+
+import site.xiaofei.RpcApplication;
+import site.xiaofei.common.service.UserService;
+import site.xiaofei.registry.LocalRegistry;
+import site.xiaofei.server.HttpServer;
+import site.xiaofei.server.VertxHttpServer;
+
+/**
+ * @author tuaofei
+ * @description 简易服务提供者示例
+ * @date 2024/10/20
+ */
+public class RpcProviderEasyExample {
+    public static void main(String[] args) {
+
+        //rpc框架初始化
+        RpcApplication.init();
+
+        //注册服务
+        LocalRegistry.register(UserService.class.getName(),UserServiceImpl.class);
+
+        //启动http服务
+        HttpServer vertxServer = new VertxHttpServer();
+        vertxServer.doStart(RpcApplication.getRpcConfig().getServerPort());
+    }
+
+}
+```
+
+### 扩展
+
+（1）支持读取application.yml、application.yml等不同格式的配置文件
+
+
+
+改造ConfigUtils的loadConfig方法，增加参数fileSuffix文件后缀
+
+```java
+public static <T> T loadConfig(Class<T> tClass, String fileSuffix, String prefix) {
+        return loadConfig(tClass, prefix, fileSuffix, "");
+    }
+
+public static <T> T loadConfig(Class<T> tClass, String prefix, String fileSuffix, String environment) {
+        StringBuilder configFileBuilder = new StringBuilder("application");
+        if (StrUtil.isNotBlank(environment)) {
+            configFileBuilder.append("-").append(environment);
+        }
+        if (StrUtil.isNotBlank(fileSuffix)) {
+            configFileBuilder.append(fileSuffix);
+        } else {
+            configFileBuilder.append(RpcConstant.DEFAULT_CONFIG_FILESUFFIX);
+        }
+        Props props = new Props(configFileBuilder.toString());
+        return props.toBean(tClass, prefix);
+    }
+```
+
+RpcConstant常量增加
+
+```java
+String DEFAULT_CONFIG_FILESUFFIX = ".properties";
+String CONFIG_YML_FILESUFFIX = ".yml";
+String CONFIG_YAML_FILESUFFIX = ".yaml";
+```
+
+（2）支持监听配置文件的变更，并自动更新配置对象（可使用props.autoLoad()）
+
+（3）配置文件支持中文（注意编码问题）
+
+（4）配置分组，后续配置增多，可以考虑对配置进行分组
+
