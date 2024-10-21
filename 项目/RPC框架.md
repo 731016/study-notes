@@ -1594,3 +1594,210 @@ String CONFIG_YAML_FILESUFFIX = ".yaml";
 
 （4）配置分组，后续配置增多，可以考虑对配置进行分组
 
+
+
+## 接口mock
+
+模拟接口对象，用于测试开发使用
+
+
+
+通过动态代理创建一个调用方法时返回固定值的对象
+
+
+
+### 开发实现
+
+（1）支持通过修改配置文件的方式开启mock，修改全局配置类`RpcConfig`
+
+```java
+@Data
+public class RpcConfig {
+
+   ...
+
+    /**
+     * 模拟调用
+     */
+    private boolean mock = false;
+}
+```
+
+(2)在proxy包下新增`MockServiceProxy`类，用于生成mock代理服务
+
+```java
+package site.xiaofei.proxy;
+
+import lombok.extern.slf4j.Slf4j;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+
+/**
+ * @author tuaofei
+ * @description Mock服务代理（jdk动态代理）
+ * @date 2024/10/21
+ */
+@Slf4j
+public class MockServiceProxy implements InvocationHandler {
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        Class<?> methodReturnType = method.getReturnType();
+        log.info("mock invoke {}", method.getName());
+        return getDefaultObject(methodReturnType);
+    }
+
+    private Object getDefaultObject(Class<?> returnType) {
+        //基本类型
+        if (returnType == boolean.class) {
+            return false;
+        } else if (returnType == short.class) {
+            return (short) 0;
+        } else if (returnType == int.class) {
+            return 0;
+        } else if (returnType == long.class) {
+            return 0L;
+        }
+        return null;
+    }
+}
+```
+
+通过getDefaultObject方法，根据代理接口的class返回不同的默认值
+
+
+
+（3）给`ServiceProxyFactory`服务代理工厂新增获取mock代理对象的方法`getMockProxy`。通过读取已定义的全局配置mock开区分创建哪种代理对象
+
+```java
+package site.xiaofei.proxy;
+
+import site.xiaofei.RpcApplication;
+
+import java.lang.reflect.Proxy;
+
+/**
+ * @author tuaofei
+ * @description 服务代理工厂（用于创建代理对象）
+ * @date 2024/10/18
+ */
+public class ServiceProxyFactory {
+
+    public static <T> T getProxy(Class<T> serviceClass) {
+        if (RpcApplication.getRpcConfig().isMock()){
+            return getMockProxy(serviceClass);
+        }
+        
+        return (T) Proxy.newProxyInstance(
+                serviceClass.getClassLoader(),
+                new Class[]{serviceClass},
+                new ServiceProxy()
+        );
+    }
+
+    /**
+     * 根据服务获取mock代理对象
+     * @param serviceClass
+     * @param <T>
+     * @return
+     */
+    public static <T> T getMockProxy(Class<T> serviceClass){
+        return (T) Proxy.newProxyInstance(
+                serviceClass.getClassLoader(),
+                new Class[]{serviceClass},
+                new MockServiceProxy()
+        );
+    }
+}
+```
+
+### 测试
+
+（1）在`rpc-common`公共模块的UserService中新增一个默认实现的方法
+
+```java
+package site.xiaofei.common.service;
+
+import site.xiaofei.common.model.User;
+
+/**
+ * @author tuaofei
+ * @description TODO
+ * @date 2024/10/17
+ */
+public interface UserService {
+
+    /**
+     * 获取用户
+     * @param user
+     * @return
+     */
+    User getUser(User user);
+
+    /**
+     * 获取数字
+     * @return
+     */
+    default short getNumber(){
+        return 1;
+    }
+}
+```
+
+（2）修改服务消费者的配置文件`application.properties`，将mock设置为true
+
+```java
+rpc.name=rpc-consumer
+rpc.version=1.0
+rpc.serverPort=8082
+rpc.mock=true
+```
+
+(3)修改`RpcConsumerExample`类，编写调用`userService.getNumber`测试
+
+```java
+public class RpcConsumerExample {
+
+    public static void main(String[] args) {
+        //静态代理
+//        UserService userService = new UserServiceProxy();
+        //jdk动态代理
+        UserService userService = ServiceProxyFactory.getProxy(UserService.class);
+
+        User user = new User();
+        user.setName("土澳菲");
+        User resultUser = userService.getUser(user);
+        if (resultUser != null){
+            System.out.println(resultUser.getName());
+        }else{
+            System.out.println("user is null!");
+        }
+        short number = userService.getNumber();
+        System.out.println(number);
+    }
+}
+```
+
+应该能看到输出结果为0，不是1，说明调用了MockServiceProxy模拟服务代理
+
+
+
+> 注意rpc-core的ServiceProxy服务代理的HttpRequest.post地址需要修改为获取配置文件的地址
+
+```java
+//地址需要使用注册中心和服务发现机制解决
+            RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+            if (rpcConfig == null){
+                throw new RuntimeException("get rpcConfig error");
+            }
+            String remoteUrl = String.format("http://%s:%s", rpcConfig.getServerHost(), rpcConfig.getServerPort());
+            HttpResponse httpResponse = HttpRequest.post(remoteUrl)
+                    .body(bodyBytes)
+                    .execute();
+```
+
+
+
+### 扩展
+
+完善mock的逻辑，支持更多返回类型的默认值生成（faker伪造数据生成库，生成默认值）
