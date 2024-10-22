@@ -4,6 +4,10 @@ RPC：远程过程调用，简化调用
 
 
 
+编程导航：https://www.codefather.cn/course/1768543954720022530
+
+代码地址：https://github.com/731016/xiaofei.site-rpc
+
 ### 基本设计
 
 
@@ -1801,3 +1805,248 @@ public class RpcConsumerExample {
 ### 扩展
 
 完善mock的逻辑，支持更多返回类型的默认值生成（faker伪造数据生成库，生成默认值）
+
+
+
+## 序列化器和SPI机制
+
+通过前面使用的Jdk序列化器，对于一个完善的RPC框架，还需要考虑
+1.是否有更好的序列化器实现方式？
+
+2.怎么让使用框架的开发者指定使用的序列化器？
+
+3.怎么让使用框架的开发者定制自己的序列化器？
+
+
+
+### 设计方案
+
+
+
+主流序列化方式对比
+
+| 序列化方式            | 介绍                                     | 优点                                                         | 缺点                                                         |
+| --------------------- | ---------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| JSON（此教程实现）    |                                          | 可读性强，便于理解和调试<br />跨语言支持广泛，几乎所有编程语言都用JSON的解析和生成库 | 序列化后的数据量相对较大，因为JSON使用文本格式存储数据，需要额外的字符表示键值和数据结构<br />不能很好地处理复杂的数结构和循环引用，可能导致性能下降或者序列化失败 |
+| Hessian（此教程实现） | https://hessian.caucho.com/              | 二进制序列化，序列后的数据量较小，网络传输效率高<br />支持跨语言，适用于分布式系统中的服务调用 | 性能较`JSON`略低，因为需要将对象转换为二进制格式<br />对象必须实现`Serializable`接口，限制了可序列化的对象范围 |
+| Kryo（此教程实现）    | https://github.com/EsotericSoftware/kryo | 高性能，序列化和反序列化速度快<br />支持循环引用和自定义序列化器，适用于复杂的对象结构<br />无需实现`Serializable`接口，可序列化任意对象 | 不夸语言，只适用于`java`<br />对象的序列化格式不够友好，不易懂，不便于调试 |
+| Protobuf              |                                          | 高效的二进制序列化，序列化后的数据量极小<br />支持跨语言，并且提供多语言的实现库<br />支持版本化和向前/向后兼容性 | 配置相对复杂，需要先定义数据结构的消息格式<br />对象的序列化格式不易懂，不便于调试 |
+
+### 动态使用序列化器
+
+之前使用的硬编码
+
+```java
+//指定序列化器
+JdkSerializer serializer = new JdkSerializer();
+```
+
+可以通过配置文件来指定使用的序列化器。在使用序列化器时，根据配置来获取不同的序列化器实例
+
+
+
+参考Dubbo替换序列化协议：https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/reference-manual/serialization/hessian/
+
+
+
+可以定义一个MAP<序列化器名称,序列化器实现类对象>，根据配置文件获取名称来查询对于的实例
+
+### 自定义序列化器
+
+如果不想使用框架的序列化器，想自己定义，怎么办？
+
+
+
+RPC框架读取用户自定义的类路径，加载这个类，作为Serializer序列化器接口的实现
+
+
+
+引入java中的重要特性：**SPI机制**
+
+
+
+**什么是SPI？**
+
+service provider interface 服务提供接口，用于实现模块化开发和插件化扩展
+
+
+
+SPI机制允许服务提供者通过特定的配置文件将自己的实现注册到系统中，通过反射机制动态加载这些实现，不需要修改原始框架代码，实现系统的解耦，提高了可扩展性
+
+例如：JDBC连接数据库，不同的数据库驱动开发者可以使用JDBS库，定制自己的数据库驱动
+
+主流的开发框架，几乎都使用了，servlet容器、日志框架、ORM框架、Spring框架
+
+
+
+**如何实现SPI？**
+
+
+
+#### 系统实现
+
+java内部提供了SPI机制相关的API接口，可以直接使用
+
+（1）在`resources`资源目录下创建`META-INF/services`目录，并创建一个名称为要实现的接口的空文件
+
+![image-20241022215151394](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241022215151394.png)
+
+（2）在文件中填写定制接口实现类的**完整类路径**
+
+![image-20241022215306513](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241022215306513.png)
+
+（3）使用系统内置的`ServiceLoader`动态加载指定接口的实现类
+
+```java
+//指定序列化器
+        Serializer serializer = null;
+        ServiceLoader<Serializer> serviceLoader = ServiceLoader.load(Serializer.class);
+        for (Serializer service : serviceLoader) {
+            serializer = service;
+        }
+```
+
+
+
+#### 自定义SPI实现
+
+如果想定制多个不同的接口实现类，就不能指定使用哪一个了
+
+
+
+需要定义SPI机制的实现，只要能够根据配置加载到类
+
+
+
+读取配置文件，得到`序列化器名称 -> 序列化器实现类对象` 映射,根据配置的序列化器名称加载指定实现类对象
+
+```
+jdk=site.xiaofei.serializer.JdkSerializer
+hessian=site.xiaofei.serializer.HessianSerializer
+kryo=site.xiaofei.serializer.KryoSerializer
+json=site.xiaofei.serializer.JsonSerializer
+```
+
+### 开发实现
+
+#### 多种序列化器实现
+
+(1)给`rpc-core`模块，pom.xml引入依赖
+
+```xml
+<!--        序列化-->
+        <dependency>
+            <groupId>com.caucho</groupId>
+            <artifactId>hessian</artifactId>
+            <version>4.0.66</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.esotericsoftware/kryo -->
+        <dependency>
+            <groupId>com.esotericsoftware</groupId>
+            <artifactId>kryo</artifactId>
+            <version>5.6.0</version>
+        </dependency>
+<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.18.0</version>
+        </dependency>
+```
+
+(2)在 `serializer`下实现各自的序列化器
+
+
+
+##### JSON序列化器
+
+JSON序列化器实现相对复杂，需要考虑对象转换兼容问题，比如object数组在序列化后会丢失类型
+
+```java
+package site.xiaofei.serializer;
+
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import site.xiaofei.model.RpcRequest;
+import site.xiaofei.model.RpcResponse;
+
+import java.io.IOException;
+
+/**
+ * @author tuaofei
+ * @description json序列化器
+ * @date 2024/10/22
+ */
+public class JsonSerializer implements Serializer {
+
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
+    @Override
+    public <T> byte[] serializer(T object) throws IOException {
+        return OBJECT_MAPPER.writeValueAsBytes(object);
+    }
+
+    @Override
+    public <T> T deserializer(byte[] bytes, Class<T> classType) throws IOException {
+        T obj = OBJECT_MAPPER.readValue(bytes, classType);
+        if (obj instanceof RpcRequest) {
+            return handleRequest((RpcRequest) obj, classType);
+        }
+        if (obj instanceof RpcResponse) {
+            return handleResponse((RpcResponse) obj, classType);
+        }
+        return OBJECT_MAPPER.readValue(bytes, classType);
+    }
+
+    /**
+     * 由于Object的原始对象会被擦除，导致反序列化时会被作为linkedhashmap无法转换为原始对象，所以在这做特殊处理
+     *
+     * @param rpcRequest
+     * @param type
+     * @param <T>
+     * @return
+     * @throws IOException
+     */
+    private <T> T handleRequest(RpcRequest rpcRequest, Class<T> type) throws IOException {
+        Class<?>[] paramTypes = rpcRequest.getParamTypes();
+        Object[] args = rpcRequest.getArgs();
+
+        //循环处理每个参数的类型
+        for (int i = 0; i < paramTypes.length; i++) {
+            Class<?> clazz = paramTypes[i];
+            //如果类型不同，重新处理一下
+            if (!clazz.isAssignableFrom(args[i].getClass())) {
+                byte[] argBytes = OBJECT_MAPPER.writeValueAsBytes(args[i]);
+                args[i] = OBJECT_MAPPER.readValue(argBytes, clazz);
+            }
+        }
+        return type.cast(rpcRequest);
+    }
+
+    /**
+     * 由于Object的原始对象会被擦除，导致反序列化时会被作为linkedhashmap无法转换为原始对象，所以在这做特殊处理
+     *
+     * @param rpcResponse
+     * @param type
+     * @param <T>
+     * @return
+     * @throws IOException
+     */
+    private <T> T handleResponse(RpcResponse rpcResponse, Class<T> type) throws IOException {
+        //处理响应数据
+        byte[] bytes = OBJECT_MAPPER.writeValueAsBytes(rpcResponse.getData());
+        rpcResponse.setData(OBJECT_MAPPER.readValue(bytes, rpcResponse.getDataType()));
+        return type.cast(rpcResponse);
+    }
+}
+```
+
+##### kryo序列化器
+
+kryo本身是线程不安全的，所以使用ThreadLocal保证每个线程有一个单独的Kryo对象实例
+
+```java
+
+```
+
