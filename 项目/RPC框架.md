@@ -2593,3 +2593,221 @@ Etcd核心数据结构包括
 
 ##### Etcd如何保证数据一致性？
 
+从表层看，Etcd支持事务操作，能够保证数据一致性
+
+从底层看，Etcd使用Raft一致性算法来保证数据的一致性
+
+
+
+Raft是一种分布式一致性算法，它确保了分布式系统中的所有节点在任何时间点都能达成一致的数据视图
+
+
+
+Raft算法通过选举出一个领导者节点，领导者负责接收客户端的写请求，并将写操作复制在其它节点上。当客户端发送写请求时，领导者先将写操作写入自己的日志，并将写操作的日志条目分发给其他节点，其它节点收到日志后也将其写入自己的日志中。一旦**超过半数以上的节点**都将该日志条目成功写入到自己的日志中，改日志即被视为已提交，领导者会向客户端发生成功响应。在领导者发送成功响应后，该写操作就被视为已提交，从而保证数据一致性
+
+
+
+如果领导者节点宕机或失去联系，Raft算法会在其他节点中**选举出新的领导者**,从而保证系统的可用性和一致性，新的领导者会继续接收客户端的写请求，并负责将写操作复制到其它节点上，从而保持数据的一致性
+
+
+
+playground地址：http://play.etcd.io/play
+
+
+
+尝试停止主节点，其余节点为从节点
+
+![image-20241025224149446](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241025224149446.png)
+
+发现主节点挂掉后，并没有新的从节点成为主节点，因为还剩2个节点，一人一票，说都不服谁！这种现象也称为“脑裂”
+
+![image-20241025224405406](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241025224405406.png)
+
+然后我们启动node4，会发现node3成为了主节点
+
+![image-20241025224441162](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241025224441162.png)
+
+
+
+##### Etcd安装
+
+下载：https://github.com/etcd-io/etcd/releases
+
+
+
+安装完成，会得到3个版本
+
+etcd：etcd服务本身
+
+etcdctl：客户端，用于操作etcd服务
+
+etcducl：备份恢复工具
+
+
+
+执行etcd脚本后，可以启动etcd服务，服务默认占用2379和2380端口
+
+2379：提供http api服务，和etcdctl交互
+
+2380：集群中节点间通讯
+
+
+
+![image-20241025225225094](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241025225225094.png)
+
+##### etcd可视化工具
+
+etcdkeeper（推荐）：https://github.com/evildecay/etcdkeeper/
+
+kstone：https://github.com/kstone-io/kstone/tree/master/charts
+
+
+
+![image-20241025225347183](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241025225347183.png)
+
+默认启动端口8080，可修改
+
+```cmd
+./etcdkeeper -p 8081
+```
+
+![image-20241025225550871](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241025225550871.png)
+
+
+
+##### etcd java客户端
+
+jetcd：https://github.com/etcd-io/jetcd
+
+
+
+> 注意：java版面必须大于11！
+
+
+
+（1）引入jetcd依赖
+
+```xml
+<!-- https://mvnrepository.com/artifact/io.etcd/jetcd-core -->
+        <dependency>
+            <groupId>io.etcd</groupId>
+            <artifactId>jetcd-core</artifactId>
+            <version>0.7.7</version>
+        </dependency>
+```
+
+(2)示例demo
+
+```java
+package site.xiaofei.registry;
+
+import io.etcd.jetcd.*;
+import io.etcd.jetcd.kv.GetResponse;
+
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
+/**
+ * @author tuaofei
+ * @description TODO
+ * @date 2024/10/25
+ */
+public class EtcdRegistry {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        /// create client using endpoints
+        Client client = Client.builder().endpoints("http://localhost:2379").build();
+
+        KV kvClient = client.getKVClient();
+        ByteSequence key = ByteSequence.from("test_key".getBytes());
+        ByteSequence value = ByteSequence.from("test_value".getBytes());
+
+// put the key-value
+        kvClient.put(key, value).get();
+
+// get the CompletableFuture
+        CompletableFuture<GetResponse> getFuture = kvClient.get(key);
+
+// get the value from CompletableFuture
+        GetResponse response = getFuture.get();
+        List<KeyValue> kvs = response.getKvs();
+        System.out.println(kvs);
+
+// delete the key
+//        kvClient.delete(key).get();
+
+        Lease leaseClient = client.getLeaseClient();
+//        leaseClient.keepAlive()
+
+
+        Watch watchClient = client.getWatchClient();
+        watchClient.watch(ByteSequence.from("test_key".getBytes()),(item)->{
+            System.out.println("key:test_key,发生变化");
+            System.out.println(item);
+        });
+
+        kvClient.delete(key).get();
+
+    }
+}
+```
+
+常用客户端和作用
+
+1.**kvclient**：用于对etcd中的键值对进行操作。通过kvclient可以进行设置值、获取值、删除值、列出目录等操作
+
+2.**leaseclient**：用于管理etcd的租约机制。租约是etcd中的一种时间片，用于为键值对分配生存时间，并在租约到期时自动删除相关的键值对。通过leaseclient可以创建、获取、续约和撤销租约
+
+3.**watchclient**：用于监视etcd中键的变化，并在键的值变化时接收通知
+
+4.clusterclient：用于etcd集群进行交互，包括添加、移除、列出成员、设置选举、获取集群的健康状态、获取成员列表信息等操作
+
+5.authclient：用于管理etcd的身份验证和授权。通过authclient可以添加、删除、列出用户、角色等身份信息，以及授予或撤销用户或角色的权限
+
+6.maintenanceclient:用于执行etcd的维护操作，如健康检查、数据库备份、成员维护、数据库快照、数据库压缩等
+
+7.lockclient：用于实现分布式锁功能，通过lockclient可以在etcd上创建、获取、释放锁，能够轻松实现并发控制
+
+8.electionclient：用于实现分布式选举功能，可以在etcd上创建选举、提交选票、监视选举结果等
+
+
+
+一般使用前3个就足够了
+
+
+
+etcd的数据结构
+
+```
+key: "test_key"
+create_revision: 21
+mod_revision: 21
+version: 1
+value: "test_value"
+```
+
+
+
+删除时，触发操作
+
+```
+key:test_key,发生变化
+header {
+  cluster_id: 14841639068965178418
+  member_id: 10276657743932975437
+  revision: 22
+  raft_term: 2
+}
+events {
+  type: DELETE
+  kv {
+    key: "test_key"
+    mod_revision: 22
+  }
+}
+```
+
+
+
+#### 存储结构设计
+
