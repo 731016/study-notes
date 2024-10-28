@@ -2811,3 +2811,448 @@ events {
 
 #### 存储结构设计
 
+1.key如何设计？
+
+2.value如何设计？
+3.key什么时候过期？
+
+
+
+由于一个服务可能有多个服务提供者，可以设计两种结构
+
+（1）层级结构
+
+key规则：`/业务前缀/服务名/服务节点地址`
+
+![image-20241028212957188](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241028212957188.png)
+
+（2）列表结构。所有服务节点以列表形式整体作为value
+
+![image-20241028213100575](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241028213100575.png)
+
+选择哪种存储结构？
+
+对于zookeeper和etcd支持层级查询中间件，使用第一种结构更清晰
+
+对于redis，本身支持列表结构，可以选择第二种
+
+要给key设置过期时间，如果服务提供者宕机了，也能超时自动移除
+
+
+
+## 开发实现
+
+### 注册中心开发
+
+#### (1)注册信息定义
+
+在model下新建`ServiceMetaInfo`类，封装服务的注册信息，包含服务名称、服务版本号、服务地址、服务分组
+
+新建一些工具方法，就可以查询对应版本和分组的服务
+
+```java
+package site.xiaofei.model;
+
+import site.xiaofei.constant.RpcConstant;
+
+/**
+ * @author tuaofei
+ * @description 服务元信息（注册信息）
+ * @date 2024/10/28
+ */
+public class ServiceMetaInfo {
+
+    /**
+     * 服务名称
+     */
+    private String serviceName;
+
+    /**
+     * 服务版本号
+     */
+    private String serviceVersion = RpcConstant.DEFAULT_SERVICE_VERSION;
+
+    /**
+     * 服务域名
+     */
+    private String serviceHost;
+
+    /**
+     * 服务端口号
+     */
+    private Integer servicePost;
+
+    /**
+     * 服务分组（暂未实现）
+     */
+    private String serviceGroup = "default";
+
+    /**
+     * 获取服务键名
+     *
+     * @return
+     */
+    public String getServiceKey() {
+        //后续可扩展服务分组
+//        return String.format("%s:%s",serviceName,serviceVersion,serviceGroup);
+        return String.format("%s:%s", serviceName, serviceVersion);
+    }
+
+    /**
+     * 获取服务注册节点键名
+     *
+     * @return
+     */
+    public String getServiceNodeKey() {
+        return String.format("%s/%s:%s", getServiceKey(), serviceHost, servicePost);
+    }
+}
+```
+
+注册信息包含服务版本号，把他定义为常量，默认值“1.0”
+
+```java
+public interface RpcConstant {
+
+    /**
+     * 默认配置文件加载前缀
+     */
+    String DEFAULT_CONFIG_PREFIX = "rpc";
+
+    /**
+     * 默认服务版本
+     */
+    String DEFAULT_SERVICE_VERSION = "1.0";
+    
+    ...
+}
+```
+
+在`RpcRequest`请求类中使用
+
+```java
+package site.xiaofei.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import site.xiaofei.constant.RpcConstant;
+
+import java.io.Serializable;
+
+/**
+ * @author tuaofei
+ * @description Rpc请求
+ * @date 2024/10/17
+ */
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class RpcRequest implements Serializable {
+
+    /**
+     * 服务名称
+     */
+    private String serviceName;
+
+    /**
+     * 方法名称
+     */
+    private String methodName;
+
+    /**
+     * 服务版本
+     */
+    private String serviceVersion = RpcConstant.DEFAULT_SERVICE_VERSION;
+
+    /**
+     * 参数类型列表
+     */
+    private Class<?>[] paramTypes;
+
+    /**
+     * 参数列表
+     */
+    private Object[] args;
+
+}
+```
+
+#### (2)注册中心配置
+
+在config下创建注册中心配置类`RegistryConfig`，让用户配置连接注册中心需要的信息，包含注册中心类别、注册中心地址、用户名、密码、超时时间
+
+````java
+package site.xiaofei.config;
+
+import lombok.Data;
+
+/**
+ * @author tuaofei
+ * @description Rpc框架注册中心配置
+ * @date 2024/10/28
+ */
+@Data
+public class RegistryConfig {
+
+    /**
+     * 注册中心类别
+     */
+    private String registry = "etcd";
+
+    /**
+     * 注册中心地址
+     */
+    private String address = "http://localhost:2380";
+
+    /**
+     * 用户名
+     */
+    private String username;
+
+    /**
+     * 密码
+     */
+    private String password;
+
+    /**
+     * 超时时间，毫秒
+     */
+    private Long timeout = 10000L;
+}
+````
+
+`RpcConfig`全局配置补充注册中心配置
+
+```java
+package site.xiaofei.config;
+
+import lombok.Data;
+import site.xiaofei.serializer.SerializerKeys;
+
+/**
+ * @author tuaofei
+ * @description rpc框架配置
+ * @date 2024/10/20
+ */
+@Data
+public class RpcConfig {
+
+    ...
+
+    /**
+     * 注册中心配置
+     */
+    private RegistryConfig registryConfig = new RegistryConfig();
+}
+```
+
+#### (3)注册中心接口
+
+可扩展配置，实现多种注册中心，使用SPI机制动态加载
+
+
+
+提供初始化、注册服务、注销服务、服务发现（获取服务列表）、服务销毁
+
+
+
+```java
+package site.xiaofei.registry;
+
+import site.xiaofei.config.RegistryConfig;
+import site.xiaofei.model.ServiceMetaInfo;
+
+import java.util.List;
+
+/**
+ * @author tuaofei
+ * @description 注册中心
+ * @date 2024/10/28
+ */
+public interface Registry {
+
+    /**
+     * 初始化
+     * @param registryConfig
+     */
+    void init(RegistryConfig registryConfig);
+
+    /**
+     * 注册服务（服务端）
+     * @param serviceMetaInfo
+     */
+    void register(ServiceMetaInfo serviceMetaInfo);
+
+    /**
+     * 注销服务（服务端）
+     * @param serviceMetaInfo
+     */
+    void unRegister(ServiceMetaInfo serviceMetaInfo);
+
+    /**
+     * 服务发现（获取某服务的所有节点，消费端）
+     * @param serviceKey
+     * @return
+     */
+    List<ServiceMetaInfo> serviceDiscovery(String serviceKey);
+
+    /**
+     * 服务销毁
+     */
+    void destroy();
+}
+```
+
+
+
+#### (4)Etcd注册中心实现
+
+在registry目录下新建``类，实现注册中心接口，先完成初始化方法，读取注册中心配置并初始化客户端对象
+
+```java
+package site.xiaofei.registry;
+
+import cn.hutool.json.JSONUtil;
+import io.etcd.jetcd.*;
+import io.etcd.jetcd.kv.GetResponse;
+import site.xiaofei.config.RegistryConfig;
+import site.xiaofei.model.ServiceMetaInfo;
+
+import java.time.Duration;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
+/**
+ * @author tuaofei
+ * @description TODO
+ * @date 2024/10/25
+ */
+public class EtcdRegistry implements Registry{
+
+    private Client client;
+
+    private KV kvClient;
+
+    /**
+     * 根节点
+     */
+    private static final String ETCD_ROOT_PATH = "/rpc/";
+
+    @Override
+    public void init(RegistryConfig registryConfig) {
+        Client.builder()
+                .endpoints(registryConfig.getAddress())
+                .connectTimeout(Duration.ofMillis(registryConfig.getTimeout()))
+                .build();
+        kvClient = client.getKVClient();
+    }
+
+    @Override
+    public void register(ServiceMetaInfo serviceMetaInfo) {
+        //创建 lease和kv客户端
+    }
+
+    @Override
+    public void unRegister(ServiceMetaInfo serviceMetaInfo) {
+
+    }
+
+    @Override
+    public List<ServiceMetaInfo> serviceDiscovery(String serviceKey) {
+        return null;
+    }
+
+    @Override
+    public void destroy() {
+
+    }
+}
+```
+
+
+
+上述代码，定义的etcd键存储的根路径为/rpc/，为了区分不同项目
+
+
+
+服务注册，创建key并设置过期时间，value为服务注册信息的JSON序列化
+
+```java
+@Override
+    public void register(ServiceMetaInfo serviceMetaInfo) throws ExecutionException, InterruptedException {
+        //创建 lease和kv客户端
+        Lease leaseClient = client.getLeaseClient();
+
+        //创建一个30s的租约
+        long leaseId = leaseClient.grant(30).get().getID();
+
+        //设置要存储的键值对
+        String registryKey = ETCD_ROOT_PATH + serviceMetaInfo.getServiceNodeKey();
+        ByteSequence key = ByteSequence.from(registryKey, StandardCharsets.UTF_8);
+        ByteSequence value = ByteSequence.from(JSONUtil.toJsonStr(serviceMetaInfo), StandardCharsets.UTF_8);
+
+        //将键值对与租约关联起来，并设置过期时间
+        PutOption putOption = PutOption.builder().withLeaseId(leaseId).build();
+        kvClient.put(key, value, putOption).get();
+    }
+```
+
+服务注销，删除key
+
+```java
+@Override
+    public void unRegister(ServiceMetaInfo serviceMetaInfo) {
+        kvClient.delete(ByteSequence.from(ETCD_ROOT_PATH + serviceMetaInfo.getServiceNodeKey(), StandardCharsets.UTF_8));
+    }
+```
+
+服务发现，根据服务名称作为前缀，从etcd获取服务下的节点列表
+
+```java
+@Override
+    public List<ServiceMetaInfo> serviceDiscovery(String serviceKey) {
+        //前缀搜索，结尾一定要加‘/’
+        String searchPrefix = ETCD_ROOT_PATH + "/";
+
+        try {
+            //前缀搜索
+            GetOption getOption = GetOption.builder().isPrefix(true).build();
+            List<KeyValue> keyValues = kvClient.get(ByteSequence.from(searchPrefix, StandardCharsets.UTF_8), getOption).get().getKvs();
+            //解析服务信息
+            return keyValues.stream()
+                    .map(keyValue -> {
+                        String value = keyValue.getValue().toString(StandardCharsets.UTF_8);
+                        return JSONUtil.toBean(value, ServiceMetaInfo.class);
+                    }).collect(Collectors.toList());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            throw new RuntimeException("获取服务列表失败", e);
+        }
+        return null;
+    }
+```
+
+注册中心销毁，关闭项目后释放资源
+
+```java
+@Override
+    public void destroy() {
+        log.warn("当前节点下线");
+        //释放资源
+        if (kvClient != null){
+            kvClient.close();
+        }
+        if (client != null){
+            client.close();
+        }
+    }
+```
+
+
+
+### 支持配置和扩展注册中心
