@@ -2840,11 +2840,11 @@ key规则：`/业务前缀/服务名/服务节点地址`
 
 
 
-## 开发实现
+### 开发实现
 
-### 注册中心开发
+#### 注册中心开发
 
-#### (1)注册信息定义
+##### (1)注册信息定义
 
 在model下新建`ServiceMetaInfo`类，封装服务的注册信息，包含服务名称、服务版本号、服务地址、服务分组
 
@@ -2980,7 +2980,7 @@ public class RpcRequest implements Serializable {
 }
 ```
 
-#### (2)注册中心配置
+##### (2)注册中心配置
 
 在config下创建注册中心配置类`RegistryConfig`，让用户配置连接注册中心需要的信息，包含注册中心类别、注册中心地址、用户名、密码、超时时间
 
@@ -3049,7 +3049,7 @@ public class RpcConfig {
 }
 ```
 
-#### (3)注册中心接口
+##### (3)注册中心接口
 
 可扩展配置，实现多种注册中心，使用SPI机制动态加载
 
@@ -3108,7 +3108,7 @@ public interface Registry {
 
 
 
-#### (4)Etcd注册中心实现
+##### (4)Etcd注册中心实现
 
 在registry目录下新建`EtcdRegistry`类，实现注册中心接口，先完成初始化方法，读取注册中心配置并初始化客户端对象
 
@@ -3439,9 +3439,9 @@ public class ServiceProxy implements InvocationHandler {
 
 
 
-## 测试
+### 测试
 
-### 注册中心测试
+#### 注册中心测试
 
 验证注册中心能否正常完成服务注册、注销、服务发现
 
@@ -3529,7 +3529,7 @@ public class RegistryTest {
 
 **遇到的问题**
 
-#### 1.注销服务无法删除
+##### 1.注销服务无法删除
 
 修改EtcdRegistry的unRegister方法kvClient.delete()改为kvClient.delete().get()
 
@@ -3537,7 +3537,7 @@ public class RegistryTest {
 kvClient.delete(ByteSequence.from(ETCD_ROOT_PATH + serviceMetaInfo.getServiceNodeKey(), StandardCharsets.UTF_8)).get();
 ```
 
-#### 2.获取所有服务获取不到
+##### 2.获取所有服务获取不到
 
 测试去掉/,实测都可以获取到
 
@@ -3548,7 +3548,7 @@ String searchPrefix = ETCD_ROOT_PATH + serviceKey + "/";
 
 
 
-### 完成流程测试
+#### 完成流程测试
 
 在`rpc-provider`新增服务提供者示例，需要初始化rpc框架并且将服务手动注册到注册中心
 
