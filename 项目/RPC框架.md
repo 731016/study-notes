@@ -3110,7 +3110,7 @@ public interface Registry {
 
 #### (4)Etcd注册中心实现
 
-在registry目录下新建``类，实现注册中心接口，先完成初始化方法，读取注册中心配置并初始化客户端对象
+在registry目录下新建`EtcdRegistry`类，实现注册中心接口，先完成初始化方法，读取注册中心配置并初始化客户端对象
 
 ```java
 package site.xiaofei.registry;
@@ -3144,31 +3144,11 @@ public class EtcdRegistry implements Registry{
 
     @Override
     public void init(RegistryConfig registryConfig) {
-        Client.builder()
+        client = Client.builder()
                 .endpoints(registryConfig.getAddress())
                 .connectTimeout(Duration.ofMillis(registryConfig.getTimeout()))
                 .build();
         kvClient = client.getKVClient();
-    }
-
-    @Override
-    public void register(ServiceMetaInfo serviceMetaInfo) {
-        //创建 lease和kv客户端
-    }
-
-    @Override
-    public void unRegister(ServiceMetaInfo serviceMetaInfo) {
-
-    }
-
-    @Override
-    public List<ServiceMetaInfo> serviceDiscovery(String serviceKey) {
-        return null;
-    }
-
-    @Override
-    public void destroy() {
-
     }
 }
 ```
@@ -3205,8 +3185,8 @@ public class EtcdRegistry implements Registry{
 
 ```java
 @Override
-    public void unRegister(ServiceMetaInfo serviceMetaInfo) {
-        kvClient.delete(ByteSequence.from(ETCD_ROOT_PATH + serviceMetaInfo.getServiceNodeKey(), StandardCharsets.UTF_8));
+    public void unRegister(ServiceMetaInfo serviceMetaInfo) throws ExecutionException, InterruptedException {
+        kvClient.delete(ByteSequence.from(ETCD_ROOT_PATH + serviceMetaInfo.getServiceNodeKey(), StandardCharsets.UTF_8)).get();
     }
 ```
 
@@ -3256,3 +3236,388 @@ public class EtcdRegistry implements Registry{
 
 
 ### 支持配置和扩展注册中心
+
+
+
+支持开发者指定和自定义注册中心，使用工厂创建对象、spi动态加载自定义的注册中心
+
+
+
+(1)注册中心常量
+
+在registry包下创建常量`RegistryKeys`
+
+```java
+package site.xiaofei.registry;
+
+/**
+ * @author tuaofei
+ * @description 注册中心key常量
+ * @date 2024/10/30
+ */
+public interface RegistryKeys {
+
+    String ETCD = "etcd";
+
+    String ZOOKEEPER = "zookeeper";
+}
+```
+
+(2)使用工厂模式，支持根据key从SPI获取配置中心对象实例
+
+在registry包下新建`RegistryFactory`类
+
+```java
+package site.xiaofei.registry;
+
+import site.xiaofei.utils.SpiLoader;
+
+/**
+ * @author tuaofei
+ * @description 注册中心工厂（用于获取注册中心对象）
+ * @date 2024/10/30
+ */
+public class RegistryFactory {
+
+    static {
+        SpiLoader.load(Registry.class);
+    }
+
+    /**
+     * 默认注册中心
+     */
+    private static final Registry DEFAULT_REGISTRY = new EtcdRegistry();
+
+    /**
+     * 获取实例
+     *
+     * @param key
+     * @return
+     */
+    public static Registry getInstance(String key) {
+        return SpiLoader.getInstance(Registry.class, key);
+    }
+}
+```
+
+（3）在`META-INF`的`rpc/system`目录下编写注册中心接口的SPI配置文件，文件名称为`site.xiaofei.registry.Registry`
+
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241030205213160.png" alt="image-20241030205213160" style="zoom: 80%;" />
+
+```
+etcd=site.xiaofei.registry.EtcdRegistry
+```
+
+
+
+（4）初始化启动流程，服务提供者和消费者都需要和注册中心建立连接，初始化流程放在`RpcApplication`类
+
+修改init方法
+
+```java
+/**
+     * 框架初始化，支持传入自定义配置
+     *
+     * @param newRpcConfig
+     */
+    public static void init(RpcConfig newRpcConfig) {
+        rpcConfig = newRpcConfig;
+        log.info("rpc init,config = {}", newRpcConfig.toString());
+
+        //注册中心初始化
+        RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+        Registry registryInstance = RegistryFactory.getInstance(registryConfig.getRegistry());
+        registryInstance.init(registryConfig);
+        log.info("registry init,config = {}", registryConfig);
+    }
+```
+
+### 完成调用流程
+
+改造消费者调用服务代码
+
+
+
+给`ServiceMetaInfo`类增加方法，便于获取可调用地址
+
+```java
+/**
+     * 获取完整服务地址
+     *
+     * @return
+     */
+    public String getServiceAddress() {
+        if (!StrUtil.contains(serviceHost, "http")) {
+            return String.format("http://%s:%s", serviceHost, servicePost);
+        }
+        return String.format("%s:%s", serviceHost, servicePost);
+    }
+```
+
+(2)修改服务代理`ServiceProxy`类，更改调用逻辑
+
+```java
+package site.xiaofei.proxy;
+
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.http.HttpRequest;
+import cn.hutool.http.HttpResponse;
+import site.xiaofei.RpcApplication;
+import site.xiaofei.config.RpcConfig;
+import site.xiaofei.constant.RpcConstant;
+import site.xiaofei.model.RpcRequest;
+import site.xiaofei.model.RpcResponse;
+import site.xiaofei.model.ServiceMetaInfo;
+import site.xiaofei.registry.Registry;
+import site.xiaofei.registry.RegistryFactory;
+import site.xiaofei.serializer.JdkSerializer;
+import site.xiaofei.serializer.Serializer;
+import site.xiaofei.serializer.SerializerFactory;
+
+import javax.xml.ws.Service;
+import java.io.IOException;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.ServiceLoader;
+
+/**
+ * @author tuaofei
+ * @description 服务代理（jdk动态代理）
+ * @date 2024/10/18
+ */
+public class ServiceProxy implements InvocationHandler {
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        //指定序列化器
+        final Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
+
+        //给rpc框架发送请求
+        String serviceName = method.getDeclaringClass().getName();
+        RpcRequest rpcRequest = RpcRequest.builder()
+                .serviceName(serviceName)
+                .methodName(method.getName())
+                .paramTypes(method.getParameterTypes())
+                .args(args)
+                .build();
+
+        try {
+            byte[] bodyBytes = serializer.serializer(rpcRequest);
+            byte[] resultBytes;
+            RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+            if (rpcConfig == null) {
+                throw new RuntimeException("get rpcConfig error");
+            }
+            //从注册中心获取服务地址
+            Registry registry = RegistryFactory.getInstance(rpcConfig.getRegistryConfig().getRegistry());
+            ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
+            serviceMetaInfo.setServiceName(serviceName);
+            serviceMetaInfo.setServiceVersion(RpcConstant.DEFAULT_SERVICE_VERSION);
+            List<ServiceMetaInfo> serviceMetaInfoList = registry.serviceDiscovery(serviceMetaInfo.getServiceKey());
+            if (CollUtil.isEmpty(serviceMetaInfoList)) {
+                throw new RuntimeException("not find service address");
+            }
+            //暂时先取第一个
+            ServiceMetaInfo selectedServiceMetaInfo = serviceMetaInfoList.get(0);
+
+            String remoteUrl = selectedServiceMetaInfo.getServiceAddress();
+            HttpResponse httpResponse = HttpRequest.post(remoteUrl)
+                    .body(bodyBytes)
+                    .execute();
+            resultBytes = httpResponse.bodyBytes();
+            RpcResponse rpcResponse = serializer.deserializer(resultBytes, RpcResponse.class);
+            return rpcResponse.getData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
+```
+
+获取到的注册中心地址可能是多个，暂时先取第一个，后续会优化
+
+
+
+## 测试
+
+### 注册中心测试
+
+验证注册中心能否正常完成服务注册、注销、服务发现
+
+
+
+测试类`RegistryTest`
+
+```java
+package site.xiaofei.registry;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import site.xiaofei.config.RegistryConfig;
+import site.xiaofei.model.ServiceMetaInfo;
+
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+/**
+ * @author tuaofei
+ * @description 注册中心测试
+ * @date 2024/10/30
+ */
+public class RegistryTest {
+
+    final Registry registry = new EtcdRegistry();
+
+    @Before
+    public void init(){
+        RegistryConfig registryConfig = new RegistryConfig();
+        registryConfig.setAddress("http://localhost:2379");
+        registry.init(registryConfig);
+    }
+
+    @Test
+    public void register() throws ExecutionException, InterruptedException {
+        ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
+        serviceMetaInfo.setServiceName("myService");
+        serviceMetaInfo.setServiceVersion("1.0");
+        serviceMetaInfo.setServiceHost("localhost");
+        serviceMetaInfo.setServicePost(1234);
+        registry.register(serviceMetaInfo);
+
+        serviceMetaInfo = new ServiceMetaInfo();
+        serviceMetaInfo.setServiceName("myService");
+        serviceMetaInfo.setServiceVersion("1.0");
+        serviceMetaInfo.setServiceHost("localhost");
+        serviceMetaInfo.setServicePost(1235);
+        registry.register(serviceMetaInfo);
+
+        serviceMetaInfo = new ServiceMetaInfo();
+        serviceMetaInfo.setServiceName("myService");
+        serviceMetaInfo.setServiceVersion("2.0");
+        serviceMetaInfo.setServiceHost("localhost");
+        serviceMetaInfo.setServicePost(1234);
+        registry.register(serviceMetaInfo);
+    }
+
+    @Test
+    public void unRegister(){
+        ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
+        serviceMetaInfo.setServiceName("myService");
+        serviceMetaInfo.setServiceVersion("1.0");
+        serviceMetaInfo.setServiceHost("localhost");
+        serviceMetaInfo.setServicePost(1234);
+        registry.unRegister(serviceMetaInfo);
+    }
+
+    @Test
+    public void serviceDiscovery(){
+        ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
+        serviceMetaInfo.setServiceName("myService");
+        serviceMetaInfo.setServiceVersion("1.0");
+        String serviceKey = serviceMetaInfo.getServiceKey();
+        List<ServiceMetaInfo> serviceMetaInfoList = registry.serviceDiscovery(serviceKey);
+        Assert.assertNotNull(serviceMetaInfoList);
+    }
+}
+```
+
+![image-20241030212647288](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241030212647288.png)
+
+
+
+**遇到的问题**
+
+#### 1.注销服务无法删除
+
+修改EtcdRegistry的unRegister方法kvClient.delete()改为kvClient.delete().get()
+
+```java
+kvClient.delete(ByteSequence.from(ETCD_ROOT_PATH + serviceMetaInfo.getServiceNodeKey(), StandardCharsets.UTF_8)).get();
+```
+
+#### 2.获取所有服务获取不到
+
+测试去掉/,实测都可以获取到
+
+```java
+//前缀搜索，结尾一定要加‘/’
+String searchPrefix = ETCD_ROOT_PATH + serviceKey + "/";
+```
+
+
+
+### 完成流程测试
+
+在`rpc-provider`新增服务提供者示例，需要初始化rpc框架并且将服务手动注册到注册中心
+
+```java
+package site.xiaofei.provider;
+
+import site.xiaofei.RpcApplication;
+import site.xiaofei.common.service.UserService;
+import site.xiaofei.config.RegistryConfig;
+import site.xiaofei.config.RpcConfig;
+import site.xiaofei.model.ServiceMetaInfo;
+import site.xiaofei.registry.LocalRegistry;
+import site.xiaofei.registry.Registry;
+import site.xiaofei.registry.RegistryFactory;
+import site.xiaofei.server.HttpServer;
+import site.xiaofei.server.VertxHttpServer;
+
+import java.util.concurrent.ExecutionException;
+
+/**
+ * @author tuaofei
+ * @description 服务提供者示例，注册中心
+ * @date 2024/10/30
+ */
+public class ProviderExample {
+
+    public static void main(String[] args) {
+        //rpc框架初始化
+        RpcApplication.init();
+
+        //注册服务
+        String serviceName = UserService.class.getName();
+        LocalRegistry.register(serviceName, UserServiceImpl.class);
+
+        //注册服务到注册中心
+        RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+        RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+        Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
+        ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
+        serviceMetaInfo.setServiceName(serviceName);
+        serviceMetaInfo.setServiceHost(rpcConfig.getServerHost());
+        serviceMetaInfo.setServicePost(rpcConfig.getServerPort());
+        try {
+            registry.register(serviceMetaInfo);
+        } catch (ExecutionException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        //启动web服务
+        HttpServer httpServer = new VertxHttpServer();
+        httpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
+    }
+}
+```
+
+不改动消费者，测试RpcConsumerExample类是否正常运行
+
+![image-20241030215230301](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241030215230301.png)
+
+
+
+ttl可以加长一点，短了很快就过期了
+
+```java
+//创建一个5分钟s的租约
+long leaseId = leaseClient.grant(300).get().getID();
+```
+
+
+
+## 注册中心优化
+
