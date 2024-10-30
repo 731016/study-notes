@@ -3606,6 +3606,8 @@ public class ProviderExample {
 
 不改动消费者，测试RpcConsumerExample类是否正常运行
 
+![image-20241030215557450](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241030215557450.png)
+
 ![image-20241030215230301](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241030215230301.png)
 
 
@@ -3620,4 +3622,3 @@ long leaseId = leaseClient.grant(300).get().getID();
 
 
 ## 注册中心优化
-
