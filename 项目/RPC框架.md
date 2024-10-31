@@ -3622,3 +3622,553 @@ long leaseId = leaseClient.grant(300).get().getID();
 
 
 ## 注册中心优化
+
+可优化点：
+
+1.数据一致性：服务提供者如果下线了，注册中心需要即时更新，剔除下线节点。否则消费者可能会调用到以及下线的节点
+
+2.性能优化：服务消费者每次都需要从注册中心获取服务，可以使用缓存进行优化
+
+3.高可用性：保证注册中心本身不会宕机
+
+4.可扩展性：实现更多的其它种类的注册中心
+
+
+
+实践优化：
+
+1.心跳检测、续期机制
+
+2.服务节点下线机制
+
+3.消费端服务缓存
+
+4.基于Zookeeper的注册中心实现
+
+
+
+### 心跳检测和续期机制
+
+#### 心跳检测介绍
+
+一种用于检测系统是否正常工作的机制。定期向目标系统发送心跳信号（请求）来检测是否正常响应，如果接收方在一定时间内没有收到或响应请求，就认为系统故障或不可用，触发相应的处理或告警机制
+
+![image-20241031203436975](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241031203436975.png)
+
+#### 方案设计
+
+（1）实现心跳检测需要2个关键点：定时、网络请求
+
+etcd自带key过期机制：给节点注册信息一个“倒计时”，让节点定期续期，重置自己的“倒计时”，如果节点已宕机，一直不续期，etcd就会对key进行过期删除
+
+
+
+> 实现流程：
+>
+> 1.服务提供者向etcd注册自己的服务信息，并在注册时设施TTL
+>
+> 2.etcd在接收到服务提供者的注册信息后，会自动维护服务信息的TTL，并在TTL过期时删除该服务信息
+>
+> 3.服务提供者定期请求etcd续签自己的注册信息，重置TTL
+
+> 注意：续期时间一定到小于过期时间，允许服务提供者有容错机会
+
+(2)每个服务提供者需要找到自己注册的节点、续期自己的节点，怎么找到当前服务提供者自己的节点？
+
+在服务提供者本地维护一个**已注册节点集合** ，注册时添加节点key到集合，只需要续期集合内的key
+
+
+
+#### 开发实现
+
+（1）给注册中心`Registry`接口增加心跳检测
+
+```java
+public interface Registry {
+
+   ...
+    /**
+     * 心跳检测（服务端）
+     */
+    void heartBeat();
+}
+```
+
+
+
+(2)维护一个本机注册的节点key集合，用于维护续期
+
+```java
+@Slf4j
+public class EtcdRegistry implements Registry {
+
+    /**
+     * 本机注册的节点key（用于维护续期）
+     */
+    private final Set<String> localRegisterNodeKeySet = new HashSet<>();
+```
+
+在服务注册时，需要将节点添加到集合
+
+```java
+@Override
+    public void register(ServiceMetaInfo serviceMetaInfo) throws ExecutionException, InterruptedException {
+        //创建 lease和kv客户端
+        Lease leaseClient = client.getLeaseClient();
+
+        //创建一个5分钟s的租约
+        long leaseId = leaseClient.grant(300).get().getID();
+
+        //设置要存储的键值对
+        String registryKey = ETCD_ROOT_PATH + serviceMetaInfo.getServiceNodeKey();
+        ByteSequence key = ByteSequence.from(registryKey, StandardCharsets.UTF_8);
+        ByteSequence value = ByteSequence.from(JSONUtil.toJsonStr(serviceMetaInfo), StandardCharsets.UTF_8);
+
+        //将键值对与租约关联起来，并设置过期时间
+        PutOption putOption = PutOption.builder().withLeaseId(leaseId).build();
+        kvClient.put(key, value, putOption).get();
+
+        //添加节点信息到本地缓存
+        localRegisterNodeKeySet.add(registryKey);
+    }
+```
+
+在服务注册时，从集合移除对应节点
+
+```java
+ @Override
+    public void unRegister(ServiceMetaInfo serviceMetaInfo) throws ExecutionException, InterruptedException {
+        String registryKey = ETCD_ROOT_PATH + serviceMetaInfo.getServiceNodeKey();
+        kvClient.delete(ByteSequence.from(registryKey, StandardCharsets.UTF_8)).get();
+        //从本地缓存删除节点
+        localRegisterNodeKeySet.remove(registryKey);
+    }
+```
+
+(3)在``实现heartBeat方法
+
+```java
+@Override
+    public void heartBeat() {
+        //1分钟执行一次
+        CronUtil.schedule("0 0/1 * * * ? ", new Task() {
+            @Override
+            public void execute() {
+
+                //遍历本届点所有key
+                for (String key : localRegisterNodeKeySet) {
+                    try {
+                        List<KeyValue> keyValues = kvClient.get(ByteSequence.from(key, StandardCharsets.UTF_8))
+                                .get()
+                                .getKvs();
+                        //该节点已过期
+                        if (CollUtil.isEmpty(keyValues)) {
+                            continue;
+                        }
+                        //节点未过期（需要重启节点才能重新注册）
+                        KeyValue keyValue = keyValues.get(0);
+                        String value = keyValue.getValue().toString(StandardCharsets.UTF_8);
+                        ServiceMetaInfo serviceMetaInfo = JSONUtil.toBean(value, ServiceMetaInfo.class);
+                        register(serviceMetaInfo);
+                        log.info(String.format("服务：%s已续签", key));
+                    } catch (InterruptedException | ExecutionException e) {
+                        throw new RuntimeException(key + "续签失败", e);
+                    }
+                }
+            }
+        });
+
+        //支持秒级别定时任务
+        CronUtil.setMatchSecond(true);
+        CronUtil.start();
+    }
+```
+
+（4）开启heartBaeat
+
+在初始化init方法，调用heartBeat
+
+```java
+@Override
+    public void init(RegistryConfig registryConfig) {
+        client = Client.builder()
+                .endpoints(registryConfig.getAddress())
+                .connectTimeout(Duration.ofMillis(registryConfig.getTimeout()))
+                .build();
+        kvClient = client.getKVClient();
+        heartBeat();
+    }
+```
+
+#### 测试
+
+完善之前的`RegistryTest`
+
+```java
+package site.xiaofei.registry;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import site.xiaofei.config.RegistryConfig;
+import site.xiaofei.model.ServiceMetaInfo;
+
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+/**
+ * @author tuaofei
+ * @description 注册中心测试
+ * @date 2024/10/30
+ */
+public class RegistryTest {
+
+    final Registry registry = new EtcdRegistry();
+
+    @Before
+    public void init(){
+        RegistryConfig registryConfig = new RegistryConfig();
+        registryConfig.setAddress("http://localhost:2379");
+        registry.init(registryConfig);
+    }
+
+    ...
+
+    @Test
+    public void heartBeat() throws ExecutionException, InterruptedException {
+        //init中已经执行心跳检测
+        register();
+        //阻塞1分钟
+        Thread.sleep(60 * 1000L);
+    }
+}
+```
+
+观察可视化工具节点底部的过期时间
+
+![image-20241031213205432](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241031213205432.png)
+
+
+
+### 服务节点下线机制
+
+当服务提供者宕机时，注册中心需要移除已注册的节点，否则会影响消费端调用
+
+#### 方案设计
+
+服务节点下线分为：
+
++ 主动下线：服务提供者项目正常退出时，主动从注册中心移除注册信息
++ 被动下线：服务提供者项目异常退出时，利用etcd的key过期机制自动移除
+
+java项目退出时，怎么执行某个操作？
+
+使用JVM的ShutdownHook。java虚拟机提供的一种机制，允许开发者在JVM即将关闭之前执行清理工作或其他必要的操作，例如关闭数据库连接、释放资源、保存临时数据等
+
+
+
+spring boot也提供类型优雅停机能力
+
+#### 开发实现
+
+（1）完善etcd注册中心的`destory`，补充下线节点逻辑
+
+```java
+@Override
+    public void destroy() {
+        log.warn("当前节点下线");
+        for (String key : localRegisterNodeKeySet) {
+            try {
+                kvClient.delete(ByteSequence.from(key, StandardCharsets.UTF_8)).get();
+                log.info(String.format("服务：%s已下线", key));
+            } catch (InterruptedException | ExecutionException e) {
+                throw new RuntimeException(key + "节点下线失败");
+            }
+        }
+        //释放资源
+        if (kvClient != null) {
+            kvClient.close();
+        }
+        if (client != null) {
+            client.close();
+        }
+    }
+```
+
+（2）在`RpcApplication`的init中，注册Shutdown Hook，当程序正常退出时会执行注册中心的destory
+
+```java
+/**
+     * 框架初始化，支持传入自定义配置
+     *
+     * @param newRpcConfig
+     */
+    public static void init(RpcConfig newRpcConfig) {
+        rpcConfig = newRpcConfig;
+        log.info("rpc init,config = {}", newRpcConfig.toString());
+
+        //注册中心初始化
+        RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+        Registry registryInstance = RegistryFactory.getInstance(registryConfig.getRegistry());
+        registryInstance.init(registryConfig);
+        log.info("registry init,config = {}", registryConfig);
+
+        //创建并注册shutdownhook，jvm退出时执行操作
+        Runtime.getRuntime().addShutdownHook(new Thread(registryInstance::destroy));
+    }
+```
+
+
+
+#### 测试
+
+1.启动服务提供者，然后观察服务是否成功被注册
+
+2.正常停止服务提供者，然后观察服务信息是否被删除
+
+![image-20241031215350801](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241031215350801.png)
+
+
+
+### 消费端服务缓存
+
+
+
+正常情况下，服务节点信息列表的更新频率是不高的，所有在消费者获取到节点列表后，完成可以缓存在本地
+
+
+
+#### 1.增加本地缓存
+
+用一个列表来存储服务信息，提供写缓存、读缓存、请客缓存
+
+
+
+暂时只考虑单服务缓存，如果要实现多服务缓存，可以改为使用Map接口
+
+参考:[update 注册中心服务的本地缓存支持多个服务 · liyupi/yu-rpc@c420222](https://github.com/liyupi/yu-rpc/commit/c420222f4673114ee760b7875d68635902625ce9)
+
+
+
+在`registry`包下新增缓存类`RegistryServiceCache`
+
+```java
+package site.xiaofei.registry;
+
+import site.xiaofei.model.ServiceMetaInfo;
+
+import java.util.List;
+
+/**
+ * @author tuaofei
+ * @description 注册中心服务本地缓存
+ * @date 2024/10/31
+ */
+public class RegistryServiceCache {
+
+    /**
+     * 服务缓存
+     */
+    List<ServiceMetaInfo> serviceCache;
+
+    /**
+     * 写缓存
+     * @param newServiceCache
+     */
+    void writeCache(List<ServiceMetaInfo> newServiceCache){
+        this.serviceCache = newServiceCache;
+    }
+
+    /**
+     * 读缓存
+     * @return
+     */
+    List<ServiceMetaInfo> readCahce(){
+        return this.serviceCache;
+    }
+
+    /**
+     * 清空缓存
+     */
+    void clearCache(){
+        this.serviceCache = null;
+    }
+}
+```
+
+#### 2.使用本地缓存
+
+（1）修改`EtcdRegistry`，使用本地缓存对象
+
+```java
+/**
+     * 注册中心服务缓存
+     */
+    private final RegistryServiceCache registryServiceCache = new RegistryServiceCache();
+```
+
+(2)修改服务发现逻辑，优先从缓存获取服务；如果没有缓存，再从注册中心获取，并且设置到缓存
+
+```java
+@Override
+    public List<ServiceMetaInfo> serviceDiscovery(String serviceKey) {
+        //优先从缓存获取服务
+        List<ServiceMetaInfo> cachedServiceMetaInfoList = registryServiceCache.readCahce();
+        if (CollUtil.isNotEmpty(cachedServiceMetaInfoList)){
+            return  cachedServiceMetaInfoList;
+        }
+
+        //前缀搜索，结尾一定要加‘/’
+        String searchPrefix = ETCD_ROOT_PATH + serviceKey + "/";
+
+        try {
+            //前缀搜索
+            GetOption getOption = GetOption.builder().isPrefix(true).build();
+            List<KeyValue> keyValues = kvClient.get(ByteSequence.from(searchPrefix, StandardCharsets.UTF_8), getOption).get().getKvs();
+            //解析服务信息
+            List<ServiceMetaInfo> serviceMetaInfoList = keyValues.stream()
+                    .map(keyValue -> {
+                        String value = keyValue.getValue().toString(StandardCharsets.UTF_8);
+                        return JSONUtil.toBean(value, ServiceMetaInfo.class);
+                    }).collect(Collectors.toList());
+            //写入服务缓存
+            registryServiceCache.writeCache(serviceMetaInfoList);
+            return serviceMetaInfoList;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            throw new RuntimeException("获取服务列表失败", e);
+        }
+        return null;
+    }
+```
+
+#### 3.服务缓存更新-监听机制
+
+当服务注册新秀发生变更时，需要即时更新消费端缓存
+
+
+
+使用etcd的watch监听机制，当监听的某个key发生修改或删除时，会触发事件通知监听者
+
+![image-20241031221330515](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241031221330515.png)
+
+什么时候去创建watch监听器？
+
+
+
+由于我们的目标说更新缓存，缓存是在服务端维护和使用的，所以应该是服务消费端去监听
+
+
+
+服务发现方法（serviceDiscovery）。可以对本次获取到的所有服务节点key进行监听
+
+还需要防止重复监听同一个key，可以通过定义一个已监听key的集合来实现
+
+
+
+（1）registry注册中心接口新增监听key的方法
+
+```java
+public interface Registry {
+
+    。。。
+
+    /**
+     * 监听（消费端）
+     * @param serviceNodeKey
+     */
+    void watch(String serviceNodeKey);
+}
+```
+
+（2）在EtcdRegistry类中，新增监听的key集合
+
+可以使用`ConcurrentHashSet`防止并发冲突
+
+```java
+ /**
+     * 正在监听的key集合
+     */
+    private final Set<String> watchingKeySet = new ConcurrentHashSet<>();
+```
+
+(3)在EtcdRegistry类中，实现监听的方法
+
+通过etcd的`watchclient`实现监听，如果出现`delete` key删除事件，则清理服务注册缓存
+
+
+
+> 注意：即时key在注册中心被删除后再重新设置，之前的监听依旧生效。所以只需要监听首次加入到监听集合的key，防止重复
+
+```java
+@Override
+    public void watch(String serviceNodeKey) {
+        Watch watchClient = client.getWatchClient();
+        //之前为被监听，开启监听
+        boolean newWatch = watchingKeySet.add(serviceNodeKey);
+        if (newWatch) {
+            watchClient.watch(ByteSequence.from(serviceNodeKey, StandardCharsets.UTF_8), response -> {
+                for (WatchEvent event : response.getEvents()) {
+                    switch (event.getEventType()) {
+                        //key删除时触发
+                        case DELETE:
+                            //清理注册服务缓存
+                            registryServiceCache.clearCache();
+                            break;
+                        case PUT:
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            });
+        }
+    }
+```
+
+（4）在消费端获取服务时调用watch方法，对获取到的服务节点key进行监听
+
+修改服务发现方法
+
+```java
+@Override
+    public void watch(String serviceNodeKey) {
+        Watch watchClient = client.getWatchClient();
+        //之前为被监听，开启监听
+        boolean newWatch = watchingKeySet.add(serviceNodeKey);
+        if (newWatch) {
+            watchClient.watch(ByteSequence.from(serviceNodeKey, StandardCharsets.UTF_8), response -> {
+                for (WatchEvent event : response.getEvents()) {
+                    switch (event.getEventType()) {
+                        //key删除时触发
+                        case DELETE:
+                            //清理注册服务缓存
+                            registryServiceCache.clearCache();
+                            log.warn("服务缓存：%s 清除");
+                            break;
+                        case PUT:
+                            log.warn("服务缓存：%s 新增");
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            });
+        }
+    }
+```
+
+(5)测试
+
+1.先启动服务提供者
+
+2.修改服务消费者项目，连续调用服务3次，通过debug发现，第一次查注册中心、第二次查询缓存
+
+3.第三次要调用服务，下线服务提供者，可以在注册中心看到节点的注册key已被删除
+
+4.继续向下执行，发现第三次调用服务时，又重新从注册中心查询，说明缓存已经被更新
+
+
+
+## ZookKeeper注册中心实现
