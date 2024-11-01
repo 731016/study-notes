@@ -4171,7 +4171,7 @@ public interface Registry {
 
 
 
-## ZookKeeper注册中心实现
+### ZookKeeper注册中心实现
 
 
 
@@ -4187,7 +4187,7 @@ public interface Registry {
 
 
 
-### 安装zookeeper
+#### 安装zookeeper
 
 （1）本地下载并启动Zookeeper，此处使用版本`3.8.4`
 
@@ -4229,7 +4229,7 @@ winodw需要修改配置文件名zoo_sample.cfg改名为zoo.cfg
 
 
 
-### 开发实现
+#### 开发实现
 
 
 
@@ -4452,9 +4452,9 @@ rpc.registryConfig.registry=zookeeper
 rpc.registryConfig.address=localhost:2181
 ```
 
-### 可能遇到的问题
+#### 可能遇到的问题
 
-#### com.fasterxml.jackson.core.util.BufferRecycler.releaseToPool()V
+##### com.fasterxml.jackson.core.util.BufferRecycler.releaseToPool()V
 
 ![image-20241101231558371](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241101231558371.png)
 
@@ -4518,7 +4518,7 @@ idea下载maven Dependency helper插件，查看冲突的依赖
 
 
 
-### 扩展
+#### 扩展
 
 （1）完善服务注册信息
 
@@ -4543,3 +4543,4 @@ idea下载maven Dependency helper插件，查看冲突的依赖
 
 
 ## 7、自定义协议
+
