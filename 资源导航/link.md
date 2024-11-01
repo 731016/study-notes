@@ -1380,6 +1380,25 @@
 
 ### 实用工具
 
+#### 软件
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+
+<a href="http://www.redisant.cn/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="http://www.redisant.cn/image/my_log.ico" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Redis Assistant - Redis可视化管理与监控工具</div>
+        </div>
+        <div class="cc-nav-des">适用于 Windows, macOS, Linux 的Redis管理GUI</div>
+    </div>
+</a>
+
+</div>
+
+
 #### 笔记
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">

@@ -4172,3 +4172,370 @@ public interface Registry {
 
 
 ## ZookKeeper注册中心实现
+
+
+
+步骤：
+
+1.安装zookeeper
+
+2.引入客户端依赖
+
+3.实现接口
+
+4.SPI补充Zookeeper注册中心
+
+
+
+### 安装zookeeper
+
+（1）本地下载并启动Zookeeper，此处使用版本`3.8.4`
+
+下载链接：https://dlcdn.apache.org/zookeeper/zookeeper-3.8.4/
+
+![image-20241101225129290](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241101225129290.png)
+
+下载完成后进入bin目录
+
+winodw需要修改配置文件名zoo_sample.cfg改名为zoo.cfg
+
+
+
+分别启动zkServer.cmd和zkCli.cmd，默认会占用8080管理端和2181客户端
+
+![image-20241101225305690](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241101225305690.png)
+
+
+
+主要修改项为dataDir和dataLogDir，dataDir是zookeeper存放数据的地方，dataLogDir是存放zookeeper日志的地方。
+
+如果只配置dataDir，则数据和日志都会创建在dataDir目录下。
+
+默认情况下zookeeper会占有8080端口，如果你不想8080端口被占用，增加一行admin.serverPort=8082，指定你自己的端口。
+
+参考：[zookeeper快速入门一：zookeeper安装与启动-CSDN博客](https://blog.csdn.net/lamfang/article/details/108866448)
+
+![image-20241101230236697](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241101230236697.png)
+
+启动可能出现报错“Error：JAVA_HOME is not set 文件名、目录名或卷标语法不正确”
+
+![image-20241101230531808](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241101230531808.png)
+
+需要修改启动文件把`%JAVA%`修改为`Java`
+
+参考：[zookeeper启动：文件名、目录名或卷标语法不正确_启动zk 文件名、目录名或卷标语法不正确。-CSDN博客](https://blog.csdn.net/GoSaint/article/details/117781776)
+
+![image-20241101230720520](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241101230720520.png)
+
+
+
+### 开发实现
+
+
+
+（2）引入客户端依赖
+
+一般使用Apache Curator操作zookeeper
+
+参考文档：https://curator.apache.org/docs/getting-started/
+
+```pom
+<dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-x-discovery</artifactId>
+            <version>5.6.0</version>
+        </dependency>
+```
+
+（3）zookeeper注册中心实现
+
+参考：https://github.com/apache/curator/tree/master/curator-examples/src/main/java
+
+```java
+package site.xiaofei.registry;
+
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.collection.ConcurrentHashSet;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.curator.framework.CuratorFramework;
+import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.recipes.cache.CuratorCache;
+import org.apache.curator.framework.recipes.cache.CuratorCacheListener;
+import org.apache.curator.retry.ExponentialBackoffRetry;
+import org.apache.curator.x.discovery.ServiceDiscovery;
+import org.apache.curator.x.discovery.ServiceDiscoveryBuilder;
+import org.apache.curator.x.discovery.ServiceInstance;
+import org.apache.curator.x.discovery.details.JsonInstanceSerializer;
+import site.xiaofei.config.RegistryConfig;
+import site.xiaofei.model.ServiceMetaInfo;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
+
+/**
+ * @author tuaofei
+ * @description Zookeeper注册中心
+ * @date 2024/11/1
+ */
+@Slf4j
+public class ZookeeperRegistry implements Registry {
+
+    private CuratorFramework client;
+
+    private ServiceDiscovery<ServiceMetaInfo> serviceDiscovery;
+
+    /**
+     * 本机注册的节点key（用于维护续期）
+     */
+    private final Set<String> localRegisterNodeKeySet = new HashSet<>();
+
+    /**
+     * 注册中心服务缓存（支持多个服务键）
+     */
+    private final RegistryServiceMultiCache registryServiceMultiCache = new RegistryServiceMultiCache();
+
+    /**
+     * 正在监听的key集合
+     */
+    private final Set<String> watchingKeySet = new ConcurrentHashSet<>();
+
+    /**
+     * 根节点
+     */
+    private static final String ZK_ROOT_PATH = "/rpc/zk";
+
+    @Override
+    public void init(RegistryConfig registryConfig) {
+        //构建client实例
+        client = CuratorFrameworkFactory
+                .builder()
+                .connectString(registryConfig.getAddress())
+                .retryPolicy(new ExponentialBackoffRetry(Math.toIntExact(registryConfig.getTimeout()), 3))
+                .build();
+
+        //构建ServiceDiscovery实例
+        serviceDiscovery = ServiceDiscoveryBuilder.builder(ServiceMetaInfo.class)
+                .client(client)
+                .basePath(ZK_ROOT_PATH)
+                .serializer(new JsonInstanceSerializer<>(ServiceMetaInfo.class))
+                .build();
+
+        //启动client和ServiceDiscovery
+        try {
+            client.start();
+            serviceDiscovery.start();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void register(ServiceMetaInfo serviceMetaInfo) throws Exception {
+        //注册到zk
+        ServiceInstance<ServiceMetaInfo> serviceInstance = buildServiceInstance(serviceMetaInfo);
+        serviceDiscovery.registerService(serviceInstance);
+
+        //添加节点信息到本地缓存
+        String registerKey = ZK_ROOT_PATH + "/" + serviceMetaInfo.getServiceNodeKey();
+        localRegisterNodeKeySet.add(registerKey);
+    }
+
+    @Override
+    public void unRegister(ServiceMetaInfo serviceMetaInfo) throws ExecutionException, InterruptedException {
+        try {
+            ServiceInstance<ServiceMetaInfo> serviceInstance = buildServiceInstance(serviceMetaInfo);
+            serviceDiscovery.unregisterService(serviceInstance);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<ServiceMetaInfo> serviceDiscovery(String serviceKey) {
+        //优先从缓存获取服务
+        List<ServiceMetaInfo> cacheServiceMetaInfoList = registryServiceMultiCache.readCache(serviceKey);
+        if (CollUtil.isNotEmpty(cacheServiceMetaInfoList)) {
+            return cacheServiceMetaInfoList;
+        }
+
+        //查询服务信息
+        try {
+            Collection<ServiceInstance<ServiceMetaInfo>> serviceInstanceList = serviceDiscovery.queryForInstances(serviceKey);
+
+            //解析服务信息
+            List<ServiceMetaInfo> serviceMetaInfoList = serviceInstanceList.stream()
+                    .map(ServiceInstance::getPayload)
+                    .collect(Collectors.toList());
+
+            //写入服务信息
+            registryServiceMultiCache.writeCache(serviceKey, serviceMetaInfoList);
+            return serviceMetaInfoList;
+        } catch (Exception e) {
+            throw new RuntimeException("获取服务列表失败", e);
+        }
+    }
+
+    @Override
+    public void destroy() {
+        log.info("当前节点下线");
+        for (String key : localRegisterNodeKeySet) {
+            try {
+                client.delete().guaranteed().forPath(key);
+                log.info(String.format("服务：%s已下线", key));
+            } catch (Exception e) {
+                throw new RuntimeException(key + "节点下线失败");
+            }
+        }
+        if (client != null) {
+            client.close();
+        }
+    }
+
+    @Override
+    public void heartBeat() {
+        //不需要心跳机制，建立了临时节点，如果服务器故障，临时节点直接丢失
+    }
+
+    @Override
+    public void watch(String serviceNodeKey) {
+        String watchKey = ZK_ROOT_PATH + "/" + serviceNodeKey;
+        boolean newWatch = watchingKeySet.add(watchKey);
+        if (newWatch) {
+            CuratorCache curatorCache = CuratorCache.build(client, watchKey);
+            curatorCache.start();
+            curatorCache.listenable().addListener(
+                    CuratorCacheListener
+                            .builder()
+                            .forDeletes(childData -> registryServiceMultiCache.clearCache(watchKey))
+                            .forChanges((oldNote, node) -> registryServiceMultiCache.clearCache(watchKey))
+                            .build()
+            );
+        }
+    }
+
+    private ServiceInstance<ServiceMetaInfo> buildServiceInstance(ServiceMetaInfo serviceMetaInfo) {
+        String serviceAddress = serviceMetaInfo.getServiceHost() + ":" + serviceMetaInfo.getServicePost();
+        try {
+            return ServiceInstance.<ServiceMetaInfo>builder()
+                    .id(serviceAddress)
+                    .name(serviceMetaInfo.getServiceKey())
+                    .address(serviceAddress)
+                    .payload(serviceMetaInfo)
+                    .build();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+```
+
+（4）SPI增加对zookeeper支持
+
+```
+etcd=site.xiaofei.registry.EtcdRegistry
+zookeeper=site.xiaofei.registry.ZookeeperRegistry
+```
+
+(5)更改服务提供者和消费者的注册中心配置来测试
+
+```properties
+rpc.name=xiaofei.site-rpc
+rpc.version=1.0
+rpc.serverPort=8082
+rpc.mock=false
+rpc.serializer=hessian
+rpc.registryConfig.registry=zookeeper
+rpc.registryConfig.address=localhost:2181
+```
+
+### 可能遇到的问题
+
+#### com.fasterxml.jackson.core.util.BufferRecycler.releaseToPool()V
+
+![image-20241101231558371](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241101231558371.png)
+
+应该是这里的序列化错误，可能是zookeeper里面的fackson版本不对
+
+![image-20241101231639891](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241101231639891.png)
+
+idea下载maven Dependency helper插件，查看冲突的依赖
+
+![image-20241101231843185](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241101231843185.png)
+
+这里查看`rpc-core`的pom发现是curator-x-discovery里面的jackson-core和jackson-databind版本不一致
+
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241101232024732.png" alt="image-20241101232024732" style="zoom:80%;" />
+
+![image-20241101232337177](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241101232337177.png)
+
+修改pom,排除这两个依赖后重新导入新的相同版本，再重新测试就正常了
+
+```pom
+<dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-x-discovery</artifactId>
+            <version>5.6.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.18.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.18.0</version>
+        </dependency>
+```
+
+参考：
+
+[jackson解决java.lang.NoSuchMethodError_java.lang.nosuchmethoderror: 'void com.fasterxml.j-CSDN博客](https://blog.csdn.net/weixin_43933728/article/details/136920238)
+
+[使用Maven Helper插件的Dependency Analyzer来分析工程的多级依赖关系，解决依赖冲突问题。-CSDN博客](https://blog.csdn.net/qq_25809317/article/details/109506462)
+
+
+
+推荐一个可监控zookeeper的软件
+
+[Redis Assistant - Redis可视化管理与监控工具](http://www.redisant.cn/)
+
+![image-20241101233513458](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241101233513458.png)
+
+
+
+### 扩展
+
+（1）完善服务注册信息
+
+增加节点注册时间
+
+（2）实现更多注册中心
+
+使用redis实现注册中心
+
+（3）保证注册中心高可用
+
+了解etcd的集群机制
+
+（4）服务注册信息实现的兜底策略
+
+如果消费端调用节点发现节点失效，也可以考虑从注册中心更新服务注册信息、或强制更新本地缓存
+
+（5）注册中心key监听时，采用观察者模式处理
+
+定义一个listener接口，根据watch key的变更类型去调用listener的不同方法
