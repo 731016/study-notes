@@ -4217,7 +4217,9 @@ winodw需要修改配置文件名zoo_sample.cfg改名为zoo.cfg
 
 ![image-20241101230236697](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241101230236697.png)
 
-启动可能出现报错“Error：JAVA_HOME is not set 文件名、目录名或卷标语法不正确”
+##### 可能遇到的问题
+
+###### 启动可能出现报错“Error：JAVA_HOME is not set 文件名、目录名或卷标语法不正确”
 
 ![image-20241101230531808](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241101230531808.png)
 
@@ -4452,9 +4454,9 @@ rpc.registryConfig.registry=zookeeper
 rpc.registryConfig.address=localhost:2181
 ```
 
-#### 可能遇到的问题
+##### 可能遇到的问题
 
-##### com.fasterxml.jackson.core.util.BufferRecycler.releaseToPool()V
+###### com.fasterxml.jackson.core.util.BufferRecycler.releaseToPool()V
 
 ![image-20241101231558371](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241101231558371.png)
 
@@ -4543,4 +4545,3 @@ idea下载maven Dependency helper插件，查看冲突的依赖
 
 
 ## 7、自定义协议
-
