@@ -1,4 +1,4 @@
-## RPC框架实现思路
+## 1、RPC框架实现思路
 
 RPC：远程过程调用，简化调用
 
@@ -1172,7 +1172,7 @@ VertxOptions vertxOptions = new VertxOptions();
 
 
 
-## 全局配置加载
+## 2、全局配置加载
 
 在RPC框架运行过程中，有一些配置信息，比如注册中心的地址、序列化方式、网络服务器端口...，之前的项目中都是写死的，不利于维护。
 
@@ -1600,7 +1600,7 @@ String CONFIG_YAML_FILESUFFIX = ".yaml";
 
 
 
-## 接口mock
+## 3、接口mock
 
 模拟接口对象，用于测试开发使用
 
@@ -1808,7 +1808,7 @@ public class RpcConsumerExample {
 
 
 
-## 序列化器和SPI机制
+## 4、序列化器和SPI机制
 
 通过前面使用的Jdk序列化器，对于一个完善的RPC框架，还需要考虑
 1.是否有更好的序列化器实现方式？
@@ -2510,7 +2510,7 @@ rpc.serializer=hessian
 
 
 
-## 注册中心基本实现
+## 5、注册中心基本实现
 
 ### 需求分析
 
@@ -3621,7 +3621,7 @@ long leaseId = leaseClient.grant(300).get().getID();
 
 
 
-## 注册中心优化
+## 6、注册中心优化
 
 可优化点：
 
@@ -4539,3 +4539,7 @@ idea下载maven Dependency helper插件，查看冲突的依赖
 （5）注册中心key监听时，采用观察者模式处理
 
 定义一个listener接口，根据watch key的变更类型去调用listener的不同方法
+
+
+
+## 7、自定义协议
