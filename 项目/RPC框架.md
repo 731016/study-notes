@@ -4545,3 +4545,969 @@ idea下载maven Dependency helper插件，查看冲突的依赖
 
 
 ## 7、自定义协议
+
+### 需求分析
+
+
+
+目前的RPC框架使用的是Http作为网络传输协议
+
+
+
+一般情况下，RPC框架会注重性能，而HTTP协议的头部、请求响应格式较“重”，会影响网络传输性能
+
+
+
+### 设计方案
+
++ 自定义网络传输
++ 自定义消息结构
+
+#### 1.网络传输设计
+
+目标：选择一个高性能通信的网络协议和传输方式
+
+
+
+HTTP属于无状态协议，每个HTTP请求都是独立的，每次请求、响应都要重新建立和关闭连接
+
+
+
+HTTP/1.1S使用了持久连接（keep-alive），允许在单个tcp连接上发送多个http请求和响应
+
+
+
+#### 2.消息结构设计
+
+目标：用最少的空间传递更多的信息
+
+
+
+使用更轻量的类型，比如byte字节类型，只占用1个字节、8个bit位
+
+
+
+**消息结构**
+
++ 魔数：安全校验，防止服务器处理了非框架的其它消息（类似HTTPS的安全证书）
++ 版本号：保证请求和响应的一致性（类似http协议的1.0、2.0版本）
++ 序列化方式：告诉服务器和客户端如何解析数据（类似http的content-type内容类型）
++ 类型：标识是请求/响应/心跳检测等（类似http请求头和响应头）
++ 状态：响应结果（200...）
++ 请求id：标识唯一，用来追溯每个请求
++ 内容body：请求体
+
+http协议，有专门的key/value结果，容易得到完整的body数据
+
+tcp协议，存在半包和粘包，每个传输可能不完整，需要在消息头增加`请求体数据长度`，保证完整获取body信息
+
+![image-20241104201809716](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241104201809716.png)
+
+请求头信息17字节，消息结构本质是一个字节数组
+
+需要有消息解码器和消息编码器，编码器new一个空的Buffer缓冲区，按照顺序写入数据；解码器读取时按照顺序读取，就能还原数据
+
+
+
+按照这种约定，就可以不用记录头信息，如magic魔数，不用存储"magic"字符串，读取第一个字节（前8bit）就能获取
+
+*参考Dubbo协议设计*
+
+
+
+### 开发实现
+
+#### 1.消息结构
+
+新建`protocol`包，自定义协议相关代码都放在这里
+
+（1）新增协议消息类`ProtocolMessage`
+
+消息头单独封装为内部类，消息体可使用泛型
+
+```java
+package site.xiaofei.protocol;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * @author tuaofei
+ * @description 协议消息结构
+ * @date 2024/11/4
+ */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ProtocolMessage<T> {
+
+    /**
+     * 消息头
+     */
+    private Header header;
+
+    /**
+     * 消息体（请求、响应对象）
+     */
+    private T body;
+
+    /**
+     * 协议消息头
+     */
+    @Data
+    public static class Header{
+        /**
+         * 魔数
+         */
+        private byte magic;
+
+        /**
+         * 版本
+         */
+        private byte version;
+
+        /**
+         * 序列化器
+         */
+        private byte serializer;
+
+        /**
+         * 消息类型（请求、响应）
+         */
+        private byte type;
+
+        /**
+         * 状态
+         */
+        private byte status;
+
+        /**
+         * 请求id
+         */
+        private long requestId;
+
+        /**
+         * 消息体长度
+         */
+        private int bodyLength;
+    }
+}
+```
+
+(2)新建协议常量`ProtocolConstant`
+
+记录和自定义协议的关键信息
+
+```java
+package site.xiaofei.protocol;
+
+/**
+ * @author tuaofei
+ * @description 协议常量
+ * @date 2024/11/4
+ */
+public interface ProtocolConstant {
+    /**
+     * 消息头长度
+     */
+    int MESSAGE_HEADER_LENGTH = 17;
+
+    /**
+     * 魔数
+     */
+    byte protocolMagic = 0x1;
+
+    /**
+     * 协议版本
+     */
+    byte protocol_version = 0x1;
+}
+```
+
+（3）新建消息字段的枚举类`ProtocolMessageStatusEnum`
+
+```java
+package site.xiaofei.protocol;
+
+import lombok.Getter;
+
+/**
+ * @author tuaofei
+ * @description 协议消息的状态枚举
+ * @date 2024/11/4
+ */
+@Getter
+public enum ProtocolMessageStatusEnum {
+
+
+    OK("ok", 20),
+    BAD_REQUEST("badRequest", 40),
+    BAD_RESPONSE("badResponse", 50);
+
+    private final String text;
+    private final int value;
+
+    ProtocolMessageStatusEnum(String text, int value) {
+        this.text = text;
+        this.value = value;
+    }
+
+    /**
+     * 根据value获取枚举
+     * @param value
+     * @return
+     */
+    public static ProtocolMessageStatusEnum getEnumByValue(int value) {
+        for (ProtocolMessageStatusEnum statusEnum : ProtocolMessageStatusEnum.values()) {
+            if (value == statusEnum.getValue()) {
+                return statusEnum;
+            }
+        }
+        return null;
+    }
+}
+```
+
+协议消息类型枚举`ProtocolMessageTypeEnum`，包括请求、响应、心跳、其它
+
+```java
+package site.xiaofei.protocol;
+
+/**
+ * @author tuaofei
+ * @description 协议消息的类型枚举
+ * @date 2024/11/4
+ */
+public enum ProtocolMessageTypeEnum {
+
+    REQUEST(0),
+    RESPONSE(1),
+    HEART_BEAT(2),
+    OTHER(3);
+
+    private final int key;
+
+    ProtocolMessageTypeEnum(int key) {
+        this.key = key;
+    }
+
+    /**
+     * 根据key获取吗枚举
+     *
+     * @param key
+     * @return
+     */
+    public static ProtocolMessageTypeEnum getEnumByKey(int key) {
+        for (ProtocolMessageTypeEnum anEnum : ProtocolMessageTypeEnum.values()) {
+            if (anEnum.key == key) {
+                return anEnum;
+            }
+        }
+        return null;
+    }
+}
+```
+
+协议序列化器枚举`ProtocolMessageSerializerEnum`
+
+```java
+package site.xiaofei.protocol;
+
+/**
+ * @author tuaofei
+ * @description 协议消息的序列化枚举
+ * @date 2024/11/4
+ */
+public enum ProtocolMessageSerializerEnum {
+
+    JDK(0, "jdk"),
+    JSON(1, "json"),
+    KRYO(2, "kryo"),
+    HESSIAN(3, "hessian");
+
+    private final int key;
+
+    private final String value;
+
+    ProtocolMessageSerializerEnum(int key, String value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    /**
+     * 根据key获取枚举
+     *
+     * @param key
+     * @return
+     */
+    public static ProtocolMessageSerializerEnum getEnumByKey(int key) {
+        for (ProtocolMessageSerializerEnum anEnum : ProtocolMessageSerializerEnum.values()) {
+            if (anEnum.key == key) {
+                return anEnum;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 根据value获取枚举
+     *
+     * @param value
+     * @return
+     */
+    public static ProtocolMessageSerializerEnum getEnumByValue(String value) {
+        for (ProtocolMessageSerializerEnum anEnum : ProtocolMessageSerializerEnum.values()) {
+            if (anEnum.value == value) {
+                return anEnum;
+            }
+        }
+        return null;
+    }
+
+}
+```
+
+#### 2.网络传输
+
+新建`server.tcp`包，所有tcp服务相关代码都放在下面
+
+（1）tcp服务器实现
+
+新建`VertxTcpServer`类，先创建Vert.x服务器实例，定义处理请求方法，启动服务器
+
+
+
+```java
+package site.xiaofei.server.tcp;
+
+import io.vertx.core.Vertx;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.net.NetServer;
+import site.xiaofei.server.HttpServer;
+
+/**
+ * @author tuaofei
+ * @description TODO
+ * @date 2024/11/4
+ */
+public class VertxTcpServer implements HttpServer {
+
+    private byte[] handleRequest(byte[] requestData) {
+        return "Hello , client".getBytes();
+    }
+
+    @Override
+    public void doStart(int port) {
+        //创建实例
+        Vertx vertx = Vertx.vertx();
+
+        //创建tcp服务器
+        NetServer server = vertx.createNetServer();
+
+        //处理请求
+        server.connectHandler(socket -> {
+            //处理连接
+            socket.handler(buffer -> {
+                //处理接收到的字节数组
+                byte[] requestData = buffer.getBytes();
+                byte[] responseData = handleRequest(requestData);
+                //发送响应
+                socket.write(Buffer.buffer(responseData));
+            });
+        });
+
+        //启动tcp服务并监听
+        server.listen(port, result -> {
+            if (result.succeeded()) {
+                System.out.println("tcp server started on port" + port);
+            } else {
+                System.out.println("failed to start tcp server" + result.cause());
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        new VertxTcpServer().doStart(8888);
+    }
+}
+```
+
+socket.write，在向连接到服务器的客户端发送数据。发送的数据格式为buffer，这是vert.x提供的字节数组缓冲区实现
+
+
+
+（2）客户端实现
+
+新建`VertxTcpClient`，先创建Vert.x客户端实例，定义处理请求方法，与服务器建立连接
+
+```java
+package site.xiaofei.server.tcp;
+
+import io.vertx.core.Vertx;
+import io.vertx.core.net.NetSocket;
+
+/**
+ * @author tuaofei
+ * @description TODO
+ * @date 2024/11/4
+ */
+public class VertxTcpClient {
+
+    public void start() {
+        Vertx vertx = Vertx.vertx();
+
+        vertx.createNetClient().connect(8888, "localhost", result -> {
+            if (result.succeeded()) {
+                System.out.println("connect to tcp server");
+                NetSocket socket = result.result();
+                //发送数据
+                socket.write("hello server");
+                //接收响应
+                socket.handler(buffer -> {
+                    System.out.println("received response from server :" + buffer.toString());
+                });
+            } else {
+                System.out.println("failed to connect tcp server");
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        new VertxTcpClient().start();
+    }
+}
+```
+
+（3）测试，是否正常通信
+
+
+
+#### 3.编码/解码器
+
+vert.x tcp服务器收发的消息是buffer类型，不能直接写入一个对象
+
+
+
+需要编码器和解码器，将消息对象和buffer进行相互转换
+
+![image-20241104212024664](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241104212024664.png)
+
+http，请求body处理器获取到body字节数组->序列化/反序列化->rpcrequest/rpcresponse对象
+
+tpc，buffer获取字节数组->编解码->rpcrequest/rpcresponse对象
+
+
+
+(1)消息编码器
+
+在protocol下新建`ProtocolMessageEncoder`
+
+依次向buffer缓冲区写入消息对象里的字段
+
+```java
+package site.xiaofei.protocol;
+
+import io.vertx.core.buffer.Buffer;
+import site.xiaofei.serializer.Serializer;
+import site.xiaofei.serializer.SerializerFactory;
+
+import java.io.IOException;
+
+/**
+ * @author tuaofei
+ * @description 编码器
+ * @date 2024/11/4
+ */
+public class ProtocolMessageEncoder {
+
+    public static Buffer encode(ProtocolMessage<?> protocolMessage) throws IOException {
+        if (protocolMessage == null || protocolMessage.getHeader() == null) {
+            return Buffer.buffer();
+        }
+        ProtocolMessage.Header header = protocolMessage.getHeader();
+        //依次向缓冲区写入字节
+        Buffer buffer = Buffer.buffer();
+        buffer.appendByte(header.getMagic());
+        buffer.appendByte(header.getVersion());
+        buffer.appendByte(header.getSerializer());
+        buffer.appendByte(header.getType());
+        buffer.appendByte(header.getStatus());
+        buffer.appendLong(header.getRequestId());
+        //获取序列化器
+        ProtocolMessageSerializerEnum serializerEnum = ProtocolMessageSerializerEnum.getEnumByKey(header.getSerializer());
+        if (serializerEnum == null) {
+            throw new RuntimeException("序列化协议不存在");
+        }
+        Serializer serializer = SerializerFactory.getInstance(serializerEnum.getValue());
+        byte[] bodyBytes = serializer.serializer(protocolMessage.getBody());
+        //写入body长度和数据
+        buffer.appendInt(bodyBytes.length);
+        buffer.appendBytes(bodyBytes);
+        return buffer;
+    }
+}
+```
+
+
+
+（2）消息解码器
+
+在protocol包下新建`ProtocolMessageDecoder`
+
+依次从buffer缓冲区的指定位置读取字段，构造出完整的消息对象
+
+```java
+package site.xiaofei.protocol;
+
+import io.vertx.core.buffer.Buffer;
+import site.xiaofei.model.RpcRequest;
+import site.xiaofei.model.RpcResponse;
+import site.xiaofei.serializer.Serializer;
+import site.xiaofei.serializer.SerializerFactory;
+
+import java.io.IOException;
+
+/**
+ * @author tuaofei
+ * @description 协议消息解码器
+ * @date 2024/11/4
+ */
+public class ProtocolMessageDecoder {
+
+    public static ProtocolMessage<?> decode(Buffer buffer) throws IOException {
+        //分别从指定位置读取buffer
+        ProtocolMessage.Header header = new ProtocolMessage.Header();
+        byte magic = buffer.getByte(0);
+        //校验魔数
+        if (magic != ProtocolConstant.PROTOCOLMAGIC) {
+            throw new RuntimeException("消息magic 非法");
+        }
+        header.setMagic(magic);
+        header.setVersion(buffer.getByte(1));
+        header.setSerializer(buffer.getByte(2));
+        header.setType(buffer.getByte(3));
+        header.setStatus(buffer.getByte(4));
+        header.setRequestId(buffer.getLong(5));
+        header.setBodyLength(buffer.getInt(13));
+        //解决粘包问题，只读指定长度的数据
+        byte[] bodyBytes = buffer.getBytes(ProtocolConstant.MESSAGE_HEADER_LENGTH, ProtocolConstant.MESSAGE_HEADER_LENGTH + header.getBodyLength());
+        //解析消息体
+        ProtocolMessageSerializerEnum serializerEnum = ProtocolMessageSerializerEnum.getEnumByKey(header.getSerializer());
+        if (serializerEnum == null) {
+            throw new RuntimeException("序列化消息的协议不存在");
+        }
+        Serializer serializer = SerializerFactory.getInstance(serializerEnum.getValue());
+        ProtocolMessageTypeEnum messageTypeEnum = ProtocolMessageTypeEnum.getEnumByKey(header.getType());
+        if (messageTypeEnum == null) {
+            throw new RuntimeException("序列化消息的类型不存在");
+        }
+        switch (messageTypeEnum) {
+            case REQUEST:
+                RpcRequest request = serializer.deserializer(bodyBytes, RpcRequest.class);
+                return new ProtocolMessage<>(header, request);
+            case RESPONSE:
+                RpcResponse response = serializer.deserializer(bodyBytes, RpcResponse.class);
+                return new ProtocolMessage<>(header, response);
+            case HEART_BEAT:
+            case OTHERS:
+            default:
+                throw new RuntimeException("暂不支持该消息类型");
+        }
+    }
+
+}
+```
+
+（3）测试，编码和解码器
+
+```java
+package site.xiaofei.protocol;
+
+import cn.hutool.core.util.IdUtil;
+import io.vertx.core.buffer.Buffer;
+import org.junit.Assert;
+import org.junit.Test;
+import site.xiaofei.constant.RpcConstant;
+import site.xiaofei.model.RpcRequest;
+
+import java.io.IOException;
+
+/**
+ * @author tuaofei
+ * @description 测试编码，解码
+ * @date 2024/11/4
+ */
+public class ProtocolMessageTest {
+
+    @Test
+    public void testEncodeAndDecode() throws IOException {
+        //构造消息
+        ProtocolMessage<Object> protocolMessage = new ProtocolMessage<>();
+        ProtocolMessage.Header header = new ProtocolMessage.Header();
+        header.setMagic(ProtocolConstant.PROTOCOLMAGIC);
+        header.setVersion(ProtocolConstant.PROTOCOL_VERSION);
+        header.setSerializer((byte) ProtocolMessageSerializerEnum.JDK.getKey());
+        header.setType((byte) ProtocolMessageTypeEnum.REQUEST.getKey());
+        header.setStatus((byte) ProtocolMessageStatusEnum.OK.getValue());
+        header.setRequestId(IdUtil.getSnowflakeNextId());
+        header.setBodyLength(0);
+
+        RpcRequest rpcRequest = new RpcRequest();
+        rpcRequest.setServiceName("myService");
+        rpcRequest.setMethodName("myMethod");
+        rpcRequest.setServiceVersion(RpcConstant.DEFAULT_SERVICE_VERSION);
+        rpcRequest.setArgs(new Object[]{"aaa","bbb"});
+        protocolMessage.setHeader(header);
+        protocolMessage.setBody(rpcRequest);
+
+        Buffer encodeBuffer = ProtocolMessageEncoder.encode(protocolMessage);
+
+        ProtocolMessage<?> message = ProtocolMessageDecoder.decode(encodeBuffer);
+
+        Assert.assertNotNull(message);
+    }
+
+}
+```
+
+#### 4.请求处理器（服务提供者）
+
+使用netty的pipeline组合多个handler（编码->解码->请求/响应处理）
+
+
+
+请求处理器的作用是接收请求，通过反射调用服务实现类
+
+
+
+新开发一个TcpServerHandler和之前的HttpServerHandler的区别只是在获取请求、写入响应的方式上，需要调用解码/编码器
+
+
+
+实现Vert.x的`Handler<NetSocket>`接口，可以定义TCP请求处理器
+
+```java
+package site.xiaofei.server.tcp;
+
+import io.vertx.core.Handler;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.net.NetSocket;
+import site.xiaofei.model.RpcRequest;
+import site.xiaofei.model.RpcResponse;
+import site.xiaofei.protocol.ProtocolMessage;
+import site.xiaofei.protocol.ProtocolMessageDecoder;
+import site.xiaofei.protocol.ProtocolMessageEncoder;
+import site.xiaofei.protocol.ProtocolMessageTypeEnum;
+import site.xiaofei.registry.LocalRegistry;
+
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+/**
+ * @author tuaofei
+ * @description TODO
+ * @date 2024/11/4
+ */
+public class TcpServerHandler implements Handler<NetSocket> {
+    @Override
+    public void handle(NetSocket netSocket) {
+        //处理连接
+        netSocket.handler(buffer -> {
+            //接收请求，解码
+            ProtocolMessage<RpcRequest> protocolMessage;
+            try {
+                protocolMessage = (ProtocolMessage<RpcRequest>) ProtocolMessageDecoder.decode(buffer);
+            } catch (IOException e) {
+                throw new RuntimeException("协议消息解码错误");
+            }
+            RpcRequest rpcRequest = protocolMessage.getBody();
+
+            //处理请求
+            //构造响应结果
+            RpcResponse rpcResponse = new RpcResponse();
+            //获取服务实例，反射调用
+            Class<?> implClass = LocalRegistry.get(rpcRequest.getServiceName());
+            try {
+                Method method = implClass.getMethod(rpcRequest.getMethodName(), rpcRequest.getParamTypes());
+                Object result = method.invoke(implClass.newInstance(), rpcRequest.getArgs());
+
+                //封装返回结果
+                rpcResponse.setData(result);
+                rpcResponse.setDataType(method.getReturnType());
+                rpcResponse.setMessage("ok");
+            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException | InstantiationException e) {
+                e.printStackTrace();
+                rpcResponse.setMessage(e.getMessage());
+                rpcResponse.setException(e);
+            }
+
+            //发送响应，编码
+            ProtocolMessage.Header header = protocolMessage.getHeader();
+            header.setType((byte) ProtocolMessageTypeEnum.RESPONSE.getKey());
+            ProtocolMessage<RpcResponse> responseProtocolMessage = new ProtocolMessage<>(header, rpcResponse);
+            try {
+                Buffer encode = ProtocolMessageEncoder.encode(responseProtocolMessage);
+                netSocket.write(encode);
+            } catch (IOException e) {
+                throw new RuntimeException("协议消息编码错误");
+            }
+        });
+    }
+}
+```
+
+#### 5.请求发送（服务消费者）
+
+```java
+package site.xiaofei.proxy;
+
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.http.HttpRequest;
+import cn.hutool.http.HttpResponse;
+import io.vertx.core.Vertx;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.net.NetClient;
+import io.vertx.core.net.NetSocket;
+import site.xiaofei.RpcApplication;
+import site.xiaofei.config.RpcConfig;
+import site.xiaofei.constant.RpcConstant;
+import site.xiaofei.model.RpcRequest;
+import site.xiaofei.model.RpcResponse;
+import site.xiaofei.model.ServiceMetaInfo;
+import site.xiaofei.protocol.*;
+import site.xiaofei.registry.Registry;
+import site.xiaofei.registry.RegistryFactory;
+import site.xiaofei.serializer.JdkSerializer;
+import site.xiaofei.serializer.Serializer;
+import site.xiaofei.serializer.SerializerFactory;
+
+import javax.xml.ws.Service;
+import java.io.IOException;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.ServiceLoader;
+import java.util.concurrent.CompletableFuture;
+
+/**
+ * @author tuaofei
+ * @description 服务代理（jdk动态代理）
+ * @date 2024/10/18
+ */
+public class ServiceProxy implements InvocationHandler {
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        //指定序列化器
+        final Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
+
+        //给rpc框架发送请求
+        String serviceName = method.getDeclaringClass().getName();
+        RpcRequest rpcRequest = RpcRequest.builder()
+                .serviceName(serviceName)
+                .methodName(method.getName())
+                .paramTypes(method.getParameterTypes())
+                .args(args)
+                .build();
+
+        try {
+            byte[] bodyBytes = serializer.serializer(rpcRequest);
+            byte[] resultBytes;
+            RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+            if (rpcConfig == null) {
+                throw new RuntimeException("get rpcConfig error");
+            }
+            //从注册中心获取服务地址
+            Registry registry = RegistryFactory.getInstance(rpcConfig.getRegistryConfig().getRegistry());
+            ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
+            serviceMetaInfo.setServiceName(serviceName);
+            serviceMetaInfo.setServiceVersion(RpcConstant.DEFAULT_SERVICE_VERSION);
+            List<ServiceMetaInfo> serviceMetaInfoList = registry.serviceDiscovery(serviceMetaInfo.getServiceKey());
+            if (CollUtil.isEmpty(serviceMetaInfoList)) {
+                throw new RuntimeException("not find service address");
+            }
+            //暂时先取第一个
+            ServiceMetaInfo selectedServiceMetaInfo = serviceMetaInfoList.get(0);
+
+            /*String remoteUrl = selectedServiceMetaInfo.getServiceAddress();
+            HttpResponse httpResponse = HttpRequest.post(remoteUrl)
+                    .body(bodyBytes)
+                    .execute();
+            resultBytes = httpResponse.bodyBytes();
+            RpcResponse rpcResponse = serializer.deserializer(resultBytes, RpcResponse.class);
+            return rpcResponse.getData();*/
+
+            //发送tcp请求
+            Vertx vertx = Vertx.vertx();
+            NetClient netClient = vertx.createNetClient();
+            CompletableFuture<RpcResponse> responseFuture = new CompletableFuture<>();
+            netClient.connect(selectedServiceMetaInfo.getServicePost(), selectedServiceMetaInfo.getServiceHost(), result -> {
+                if (result.succeeded()) {
+                    System.out.println("connected to tcp server");
+                    NetSocket socket = result.result();
+                    //发送数据，构造消息
+                    ProtocolMessage<RpcRequest> protocolMessage = new ProtocolMessage<>();
+                    ProtocolMessage.Header header = new ProtocolMessage.Header();
+                    header.setMagic(ProtocolConstant.PROTOCOLMAGIC);
+                    header.setVersion(ProtocolConstant.PROTOCOL_VERSION);
+                    header.setSerializer((byte) ProtocolMessageSerializerEnum.getEnumByValue(RpcApplication.getRpcConfig().getSerializer()).getKey());
+                    header.setType((byte) ProtocolMessageTypeEnum.REQUEST.getKey());
+                    header.setRequestId(IdUtil.getSnowflakeNextId());
+                    protocolMessage.setHeader(header);
+                    protocolMessage.setBody(rpcRequest);
+                    //编码请求
+                    try {
+                        Buffer encodeBuffer = ProtocolMessageEncoder.encode(protocolMessage);
+                        socket.write(encodeBuffer);
+                    } catch (IOException e) {
+                        throw new RuntimeException("协议消息编码错误");
+                    }
+
+                    //接收响应
+                    socket.handler(buffer -> {
+                        try {
+                            ProtocolMessage<RpcResponse> rpcResponseProtocolMessage = (ProtocolMessage<RpcResponse>) ProtocolMessageDecoder.decode(buffer);
+                            responseFuture.complete(rpcResponseProtocolMessage.getBody());
+                        } catch (IOException e) {
+                            throw new RuntimeException("协议消息解码错误");
+                        }
+                    });
+                } else {
+                    System.out.println("failed to connect tcp server");
+                }
+            });
+
+            RpcResponse response = responseFuture.get();
+            netClient.close();
+            return response.getData();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
+```
+
+由于Vert.x提供的请求处理器是异步、反应式的，为了方便获取结果，采用`CompletableFuture`转异步为同步
+
+```java
+CompletableFuture<RpcResponse> responseFuture = new CompletableFuture<>();
+netClient.connect(xxx, result -> {
+                ...
+                //完成了响应
+                responseFuture.complete(rpcResponseProtocolMessage.getBody());
+});
+//阻塞，知道响应完成，才会继续执行
+ RpcResponse response = responseFuture.get();
+```
+
+
+
+### 测试
+
+修改服务提供者`ProviderExample`，改为启动tcp服务器
+
+```java
+package site.xiaofei.provider;
+
+import site.xiaofei.RpcApplication;
+import site.xiaofei.common.service.UserService;
+import site.xiaofei.config.RegistryConfig;
+import site.xiaofei.config.RpcConfig;
+import site.xiaofei.model.ServiceMetaInfo;
+import site.xiaofei.registry.LocalRegistry;
+import site.xiaofei.registry.Registry;
+import site.xiaofei.registry.RegistryFactory;
+import site.xiaofei.server.HttpServer;
+import site.xiaofei.server.VertxHttpServer;
+import site.xiaofei.server.tcp.VertxTcpServer;
+
+import java.util.concurrent.ExecutionException;
+
+/**
+ * @author tuaofei
+ * @description 服务提供者示例，注册中心
+ * @date 2024/10/30
+ */
+public class ProviderExample {
+
+    public static void main(String[] args) {
+        //rpc框架初始化
+        RpcApplication.init();
+
+        //注册服务
+        String serviceName = UserService.class.getName();
+        LocalRegistry.register(serviceName, UserServiceImpl.class);
+
+        //注册服务到注册中心
+        RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+        RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+        Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
+        ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
+        serviceMetaInfo.setServiceName(serviceName);
+        serviceMetaInfo.setServiceHost(rpcConfig.getServerHost());
+        serviceMetaInfo.setServicePost(rpcConfig.getServerPort());
+        try {
+            registry.register(serviceMetaInfo);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        //启动web服务
+//        HttpServer httpServer = new VertxHttpServer();
+//        httpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
+
+        //启动tcp服务
+        VertxTcpServer tcpServer = new VertxTcpServer();
+        tcpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
+    }
+}
+```
+
+注意：修改`VertxTcpServer`处理器connectHandler为TcpServerHandler；启动端口从配置文件获取
+
+```java
+package site.xiaofei.server.tcp;
+
+import io.vertx.core.Vertx;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.net.NetServer;
+import site.xiaofei.RpcApplication;
+import site.xiaofei.server.HttpServer;
+
+/**
+ * @author tuaofei
+ * @description TODO
+ * @date 2024/11/4
+ */
+public class VertxTcpServer implements HttpServer {
+
+    @Override
+    public void doStart(int port) {
+       。。。
+
+        //处理请求
+        /*server.connectHandler(socket -> {
+            //处理连接
+            socket.handler(buffer -> {
+                //处理接收到的字节数组
+                byte[] requestData = buffer.getBytes();
+                byte[] responseData = handleRequest(requestData);
+                //发送响应
+                socket.write(Buffer.buffer(responseData));
+            });
+        });*/
+        server.connectHandler(new TcpServerHandler());
+
+        。。。
+    }
+
+    public static void main(String[] args) {
+        new VertxTcpServer().doStart(RpcApplication.getRpcConfig().getServerPort());
+    }
+}
+```
+
