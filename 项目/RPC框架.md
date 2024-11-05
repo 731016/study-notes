@@ -5669,7 +5669,7 @@ public class VertxTcpServer implements HttpServer {
 （3）测试运行
 ![粘包半包.png](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note粘包半包.png.png)
 
-### 如何解决半包？
+####  如何解决半包？
 
 
-### 如何解决粘包？
+####  如何解决粘包？
