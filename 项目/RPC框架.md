@@ -5511,3 +5511,165 @@ public class VertxTcpServer implements HttpServer {
 }
 ```
 
+### 粘包和半包问题解决
+
+#### 什么是粘包和半包？
+使用TCP协议通信时可能会出现
+
+理想情况下，客户端**连续两次**要发送消息
+```java
+//第一次
+Hello,server!Hello,server!Hello,server!Hello,server!
+//第二次
+Hello,server!Hello,server!Hello,server!Hello,server!
+```
+但服务端可能收到的消息情况
+（1）每次收到的数据更少，称为半包
+```java
+//第一次
+Hello,server!Hello,server!
+//第二次
+Hello,server!Hello,server!Hello,server!
+```
+
+（2）每次收到的数据更多，称为粘包
+```java
+//第三次
+Hello,server!Hello,server!Hello,server!Hello,server!Hello,server!
+```
+
+#### 半包粘包问题演示
+（1）修改TCP客户端,连续发送1000次消息
+```java
+package site.xiaofei.server.tcp;
+
+import io.vertx.core.Vertx;
+import io.vertx.core.net.NetSocket;
+
+/**
+ * @author tuaofei
+ * @description TODO
+ * @date 2024/11/4
+ */
+public class VertxTcpClient {
+
+    public void start() {
+        Vertx vertx = Vertx.vertx();
+
+        vertx.createNetClient().connect(8888, "localhost", result -> {
+            if (result.succeeded()) {
+                System.out.println("connect to tcp server");
+                NetSocket socket = result.result();
+                for (int i = 0; i < 1000; i++) {
+                    //发送数据
+                    socket.write("hello,server!hello,server!hello,server!hello,server!");
+                }
+                //接收响应
+                socket.handler(buffer -> {
+                    System.out.println("received response from server :" + buffer.toString());
+                });
+            } else {
+                System.out.println("failed to connect tcp server");
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        new VertxTcpClient().start();
+    }
+}
+
+```
+（2）修改TCP客户端，打印每次收到的消息
+```java
+package site.xiaofei.server.tcp;
+
+import io.vertx.core.Vertx;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.net.NetServer;
+import lombok.extern.slf4j.Slf4j;
+import site.xiaofei.RpcApplication;
+import site.xiaofei.server.HttpServer;
+
+/**
+ * @author tuaofei
+ * @description TODO
+ * @date 2024/11/4
+ */
+@Slf4j
+public class VertxTcpServer implements HttpServer {
+
+    private byte[] handleRequest(byte[] requestData) {
+        return "Hello , client".getBytes();
+    }
+
+    @Override
+    public void doStart(int port) {
+        //创建实例
+        Vertx vertx = Vertx.vertx();
+
+        //创建tcp服务器
+        NetServer server = vertx.createNetServer();
+
+        //处理请求
+        /*server.connectHandler(socket -> {
+            //处理连接
+            socket.handler(buffer -> {
+                //处理接收到的字节数组
+                byte[] requestData = buffer.getBytes();
+                byte[] responseData = handleRequest(requestData);
+                //发送响应
+                socket.write(Buffer.buffer(responseData));
+            });
+        });*/
+//        server.connectHandler(new TcpServerHandler());
+        server.connectHandler(socket -> {
+            //处理连接
+            socket.handler(buffer -> {
+                String testMessage = "hello,server!hello,server!hello,server!hello,server!";
+                int messageLength = testMessage.getBytes().length;
+                if (buffer.getBytes().length < messageLength) {
+                    log.warn("半包，length = " + buffer.getBytes().length);
+                    return;
+                }
+                if (buffer.getBytes().length > messageLength) {
+                    log.warn("粘包，length = " + buffer.getBytes().length);
+                    return;
+                }
+                String str = new String(buffer.getBytes(0, messageLength));
+                log.info(str);
+                if (testMessage.equals(str)) {
+                    log.info("good");
+                }
+                //处理接收到的字节数组
+                byte[] requestData = buffer.getBytes();
+                byte[] responseData = handleRequest(requestData);
+                //发送响应
+                socket.write(Buffer.buffer(responseData));
+            });
+        });
+
+        //启动tcp服务并监听
+        server.listen(port, result -> {
+            if (result.succeeded()) {
+                System.out.println("tcp server started on port" + port);
+            } else {
+                System.out.println("failed to start tcp server" + result.cause());
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+//        new VertxTcpServer().doStart(RpcApplication.getRpcConfig().getServerPort());
+        new VertxTcpServer().doStart(8888);
+    }
+}
+```
+
+（3）测试运行
+![粘包半包.png](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note粘包半包.png.png)
+
+### 如何解决半包？
+
+
+### 如何解决粘包？
