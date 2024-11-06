@@ -5671,5 +5671,665 @@ public class VertxTcpServer implements HttpServer {
 
 ####  如何解决半包？
 
+核心思路：在消息体中设置请求体的长度，服务端接收时，判断每次消息的长度是否符合预期，不完整就不读，留到下一次接收消息时再读取
+
+```java
+if (buffer == null || buffer.length() == 0) {
+    throw new RuntimeException("消息 buffer 为空");
+}
+if (buffer.getBytes().length < ProtocolConstant.MESSAGE_HEADER_LENGTH) {
+    throw new RuntimeException("出现了半包问题");
+}
+```
 
 ####  如何解决粘包？
+
+核心思路：每次只读取指定长度的数据，超过长度的留着下一次接收消息时在读取
+
+```java
+// 解决粘包问题，只读指定长度的数据
+byte[] bodyBytes = buffer.getBytes(17, 17 + header.getBodyLength());
+```
+
+#### vert.x解决半包和粘包
+
+使用`RecordParser`来解决，保证下次读取到特定长度的字符
+
+
+
+##### **基础代码**
+
+（1）使用RecordParser读取固定长度的消息
+
+```java
+@Override
+    public void doStart(int port) {
+        //创建实例
+        Vertx vertx = Vertx.vertx();
+
+        //创建tcp服务器
+        NetServer server = vertx.createNetServer();
+
+        //处理请求
+//        server.connectHandler(new TcpServerHandler());
+        server.connectHandler(socket -> {
+            //处理连接
+            socket.handler(buffer -> {
+                String testMessage = "hello,server!hello,server!hello,server!hello,server!";
+                int messageLength = testMessage.getBytes().length;
+                RecordParser recordParser = RecordParser.newFixed(messageLength);
+                recordParser.setOutput(new Handler<Buffer>() {
+                    @Override
+                    public void handle(Buffer event) {
+                        String str = new String(buffer.getBytes(0, messageLength));
+                        log.info(str);
+                        if (testMessage.equals(str)) {
+                            log.info("good");
+                        }
+                    }
+                });
+                socket.handler(recordParser);
+            });
+        });
+
+        //启动tcp服务并监听
+        server.listen(port, result -> {
+            if (result.succeeded()) {
+                System.out.println("tcp server started on port" + port);
+            } else {
+                System.out.println("failed to start tcp server" + result.cause());
+            }
+        });
+    }
+public static void main(String[] args) {
+        new VertxTcpServer().doStart(8888);
+    }
+```
+
+核心为：RecordParser.newFixed(messageLength);
+
+![image-20241106213823288](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241106213823288.png)
+
+
+
+（2）实际，消息体长度是不固定的，要通过调整RecordParser的固定长度（变长）来解决
+
+1. 先完整读取请求体长度，由于请求头信息长度固定，可以使用RecordParser保证每次都完整读取
+2. 再根据请求头长度信息更改RecordParser的固定长度，保证完整获取到请求体
+
+
+
+修改测试Tcpserver
+
+```java
+package site.xiaofei.server.tcp;
+
+import io.vertx.core.Handler;
+import io.vertx.core.Vertx;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.net.NetServer;
+import io.vertx.core.parsetools.RecordParser;
+import lombok.extern.slf4j.Slf4j;
+import site.xiaofei.RpcApplication;
+import site.xiaofei.server.HttpServer;
+
+/**
+ * @author tuaofei
+ * @description TODO
+ * @date 2024/11/4
+ */
+@Slf4j
+public class VertxTcpServer implements HttpServer {
+
+    @Override
+    public void doStart(int port) {
+        //创建实例
+        Vertx vertx = Vertx.vertx();
+
+        //创建tcp服务器
+        NetServer server = vertx.createNetServer();
+
+        //处理请求
+//        server.connectHandler(new TcpServerHandler());
+        server.connectHandler(socket -> {
+            //处理连接
+            socket.handler(buffer -> {
+                RecordParser recordParser = RecordParser.newFixed(8);
+                recordParser.setOutput(new Handler<Buffer>() {
+
+                    //初始化
+                    int size = -1;
+                    //一次完整的读取（header + body）
+                    Buffer resultBuffer = Buffer.buffer();
+
+                    @Override
+                    public void handle(Buffer buffer) {
+                        if (-1 == size){
+                            //读取消息体长度
+                            size = buffer.getInt(4);
+                            recordParser.fixedSizeMode(size);
+                            //写入头信息
+                            resultBuffer.appendBuffer(buffer);
+                        }else{
+                            //写入消息体信息
+                            resultBuffer.appendBuffer(buffer);
+                            log.info(resultBuffer.toString());
+                            //重置一轮
+                            recordParser.fixedSizeMode(8);
+                            size = -1;
+                            resultBuffer = Buffer.buffer();
+                        }
+                    }
+                });
+                socket.handler(recordParser);
+            });
+        });
+
+        //启动tcp服务并监听
+        server.listen(port, result -> {
+            if (result.succeeded()) {
+                System.out.println("tcp server started on port" + port);
+            } else {
+                System.out.println("failed to start tcp server" + result.cause());
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        new VertxTcpServer().doStart(8888);
+    }
+}
+```
+
+修改测试tcp client，构造一个变长、长度信息不在buffer最开头（有一点偏移量）的消息
+
+```java
+package site.xiaofei.server.tcp;
+
+import io.vertx.core.Vertx;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.net.NetSocket;
+
+/**
+ * @author tuaofei
+ * @description TODO
+ * @date 2024/11/4
+ */
+public class VertxTcpClient {
+
+    public void start() {
+        Vertx vertx = Vertx.vertx();
+
+        vertx.createNetClient().connect(8888, "localhost", result -> {
+            if (result.succeeded()) {
+                System.out.println("connect to tcp server");
+                NetSocket socket = result.result();
+                for (int i = 0; i < 1000; i++) {
+                    //发送数据
+                    Buffer buffer = Buffer.buffer();
+                    String str = "hello,server!hello,server!hello,server!hello,server!";
+                    buffer.appendInt(0);
+                    buffer.appendInt(str.getBytes().length);
+                    buffer.appendBytes(str.getBytes());
+                    socket.write(buffer);
+                }
+                //接收响应
+                socket.handler(buffer -> {
+                    System.out.println("received response from server :" + buffer.toString());
+                });
+            } else {
+                System.out.println("failed to connect tcp server");
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        new VertxTcpClient().start();
+    }
+}
+```
+
+测试结果应该正常
+
+![image-20241106215637316](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241106215637316.png)
+
+##### 封装半包粘包处理器
+
+使用装饰者模式，对recordParser原有的buffer处理器能力增强
+
+在server.tcp包下新增``，实现并增强``接口
+
+```java
+package site.xiaofei.server.tcp;
+
+
+import io.vertx.core.Handler;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.parsetools.RecordParser;
+import site.xiaofei.protocol.ProtocolConstant;
+
+/**
+ * @author tuaofei
+ * @description 装饰着模式（使用recordParser对原有的buffer处理能力进行增强）
+ * @date 2024/11/6
+ */
+public class TcpBufferHandlerWrapper implements Handler<Buffer> {
+
+    private final RecordParser recordParser;
+
+    public TcpBufferHandlerWrapper(Handler<Buffer> bufferHandler) {
+        this.recordParser = initRecordParser(bufferHandler);
+    }
+
+    @Override
+    public void handle(Buffer buffer) {
+        recordParser.handle(buffer);
+    }
+
+    private RecordParser initRecordParser(Handler<Buffer> bufferHandler) {
+        //构造RecordParser
+        RecordParser recordParser = RecordParser.newFixed(ProtocolConstant.MESSAGE_HEADER_LENGTH);
+
+        recordParser.setOutput(new Handler<Buffer>() {
+            //初始化
+            int size = -1;
+            //一次完整的读取（header + body）
+            Buffer resultBuffer = Buffer.buffer();
+
+            @Override
+            public void handle(Buffer buffer) {
+                if (-1 == size) {
+                    //读取消息体长度
+                    size = buffer.getInt(13);
+                    recordParser.fixedSizeMode(size);
+                    //写入头信息
+                    resultBuffer.appendBuffer(buffer);
+                } else {
+                    //写入消息体信息
+                    resultBuffer.appendBuffer(buffer);
+                    //已拼接完整buffer，执行处理
+                    bufferHandler.handle(resultBuffer);
+                    //重置一轮
+                    recordParser.fixedSizeMode(ProtocolConstant.MESSAGE_HEADER_LENGTH);
+                    size = -1;
+                    resultBuffer = Buffer.buffer();
+                }
+            }
+        });
+        return recordParser;
+    }
+}
+```
+
+当调用处理器的handle方法时，改为调用recordParser.handle(buffer)
+
+#### 优化客户端调用代码
+
+(1)修改tcp请求处理器`TcpServerHandler`
+
+```java
+package site.xiaofei.server.tcp;
+
+import io.vertx.core.Handler;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.net.NetSocket;
+import site.xiaofei.model.RpcRequest;
+import site.xiaofei.model.RpcResponse;
+import site.xiaofei.protocol.ProtocolMessage;
+import site.xiaofei.protocol.ProtocolMessageDecoder;
+import site.xiaofei.protocol.ProtocolMessageEncoder;
+import site.xiaofei.protocol.ProtocolMessageTypeEnum;
+import site.xiaofei.registry.LocalRegistry;
+
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+/**
+ * @author tuaofei
+ * @description Tcp请求处理器
+ * @date 2024/11/4
+ */
+public class TcpServerHandler implements Handler<NetSocket> {
+    @Override
+    public void handle(NetSocket netSocket) {
+        TcpBufferHandlerWrapper bufferHandlerWrapper = new TcpBufferHandlerWrapper(buffer -> {
+            //接收请求，解码
+            ProtocolMessage<RpcRequest> protocolMessage;
+            try {
+                protocolMessage = (ProtocolMessage<RpcRequest>) ProtocolMessageDecoder.decode(buffer);
+            } catch (IOException e) {
+                throw new RuntimeException("协议消息解码错误");
+            }
+            RpcRequest rpcRequest = protocolMessage.getBody();
+
+            //处理请求
+            //构造响应结果
+            RpcResponse rpcResponse = new RpcResponse();
+            //获取服务实例，反射调用
+            Class<?> implClass = LocalRegistry.get(rpcRequest.getServiceName());
+            try {
+                Method method = implClass.getMethod(rpcRequest.getMethodName(), rpcRequest.getParamTypes());
+                Object result = method.invoke(implClass.newInstance(), rpcRequest.getArgs());
+
+                //封装返回结果
+                rpcResponse.setData(result);
+                rpcResponse.setDataType(method.getReturnType());
+                rpcResponse.setMessage("ok");
+            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException | InstantiationException e) {
+                e.printStackTrace();
+                rpcResponse.setMessage(e.getMessage());
+                rpcResponse.setException(e);
+            }
+
+            //发送响应，编码
+            ProtocolMessage.Header header = protocolMessage.getHeader();
+            header.setType((byte) ProtocolMessageTypeEnum.RESPONSE.getKey());
+            ProtocolMessage<RpcResponse> responseProtocolMessage = new ProtocolMessage<>(header, rpcResponse);
+            try {
+                Buffer encode = ProtocolMessageEncoder.encode(responseProtocolMessage);
+                netSocket.write(encode);
+            } catch (IOException e) {
+                throw new RuntimeException("协议消息编码错误");
+            }
+        });
+        netSocket.handler(bufferHandlerWrapper);
+    }
+}
+```
+
+（2）修改客户端处理响应的代码
+
+发送请求、处理响应封装到VertxTcpClient.doRequest
+
+```
+package site.xiaofei.server.tcp;
+
+import cn.hutool.core.util.IdUtil;
+import io.vertx.core.Vertx;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.net.NetClient;
+import io.vertx.core.net.NetSocket;
+import lombok.extern.slf4j.Slf4j;
+import site.xiaofei.RpcApplication;
+import site.xiaofei.model.RpcRequest;
+import site.xiaofei.model.RpcResponse;
+import site.xiaofei.model.ServiceMetaInfo;
+import site.xiaofei.protocol.*;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
+/**
+ * @author tuaofei
+ * @description Vertx请求客户端
+ * @date 2024/11/4
+ */
+@Slf4j
+public class VertxTcpClient {
+
+    public void start() {
+        Vertx vertx = Vertx.vertx();
+
+        vertx.createNetClient().connect(8888, "localhost", result -> {
+            if (result.succeeded()) {
+                System.out.println("connect to tcp server");
+                NetSocket socket = result.result();
+                for (int i = 0; i < 1000; i++) {
+                    //发送数据
+                    Buffer buffer = Buffer.buffer();
+                    String str = "hello,server!hello,server!hello,server!hello,server!";
+                    buffer.appendInt(0);
+                    buffer.appendInt(str.getBytes(StandardCharsets.UTF_8).length);
+                    buffer.appendBytes(str.getBytes());
+                    socket.write(buffer);
+                }
+                //接收响应
+                socket.handler(buffer -> {
+                    System.out.println("received response from server :" + buffer.toString());
+                });
+            } else {
+                System.out.println("failed to connect tcp server");
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        new VertxTcpClient().start();
+    }
+
+    public static RpcResponse doRequest(RpcRequest rpcRequest, ServiceMetaInfo serviceMetaInfo) throws ExecutionException, InterruptedException {
+        //发送tcp请求
+        Vertx vertx = Vertx.vertx();
+        NetClient netClient = vertx.createNetClient();
+        CompletableFuture<RpcResponse> responseFuture = new CompletableFuture<>();
+        netClient.connect(serviceMetaInfo.getServicePost(), serviceMetaInfo.getServiceHost(),
+                result -> {
+                    if (!result.succeeded()) {
+                        log.error("failed to connect to tcp server");
+                        return;
+                    }
+                    NetSocket socket = result.result();
+                    ProtocolMessage<RpcRequest> protocolMessage = new ProtocolMessage<>();
+                    ProtocolMessage.Header header = new ProtocolMessage.Header();
+                    header.setMagic(ProtocolConstant.PROTOCOLMAGIC);
+                    header.setVersion(ProtocolConstant.PROTOCOL_VERSION);
+                    header.setSerializer((byte) ProtocolMessageSerializerEnum.getEnumByValue(RpcApplication.getRpcConfig().getSerializer()).getKey());
+                    header.setType((byte) ProtocolMessageTypeEnum.REQUEST.getKey());
+                    //全局请求id
+                    header.setRequestId(IdUtil.getSnowflakeNextId());
+                    protocolMessage.setHeader(header);
+                    protocolMessage.setBody(rpcRequest);
+
+                    //编码请求
+                    try {
+                        Buffer encodeBuffer = ProtocolMessageEncoder.encode(protocolMessage);
+                        socket.write(encodeBuffer);
+                    } catch (IOException e) {
+                        throw new RuntimeException("协议消息编码错误");
+                    }
+
+                    //接收响应
+                    TcpBufferHandlerWrapper bufferHandlerWrapper = new TcpBufferHandlerWrapper(buffer -> {
+                        try {
+                            ProtocolMessage<RpcResponse> rpcResponseProtocolMessage = (ProtocolMessage<RpcResponse>) ProtocolMessageDecoder.decode(buffer);
+                            responseFuture.complete(rpcResponseProtocolMessage.getBody());
+                        } catch (IOException e) {
+                            throw new RuntimeException("协议消息解码错误");
+                        }
+                    });
+                    socket.handler(bufferHandlerWrapper);
+                });
+        RpcResponse rpcResponse = responseFuture.get();
+        netClient.close();
+        return rpcResponse;
+    }
+}
+```
+
+（3）修改serviceProxy，调用VertxTcpClient
+
+```java
+package site.xiaofei.proxy;
+
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.http.HttpRequest;
+import cn.hutool.http.HttpResponse;
+import io.vertx.core.Vertx;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.net.NetClient;
+import io.vertx.core.net.NetSocket;
+import site.xiaofei.RpcApplication;
+import site.xiaofei.config.RpcConfig;
+import site.xiaofei.constant.RpcConstant;
+import site.xiaofei.model.RpcRequest;
+import site.xiaofei.model.RpcResponse;
+import site.xiaofei.model.ServiceMetaInfo;
+import site.xiaofei.protocol.*;
+import site.xiaofei.registry.Registry;
+import site.xiaofei.registry.RegistryFactory;
+import site.xiaofei.serializer.JdkSerializer;
+import site.xiaofei.serializer.Serializer;
+import site.xiaofei.serializer.SerializerFactory;
+import site.xiaofei.server.tcp.VertxTcpClient;
+
+import javax.xml.ws.Service;
+import java.io.IOException;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.ServiceLoader;
+import java.util.concurrent.CompletableFuture;
+
+/**
+ * @author tuaofei
+ * @description 服务代理（jdk动态代理）
+ * @date 2024/10/18
+ */
+public class ServiceProxy implements InvocationHandler {
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        //指定序列化器
+        final Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
+
+        //给rpc框架发送请求
+        String serviceName = method.getDeclaringClass().getName();
+        RpcRequest rpcRequest = RpcRequest.builder()
+                .serviceName(serviceName)
+                .methodName(method.getName())
+                .paramTypes(method.getParameterTypes())
+                .args(args)
+                .build();
+
+        try {
+            RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+            if (rpcConfig == null) {
+                throw new RuntimeException("get rpcConfig error");
+            }
+            //从注册中心获取服务地址
+            Registry registry = RegistryFactory.getInstance(rpcConfig.getRegistryConfig().getRegistry());
+            ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
+            serviceMetaInfo.setServiceName(serviceName);
+            serviceMetaInfo.setServiceVersion(RpcConstant.DEFAULT_SERVICE_VERSION);
+            List<ServiceMetaInfo> serviceMetaInfoList = registry.serviceDiscovery(serviceMetaInfo.getServiceKey());
+            if (CollUtil.isEmpty(serviceMetaInfoList)) {
+                throw new RuntimeException("not find service address");
+            }
+            //暂时先取第一个
+            ServiceMetaInfo selectedServiceMetaInfo = serviceMetaInfoList.get(0);
+
+            /*String remoteUrl = selectedServiceMetaInfo.getServiceAddress();
+            HttpResponse httpResponse = HttpRequest.post(remoteUrl)
+                    .body(bodyBytes)
+                    .execute();
+            resultBytes = httpResponse.bodyBytes();
+            RpcResponse rpcResponse = serializer.deserializer(resultBytes, RpcResponse.class);
+            return rpcResponse.getData();*/
+
+            //发送tcp请求
+            RpcResponse rpcResponse = VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo);
+            return rpcResponse.getData();
+        } catch (Exception e) {
+            throw new RuntimeException("调用失败");
+        }
+    }
+}
+```
+
+修改`VertxTcpServer`的处理器，不然无法处理会一直卡着
+
+```java
+package site.xiaofei.server.tcp;
+
+import io.vertx.core.Handler;
+import io.vertx.core.Vertx;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.net.NetServer;
+import io.vertx.core.parsetools.RecordParser;
+import lombok.extern.slf4j.Slf4j;
+import site.xiaofei.RpcApplication;
+import site.xiaofei.server.HttpServer;
+
+/**
+ * @author tuaofei
+ * @description TODO
+ * @date 2024/11/4
+ */
+@Slf4j
+public class VertxTcpServer implements HttpServer {
+
+    @Override
+    public void doStart(int port) {
+        //创建实例
+        Vertx vertx = Vertx.vertx();
+
+        //创建tcp服务器
+        NetServer server = vertx.createNetServer();
+
+        //处理请求
+        server.connectHandler(new TcpServerHandler());
+        /*server.connectHandler(socket -> {
+            //处理连接
+            socket.handler(buffer -> {
+                RecordParser recordParser = RecordParser.newFixed(8);
+                recordParser.setOutput(new Handler<Buffer>() {
+
+                    //初始化
+                    int size = -1;
+                    //一次完整的读取（header + body）
+                    Buffer resultBuffer = Buffer.buffer();
+
+                    @Override
+                    public void handle(Buffer buffer) {
+                        if (-1 == size){
+                            //读取消息体长度
+                            size = buffer.getInt(4);
+                            recordParser.fixedSizeMode(size);
+                            //写入头信息
+                            resultBuffer.appendBuffer(buffer);
+                        }else{
+                            //写入消息体信息
+                            resultBuffer.appendBuffer(buffer);
+                            log.info(resultBuffer.toString());
+                            //重置一轮
+                            recordParser.fixedSizeMode(8);
+                            size = -1;
+                            resultBuffer = Buffer.buffer();
+                        }
+                    }
+                });
+                socket.handler(recordParser);
+            });
+        });*/
+
+        //启动tcp服务并监听
+        server.listen(port, result -> {
+            if (result.succeeded()) {
+                System.out.println("tcp server started on port" + port);
+            } else {
+                System.out.println("failed to start tcp server" + result.cause());
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        new VertxTcpServer().doStart(RpcApplication.getRpcConfig().getServerPort());
+//        new VertxTcpServer().doStart(8888);
+    }
+}
+```
+
+### 扩展
+
+（1）定义一个占用空间更少的RPC协议的消息结构
+
+能否只占用4bit？
+
+
+
+
+
+## 8、负载均衡
