@@ -6333,3 +6333,60 @@ public class VertxTcpServer implements HttpServer {
 
 
 ## 8、负载均衡
+
+### 需求分析
+
+我们之前的代码如果同一个服务有多个服务提供者，目前消费者始终读取了第一个节点，会增大单个节点的压力，没有利用其它资源
+
+```java
+//从注册中心获取服务地址
+            Registry registry = RegistryFactory.getInstance(rpcConfig.getRegistryConfig().getRegistry());
+            ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
+            serviceMetaInfo.setServiceName(serviceName);
+            serviceMetaInfo.setServiceVersion(RpcConstant.DEFAULT_SERVICE_VERSION);
+            List<ServiceMetaInfo> serviceMetaInfoList = registry.serviceDiscovery(serviceMetaInfo.getServiceKey());
+            if (CollUtil.isEmpty(serviceMetaInfoList)) {
+                throw new RuntimeException("not find service address");
+            }
+            //暂时先取第一个
+            ServiceMetaInfo selectedServiceMetaInfo = serviceMetaInfoList.get(0);
+```
+
+完全可以从服务提供者节点中，选择一个服务提供者发起请求，不是每次都请求同一个服务提供者，这个操作称为负载均衡
+
+
+
+### 负载均衡
+
+负载？要处理的工作和压力，比如网络请求、事务、数据处理任务
+
+均衡？把工作和压力平均分配给多个工作者，从而分摊压力
+
+
+
+常用负载均衡技术
+
+Nginx（七层负载均衡）
+
+LVS（四层负载均衡）
+
+
+
+#### 常见负载均衡算法
+
+（1）轮询：按照循环的顺序请求分配给每个服务器，适用于各服务器性能相近
+
+（2）随机：随机选择一个服务器来处理请求，适用于服务器性能相近，负载均匀
+
+（3）加权轮询：根据服务器性能或权重分配请求，性能更好的服务器会获得更多请求，适用于服务器性能不均
+
+（4）加权随机：根据服务器的权重随机选择一个服务器处理请求，适用于服务器性能不均
+
+（5）最小连接数：选择当前连接数量最少的服务器来处理请求，适用于长连接场景
+
+（6）IP hash：根据客户端IP地址的哈希值选择服务器处理请求，确保同一个客户端的请求始终被分配到同一个服务器上，适用于需要保持会话一致性的场景
+
+
+
+#### 一致性Hash
+
