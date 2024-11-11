@@ -6390,3 +6390,595 @@ LVS（四层负载均衡）
 
 #### 一致性Hash
 
+将请求分配到多个节点或服务器上
+
+
+
+核心：将整个哈希值空间划分为一个环状结构，每个节点或服务器在环上占据一个位置，每个请求根据其哈希值映射到环上的一个点，然后顺时针寻找第一个>=该哈希值的节点，将请求路由到该节点
+
+
+
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241111203713779.png" alt="image-20241111203713779" style="zoom:67%;" />
+
+上图请求会交给C处理
+
+
+
+一致性hash还解决了**节点下线**和**倾斜问题**
+
+
+
+（1）节点下线：当某个节点下线时，其负载会被平均分摊到其它节点上，不会影响整个系统的稳定性，只有部分请求会受影响
+
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241111203952086.png" alt="image-20241111203952086" style="zoom:67%;" />
+
+
+
+（2）倾斜问题：通过虚拟节点的引入，将每个物理节点映射到多个虚拟节点上，使得节点在哈希环上的分布更均匀。减少了节点间的负载差异
+
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241111204153543.png" alt="image-20241111204153543" style="zoom:67%;" />
+
+引入虚拟节点后
+
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241111204218802.png" alt="image-20241111204218802" style="zoom:67%;" />
+
+
+
+### 开发实现
+
+
+
+#### 多种负载均衡器实现
+
+在`rpc-core`模块`loadbalancer`包
+
+
+
+（1）新增通用接口，提供一个选择服务方法，接受请求参数和可用服务列表，根据这些信息来选择
+
+```java
+package site.xiaofei.loadbalancer;
+
+import site.xiaofei.model.ServiceMetaInfo;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @author tuaofei
+ * @description 负载均衡器（消费端使用）
+ * @date 2024/11/11
+ */
+public interface LoadBalancer {
+
+    /**
+     * 选择服务调用
+     * @param requestParams
+     * @param serviceMetaInfoList
+     * @return
+     */
+    ServiceMetaInfo select(Map<String,Object> requestParams, List<ServiceMetaInfo> serviceMetaInfoList);
+}
+```
+
+（2）轮询负载均衡器
+
+使用JUC下的`AtomicInteger`实现原子计数器，防止并发冲突问题
+
+```java
+package site.xiaofei.loadbalancer;
+
+import cn.hutool.core.collection.CollUtil;
+import site.xiaofei.model.ServiceMetaInfo;
+
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+
+/**
+ * @author tuaofei
+ * @description 轮询负载均衡器
+ * @date 2024/11/11
+ */
+public class RoundRobinLoadBalancer implements LoadBalancer{
+
+    /**
+     * 当前轮询的下标
+     */
+    private final AtomicInteger currentIndex = new AtomicInteger(0);
+
+    @Override
+    public ServiceMetaInfo select(Map<String, Object> requestParams, List<ServiceMetaInfo> serviceMetaInfoList) {
+        if (CollUtil.isEmpty(serviceMetaInfoList)){
+            return null;
+        }
+        int size = serviceMetaInfoList.size();
+        if (size == 1){
+            return serviceMetaInfoList.get(0);
+        }
+        //取模算法轮询
+        int index = currentIndex.getAndIncrement() % size;
+        return serviceMetaInfoList.get(index);
+    }
+}
+```
+
+(3)随机负载均衡器
+
+使用java自带的Random实现随机选取
+
+```java
+package site.xiaofei.loadbalancer;
+
+import cn.hutool.core.collection.CollUtil;
+import site.xiaofei.model.ServiceMetaInfo;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+/**
+ * @author tuaofei
+ * @description 随机负载均衡器
+ * @date 2024/11/11
+ */
+public class RandomLoadBalancer implements LoadBalancer{
+
+    private final Random random = new Random();
+
+    @Override
+    public ServiceMetaInfo select(Map<String, Object> requestParams, List<ServiceMetaInfo> serviceMetaInfoList) {
+        if (CollUtil.isEmpty(serviceMetaInfoList)){
+            return null;
+        }
+        int size = serviceMetaInfoList.size();
+        if (size == 1){
+            return serviceMetaInfoList.get(0);
+        }
+        return serviceMetaInfoList.get(random.nextInt(size));
+    }
+}
+```
+
+（4）一致性hash负载均衡器
+
+可使用treemap实现
+
+ceilingEntry：获取指定 key 对应的条目;如果不存在此类条目，则返回大于指定键的最小键的条目;如果不存在此类条目（即 Tree 中的最大键小于指定的键），则返回 null。
+
+firstEntry：返回 TreeMap 中的第一个 Entry（根据 TreeMap 的 key-sort 函数）。如果 TreeMap 为空，则返回 null
+
+```java
+package site.xiaofei.loadbalancer;
+
+import cn.hutool.core.collection.CollUtil;
+import site.xiaofei.model.ServiceMetaInfo;
+
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+/**
+ * @author tuaofei
+ * @description 一致性hash负载均衡器
+ * @date 2024/11/11
+ */
+public class ConsistentHashLoadBalancer implements LoadBalancer {
+
+    /**
+     * 一致性hash环，存放虚拟节点
+     */
+    private final TreeMap<Integer, ServiceMetaInfo> virtualNodeMap = new TreeMap<>();
+
+    /**
+     * 虚拟节点数
+     */
+    private static final int VIRTUAL_NODE_NUM = 100;
+
+    @Override
+    public ServiceMetaInfo select(Map<String, Object> requestParams, List<ServiceMetaInfo> serviceMetaInfoList) {
+        if (CollUtil.isEmpty(serviceMetaInfoList)) {
+            return null;
+        }
+        //构建虚拟节点环
+        for (ServiceMetaInfo serviceMetaInfo : serviceMetaInfoList) {
+            for (int i = 0; i < VIRTUAL_NODE_NUM; i++) {
+                int hash = getHash(serviceMetaInfo.getServiceAddress() + "#" + i);
+                virtualNodeMap.put(hash, serviceMetaInfo);
+            }
+        }
+
+        //获取调用请求的hash值
+        int hash = getHash(requestParams);
+
+        //选择最接近其>=调用请求hash值的虚拟节点
+        Map.Entry<Integer, ServiceMetaInfo> entry = virtualNodeMap.ceilingEntry(hash);
+        if (entry == null){
+            //如果没有，则返回环首部的节点
+            entry = virtualNodeMap.firstEntry();
+        }
+        return entry.getValue();
+    }
+
+    /**
+     * hash算法，可自行实现
+     *
+     * @param key
+     * @return
+     */
+    private int getHash(Object key) {
+        return key.hashCode();
+    }
+}
+```
+
+
+
+#### 支持配置和扩展负载均衡器
+
+（1）负载均衡器常量
+
+在loadbalancer包下新建`LoadBalancerKeys`常量
+
+```java
+package site.xiaofei.loadbalancer;
+
+/**
+ * @author tuaofei
+ * @description 负载均衡常量
+ * @date 2024/11/11
+ */
+public interface LoadBalancerKeys {
+
+    String ROUND_ROBIN = "roundRobin";
+    String CONSISTENT_HASH = "consistentHash";
+    String RANDOM = "randomLoad";
+}
+```
+
+(2)使用工厂模式，支持根据key从spi获取负载均衡器对象实例
+
+在loadbalancer包下新建`LoadBalancerFactory`类
+
+```java
+package site.xiaofei.loadbalancer;
+
+import site.xiaofei.utils.SpiLoader;
+
+/**
+ * @author tuaofei
+ * @description 负载均衡器工厂
+ * @date 2024/11/11
+ */
+public class LoadBalancerFactory {
+
+    static {
+        SpiLoader.load(LoadBalancer.class);
+    }
+
+    private static final LoadBalancer DEFAULT_LOADBALANCER = new RoundRobinLoadBalancer();
+
+    public static LoadBalancer getInstance(String key) {
+        return SpiLoader.getInstance(LoadBalancer.class, key);
+    }
+
+}
+```
+
+(3)在`META-INF/rpc/system`目录下新增spi配置文件`site.xiaofei.loadbalancer.LoadBalancer`
+
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241111213937711.png" alt="image-20241111213937711" style="zoom:80%;" />
+
+```java
+consistentHash=site.xiaofei.loadbalancer.RandomLoadBalancer
+randomLoad=site.xiaofei.loadbalancer.ConsistentHashLoadBalancer
+roundRobin=site.xiaofei.loadbalancer.RoundRobinLoadBalancer
+```
+
+(4)RpcConfig全局配置新增负载均衡配置
+
+```java
+package site.xiaofei.config;
+
+import lombok.Data;
+import site.xiaofei.loadbalancer.LoadBalancerKeys;
+import site.xiaofei.serializer.SerializerKeys;
+
+/**
+ * @author tuaofei
+ * @description rpc框架配置
+ * @date 2024/10/20
+ */
+@Data
+public class RpcConfig {
+
+    ...
+
+    /**
+     * 负载均衡器
+     */
+    private String loadBalancer = LoadBalancerKeys.ROUND_ROBIN;
+}
+
+```
+
+#### 应用负载均衡器
+
+修改`ServiceProxy`，将固定调用第一个节点改为负载均衡调用
+
+```java
+package site.xiaofei.proxy;
+
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.http.HttpRequest;
+import cn.hutool.http.HttpResponse;
+import io.vertx.core.Vertx;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.net.NetClient;
+import io.vertx.core.net.NetSocket;
+import site.xiaofei.RpcApplication;
+import site.xiaofei.config.RpcConfig;
+import site.xiaofei.constant.RpcConstant;
+import site.xiaofei.loadbalancer.LoadBalancer;
+import site.xiaofei.loadbalancer.LoadBalancerFactory;
+import site.xiaofei.model.RpcRequest;
+import site.xiaofei.model.RpcResponse;
+import site.xiaofei.model.ServiceMetaInfo;
+import site.xiaofei.protocol.*;
+import site.xiaofei.registry.Registry;
+import site.xiaofei.registry.RegistryFactory;
+import site.xiaofei.serializer.JdkSerializer;
+import site.xiaofei.serializer.Serializer;
+import site.xiaofei.serializer.SerializerFactory;
+import site.xiaofei.server.tcp.VertxTcpClient;
+
+import javax.xml.ws.Service;
+import java.io.IOException;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.ServiceLoader;
+import java.util.concurrent.CompletableFuture;
+
+/**
+ * @author tuaofei
+ * @description 服务代理（jdk动态代理）
+ * @date 2024/10/18
+ */
+public class ServiceProxy implements InvocationHandler {
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        //指定序列化器
+        final Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
+
+        //给rpc框架发送请求
+        String serviceName = method.getDeclaringClass().getName();
+        RpcRequest rpcRequest = RpcRequest.builder()
+                .serviceName(serviceName)
+                .methodName(method.getName())
+                .paramTypes(method.getParameterTypes())
+                .args(args)
+                .build();
+
+        try {
+            RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+            if (rpcConfig == null) {
+                throw new RuntimeException("get rpcConfig error");
+            }
+            //从注册中心获取服务地址
+            Registry registry = RegistryFactory.getInstance(rpcConfig.getRegistryConfig().getRegistry());
+            ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
+            serviceMetaInfo.setServiceName(serviceName);
+            serviceMetaInfo.setServiceVersion(RpcConstant.DEFAULT_SERVICE_VERSION);
+            List<ServiceMetaInfo> serviceMetaInfoList = registry.serviceDiscovery(serviceMetaInfo.getServiceKey());
+            if (CollUtil.isEmpty(serviceMetaInfoList)) {
+                throw new RuntimeException("not find service address");
+            }
+            //暂时先取第一个
+            //ServiceMetaInfo selectedServiceMetaInfo = serviceMetaInfoList.get(0);
+            //负载均衡
+            LoadBalancer loadBalancer = LoadBalancerFactory.getInstance(rpcConfig.getLoadBalancer());
+            Map<String,Object> requestParamMap = new HashMap<>();
+            requestParamMap.put("methodName",rpcRequest.getMethodName());
+            ServiceMetaInfo selectedServiceMetaInfo = loadBalancer.select(requestParamMap, serviceMetaInfoList);
+
+            //发送http请求
+            /*String remoteUrl = selectedServiceMetaInfo.getServiceAddress();
+            HttpResponse httpResponse = HttpRequest.post(remoteUrl)
+                    .body(bodyBytes)
+                    .execute();
+            resultBytes = httpResponse.bodyBytes();
+            RpcResponse rpcResponse = serializer.deserializer(resultBytes, RpcResponse.class);
+            return rpcResponse.getData();*/
+
+            //发送tcp请求
+            RpcResponse rpcResponse = VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo);
+            return rpcResponse.getData();
+        } catch (Exception e) {
+            throw new RuntimeException("调用失败");
+        }
+    }
+}
+```
+
+### 测试
+
+#### 测试负载均衡算法
+
+编写单元测试`LoadBalancerTest`
+
+```java
+package site.xiaofei.loadbalancer;
+
+import org.junit.Assert;
+import org.junit.Test;
+import site.xiaofei.model.ServiceMetaInfo;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @author tuaofei
+ * @description 负载均衡测试
+ * @date 2024/11/11
+ */
+public class LoadBalancerTest {
+
+    final LoadBalancer loadBalancer = new ConsistentHashLoadBalancer();
+
+    @Test
+    public void select(){
+        Map<String,Object> requestParamMap = new HashMap<>();
+        requestParamMap.put("methodName","apple");
+        ServiceMetaInfo serviceMetaInfo1 = new ServiceMetaInfo();
+        serviceMetaInfo1.setServiceName("myService");
+        serviceMetaInfo1.setServiceVersion("1.0");
+        serviceMetaInfo1.setServiceHost("localhost");
+        serviceMetaInfo1.setServicePost(1234);
+
+        ServiceMetaInfo serviceMetaInfo2 = new ServiceMetaInfo();
+        serviceMetaInfo2.setServiceName("myService");
+        serviceMetaInfo2.setServiceVersion("1.0");
+        serviceMetaInfo2.setServiceHost("xiaofei.site");
+        serviceMetaInfo2.setServicePost(80);
+
+        List<ServiceMetaInfo> serviceMetaInfoList = Arrays.asList(serviceMetaInfo1, serviceMetaInfo2);
+        ServiceMetaInfo serviceMetaInfo = loadBalancer.select(requestParamMap, serviceMetaInfoList);
+        System.out.println(serviceMetaInfo);
+        Assert.assertNotNull(serviceMetaInfo);
+        serviceMetaInfo = loadBalancer.select(requestParamMap, serviceMetaInfoList);
+        System.out.println(serviceMetaInfo);
+        Assert.assertNotNull(serviceMetaInfo);
+        serviceMetaInfo = loadBalancer.select(requestParamMap, serviceMetaInfoList);
+        System.out.println(serviceMetaInfo);
+        Assert.assertNotNull(serviceMetaInfo);
+    }
+}
+```
+
+![image-20241111214318609](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241111214318609.png)
+
+
+
+#### 测试负载均衡调用
+
+在不同端口启动2个服务提供者，启动消费者，通过debug或控制台观察每次请求节点
+
+本身8082，另外启动两个9001，9002
+
+```java
+public class ProviderExample_9001 {
+
+    public static void main(String[] args) {
+        //rpc框架初始化
+        RpcConfig rpcConfig_9001 = new RpcConfig();
+        rpcConfig_9001.setServerPort(9001);
+        RegistryConfig registryConfig_9001 = rpcConfig_9001.getRegistryConfig();
+        registryConfig_9001.setRegistry(RegistryKeys.ZOOKEEPER);
+        registryConfig_9001.setAddress(RegistryKeys.ZOOKEEPER_REGISTER_SERVER_ADDRESS);
+        RpcApplication.init(rpcConfig_9001);
+
+        //注册服务
+        String serviceName = UserService.class.getName();
+        LocalRegistry.register(serviceName, UserServiceImpl.class);
+
+        //注册服务到注册中心
+        RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+        RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+        Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
+        ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
+        serviceMetaInfo.setServiceName(serviceName);
+        serviceMetaInfo.setServiceHost(rpcConfig.getServerHost());
+        serviceMetaInfo.setServicePost(rpcConfig.getServerPort());
+        try {
+            registry.register(serviceMetaInfo);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        //启动web服务
+//        HttpServer httpServer = new VertxHttpServer();
+//        httpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
+
+        //启动tcp服务
+        VertxTcpServer tcpServer = new VertxTcpServer();
+        tcpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
+    }
+
+}
+```
+
+```java
+package site.xiaofei.provider;
+
+import site.xiaofei.RpcApplication;
+import site.xiaofei.common.service.UserService;
+import site.xiaofei.config.RegistryConfig;
+import site.xiaofei.config.RpcConfig;
+import site.xiaofei.model.ServiceMetaInfo;
+import site.xiaofei.registry.LocalRegistry;
+import site.xiaofei.registry.Registry;
+import site.xiaofei.registry.RegistryFactory;
+import site.xiaofei.registry.RegistryKeys;
+import site.xiaofei.server.tcp.VertxTcpServer;
+
+/**
+ * @author tuaofei
+ * @description TODO
+ * @date 2024/11/11
+ */
+public class ProviderExample_9002 {
+
+    public static void main(String[] args) {
+        //rpc框架初始化
+        RpcConfig rpcConfig_9002 = new RpcConfig();
+        rpcConfig_9002.setServerPort(9002);
+        RegistryConfig registryConfig_9002 = rpcConfig_9002.getRegistryConfig();
+        registryConfig_9002.setRegistry(RegistryKeys.ZOOKEEPER);
+        registryConfig_9002.setAddress(RegistryKeys.ZOOKEEPER_REGISTER_SERVER_ADDRESS);
+        RpcApplication.init(rpcConfig_9002);
+
+        //注册服务
+        String serviceName = UserService.class.getName();
+        LocalRegistry.register(serviceName, UserServiceImpl.class);
+
+        //注册服务到注册中心
+        RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+        RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+        Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
+        ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
+        serviceMetaInfo.setServiceName(serviceName);
+        serviceMetaInfo.setServiceHost(rpcConfig.getServerHost());
+        serviceMetaInfo.setServicePost(rpcConfig.getServerPort());
+        try {
+            registry.register(serviceMetaInfo);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        //启动web服务
+//        HttpServer httpServer = new VertxHttpServer();
+//        httpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
+
+        //启动tcp服务
+        VertxTcpServer tcpServer = new VertxTcpServer();
+        tcpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
+    }
+
+}
+```
+
+### 扩展
+
+（1）实现更多不同的负载均衡器
+
+最少活跃数负载均衡，选择当前正在处理请求数量最少的服务提供者
+
+（2）一致性算法hash算法中的hash算法
+
+根据请求客户端ip地址计算hash值，保证同ip的请求发送给相同的服务提供者
