@@ -6982,3 +6982,476 @@ public class ProviderExample_9002 {
 （2）一致性算法hash算法中的hash算法
 
 根据请求客户端ip地址计算hash值，保证同ip的请求发送给相同的服务提供者
+
+## 9、重试机制
+
+
+
+#### 重试条件
+
+什么时候？什么条件？
+
+当发生网络等异常情况时，触发重试
+
+
+
+#### 重试时间
+
+主流的重试时间算法
+
+（1）固定重试间隔
+
+每次重试之前使用固定的时间间隔
+
+```
+1s
+2s
+3s
+4s
+5s
+```
+
+
+
+(2)指数退避重试
+
+在每次失败后，重试的时间间隔会以指数级增加，避免请求过于密集
+
+```
+1s
+3s +2
+7s +4
+15s +8
+31s +16
+```
+
+（3）随机延迟重试
+
+在每次重试之前使用随机的时间间隔，避免同时大量请求
+
+
+
+（4）可变延迟重试
+
+根据之前重试的成功或失败情况，动态调整下一次重试的延迟时间
+
+
+
+以上策略可组合使用
+
+可先使用指数退避重试，如果连续多次重试失败，则切换到固定重试间隔策略
+
+
+
+#### 停止重试
+
+主流的停止重试策略
+
+（1）最大尝试次数
+
+（2）超时停止
+
+
+
+#### 重试工作
+
+重试后要做什么？
+
+请求失败后，进行重试；
+
+如果重试次数超时，或重试时间超时，还需要进行其它操作
+
+1.通知告警
+
+2.降级容错
+
+
+
+### 重试方案设计
+
+```java
+//发送http请求
+            /*String remoteUrl = selectedServiceMetaInfo.getServiceAddress();
+            HttpResponse httpResponse = HttpRequest.post(remoteUrl)
+                    .body(bodyBytes)
+                    .execute();
+            resultBytes = httpResponse.bodyBytes();
+            RpcResponse rpcResponse = serializer.deserializer(resultBytes, RpcResponse.class);
+            return rpcResponse.getData();*/
+
+            //发送tcp请求
+            RpcResponse rpcResponse = VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo);
+            return rpcResponse.getData();
+        } catch (Exception e) {
+            throw new RuntimeException("调用失败");
+        }
+```
+
+可以将`HttpRequest.post`和`VertxTcpClient.doRequest`封装为一个可重试的任务，如果请求失败，系统会自动按照重试策略重试，不用开发者关心
+
+
+
+java可使用guava-retrying实现多种不同的重试算法
+
+参考：[技术 | 使用 guava-retrying 实现灵活的重试机制-腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/article/1752086)
+
+> guava-retrying 依赖 guava 库，如作者所说，源码中大量依赖 guava 的 Predicates（断言）来判断是否继续重试。
+>
+> 通过方法、对象名也可以看出，该库主要使用了**策略模式、构造器模式和观察者模式**（Listener），对调用方非常友好。
+>
+> 从哪儿开始执行任务就从哪儿开始看，直接打开 Retryer 类的 call 方法：
+>
+> ```java
+> public V call(Callable<V> callable) throws ExecutionException, RetryException {
+>     long startTime = System.nanoTime(); // 1. 记录开始时间，用于后续的时间计算
+>     for (int attemptNumber = 1; ; attemptNumber++) {
+>         Attempt<V> attempt;
+>         try {
+>             V result = attemptTimeLimiter.call(callable); // 2. 执行callable任务，得到attempt
+>             attempt = new ResultAttempt<V>(result, attemptNumber, TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime));
+>         } catch (Throwable t) {
+>             attempt = new ExceptionAttempt<V>(t, attemptNumber, TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime));
+>         }
+>  
+>         for (RetryListener listener : listeners) { // 3. 如果有***，通知
+>             listener.onRetry(attempt);
+>         }
+>  
+>         if (!rejectionPredicate.apply(attempt)) { // 4. 如果执行callable出现异常，则返回异常的attempt
+>             return attempt.get();
+>         }
+>         if (stopStrategy.shouldStop(attempt)) { // 5. 根据停止策略判断是否停止重试
+>             throw new RetryException(attemptNumber, attempt); // 若停止，抛出异常
+>         } else {
+>             long sleepTime = waitStrategy.computeSleepTime(attempt); // 6. 根据等待策略计算休眠时间
+>             try {
+>                 blockStrategy.block(sleepTime); // 7. 根据阻塞策略决定休眠行为，默认为sleep
+>             } catch (InterruptedException e) {
+>                 Thread.currentThread().interrupt();
+>                 throw new RetryException(attemptNumber, attempt);
+>             }
+>         }
+>     }
+> }
+> ```
+>
+> 1. 记录开始时间，便于后续判断是否超过限制时间
+> 2. 通过 attemptTimeLimiter 执行 callable 任务，得到 attempt。attempt 代表着每次执行，记录了如执行结果、执行次数、距离第一次执行的延迟时间、异常原因等信息。
+>
+> - 如果 attemptTimeLimiter 是 NoAttemptTimeLimit，则直接调用 callable.call 执行。
+> - 如果 attemptTimeLimiter 是 FixedAttemptTimeLimit，则调用 timeLimiter.callWithTimeout 限制执行时间。
+> - 通知监听器，进行一些回调操作
+> - rejectionPredicate 默认为 alwaysFalse，如果执行 callable 出现异常，则 rejectionPredicate 会返回异常的 attempt
+>
+> ```java
+> rejectionPredicate = Predicates.or(rejectionPredicate, new ExceptionClassPredicate<V>(RuntimeException.class));
+> ```
+>
+> 5. 根据停止策略判断是否停止重试，若停止，抛出 RetryException 异常表示最终重试失败
+> 6. 根据等待策略计算休眠时间
+> 7. 根据阻塞策略决定休眠行为，默认为 Thread.sleep（躺着啥也不干）
+
+
+
+### 开发实现
+
+#### 多种重试策略实现
+
+在`rpc-core`下新建`fault.retry`包
+
+（1）新增重试策略接口，提供重试方法，接受一个具体的任务参数，可使用Callable代表一个任务
+
+```java
+package site.xiaofei.fault.retry;
+
+import site.xiaofei.model.RpcResponse;
+
+import java.util.concurrent.Callable;
+
+/**
+ * @author tuaofei
+ * @description 重试策略
+ * @date 2024/11/12
+ */
+public interface RetryStrategy {
+
+    /**
+     * 重试
+     * @param callable
+     * @return
+     */
+    RpcResponse doRetry(Callable<RpcResponse> callable) throws Exception;
+}
+```
+
+(2)引入guava-retrying
+
+```xml
+<!-- https://github.com/rholder/guava-retrying -->
+        <dependency>
+            <groupId>com.github.rholder</groupId>
+            <artifactId>guava-retrying</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+```
+
+(3)不重试策略
+
+```java
+package site.xiaofei.fault.retry;
+
+import site.xiaofei.model.RpcResponse;
+
+import java.util.concurrent.Callable;
+
+/**
+ * @author tuaofei
+ * @description 不重试策略
+ * @date 2024/11/12
+ */
+public class NoRetryStrategy implements RetryStrategy{
+    @Override
+    public RpcResponse doRetry(Callable<RpcResponse> callable) throws Exception {
+        return callable.call();
+    }
+}
+```
+
+（4）固定重试间隔策略
+
+使用guava-retrying 提供的RetryerBuilder指定重试条件，重试等待策略，重试停止策略，重试工作...
+
+```java
+package site.xiaofei.fault.retry;
+
+import com.github.rholder.retry.*;
+import lombok.extern.slf4j.Slf4j;
+import site.xiaofei.model.RpcResponse;
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * @author tuaofei
+ * @description 固定时间充实策略
+ * @date 2024/11/12
+ */
+@Slf4j
+public class FixedIntervalRetryStrategy implements RetryStrategy {
+
+    @Override
+    public RpcResponse doRetry(Callable<RpcResponse> callable) throws Exception {
+        /**
+         * 设置重试条件，如果抛出的异常是Exception类型或其子类型的实例，那么就会进行重试。
+         * 设置等待策略，每次重试之间固定等待3秒钟。
+         * 设置停止策略，最多重试3次后停止。
+         * 设置重试监听器，每次重试时都会调用onRetry方法，这里在onRetry方法中记录了重试的次数。
+         */
+        Retryer<RpcResponse> retryer = RetryerBuilder.<RpcResponse>newBuilder()
+                .retryIfExceptionOfType(Exception.class)
+                .retryIfExceptionOfType(RuntimeException.class)
+                .withWaitStrategy(WaitStrategies.fixedWait(3L, TimeUnit.SECONDS))
+                .withStopStrategy(StopStrategies.stopAfterAttempt(3))
+                .withRetryListener(new RetryListener() {
+                    @Override
+                    public <V> void onRetry(Attempt<V> attempt) {
+                        log.info("重试次数 {}", attempt.getAttemptNumber());
+                    }
+                }).build();
+        return retryer.call(callable);
+    }
+}
+```
+
+（5）测试类测试
+
+```java
+package site.xiaofei.fault.retry;
+
+import org.junit.Test;
+import site.xiaofei.model.RpcResponse;
+
+/**
+ * @author tuaofei
+ * @description 重试策略测试
+ * @date 2024/11/12
+ */
+public class RetryStrategyTest {
+
+    RetryStrategy retryStrategy = new FixedIntervalRetryStrategy();
+
+    @Test
+    public void doRetry(){
+        RpcResponse rpcResponse = null;
+        try {
+            rpcResponse = retryStrategy.doRetry(() -> {
+                System.out.println("测试重试");
+                throw new RuntimeException("模拟重试失败");
+            });
+            System.out.println(rpcResponse);
+        } catch (Exception e) {
+            System.out.println("重试多次失败");
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+
+
+#### 支持配置和扩展重试策略
+
+（1）重试策略常量
+
+
+
+```java
+package site.xiaofei.fault.retry;
+
+/**
+ * @author tuaofei
+ * @description 重试策略key
+ * @date 2024/11/12
+ */
+public interface RetryStrategyKeys {
+    /**
+     * 不重试
+     */
+    String NO = "no";
+
+    /**
+     * 固定时间间隔
+     */
+    String FIXED_INTERVAL = "fixedInterval";
+}
+```
+
+（2）使用工厂模式，支持根据key从SPI获取重试策略
+
+在`fault.retry`包下新增`RetryStrategyFactory`类
+
+```java
+package site.xiaofei.fault.retry;
+
+import site.xiaofei.utils.SpiLoader;
+
+/**
+ * @author tuaofei
+ * @description 重试策略工厂
+ * @date 2024/11/12
+ */
+public class RetryStrategyFactory {
+
+    static {
+        SpiLoader.load(RetryStrategy.class);
+    }
+
+    private static final RetryStrategy DEFAULT_RETRY_STRATEGY = new NoRetryStrategy();
+
+    public static RetryStrategy getInstance(String key) {
+        return SpiLoader.getInstance(RetryStrategy.class, key);
+    }
+}
+```
+
+(3)在`META-INF/rpc/system/`目录下新增`site.xiaofei.fault.retry.RetryStrategy`
+
+![image-20241112223805673](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241112223805673.png)
+
+```
+no=site.xiaofei.fault.retry.NoRetryStrategy
+fixedInterval=site.xiaofei.fault.retry.FixedIntervalRetryStrategy
+```
+
+
+
+(4)RpcConfig新增重试策略配置
+
+```java
+package site.xiaofei.config;
+
+import lombok.Data;
+import site.xiaofei.fault.retry.RetryStrategyKeys;
+import site.xiaofei.loadbalancer.LoadBalancerKeys;
+import site.xiaofei.registry.Registry;
+import site.xiaofei.serializer.SerializerKeys;
+
+/**
+ * @author tuaofei
+ * @description rpc框架配置
+ * @date 2024/10/20
+ */
+@Data
+public class RpcConfig {
+
+    ...
+
+    /**
+     * 重试策略
+     */
+    private String retryStrategy = RetryStrategyKeys.NO;
+}
+```
+
+
+
+#### 应用重试功能
+
+修改`ServiceProxy`
+
+```java
+//发送http请求
+            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+            RpcResponse rpcResponse = retryStrategy.doRetry(() -> {
+                byte[] bodyBytes = serializer.serializer(rpcRequest);
+                byte[] resultBytes;
+                String remoteUrl = selectedServiceMetaInfo.getServiceAddress();
+                HttpResponse httpResponse = HttpRequest.post(remoteUrl)
+                        .body(bodyBytes)
+                        .execute();
+                resultBytes = httpResponse.bodyBytes();
+                return serializer.deserializer(resultBytes, RpcResponse.class);
+            });
+            return rpcResponse.getData();
+
+            //发送tcp请求
+            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+            RpcResponse rpcResponse = retryStrategy.doRetry(()-> VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo));
+            return rpcResponse.getData();
+```
+
+补充修改`VertxTcpClient`
+
+连接不上可抛出错误
+
+```java
+public static RpcResponse doRequest(RpcRequest rpcRequest, ServiceMetaInfo serviceMetaInfo) throws ExecutionException, InterruptedException {
+        //发送tcp请求
+       ...
+        netClient.connect(serviceMetaInfo.getServicePost(), serviceMetaInfo.getServiceHost(),
+                result -> {
+                    if (!result.succeeded()) {
+                        log.error("failed to connect to tcp server");
+                        //增加抛出异常
+                        responseFuture.completeExceptionally(new RuntimeException("failed to connect to tcp server"));
+                        return;
+                    }
+                   ...
+                });
+        RpcResponse rpcResponse = responseFuture.get();
+        netClient.close();
+    //手动错误，测试重试
+        int i= 1/0;
+        return rpcResponse;
+    }
+```
+
+### 测试
+
+![image-20241112224332840](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241112224332840.png)
+
+### 扩展
+
+（1）新增更多不同类型的重试策略
+
+指数退避算法的重试策略
