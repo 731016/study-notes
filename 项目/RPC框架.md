@@ -7453,5 +7453,618 @@ public static RpcResponse doRequest(RpcRequest rpcRequest, ServiceMetaInfo servi
 ### 扩展
 
 （1）新增更多不同类型的重试策略
-
 指数退避算法的重试策略
+
+## 10、容错机制
+
+
+
+### 需求分析
+
+当重试超过设定次数，要怎么处理？一定要重试吗？
+
+
+
+### 设计方案
+
+#### 容错机制
+
+在系统出现异常情况时，通过一定的策略保证系统稳定运行，提高系统的可靠性和健壮性
+
+
+
+##### 容错策略
+
+（1）故障转移：一次调用失败后，切换其他节点再次调用
+
+（2）失败自动恢复：系统的某个功能出现调用失败或错误时，通过其它方法，恢复该功能的正常
+
+（3）静默处理：系统出现部分非重要功能的异常时，直接忽略，不做处理
+
+（4）快速失败：系统出现调用错误时，立刻报错，交给外出调用处理
+
+
+
+##### 容错实现方式
+
+（1）重试
+
+（2）限流
+
+（3）降级：系统出现错误后，改为执行其它更稳定可以的操作
+
+（4）熔断：系统出现故障或异常时，暂时中断对该服务的请求，执行其他操作，以避免连锁故障
+
+（5）超时控制：请求或操作长时间没处理完成，就进行中断，防止阻塞或资源占用
+
+
+
+#### 容错方案设计
+
+（1）先容错再重试
+
+当系统发生异常时，首先触发容错机制，比如记录日志、进行告警，然后可以选择是否进行重试
+
+（2）先重试再容错
+
+在发生错误时，首先尝试重试，如果重试多次仍然失败，则触发容错机制
+
+
+
+可结合使用
+
+系统错误时，先重试解决一些临时性的异常，如网络波动、服务端临时不可用；
+
+然后重试多次后仍然失败，在触发其它的容错策略，如服务降级、熔断、限流、快速失败
+
+
+
+### 开发实现
+
+#### 多种容错策略实现
+
+在`rpc-core`下新建`fault.tolerant`包
+
+(1)新增容错策略通用接口，提供容错方法，使用Map类型参数接收上下文信息，并接收一个具体的异常类参数
+
+```java
+package site.xiaofei.fault.tolerant;
+
+import site.xiaofei.model.RpcResponse;
+
+import java.util.Map;
+
+/**
+ * @author tuaofei
+ * @description 容错策略
+ * @date 2024/11/13
+ */
+public interface TolerantStrategy {
+
+    /**
+     * 容错
+     * @param context
+     * @param e
+     * @return
+     */
+    RpcResponse doTolerant(Map<String,Object> context,Exception e);
+}
+```
+
+(2)快速失败容错策略
+
+遇到异常后，将异常抛出，交给外出处理
+
+```java
+package site.xiaofei.fault.tolerant;
+
+import lombok.extern.slf4j.Slf4j;
+import site.xiaofei.model.RpcResponse;
+
+import java.util.Map;
+
+/**
+ * @author tuaofei
+ * @description 快速失败容错
+ * @date 2024/11/13
+ */
+@Slf4j
+public class FailFastTolerantStrategy implements TolerantStrategy {
+
+
+    @Override
+    public RpcResponse doTolerant(Map<String, Object> context, Exception e) {
+        throw new RuntimeException(e);
+    }
+}
+```
+
+（3）静默处理容错策略
+
+遇到异常后，记录日志，然后正常返回响应对象
+
+```java
+package site.xiaofei.fault.tolerant;
+
+import lombok.extern.slf4j.Slf4j;
+import site.xiaofei.model.RpcResponse;
+
+import java.util.Map;
+
+/**
+ * @author tuaofei
+ * @description 静默处理容错
+ * @date 2024/11/13
+ */
+@Slf4j
+public class FailSafeTolerantStrategy implements TolerantStrategy {
+    @Override
+    public RpcResponse doTolerant(Map<String, Object> context, Exception e) {
+        log.error("静默处理异常", e);
+        return new RpcResponse();
+    }
+}
+```
+
+（4）其它容错策略
+
+故障恢复
+
+```java
+package site.xiaofei.fault.tolerant;
+
+import site.xiaofei.model.RpcResponse;
+
+import java.util.Map;
+
+/**
+ * @author tuaofei
+ * @description 转移到其它服务节点
+ * @date 2024/11/13
+ */
+public class FailOverTolerantStrategy implements TolerantStrategy{
+    @Override
+    public RpcResponse doTolerant(Map<String, Object> context, Exception e) {
+        //todo 获取其它节点并调用
+        return null;
+    }
+}
+```
+
+故障转移
+
+```java
+package site.xiaofei.fault.tolerant;
+
+import site.xiaofei.model.RpcResponse;
+
+import java.util.Map;
+
+/**
+ * @author tuaofei
+ * @description 转移到其它服务节点
+ * @date 2024/11/13
+ */
+public class FailOverTolerantStrategy implements TolerantStrategy{
+    @Override
+    public RpcResponse doTolerant(Map<String, Object> context, Exception e) {
+        //todo 获取其它节点并调用
+        return null;
+    }
+}
+```
+
+容错机制目录
+
+![image-20241113210905214](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241113210905214.png)
+
+#### 支持配置和扩展容错策略
+
+（1）容错策略常量
+
+在`fault.tolerant`包下新建`TolerantStrategyKeys`类
+
+```java
+package site.xiaofei.fault.tolerant;
+
+/**
+ * @author tuaofei
+ * @description 容错策略key
+ * @date 2024/11/13
+ */
+public interface TolerantStrategyKeys {
+
+    /**
+     * 故障恢复
+     */
+    String FAIL_BACK = "failBack";
+
+    /**
+     * 快速失败
+     */
+    String FAIL_FAST = "failFast";
+
+    /**
+     * 故障转移
+     */
+    String FAIL_OVER = "failOver";
+
+    /**
+     * 静默处理
+     */
+    String FAIL_SAFE = "failSafe";
+}
+```
+
+(2)使用工厂模式，支持根据key从SPI获取容错策略对象实例
+
+在`fault.tolerant`包下新建`TolerantStrategyFactory`类
+
+```java
+package site.xiaofei.fault.tolerant;
+
+import site.xiaofei.utils.SpiLoader;
+
+/**
+ * @author tuaofei
+ * @description 容错策略工厂
+ * @date 2024/11/13
+ */
+public class TolerantStrategyFactory {
+
+    static {
+        SpiLoader.load(TolerantStrategy.class);
+    }
+
+    private static final TolerantStrategy DEFAULT_TOLERANT_STRATEGY = new FailFastTolerantStrategy();
+
+    public static TolerantStrategy getInstance(String key) {
+        return SpiLoader.getInstance(TolerantStrategy.class, key);
+    }
+}
+```
+
+(3)在`META-INF/rpc/system`目录下新增`site.xiaofei.fault.tolerant.TolerantStrategy`
+
+![image-20241113211322834](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241113211322834.png)
+
+```
+failBack=site.xiaofei.fault.tolerant.FailBackTolerantStrategy
+failFast=site.xiaofei.fault.tolerant.FailFastTolerantStrategy
+failOver=site.xiaofei.fault.tolerant.FailOverTolerantStrategy
+failSafe=site.xiaofei.fault.tolerant.FailSafeTolerantStrategy
+```
+
+
+
+(4)RpcConfig增加容错策略配置
+
+```java
+package site.xiaofei.config;
+
+import lombok.Data;
+import site.xiaofei.fault.retry.RetryStrategyKeys;
+import site.xiaofei.fault.tolerant.TolerantStrategyKeys;
+import site.xiaofei.loadbalancer.LoadBalancerKeys;
+import site.xiaofei.registry.Registry;
+import site.xiaofei.serializer.SerializerKeys;
+
+/**
+ * @author tuaofei
+ * @description rpc框架配置
+ * @date 2024/10/20
+ */
+@Data
+public class RpcConfig {
+
+    ...
+
+    /**
+     * 容错策略
+     */
+    private String tolerantStrategy = TolerantStrategyKeys.FAIL_FAST;
+}
+```
+
+#### 应用容错功能
+
+修改`ServiceProxy`
+
+```java
+RpcResponse rpcResponse;
+        try {
+            //发送http请求
+//            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+//            rpcResponse = retryStrategy.doRetry(() -> {
+//                byte[] bodyBytes = serializer.serializer(rpcRequest);
+//                byte[] resultBytes;
+//                String remoteUrl = selectedServiceMetaInfo.getServiceAddress();
+//                HttpResponse httpResponse = HttpRequest.post(remoteUrl)
+//                        .body(bodyBytes)
+//                        .execute();
+//                resultBytes = httpResponse.bodyBytes();
+//                return serializer.deserializer(resultBytes, RpcResponse.class);
+//            });
+
+            //发送tcp请求
+            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+            rpcResponse = retryStrategy.doRetry(() -> VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo));
+        } catch (Exception e) {
+            TolerantStrategy tolerantStrategy = TolerantStrategyFactory.getInstance(rpcConfig.getTolerantStrategy());
+            rpcResponse = tolerantStrategy.doTolerant(null, e);
+        }
+        return rpcResponse.getData();
+```
+
+修改后的完整代码
+
+```java
+package site.xiaofei.proxy;
+
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.http.HttpRequest;
+import cn.hutool.http.HttpResponse;
+import io.vertx.core.Vertx;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.net.NetClient;
+import io.vertx.core.net.NetSocket;
+import site.xiaofei.RpcApplication;
+import site.xiaofei.config.RpcConfig;
+import site.xiaofei.constant.RpcConstant;
+import site.xiaofei.fault.retry.RetryStrategy;
+import site.xiaofei.fault.retry.RetryStrategyFactory;
+import site.xiaofei.fault.tolerant.TolerantStrategy;
+import site.xiaofei.fault.tolerant.TolerantStrategyFactory;
+import site.xiaofei.loadbalancer.LoadBalancer;
+import site.xiaofei.loadbalancer.LoadBalancerFactory;
+import site.xiaofei.model.RpcRequest;
+import site.xiaofei.model.RpcResponse;
+import site.xiaofei.model.ServiceMetaInfo;
+import site.xiaofei.protocol.*;
+import site.xiaofei.registry.Registry;
+import site.xiaofei.registry.RegistryFactory;
+import site.xiaofei.serializer.JdkSerializer;
+import site.xiaofei.serializer.Serializer;
+import site.xiaofei.serializer.SerializerFactory;
+import site.xiaofei.server.tcp.VertxTcpClient;
+
+import javax.xml.ws.Service;
+import java.io.IOException;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.ServiceLoader;
+import java.util.concurrent.CompletableFuture;
+
+/**
+ * @author tuaofei
+ * @description 服务代理（jdk动态代理）
+ * @date 2024/10/18
+ */
+public class ServiceProxy implements InvocationHandler {
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        //指定序列化器
+        final Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
+
+        //给rpc框架发送请求
+        String serviceName = method.getDeclaringClass().getName();
+        RpcRequest rpcRequest = RpcRequest.builder()
+                .serviceName(serviceName)
+                .methodName(method.getName())
+                .paramTypes(method.getParameterTypes())
+                .args(args)
+                .build();
+
+        RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+        if (rpcConfig == null) {
+            throw new RuntimeException("get rpcConfig error");
+        }
+        //从注册中心获取服务地址
+        Registry registry = RegistryFactory.getInstance(rpcConfig.getRegistryConfig().getRegistry());
+        ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
+        serviceMetaInfo.setServiceName(serviceName);
+        serviceMetaInfo.setServiceVersion(RpcConstant.DEFAULT_SERVICE_VERSION);
+        List<ServiceMetaInfo> serviceMetaInfoList = registry.serviceDiscovery(serviceMetaInfo.getServiceKey());
+        if (CollUtil.isEmpty(serviceMetaInfoList)) {
+            throw new RuntimeException("not find service address");
+        }
+        //暂时先取第一个
+        //ServiceMetaInfo selectedServiceMetaInfo = serviceMetaInfoList.get(0);
+        //负载均衡
+        LoadBalancer loadBalancer = LoadBalancerFactory.getInstance(rpcConfig.getLoadBalancer());
+        Map<String, Object> requestParamMap = new HashMap<>();
+        requestParamMap.put("methodName", rpcRequest.getMethodName());
+        ServiceMetaInfo selectedServiceMetaInfo = loadBalancer.select(requestParamMap, serviceMetaInfoList);
+        System.out.println("获取节点：" + selectedServiceMetaInfo);
+
+        RpcResponse rpcResponse;
+        try {
+            //发送http请求
+//            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+//            rpcResponse = retryStrategy.doRetry(() -> {
+//                byte[] bodyBytes = serializer.serializer(rpcRequest);
+//                byte[] resultBytes;
+//                String remoteUrl = selectedServiceMetaInfo.getServiceAddress();
+//                HttpResponse httpResponse = HttpRequest.post(remoteUrl)
+//                        .body(bodyBytes)
+//                        .execute();
+//                resultBytes = httpResponse.bodyBytes();
+//                return serializer.deserializer(resultBytes, RpcResponse.class);
+//            });
+
+            //发送tcp请求
+            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+            rpcResponse = retryStrategy.doRetry(() -> VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo));
+        } catch (Exception e) {
+            TolerantStrategy tolerantStrategy = TolerantStrategyFactory.getInstance(rpcConfig.getTolerantStrategy());
+            rpcResponse = tolerantStrategy.doTolerant(null, e);
+        }
+        return rpcResponse.getData();
+    }
+}
+```
+
+### 测试
+
+在`VertxTcpClient`返回的地方写一段异常
+
+```java
+package site.xiaofei.server.tcp;
+
+import cn.hutool.core.util.IdUtil;
+import io.vertx.core.Vertx;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.net.NetClient;
+import io.vertx.core.net.NetSocket;
+import lombok.extern.slf4j.Slf4j;
+import site.xiaofei.RpcApplication;
+import site.xiaofei.model.RpcRequest;
+import site.xiaofei.model.RpcResponse;
+import site.xiaofei.model.ServiceMetaInfo;
+import site.xiaofei.protocol.*;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
+/**
+ * @author tuaofei
+ * @description Vertx请求客户端
+ * @date 2024/11/4
+ */
+@Slf4j
+public class VertxTcpClient {
+
+    public void start() {
+        Vertx vertx = Vertx.vertx();
+
+        vertx.createNetClient().connect(8888, "localhost", result -> {
+            if (result.succeeded()) {
+                System.out.println("connect to tcp server");
+                NetSocket socket = result.result();
+                for (int i = 0; i < 1000; i++) {
+                    //发送数据
+                    Buffer buffer = Buffer.buffer();
+                    String str = "hello,server!hello,server!hello,server!hello,server!";
+                    buffer.appendInt(0);
+                    buffer.appendInt(str.getBytes(StandardCharsets.UTF_8).length);
+                    buffer.appendBytes(str.getBytes());
+                    socket.write(buffer);
+                }
+                //接收响应
+                socket.handler(buffer -> {
+                    System.out.println("received response from server :" + buffer.toString());
+                });
+            } else {
+                System.out.println("failed to connect tcp server");
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        new VertxTcpClient().start();
+    }
+
+    public static RpcResponse doRequest(RpcRequest rpcRequest, ServiceMetaInfo serviceMetaInfo) throws ExecutionException, InterruptedException {
+        //发送tcp请求
+        Vertx vertx = Vertx.vertx();
+        NetClient netClient = vertx.createNetClient();
+        CompletableFuture<RpcResponse> responseFuture = new CompletableFuture<>();
+        netClient.connect(serviceMetaInfo.getServicePost(), serviceMetaInfo.getServiceHost(),
+                result -> {
+                    if (!result.succeeded()) {
+                        log.error("failed to connect to tcp server");
+                        responseFuture.completeExceptionally(new RuntimeException("failed to connect to tcp server"));
+                        return;
+                    }
+                    NetSocket socket = result.result();
+                    ProtocolMessage<RpcRequest> protocolMessage = new ProtocolMessage<>();
+                    ProtocolMessage.Header header = new ProtocolMessage.Header();
+                    header.setMagic(ProtocolConstant.PROTOCOLMAGIC);
+                    header.setVersion(ProtocolConstant.PROTOCOL_VERSION);
+                    header.setSerializer((byte) ProtocolMessageSerializerEnum.getEnumByValue(RpcApplication.getRpcConfig().getSerializer()).getKey());
+                    header.setType((byte) ProtocolMessageTypeEnum.REQUEST.getKey());
+                    //全局请求id
+                    header.setRequestId(IdUtil.getSnowflakeNextId());
+                    protocolMessage.setHeader(header);
+                    protocolMessage.setBody(rpcRequest);
+
+                    //编码请求
+                    try {
+                        Buffer encodeBuffer = ProtocolMessageEncoder.encode(protocolMessage);
+                        socket.write(encodeBuffer);
+                    } catch (IOException e) {
+                        throw new RuntimeException("协议消息编码错误");
+                    }
+
+                    //接收响应
+                    TcpBufferHandlerWrapper bufferHandlerWrapper = new TcpBufferHandlerWrapper(buffer -> {
+                        try {
+                            ProtocolMessage<RpcResponse> rpcResponseProtocolMessage = (ProtocolMessage<RpcResponse>) ProtocolMessageDecoder.decode(buffer);
+                            responseFuture.complete(rpcResponseProtocolMessage.getBody());
+                        } catch (IOException e) {
+                            throw new RuntimeException("协议消息解码错误");
+                        }
+                    });
+                    socket.handler(bufferHandlerWrapper);
+                });
+        RpcResponse rpcResponse = responseFuture.get();
+        netClient.close();
+        //异常
+        int i= 1/0;
+        return rpcResponse;
+    }
+}
+```
+
+服务提供者和消费者修改配置文件，容错策略为静默
+
+```properties
+rpc.name=xiaofei.site-rpc
+rpc.version=1.0
+rpc.serverPort=8082
+rpc.mock=false
+#序列化器
+rpc.serializer=hessian
+#注册中心类型
+rpc.registryConfig.registry=zookeeper
+#注册中心注册地址
+rpc.registryConfig.address=localhost:2181
+#负载均衡策略
+rpc.loadBalancer=consistentHash
+#重试策略
+rpc.retryStrategy=fixedInterval
+#容错策略
+rpc.tolerantStrategy=failSafe
+```
+
+
+
+启动服务提供者，再启动消费者
+
+![image-20241113211748511](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241113211748511.png)
+
+
+
+### 扩展
+
+（1）实现失败自动恢复容错机制
+
+参考dubbo的mock能力，让消费者指定调用失败后要执行的本地服务和方法
+
+
+
+（2）实现故障转移容错机制
+
+参考利用容错方法的上下文传递所有服务节点和本次调用的服务节点，选择一个其它节点再次发起调用
+
+
+
+（3）实现更多的容错方案
+
+参考：限流、熔断、超时控制
