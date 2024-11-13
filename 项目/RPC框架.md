@@ -8085,6 +8085,7 @@ rpc.tolerantStrategy=failSafe
 ```java
 package site.xiaofei.fault.tolerant;
 
+import cn.hutool.core.collection.CollUtil;
 import site.xiaofei.RpcApplication;
 import site.xiaofei.config.RpcConfig;
 import site.xiaofei.fault.retry.RetryStrategy;
@@ -8097,6 +8098,7 @@ import site.xiaofei.model.ServiceMetaInfo;
 import site.xiaofei.server.tcp.VertxTcpClient;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -8105,36 +8107,63 @@ import java.util.Map;
  * @description 故障转移容错
  * @date 2024/11/13
  */
-public class FailOverTolerantStrategy implements TolerantStrategy{
+public class FailOverTolerantStrategy implements TolerantStrategy {
     @Override
     public RpcResponse doTolerant(Map<String, Object> context, Exception e) {
         //获取其它节点并调用
         RpcRequest rpcRequest = (RpcRequest) context.get("rpcRequest");
         List<ServiceMetaInfo> serviceMetaInfoList = (List<ServiceMetaInfo>) context.get("serviceMetaInfoList");
+        ServiceMetaInfo selectedServiceMetaInfo = (ServiceMetaInfo) context.get("selectedServiceMetaInfo");
+
+        //移除失败节点
+        removeFailNode(selectedServiceMetaInfo,serviceMetaInfoList);
 
         RpcConfig rpcConfig = RpcApplication.getRpcConfig();
         LoadBalancer loadBalancer = LoadBalancerFactory.getInstance(rpcConfig.getLoadBalancer());
         Map<String, Object> requestParamMap = new HashMap<>();
         requestParamMap.put("methodName", rpcRequest.getMethodName());
-        ServiceMetaInfo selectedServiceMetaInfo = loadBalancer.select(requestParamMap, serviceMetaInfoList);
-        System.out.println("获取节点：" + selectedServiceMetaInfo);
 
-        RpcResponse rpcResponse;
-        try {
-            //发送tcp请求
-            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
-            rpcResponse = retryStrategy.doRetry(() -> VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo));
-        } catch (Exception exception) {
-            throw new RuntimeException(exception);
+        RpcResponse rpcResponse = null;
+        while (serviceMetaInfoList.size() > 0 || rpcResponse != null) {
+            ServiceMetaInfo currentServiceMetaInfo = loadBalancer.select(requestParamMap, serviceMetaInfoList);
+            System.out.println("获取节点：" + currentServiceMetaInfo);
+            try {
+                //发送tcp请求
+                RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+                rpcResponse = retryStrategy.doRetry(() -> VertxTcpClient.doRequest(rpcRequest, currentServiceMetaInfo));
+                return rpcResponse;
+            } catch (Exception exception) {
+                //移除失败节点
+                removeFailNode(currentServiceMetaInfo,serviceMetaInfoList);
+                continue;
+            }
         }
-        return rpcResponse;
+        //调用失败
+        throw new RuntimeException(e);
+    }
+
+    /**
+     * 移除失败节点，可考虑下线
+     *
+     * @param serviceMetaInfoList
+     */
+    private void removeFailNode(ServiceMetaInfo currentServiceMetaInfo, List<ServiceMetaInfo> serviceMetaInfoList) {
+        if (CollUtil.isNotEmpty(serviceMetaInfoList)) {
+            Iterator<ServiceMetaInfo> iterator = serviceMetaInfoList.iterator();
+            while (iterator.hasNext()) {
+                ServiceMetaInfo next = iterator.next();
+                if (currentServiceMetaInfo.getServiceNodeKey().equals(next.getServiceNodeKey())) {
+                    iterator.remove();
+                }
+            }
+        }
     }
 }
 ```
 
-测试,调用第一个节点失败，继续调用其它节点仍然失败
+测试,调用第一个节点失败，继续调用其它节点仍然失败，一直查找可调用节点
 
-![image-20241113221526825](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241113221526825.png)
+![image-20241113230253468](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241113230253468.png)
 
 
 
