@@ -8063,6 +8063,79 @@ rpc.tolerantStrategy=failSafe
 
 参考利用容错方法的上下文传递所有服务节点和本次调用的服务节点，选择一个其它节点再次发起调用
 
+修改`ServiceProxy`
+
+```java
+//发送tcp请求
+            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+            rpcResponse = retryStrategy.doRetry(() -> VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo));
+        } catch (Exception e) {
+            TolerantStrategy tolerantStrategy = TolerantStrategyFactory.getInstance(rpcConfig.getTolerantStrategy());
+            Map<String, Object> requestTolerantParamMap = new HashMap<>();
+            requestTolerantParamMap.put("rpcRequest",rpcRequest);
+            requestTolerantParamMap.put("selectedServiceMetaInfo",selectedServiceMetaInfo);
+            requestTolerantParamMap.put("serviceMetaInfoList",serviceMetaInfoList);
+            rpcResponse = tolerantStrategy.doTolerant(requestTolerantParamMap, e);
+        }
+        return rpcResponse.getData();
+```
+
+修改`FailOverTolerantStrategy`
+
+```java
+package site.xiaofei.fault.tolerant;
+
+import site.xiaofei.RpcApplication;
+import site.xiaofei.config.RpcConfig;
+import site.xiaofei.fault.retry.RetryStrategy;
+import site.xiaofei.fault.retry.RetryStrategyFactory;
+import site.xiaofei.loadbalancer.LoadBalancer;
+import site.xiaofei.loadbalancer.LoadBalancerFactory;
+import site.xiaofei.model.RpcRequest;
+import site.xiaofei.model.RpcResponse;
+import site.xiaofei.model.ServiceMetaInfo;
+import site.xiaofei.server.tcp.VertxTcpClient;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @author tuaofei
+ * @description 故障转移容错
+ * @date 2024/11/13
+ */
+public class FailOverTolerantStrategy implements TolerantStrategy{
+    @Override
+    public RpcResponse doTolerant(Map<String, Object> context, Exception e) {
+        //获取其它节点并调用
+        RpcRequest rpcRequest = (RpcRequest) context.get("rpcRequest");
+        List<ServiceMetaInfo> serviceMetaInfoList = (List<ServiceMetaInfo>) context.get("serviceMetaInfoList");
+
+        RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+        LoadBalancer loadBalancer = LoadBalancerFactory.getInstance(rpcConfig.getLoadBalancer());
+        Map<String, Object> requestParamMap = new HashMap<>();
+        requestParamMap.put("methodName", rpcRequest.getMethodName());
+        ServiceMetaInfo selectedServiceMetaInfo = loadBalancer.select(requestParamMap, serviceMetaInfoList);
+        System.out.println("获取节点：" + selectedServiceMetaInfo);
+
+        RpcResponse rpcResponse;
+        try {
+            //发送tcp请求
+            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+            rpcResponse = retryStrategy.doRetry(() -> VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo));
+        } catch (Exception exception) {
+            throw new RuntimeException(exception);
+        }
+        return rpcResponse;
+    }
+}
+```
+
+测试,调用第一个节点失败，继续调用其它节点仍然失败
+
+![image-20241113221526825](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241113221526825.png)
+
 
 
 （3）实现更多的容错方案
