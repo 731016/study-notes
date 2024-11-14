@@ -8170,3 +8170,1033 @@ public class FailOverTolerantStrategy implements TolerantStrategy {
 （3）实现更多的容错方案
 
 参考：限流、熔断、超时控制
+
+## 11、启动机制和注解驱动
+
+### 需求分析
+
+当前框架不够易用
+
+服务提供者启动复杂
+
+```java
+package site.xiaofei.provider;
+
+import site.xiaofei.RpcApplication;
+import site.xiaofei.common.service.UserService;
+import site.xiaofei.config.RegistryConfig;
+import site.xiaofei.config.RpcConfig;
+import site.xiaofei.model.ServiceMetaInfo;
+import site.xiaofei.registry.LocalRegistry;
+import site.xiaofei.registry.Registry;
+import site.xiaofei.registry.RegistryFactory;
+import site.xiaofei.server.HttpServer;
+import site.xiaofei.server.VertxHttpServer;
+import site.xiaofei.server.tcp.VertxTcpServer;
+
+import java.util.concurrent.ExecutionException;
+
+/**
+ * @author tuaofei
+ * @description 服务提供者示例，注册中心
+ * @date 2024/10/30
+ */
+public class ProviderExample {
+
+    public static void main(String[] args) {
+        //rpc框架初始化
+        RpcApplication.init();
+
+        //注册服务
+        String serviceName = UserService.class.getName();
+        LocalRegistry.register(serviceName, UserServiceImpl.class);
+
+        //注册服务到注册中心
+        RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+        RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+        Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
+        ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
+        serviceMetaInfo.setServiceName(serviceName);
+        serviceMetaInfo.setServiceHost(rpcConfig.getServerHost());
+        serviceMetaInfo.setServicePost(rpcConfig.getServerPort());
+        try {
+            registry.register(serviceMetaInfo);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        //启动web服务
+//        HttpServer httpServer = new VertxHttpServer();
+//        httpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
+
+        //启动tcp服务
+        VertxTcpServer tcpServer = new VertxTcpServer();
+        tcpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
+    }
+}
+```
+
+
+
+### 设计方案
+
+让开发者使用更少的代码启动框架
+
+
+
+#### 启动机制设计
+
+封装启动代码，提供一个专门的启动类或方法，由服务提供者/消费者调用
+
+
+
+服务提供者和消费者分别提供一个启动类，公共方法可放在RpcApplication
+
+参考：[2 - 基于 Dubbo API 开发微服务应用 | Apache Dubbo](https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/quick-start/api/)
+
+
+
+#### 注册驱动设计
+
+除了启动类，还有注解
+
+参考dubbo，服务提供者使用`DubboServer`就能快速注册服务；服务消费者使用`DubboReference`就能快速使用服务
+
+
+
+由于现在都是spring boot项目，dubbo推出了spring boot starter
+
+参考：[创建基于Spring Boot的微服务应用 | Apache Dubbo](https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/quick-start/starter/)
+
+
+
+（1）开发spring boot starter
+
+参考：[API 开放平台 - 开发sdk](http://xiaofei.site:10082/项目/API开放平台?id=开发sdk（spring-boot-starter）)
+
+（2）实现注解驱动
+
++ 主动扫描：指定要扫描的路径，遍历所有类文件，针对有注解的类文件，执行自定义操作
++ 监听bean加载：在spring中，实现beanPostProcessor接口，在bean初始化之后执行自定义操作
+
+
+
+### 开发实现
+
+#### 启动机制
+
+在模块`rpc-core`中新建`bootstrap`包，所有框架启动初始化相关代码都放在这里
+
+##### 服务提供者启动类
+
+新增`ProviderBootstrap`
+
+注册服务时，需要服务名称、服务实现类...
+
+```java
+//注册服务
+        String serviceName = UserService.class.getName();
+        LocalRegistry.register(serviceName, UserServiceImpl.class);
+```
+
+可以将这些需要的字段封装成一个类，在`modle`包下新建`ServiceRegisterInfo`类
+
+```java
+package site.xiaofei.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * @author tuaofei
+ * @description 服务注册信息
+ * @date 2024/11/14
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ServiceRegisterInfo<T> {
+
+    /**
+     * 服务名称
+     */
+    private String serviceName;
+
+    /**
+     * 实现类
+     */
+    private Class<? extends T> implClass;
+}
+```
+
+这样服务提供者只需要接收封装的注册信息列表就能注册服务了
+
+
+
+服务提供者完整代码
+
+```java
+package site.xiaofei.bootstrap;
+
+import site.xiaofei.RpcApplication;
+import site.xiaofei.config.RegistryConfig;
+import site.xiaofei.config.RpcConfig;
+import site.xiaofei.model.ServiceMetaInfo;
+import site.xiaofei.model.ServiceRegisterInfo;
+import site.xiaofei.registry.LocalRegistry;
+import site.xiaofei.registry.Registry;
+import site.xiaofei.registry.RegistryFactory;
+import site.xiaofei.server.tcp.VertxTcpServer;
+
+import java.util.List;
+
+/**
+ * @author tuaofei
+ * @description 服务提供者启动类
+ * @date 2024/11/14
+ */
+public class ProviderBootstrap {
+
+    public static void init(List<ServiceRegisterInfo<?>> serviceRegisterInfoList) {
+        //rpc框架初始化
+        RpcApplication.init();
+
+        RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+
+        //注册服务
+        for (ServiceRegisterInfo<?> serviceRegisterInfo : serviceRegisterInfoList) {
+            String serviceName = serviceRegisterInfo.getServiceName();
+            Class<?> implClass = serviceRegisterInfo.getImplClass();
+            LocalRegistry.register(serviceName, implClass);
+
+            //注册服务到注册中心
+            RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+            Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
+            ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
+            serviceMetaInfo.setServiceName(serviceName);
+            serviceMetaInfo.setServiceHost(rpcConfig.getServerHost());
+            serviceMetaInfo.setServicePost(rpcConfig.getServerPort());
+            try {
+                registry.register(serviceMetaInfo);
+            } catch (Exception e) {
+                throw new RuntimeException(serviceName + " 服务注册失败", e);
+            }
+        }
+
+        //启动web服务
+//        HttpServer httpServer = new VertxHttpServer();
+//        httpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
+
+        //启动tcp服务
+        VertxTcpServer tcpServer = new VertxTcpServer();
+        tcpServer.doStart(rpcConfig.getServerPort());
+    }
+}
+```
+
+现在修改服务提供者，只需要定义好注册的服务列表
+
+```java
+package site.xiaofei.provider;
+
+import site.xiaofei.RpcApplication;
+import site.xiaofei.bootstrap.ProviderBootstrap;
+import site.xiaofei.common.service.UserService;
+import site.xiaofei.config.RegistryConfig;
+import site.xiaofei.config.RpcConfig;
+import site.xiaofei.model.ServiceMetaInfo;
+import site.xiaofei.model.ServiceRegisterInfo;
+import site.xiaofei.registry.LocalRegistry;
+import site.xiaofei.registry.Registry;
+import site.xiaofei.registry.RegistryFactory;
+import site.xiaofei.server.HttpServer;
+import site.xiaofei.server.VertxHttpServer;
+import site.xiaofei.server.tcp.VertxTcpServer;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+/**
+ * @author tuaofei
+ * @description 服务提供者示例，注册中心
+ * @date 2024/10/30
+ */
+public class ProviderExample {
+
+    /*public static void main(String[] args) {
+        //rpc框架初始化
+        RpcApplication.init();
+
+        //注册服务
+        String serviceName = UserService.class.getName();
+        LocalRegistry.register(serviceName, UserServiceImpl.class);
+
+        //注册服务到注册中心
+        RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+        RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+        Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
+        ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
+        serviceMetaInfo.setServiceName(serviceName);
+        serviceMetaInfo.setServiceHost(rpcConfig.getServerHost());
+        serviceMetaInfo.setServicePost(rpcConfig.getServerPort());
+        try {
+            registry.register(serviceMetaInfo);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        //启动web服务
+//        HttpServer httpServer = new VertxHttpServer();
+//        httpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
+
+        //启动tcp服务
+        VertxTcpServer tcpServer = new VertxTcpServer();
+        tcpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
+    }*/
+
+    public static void main(String[] args) {
+        List<ServiceRegisterInfo<?>> serviceRegisterInfoList = new ArrayList<>();
+        ServiceRegisterInfo<UserServiceImpl> serviceRegisterInfo = new ServiceRegisterInfo<>(UserService.class.getName(), UserServiceImpl.class);
+        serviceRegisterInfoList.add(serviceRegisterInfo);
+
+        ProviderBootstrap.init(serviceRegisterInfoList);
+    }
+}
+
+```
+
+
+
+##### 服务消费者启动类
+
+因为不需要注册服务、也不需要启动web服务器，只执行`RpcApplication.init()`初始化框架即可
+
+```java
+package site.xiaofei.bootstrap;
+
+import site.xiaofei.RpcApplication;
+
+/**
+ * @author tuaofei
+ * @description 服务消费者启动类
+ * @date 2024/11/14
+ */
+public class ConsumerBootstrap {
+
+    public static void init() {
+        RpcApplication.init();
+    }
+}
+```
+
+目录结构如下
+
+![image-20241114204338852](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241114204338852.png)
+
+
+
+修改服务消费者，没什么变化
+
+```java
+package site.xiaofei.consumer;
+
+import site.xiaofei.bootstrap.ConsumerBootstrap;
+import site.xiaofei.common.model.User;
+import site.xiaofei.common.service.UserService;
+import site.xiaofei.proxy.ServiceProxyFactory;
+
+/**
+ * @author tuaofei
+ * @description 消费者
+ * @date 2024/10/17
+ */
+public class RpcConsumerExample {
+
+    /*public static void main(String[] args) {
+        //静态代理
+//        UserService userService = new UserServiceProxy();
+        //jdk动态代理
+        UserService userService = ServiceProxyFactory.getProxy(UserService.class);
+
+        User user = new User();
+        user.setName("土澳菲");
+        User resultUser = userService.getUser(user);
+        if (resultUser != null){
+            System.out.println(resultUser.getName());
+        }else{
+            System.out.println("user is null!");
+        }
+//        short number = userService.getMockNumber();
+//        System.out.println(number);
+    }*/
+
+    public static void main(String[] args) {
+        ConsumerBootstrap.init();
+
+        UserService userService = ServiceProxyFactory.getProxy(UserService.class);
+        User user = new User();
+        user.setName("土澳菲");
+        User resultUser = userService.getUser(user);
+        if (resultUser != null){
+            System.out.println(resultUser.getName());
+        }else{
+            System.out.println("user is null!");
+        }
+    }
+}
+```
+
+
+
+#### spring boot starter注解驱动
+
+新建一个`rpc-spring-boot-starter`模块，实现spring boot starter注解驱动的RPC框架
+
+
+
+##### 1.spring boot starter项目初始化
+
+新建模块
+
+1. 选择`spring initalizr`
+2. server url 修改为`https://start.aliyun.com`
+3. name 名称为`rpc-spring-boot-starter`
+4. jdk和java版本 >=8，没有对应版本直接下载一个jdk17
+
+![image-20241114205103149](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241114205103149.png)
+
+5. spring boot选择2.6.13
+
+![image-20241114205853903](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241114205853903.png)
+
+修改pom.xml去掉无用插件配置
+
+```xml
+<plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <configuration>
+                    <mainClass>xiaofei.site.rpcspringbootstarter.RpcSpringBootStarterApplication</mainClass>
+                    <skip>true</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+```
+
+引入开发的rpc框架
+
+```xml
+<dependency>
+            <groupId>xiaofei.site</groupId>
+            <artifactId>rpc-core</artifactId>
+            <version>1.0.0</version>
+</dependency>
+```
+
+##### 2.定义注解
+
+需要哪些注解呢？
+
+参考dubbo的注解
+
+- @EnableDubbo：在spring boot主应用类上使用，同于启动dubbo功能
+- @DubboComponentScan：在spring boot主应用类上使用，指定Dubbo组件扫描的包路径
+- @DubboReference：在消费者中使用，声明Dubbo服务引用
+- @DubboService：在提供者中使用，声明Dubbo服务
+- @DubboMethod：在提供者和消费者中使用，用于配置Dubbo方法的参数、超时时间
+- @DubboTransported：在提供者和消费者中使用，用于指定传输协议和参数
+
+
+
+在`rpc-spring-boot-starter`项目下新增`annotation`包，将所有注解放在该包下
+
+![image-20241114212516868](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241114212516868.png)
+
+（1）@EnableRpc：用于全局标识项目需要引入RPC框架、执行初始化方法
+
+服务消费者和服务提供者初始化模块不同，需要指定是否启动服务器
+
+```java
+package xiaofei.site.rpc.springboot.starter.annotation;
+
+import org.springframework.context.annotation.Import;
+import xiaofei.site.rpc.springboot.starter.bootstrap.RpcConsumerBootstrap;
+import xiaofei.site.rpc.springboot.starter.bootstrap.RpcInitBootstrap;
+import xiaofei.site.rpc.springboot.starter.bootstrap.RpcProviderBootstrap;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+/**
+ * 启动rpc注解
+ */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Import({RpcInitBootstrap.class, RpcProviderBootstrap.class, RpcConsumerBootstrap.class})
+public @interface EnableRpc {
+
+    /**
+     * 需要启动server
+     *
+     * @return
+     */
+    boolean needServer() default true;
+}
+```
+
+EnableRpc可拆解为EnableRpcProvider、EnableRpcConsumer，分别标识提供者和消费者，可能存在模块重复初始化的可能
+
+
+
+（2）@RpcService：服务提供者注解，需要在注册和提供的服务类上使用
+
+```java
+package xiaofei.site.rpc.springboot.starter.annotation;
+
+import org.springframework.stereotype.Component;
+import site.xiaofei.constant.RpcConstant;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+/**
+ * 服务提供者注解（用于注册服务）
+ */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Component
+public @interface RpcService {
+
+    /**
+     * 服务接口类
+     * @return
+     */
+    Class<?> interfaceClass() default void.class;
+
+    /**
+     * 版本
+     * @return
+     */
+    String serviceVersion() default RpcConstant.DEFAULT_SERVICE_VERSION;
+}
+```
+
+(3)@RpcReferance：服务消费者注解，在需要注入服务代理对象的属性上使用，类似@Resource
+
+```java
+package xiaofei.site.rpc.springboot.starter.annotation;
+
+
+import org.springframework.stereotype.Component;
+import site.xiaofei.constant.RpcConstant;
+import site.xiaofei.fault.retry.RetryStrategyKeys;
+import site.xiaofei.fault.tolerant.TolerantStrategyKeys;
+import site.xiaofei.loadbalancer.LoadBalancerKeys;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+/**
+ * 服务消费者注解（用于注入服务）
+ */
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface RpcReferance {
+
+    /**
+     * 服务接口类
+     * @return
+     */
+    Class<?> interfaceClass() default void.class;
+
+    /**
+     * 版本
+     * @return
+     */
+    String serviceVersion() default RpcConstant.DEFAULT_SERVICE_VERSION;
+
+    /**
+     * 负载均衡器
+     * @return
+     */
+    String loadBalancer() default LoadBalancerKeys.CONSISTENT_HASH;
+
+    /**
+     * 重试策略
+     * @return
+     */
+    String retryStrategy() default RetryStrategyKeys.NO;
+
+    /**
+     * 容错策略
+     * @return
+     */
+    String tolerantStrategy() default TolerantStrategyKeys.FAIL_OVER;
+
+    /**
+     * 模拟调用
+     * @return
+     */
+    boolean mock() default false;
+}
+```
+
+##### 3.注解驱动
+
+在starter项目中新建`bootstrap`包，针对上面定义的3个注解新建启动类
+
+项目目录结构如下
+
+![image-20241114230326696](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241114230326696.png)
+
+**（1）rpc框架全局启动类`RpcInitBootstrap`**
+
+在spring框架初始化时，获取`@EnableRpc`注解的属性，并初始化rpc框架
+
+
+
+怎么获取到注解的属性？
+
+可以实现spring的`ImportBeanDefinitionRegistrar`接口，并且在`registerBeanDefinitions`方法中，获取到项目的注解和注解属性
+
+```java
+package xiaofei.site.rpc.springboot.starter.bootstrap;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
+import org.springframework.core.type.AnnotationMetadata;
+import site.xiaofei.RpcApplication;
+import site.xiaofei.config.RpcConfig;
+import site.xiaofei.server.tcp.VertxTcpServer;
+import xiaofei.site.rpc.springboot.starter.annotation.EnableRpc;
+
+/**
+ * @author tuaofei
+ * @description Rpc框架启动
+ * @date 2024/11/14
+ */
+@Slf4j
+public class RpcInitBootstrap implements ImportBeanDefinitionRegistrar {
+
+    /**
+     * spring初始化执行时，rpc框架初始化执行
+     *
+     * @param importingClassMetadata
+     * @param registry
+     */
+    @Override
+    public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
+        //获取enablerpc注解属性值
+        boolean needServer = (boolean) importingClassMetadata.getAnnotationAttributes(EnableRpc.class.getName())
+                .get("needServer");
+
+        //rpc框架初始化（配置和注册中心）
+        RpcApplication.init();
+
+        //全局配置
+        final RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+
+        //启动服务器
+        if (needServer) {
+            VertxTcpServer vertxTcpServer = new VertxTcpServer();
+            vertxTcpServer.doStart(rpcConfig.getServerPort());
+        } else {
+            log.info("不启动 server");
+        }
+
+
+        //ImportBeanDefinitionRegistrar.super.registerBeanDefinitions(importingClassMetadata, registry);
+    }
+}
+```
+
+**(2)rpc服务提供者启动类`RpcProviderBootstrap`**
+
+获取到所有包含`@RpcService`注解的类，并通过注解的属性和反射机制，获取到要注册的服务信息，并注册服务
+
+
+
+怎么获取到包含`@RpcService`注解的类？
+
+可以主动扫描包或sping的特性监听bean的加载
+
+
+
+实现`BeanPostProcessor`接口的`postProcessAfterInitialization`方法，在某个服务提供者bean初始化后，执行注册服务操作
+
+```java
+package xiaofei.site.rpc.springboot.starter.bootstrap;
+
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import site.xiaofei.RpcApplication;
+import site.xiaofei.config.RegistryConfig;
+import site.xiaofei.config.RpcConfig;
+import site.xiaofei.model.ServiceMetaInfo;
+import site.xiaofei.registry.LocalRegistry;
+import site.xiaofei.registry.Registry;
+import site.xiaofei.registry.RegistryFactory;
+import xiaofei.site.rpc.springboot.starter.annotation.RpcService;
+
+/**
+ * @author tuaofei
+ * @description Rpc服务提供者启动
+ * @date 2024/11/14
+ */
+public class RpcProviderBootstrap implements BeanPostProcessor {
+
+
+    /**
+     * bean初始化后执行，注册服务
+     * @param bean
+     * @param beanName
+     * @return
+     * @throws BeansException
+     */
+    @Override
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        Class<?> beanClass = bean.getClass();
+        RpcService rpcService = beanClass.getAnnotation(RpcService.class);
+        if (rpcService != null){
+            //需要注册服务信息
+
+            //1.获取服务基本信息
+            Class<?> interfaceClass = rpcService.interfaceClass();
+            //默认值处理
+            if (void.class == interfaceClass){
+                interfaceClass = beanClass.getInterfaces()[0];
+            }
+            String serviceName = interfaceClass.getName();
+            String serviceVersion = rpcService.serviceVersion();
+
+            //2.注册服务
+            //本地注册
+            LocalRegistry.register(serviceName, beanClass);
+
+            //全局配置
+            RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+
+            //注册服务到注册中心
+            RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+            Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
+            ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
+            serviceMetaInfo.setServiceName(serviceName);
+            serviceMetaInfo.setServiceHost(rpcConfig.getServerHost());
+            serviceMetaInfo.setServicePost(rpcConfig.getServerPort());
+            try {
+                registry.register(serviceMetaInfo);
+            } catch (Exception e) {
+                throw new RuntimeException(serviceName + " 服务注册失败", e);
+            }
+
+        }
+
+        return BeanPostProcessor.super.postProcessAfterInitialization(bean, beanName);
+    }
+}
+```
+
+**(3)rpc服务消费者启动类`RpcConsumerBootstrap`**
+
+在bean初始化后，通过反射获取到bean的所有属性，如果属性包含`RpcReferance`注解，就为该属性动态生成代理对象并赋值
+
+```java
+package xiaofei.site.rpc.springboot.starter.bootstrap;
+
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import site.xiaofei.proxy.ServiceProxyFactory;
+import xiaofei.site.rpc.springboot.starter.annotation.RpcReferance;
+
+import java.lang.reflect.Field;
+
+/**
+ * @author tuaofei
+ * @description Rpc服务消费者启动
+ * @date 2024/11/14
+ */
+public class RpcConsumerBootstrap implements BeanPostProcessor {
+
+    /**
+     * bean初始化后执行，注入服务
+     *
+     * @param bean
+     * @param beanName
+     * @return
+     * @throws BeansException
+     */
+    @Override
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        Class<?> beanClass = bean.getClass();
+        //遍历对象的所有属性
+        Field[] declaredFields = beanClass.getDeclaredFields();
+        for (Field field : declaredFields) {
+            RpcReferance rpcReferance = field.getAnnotation(RpcReferance.class);
+            if (rpcReferance != null) {
+                //为属性生成代理对象
+                Class<?> interfaceClass = rpcReferance.interfaceClass();
+                if (void.class == interfaceClass) {
+                    interfaceClass = field.getType();
+                }
+                field.setAccessible(true);
+                Object proxyObject = ServiceProxyFactory.getProxy(interfaceClass);
+                try {
+                    field.set(bean, proxyObject);
+                    field.setAccessible(false);
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException("为字段注入代理对象失败", e);
+                }
+            }
+        }
+
+        return BeanPostProcessor.super.postProcessAfterInitialization(bean, beanName);
+    }
+}
+```
+
+**(4)注册已编写的启动类**
+
+在spring中加载我们编写的启动类
+
+在使用`@EnableRpc`注解时，才启动rpc框架，可以使用`@Import`注解注册自定义的启动类
+
+```java
+package xiaofei.site.rpc.springboot.starter.annotation;
+
+import org.springframework.context.annotation.Import;
+import xiaofei.site.rpc.springboot.starter.bootstrap.RpcConsumerBootstrap;
+import xiaofei.site.rpc.springboot.starter.bootstrap.RpcInitBootstrap;
+import xiaofei.site.rpc.springboot.starter.bootstrap.RpcProviderBootstrap;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+/**
+ * 启动rpc注解
+ */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Import({RpcInitBootstrap.class, RpcProviderBootstrap.class, RpcConsumerBootstrap.class})
+public @interface EnableRpc {
+
+    /**
+     * 需要启动server
+     *
+     * @return
+     */
+    boolean needServer() default true;
+}
+```
+
+### 测试
+
+新建两个springboot2框架的项目
+
+消费者：example-springboot-comsumer
+
+提供者：example-springboot-provider
+
+![image-20241114231626298](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241114231626298.png)
+
+每个项目都引入依赖
+
+```xml
+<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>xiaofei.site</groupId>
+            <artifactId>rpc-common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+```
+
+(1)提供者项目入口类加上`@EnableRpc`
+
+```java
+package xiaofei.site.examplespringbootprovider;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import xiaofei.site.rpc.springboot.starter.annotation.EnableRpc;
+
+@EnableRpc
+@SpringBootApplication
+public class ExampleSpringbootProviderApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ExampleSpringbootProviderApplication.class, args);
+    }
+
+}
+```
+
+提供者提供一个简单的服务
+
+```java
+package xiaofei.site.examplespringbootprovider;
+
+import org.springframework.stereotype.Service;
+import site.xiaofei.common.model.User;
+import site.xiaofei.common.service.UserService;
+import xiaofei.site.rpc.springboot.starter.annotation.RpcReferance;
+import xiaofei.site.rpc.springboot.starter.annotation.RpcService;
+
+/**
+ * @author tuaofei
+ * @description TODO
+ * @date 2024/11/14
+ */
+@Service
+@RpcService
+public class UseServiceImpl implements UserService {
+
+    @Override
+    public User getUser(User user) {
+        System.out.println("用户名： " + user.getName());
+        return user;
+    }
+}
+```
+
+(2)消费者的入口类加上`@EnableRpc(needServer = false)`注解，标识启动rpc框架，不启动服务器
+
+```java
+package xiaofei.site.examplespringbootcomsumer;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import xiaofei.site.rpc.springboot.starter.annotation.EnableRpc;
+
+@EnableRpc(needServer = false)
+@SpringBootApplication
+public class ExampleSpringbootComsumerApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ExampleSpringbootComsumerApplication.class, args);
+    }
+
+}
+```
+
+消费者编写一个spring bean，引入userservice属性加上`@RpcReference`注解，标识需要使用远程提供者服务
+
+```java
+package xiaofei.site.examplespringbootcomsumer;
+
+import org.springframework.stereotype.Service;
+import site.xiaofei.common.model.User;
+import site.xiaofei.common.service.UserService;
+import xiaofei.site.rpc.springboot.starter.annotation.RpcReferance;
+
+/**
+ * @author tuaofei
+ * @description TODO
+ * @date 2024/11/14
+ */
+@Service
+public class ExampleServiceImpl {
+
+    @RpcReferance
+    private UserService userService;
+
+    public void test(){
+        User user = new User();
+        user.setName("xiaofei.site");
+        User resultUser = userService.getUser(user);
+        System.out.println(resultUser.getName());
+    }
+
+}
+```
+
+消费者编写单元测试，验证能否调用远程服务
+
+```java
+package xiaofei.site.examplespringbootcomsumer;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import javax.annotation.Resource;
+
+@SpringBootTest
+class ExampleSpringbootComsumerApplicationTests {
+
+    @Resource
+    private ExampleServiceImpl exampleService;
+
+    @Test
+    void test1(){
+        exampleService.test();
+    }
+
+}
+```
+
+(3)启动服务提供者入口类
+
+![image-20241114232359130](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241114232359130.png)
+
+启动服务消费者入口类
+
+![image-20241114232428928](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241114232428928.png)
+
+启动单元测试
+
+![image-20241114232609409](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241114232609409.png)
+
+服务提供者收到调用![image-20241114232618891](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241114232618891.png)
+
+
+
+如果之前在`VertxTcpClient`加了一个手动异常
+
+```java
+RpcResponse rpcResponse = responseFuture.get();
+        netClient.close();
+        int i= 1/0;
+        return rpcResponse;
+```
+
+会触发容错机制
+
+![image-20241114232934336](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241114232934336.png)
+
+![image-20241114233028744](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241114233028744.png)
+
+服务提供者调用成功打印了结果，但是tcpserver返回失败了
+
+
+
+### 扩展
+
+（1）spring boot starter支持读取yml/yaml配置文件来启动rpc框架
+
+读取properties文件，提供一个工具类来读取yml配置
+
+服务提供者启动逻辑也可以改为后置执行为“使用组件扫描”
+
+
+
+（2）支持通信协议从配置读取
