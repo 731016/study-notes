@@ -9154,7 +9154,34 @@ class ExampleSpringbootComsumerApplicationTests {
 }
 ```
 
-(3)启动服务提供者入口类
+(3)暂时添加一下配置文件，把之前的properties配置文件加到消费者和提供者，读取之前的配置，不然都是默认配置
+
+```properties
+rpc.name=xiaofei.site-rpc
+rpc.version=1.0
+rpc.serverPort=8082
+rpc.mock=false
+#序列化器
+rpc.serializer=hessian
+#注册中心类型
+rpc.registryConfig.registry=zookeeper
+#注册中心注册地址
+rpc.registryConfig.address=localhost:2181
+#负载均衡策略
+rpc.loadBalancer=consistentHash
+#重试策略
+rpc.retryStrategy=fixedInterval
+#容错策略
+rpc.tolerantStrategy=failOver
+```
+
+项目结构
+
+![image-20241114233658559](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241114233658559.png)
+
+
+
+(4)启动服务提供者入口类
 
 ![image-20241114232359130](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241114232359130.png)
 
