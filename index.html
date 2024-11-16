@@ -227,7 +227,7 @@
       externalLinkTarget: '_blank', // default: '_blank'
       //外部链接的打开方式。默认为 _blank （在新窗口或者标签页中打开）
       cornerExternalLinkTarget: '_blank', // default: '_blank'
-      routerMode: 'hash', // default: 'hash'
+      routerMode: 'hash', // default: hash|history|abstract
       plugins: [
         function (hook, vm) {
           hook.init(function () {
@@ -284,7 +284,7 @@
   <script src="./js/search.min.js"></script>
   <!--代码复制到剪切板-->
   <!-- Latest v2.x.x -->
-  <script src="./js/docsify-copy-code.min.js/"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/docsify-copy-code/3.0.0/docsify-copy-code.min.js"></script>
   <!--分页导航-->
   <script src="./js/docsify-pagination.min.js"></script>
    <!--字数统计-->
@@ -293,11 +293,6 @@
   <script src="./js/external-script.min.js"></script>
   <!-- 图片缩放  -->
   <script src="./js/zoom-image.js"></script>
-  <!-- 代码高亮 -->
-  <script src="./js/prism-bash.min.js"></script>
-  <script src="./js/prism-java.min.js"></script>
-  <script src=".js/prism-c.min.js"></script>
-  <script src=".js/prism-javascript.min.js"></script>
   <!-- vue -->
   <script src="./js/vue.global.prod.js"></script>
   <!-- pdf预览 -->
