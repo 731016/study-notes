@@ -169,6 +169,8 @@
       subMaxLevel: 5,
       //开启导航栏 _navbar.md
       loadNavbar: true,
+      // 日志
+      changelog : 'deploylog.md',
       // 让你的内容页在滚动到指定的锚点时，距离页面顶部有一定空间。
       topMargin: 25,
       //使用封面 _coverpage.md
@@ -212,6 +214,12 @@
         right: 12,
         bottom: 52,
         offset: 25
+      },
+      pagination: {
+        previousText: '上一章节',
+        nextText: '下一章节',
+        crossChapter: true,
+        crossChapterText: true,
       },
       // 使用vueGlobalOptions来指定 Vue options ，用于未明确挂载vueMounts、vueComponents或markdown脚本的Vue内容。对全局data的更改将持续存在，并反映在任何使用全局引用的地方
       vueGlobalOptions: {
@@ -303,6 +311,22 @@
   <script src="./js/docsify-footer.min.js"></script>
   <!-- 回到顶部功能 -->
   <script src="./js/docsify-scroll-to-top.min.js"></script>
+  <!-- 代码高亮 -->
+  <script src="./js/prism/prism-java.min.js"></script>
+  <script src="./js/prism/prism-javadoc.min.js"></script>
+  <script src="./js/prism/prism-javadoclike.min.js"></script>
+  <script src="./js/prism/prism-c.min.js"></script>
+  <script src="./js/prism/prism-http.min.js"></script>
+  <script src="./js/prism/prism-less.min.js"></script>
+  <script src="./js/prism/prism-sass.min.js"></script>
+  <script src="./js/prism/prism-lua.min.js"></script>
+  <script src="./js/prism/prism-markdown.min.js"></script>
+  <script src="./js/prism/prism-nginx.min.js"></script>
+  <script src="./js/prism/prism-regex.min.js"></script>
+  <script src="./js/prism/prism-sql.min.js"></script>
+  <script src="./js/prism/prism-typescript.min.js"></script>
+  <script src="./js/prism/prism-vim.min.js"></script>
+  <script src="./js/prism/prism-yaml.min.js"></script>
 </body>
 
 </html>
