@@ -67,6 +67,62 @@ vue create search-backend
 
 
 
+### 使用组件
+
+```cmd
+$ npm i --save ant-design-vue@4.x
+```
+
+#### 注册
+
+修改`main.ts`
+
+```ts
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router";
+import Antd from "ant-design-vue";
+import "ant-design-vue/dist/reset.css";
+
+createApp(App).use(Antd).use(router).mount("#app");
+```
+
+如果报红，webstrom设置代码规范检查，`ctrl+alt+L`生效
+
+![image-20241119214121550](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241119214121550.png)
+
+#### 运行
+
+![image-20241119214440817](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241119214440817.png)
+
+正常运行
+
+![image-20241119214458054](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241119214458054.png)
+
+
+
+## 后端初始化
+
+初始化项目代码：https://wwzp.lanzouv.com/iTUQW2fk0jvi
+
+修改数据库连接
+
+执行create_table.sql创建数据表
+
+可直接启动MainApplication
+
+访问http://localhost:8101/api/doc.html
+
+
+
+分别执行一下5个接口，初始化一下数据
+
+用户注册，用户登录，增加帖子，根据id获取帖子，收藏帖子
+
+![image-20241119222043841](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241119222043841.png)
+
+
+
 ## 技术点
 
 ### 记录搜索状态
