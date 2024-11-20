@@ -5,7 +5,9 @@
     * [牛客网](https://www.nowcoder.com/)
     * [力扣](https://leetcode.cn/)
     * [剑指offer](https://www.nowcoder.com/exam/oj/ta?page=1&tpId=13&type=13)
-* [资源导航](资源导航/link.md)
+* 资源导航
+    * [资源链接](资源导航/link.md)
+    * [代码库](https://www.codecopy.cn/user/my)
 * 演示网站
     
 * Ai助手

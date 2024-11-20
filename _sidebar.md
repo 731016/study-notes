@@ -90,6 +90,14 @@
   - [群硕软件](面试/群硕软件.md)
   - [赛德勤](面试/赛德勤.md)
 
+- 代码库 
+  - [Java常用配置文件模板](代码库/常用配置文件.md)
+  - [Java工具类](代码库/java工具类.md)
+  - [JavaScript基础算法](代码库/javascript.md)
+  - [Java基础算法](代码库/Java算法.md)
+  - [HTML+CSS+JS+JQuery案例学习](https://gitee.com/LovelyHzz/webpage-basic-learning)
+  - [前端案例学习](http://www.lvyestudy.com/)
+
 - 开发环境
   - [vscode 配置](开发环境/vscode.md)
   - [tomcat 配置](开发环境/Tomcat配置.md)
