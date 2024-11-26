@@ -799,69 +799,519 @@ onMounted(() => {
 
 
 
-### 数据抓取
+## 9.数据抓取
 
-#### 1.文章
+### 1.文章
 
 从请求地址请求数据,解析对应的属性
 
 ```java
-int current = 1;
-        String url = "https://cn.bing.com/images/search?q=小黑子&first=" + current;
-        Document doc = Jsoup.connect(url).get();
-        Elements elements = doc.select(".iuscp.isv");
-        List<Picture> pictures = new ArrayList<>();
-        for (Element element : elements) {
-            // 取图片地址（murl）
-            String m = element.select(".iusc").get(0).attr("m");
-            Map<String, Object> map = JSONUtil.toBean(m, Map.class);
-            String murl = (String) map.get("murl");
-//            System.out.println(murl);
-            // 取标题
-            String title = element.select(".inflnk").get(0).attr("aria-label");
-//            System.out.println(title);
-            Picture picture = new Picture();
-            picture.setTitle(title);
-            picture.setUrl(murl);
-            pictures.add(picture);
+public void textPostImport() {
+        String url = "http://xiaofei.site/";
+        try {
+            Document document = Jsoup.connect(url).get();
+            Elements postElement = document.select("ul[id=post-cols]");
+            Elements postLi = postElement.select("li[class=article-container]");
+
+            for (int i = 0; i < postLi.size(); i++) {
+
+                PostAddRequest postAddRequest = new PostAddRequest();
+
+                Element li = postLi.get(i);
+
+                Elements postImg = li.select("div[class=article-thumbnail]");
+                for (Element img : postImg) {
+                    String imgStr = img.select("img").attr("src");
+                    String imgUrl = url + imgStr;
+                }
+
+                Elements postTags = li.select("div[class=article-content] > span");
+                List<String> tags = new ArrayList<>();
+                for (Element tag : postTags) {
+                    String tagStr = tag.select("em").text();
+                    String[] tagArr = tagStr.split("#");
+                    for (int j = 0; j < tagArr.length; j++) {
+                        String tagTrim = tagArr[j].trim();
+                        if (StringUtils.isNotBlank(tagTrim)) {
+                            tags.add(tagTrim);
+                        }
+                    }
+                }
+                postAddRequest.setTags(tags);
+
+                Elements postTitle = li.select("h1[data-dia=article-link]");
+                String title = postTitle.text();
+                postAddRequest.setTitle(title);
+
+                Elements postContent = li.select("p[style=overflow: hidden;max-height: 6rem;]");
+                String content = postContent.text();
+                postAddRequest.setContent(content);
+
+                Post post = new Post();
+                BeanUtils.copyProperties(postAddRequest, post);
+                List<String> tagList = postAddRequest.getTags();
+                if (tagList != null) {
+                    post.setTags(JSONUtil.toJsonStr(tagList));
+                }
+                postService.validPost(post, true);
+                post.setUserId(1858872909540597761L);
+                post.setFavourNum(0);
+                post.setThumbNum(0);
+                boolean result = postService.save(post);
+                System.out.println(result);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        System.out.println(pictures);
+    }
 ```
 
 
 
-#### 2.图片
+### 2.图片
 
 jsoup 解析网页,获取html解析图片地址
 
 ```java
-// 1. 获取数据
-        String json = "{\"current\":1,\"pageSize\":8,\"sortField\":\"createTime\",\"sortOrder\":\"descend\",\"category\":\"文章\",\"reviewStatus\":1}";
-        String url = "https://www.code-nav.cn/api/post/search/page/vo";
-        String result = HttpRequest
-                .post(url)
-                .body(json)
-                .execute()
-                .body();
-//        System.out.println(result);
-        // 2. json 转对象
-        Map<String, Object> map = JSONUtil.toBean(result, Map.class);
-        JSONObject data = (JSONObject) map.get("data");
-        JSONArray records = (JSONArray) data.get("records");
-        List<Post> postList = new ArrayList<>();
-        for (Object record : records) {
-            JSONObject tempRecord = (JSONObject) record;
-            Post post = new Post();
-            post.setTitle(tempRecord.getStr("title"));
-            post.setContent(tempRecord.getStr("content"));
-            JSONArray tags = (JSONArray) tempRecord.get("tags");
-            List<String> tagList = tags.toList(String.class);
-            post.setTags(JSONUtil.toJsonStr(tagList));
-            post.setUserId(1L);
-            postList.add(post);
+public void imageImport(){
+        String url = "https://cn.bing.com/images/search?q=%E5%9B%BE%E7%89%87&form=IQFRML&first=100";
+        try {
+            List<Image> images = new ArrayList<>();
+            Document document = Jsoup.connect(url).get();
+            Elements imageList = document.select("div[class=iuscp isv]");
+            for (int i = 0; i < imageList.size(); i++) {
+                Element imageElement = imageList.get(i);
+                String imageUrl = imageElement.select("img[class=mimg vimgld]").attr("data-src");
+
+                String imageTitle = imageElement.select("a[class=inflnk]").attr("aria-label");
+
+                Image image = new Image();
+                image.setUrl(imageUrl);
+                image.setTitle(imageTitle);
+                System.out.println(image);
+                images.add(image);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-//        System.out.println(postList);
+    }
 ```
+
+图片没有现成的接口，需要新增
+
+
+
+在`entity`包下，新增图片实体
+
+```java
+package com.xiaofei.site.search.model.entity;
+
+import lombok.Data;
+
+/**
+ * @author tuaofei
+ * @description TODO
+ * @date 2024/11/26
+ */
+@Data
+public class Image {
+
+    private String title;
+
+    private String url;
+}
+```
+
+在`dto`包下新增`image`目录，添加图片查询请求信息
+
+```java
+package com.xiaofei.site.search.model.dto.image;
+
+import com.xiaofei.site.search.common.PageRequest;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+
+/**
+ * 查询请求
+ *
+ */
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class ImageQueryRequest extends PageRequest implements Serializable {
+
+    /**
+     * 搜索词
+     */
+    private String searchText;
+
+
+    private static final long serialVersionUID = 1L;
+}
+```
+
+提供查询图片接口及实现类
+
+```java
+package com.xiaofei.site.search.service;
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xiaofei.site.search.model.dto.image.ImageQueryRequest;
+import com.xiaofei.site.search.model.entity.Image;
+
+/**
+ * 图片服务
+ *
+ */
+public interface ImageService {
+
+
+    /**
+     * 分页获取图片
+     *
+     * @return
+     */
+    Page<Image> getImageByPage(ImageQueryRequest imageQueryRequest);
+}
+package com.xiaofei.site.search.service.impl;
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xiaofei.site.search.common.ErrorCode;
+import com.xiaofei.site.search.exception.BusinessException;
+import com.xiaofei.site.search.model.dto.image.ImageQueryRequest;
+import com.xiaofei.site.search.model.entity.Image;
+import com.xiaofei.site.search.service.ImageService;
+import org.apache.commons.lang3.StringUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author tuaofei
+ * @description TODO
+ * @date 2024/11/26
+ */
+@Service
+public class ImageServiceImpl implements ImageService {
+    @Override
+    public Page<Image> getImageByPage(ImageQueryRequest imageQueryRequest) {
+        Page<Image> imagePage = new Page<>();
+        if (imageQueryRequest == null) {
+            return imagePage;
+        }
+        int current = imageQueryRequest.getCurrent();
+        int pageSize = imageQueryRequest.getPageSize();
+        String searchText = imageQueryRequest.getSearchText();
+        int cursor = (current - 1) * pageSize;
+        String url = "https://cn.bing.com/images/search?q=%s&form=IQFRML&first=%s";
+        url = String.format(url, searchText, cursor);
+        try {
+            List<Image> images = new ArrayList<>();
+            Document document = Jsoup.connect(url).get();
+            Elements imageList = document.select("div[class=iuscp isv]");
+            for (int i = 0; i < imageList.size(); i++) {
+                Element imageElement = imageList.get(i);
+                String imageUrl = imageElement.select("img[class=mimg vimgld]").attr("data-src");
+
+                String imageTitle = imageElement.select("a[class=inflnk]").attr("aria-label");
+
+                Image image = new Image();
+                image.setUrl(imageUrl);
+                image.setTitle(imageTitle);
+                if (StringUtils.isNotBlank(imageUrl) && StringUtils.isNotBlank(imageTitle)){
+                    images.add(image);
+                }
+                //根据页码大小限制
+                if (images.size() >= pageSize) {
+                    break;
+                }
+            }
+            System.out.println(url);
+            System.out.println(images);
+            imagePage.setRecords(images);
+            imagePage.setCurrent(current);
+            imagePage.setSize(pageSize);
+        } catch (IOException e) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "查询图片失败");
+        }
+        return imagePage;
+    }
+}
+```
+
+在`controller`包下新增控制层ImageController
+
+```java
+package com.xiaofei.site.search.controller;
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xiaofei.site.search.common.BaseResponse;
+import com.xiaofei.site.search.common.ErrorCode;
+import com.xiaofei.site.search.common.ResultUtils;
+import com.xiaofei.site.search.exception.ThrowUtils;
+import com.xiaofei.site.search.model.dto.image.ImageQueryRequest;
+import com.xiaofei.site.search.model.entity.Image;
+import com.xiaofei.site.search.service.ImageService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+/**
+ * 图片接口
+ *
+ */
+@RestController
+@RequestMapping("/image")
+@Slf4j
+public class ImageController {
+
+    @Resource
+    private ImageService imageService;
+
+    /**
+     * 分页获取列表（封装类）
+     */
+    @PostMapping("/list/page/vo")
+    public BaseResponse<Page<Image>> listPostByPage(@RequestBody ImageQueryRequest imageQueryRequest,
+                                                    HttpServletRequest request) {
+        long current = imageQueryRequest.getCurrent();
+        long size = imageQueryRequest.getPageSize();
+        // 限制爬虫
+        ThrowUtils.throwIf(size > 20, ErrorCode.PARAMS_ERROR);
+        Page<Image> imagePage = imageService.getImageByPage(imageQueryRequest);
+        return ResultUtils.success(imagePage);
+    }
+
+}
+```
+
+前端图片页面完善
+
+`Search.ts`，增加查询图片信息接口
+
+```ts
+import ReqAxios from "@/plugins/ReqAxios";
+
+/**
+ * 分页获取列表（封装类）
+ * @param params
+ */
+export const listPostVOByPage = (params: any) =>
+  ReqAxios("post", "/post/list/page/vo", params);
+
+/**
+ * 分页获取用户封装列表
+ * @param params
+ */
+export const listUserVOByPage = (params: any) =>
+  ReqAxios("post", "/user/list/page/vo", params);
+
+/**
+ * 分页获取图片
+ * @param params
+ */
+export const listImageByPage = (params: any) =>
+  ReqAxios("post", "/image/list/page/vo", params);
+
+```
+
+
+
+`IndexPage.vue`，完善查询图片信息
+
+```vue
+<template>
+  <div class="index-page">
+    <a-input-search
+      v-model:value="searchParams.searchText"
+      placeholder="input search searchText"
+      enter-button="Search"
+      size="large"
+      @search="onSearch"
+    />
+    <MyDivider />
+    <a-tabs v-model:activeKey="activeKey" @change="onTabChange">
+      <a-tab-pane key="post" tab="帖子">
+        <PostList :postList="searchResultPostList" />
+      </a-tab-pane>
+      <a-tab-pane key="image" tab="图片">
+        <ImageList :imageList="searchResultImageList" />
+      </a-tab-pane>
+      <a-tab-pane key="user" tab="用户">
+        <UserList :userList="searchResultUserList" />
+      </a-tab-pane>
+    </a-tabs>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { onMounted, ref, watchEffect } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import {
+  listImageByPage,
+  listPostVOByPage,
+  listUserVOByPage,
+} from "@/request/Search";
+import PostList from "@/components/PostList.vue";
+import ImageList from "@/components/ImageList.vue";
+import UserList from "@/components/UserList.vue";
+
+const router = useRouter();
+const route = useRoute();
+/**
+ * 当前激活tab
+ */
+let activeTabKey = route.params.category;
+
+/**
+ * 页面初始化查询参数
+ */
+const initSearchParams = {
+  searchText: "",
+  current: 1,
+  pageSize: 10,
+};
+
+/**
+ * url查询关键字
+ */
+const searchParams = ref(initSearchParams);
+
+/**
+ * 监听url改变
+ * 更新查询框参数
+ */
+watchEffect(() => {
+  searchParams.value = {
+    ...initSearchParams,
+    searchText: route.query.searchText,
+  } as any;
+});
+
+/**
+ * 查询结果
+ */
+const searchResultPostList = ref([]);
+const searchResultImageList = ref([]);
+const searchResultUserList = ref([]);
+
+/**
+ * 查询
+ * @param value
+ */
+const onSearch = (value: string) => {
+  router.push({
+    query: searchParams.value,
+  });
+  searchAll(activeTabKey);
+  // if ("post" === activeTabKey) {
+  // }
+  // if ("user" === activeTabKey) {
+  // }
+  // if ("image" === activeTabKey) {
+  // }
+};
+
+const searchAll = (activeTabKey: string) => {
+  listPostVOByPage(searchParams.value)
+    .then((data: { records: never[] }) => {
+      console.log(data.records);
+      searchResultPostList.value = data.records;
+    })
+    .catch((error: any) => {
+      console.error(error);
+    });
+  listUserVOByPage(searchParams.value)
+    .then((data) => {
+      console.log(data.records);
+      searchResultUserList.value = data.records;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  listImageByPage(searchParams.value)
+    .then((data) => {
+      console.log(data.records);
+      searchResultImageList.value = data.records;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+/**
+ * tab切换
+ * @param activeKey
+ */
+const onTabChange = (activeKey: string) => {
+  router.push({
+    path: `/${activeKey}`,
+    query: searchParams.value,
+  });
+  activeTabKey = activeKey;
+};
+
+onMounted(() => {
+  // onTabChange("post");
+});
+</script>
+```
+
+
+
+`ImageList.vue`，图片展示在一列
+
+```vue
+<template>
+  <a-list
+    item-layout="horizontal"
+    :grid="{ gutter: 16, column: 5 }"
+    :data-source="props.imageList"
+  >
+    <template #renderItem="{ item }">
+      <a-list-item>
+        <a-card hoverable>
+          <template #cover>
+            <a-image :src="item.url" :alt="item.title" />
+          </template>
+          <a-card :title="item.title"></a-card>
+        </a-card>
+      </a-list-item>
+    </template>
+  </a-list>
+</template>
+
+<script setup lang="ts">
+import { withDefaults, defineProps } from "vue";
+
+interface Props {
+  imageList: any[];
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  imageList: () => [],
+});
+</script>
+
+<style scoped></style>
+```
+
+![image-20241126224602371](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241126224602371.png)
+
+
 
 ## 设计模式
 
