@@ -1313,6 +1313,337 @@ const props = withDefaults(defineProps<Props>(), {
 
 
 
+## 10.搜索请求聚合
+
+（1）切换不同的tab再发起单独分类的请求
+
+（2）一次请求所有分类数据
+
+（3）请求当前默认分类的数据和其它分类的数据总量
+
+根据业务具体使用对应的方式
+
+
+
+当前项目使用第2种方法
+
+
+
+问题：
+
++ 请求过多
++ 请求参数不一致
++ 前端调用请求重复
+
+
+
+### 后端修改
+
+在modle.vo包下，新建通用返回结果`SearchVo`
+
+```java
+package com.xiaofei.site.search.model.vo;
+
+import com.xiaofei.site.search.model.entity.Image;
+import lombok.Data;
+
+import java.io.Serializable;
+import java.util.List;
+
+/**
+ * @author tuaofei
+ * @description TODO
+ * @date 2024/11/27
+ */
+@Data
+public class SearchVo implements Serializable {
+
+    private List<PostVO> postList;
+    private List<Image> imageList;
+    private List<UserVO> userList;
+}
+```
+
+在modle.dto包下新建search目录，新增通用查询请求实体`SearchQueryRequest`
+
+```java
+package com.xiaofei.site.search.model.dto.search;
+
+import com.xiaofei.site.search.common.PageRequest;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+
+/**
+ * 聚合查询请求
+ *
+ */
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class SearchQueryRequest extends PageRequest implements Serializable {
+
+    /**
+     * 搜索词
+     */
+    private String searchText;
+
+
+    private static final long serialVersionUID = 1L;
+}
+```
+
+在controller包下，新增通用查询控制层`SearchController`
+
+```java
+package com.xiaofei.site.search.controller;
+
+import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xiaofei.site.search.annotation.AuthCheck;
+import com.xiaofei.site.search.common.BaseResponse;
+import com.xiaofei.site.search.common.DeleteRequest;
+import com.xiaofei.site.search.common.ErrorCode;
+import com.xiaofei.site.search.common.ResultUtils;
+import com.xiaofei.site.search.constant.UserConstant;
+import com.xiaofei.site.search.exception.BusinessException;
+import com.xiaofei.site.search.exception.ThrowUtils;
+import com.xiaofei.site.search.model.dto.image.ImageQueryRequest;
+import com.xiaofei.site.search.model.dto.post.PostAddRequest;
+import com.xiaofei.site.search.model.dto.post.PostEditRequest;
+import com.xiaofei.site.search.model.dto.post.PostQueryRequest;
+import com.xiaofei.site.search.model.dto.post.PostUpdateRequest;
+import com.xiaofei.site.search.model.dto.search.SearchQueryRequest;
+import com.xiaofei.site.search.model.dto.user.UserQueryRequest;
+import com.xiaofei.site.search.model.entity.Image;
+import com.xiaofei.site.search.model.entity.Post;
+import com.xiaofei.site.search.model.entity.User;
+import com.xiaofei.site.search.model.vo.PostVO;
+import com.xiaofei.site.search.model.vo.SearchVo;
+import com.xiaofei.site.search.model.vo.UserVO;
+import com.xiaofei.site.search.service.ImageService;
+import com.xiaofei.site.search.service.PostService;
+import com.xiaofei.site.search.service.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
+/**
+ * 聚合查询接口
+ */
+@RestController
+@RequestMapping("/search")
+@Slf4j
+public class SearchController {
+
+    @Resource
+    private PostService postService;
+
+    @Resource
+    private UserService userService;
+
+    @Resource
+    private ImageService imageService;
+
+    @PostMapping("/all")
+    public BaseResponse<SearchVo> searchAll(@RequestBody SearchQueryRequest searchQueryRequest, HttpServletRequest httpServletRequest) {
+        SearchVo searchVo = new SearchVo();
+        if (searchQueryRequest == null){
+            return ResultUtils.success(searchVo);
+        }
+        String searchText = searchQueryRequest.getSearchText();
+
+        
+
+        return ResultUtils.success(searchVo);
+    }
+
+}
+```
+
+封装帖子接口查询方法
+
+在PostService，新增listPostVoPage
+
+```java
+ /**
+     * 分页查询帖子
+     * @param postQueryRequest
+     * @param httpServletRequest
+     * @return
+     */
+    Page<PostVO> listPostVoPage(PostQueryRequest postQueryRequest,HttpServletRequest httpServletRequest);
+
+@Override
+    public Page<PostVO> listPostVoPage(PostQueryRequest postQueryRequest, HttpServletRequest httpServletRequest) {
+        int current = postQueryRequest.getCurrent();
+        int pageSize = postQueryRequest.getPageSize();
+        Page<Post> postPage = this.page(new Page<>(current, pageSize),
+                this.getQueryWrapper(postQueryRequest));
+        Page<PostVO> postVOPage = this.getPostVOPage(postPage, httpServletRequest);
+        return postVOPage;
+    }
+```
+
+
+
+封装用户接口查询方法
+
+在UserService，新增listUserVoPage
+
+```java
+/**
+     * 分页查询用户
+     * @param userQueryRequest
+     * @return
+     */
+    Page<UserVO> listUserVoPage(UserQueryRequest userQueryRequest);
+
+@Override
+    public Page<UserVO> listUserVoPage(UserQueryRequest userQueryRequest) {
+        int current = userQueryRequest.getCurrent();
+        int pageSize = userQueryRequest.getPageSize();
+        Page<User> userPage = this.page(new Page<>(current, pageSize),
+                this.getQueryWrapper(userQueryRequest));
+        List<UserVO> userVOList = this.getUserVO(userPage.getRecords());
+        Page<UserVO> userVoPage = new Page<>(current, pageSize);
+        userVoPage.setRecords(userVOList);
+        return userVoPage;
+    }
+```
+
+整合后的controller接口
+
+```java
+package com.xiaofei.site.search.controller;
+
+import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xiaofei.site.search.annotation.AuthCheck;
+import com.xiaofei.site.search.common.BaseResponse;
+import com.xiaofei.site.search.common.DeleteRequest;
+import com.xiaofei.site.search.common.ErrorCode;
+import com.xiaofei.site.search.common.ResultUtils;
+import com.xiaofei.site.search.constant.UserConstant;
+import com.xiaofei.site.search.exception.BusinessException;
+import com.xiaofei.site.search.exception.ThrowUtils;
+import com.xiaofei.site.search.model.dto.image.ImageQueryRequest;
+import com.xiaofei.site.search.model.dto.post.PostAddRequest;
+import com.xiaofei.site.search.model.dto.post.PostEditRequest;
+import com.xiaofei.site.search.model.dto.post.PostQueryRequest;
+import com.xiaofei.site.search.model.dto.post.PostUpdateRequest;
+import com.xiaofei.site.search.model.dto.search.SearchQueryRequest;
+import com.xiaofei.site.search.model.dto.user.UserQueryRequest;
+import com.xiaofei.site.search.model.entity.Image;
+import com.xiaofei.site.search.model.entity.Post;
+import com.xiaofei.site.search.model.entity.User;
+import com.xiaofei.site.search.model.vo.PostVO;
+import com.xiaofei.site.search.model.vo.SearchVo;
+import com.xiaofei.site.search.model.vo.UserVO;
+import com.xiaofei.site.search.service.ImageService;
+import com.xiaofei.site.search.service.PostService;
+import com.xiaofei.site.search.service.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
+/**
+ * 聚合查询接口
+ */
+@RestController
+@RequestMapping("/search")
+@Slf4j
+public class SearchController {
+
+    @Resource
+    private PostService postService;
+
+    @Resource
+    private UserService userService;
+
+    @Resource
+    private ImageService imageService;
+
+    @PostMapping("/all")
+    public BaseResponse<SearchVo> searchAll(@RequestBody SearchQueryRequest searchQueryRequest, HttpServletRequest httpServletRequest) {
+        SearchVo searchVo = new SearchVo();
+        if (searchQueryRequest == null){
+            return ResultUtils.success(searchVo);
+        }
+        String searchText = searchQueryRequest.getSearchText();
+
+        PostQueryRequest postQueryRequest = new PostQueryRequest();
+        postQueryRequest.setSearchText(searchText);
+        Page<PostVO> postVOPage = postService.listPostVoPage(postQueryRequest, httpServletRequest);
+        searchVo.setPostList(postVOPage.getRecords());
+
+        UserQueryRequest userQueryRequest = new UserQueryRequest();
+        userQueryRequest.setUserName(searchText);
+        Page<UserVO> userVOPage = userService.listUserVoPage(userQueryRequest);
+        searchVo.setUserList(userVOPage.getRecords());
+
+        ImageQueryRequest imageQueryRequest = new ImageQueryRequest();
+        imageQueryRequest.setSearchText(searchText);
+        Page<Image> imagePage = imageService.getImageByPage(imageQueryRequest);
+        searchVo.setImageList(imagePage.getRecords());
+
+        return ResultUtils.success(searchVo);
+    }
+
+}
+```
+
+### 修改前端
+
+在seach.ts中添加接口
+
+```ts
+/**
+ * 聚合查询
+ * @param params
+ */
+export const searchAll = (params: any) =>
+  ReqAxios("post", "/search/all", params);
+```
+
+修改indexpage.vue
+
+```vue
+/**
+ * 查询
+ * @param value
+ */
+const onSearch = (value: string) => {
+  router.push({
+    query: searchParams.value,
+  });
+  loadAll();
+};
+
+const loadAll = () => {
+  searchAll(searchParams.value)
+    .then((data) => {
+      console.log(data);
+      searchResultPostList.value = data.postList;
+      searchResultImageList.value = data.imageList;
+      searchResultUserList.value = data.userList;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+```
+
+
+
 ## 设计模式
 
 ### 门面模式
@@ -1328,6 +1659,8 @@ const props = withDefaults(defineProps<Props>(), {
         return ResultUtils.success(searchFacade.searchAll(searchRequest, request));
     }
 ```
+
+
 
 ### 注册器模式
 
