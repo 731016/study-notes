@@ -2273,13 +2273,29 @@ public class SearchFacade {
 
 
 
-## 搜索优化 ES
+## 11.搜索优化 ES
+
+![image-20241130224418217](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241130224418217.png)
+
+搜索不够灵活
+
+如果想搜索到下面这个记录就搜不到，因为现在是使用数据库的like查询
+
+
 
 https://www.elastic.co/cn/downloads/elasticsearch
 
 分布式搜索和分析引擎，用于实时地存储、搜索和分析海量数据
 
 
+
+### 下载
+
+elasticsearch:https://www.elastic.co/guide/en/elasticsearch/reference/7.17/zip-windows.html
+
+logstash:https://www.elastic.co/guide/en/logstash/7.17/setup-logstash.html
+
+kibana:https://www.elastic.co/guide/en/kibana/current/install.html
 
 ### 索引
 
@@ -2312,15 +2328,48 @@ https://www.elastic.co/cn/downloads/elasticsearch
 
 
 
+### 启动端口
+
+9200：提供api接口
+9300：集群内部通信使用
+
+
+
 ### 调用方式
 
 #### resuful api
 
 get请求 http://localhost:9200
 
+```json
+{
+    "name": "PC-20230622ZAWQ",
+    "cluster_name": "elasticsearch",
+    "cluster_uuid": "NVeztQsWQDGTN32D8LkS3Q",
+    "version": {
+        "number": "7.17.12",
+        "build_flavor": "default",
+        "build_type": "zip",
+        "build_hash": "e3b0c3d3c5c130e1dc6d567d6baef1c73eeb2059",
+        "build_date": "2023-07-20T05:33:33.690180787Z",
+        "build_snapshot": false,
+        "lucene_version": "8.11.1",
+        "minimum_wire_compatibility_version": "6.8.0",
+        "minimum_index_compatibility_version": "6.0.0-beta1"
+    },
+    "tagline": "You Know, for Search"
+}
+```
+
+
+
 #### kibana devtools
 
 开发工具查询
+
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241130232225854.png" alt="image-20241130232225854" style="zoom:80%;" />
+
+![image-20241130232341488](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241130232341488.png)
 
 ##### 客户端调用
 
@@ -2344,7 +2393,7 @@ https://docs.spring.io/spring-data/elasticsearch/current/reference/html/#preface
 
 ### ES语法
 
-#### DSL
+#### DSL(推荐使用)
 
 https://www.elastic.co/guide/en/elasticsearch/reference/7.17/query-dsl.html
 
@@ -2358,11 +2407,15 @@ https://www.elastic.co/guide/en/elasticsearch/reference/7.17/query-dsl.html
  }
 ```
 
+![image-20241130232818603](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241130232818603.png)
+
 删除
 
 ```json
 DELETE user
 ```
+
+![image-20241130233452377](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241130233452377.png)
 
 修改
 
@@ -2378,7 +2431,11 @@ PUT user/_doc/1
 
 ```json
 GET user/_doc/1
+```
 
+![image-20241130232942891](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241130232942891.png)
+
+```json
 GET user/_search
 {
   "query": {
@@ -2394,6 +2451,8 @@ GET user/_search
   ]
 }
 ```
+
+![image-20241130233005635](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241130233005635.png)
 
 #### ESL
 
@@ -2445,6 +2504,8 @@ POST /_sql?format=txt&pretty
 
 ![image-20230810222027260](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20230810222027260.png)
 
+![image-20241130235725836](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241130235725836.png)
+
 #### Scripting
 
 *Painless* is a performant, secure scripting language designed specifically for Elasticsearch
@@ -2471,6 +2532,8 @@ PUT /my-index-000001
   }
 }
 ```
+
+![image-20241130234806356](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241130234806356.png)
 
 ### 分词器
 
