@@ -1320,7 +1320,7 @@
             <img src="http://www.redisant.cn/image/my_log.ico" style="float: left; margin-right: 15px;height:35px;">
             <div style="height: 40px; float: right;">Redis Assistant - Redis可视化管理与监控工具</div>
         </div>
-        <div class="cc-nav-des">适用于 Windows, macOS, Linux 的Redis管理GUI</div>
+        <div class="cc-nav-des" title='MinerU是一款将PDF转化为机器可读格式的工具（如markdown、json），可以很方便地抽取为任意格式。'>适用于 Windows, macOS, Linux 的Redis管理GUI</div>
     </div>
 </a>
 
@@ -1332,7 +1332,7 @@
             <img src="https://opengraph.githubassets.com/0ecf451d538abcdb37eed6c87ee266996550520b11cdfb1c9daf25e14560dc5f/opendatalab/MinerU" style="float: left; margin-right: 15px;height:35px;">
             <div style="height: 40px; float: right;">MinerU</div>
         </div>
-        <div class="cc-nav-des">MinerU是一款将PDF转化为机器可读格式的工具（如markdown、json），可以很方便地抽取为任意格式。</div>
+        <div class="cc-nav-des" title='MinerU是一款将PDF转化为机器可读格式的工具（如markdown、json），可以很方便地抽取为任意格式。'>MinerU是一款将PDF转化为机器可读格式的工具（如markdown、json），可以很方便地抽取为任意格式。</div>
     </div>
 </a>
 
