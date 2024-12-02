@@ -2471,9 +2471,7 @@ https://www.elastic.co/guide/en/elasticsearch/client/java-api/7.17/transport-cli
 
 Spring Data Elasticsearch
 
-https://docs.spring.io/spring-data/elasticsearch/current/reference/html/#preface.requirements
-
-
+https://docs.spring.io/spring-data/elasticsearch/docs/
 
 ### ES语法
 
@@ -2775,17 +2773,294 @@ search_analyzer（查询时生效的分词器）：用 ik_smart，更偏向于�
 如果想要让 text 类型的分词字段也支持精确查询，可以创建 keyword 类型的子字段：
 ```
 
-![image-20230814222848757](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20230814222848757.png)
+```json
+#创建文章索引{fields：子字段也支持精确查询}
+PUT /post_v1
+
+##创建mapping
+PUT /post_v1/_mapping
+{
+  "properties":{
+      "title":{
+        "type":"text",
+        "analyzer":"ik_max_word",
+        "search_analyzer":"ik_smart",
+        "fields":{
+          "keyword":{
+            "type":"keyword",
+            "ignore_above":256
+          }
+        }
+      },
+      "content":{
+        "type":"text",
+        "analyzer":"ik_max_word",
+        "search_analyzer":"ik_smart",
+        "fields":{
+          "keyword":{
+            "type":"keyword",
+            "ignore_above":256
+          }
+        }
+      },
+      "tags" : {
+        "type": "text",
+        "fields": {
+          "keyword": {
+           "type": "keyword"
+          }
+      }
+      },
+      "userId":{
+        "type":"long"
+      },
+      "createTime":{
+        "type":"date"
+      },
+      "updateTime":{
+        "type":"date"
+      },
+      "isDelete":{
+        "type":"boolean"
+      }
+    }
+}
+
+##创建别名
+POST _aliases
+{
+  "actions": [
+    {
+      "add": {
+        "index": "post_v1",
+        "alias": "post"
+      }
+    }
+  ]
+}
+
+#检查现有索引和别名
+GET _cat/indices
+GET _cat/aliases
+#删除现有的索引
+DELETE /post_v1
+
+
+#isDelete应该为integer类型，需要重建索引
+PUT /post_v2
+PUT /post_v2/_mapping
+{
+  "properties":{
+      "title":{
+        "type":"text",
+        "analyzer":"ik_max_word",
+        "search_analyzer":"ik_smart",
+        "fields":{
+          "keyword":{
+            "type":"keyword",
+            "ignore_above":256
+          }
+        }
+      },
+      "content":{
+        "type":"text",
+        "analyzer":"ik_max_word",
+        "search_analyzer":"ik_smart",
+        "fields":{
+          "keyword":{
+            "type":"keyword",
+            "ignore_above":256
+          }
+        }
+      },
+      "tags" : {
+        "type": "text",
+        "fields": {
+          "keyword": {
+           "type": "keyword"
+          }
+      }
+      },
+      "userId":{
+        "type":"long"
+      },
+      "createTime":{
+        "type":"date"
+      },
+      "updateTime":{
+        "type":"date"
+      },
+      "isDelete":{
+        "type":"integer"
+      }
+    }
+}
+#复制数据
+POST _reindex
+{
+  "source": {
+    "index": "post_v1"
+  },
+  "dest": {
+    "index": "post_v2"
+  }
+}
+```
+
+
+
+版本选择
+
+https://docs.spring.io/spring-data/elasticsearch/reference/elasticsearch/versions.html
+
+![image-20241202204913715](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241202204913715.png)
 
 
 
 
-
-
-
-### 
 
 **CRUD**
+
+
+
+es查询出来对应的实体
+
+```java
+package com.xiaofei.site.search.model.dto.post;
+
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.json.JSONUtil;
+import com.xiaofei.site.search.model.entity.Post;
+import lombok.Data;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * 帖子 ES 包装类
+ **/
+// todo 取消注释开启 ES（须先配置 ES）
+@Document(indexName = "post")
+@Data
+public class PostEsDTO implements Serializable {
+
+    private static final String DATE_TIME_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+
+    /**
+     * id
+     */
+    @Id
+    private Long id;
+
+    /**
+     * 标题
+     */
+    private String title;
+
+    /**
+     * 内容
+     */
+    private String content;
+
+    /**
+     * 标签列表
+     */
+    private List<String> tags;
+
+    /**
+     * 点赞数
+     */
+    private Integer thumbNum;
+
+    /**
+     * 收藏数
+     */
+    private Integer favourNum;
+
+    /**
+     * 创建用户 id
+     */
+    private Long userId;
+
+    /**
+     * 创建时间
+     */
+    @Field(index = false, store = true, type = FieldType.Date, format = {}, pattern = DATE_TIME_PATTERN)
+    private Date createTime;
+
+    /**
+     * 更新时间
+     */
+    @Field(index = false, store = true, type = FieldType.Date, format = {}, pattern = DATE_TIME_PATTERN)
+    private Date updateTime;
+
+    /**
+     * 是否删除
+     */
+    private Integer isDelete;
+
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 对象转包装类
+     *
+     * @param post
+     * @return
+     */
+    public static PostEsDTO objToDto(Post post) {
+        if (post == null) {
+            return null;
+        }
+        PostEsDTO postEsDTO = new PostEsDTO();
+        BeanUtils.copyProperties(post, postEsDTO);
+        String tagsStr = post.getTags();
+        if (StringUtils.isNotBlank(tagsStr)) {
+            postEsDTO.setTags(JSONUtil.toList(tagsStr, String.class));
+        }
+        return postEsDTO;
+    }
+
+    /**
+     * 包装类转对象
+     *
+     * @param postEsDTO
+     * @return
+     */
+    public static Post dtoToObj(PostEsDTO postEsDTO) {
+        if (postEsDTO == null) {
+            return null;
+        }
+        Post post = new Post();
+        BeanUtils.copyProperties(postEsDTO, post);
+        List<String> tagList = postEsDTO.getTags();
+        if (CollUtil.isNotEmpty(tagList)) {
+            post.setTags(JSONUtil.toJsonStr(tagList));
+        }
+        return post;
+    }
+}
+```
+
+### es配置
+
+没有用户密码可填可不填
+
+```properties
+elasticsearch:
+   uris: http://localhost:9200
+   username: root
+   password: 123456
+```
+
+
 
 
 
@@ -2840,7 +3115,21 @@ List<PostEsDTO> findByTitle(String title);
 取参数->把参数组合为 ES 支持的搜索条件->从返回值中取结果
 
 ```java
-BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
+public Page<Post> searchFromEs(PostQueryRequest postQueryRequest) {
+        Long id = postQueryRequest.getId();
+        Long notId = postQueryRequest.getNotId();
+        String searchText = postQueryRequest.getSearchText();
+        String title = postQueryRequest.getTitle();
+        String content = postQueryRequest.getContent();
+        List<String> tagList = postQueryRequest.getTags();
+        List<String> orTagList = postQueryRequest.getOrTags();
+        Long userId = postQueryRequest.getUserId();
+        // es 起始页为 0
+        long current = postQueryRequest.getCurrent() - 1;
+        long pageSize = postQueryRequest.getPageSize();
+        String sortField = postQueryRequest.getSortField();
+        String sortOrder = postQueryRequest.getSortOrder();
+        BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
         // 过滤
         boolQueryBuilder.filter(QueryBuilders.termQuery("isDelete", 0));
         if (id != null) {
@@ -2853,13 +3142,13 @@ BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
             boolQueryBuilder.filter(QueryBuilders.termQuery("userId", userId));
         }
         // 必须包含所有标签
-        if (CollectionUtils.isNotEmpty(tagList)) {
+        if (CollUtil.isNotEmpty(tagList)) {
             for (String tag : tagList) {
                 boolQueryBuilder.filter(QueryBuilders.termQuery("tags", tag));
             }
         }
         // 包含任何一个标签即可
-        if (CollectionUtils.isNotEmpty(orTagList)) {
+        if (CollUtil.isNotEmpty(orTagList)) {
             BoolQueryBuilder orTagBoolQueryBuilder = QueryBuilders.boolQuery();
             for (String tag : orTagList) {
                 orTagBoolQueryBuilder.should(QueryBuilders.termQuery("tags", tag));
@@ -2870,6 +3159,7 @@ BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
         // 按关键词检索
         if (StringUtils.isNotBlank(searchText)) {
             boolQueryBuilder.should(QueryBuilders.matchQuery("title", searchText));
+            boolQueryBuilder.should(QueryBuilders.matchQuery("description", searchText));
             boolQueryBuilder.should(QueryBuilders.matchQuery("content", searchText));
             boolQueryBuilder.minimumShouldMatch(1);
         }
@@ -2895,6 +3185,31 @@ BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
         NativeSearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(boolQueryBuilder)
                 .withPageable(pageRequest).withSorts(sortBuilder).build();
         SearchHits<PostEsDTO> searchHits = elasticsearchRestTemplate.search(searchQuery, PostEsDTO.class);
+        Page<Post> page = new Page<>();
+        page.setTotal(searchHits.getTotalHits());
+        List<Post> resourceList = new ArrayList<>();
+        // 查出结果后，从 db 获取最新动态数据（比如点赞数）
+        if (searchHits.hasSearchHits()) {
+            List<SearchHit<PostEsDTO>> searchHitList = searchHits.getSearchHits();
+            List<Long> postIdList = searchHitList.stream().map(searchHit -> searchHit.getContent().getId())
+                    .collect(Collectors.toList());
+            List<Post> postList = baseMapper.selectBatchIds(postIdList);
+            if (postList != null) {
+                Map<Long, List<Post>> idPostMap = postList.stream().collect(Collectors.groupingBy(Post::getId));
+                postIdList.forEach(postId -> {
+                    if (idPostMap.containsKey(postId)) {
+                        resourceList.add(idPostMap.get(postId).get(0));
+                    } else {
+                        // 从 es 清空 db 已物理删除的数据
+                        String delete = elasticsearchRestTemplate.delete(String.valueOf(postId), PostEsDTO.class);
+                        log.info("delete post {}", delete);
+                    }
+                });
+            }
+        }
+        page.setRecords(resourceList);
+        return page;
+    }
 ```
 
 (3)查询DSL
