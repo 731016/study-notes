@@ -3212,13 +3212,15 @@ public Page<Post> searchFromEs(PostQueryRequest postQueryRequest) {
     }
 ```
 
-(3)查询DSL
+### 查询DSL
 
 https://www.elastic.co/guide/en/elasticsearch/reference/7.17/query-filter-context.html
 
 https://www.elastic.co/guide/en/elasticsearch/reference/7.17/query-dsl-bool-query.html
 
 ![image-20230814224241744](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20230814224241744.png)
+
+![image-20241203201108759](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241203201108759.png)
 
 wildcard 模糊查询
 
@@ -3275,6 +3277,159 @@ POST my-index-000001/_search
 
 
 
+### 改造现有查询方法
+
+```java
+public interface PostService extends IService<Post> {
+/**
+     * 从 ES 查询
+     *
+     * @param postQueryRequest
+     * @return
+     */
+    Page<Post> searchFromEs(PostQueryRequest postQueryRequest);
+}
+
+@Service
+@Slf4j
+public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements PostService {
+
+@Resource
+    private ElasticsearchRestTemplate elasticsearchRestTemplate;
+
+ @Override
+    public Page<Post> searchFromEs(PostQueryRequest postQueryRequest) {
+        Long id = postQueryRequest.getId();
+        Long notId = postQueryRequest.getNotId();
+        String searchText = postQueryRequest.getSearchText();
+        String title = postQueryRequest.getTitle();
+        String content = postQueryRequest.getContent();
+        List<String> tagList = postQueryRequest.getTags();
+        List<String> orTagList = postQueryRequest.getOrTags();
+        Long userId = postQueryRequest.getUserId();
+        // es 起始页为 0
+        long current = postQueryRequest.getCurrent() - 1;
+        long pageSize = postQueryRequest.getPageSize();
+        String sortField = postQueryRequest.getSortField();
+        String sortOrder = postQueryRequest.getSortOrder();
+        BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
+        // 过滤
+        boolQueryBuilder.filter(QueryBuilders.termQuery("isDelete", 0));
+        if (id != null) {
+            boolQueryBuilder.filter(QueryBuilders.termQuery("id", id));
+        }
+        if (notId != null) {
+            boolQueryBuilder.mustNot(QueryBuilders.termQuery("id", notId));
+        }
+        if (userId != null) {
+            boolQueryBuilder.filter(QueryBuilders.termQuery("userId", userId));
+        }
+        // 必须包含所有标签
+        if (CollUtil.isNotEmpty(tagList)) {
+            for (String tag : tagList) {
+                boolQueryBuilder.filter(QueryBuilders.termQuery("tags", tag));
+            }
+        }
+        // 包含任何一个标签即可
+        if (CollUtil.isNotEmpty(orTagList)) {
+            BoolQueryBuilder orTagBoolQueryBuilder = QueryBuilders.boolQuery();
+            for (String tag : orTagList) {
+                orTagBoolQueryBuilder.should(QueryBuilders.termQuery("tags", tag));
+            }
+            orTagBoolQueryBuilder.minimumShouldMatch(1);
+            boolQueryBuilder.filter(orTagBoolQueryBuilder);
+        }
+        // 按关键词检索
+        if (StringUtils.isNotBlank(searchText)) {
+            boolQueryBuilder.should(QueryBuilders.matchQuery("title", searchText));
+            boolQueryBuilder.should(QueryBuilders.matchQuery("description", searchText));
+            boolQueryBuilder.should(QueryBuilders.matchQuery("content", searchText));
+            boolQueryBuilder.minimumShouldMatch(1);
+        }
+        // 按标题检索
+        if (StringUtils.isNotBlank(title)) {
+            boolQueryBuilder.should(QueryBuilders.matchQuery("title", title));
+            boolQueryBuilder.minimumShouldMatch(1);
+        }
+        // 按内容检索
+        if (StringUtils.isNotBlank(content)) {
+            boolQueryBuilder.should(QueryBuilders.matchQuery("content", content));
+            boolQueryBuilder.minimumShouldMatch(1);
+        }
+        // 排序
+        SortBuilder<?> sortBuilder = SortBuilders.scoreSort();
+        if (StringUtils.isNotBlank(sortField)) {
+            sortBuilder = SortBuilders.fieldSort(sortField);
+            sortBuilder.order(CommonConstant.SORT_ORDER_ASC.equals(sortOrder) ? SortOrder.ASC : SortOrder.DESC);
+        }
+        // 分页
+        PageRequest pageRequest = PageRequest.of((int) current, (int) pageSize);
+        // 构造查询
+        NativeSearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(boolQueryBuilder)
+                .withPageable(pageRequest).withSorts(sortBuilder).build();
+        SearchHits<PostEsDTO> searchHits = elasticsearchRestTemplate.search(searchQuery, PostEsDTO.class);
+        Page<Post> page = new Page<>();
+        page.setTotal(searchHits.getTotalHits());
+        List<Post> resourceList = new ArrayList<>();
+        // 查出结果后，从 db 获取最新动态数据（比如点赞数）
+        if (searchHits.hasSearchHits()) {
+            List<SearchHit<PostEsDTO>> searchHitList = searchHits.getSearchHits();
+            List<Long> postIdList = searchHitList.stream().map(searchHit -> searchHit.getContent().getId())
+                    .collect(Collectors.toList());
+            List<Post> postList = baseMapper.selectBatchIds(postIdList);
+            if (postList != null) {
+                Map<Long, List<Post>> idPostMap = postList.stream().collect(Collectors.groupingBy(Post::getId));
+                postIdList.forEach(postId -> {
+                    if (idPostMap.containsKey(postId)) {
+                        resourceList.add(idPostMap.get(postId).get(0));
+                    } else {
+                        // 从 es 清空 db 已物理删除的数据
+                        String delete = elasticsearchRestTemplate.delete(String.valueOf(postId), PostEsDTO.class);
+                        log.info("delete post {}", delete);
+                    }
+                });
+            }
+        }
+        page.setRecords(resourceList);
+        return page;
+    }
+}
+
+@Service
+@Slf4j
+public class PostDataSource implements SearchDataSource<PostVO> {
+
+    @Resource
+    private PostService postService;
+
+    @Override
+    public Page<PostVO> doSearch(String searchText, int current, int pageSize) {
+        PostQueryRequest postQueryRequest = new PostQueryRequest();
+        postQueryRequest.setSearchText(searchText);
+        postQueryRequest.setCurrent(current);
+        postQueryRequest.setPageSize(pageSize);
+        HttpServletRequest httpServletRequest = null;
+        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if (servletRequestAttributes != null) {
+            httpServletRequest = servletRequestAttributes.getRequest();
+        }
+        Page<Post> postPage = postService.searchFromEs(postQueryRequest);
+        Page<PostVO> postVOPage = postService.getPostVOPage(postPage, httpServletRequest);
+        return postVOPage;
+    }
+}
+```
+
+
+
+### 其它pdf文件或者word文档等怎么存储
+
+[Elasticsearch 搜索引擎实现对文档内容进行快速检索（保姆级教程）_elasticsearch文档搜索-CSDN博客](https://blog.csdn.net/li836779537/article/details/138908351)
+
+[使用Elasticsearch 7.9.1实现对word，pdf，txt文件的全文内容检索 - HENG_Blog - 博客园](https://www.cnblogs.com/strongchenyu/p/13777596.html)
+
+
+
 ## 13.数据同步
 
 定时任务，比如 1 分钟 1 次，找到 MySQL 中过去几分钟内（至少是定时周期的 2 倍）发生改变的数据，然后更新到 ES。
@@ -3287,7 +3442,7 @@ Canal 监听 MySQL Binlog，实时同步
 
 
 
-#### logstash
+### logstash
 
 传输和处理数据的管道
 
@@ -3316,15 +3471,125 @@ cd logstash-7.17.12
 
 要把 MySQL 同步给 Elasticsearch
 
+https://www.elastic.co/guide/en/logstash/7.17/plugins-inputs-jdbc.html
+
+https://www.elastic.co/guide/en/logstash/7.17/plugins-outputs-elasticsearch.html
+
+https://www.elastic.co/guide/en/logstash/7.17/plugins-filters-mutate.html
+
 增量同步，过滤修改数据
 
-![image-20230814230238673](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20230814230238673.png)
+
+
+不加filter的话
+
+![image-20241203220605254](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241203220605254.png)
+
+
+
+sql_last_value存储在`logstash-7.17.12\data\plugins\inputs\jdbc`里面文件中，删掉可以全量同步
+
+
+
+完整配置文件`logstash-mysqlToEs-post.conf`
+
+```properties
+# Sample Logstash configuration for creating a simple
+# Beats -> Logstash -> Elasticsearch pipeline.
+
+input {
+  jdbc {
+    jdbc_driver_library => "C:\Users\Administrator\AppData\Roaming\JetBrains\DataGrip2021.1\jdbc-drivers\MySQL ConnectorJ\8.0.25\mysql\mysql-connector-java\8.0.25\mysql-connector-java-8.0.25.jar"
+    jdbc_driver_class => "com.mysql.cj.jdbc.Driver"
+    jdbc_connection_string => "jdbc:mysql://localhost:3306/xiaofei_site_search"
+    jdbc_user => "root"
+    jdbc_password => "root"
+    statement => "SELECT * from post where updateTime > :sql_last_value and updateTime < now() order by updateTime desc"
+    use_column_value => true
+    tracking_column => "updatetime"
+    tracking_column_type => "timestamp"
+    parameters => { "isDelete" => 1 }
+    schedule => "*/5 * * * * *"
+    jdbc_default_timezone => "Asia/Shanghai"
+  }
+}
+
+filter{
+  mutate {
+        rename => {
+          "updatetime" => "updateTime"
+          "userid" => "userId"
+          "createtime" => "createTime"
+          "isdelete" => "isDelete"
+        }
+        remove_field => [
+          "thumbnum","favournum"
+        ]
+    }
+}
+
+output {
+  stdout { codec => rubydebug }
+  elasticsearch {
+        hosts => "127.0.0.1:9200"
+        index => "post_v2"
+        document_id => "%{id}"
+    }
+}
+```
+
+在bin目录下执行`logstash -f ../config/logstash-mysqlToEs-post.conf`
 
 可能找不到驱动包，修改路径
 
+![image-20241203215149969](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241203215149969.png)
+
+![image-20241203221327857](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241203221327857.png)
 
 
-#### 订阅数据库流水的同步方式 Canal
+
+### 使用kibana创建看板查看数据
+
+可修改为中文 版本>6.7
+
+config下的kibana.yml
+
+```yml
+# Supported languages are the following: English - en , by default , Chinese - zh-CN .
+i18n.locale: "zh-CN"
+```
+
+
+
+![image-20241203221652622](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241203221652622.png)
+
+
+
+![image-20241203221725530](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241203221725530.png)
+
+使用别名post
+
+![image-20241203221808598](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241203221808598.png)
+
+使用更新时间作为时间
+
+![image-20241203221830065](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241203221830065.png)
+
+创建完成
+
+![image-20241203221927135](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241203221927135.png)
+
+进入dashboard
+
+![image-20241203222018637](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241203222018637.png)
+
+![image-20241203225721352](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241203225721352.png)
+
+![image-20241203225837601](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20241203225837601.png)
+
+
+
+### 订阅数据库流水的同步方式 Canal
 
 [alibaba/canal: 阿里巴巴 MySQL binlog 增量订阅&消费组件 (github.com)](https://github.com/alibaba/canal)
 
