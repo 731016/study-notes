@@ -3605,8 +3605,8 @@ canal：帮你监听 binlog，并解析 binlog 为你可以理解的内容。
 
 如果 java 找不到，修改 startup.bat 脚本为你自己的 java home：
 
-```powershell
-set JAVA_HOME = 可能是jvm的server里面的jvm.dll
+```cmd
+set JAVA_HOME = 自己的jvm地址（如D:\install\java8\jdk）
 set PATH=%JAVA_HOME%\bin;%PATH%
 ```
 
@@ -3619,9 +3619,3 @@ ALTER USER 'canal_user'@'%' IDENTIFIED WITH mysql_native_password BY 'canal_user
 ALTER USER 'canal_user'@'%' IDENTIFIED BY 'canal_user' PASSWORD EXPIRE NEVER; 
 FLUSH PRIVILEGES;
 ```
-
-
-
-配置kibana看板
-
-![image-20230814231134823](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20230814231134823.png)
