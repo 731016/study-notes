@@ -99,7 +99,8 @@
   - [Java基础算法](代码库/Java算法.md)
   - [HTML+CSS+JS+JQuery案例学习](https://gitee.com/LovelyHzz/webpage-basic-learning)
   - [前端案例学习](http://www.lvyestudy.com/)
-
+  - [常用业务解决方案](代码库/常用业务解决方案.md)
+  
 - 开发环境
   - [vscode 配置](开发环境/vscode.md)
   - [tomcat 配置](开发环境/Tomcat配置.md)
