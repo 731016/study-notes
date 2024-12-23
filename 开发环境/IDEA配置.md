@@ -72,12 +72,91 @@ Settings ->
 
 [技巧 | 如何用 IDEA 提升十倍开发效率？ (qq.com)](https://mp.weixin.qq.com/s?__biz=MzI1NDczNTAwMA==&mid=2247484184&idx=1&sn=1b064ad5e4d560ebf6f9a95cc0a10488&chksm=e9c1e4efdeb66df9e0e81e35af969ec5d31f463a3bc82ba61b7bf6d29585c8a549438dbe3dfe#rd)
 
+## [自动切换输入法](https://plugins.jetbrains.com/plugin/20575-smart-input/)
 
-[自动切换输入法](https://plugins.jetbrains.com/plugin/20575-smart-input/)
-
-`Translation` 翻译插件
+## `Translation` 翻译插件
 
 ![image-20211124221844192](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/202111271734433.png)
+
+## Rainbow Brackets
+
+给括号添加彩虹色，使开发者通过颜色区分括号嵌套层级，便于阅读
+
+
+
+## String Manipulation
+
+字符串快捷处理
+
+
+
+## Alibaba Java Coding Guidelines
+
+代码规范检查插件
+
+
+
+## SonarLint
+
+帮助你发现和修复代码的错误和漏洞
+
+
+
+## MybatisX
+
+MyBatis 增强插件，支持自动生成 entity、mapper、service 等常用操作的代码，优化体验
+
+
+
+## .ignore
+
+生成不同语言的版本控制忽略文件
+
+
+
+## GenerateAllSetter
+
+快速生成调用对象 setter 方法的代码
+
+
+
+## Easy Code
+
+根据数据库表生成 Java entity、dao、mapper、service、controller 等代码
+
+
+
+## Free Mybatis Plugin
+
+MyBatis 增强插件，支持 mapper => xml 的跳转、代码生成等功能
+
+
+
+## Maven Helper
+
+Maven 辅助插件
+
+
+
+## Arthas Idea
+
+Arthas 命令生成插件。Arthas 是阿里开源的 Java 在线诊断工具，该插件可以自动生成 Arthas 在线 Java 代码诊断命令，不用再到官网翻文档拼命令啦！
+
+
+
+## BashSupport
+
+支持 Bash 脚本文件的高亮和提示等
+
+
+
+
+
+## .env files support
+
+支持 .env 文件的高亮和提示等
+
+
 
 ## lombok
 
