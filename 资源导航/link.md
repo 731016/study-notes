@@ -843,78 +843,6 @@
     </div>
 </a>
 
-<a href="https://www.nuxtjs.cn/" style="text-decoration: none;" target="_blank">
-    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
-        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
-        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
-        <div class="cc-nav-title">
-            <img src="https://nuxtjs.org/nuxt-card.png" style="float: left; margin-right: 15px;height:35px;">
-            <div style="height: 40px; float: right;">Nuxt.js</div>
-        </div>
-        <div class="cc-nav-des" title='Nuxt.js 是一个基于 Vue.js 的轻量级应用框架，可用来创建服务端渲染 (SSR) 应用，也可充当静态站点引擎生成静态站点应用，具有优雅的代码结构分层和热加载等特性。'>Nuxt.js 是一个基于 Vue.js 的轻量级应用框架，可用来创建服务端渲染 (SSR) 应用，也可充当静态站点引擎生成静态站点应用，具有优雅的代码结构分层和热加载等特性。</div>
-    </div>
-</a>
-
-<a href="https://cn.vitejs.dev/" style="text-decoration: none;" target="_blank">
-    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
-        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
-        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
-        <div class="cc-nav-title">
-            <img src="https://vitejs.dev/og-image.png" style="float: left; margin-right: 15px;height:35px;">
-            <div style="height: 40px; float: right;">Vite</div>
-        </div>
-        <div class="cc-nav-des" title='Next Generation Frontend Tooling'>Next Generation Frontend Tooling</div>
-    </div>
-</a>
-
-<a href="https://vant-ui.github.io/vant/v3/#/zh-CN" style="text-decoration: none;" target="_blank">
-    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
-        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
-        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
-        <div class="cc-nav-title">
-            <img src="https://fastly.jsdelivr.net/npm/@vant/assets/logo.png" style="float: left; margin-right: 15px;height:35px;">
-            <div style="height: 40px; float: right;">Vant3</div>
-        </div>
-        <div class="cc-nav-des" title='轻量、可靠的移动端 Vue 组件库'>轻量、可靠的移动端 Vue 组件库</div>
-    </div>
-</a>
-
-<a href="https://pro.ant.design/zh-CN/" style="text-decoration: none;" target="_blank">
-    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
-        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
-        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
-        <div class="cc-nav-title">
-            <img src="https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png" style="float: left; margin-right: 15px;height:35px;">
-            <div style="height: 40px; float: right;">ant design pro</div>
-        </div>
-        <div class="cc-nav-des" title='🏆 让中后台开发更简单'>🏆 让中后台开发更简单</div>
-    </div>
-</a>
-
-<a href="https://procomponents.ant.design/" style="text-decoration: none;" target="_blank">
-    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
-        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
-        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
-        <div class="cc-nav-title">
-            <img src="https://procomponents.ant.design/icon.png" style="float: left; margin-right: 15px;height:35px;">
-            <div style="height: 40px; float: right;">procomponents</div>
-        </div>
-        <div class="cc-nav-des" title='🏆 让中后台开发更简单'>🏆 让中后台开发更简单</div>
-    </div>
-</a>
-
-<a href="https://umijs.org/" style="text-decoration: none;" target="_blank">
-    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
-        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
-        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
-        <div class="cc-nav-title">
-            <img src="https://umijs.org/images/og-home.png" style="float: left; margin-right: 15px;height:35px;">
-            <div style="height: 40px; float: right;">UmiJS</div>
-        </div>
-        <div class="cc-nav-des" title='Umi是可扩展的企业级前端应用框架。Umi 以路由为基础的，同时支持配置式路由和约定式路由，保证路由的功能完备，并以此进行功能扩展。然后配以生命周期完善的插件体系，覆盖从源码到构建产物的每个生命周期，支持各种功能扩展和业务需求。'>Umi是可扩展的企业级前端应用框架。Umi 以路由为基础的，同时支持配置式路由和约定式路由，保证路由的功能完备，并以此进行功能扩展。然后配以生命周期完善的插件体系，覆盖从源码到构建产物的每个生命周期，支持各种功能扩展和业务需求。</div>
-    </div>
-</a>
-
 
 
 <a href="https://www.yarnpkg.cn/" style="text-decoration: none;" target="_blank">
@@ -1392,7 +1320,19 @@
             <img src="http://www.redisant.cn/image/my_log.ico" style="float: left; margin-right: 15px;height:35px;">
             <div style="height: 40px; float: right;">Redis Assistant - Redis可视化管理与监控工具</div>
         </div>
-        <div class="cc-nav-des">适用于 Windows, macOS, Linux 的Redis管理GUI</div>
+        <div class="cc-nav-des" title='MinerU是一款将PDF转化为机器可读格式的工具（如markdown、json），可以很方便地抽取为任意格式。'>适用于 Windows, macOS, Linux 的Redis管理GUI</div>
+    </div>
+</a>
+
+<a href="https://github.com/opendatalab/MinerU/blob/master/README_zh-CN.md" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://opengraph.githubassets.com/0ecf451d538abcdb37eed6c87ee266996550520b11cdfb1c9daf25e14560dc5f/opendatalab/MinerU" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">MinerU</div>
+        </div>
+        <div class="cc-nav-des" title='MinerU是一款将PDF转化为机器可读格式的工具（如markdown、json），可以很方便地抽取为任意格式。'>MinerU是一款将PDF转化为机器可读格式的工具（如markdown、json），可以很方便地抽取为任意格式。</div>
     </div>
 </a>
 
@@ -2070,6 +2010,90 @@
 ### 前端
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+
+<a href="https://www.nuxtjs.cn/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://nuxtjs.org/nuxt-card.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Nuxt.js</div>
+        </div>
+        <div class="cc-nav-des" title='Nuxt.js 是一个基于 Vue.js 的轻量级应用框架，可用来创建服务端渲染 (SSR) 应用，也可充当静态站点引擎生成静态站点应用，具有优雅的代码结构分层和热加载等特性。'>Nuxt.js 是一个基于 Vue.js 的轻量级应用框架，可用来创建服务端渲染 (SSR) 应用，也可充当静态站点引擎生成静态站点应用，具有优雅的代码结构分层和热加载等特性。</div>
+    </div>
+</a>
+
+<a href="https://vant-ui.github.io/vant/v3/#/zh-CN" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://fastly.jsdelivr.net/npm/@vant/assets/logo.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Vant3</div>
+        </div>
+        <div class="cc-nav-des" title='轻量、可靠的移动端 Vue 组件库'>轻量、可靠的移动端 Vue 组件库</div>
+    </div>
+</a>
+
+<a href="https://cn.vitejs.dev/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://vitejs.dev/og-image.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Vite</div>
+        </div>
+        <div class="cc-nav-des" title='Next Generation Frontend Tooling'>Next Generation Frontend Tooling</div>
+    </div>
+</a>
+
+<a href="https://pro.ant.design/zh-CN/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">ant design pro</div>
+        </div>
+        <div class="cc-nav-des" title='🏆 让中后台开发更简单'>🏆 让中后台开发更简单</div>
+    </div>
+</a>
+
+<a href="https://www.antdv.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">Ant Design Vue</div>
+        </div>
+        <div class="cc-nav-des" title='An enterprise-class UI components based on Ant Design and Vue'>An enterprise-class UI components based on Ant Design and Vue</div>
+    </div>
+</a>
+
+<a href="https://procomponents.ant.design/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://procomponents.ant.design/icon.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">procomponents</div>
+        </div>
+        <div class="cc-nav-des" title='🏆 让中后台开发更简单'>🏆 让中后台开发更简单</div>
+    </div>
+</a>
+
+<a href="https://umijs.org/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://umijs.org/images/og-home.png" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">UmiJS</div>
+        </div>
+        <div class="cc-nav-des" title='Umi是可扩展的企业级前端应用框架。Umi 以路由为基础的，同时支持配置式路由和约定式路由，保证路由的功能完备，并以此进行功能扩展。然后配以生命周期完善的插件体系，覆盖从源码到构建产物的每个生命周期，支持各种功能扩展和业务需求。'>Umi是可扩展的企业级前端应用框架。Umi 以路由为基础的，同时支持配置式路由和约定式路由，保证路由的功能完备，并以此进行功能扩展。然后配以生命周期完善的插件体系，覆盖从源码到构建产物的每个生命周期，支持各种功能扩展和业务需求。</div>
+    </div>
+</a>
 
 <a href="https://ui.misboot.com/?from=360tg" style="text-decoration: none;" target="_blank">
     <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"

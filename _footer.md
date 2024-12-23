@@ -1,5 +1,5 @@
 <div style="text-align: center;">
-    <a href="javascript:;" title="已经运行了那么久了？？">
+    <a href="javascript:;" title="已经运行了那么久了？？" style="text-decoration:none;">
         <div class="github-badge">
             <span class="badge-subject">运行时间</span>
             <span class="badge-value bg-blueviolet">
@@ -7,7 +7,7 @@
             </span>
         </div>
     </a>
-    <a href="javascript:;" title="备案号">
+    <a href="javascript:;" title="备案号" style="text-decoration:none;">
         <div class="github-badge">
             <span class="badge-value">
                 <span id="times">鄂ICP备2024071306号</span>

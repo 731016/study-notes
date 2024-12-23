@@ -1,8 +1,8 @@
 # 学习笔记 :green_book: <!-- {docsify-ignore-all} -->
 
 ## 介绍 :point_left: 
-<span style="display:block;font-family: 'Consolas';font-weight: 600;color:#2c68a5">编程学习记录，包括Java，JavaWeb，javascript，linux，Sql，Redis，Vue，Git，C语言，Python，计算机网络，面试资料...</span>
-<span style="display:block;font-family: 'Consolas';font-weight: 600;color:#73889d">其他，包括高等数学，劳动合同法...</span>
+<span style="display:block;font-family: 'Consolas';font-weight: 600;color:#2c68a5">编程学习记录，包括Java，Spring，SpringMVC，SpringBoot，SpringCloud，设计模式，JavaScript，Linux，Sql，数据库，Redis，消息队列，前端，Git，SVN，C语言，Python，计算机网络，开发环境配置，生产环境问题排查，面试资料...</span>
+<span style="display:block;font-family: 'Consolas';font-weight: 600;color:#73889d">其他，包括软考中级软件设计师，高等数学，劳动合同法...</span>
 <div style="font-family: monospace;color: brown;font-weight: 600;">
     很杂的资料库。。。
 </div>
@@ -26,6 +26,7 @@
 - [寻爱-万用信息展示平台](项目/寻爱-万用信息展示网站.md)
 - [API 开放平台](项目/API开放平台.md)
 - [手写RPC框架](项目/RPC框架.md)
+- [聚合搜索平台](项目/聚合搜索平台.md)
 
 
 ### 代码库 :computer: 
@@ -113,7 +114,7 @@
 - [springMVC](SSM框架/springMVC.md)
 - [springBoot](SSM框架/springBoot.md)
 - [springClond](SSM框架/springclond.md)
-- [springClond Alibaba](SSM框架/springClond Alibaba.md)
+- [springClond Alibaba](SSM框架/springClondAlibaba.md)
 
 ### redis
 - [Redis](Redis/redis.md)
@@ -130,6 +131,7 @@
 
 ### 面试 :briefcase: 
 - [Java基础面试16问部分](面试/面试题.md)
+- [八股文](面试/八股文.md)
 - [Java基础](面试/java基础.md)
 - [群硕软件](面试/群硕软件.md)
 - [赛德勤](面试/赛德勤.md)

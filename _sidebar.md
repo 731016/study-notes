@@ -81,13 +81,24 @@
   - [寻爱-万用信息展示平台](项目/寻爱-万用信息展示网站.md)
   - [API 开放平台](项目/API开放平台.md)
   - [手写RPC框架](项目/RPC框架.md)
+  - [聚合搜索平台](项目/聚合搜索平台.md)
 
 - 面试
 
   - [Java 基础面试 16 问部分](面试/面试题.md)
   - [Java 基础](面试/Java基础.md)
+  - [八股文](面试/八股文.md)
   - [群硕软件](面试/群硕软件.md)
   - [赛德勤](面试/赛德勤.md)
+
+
+- 代码库 
+  - [Java常用配置文件模板](代码库/常用配置文件.md)
+  - [Java工具类](代码库/java工具类.md)
+  - [JavaScript基础算法](代码库/javascript.md)
+  - [Java基础算法](代码库/Java算法.md)
+  - [HTML+CSS+JS+JQuery案例学习](https://gitee.com/LovelyHzz/webpage-basic-learning)
+  - [前端案例学习](http://www.lvyestudy.com/)
 
 - 开发环境
   - [vscode 配置](开发环境/vscode.md)
