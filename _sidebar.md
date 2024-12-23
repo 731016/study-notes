@@ -49,7 +49,7 @@
 - 版本控制
   - [SVN](版本控制/SVN.md)
   - [Git](版本控制/Git.md)
-- SSM 框架
+- Spring 框架
   - [Mybatis](SSM框架/mybatis.md)
   - [spring](SSM框架/spring.md)
   - [springMVC](SSM框架/springMVC.md)
