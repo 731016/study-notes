@@ -1,5 +1,7 @@
 [TOC]
 
+
+
 ## 什么是java序列化，如何实现java序列化？
 
 https://blog.csdn.net/qq_41666142/article/details/120471586?spm=1001.2014.3001.5501
