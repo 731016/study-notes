@@ -1,5 +1,4 @@
 - [首页](/README.md)
-
 - JavaSE
   - [Java 基础](JavaSE/Java基础.md)
   - [面向对象编程](JavaSE/面向对象编程.md)
@@ -14,26 +13,20 @@
   - [网络编程](JavaSE/网络编程.md)
   - [函数式接口](JavaSE/函数式接口.md)
   - [Debug 调试](JavaSE/Debug.md)
-
 - 反射
   - [反射](反射/反射.md)
-  
 - 设计模式
 
   - [设计模式](设计模式/设计模式.md)
-
 - MySQL
   - [MySQL 安装](MySQL/MySql安装.md)
   - [MySQL 基础](MySQL/MySQL基础.md)
   - [JDBC 组件](MySQL/JDBC组件.md)
   - [控制台购物商城实现](MySQL/购物商城.md)
-
 - SQLServer
   - [SQLServer](SQLServer/SqlServer.md)
-  
 - JavaWeb
   - [JSP + servlet](JavaWeb/jsp_servlet.md)
-
 - 前端
   - [HTML](前端/HTML.md)
   - [CSS](前端/CSS.md)
@@ -44,15 +37,12 @@
   - [移动布局基础](前端/移动布局基础.md)
   - [前后端交互](前端/前后端交互.md)
   - [前端项目注意事项](前端/前端项目注意事项.md)
-
 - JQuery
   - [JQuery 基础](jQuery/Jquery.md)
   - [jQuery-Ajax](jQuery/Ajax.md)
-  
 - 版本控制
   - [SVN](版本控制/SVN.md)
   - [Git](版本控制/Git.md)
-  
 - Spring 框架
   - [Mybatis](SSM框架/mybatis.md)
   - [spring](SSM框架/spring.md)
@@ -60,24 +50,19 @@
   - [springBoot](SSM框架/springBoot.md)
   - [springClond](SSM框架/springclond.md)
   - [springClond Alibaba](SSM框架/springClond%20Alibaba.md)
-  
 - Redis
   - [Redis](Redis/redis.md)
-  
 - 消息队列
 
   - [RadditMQ](消息队列/rabbitMQ.md)
-
 - Linux
   - [常用 linux 部署命令](linux/常用linux命令.md)
     - [linux 安装](linux/linux安装.md)
     - [正则表达式](linux/正则表达式.md)
     - [配置 Samba 服务器](linux/samba服务器.md)
     - [Ununtu 问题解答](linux/ubuntu问题解答.md)
-
 - 生产环境问题
   - [cpu占用过高](生产环境/cpu占用过高.md)
-
 - 项目
   - [快递代取系统](https://github.com/731016/Express-pick-up-system)
   - [天天生鲜交易平台](https://github.com/731016/daily-fresh-trading-platform)
@@ -88,15 +73,25 @@
   - [API 开放平台](项目/API开放平台.md)
   - [手写RPC框架](项目/RPC框架.md)
   - [聚合搜索平台](项目/聚合搜索平台.md)
-
 - 面试
 
   - [八股文刷题路线](面试/八股文刷题路线.md)
-  
   - [Java 基础面试 16 问部分](面试/面试题.md)
   - [Java 基础](面试/Java基础.md)
   - [Java集合](面试/Java集合.md)
   - [Java并发](面试/Java并发.md)
+  - [Java虚拟机](面试/Java虚拟机.md)
+  - [MySQL](面试/MySQL.md)
+  - [Redis](面试/Redis.md)
+  - [Spring](面试/Spring.md)
+  - [Spring Boot](面试/SpringBoot.md)
+  - [Spring Cloud](面试/SpringCloud.md)
+  - [后端系统设计](面试/系统设计.md)
+  - [后端场景](面试/场景.md)
+  - [消息队列](面试/消息队列.md)
+  - [设计模式](面试/设计模式.md)
+  - [ElasticSearch](面试/ElasticSearch.md)
+  - [Zookeeper](面试/Zookeeper.md)
   - [八股文](面试/八股文.md)
   - [群硕软件](面试/群硕软件.md)
   - [赛德勤](面试/赛德勤.md)
