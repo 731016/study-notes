@@ -98,6 +98,10 @@
 
 [如何使用 MySQL 的 EXPLAIN 语句进行查询分析？ - MySQL 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1791003439968264194/question/1780933295509368833)
 
+[MySQL 中如何进行 SQL 调优？ - MySQL 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1791003439968264194/question/1780933295521951745)
+
+[在什么情况下，不推荐为数据库建立索引？ - MySQL 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1791003439968264194/question/1805147589229355009)
+
 索引不一定有效
 
 查询条件不包含索引列、查询条件复杂且不匹配索引的顺序、数据量小的表可能选择全表扫描
@@ -221,3 +225,95 @@ count(1)：there is no performance difference，统计表中所有行的数量�
 
 count(字段名)：统计指定字段不为null的行数。全表扫描，有索引则使用，正常情况下需要判断是否为空，但如果不为空，如是主键，理论上也差不多
 
+
+
+## 主从同步机制
+
+[什么是 MySQL 的主从同步机制？它是如何实现的？ - MySQL 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1791003439968264194/question/1780933295538728962#heading-2)
+
+主数据库上的数据同步到一个或多个从数据库中
+
+通过二进制日志（binlog）实现数据的复制。主数据库在执行写操作时，会把操作记录到binlog，推送给从数据库，从数据库重放对应的日志
+
+## 主从同步延迟
+
+[如何处理 MySQL 的主从同步延迟？ - MySQL 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1791003439968264194/question/1780933295542923266)
+
++ 二次查询：从库查不到再查询主库
+
++ 强制将写之后立马读的操作转移到主库
+
++ 关键业务读写都在主库
+
++ 使用缓存
+
+## 深度分页
+
+[MySQL 中如何解决深度分页的问题？ - MySQL 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1791003439968264194/question/1780933295572283394)
+
+**子查询**
+
+```mysql
+select * from user where name = 'big' limit 50000,10
+
+select * from user inner join (select id from user where name = 'big' order by id limit 50000,10)
+as user1 on user.id = user1.id
+```
+
+**记录id**
+
+记录上一次最大的id，下次查询从这个id开始，适用于自增id，连续查询，如果跳页就会失效
+
+## 数据库三大范式
+
+[数据库的三大范式是什么？ - MySQL 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1791003439968264194/question/1803265470015987713)
+
+第一范式：不允许重复的列和多指字段
+
+第二范式：非主键字段必须依赖于整个主键
+
+第三范式：所有非主键字段只能依赖于主键，不应相互依赖
+
+## varchar(100)和varchar(10)的区别
+
+[MySQL 中 VARCHAR(100) 和 VARCHAR(10) 的区别是什么？ - MySQL 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1791003439968264194/question/1805142216804081666#heading-1)
+
+存储的字符串长度上限不同
+
+存储相同字符串时占用空间相同
+
+查询时如果有排序，，会按照固定大小的内存块进行保存，varchar(100)占用内存会更多
+
+
+
+## exists和in的区别
+
+[MySQL 中 EXISTS 和 IN 的区别是什么？ - MySQL 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1791003439968264194/question/1805162404970700802#heading-4)
+
+![image-20250109235346986](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20250109235346986.png)
+
+## innodb存储引擎和myisam存储引擎的区别
+
+[MySQL 中 InnoDB 存储引擎与 MyISAM 存储引擎的区别是什么？ - MySQL 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1791003439968264194/question/1811361310328279041#heading-3)
+
+myisam：不支持事务、行级锁，索引和数据分开存储，不支持崩溃后的安全恢复
+
+innodb：支持事务、行级锁、外键，可通过redolog日志进行崩溃后的安全恢复
+
+## mysql事务的二阶段提交
+
+[MySQL 事务的二阶段提交是什么？ - MySQL 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1791003439968264194/question/1849298413057683458)
+
+保证redo log和binlog的一致性，在崩溃恢复时不会出现数据丢失或数据不一致
+
+![image-20250110000914911](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20250110000914911.png)
+
+## 三层B+树能存多少数据
+
+[MySQL 三层 B+ 树能存多少数据？ - MySQL 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1791003439968264194/question/1849347477245734913#heading-0)
+
+b+树默认数据页大小为16KB
+
+![image-20250110001516359](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20250110001516359.png)
+
+![image-20250110001528158](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20250110001528158.png)
