@@ -248,3 +248,144 @@ AOP拦截链（切面）：定义切面可实现方法前后的处理。@Before�
 
 
 
+## Spring MVC
+
+[说下对 Spring MVC 的理解？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1780933295400316930)
+
+[Spring MVC 具体的工作原理？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1780933295400316931#heading-0)
+
+请求处理流程：模型层（Model）、视图层（View）、控制层（Controller），提供一种松耦合的方式将用户请求、业务逻辑和视图渲染分离
+
+基于servlet api构建，核心是DispatcherServlet前端控制器。通过注解、配置方式，将http请求映射到控制器方法，由控制器处理请求逻辑并将数据返回给视图层进行渲染。
+
+主要功能：请求映射、数据绑定、视图解析、表单处理、异常处理
+
+![image-20250116220112793](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20250116220112793.png)
+
+[springMVC 执行流程](http://xiaofei.site:10082/#/SSM框架/springMVC?id=执行流程)
+
+## spring 事务隔离级别
+
+1. DEFAULT:默认，使用底层数据库的默认隔离级别，如果数据库无特殊配置，通常默认为READ_COMMITTED
+2. READ_UNCOMMITTED:读未提交，允许事务读取尚未提交的数据，可能会导致脏读、不可重复读、幻读
+3. READ_COMMITTED:读已提交，只允许读取已经提交的数据，避免脏读，可能出现不可重复读、幻读
+4. REPEATABLE_READ:确保在同一事务内的多次读取结果一致，避免脏读、不可重复读，可能出现幻读
+5. SERIALIZABLE:通过强制事务按顺序执行，完全避免脏读、不可重复读、幻读
+
+## spring 事务传播行为
+
+[Spring 有哪几种事务传播行为? - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1780933295417094146)
+
+required（默认行为）：方法会加入现有事务，如果没有就创建一个新事务
+
+requires_new：强制启动一个新事务，无论当前是否存在事务。如果有就挂起，直到新事务完成
+
+nested：如果当前存在事务，会在当前事务中创建一个嵌套事务，子事务可以独立回滚而不影响主事务
+
+supports：支持事务，不强制要求。如果有事务，加入当前事务，没有就以非事务方式执行
+
+mandatory：方法必须在已有事务中运行，如果当前没有事务就抛异常
+
+not_supported：不支持事务，如果存在事务，将当前事务挂起，并以非事务方式执行
+
+never：不允许在事务中运行，如果当前没有事务就抛异常
+
+
+
+## spring 通知类型
+
+[Spring 通知有哪些类型？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1797567441497358338#heading-0)
+
+前置通知
+
+后置通知
+
+后置异常通知：在目标方法抛出异常后执行
+
+后置最终通知：无论目标方法如何结束（正确返回或抛出异常），都会执行
+
+环绕通知
+
+
+
+## @Qualifier注解
+
+[@Qualifier 注解有什么作用 - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1797568550655885313)
+
+[Spring中的@Primary注解的作用是什么？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1797871576671191041)
+
+在依赖注入时消除歧义。当一个类型同多个实现类时，可以指定需要注入的bean
+
+@Primary首选Bean，@Qualifier会覆盖@Primary
+
+## @Bean和@Component
+
+[@Bean和@Component有什么区别？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1797568672965984258)
+
+都是定义spring容器中bean的注解
+
+
+
+|   特性   |                          @Bean                          |                   @Component                   |
+| :------: | :-----------------------------------------------------: | :--------------------------------------------: |
+| 使用位置 |               方法级别（@Configuration）                |                     类级别                     |
+| 扫描机制 |              不支持自动扫描，需要手动注册               |      支持自动扫描，通过@Component自动发现      |
+| 主要用途 |                 配置第三方库或复杂对象                  |                自动发现并注册类                |
+| 常见场景 | 手动配置复杂对象、第三方库类（Redis、Mybatis，Api文档） | 自定义服务（AOP）、DAO层、控制器等类的自动注册 |
+|  灵活性  |                  灵活、适合复杂初始化                   |          自定化更强、适合类的简单注册          |
+
+## @Component与@Controller、@Repository、@Service
+
+[@Component、@Controller、@Repository和@Service 的区别？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1797568918223716354)
+
+本质没区别，其它3个都是@Component的衍生注解。都用@Component都可以
+
+@Component：通用注解，用于将任意类注册为spring容器中的bean
+
+@Controller：专门用于spring MVC中的控制器层注解。用于处理http请求，并将结果返回给客户端
+
+@Repository：标识业务逻辑层的类，主要用于编写服务类
+
+@Service：用于数据访问层（DAO），与数据库交互
+
+## spring事务什么情况下会失效
+
+[Spring 事务在什么情况下会失效？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1797569076432863234)
+
+失效的情况都是用了声明式事务（@Transactional）
+
+1. rollbackFor没设置对
+2. propagation传播机制配置错误
+
+```java
+@Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+public void addUserAndAddress(User user,Address address) throws Exception {
+    userMapper.save(user);
+    addAddress(address);
+}
+
+@Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+public void addAddress(Address address) {
+    addressMapper.save(address);
+}
+```
+
+3. 异常被捕获，没抛出异常
+
+4. 同一个类中方法调用，事务基于动态代理，同类的方法调用不会走代理方法
+
+5. @Transactional应用在非public方法
+
+6. @Transactional应用在final和static方式，aop（springBoot2.x默认是cglib，Spring默认是jdk）默认是CGLIB代理，无法对final方法子类化。static是静态方法，属于类，不属于实例对象，无法被代理
+
+7. 多线程环境，@Transactional基于ThreadLocal存储上下文，多线程情况下每个线程都有自己的上下文
+8. 数据库引擎不支持事务（Mysql MyISAM）
+
+## @Value
+
+[Spring中的@Value注解的作用是什么？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1797871888496721922)
+
+注入外部配置值（属性文件、环境变量、系统属性）到spring管理的bean中
+
+
+
