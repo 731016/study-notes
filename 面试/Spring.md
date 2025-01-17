@@ -264,6 +264,16 @@ AOP拦截链（切面）：定义切面可实现方法前后的处理。@Before�
 
 [springMVC 执行流程](http://xiaofei.site:10082/#/SSM框架/springMVC?id=执行流程)
 
+
+
+1. DispatcherServlet接受请求并调用HandlerMapping查找对应的控制器
+2. HandlerAdapter调用具体的Controller方法处理请求
+3. Controller返回ModelAndView，包含视图名和模型数据
+4. ViewResolver解析视图并渲染结果
+5. DispatcherServlet将处理结果返回给客户端
+
+
+
 ## spring 事务隔离级别
 
 1. DEFAULT:默认，使用底层数据库的默认隔离级别，如果数据库无特殊配置，通常默认为READ_COMMITTED
@@ -387,5 +397,164 @@ public void addAddress(Address address) {
 
 注入外部配置值（属性文件、环境变量、系统属性）到spring管理的bean中
 
+## @Profile("dev")
 
+[Spring 中的 @Profile 注解的作用是什么？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1798286739119407105#heading-0)
+
+定义配置文件所属环境
+
+## @RequestBody和@ResponseBody
+
+[Spring 中的 @RequestBody 和 @ResponseBody 注解的作用是什么？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1798287130959675393)
+
+@RequestBody：将http请求体中的数据绑定到方法参数上
+
+@ResponseBody：将控制器方法返回的结果直接写入http响应体中
+
+## @PathVariable
+
+[Spring 中的 @PathVariable 注解的作用是什么？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1798287283456180225)
+
+从url模板中提取变量值的注解
+
+```java
+@GetMapping("/users/{userId}")
+public ResponseEntity<User> getUserById(@PathVariable("userId") String userId) {
+    User user = userService.getUserById(userId);
+    if (user != null) {
+        return ResponseEntity.ok(user);
+    } else {
+        return ResponseEntity.notFound().build();
+    }
+}
+```
+
+@RequestParam：从请求查询的参数中提取数据，/users?id=1
+
+
+
+## @ModelAttribute
+
+[Spring中的 @ModelAttribute 注解的作用是什么？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1798287430349094914)
+
+用于方法参数：表示将请求中的参数绑定到某个对象上
+
+用于方法级别：表示在执行任何控制器方法之前，先运行带有该注解的方法
+
+## @ExceptionHandler
+
+[Spring 中的 @ExceptionHandler 注解的作用是什么？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1798504655559458817)
+
+处理控制器中抛出的异常，通常和@RestControllerAdvice一起使用，表示标识全局异常处理类
+
+优先级是：局部控制器@ExceptionHandler > 全局@RestControllerAdvice
+
+## @ResponseStatus
+
+[Spring 中的 @ResponseStatus 注解的作用是什么？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1798504849663459330#heading-0)
+
+将指定的状态码和原因设置到响应的HTTP状态中
+
+```java
+@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "未找到")
+public class UserNotFoundException extends RuntimeException {
+    // 异常类实现
+}
+```
+
+## @RequestHeader和@CookValue
+
+[Spring 中的 @RequestHeader 和 @CookieValue 注解的作用是什么？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1798505040298770433)
+
+@RequestHeader：提取HTTP请求头中的值
+
+@CookValue：提取HTTP请求的Cookie的值
+
+## @SessionAttribute
+
+[Spring 中的 @SessionAttribute 注解的作用是什么？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1798505207139794946)
+
+从当前HTTP会话（Session）中获取属性值
+
+## @Validated和@Valid
+
+[Spring 中的 @Validated 和 @Valid 注解有什么区别？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1798505343446286338)
+
+@Validated：用于方法参数和类字段上，验证参数是否合法
+
+@Valid：支持分组验证
+
+## @Conditional
+
+[Spring 中的 @Conditional 注解的作用是什么？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1798881653496274945#heading-0)
+
+有条件的装配Bean，实现Condition接口实现matches方法
+
+## @Lazy
+
+[Spring 中的 @Lazy 注解的作用是什么？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1798881778599780354)
+
+不在spring容器启动时去加载bean，而是需要的时候再去加载Bean
+
+和@Component，@Bean一起使用
+
+和@Autowrite一起使用，使用构造函数注入可解决循环依赖
+
+## @PropertySource
+
+[Spring 中的 @PropertySource 注解的作用是什么？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1798881894198992898)
+
+加载.properties属性文件，结合@Value和Environment
+
+## spring MVC拦截器
+
+[Spring MVC 中的拦截器是什么？如何定义一个拦截器？ - Spring 面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1790683494127804418/question/1800045311198306305#heading-0)
+
+在请求处理流程的不同阶段拦截HTTP请求和响应，并对其进行预处理或后处理。如权限验证、日志记录、性能监控
+
+实现HandlerInterceptor接口，重写preHandle、postHandle（控制器执行之后视图渲染之前）、afterCompletion
+
+```java
+public class MyInterceptor implements HandlerInterceptor {
+
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        // 在请求到达控制器之前处理
+        System.out.println("Pre Handle method is Calling");
+        return true;  // 返回 true 继续处理请求，返回 false 阻止请求继续
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        // 在控制器执行之后，视图渲染之前处理
+        System.out.println("Post Handle method is Calling");
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception exception) throws Exception {
+        // 在整个请求完成之后回调
+        System.out.println("Request and Response is completed");
+    }
+}
+```
+
+通过WebMvcConfigurer或xml配置来注册拦截器，并指定拦截路径
+
+```java
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+    //注册拦截器
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new MyInterceptor())
+                .addPathPatterns("/api/**")    // 拦截 /api/** 下的所有请求
+                .excludePathPatterns("/api/login", "/api/register");  // 排除特定路径
+    }
+}
+```
+
+过滤器：servlet的一部分，拦截所有HTTP请求，不依赖spring
+
+拦截器：依赖spring mvc
 
