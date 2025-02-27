@@ -86,6 +86,36 @@
     .github-badge .bg-lightgray {
       background-color: #9f9f9f !important;
     }
+
+    /* 最新标识的样式 */
+    .latest-badge {
+      color: white;
+      background-color: red;
+      font-size: 0.8em;
+      /* 字体大小 */
+      padding: 2px 6px;
+      /* 内边距 */
+      border-radius: 12px;
+      /* 圆角，使其更圆润 */
+      margin-left: auto;
+      /* 确保靠右对齐 */
+      position: relative;
+      /* 相对定位 */
+      top: -2px;
+      /* 微调垂直位置 */
+      display: inline-block;
+      /* 确保它是一个块级元素 */
+      line-height: 1;
+      /* 调整行高，使文字居中 */
+      font-weight: bold;
+      /* 字体加粗 */
+      text-transform: uppercase;
+      /* 文字大写 */
+      letter-spacing: 0.5px;
+      /* 字母间距 */
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      /* 添加阴影，增强立体感 */
+    }
   </style>
   <script>
     var _hmt = _hmt || [];
@@ -142,7 +172,7 @@
       // logo: '/_media/icon.svg',
       repo: "https://github.com/731016/study-notes",
       //主题色
-      themeColor:"#405aff",
+      themeColor: "#405aff",
       //同时设置 loadSidebar 和 autoHeader 后，可以根据 _sidebar.md 的内容自动为每个页面增加标题
       loadSidebar: true,
       // autoHeader: true,
@@ -170,7 +200,7 @@
       //开启导航栏 _navbar.md
       loadNavbar: true,
       // 日志
-      changelog : 'deploylog.md',
+      changelog: 'deploylog.md',
       // 让你的内容页在滚动到指定的锚点时，距离页面顶部有一定空间。
       topMargin: 25,
       //使用封面 _coverpage.md
@@ -295,9 +325,9 @@
   <script src="https://cdn.bootcdn.net/ajax/libs/docsify-copy-code/3.0.0/docsify-copy-code.min.js"></script>
   <!--分页导航-->
   <script src="./js/docsify-pagination.min.js"></script>
-   <!--字数统计-->
-   <script src="https://unpkg.com/docsify-count@1.1.0/dist/countable.min.js"></script>
-   <<!--外联脚本插件-->
+  <!--字数统计-->
+  <script src="https://unpkg.com/docsify-count@1.1.0/dist/countable.min.js"></script>
+  <!--外联脚本插件-->
   <script src="./js/external-script.min.js"></script>
   <!-- 图片缩放  -->
   <script src="./js/zoom-image.js"></script>
