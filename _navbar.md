@@ -1,3 +1,4 @@
+* [更新历史](/_log.md)<span class="latest-badge">有更新</span>
 * [首页](/)
 * 刷题网站
     * [炼码](https://www.lintcode.com/)
