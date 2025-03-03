@@ -16,6 +16,30 @@
     const loadingElement = document.getElementById('commit-history');
     
     try {
+      // 获取当前日期和一年前的日期
+      const currentDate = new Date();
+      const endDate = new Date();
+      endDate.setMonth(currentDate.getMonth() - 6); // 向前推6个月
+
+      // 格式化日期为 ISO 8601 格式（YYYY-MM-DDTHH:MM:SSZ）
+      const sinceDate = endDate.toISOString();
+      const untilDate = currentDate.toISOString();
+
+      // 构造请求参数
+      const params = new URLSearchParams({
+        since: sinceDate,
+        until: untilDate
+      });
+
+      // GitHub API URL
+      const repoOwner = "731016";
+      const repoName = "731016.github.io";
+      const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/commits`;
+
+      // 完整的请求URL
+      const requestUrl = `${apiUrl}?since=${sinceDate}&until=${untilDate}`;
+      console.log(`请求地址 ${requestUrl}`);
+
       const headers = {
         'Accept': 'application/vnd.github.v3+json',
         'User-Agent': 'Mozilla/5.0',
@@ -23,7 +47,7 @@
       };
 
       console.log('开始获取提交记录...');
-      const response = await fetch('https://api.github.com/repos/731016/731016.github.io/commits', {
+      const response = await fetch(requestUrl, {
         headers: headers
       });
 
@@ -229,4 +253,5 @@
 </style>
 
 ---
+
 > 💡 本页面同步显示 [GitHub 仓库](https://github.com/731016/731016.github.io)的提交记录。点击文件名可查看具体更新内容。
