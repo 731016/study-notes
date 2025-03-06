@@ -132,6 +132,8 @@
 
 ### 面试 :briefcase: 
 
++ [面试技巧](https://github.com/731016/731016.github.io/blob/master/面试技巧.md)
+
 + [八股文刷题路线](面试/八股文刷题路线.md)
 
 - [Java基础面试16问部分](面试/面试题.md)
