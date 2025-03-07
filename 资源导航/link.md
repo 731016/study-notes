@@ -193,6 +193,18 @@
     </div>
 </a>
 
+<a href="https://www.hollischuang.com/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="https://www.hollischuang.com/wp-content/uploads/2020/09/cropped-icon-180x180.jpeg" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">HollisChuang's Blog-Java干货集散地</div>
+        </div>
+        <div class="cc-nav-des" title="HollisChuang's Bolg 是一个专注于 Java 技术分享的个人博客，为Java 开发者提供有价值的内容。">HollisChuang's Bolg 是一个专注于 Java 技术分享的个人博客，为Java 开发者提供有价值的内容。</div>
+    </div>
+</a>
+
 
 </div>
 
