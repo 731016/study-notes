@@ -899,6 +899,18 @@
     </div>
 </a>
 
+<a href="https://xbatis.cn/" style="text-decoration: none;" target="_blank">
+    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
+        onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0px 2px 5px rgba(0,0,0,0.1)';">
+        <div class="cc-nav-title">
+            <img src="" style="float: left; margin-right: 15px;height:35px;">
+            <div style="height: 40px; float: right;">xbatis</div>
+        </div>
+        <div class="cc-nav-des" title='xbatis是一款非常好用的ORM框架！'>xbatis是一款非常好用的ORM框架！</div>
+    </div>
+</a>
+
 <a href="https://dev.mysql.com/doc/refman/8.0/en/preface.html" style="text-decoration: none;" target="_blank">
     <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;"
         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0px 10px 20px rgba(0,0,0,0.3)';"
