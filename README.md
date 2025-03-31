@@ -16,6 +16,7 @@
 
 ### 生产环境问题
  - [cpu占用过高](生产环境/cpu占用过高.md)
+ - [OOM排查](生产环境/OOM排查.md)
 
 ### 项目
 - [快递代取系统](https://github.com/731016/Express-pick-up-system)
@@ -99,10 +100,9 @@
 - [移动布局基础](前端/移动布局基础.md)
 - [前后端交互](前端/前后端交互.md)
 - [前端项目注意事项](前端/前端项目注意事项.md)
-
-### jQuery
-- [JQuery基础](jQuery/Jquery.md)
-- [jQuery Ajax](jQuery/Ajax.md)
+- jQuery
+  - [JQuery基础](jQuery/Jquery.md)
+  - [jQuery Ajax](jQuery/Ajax.md)
 
 ### 版本控制
 - [SVN](版本控制/avn.md)
@@ -121,7 +121,9 @@
 - [Redis](Redis/redis.md)
 
 ### 消息队列
-- [RadditMQ](消息队列/rabbitMQ.mq)
+- [RabbitMQ](消息队列/rabbitMQ.md)
+- [kafka](消息队列/kafka.md)
+- [RocketMQ](消息队列/RocketMQ.md)
 
 ### Linux
 - [linux安装](linux/linux安装.md)

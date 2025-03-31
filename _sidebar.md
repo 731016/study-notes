@@ -54,7 +54,9 @@
   - [Redis](Redis/redis.md)
 - 消息队列
 
-  - [RadditMQ](消息队列/rabbitMQ.md)
+  - [RabbitMQ](消息队列/rabbitMQ.md)
+  - [kafka](消息队列/kafka.md)
+  - [RocketMQ](消息队列/RocketMQ.md)
 - Linux
   - [常用 linux 部署命令](linux/常用linux命令.md)
     - [linux 安装](linux/linux安装.md)
@@ -63,6 +65,7 @@
     - [Ununtu 问题解答](linux/ubuntu问题解答.md)
 - 生产环境问题
   - [cpu占用过高](生产环境/cpu占用过高.md)
+  - [OOM排查](生产环境/OOM排查.md)
 - 项目
   - [快递代取系统](https://github.com/731016/Express-pick-up-system)
   - [天天生鲜交易平台](https://github.com/731016/daily-fresh-trading-platform)
