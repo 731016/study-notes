@@ -318,7 +318,18 @@
 
           hook.doneEach(function () {
             // 每次路由切换时数据全部加载完成后调用，没有参数。
+            //来必力评论
+           (function(d, s) {
+              var j, e = d.getElementsByTagName(s)[0];
             
+              if (typeof LivereTower === 'function') { return; }
+            
+              j = d.createElement(s);
+              j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+              j.async = true;
+            
+              e.parentNode.insertBefore(j, e);
+          })(document, 'script');
           });
 
           hook.mounted(function () {
@@ -340,19 +351,6 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
-
-    //来必力评论
-    (function(d, s) {
-       var j, e = d.getElementsByTagName(s)[0];
-
-       if (typeof LivereTower === 'function') { return; }
-
-       j = d.createElement(s);
-       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-       j.async = true;
-
-       e.parentNode.insertBefore(j, e);
-   })(document, 'script');
   </script>
   <!--控制台打印-->
   <script src="./js/log.js"></script>
