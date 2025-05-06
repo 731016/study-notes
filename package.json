@@ -2,6 +2,7 @@
   "dependencies": {
     "docsify": "^4.13.1",
     "docsify-cli": "^4.4.4",
+    "gitalk": "^1.8.0",
     "medium-zoom": "^1.1.0"
   },
   "scripts": {
