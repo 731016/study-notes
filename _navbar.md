@@ -10,9 +10,8 @@
 * 🌐演示网站
 * 🔍运维助手
     * [csdn <span class="recommend-badge">100W+访问</span>](https://blog.csdn.net/qq_41666142)
-    * [宝塔Linux](http://xiaofei.site:10000/baotalinux)
     * [1Panel](http://xiaofei.site:10001/1panel)
-    * [vsCode网页版](https://xiaofei.site:10084/vsCode-server/login)
+    * [vsCode网页版](http://xiaofei.site:10084/vsCode-server/login)
     * [蓝凑云](https://pc.woozooo.com/account.php?action=login&ref=/mydisk.php)
 * 🤖Ai助手
     * [鱼聪明](https://www.yucongming.com/chat/1781191236741668865)
