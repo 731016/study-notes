@@ -1,0 +1,148 @@
+.docsify-link-preview {
+    cursor: pointer;
+    position: relative;
+    display: block;
+    background-color: #ffffff;
+    margin: 0 -20px;
+    overflow: hidden;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, ".SFNSText-Regular",
+      sans-serif;
+    -webkit-font-smoothing: subpixel-antialiased;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  }
+  @media only screen and (min-width: 770px) {
+    .docsify-link-preview {
+      margin: 0;
+      width: 500px;
+    }
+  }
+  .docsify-link-preview__image {
+    height: 180px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-top: 1px solid #dadde1;
+    border-bottom: 1px solid #dadde1;
+  }
+  @media only screen and (min-width: 770px) {
+    .docsify-link-preview__image {
+      border: 1px solid #dadde1;
+      width: 500px;
+      height: 261px;
+    }
+  }
+  .docsify-link-preview__content {
+    border-collapse: separate;
+    color: #4b4f56;
+    direction: ltr;
+    display: block;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    height: 46px;
+    line-height: 14.4px;
+    max-height: 46px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-align: left;
+    user-select: none;
+    word-wrap: break-word;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .docsify-link-preview__text {
+    padding: 10px 12px;
+    color: #1d2129;
+    border-bottom: 1px solid #dadde1;
+    background: #f2f3f5;
+  }
+  @media only screen and (min-width: 770px) {
+    .docsify-link-preview__text {
+      border: 1px solid #dadde1;
+      border-top: none;
+    }
+  }
+  .docsify-link-preview__title {
+    margin-top: 5px;
+    border-collapse: separate;
+    color: #1d2129;
+    cursor: pointer;
+    direction: ltr;
+    display: inline;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    height: auto;
+    letter-spacing: normal;
+    line-height: 18px;
+    text-align: left;
+    text-decoration-color: #1d2129;
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    transition-delay: 0s;
+    transition-duration: 0.1s;
+    transition-property: color;
+    transition-timing-function: ease-in-out;
+    user-select: none;
+    white-space: normal;
+    width: auto;
+    word-wrap: break-word;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media only screen and (min-width: 770px) {
+    .docsify-link-preview__title {
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+  .docsify-link-preview__description {
+    border-collapse: separate;
+    color: #606770;
+    direction: ltr;
+    display: -webkit-box;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    height: 18px;
+    line-height: 20px;
+    margin-top: 3px;
+    max-height: 80px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-align: left;
+    text-overflow: ellipsis;
+    user-select: none;
+    white-space: normal;
+    word-break: break-word;
+    word-wrap: break-word;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-box-orient: vertical;
+    -webkit-font-smoothing: antialiased;
+    -webkit-line-clamp: 1;
+  }
+  .docsify-link-preview__link {
+    border-collapse: separate;
+    color: #606770;
+    direction: ltr;
+    display: block;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    height: 11px;
+    line-height: 11px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-align: left;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    user-select: none;
+    white-space: nowrap;
+    width: 501px;
+    word-wrap: break-word;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-font-smoothing: antialiased;
+  }

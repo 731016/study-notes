@@ -10,13 +10,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
   <meta name="description" content="小飞的学习笔记xiaofei.work-专为计算机相关专业的学生提供学习的平台！" />
   <meta name="Keywords" content="Java,Spring,SpringMVC,SpringBoot,SpringCloud,设计模式,JavaScript,Linux,Sql,数据库,Redis,消息队列,前端,Git,SVN,C语言,Python,计算机网络,开发环境配置,生产环境问题排查,面试资料" />
-  <meta name="baidu-site-verification" content="code-KriBdcEG74" />
   <meta name="referrer" content="no-referrer" />
   <meta name="google-site-verification" content="bW7PyfCZbO0e0hDKGSErVavHBJG1Vx7Pa2JXWa1LpR4" />
   <meta name="msvalidate.01" content="C69E4C53004D697D9195274F4ACCAEAA" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="./css/vue.css">
   <link rel="stylesheet" href="./css/sidebar-folder.min.css" />
+  <link rel="stylesheet" href="./css/docsify-link-preview.css" />
   <style>
     footer a {
       text-decoration: none;
@@ -288,6 +288,10 @@
       //外部链接的打开方式。默认为 _blank （在新窗口或者标签页中打开）
       cornerExternalLinkTarget: '_blank', // default: '_blank'
       routerMode: 'hash', // default: hash|history|abstract
+      //链接预览
+      linkpreview: {
+        key: "b8cbd68166c6cb13a26b0dabbfa6856e",
+      },
       plugins: [
         function (hook, vm) {
           hook.init(function () {
@@ -345,15 +349,6 @@
         },
       ],
     };
-  
-    //百度统计
-    var _hmt = _hmt || [];
-    (function () {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?1c47bfb627fa9414e1963d73e2015017";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
   </script>
   <!--控制台打印-->
   <script src="./js/log.js"></script>
@@ -400,6 +395,8 @@
   <script src="./js/prism/prism-yaml.min.js"></script>
   <!-- 获取github 提交记录 -->
   <script src="./js/marked.min.js"></script>
+  <!-- 链接预览 -->
+  <script src="./js/docsify-link-preview.js"></script>
 </body>
 
 </html>
