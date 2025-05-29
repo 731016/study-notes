@@ -10,22 +10,7 @@
 <!-- #### :fire:<span>备用笔记网站</span><a href="https://731016.github.io/study-notes/" target="_blank" style="font-size: 18px;text-decoration: auto;color: indianred;font-weight: 600;">小飞的学习笔记</a> -->
 
 ## 项目部署
-
-### 依赖安装
-```cmd
-npm install
-```
-
-### 运行
-```cmd
-docsify serve --port 【端口】
-```
-不指定端口，默认3000
-
-### 如果docsify找不到
-```cmd
-npm i docsify-cli -g
-```
+- [docsify部署](部署/docsify部署.md)
 
 ## 目录 :pencil:
 
