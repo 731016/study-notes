@@ -54,65 +54,69 @@
 
 ## AI 大模型接入
 
-- AI 大模型概念
-- 接入 AI 大模型（3 种方式）
-- 后端项目初始化
-- 程序调用 AI 大模型（4 种方式）
+### AI 大模型概念
 
-  - SDK
-  - HTTP
-  - Spring Ai
-  - LangChain4j
+### 接入 AI 大模型（3 种方式）
 
-- 本地部署 AI 大模型
+### 后端项目初始化
 
-  [Ollama](https://ollama.com/)
-- Spring AI 调用本地大模型
+### 程序调用 AI 大模型（4 种方式）
 
-  [Ollama-阿里云Spring AI Alibaba官网官网](https://java2ai.com/docs/1.0.0-M6.1/models/ollama/)
+- SDK
+- HTTP
+- Spring Ai
+- LangChain4j
+
+### 本地部署 AI 大模型
+
+[Ollama](https://ollama.com/)
+
+### Spring AI 调用本地大模型
+
+[Ollama-阿里云Spring AI Alibaba官网官网](https://java2ai.com/docs/1.0.0-M6.1/models/ollama/)
 
 ## AI 应用开发
 
-- Prompt 工程概念
+### Prompt 工程概念
 
-  提示词工程
+提示词工程
 
-  Token：单词或标点符号
+Token：单词或标点符号
 
-  提示词计算工具
+#### 提示词计算工具
 
-  [OpenAI Tokens 在线计算工具 - AIGC2D.com](https://tiktoken.aigc2d.com/)
+[OpenAI Tokens 在线计算工具 - AIGC2D.com](https://tiktoken.aigc2d.com/)
 
-  [Attention Required! | Cloudflare](https://platform.openai.com/tokenizer)
+[Attention Required! | Cloudflare](https://platform.openai.com/tokenizer)
 
-  ![image-20250813223613711](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20250813223613711.png)
+![image-20250813223613711](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20250813223613711.png)
 
-成本优化
+### 成本优化
 
 1. 精简提示词
 2. 定期清理对话历史
 3. 使用向量检索代替直接输入
 4. 结构化替代自然语言
 
-- Prompt 优化技巧
+### Prompt 优化技巧
 
-  
 
-  ### **prompt学习**
 
-  [提示工程指南 | Prompt Engineering Guide](https://www.promptingguide.ai/zh)
+#### **prompt学习**
 
-  [Attention Required! | Cloudflare](https://platform.openai.com/docs/guides/prompt-engineering)
+[提示工程指南 | Prompt Engineering Guide](https://www.promptingguide.ai/zh)
 
-  [Prompts :: Spring AI Reference](https://docs.spring.io/spring-ai/reference/api/prompt.html#_prompt_engineering)
+[Attention Required! | Cloudflare](https://platform.openai.com/docs/guides/prompt-engineering)
 
-  [提示工程概述 - Anthropic](https://docs.anthropic.com/zh-CN/docs/build-with-claude/prompt-engineering/overview)
+[Prompts :: Spring AI Reference](https://docs.spring.io/spring-ai/reference/api/prompt.html#_prompt_engineering)
 
-  [GitHub - anthropics/prompt-eng-interactive-tutorial: Anthropic's Interactive Prompt Engineering Tutorial](https://github.com/anthropics/prompt-eng-interactive-tutorial)
+[提示工程概述 - Anthropic](https://docs.anthropic.com/zh-CN/docs/build-with-claude/prompt-engineering/overview)
 
-  [智谱AI开放平台](https://open.bigmodel.cn/dev/guidelines/LanguageModels)
+[GitHub - anthropics/prompt-eng-interactive-tutorial: Anthropic's Interactive Prompt Engineering Tutorial](https://github.com/anthropics/prompt-eng-interactive-tutorial)
 
-### **prompt提升词库**
+[智谱AI开放平台](https://open.bigmodel.cn/dev/guidelines/LanguageModels)
+
+#### **prompt提升词库**
 
 [Home - Anthropic](https://docs.anthropic.com/en/home)
 
@@ -122,27 +126,29 @@
 
 
 
-- AI 恋爱大师应用需求分析
+### AI 恋爱大师应用需求分析
 
-- AI 恋爱大师应用方案设计
+### AI 恋爱大师应用方案设计
 
-  系统提示词设计
+#### 系统提示词设计
 
-  ```
-  扮演深耕恋爱心理领域的专家。开场向用户表明身份，告知用户可倾诉恋爱难题。围绕单身、恋爱、已婚三种状态提问：单身状态询问社交圈拓展及追求心仪对象的困扰；恋爱状态询问沟通、习惯差异引发的矛盾；已婚状态询问家庭责任与亲属关系处理的问题。引导用户详述事情经过、对方反应及自身想法，以便给出专属解决方案。
-  ```
+```
+扮演深耕恋爱心理领域的专家。开场向用户表明身份，告知用户可倾诉恋爱难题。围绕单身、恋爱、已婚三种状态提问：单身状态询问社交圈拓展及追求心仪对象的困扰；恋爱状态询问沟通、习惯差异引发的矛盾；已婚状态询问家庭责任与亲属关系处理的问题。引导用户详述事情经过、对方反应及自身想法，以便给出专属解决方案。
+```
 
-  ### 多轮对话实现
+#### 多轮对话实现
 
-  [Chat Client API :: Spring AI Reference](https://docs.spring.io/spring-ai/reference/api/chatclient.html)
+[Chat Client API :: Spring AI Reference](https://docs.spring.io/spring-ai/reference/api/chatclient.html)
 
-+ Spring AI ChatClient / Advisor / ChatMemory 特性
+### Spring AI ChatClient / Advisor / ChatMemory 特性
 
-ChatClient
+#### ChatClient
 
-Advisor：增强，相当于拦截器
+#### Advisor
 
-Chat Memory Advisor
+增强，相当于拦截器
+
+#### Chat Memory Advisor
 
 MessageChatMemoryAdvisor：从记忆中检索历史对话，将其作为消息集合添加到提示词；保留原始信息
 
@@ -152,7 +158,7 @@ VectorStoreChatMemoryAdvisor：用向量数据库来存储检索历史对话
 
 
 
-Chat Memory
+#### Chat Memory
 
 可将对话保存到不同的数据源
 
@@ -160,84 +166,118 @@ Chat Memory
 
 
 
-- 多轮对话 AI 应用开发
+### 多轮对话 AI 应用开发
 
-  
 
-- Spring AI 自定义 Advisor
 
-  
+### Spring AI 自定义 Advisor
 
-- Spring AI 结构化输出 - 恋爱报告功能
 
-  
 
-- Spring AI 对话记忆持久化
+### Spring AI 结构化输出 - 恋爱报告功能
 
-  
 
-- Spring AI Prompt 模板特性
 
-  
+### Spring AI 对话记忆持久化
 
-- 多模态概念和开发
 
-  
+
+### Spring AI Prompt 模板特性
+
+
+
+### 多模态概念和开发
+
+
 
 ## RAG 知识库基础
 
-- AI 恋爱知识问答需求分析
-- RAG 概念（重点理解核心步骤）
-- RAG 实战：Spring AI + 本地知识库
-- RAG 实战：Spring AI + 云知识库服务
+### AI 恋爱知识问答需求分析
+
+### RAG 概念（重点理解核心步骤）
+
+### RAG 实战：Spring AI + 本地知识库
+
+### RAG 实战：Spring AI + 云知识库服务
 
 ## RAG 知识库进阶
 
-- RAG 核心特性
-- - 文档收集和切割（ETL）
-  - 向量转换和存储（向量数据库）
-  - 文档过滤和检索（文档检索器）
-  - 查询增强和关联（上下文查询增强器）
-- RAG 最佳实践和调优
-- 检索策略
-- 大模型幻觉
+### RAG 核心特性
+
+#### 文档收集和切割（ETL）
+
+#### 向量转换和存储（向量数据库）
+
+#### 文档过滤和检索（文档检索器）
+
+#### 查询增强和关联（上下文查询增强器）
+
+### RAG 最佳实践和调优
+
+### 检索策略
+
+### 大模型幻觉
 
 ## 工具调用
 
-- 工具概念
-- Spring AI 工具开发
-- 主流工具开发
-- - 文件操作
-  - 联网搜索
-  - 网页抓取
-  - 终端操作
-  - 资源下载
-  - PDF 生成
-- 工具进阶知识（原理和高级特性）
+### 工具概念
+
+#### Spring AI 工具开发
+
+#### 主流工具开发
+
+##### 文件操作
+
+##### 联网搜索
+
+##### 网页抓取
+
+##### 终端操作
+
+##### 资源下载
+
+##### PDF 生成
+
+#### 工具进阶知识（原理和高级特性）
 
 ## MCP
 
-- MCP 概念
-- 使用 MCP（3 种方式）
-- Spring AI MCP 开发模式
-- Spring AI MCP 开发实战 - 图片搜索 MCP
-- MCP 开发最佳实践
-- 部署 MCP
-- MCP 安全问题
+### MCP 概念
+
+### 使用 MCP（3 种方式）
+
+### Spring AI MCP 开发模式
+
+### Spring AI MCP 开发实战 - 图片搜索 MCP
+
+### MCP 开发最佳实践
+
+### 部署 MCP
+
+### MCP 安全问题
 
 ## AI 智能体构建
 
-- AI 智能体概念
-- 智能体实现关键
-- 使用 AI 智能体（2 种方式）
-- 自主规划智能体介绍
-- OpenManus 实现原理
-- 自主实现 Manus 智能体
-- 智能体工作流
+### AI 智能体概念
+
+### 智能体实现关键
+
+### 使用 AI 智能体（2 种方式）
+
+### 自主规划智能体介绍
+
+### OpenManus 实现原理
+
+### 自主实现 Manus 智能体
+
+### 智能体工作流
 
 ## AI 服务化
 
-- AI 应用接口开发（SSE）
-- AI 智能体接口开发
-- AI 生成前端代码
-- AI 服务 Serverless 部
+### AI 应用接口开发（SSE）
+
+### AI 智能体接口开发
+
+### AI 生成前端代码
+
+### AI 服务 Serverless 部
