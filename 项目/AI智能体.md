@@ -1058,7 +1058,229 @@ String response = ChatClient.create(chatModel).prompt()
 
 ### RAG 概念（重点理解核心步骤）
 
+![image-20251008210405322](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251008210405322.png)
+
+#### Embedding和Embedding模型
+
+![image-20251008210627759](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251008210627759.png)
+
+![image-20251008210642112](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251008210642112.png)
+
+
+
+#### 向量数据库
+
+![image-20251008210848185](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251008210848185.png)
+
+#### 召回
+
+![image-20251008211014727](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251008211014727.png)
+
+
+
+#### 精排和RANK模型
+
+![image-20251008211048393](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251008211048393.png)
+
+![image-20251008211100699](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251008211100699.png)
+
+
+
+#### 混合检索策略
+
+![image-20251008211126768](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251008211126768.png)
+
+
+
+
+
 ### RAG 实战：Spring AI + 本地知识库
+
+[Retrieval Augmented Generation :: Spring AI Reference](https://docs.spring.io/spring-ai/reference/api/retrieval-augmented-generation.html)
+
+[检索增强生成RAG（Retrieval-Augmented Generation）-阿里云Spring AI Alibaba官网官网](https://java2ai.com/docs/1.0.0-M6.1/tutorials/rag/)
+
+#### 1.文档准备
+
+#### 2.文档读取
+
+准备好的知识库文档处理后保存到向量数据库，这个过程称为ETL（抽取、转换、加载）
+
+ETL3大核心组件
+
++ DocumentReader：读取文档，得到文档列表
++ DocumentTransformer：转换文档，得到处理后的文档列表
++ DocumentWriter：将文档列表保存到存储中
+
+![image-20251008211813949](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251008211813949.png)
+
+
+
+##### 使用MarkdownDocumentReader读取Markdown文档
+
+(1)导入依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.ai</groupId>
+    <artifactId>spring-ai-markdown-document-reader</artifactId>
+    <version>1.0.0-M6</version>
+</dependency>
+```
+
+（2）在根目录新增rag包，新增类KnowAppLoader，负责读取所有Markdown文档并转换为Document列表
+
+```java
+@Component
+@Slf4j
+public class KnowAppDocumentLoader {
+
+    private final ResourcePatternResolver resourcePatternResolver;
+
+
+    public KnowAppDocumentLoader(ResourcePatternResolver resourcePatternResolver) {
+        this.resourcePatternResolver = resourcePatternResolver;
+    }
+
+    public List<Document> loadMarkdowns() {
+        List<Document> allDocumentList = new ArrayList<>();
+        try {
+            Resource[] resources = resourcePatternResolver.getResources("classpath:document/*.md");
+            for (Resource resource : resources) {
+                String filename = resource.getFilename();
+                MarkdownDocumentReaderConfig config = MarkdownDocumentReaderConfig.builder()
+                        .withHorizontalRuleCreateDocument(true)
+                        .withIncludeCodeBlock(false)
+                        .withIncludeBlockquote(false)
+                        .withAdditionalMetadata("filename", filename)
+                        .build();
+                MarkdownDocumentReader reader = new MarkdownDocumentReader(resource, config);
+                allDocumentList.addAll(reader.get());
+            }
+
+        } catch (IOException e) {
+            log.error(" Markdown 文档加载失败", e);
+        }
+        return allDocumentList;
+    }
+}
+```
+
+通过MarkdownDocumentReaderConfig文档加载配置制定读取的细节，是否读取代码块、引用块。还指定了元信息配置，提取文档的文件名作为文档的元信息，便于精确检索。
+
+
+
+#### 3.向量转换和存储
+
+先使用spring ai内置的、基于内存读写的向量数据库保存文档
+
+SimpleVectorStore实现了VectorStore接口，VectorStore接口集成了DocumentWriter
+
+![image-20251008214642919](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251008214642919.png)
+
+在写入文档前，先调用Embedding模型将文本转换为向量
+
+![image-20251008214719181](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251008214719181.png)
+
+在rag目录下，新增KnowAppVectorStoreConfig，实现初始化向量数据库并保存文档
+
+```java
+@Configuration
+public class KnowAppVectorStoreConfig {
+
+    @Resource
+    private KnowAppDocumentLoader knowAppDocumentLoader;
+
+    @Bean
+    VectorStore knowAppVectorStore(EmbeddingModel embeddingModel){
+        SimpleVectorStore simpleVectorStore = SimpleVectorStore.builder(embeddingModel).build();
+        //加载文档
+        List<Document> documents = knowAppDocumentLoader.loadMarkdowns();
+        simpleVectorStore.add(documents);
+        return simpleVectorStore;
+    }
+}
+```
+
+
+
+#### 4.查询增强
+
+主要是QuestionAnswerAdvisor问答拦截器和RetrievalAugmentationAdvisor检索增强拦截器
+
+![image-20251008215455833](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251008215455833.png)
+
+引入依赖
+
+```xml
+<dependency>
+   <groupId>org.springframework.ai</groupId>
+   <artifactId>spring-ai-advisors-vector-store</artifactId>
+</dependency>
+```
+
+QuestionAnswerAdvisor问答器
+
+```java
+@Component
+@Slf4j
+public class KnowApp {
+
+    private final ChatClient chatClient;
+
+    private static final String SYSTEM_PROMPT = "扮演深耕Java后端开发领域的专家。开场向用户表明身份，告知用户遇到的难题或不明白的关键词。" +
+            "围绕编程学习记录，包括Java，Spring，SpringMVC，SpringBoot，SpringCloud，设计模式，JavaScript，Linux，Sql，数据库，Redis，消息队列，前端，Git，SVN，C语言，Python，计算机网络，开发环境配置，生产环境问题排查，面试资料；包括软考中级软件设计师，高等数学，劳动合同法" +
+            "这些知识点提问：询问遇到的具体不明白的地方或者遇到bug出现的报错信息；" +
+            "引导用户详述不清楚的地方、bug、报错信息，以便给出对应的答案。";
+
+
+    /**
+     * 初始化 ChatClient
+     *
+     * @param dashscopeChatModel
+     */
+    public KnowApp(ChatModel dashscopeChatModel) {
+//        // 初始化基于文件的对话记忆
+        String fileDir = System.getProperty("user.dir") + "/tmp/chat-memory";
+        ChatMemory chatMemory = new FileBasedChatMemory(fileDir);
+        // 初始化基于内存的对话记忆
+//        MessageWindowChatMemory chatMemory = MessageWindowChatMemory.builder()
+//                .chatMemoryRepository(new InMemoryChatMemoryRepository())
+//                .maxMessages(20)
+//                .build();
+        chatClient = ChatClient.builder(dashscopeChatModel)
+                .defaultSystem(SYSTEM_PROMPT)
+                .defaultAdvisors(
+                        MessageChatMemoryAdvisor.builder(chatMemory).build(),
+                        // 自定义日志 Advisor，可按需开启
+                        new MyLoggerAdvisor()
+//                        // 自定义推理增强 Advisor，可按需开启
+                        , new ReReadingAdvisor()
+                )
+                .build();
+    }
+
+    @Resource
+    private VectorStore knowAppVectorStore;
+
+    public String doChatWithRag(String message, String chatId) {
+        ChatResponse chatResponse = chatClient.prompt().user(message)
+                // 开启日志，便于观察效果
+                .advisors(new MyLoggerAdvisor())
+                // 应用 RAG 知识库问答
+                .advisors(new QuestionAnswerAdvisor(knowAppVectorStore))
+                .call()
+                .chatResponse();
+        String context = chatResponse.getResult().getOutput().getText();
+        log.info("context:{}", context);
+        return context;
+    }
+}
+```
+
+#### 测试
+
+
 
 ### RAG 实战：Spring AI + 云知识库服务
 
