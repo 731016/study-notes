@@ -1508,6 +1508,7 @@ public interface DocumentReader extends Supplier<List<Document>> {
 
 实际开发时，直接使用内置的多种[DocumentReader实现类](https://docs.spring.io/spring-ai/reference/api/etl-pipeline.html#_documentreaders)，用来处理不同的数据源
 1. JsonReader：读取JSON文档
+
 ```java
 @Component
 @Slf4j
@@ -1536,6 +1537,7 @@ public class DemoJsonReader {
 
 }
 ```
+
 2. TextReader：读取纯文本文件
 3. MarkDownReader： 读取marrkdown文档
 4. PDFReader：读取pdf文档，基于Apache Pdfbox库实现
