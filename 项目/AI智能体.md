@@ -1483,6 +1483,313 @@ the user that you can't answer the question.
 ### RAG 核心特性
 
 #### 文档收集和切割（ETL）
+[文档收集和切割-ETL](https://docs.spring.io/spring-ai/reference/api/etl-pipeline.html)
+
+##### 文档
+不单指文字，还包含多媒体和一系列元信息
+
+##### ETL
+Spring AI中，对Document处理流程：
+1. 读取文档：使用DocumentReader组件从数据源加载文档。
+2. 转换文档：转换为合适的格式，比如去除冗余信息、分词等，可使用DocumentTransformer组件实现。
+3. 写入文档：使用DocumentWiriter将文档保存到存储，以向量形式写入向量数据库、以key-value形式保存到KV存储。
+
+##### 抽取
+Spring AI通过DocumentReader组件实现文档抽取，把文档加载到内存。
+
+DocumentReader接口实现`Supplier<Document>`接口，负责从数据源读取数据并转换为Document对象集合。
+```java
+public interface DocumentReader extends Supplier<List<Document>> {
+    default List<Document> read() {
+        return (List)this.get();
+    }
+}
+```
+
+实际开发时，直接使用内置的多种[DocumentReader实现类](https://docs.spring.io/spring-ai/reference/api/etl-pipeline.html#_documentreaders)，用来处理不同的数据源
+1. JsonReader：读取JSON文档
+```java
+@Component
+@Slf4j
+public class DemoJsonReader {
+
+    private final Resource resource;
+
+    public DemoJsonReader(@Value("classpath:document/demo.json") Resource resource) {
+        this.resource = resource;
+    }
+
+    List<Document> loadBasicJsonDocuments() {
+        JsonReader jsonReader = new JsonReader(this.resource);
+        return jsonReader.get();
+    }
+
+    List<Document> loadJsonWithSpecificFields() {
+        JsonReader jsonReader = new JsonReader(this.resource, "projectName");
+        return jsonReader.get();
+    }
+
+    List<Document> loadJsonWithPointer() {
+        JsonReader jsonReader = new JsonReader(this.resource);
+        return jsonReader.get("data");
+    }
+
+}
+```
+2. TextReader：读取纯文本文件
+3. MarkDownReader： 读取marrkdown文档
+4. PDFReader：读取pdf文档，基于Apache Pdfbox库实现
+5. PagePdfDocumentReader：按照分页读取PDF
+6. ParagraphPdfDocumentReader：按照段落读取PDF
+7. HtmlReader：读取html文档，基于jsonp实现
+8. TikaDocumentReader：基于Apache tika[Apache tika](https://tika.apache.org/3.1.0/formats.html)处理多种格式的文档
+
+
+Spring Ai alibaba提供更多[文档读取器](https://java2ai.com/docs/1.0.0-M6.1/integrations/documentreader/)
+
+GitHub仓库：[spring-ai-alibaba](https://github.com/alibaba/spring-ai-alibaba)
+
+##### 转换
+Spring AI通过DocumentTransformer组件实现文档转换
+
+DocumentTransformer接口实现`Function<List<Document>,List<Document>>`接口，负责将一组文档转换为另一组文档。
+```java
+public interface DocumentTransformer extends Function<List<Document>, List<Document>> {
+    default List<Document> transform(List<Document> documents) {
+        return apply(documents);
+    }
+}
+```
+
+文档转换是核心步骤，将大文档合理拆分为便于检索的知识碎片。
+
+（1）TextSplitter 文本分割器
+```java
+public abstract class TextSplitter implements DocumentTransformer {
+
+	private static final Logger logger = LoggerFactory.getLogger(TextSplitter.class);
+
+	/**
+	 * If true the children documents inherit the content-type of the parent they were
+	 * split from.
+	 */
+	private boolean copyContentFormatter = true;
+
+	@Override
+	public List<Document> apply(List<Document> documents) {
+		return doSplitDocuments(documents);
+	}
+
+	public List<Document> split(List<Document> documents) {
+		return this.apply(documents);
+	}
+
+	public List<Document> split(Document document) {
+		return this.apply(List.of(document));
+	}
+
+	public boolean isCopyContentFormatter() {
+		return this.copyContentFormatter;
+	}
+
+	public void setCopyContentFormatter(boolean copyContentFormatter) {
+		this.copyContentFormatter = copyContentFormatter;
+	}
+
+	private List<Document> doSplitDocuments(List<Document> documents) {
+		List<String> texts = new ArrayList<>();
+		List<Map<String, Object>> metadataList = new ArrayList<>();
+		List<ContentFormatter> formatters = new ArrayList<>();
+
+		for (Document doc : documents) {
+			texts.add(doc.getText());
+			metadataList.add(doc.getMetadata());
+			formatters.add(doc.getContentFormatter());
+		}
+
+		return createDocuments(texts, formatters, metadataList);
+	}
+
+	private List<Document> createDocuments(List<String> texts, List<ContentFormatter> formatters,
+			List<Map<String, Object>> metadataList) {
+
+		// Process the data in a column oriented way and recreate the Document
+		List<Document> documents = new ArrayList<>();
+
+		for (int i = 0; i < texts.size(); i++) {
+			String text = texts.get(i);
+			Map<String, Object> metadata = metadataList.get(i);
+			List<String> chunks = splitText(text);
+			if (chunks.size() > 1) {
+				logger.info("Splitting up document into " + chunks.size() + " chunks.");
+			}
+			for (String chunk : chunks) {
+				// only primitive values are in here -
+				Map<String, Object> metadataCopy = metadata.entrySet()
+					.stream()
+					.filter(e -> e.getKey() != null && e.getValue() != null)
+					.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+				Document newDoc = new Document(chunk, metadataCopy);
+
+				if (this.copyContentFormatter) {
+					// Transfer the content-formatter of the parent to the chunked
+					// documents it was slit into.
+					newDoc.setContentFormatter(formatters.get(i));
+				}
+
+				// TODO copy over other properties.
+				documents.add(newDoc);
+			}
+		}
+		return documents;
+	}
+
+	protected abstract List<String> splitText(String text);
+
+}
+```
+
+其的实现类TokenTextSplitter，基于token的文本分割器。考虑了语义边界来创建有意义的文本段落
+```java
+@Component
+class MyTokenTextSplitter {
+    public List<Document> splitDocuments(List<Document> documents) {
+        TokenTextSplitter splitter = new TokenTextSplitter();
+        return splitter.apply(documents);
+    }
+
+    public List<Document> splitCustomized(List<Document> documents) {
+        TokenTextSplitter splitter = new TokenTextSplitter(200, 100, 10, 5000, true);
+        return splitter.apply(documents);
+    }
+}
+```
+![image-20251010211247](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/QQ%E6%88%AA%E5%9B%BE20251010211247.png)
+
+![image-20251010211353](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/QQ%E6%88%AA%E5%9B%BE20251010211353.png)
+
+(2)MetadataEnricher元数据增强器
+
+为文档补充更多的元信息。
+
++ KeyWordMetadataEnricher：使用AI提取关键词添加到元数据
++ SummaryMetadataEnricher：生成摘要文档添加到元数据
+
+```java
+@Component
+public class MyDocumentEnricher {
+
+    @Resource
+    private ChatModel dashscopeChatModel;
+
+    MyDocumentEnricher(ChatModel dashscopeChatModel) {
+        this.dashscopeChatModel = dashscopeChatModel;
+    }
+
+    // 关键词元信息增强器
+    List<Document> enrichDocumentsByKeyword(List<Document> documents) {
+        KeywordMetadataEnricher enricher = new KeywordMetadataEnricher(this.dashscopeChatModel, 5);
+        return enricher.apply(documents);
+    }
+
+    // 摘要元信息增强器
+    List<Document> enrichDocumentsBySummary(List<Document> documents) {
+        SummaryMetadataEnricher enricher = new SummaryMetadataEnricher(dashscopeChatModel,
+                List.of(SummaryMetadataEnricher.SummaryType.PREVIOUS, SummaryMetadataEnricher.SummaryType.CURRENT, SummaryMetadataEnricher.SummaryType.NEXT));
+        return enricher.apply(documents);
+    }
+}
+```
+
+（3）ContentFormatter内容格式化工具
+![image-20251010212818](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/QQ%E6%88%AA%E5%9B%BE20251010212818.png)
+
+实现类 DefaultContentFormatter
+![image-20251010213016](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/QQ%E6%88%AA%E5%9B%BE20251010213016.png)
+
+使用builder模式创建实例
+```java
+DefaultContentFormatter formatter = DefaultContentFormatter.builder()
+    .withMetadataTemplate("{key}: {value}")
+    .withMetadataSeparator("\n")
+    .withTextTemplate("{metadata_string}\n\n{content}")
+    .withExcludedInferenceMetadataKeys("embedding", "vector_id")
+    .withExcludedEmbedMetadataKeys("source_url", "timestamp")
+    .build();
+
+// 使用格式化器处理文档
+String formattedText = formatter.format(document, MetadataMode.INFERENCE);
+
+```
+
+![image-20251010213026](https://note-1259190304.cos.ap-chengdu.myqcloud.com/note/QQ%E6%88%AA%E5%9B%BE20251010213026.png)
+
+##### 加载
+Spring AI通过DocumentWriter组件实现文档加载
+
+DocumetWriter接口实现`Consumer<List<Document>>`接口，负责将处理后的文档写入目标存储
+
+```java
+public interface DocumentWriter extends Consumer<List<Document>> {
+    default void write(List<Document> documents) {
+        accept(documents);
+    }
+}
+
+```
+
+Spring AI提供了2中内置DocumentWriter实现
+（1）FileDocumentWriter：将文档写入文件系统
+```java
+@Component
+public class DemoDocumentWriter {
+
+    public void writeDocuments(List<Document> documents) {
+        FileDocumentWriter writer = new FileDocumentWriter("output.txt", true, MetadataMode.ALL, false);
+        writer.accept(documents);
+    }
+}
+```
+
+（2）VectorStoreWriter：将文档写入向量数据库
+```java
+@Component
+public class DemoVectorStoreWriter {
+    private final VectorStore vectorStore;
+
+    DemoVectorStoreWriter(VectorStore vectorStore) {
+        this.vectorStore = vectorStore;
+    }
+
+    public void storeDocuments(List<Document> documents) {
+        vectorStore.accept(documents);
+    }
+}
+```
+
+也可以写入多个内存，建立多个Writer即可
+
+##### ETL流程示例
+```java
+// 抽取：从 PDF 文件读取文档
+PDFReader pdfReader = new PagePdfDocumentReader("knowledge_base.pdf");
+List<Document> documents = pdfReader.read();
+
+// 转换：分割文本并添加摘要
+TokenTextSplitter splitter = new TokenTextSplitter(500, 50);
+List<Document> splitDocuments = splitter.apply(documents);
+
+SummaryMetadataEnricher enricher = new SummaryMetadataEnricher(chatModel, 
+    List.of(SummaryType.CURRENT));
+List<Document> enrichedDocuments = enricher.apply(splitDocuments);
+
+// 加载：写入向量数据库
+vectorStore.write(enrichedDocuments);
+
+// 或者使用链式调用
+vectorStore.write(enricher.apply(splitter.apply(pdfReader.read())));
+
+```
 
 #### 向量转换和存储（向量数据库）
 
