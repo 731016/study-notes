@@ -693,7 +693,7 @@ Do not include any explanations, only provide a RFC8259 compliant JSON response 
 Do not include markdown code blocks in your response.
 Remove the ```json markdown from the output.
 Here is the JSON Schema instance your output must adhere to:
-```{
+{
   "$schema" : "https://json-schema.org/draft/2020-12/schema",
   "type" : "‍object",
   "properties" ﻿: {
@@ -1794,6 +1794,235 @@ vectorStore.write(enricher.apply(splitter.apply(pdfReader.read())));
 ```
 
 #### 向量转换和存储（向量数据库）
+
+##### VectorStore接口
+
+[Spring](https://docs.spring.io/spring-ai/reference/api/vectordbs.html)提供了向量数据库接口`VectorStore`
+
+```java
+public interface VectorStore extends DocumentWriter {
+
+	default String getName() {
+		return this.getClass().getSimpleName();
+	}
+
+	void add(List<Document> documents);
+
+	@Override
+	default void accept(List<Document> documents) {
+		add(documents);
+	}
+
+	void delete(List<String> idList);
+
+	void delete(Filter.Expression filterExpression);
+
+	default void delete(String filterExpression) {
+		SearchRequest searchRequest = SearchRequest.builder().filterExpression(filterExpression).build();
+		Filter.Expression textExpression = searchRequest.getFilterExpression();
+		Assert.notNull(textExpression, "Filter expression must not be null");
+		this.delete(textExpression);
+	}
+
+	@Nullable
+	List<Document> similaritySearch(SearchRequest request);
+
+	@Nullable
+	default List<Document> similaritySearch(String query) {
+		return this.similaritySearch(SearchRequest.builder().query(query).build());
+	}
+
+	default <T> Optional<T> getNativeClient() {
+		return Optional.empty();
+	}
+
+	interface Builder<T extends Builder<T>> {
+
+		T observationRegistry(ObservationRegistry observationRegistry);
+
+		T customObservationConvention(VectorStoreObservationConvention convention);
+
+		T batchingStrategy(BatchingStrategy batchingStrategy);
+
+		VectorStore build();
+
+	}
+
+}
+```
+
+接口定了了向量存储的基本操作
+- 添加文档到向量库
+- 从向量库删除文档
+- 基于查询进行相似度搜索
+- 获取原生客户端（用于特定实现的高级操作）
+
+##### 搜索请求构建
+SearchRequest类，实现相似度搜索请求
+```java
+SearchRequest request = SearchRequest.builder()
+    .query("关键词")            //搜索查询文本
+    .topK(5)                  // 返回最相似的5个结果，最大结果数，默认4
+    .similarityThreshold(0.7) // 相似度阈值，0.0-1.0之间
+    .filterExpression("category == 'web' AND date > '2025-05-03'")  // 过滤表达式
+    .build();
+
+List<Document> results = vectorStore.similaritySearch(request);
+
+```
+
+[过滤表达式文档](https://docs.spring.io/spring-ai/reference/api/vectordbs.html#metadata-filters)
+
+##### 向量存储的工作原理
+
+![image-20251012000844070](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251012000844070.png)
+
+
+##### 支持的向量数据库
+[vectorstore](https://java2ai.com/docs/1.0.0-M6.1/tutorials/vectorstore/)
+
+
+
+![image-20251012001254366](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251012001254366.png)
+
+
+##### 基于PGVector实现向量存储
+
+1. [宝塔 PostgreSQL 安装 pgvector 插件实现向量存储_宝塔安装pgvector-CSDN博客](https://blog.csdn.net/qq_29213799/article/details/146277755)
+
+2. [Linux服务器快速安装PostgreSQL 15与pgvector向量插件实践](https://cloud.baidu.com/article/3229759)
+
+3. [云数据库RDS PostgreSQL_pg数据库_混合数据类型复杂查询_数据库-阿里云](https://www.aliyun.com/product/rds/postgresql)
+
+
+
+[spring ai](https://docs.spring.io/spring-ai/reference/api/vectordbs/pgvector.html)整合pgvector，先引入依赖[spring-ai-starter-vector-store-pgvector](https://mvnrepository.com/artifact/org.springframework.ai/spring-ai-starter-vector-store-pgvector)
+
+```xml
+<dependency>
+    <groupId>org.springframework.ai</groupId>
+    <artifactId>spring-ai-starter-vector-store-pgvector</artifactId>
+    <version>1.0.0-M7</version>
+</dependency>
+```
+
+建立数据库链接
+
+```yaml
+spring:
+  datasource:
+    url: jdbc:postgresql://改为你的公网地址/yu_ai_agent
+    username: 改为你的用户名
+    password: 改为你的密码
+  ai:
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        dimensions: 1536
+        distance-type: COSINE_DISTANCE
+        max-document-batch-size: 10000 # Optional: Maximum number of documents per batch
+```
+
+自动注入VectorStore
+
+```java
+@Autowired
+VectorStore vectorStore;
+
+// ...
+
+List<Document> documents = List.of(
+    new Document("Spring AI rocks!! Spring AI rocks!! Spring AI rocks!! Spring AI rocks!! Spring AI rocks!!", Map.of("meta1", "meta1")),
+    new Document("The World is Big and Salvation Lurks Around the Corner"),
+    new Document("You walk forward facing the past and you turn back toward the future.", Map.of("meta2", "meta2")));
+
+// Add the documents to PGVector
+vectorStore.add(documents);
+
+// Retrieve documents similar to a query
+List<Document> results = this.vectorStore.similaritySearch(SearchRequest.builder().query("Spring").topK(5).build())
+```
+
+![image-20251012003857476](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251012003857476.png)
+
+
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-jdbc</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <scope>runtime</scope>
+</dependency>
+<dependency>
+    <groupId>org.springframework.ai</groupId>
+    <artifactId>spring-ai-pgvector-store</artifactId>
+    <version>1.0.0-M6</version>
+</dependency>
+```
+
+配置PgVectorVector,不用starter自动注入
+
+```java
+@Configuration
+public class PgVectorVectorStoreConfig {
+
+    @Resource
+    private LoveAppDocumentLoader loveAppDocumentLoader;
+
+    @Bean
+    public VectorStore pgVectorVectorStore(JdbcTemplate jdbcTemplate, EmbeddingModel dashscopeEmbeddingModel) {
+        VectorStore vectorStore = PgVectorStore.builder(jdbcTemplate, dashscopeEmbeddingModel)
+                .dimensions(1536)                    // Optional: defaults to model dimensions or 1536
+                .distanceType(COSINE_DISTANCE)       // Optional: defaults to COSINE_DISTANCE
+                .indexType(HNSW)                     // Optional: defaults to HNSW
+                .initializeSchema(true)              // Optional: defaults to false
+                .schemaName("public")                // Optional: defaults to "public"
+                .vectorTableName("vector_store")     // Optional: defaults to "vector_store"
+                .maxDocumentBatchSize(10000)         // Optional: defaults to 10000
+                .build();
+        // 加载文档
+        List<Document> documents = loveAppDocumentLoader.loadMarkdowns();
+        vectorStore.add(documents);
+        return vectorStore;
+    }
+}
+```
+
+且启动类要排除掉自动加载
+
+![image-20251012004455372](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251012004455372.png)
+
+
+
+测试
+
+```java
+@SpringBootTest
+public class PgVectorVectorStoreConfigTest {
+
+    @Resource
+    VectorStore pgVectorVectorStore;
+
+    @Test
+    void test() {
+        List<Document> documents = List.of(
+                new Document("Spring AI rocks!! Spring AI rocks!! Spring AI rocks!! Spring AI rocks!! Spring AI rocks!!", Map.of("meta1", "meta1")),
+                new Document("The World is Big and Salvation Lurks Around the Corner"),
+                new Document("You walk forward facing the past and you turn back toward the future.", Map.of("meta2", "meta2")));
+        // 添加文档
+        pgVectorVectorStore.add(documents);
+        // 相似度查询
+        List<Document> results = pgVectorVectorStore.similaritySearch(SearchRequest.builder().query("Spring").topK(5).build());
+        Assertions.assertNotNull(results);
+    }
+}
+```
+
+
 
 #### 文档过滤和检索（文档检索器）
 
