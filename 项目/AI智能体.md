@@ -26,7 +26,7 @@
 
 - 项目功能梳理
 
-  - AI Java后端开发大师应用：用户在开发过程中难免遇到各种难题，让 AI 为用户提供贴心指导。支持多轮对话、对话记忆持久化、RAG 知识库检索、工具调用、MCP 服务调用。
+  - AI 后端开发大师应用：用户在开发过程中难免遇到各种难题，让 AI 为用户提供贴心指导。支持多轮对话、对话记忆持久化、RAG 知识库检索、工具调用、MCP 服务调用。
   - AI 超级智能体：可以根据用户的需求，自主推理和行动，直到完成目标。
   - 提供给 AI 的工具：包括联网搜索、文件操作、网页抓取、资源下载、终端操作、PDF 生成。
   - AI MCP 服务：可以从特定网站搜索图片。
@@ -2021,6 +2021,49 @@ public class PgVectorVectorStoreConfigTest {
     }
 }
 ```
+
+
+
+##### 批处理策略
+
+![image-20251020220017310](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251020220017310.png)
+
+```java
+//允许基于文档的标记计数，并分批处理文档
+public interface BatchingStrategy {
+    List<List<Document>> batch(List<Document> documents);
+}
+```
+
+
+
+![image-20251020220159982](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251020220159982.png)
+
+```java
+@Configuration
+public class EmbeddingConfig {
+    @Bean
+    public BatchingStrategy customTokenCountBatchingStrategy() {
+        return new TokenCountBatchingStrategy(
+            EncodingType.CL100K_BASE,  // 指定编码类型
+            8000,                      // 设置最大输入标记计数
+            0.1                        // 设置保留百分比
+        );
+    }
+}
+//zi'din
+@Configuration
+public class EmbeddingConfig {
+    @Bean
+    public BatchingStrategy customBatchingStrategy() {
+        return new CustomBatchingStrategy();
+    }
+}
+```
+
+
+
+
 
 
 
