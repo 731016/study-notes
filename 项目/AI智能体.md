@@ -2051,7 +2051,7 @@ public class EmbeddingConfig {
         );
     }
 }
-//zi'din
+//自定义
 @Configuration
 public class EmbeddingConfig {
     @Bean
@@ -2069,7 +2069,238 @@ public class EmbeddingConfig {
 
 #### 文档过滤和检索（文档检索器）
 
+
+
+##### 预检索：优化用户查询
+
+###### 查询转换-查询重写
+
+`RewriteQueryTransformer`用户查询含糊不清楚时使用
+
+```java
+Query query = new Query("啥是猪猪啊啊啊啊？");
+
+QueryTransformer queryTransformer = RewriteQueryTransformer.builder()
+        .chatClientBuilder(chatClientBuilder)
+        .build();
+
+Query transformedQuery = queryTransformer.transform(query);
+```
+
+###### 查询转换-查询翻译
+
+`TranslationQueryTransformer`将查询翻译成嵌入模型支持的目标语言
+
+```java
+Query query = new Query("hi, who is bigbig? please answer me");
+
+QueryTransformer queryTransformer = TranslationQueryTransformer.builder()
+        .chatClientBuilder(chatClientBuilder)
+        .targetLanguage("chinese")
+        .build();
+
+Query transformedQuery = queryTransformer.transform(query);
+```
+
+###### 查询转换-查询压缩
+
+将历史对话和后续查询压缩成一个独立的查询，类似概括总结
+
+```java
+Query query = Query.builder()
+        .text("编程导航有啥内容？")
+        .history(new UserMessage("谁是程序员鱼皮？"),
+                new AssistantMessage("编程导航的创始人 codefather.cn"))
+        .build();
+
+QueryTransformer queryTransformer = CompressionQueryTransformer.builder()
+        .chatClientBuilder(chatClientBuilder)
+        .build();
+
+Query transformedQuery = queryTransformer.transform(query);
+```
+
+###### 查询扩展-多查询扩展
+
+将一个查询扩展为多个不同的语义，类似于一个修改为不同的关键字去搜索
+
+```java
+MultiQueryExpander queryExpander = MultiQueryExpander.builder()
+    .chatClientBuilder(chatClientBuilder)
+    .numberOfQueries(3)
+    .build();
+List<Query> queries = queryExpander.expand(new Query("啥是程序员鱼皮？他会啥？"));
+
+//可修改是否保留原始查询
+MultiQueryExpander queryExpander = MultiQueryExpander.builder()
+    .chatClientBuilder(chatClientBuilder)
+    .includeOriginal(false)
+    .build();
+
+```
+
+
+
+##### 检索：提高查询相关性
+
+###### 文档搜索
+
+```java
+//支持元数据过滤、相似度阈值、返回的结果数
+DocumentRetriever retriever = VectorStoreDocumentRetriever.builder()
+    .vectorStore(vectorStore)
+    .similarityThreshold(0.7)
+    .topK(5)
+    .filterExpression(new FilterExpressionBuilder()
+        .eq("type", "web")
+        .build())
+    .build();
+List<Document> documents = retriever.retrieve(new Query("谁是程序员鱼皮"));
+
+//FILTER_EXPRESSION参数动态指定过滤表达式
+Query query = Query.builder()
+    .text("谁是鱼皮？")
+    .context(Map.of(VectorStoreDocumentRetriever.FILTER_EXPRESSION, "type == 'boy'"))
+    .build();
+List<Document> retrievedDocuments = documentRetriever.retrieve(query);
+
+```
+
+
+
+###### 文档合并
+
+```java
+Map<Query, List<List<Document>>> documentsForQuery = ...
+DocumentJoiner documentJoiner = new ConcatenationDocumentJoiner();
+List<Document> documents = documentJoiner.join(documentsForQuery);
+
+```
+
+
+
+##### 检索后：优化文档处理
+
+DocumentPostProcessor API实现
+
 #### 查询增强和关联（上下文查询增强器）
+
+
+
+##### `QuestionAnswerAdvisor`查询增强
+
+Advisor会查询向量数据库来获取于用户问题相关的文档
+
+```java
+//基本使用
+ChatResponse response = ChatClient.builder(chatModel)
+        .build().prompt()
+        .advisors(new QuestionAnswerAdvisor(vectorStore))
+        .user(userText)
+        .call()
+        .chatResponse();
+
+```
+
+可使用构造者模式配置参数
+
+```java
+var qaAdvisor = QuestionAnswerAdvisor.builder(vectorStore)
+              // 相似度阈值为 0.8，并返回最相关的前 6 个结果
+        .searchRequest(SearchRequest.builder().similarityThreshold(0.8d).topK(6).build())
+        .build();
+
+ChatClient chatClient = ChatClient.builder(chatModel)
+    .defaultAdvisors(QuestionAnswerAdvisor.builder(vectorStore)
+        .searchRequest(SearchRequest.builder().build())
+        .build())
+    .build();
+
+// 在运行时更新过滤表达式
+String content = this.chatClient.prompt()
+    .user("看着我的眼睛，回答我！")
+    .advisors(a -> a.param(QuestionAnswerAdvisor.FILTER_EXPRESSION, "type == 'web'"))
+    .call()
+    .content();
+
+//自定义提示词模板
+QuestionAnswerAdvisor qaAdvisor = QuestionAnswerAdvisor.builder(vectorStore)
+    .promptTemplate(customPromptTemplate)
+    .build();
+
+```
+
+
+
+##### RetrievalAugmentationAdvisor查询增强
+
+```java
+Advisor retrievalAugmentationAdvisor = RetrievalAugmentationAdvisor.builder()
+        .documentRetriever(VectorStoreDocumentRetriever.builder()
+                .similarityThreshold(0.50)
+                .vectorStore(vectorStore)
+                .build())
+        .build();
+
+String answer = chatClient.prompt()
+        .advisors(retrievalAugmentationAdvisor)
+        .user(question)
+        .call()
+        .content();
+
+```
+
+![image-20251021221412736](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251021221412736.png)
+
+
+
+```java
+Advisor retrievalAugmentationAdvisor = RetrievalAugmentationAdvisor.builder()
+        .queryTransformers(RewriteQueryTransformer.builder()
+                .chatClientBuilder(chatClientBuilder.build().mutate())
+                .build())
+        .documentRetriever(VectorStoreDocumentRetriever.builder()
+                .similarityThreshold(0.50)
+                .vectorStore(vectorStore)
+                .build())
+        .build();
+```
+
+![image-20251021221439193](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251021221439193.png)
+
+
+
+##### ContextualQueryAugmenter空上下文处理
+
+![image-20251021221536086](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251021221536086.png)
+
+```java
+Advisor retrievalAugmentationAdvisor = RetrievalAugmentationAdvisor.builder()
+        .documentRetriever(VectorStoreDocumentRetriever.builder()
+                .similarityThreshold(0.50)
+                .vectorStore(vectorStore)
+                .build())
+        .queryAugmenter(ContextualQueryAugmenter.builder()
+                .allowEmptyContext(true)
+                .build())
+        .build();
+
+```
+
+![image-20251021221547581](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251021221547581.png)
+
+
+
+![image-20251021221609435](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251021221609435.png)
+
+```java
+QueryAugmenter queryAugmenter = ContextualQueryAugmenter.builder()
+        .promptTemplate(customPromptTemplate)
+        .emptyContextPromptTemplate(emptyContextPromptTemplate)
+        .build();
+```
+
+
 
 ### RAG 最佳实践和调优
 
