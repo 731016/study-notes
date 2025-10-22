@@ -2304,39 +2304,892 @@ QueryAugmenter queryAugmenter = ContextualQueryAugmenter.builder()
 
 ### RAG 最佳实践和调优
 
+#### 文档收集和切割
+
+1. 优化原始文档：内容结构化、规范化、标准化
+2. 文档切片
+
+```java
+@Component
+class MyTokenTextSplitter {
+    public List<Document> splitDocuments(List<Document> documents) {
+        TokenTextSplitter splitter = new TokenTextSplitter();
+        return splitter.apply(documents);
+    }
+
+    public List<Document> splitCustomized(List<Document> documents) {
+        TokenTextSplitter splitter = new TokenTextSplitter(200, 100, 10, 5000, true);
+        return splitter.apply(documents);
+    }
+}
+
+//使用切分器
+@Resource
+private MyTokenTextSplitter myTokenTextSplitter;
+
+@Bean
+VectorStore loveAppVectorStore(EmbeddingModel dashscopeEmbeddingModel) {
+    SimpleVectorStore simpleVectorStore = SimpleVectorStore.builder(dashscopeEmbeddingModel)
+            .build();
+    // 加载文档
+    List<Document> documents = loveAppDocumentLoader.loadMarkdowns();
+    // 自主切分
+    List<Document> splitDocuments = myTokenTextSplitter.splitCustomized(documents);
+    simpleVectorStore.add(splitDocuments);
+    return simpleVectorStore;
+}
+
+```
+
+3. 元数据标注
+
+```java
+//手动添加
+documents.add(new Document(
+    "案例编号：LR-2023-001\n" +
+    "项目概述：180平米大平层现代简约风格客厅改造\n" +
+    "设计要点：\n" +
+    "1. 采用5.2米挑高的落地窗，最大化自然采光\n" +
+    "2. 主色调：云雾白(哑光，NCS S0500-N)配合莫兰迪灰\n" +
+    "3. 家具选择：意大利B&B品牌真皮沙发，北欧白橡木茶几\n" +
+    "空间效果：通透大气，适合商务接待和家庭日常起居",
+    Map.of(
+        "type", "interior",    // 文档类型
+        "year", "2025",        // 年份
+        "month", "05",         // 月份
+        "style", "modern",      // 装修风格
+    )));
+
+//批量添加
+// 提取文档倒数第 3 和第 2 个字作为标签
+String status = fileName.substring(fileName.length() - 6, fileName.length() - 4);
+MarkdownDocumentReaderConfig config = MarkdownDocumentReaderConfig.builder()
+        .withHorizontalRuleCreateDocument(true)
+        .withIncludeCodeBlock(false)
+        .withIncludeBlockquote(false)
+        .withAdditionalMetadata("filename", fileName)
+        .withAdditionalMetadata("status", status)
+        .build();
+
+
+//自动添加
+@Component
+class MyKeywordEnricher {
+    @Resource
+    private ChatModel dashscopeChatModel;
+
+    List<Document> enrichDocuments(List<Document> documents) {
+        KeywordMetadataEnricher enricher = new KeywordMetadataEnricher(this.dashscopeChatModel, 5);
+        return enricher.apply(documents);
+    }
+}
+
+@Bean
+VectorStore loveAppVectorStore(EmbeddingModel dashscopeEmbeddingModel) {
+    SimpleVectorStore simpleVectorStore = SimpleVectorStore.builder(dashscopeEmbeddingModel)
+            .build();
+    // 加载文档
+    List<Document> documents = loveAppDocumentLoader.loadMarkdowns();
+    // 自动补充关键词元信息
+    List<Document> enrichedDocuments = myKeywordEnricher.enrichDocuments(documents);
+    simpleVectorStore.add(enrichedDocuments);
+    return simpleVectorStore;
+}
+
+```
+
+
+
+#### 向量转换和存储
+
+```java
+SimpleVectorStore vectorStore = SimpleVectorStore.builder(embeddingModel)
+.build();
+```
+
+
+
+#### 文档搜索和过滤
+
+多查询扩展
+
+```java
+MultiQueryExpander queryExpander = MultiQueryExpander.builder()
+    .chatClientBuilder(chatClientBuilder)
+    .numberOfQueries(3)
+    .build();
+List<Query> queries = queryExpander.expand(new Query("谁是程序员鱼皮啊？"));
+
+DocumentRetriever retriever = VectorStoreDocumentRetriever.builder()
+    .vectorStore(vectorStore)
+    .similarityThreshold(0.73)
+    .topK(5)
+    .filterExpression(new FilterExpressionBuilder()
+        .eq("genre", "fairytale")
+        .build())
+    .build();
+// 直接用扩展后的查询来获取文档
+List<Document> retrievedDocuments = documentRetriever.retrieve(query);
+// 输出扩展后的查询文本
+System.out.println(query.text());
+```
+
+
+
+查询重写和翻译
+
+```java
+@Component
+public class QueryRewriter {
+
+    private final QueryTransformer queryTransformer;
+
+    public QueryRewriter(ChatModel dashscopeChatModel) {
+        ChatClient.Builder builder = ChatClient.builder(dashscopeChatModel);
+        // 创建查询重写转换器
+        queryTransformer = RewriteQueryTransformer.builder()
+                .chatClientBuilder(builder)
+                .build();
+    }
+
+    public String doQueryRewrite(String prompt) {
+        Query query = new Query(prompt);
+        // 执行查询重写
+        Query transformedQuery = queryTransformer.transform(query);
+        // 输出重写后的查询
+        return transformedQuery.text();
+    }
+}
+
+
+@Resource
+  private QueryRewriter queryRewriter;
+
+  public String doChatWithRag(String message, String chatId) {
+      // 查询重写
+      String rewrittenMessage = queryRewriter.doQueryRewrite(message);
+      ChatResponse chatResponse = chatClient
+              .prompt()
+              .user(rewrittenMessage)
+              .call()
+              .chatResponse();
+      String content = chatResponse.getResult().getOutput().getText();
+      return content;
+  }
+
+```
+
+
+
+检索器配置
+
+```java
+@Slf4j
+public class LoveAppRagCustomAdvisorFactory {
+    public static Advisor createLoveAppRagCustomAdvisor(VectorStore vectorStore, String status) {
+        Filter.Expression expression = new FilterExpressionBuilder()
+                .eq("status", status)
+                .build();
+        DocumentRetriever documentRetriever = VectorStoreDocumentRetriever.builder()
+                .vectorStore(vectorStore)
+                .filterExpression(expression) // 过滤条件
+                .similarityThreshold(0.5) // 相似度阈值
+                .topK(3) // 返回文档数量
+                .build();
+        return RetrievalAugmentationAdvisor.builder()
+                .documentRetriever(documentRetriever)
+                .build();
+    }
+}
+
+```
+
+
+
+查询增强和关联
+
+```java
+RetrievalAugmentationAdvisor.builder()
+    .queryAugmenter(
+        ContextualQueryAugmenter.builder()
+            .allowEmptyContext(false)
+            .build()
+    )
+
+    
+    public class LoveAppContextualQueryAugmenterFactory {
+    public static ContextualQueryAugmenter createInstance() {
+        PromptTemplate emptyContextPromptTemplate = new PromptTemplate("""
+                你应该输出下面的内容：
+                抱歉，我只能回答恋爱相关的问题，别的没办法帮到您哦，
+                有问题可以联系编程导航客服 https://codefather.cn
+                """);
+        return ContextualQueryAugmenter.builder()
+                .allowEmptyContext(false)
+                .emptyContextPromptTemplate(emptyContextPromptTemplate)
+                .build();
+    }
+}
+
+                                                                       
+RetrievalAugmentationAdvisor.builder()
+              .documentRetriever(documentRetriever)
+              .queryAugmenter(LoveAppContextualQueryAugmenterFactory.createInstance())
+              .build();
+
+```
+
+
+
 ### 检索策略
 
+并行、级联、混合
+
 ### 大模型幻觉
+
+看似准确，实际不合理完全虚构
+
+语言模型本质是预测下一个词概率的模型
 
 ## 工具调用
 
 ### 工具概念
 
+![image-20251022214835214](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251022214835214.png)
+
 #### Spring AI 工具开发
+
+![image-20251022214939792](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20251022214939792.png)
+
+##### 定义工具
+
+**注解式**
+
+```java
+class WeatherTools {
+    @Tool(description = "获取指定城市的当前天气情况")
+    String getWeather(@ToolParam(description = "城市名称") String city) {
+        // 获取天气的实现逻辑
+        return "北京今天晴朗，气温25°C";
+    }
+}
+```
+
+**编程式**
+
+```java
+class WeatherTools {
+    String getWeather(String city) {
+        // 获取天气的实现逻辑
+        return "北京今天晴朗，气温25°C";
+    }
+}
+
+```
+
+ai使用工具
+
+```java
+Method method = ReflectionUtils.findMethod(WeatherTools.class, "getWeather", String.class);
+ToolCallback toolCallback = MethodToolCallback.builder()
+    .toolDefinition(ToolDefinition.builder(method)
+            .description("获取指定城市的当前天气情况")
+            .build())
+    .toolMethod(method)
+    .toolObject(new WeatherTools())
+    .build();
+
+```
+
+（1）按需使用
+
+```java
+String response = ChatClient.create(chatModel)
+    .prompt("北京今天天气怎么样？")
+    .tools(new WeatherTools())  // 在这次对话中提供天气工具
+    .call()
+    .content();
+
+```
+
+（2）全局使用
+
+```java
+ChatClient chatClient = ChatClient.builder(chatModel)
+    .defaultTools(new WeatherTools(), new TimeTools())  // 注册默认工具
+    .build();
+
+```
+
+（3）更底层的使用方式
+
+```java
+// 先得到工具对象
+ToolCallback[] weatherTools = ToolCallbacks.from(new WeatherTools());
+// 绑定工具到对话
+ChatOptions chatOptions = ToolCallingChatOptions.builder()
+    .toolCallbacks(weatherTools)
+    .build();
+// 构造 Prompt 时指定对话选项
+Prompt prompt = new Prompt("北京今天天气怎么样？", chatOptions);
+chatModel.call(prompt);
+
+```
+
+
+
+[Tool Calling 工具插件集成-阿里云Spring AI Alibaba官网官网](https://java2ai.com/docs/1.0.0-M6.1/integrations/tools/)
 
 #### 主流工具开发
 
 ##### 文件操作
 
+```java
+public interface FileConstant {
+
+    /**
+     * 文件保存目录
+     */
+    String FILE_SAVE_DIR = System.getProperty("user.dir") + "/tmp";
+}
+
+public class FileOperationTool {
+
+    private final String FILE_DIR = FileConstant.FILE_SAVE_DIR + "/file";
+
+    @Tool(description = "Read content from a file")
+    public String readFile(@ToolParam(description = "Name of the file to read") String fileName) {
+        String filePath = FILE_DIR + "/" + fileName;
+        try {
+            return FileUtil.readUtf8String(filePath);
+        } catch (Exception e) {
+            return "Error reading file: " + e.getMessage();
+        }
+    }
+
+    @Tool(description = "Write content to a file")
+    public String writeFile(
+        @ToolParam(description = "Name of the file to write") String fileName,
+        @ToolParam(description = "Content to write to the file") String content) {
+        String filePath = FILE_DIR + "/" + fileName;
+        try {
+            // 创建目录
+            FileUtil.mkdir(FILE_DIR);
+            FileUtil.writeUtf8String(content, filePath);
+            return "File written successfully to: " + filePath;
+        } catch (Exception e) {
+            return "Error writing to file: " + e.getMessage();
+        }
+    }
+}
+
+
+@SpringBootTest
+public class FileOperationToolTest {
+
+    @Test
+    public void testReadFile() {
+        FileOperationTool tool = new FileOperationTool();
+        String fileName = "编程导航.txt";
+        String result = tool.readFile(fileName);
+        assertNotNull(result);
+    }
+
+    @Test
+    public void testWriteFile() {
+        FileOperationTool tool = new FileOperationTool();
+        String fileName = "编程导航.txt";
+        String content = "https://www.codefather.cn 程序员编程学习交流社区";
+        String result = tool.writeFile(fileName, content);
+        assertNotNull(result);
+    }
+}
+
+```
+
+
+
 ##### 联网搜索
+
+```json
+{
+  "organic_results": [
+    ...
+    {
+      "position": 1,
+      "title": "编程导航 - 程序员一站式编程学习交流社区,做您编程学习路...",
+      "link": "https://codefather.cn/",
+      "displayed_link": "codefather.cn/",
+      "snippet": "学编程,就来编程导航,程序员免费编程学习交流社区。Java,Python,前端,web网站开发,C语言,C++,Go,后端,SQL,数据库,PHP入门学习、技能提升、求职面试法宝。提升编程效率、优质IT技术文章、海...",
+      "snippet_highlighted_words": [
+        "编程",
+        "编程导航",
+        "程序员"
+      ],
+      "thumbnail": "https://t8.baidu.com/it/u=661528516,2886240705&fm=217&app=126&size=f242,150&n=0&f=JPEG&fmt=auto?s=73B489634AD237E3660C19280200A063&sec=1744477200&t=b5d8762a6f5728d5f2fbc6bcf1774b20"
+    },
+    ...
+  ]
+}
+
+```
+
+
+
+```java
+public class WebSearchTool {
+
+    // SearchAPI 的搜索接口地址
+    private static final String SEARCH_API_URL = "https://www.searchapi.io/api/v1/search";
+
+    private final String apiKey;
+
+    public WebSearchTool(String apiKey) {
+        this.apiKey = apiKey;
+    }
+
+    @Tool(description = "Search for information from Baidu Search Engine")
+    public String searchWeb(
+            @ToolParam(description = "Search query keyword") String query) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("q", query);
+        paramMap.put("api_key", apiKey);
+        paramMap.put("engine", "baidu");
+        try {
+            String response = HttpUtil.get(SEARCH_API_URL, paramMap);
+            // 取出返回结果的前 5 条
+            JSONObject jsonObject = JSONUtil.parseObj(response);
+            // 提取 organic_results 部分
+            JSONArray organicResults = jsonObject.getJSONArray("organic_results");
+            List<Object> objects = organicResults.subList(0, 5);
+            // 拼接搜索结果为字符串
+            String result = objects.stream().map(obj -> {
+                JSONObject tmpJSONObject = (JSONObject) obj;
+                return tmpJSONObject.toString();
+            }).collect(Collectors.joining(","));
+            return result;
+        } catch (Exception e) {
+            return "Error searching Baidu: " + e.getMessage();
+        }
+    }
+}
+
+# searchApi
+search-api:
+  api-key: 你的 API Key
+
+
+@SpringBootTest
+public class WebSearchToolTest {
+
+    @Value("${search-api.api-key}")
+    private String searchApiKey;
+
+    @Test
+    public void testSearchWeb() {
+        WebSearchTool tool = new WebSearchTool(searchApiKey);
+        String query = "程序员鱼皮编程导航 codefather.cn";
+        String result = tool.searchWeb(query);
+        assertNotNull(result);
+    }
+}
+
+```
+
+
 
 ##### 网页抓取
 
+```xml
+<dependency>
+    <groupId>org.jsoup</groupId>
+    <artifactId>jsoup</artifactId>
+    <version>1.19.1</version>
+</dependency>
+
+```
+
+```java
+public class WebScrapingTool {
+
+    @Tool(description = "Scrape the content of a web page")
+    public String scrapeWebPage(@ToolParam(description = "URL of the web page to scrape") String url) {
+        try {
+            Document doc = Jsoup.connect(url).get();
+            return doc.html();
+        } catch (IOException e) {
+            return "Error scraping web page: " + e.getMessage();
+        }
+    }
+}
+
+@SpringBootTest
+public class WebScrapingToolTest {
+
+    @Test
+    public void testScrapeWebPage() {
+        WebScrapingTool tool = new WebScrapingTool();
+        String url = "https://www.codefather.cn";
+        String result = tool.scrapeWebPage(url);
+        assertNotNull(result);
+    }
+}
+
+```
+
+
+
 ##### 终端操作
+
+
+
+```java
+public class TerminalOperationTool {
+
+    @Tool(description = "Execute a command in the terminal")
+    public String executeTerminalCommand(@ToolParam(description = "Command to execute in the terminal") String command) {
+        StringBuilder output = new StringBuilder();
+        try {
+            Process process = Runtime.getRuntime().exec(command);
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    output.append(line).append("\n");
+                }
+            }
+            int exitCode = process.waitFor();
+            if (exitCode != 0) {
+                output.append("Command execution failed with exit code: ").append(exitCode);
+            }
+        } catch (IOException | InterruptedException e) {
+            output.append("Error executing command: ").append(e.getMessage());
+        }
+        return output.toString();
+    }
+}
+
+//windows系统
+public class TerminalOperationTool {
+
+    @Tool(description = "Execute a command in the terminal")
+    public String executeTerminalCommand(@ToolParam(description = "Command to execute in the terminal") String command) {
+        StringBuilder output = new StringBuilder();
+        try {
+            ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", command);
+//            Process process = Runtime.getRuntime().exec(command);
+            Process process = builder.start();
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    output.append(line).append("\n");
+                }
+            }
+            int exitCode = process.waitFor();
+            if (exitCode != 0) {
+                output.append("Command execution failed with exit code: ").append(exitCode);
+            }
+        } catch (IOException | InterruptedException e) {
+            output.append("Error executing command: ").append(e.getMessage());
+        }
+        return output.toString();
+    }
+}
+
+@SpringBootTest
+public class TerminalOperationToolTest {
+
+    @Test
+    public void testExecuteTerminalCommand() {
+        TerminalOperationTool tool = new TerminalOperationTool();
+        String command = "ls -l";
+        String result = tool.executeTerminalCommand(command);
+        assertNotNull(result);
+    }
+}
+
+```
+
+
 
 ##### 资源下载
 
+```java
+public class ResourceDownloadTool {
+
+    @Tool(description = "Download a resource from a given URL")
+    public String downloadResource(@ToolParam(description = "URL of the resource to download") String url, @ToolParam(description = "Name of the file to save the downloaded resource") String fileName) {
+        String fileDir = FileConstant.FILE_SAVE_DIR + "/download";
+        String filePath = fileDir + "/" + fileName;
+        try {
+            // 创建目录
+            FileUtil.mkdir(fileDir);
+            // 使用 Hutool 的 downloadFile 方法下载资源
+            HttpUtil.downloadFile(url, new File(filePath));
+            return "Resource downloaded successfully to: " + filePath;
+        } catch (Exception e) {
+            return "Error downloading resource: " + e.getMessage();
+        }
+    }
+}
+
+
+@SpringBootTest
+public class ResourceDownloadToolTest {
+
+    @Test
+    public void testDownloadResource() {
+        ResourceDownloadTool tool = new ResourceDownloadTool();
+        String url = "https://www.codefather.cn/logo.png";
+        String fileName = "logo.png";
+        String result = tool.downloadResource(url, fileName);
+        assertNotNull(result);
+    }
+}
+
+```
+
+
+
 ##### PDF 生成
+
+
+
+```java
+// 使用内置中文字体
+PdfFont font = PdfFontFactory.createFont("STSongStd-Light", "UniGB-UCS2-H");
+document.setFont(font);
+```
+
+
+
+```xml
+<!-- https://mvnrepository.com/artifact/com.itextpdf/itext-core -->
+<dependency>
+    <groupId>com.itextpdf</groupId>
+    <artifactId>itext-core</artifactId>
+    <version>9.1.0</version>
+    <type>pom</type>
+</dependency>
+<!-- https://mvnrepository.com/artifact/com.itextpdf/font-asian -->
+<dependency>
+    <groupId>com.itextpdf</groupId>
+    <artifactId>font-asian</artifactId>
+    <version>9.1.0</version>
+    <scope>test</scope>
+</dependency>
+
+```
+
+
+
+```java
+public class PDFGenerationTool {
+
+    @Tool(description = "Generate a PDF file with given content")
+    public String generatePDF(
+            @ToolParam(description = "Name of the file to save the generated PDF") String fileName,
+            @ToolParam(description = "Content to be included in the PDF") String content) {
+        String fileDir = FileConstant.FILE_SAVE_DIR + "/pdf";
+        String filePath = fileDir + "/" + fileName;
+        try {
+            // 创建目录
+            FileUtil.mkdir(fileDir);
+            // 创建 PdfWriter 和 PdfDocument 对象
+            try (PdfWriter writer = new PdfWriter(filePath);
+                 PdfDocument pdf = new PdfDocument(writer);
+                 Document document = new Document(pdf)) {
+                // 自定义字体（需要人工下载字体文件到特定目录）
+//                String fontPath = Paths.get("src/main/resources/static/fonts/simsun.ttf")
+//                        .toAbsolutePath().toString();
+//                PdfFont font = PdfFontFactory.createFont(fontPath,
+//                        PdfFontFactory.EmbeddingStrategy.PREFER_EMBEDDED);
+                // 使用内置中文字体
+                PdfFont font = PdfFontFactory.createFont("STSongStd-Light", "UniGB-UCS2-H");
+                document.setFont(font);
+                // 创建段落
+                Paragraph paragraph = new Paragraph(content);
+                // 添加段落并关闭文档
+                document.add(paragraph);
+            }
+            return "PDF generated successfully to: " + filePath;
+        } catch (IOException e) {
+            return "Error generating PDF: " + e.getMessage();
+        }
+    }
+}
+
+
+@SpringBootTest
+public class PDFGenerationToolTest {
+
+    @Test
+    public void testGeneratePDF() {
+        PDFGenerationTool tool = new PDFGenerationTool();
+        String fileName = "编程导航原创项目.pdf";
+        String content = "编程导航原创项目 https://www.codefather.cn";
+        String result = tool.generatePDF(fileName, content);
+        assertNotNull(result);
+    }
+}
+
+```
+
+
+
+
+
+绑定所有工具
+
+```java
+@Configuration
+public class ToolRegistration {
+
+    @Value("${search-api.api-key}")
+    private String searchApiKey;
+
+    @Bean
+    public ToolCallback[] allTools() {
+        FileOperationTool fileOperationTool = new FileOperationTool();
+        WebSearchTool webSearchTool = new WebSearchTool(searchApiKey);
+        WebScrapingTool webScrapingTool = new WebScrapingTool();
+        ResourceDownloadTool resourceDownloadTool = new ResourceDownloadTool();
+        TerminalOperationTool terminalOperationTool = new TerminalOperationTool();
+        PDFGenerationTool pdfGenerationTool = new PDFGenerationTool();
+        return ToolCallbacks.from(
+            fileOperationTool,
+            webSearchTool,
+            webScrapingTool,
+            resourceDownloadTool,
+            terminalOperationTool,
+            pdfGenerationTool
+        );
+    }
+}
+
+```
+
+
 
 #### 工具进阶知识（原理和高级特性）
 
 ## MCP
 
+和AI通信的协议或标准
+
 ### MCP 概念
+
+
+
+[Resources - Model Context Protocol](https://modelcontextprotocol.io/specification/2025-06-18/server/resources#resources)
+
+[Prompts - Model Context Protocol](https://modelcontextprotocol.io/specification/2025-06-18/server/prompts)
+
+[Tools - Model Context Protocol](https://modelcontextprotocol.io/specification/2025-06-18/server/tools)
+
+[Sampling - Model Context Protocol](https://modelcontextprotocol.io/specification/2025-06-18/client/sampling)
+
+[Roots - Model Context Protocol](https://modelcontextprotocol.io/specification/2025-06-18/client/roots)
+
+[Transports - Model Context Protocol](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports)
 
 ### 使用 MCP（3 种方式）
 
+
+
+[MCP Servers](https://mcp.so/)
+
+[MCP servers | Glama](https://glama.ai/mcp/servers)
+
+[Spring AI Alibaba-阿里云Spring AI Alibaba官网官网](https://java2ai.com/mcp/)
+
+[大模型服务平台百炼控制台](https://bailian.console.aliyun.com/?tab=mcp#/mcp-market)
+
+[punkpeye/awesome-mcp-servers: A collection of MCP servers.](https://github.com/punkpeye/awesome-mcp-servers)
+
+
+
+云平台使用
+
+cursor接入MCP
+
+程序使用
+
+```xml
+<dependency>
+    <groupId>org.springframework.ai</groupId>
+    <artifactId>spring-ai-mcp-client-spring-boot-starter</artifactId>
+    <version>1.0.0-M6</version>
+</dependency>
+
+```
+
+resources下新建mcp-servers.json
+
+```json
+{
+  "mcpServers": {
+    "amap-maps": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@amap/amap-maps-mcp-server"
+      ],
+      "env": {
+        "AMAP_MAPS_API_KEY": "改成你的 API Key"
+      }
+    }
+  }
+}
+
+```
+
+spring配置文件
+
+```yaml
+spring:
+    ai:
+      mcp:
+        client:
+          stdio:
+            servers-configuration: classpath:mcp-servers.json
+
+```
+
+ToolCallbackProvider自动注入，获取到配置定义的所有MCP工具
+
+```java
+@Resource
+private ToolCallbackProvider toolCallbackProvider;
+
+public String doChatWithMcp(String message, String chatId) {
+    ChatResponse response = chatClient
+            .prompt()
+            .user(message)
+            .advisors(spec -> spec.param(CHAT_MEMORY_CONVERSATION_ID_KEY, chatId)
+                    .param(CHAT_MEMORY_RETRIEVE_SIZE_KEY, 10))
+            // 开启日志，便于观察效果
+            .advisors(new MyLoggerAdvisor())
+            .tools(toolCallbackProvider)
+            .call()
+            .chatResponse();
+    String content = response.getResult().getOutput().getText();
+    log.info("content: {}", content);
+    return content;
+}
+
+```
+
+
+
+
+
 ### Spring AI MCP 开发模式
+
+[MCP Client Boot Starter :: Spring AI Reference](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-client-boot-starter-docs.html)
+
+
+
+
 
 ### Spring AI MCP 开发实战 - 图片搜索 MCP
 
