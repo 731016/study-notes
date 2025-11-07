@@ -247,10 +247,11 @@ function  Delete_Duplicate_Elements(arr) {
 ```
 
 
-#### JavaSript API | 腾讯位置服务
+### JavaSript API | 腾讯位置服务
 [https://lbs.qq.com/webApi/javascriptGL/glGuide/glOverview](https://lbs.qq.com/webApi/javascriptGL/glGuide/glOverview)
 
-#### 获取URL参数
+### 获取URL参数
+
 ```javascript
 QueryString: function (item, href) {
             var str = location.search;
@@ -269,7 +270,8 @@ QueryString: function (item, href) {
         }
 ```
 
-#### 判断对象是否是NULL或者时undefined
+### 判断对象是否是NULL或者时undefined
+
 ```javascript
 IsEmpty: function (val) {//判断对象是否是NULL或者时undefined
             if (typeof (val) == 'undefined') return true;
@@ -279,7 +281,7 @@ IsEmpty: function (val) {//判断对象是否是NULL或者时undefined
         }
 ```
 
-#### 数值相加
+### 数值相加
 ```javascript
 numberValueAdd: function (arg1, arg2) {
             var r1, r2, m;
@@ -295,7 +297,7 @@ numberValueAdd: function (arg1, arg2) {
         }
 ```
 
-#### 数值相减
+### 数值相减
 ```javascript
 numberValueSubtract: function (arg1, arg2) {
             var r1, r2, m;
@@ -311,7 +313,7 @@ numberValueSubtract: function (arg1, arg2) {
         },
 ```
 
-#### 数值相除
+### 数值相除
 ```javascript
 numberValueDivide: function (arg1, arg2) {
             if (arg2 === 0) return 0;
@@ -331,7 +333,7 @@ numberValueDivide: function (arg1, arg2) {
         }
 ```
 
-#### 数值相乘
+### 数值相乘
 ```javascript
 numberValueMultiply: function (arg1, arg2) {
             if (IsEmpty(arg1)) arg1 = 0;
@@ -347,7 +349,7 @@ numberValueMultiply: function (arg1, arg2) {
         }
 ```
 
-#### 数值相保留几位小数乘
+### 数值相保留几位小数乘
 ```javascript
 //保留几位小数
         ChangeDp: function (val, dp) {
@@ -361,7 +363,7 @@ numberValueMultiply: function (arg1, arg2) {
         }
 ```
 
-#### 四舍六入，5看前，奇进偶不进
+### 四舍六入，5看前，奇进偶不进
 ```javascript
 //四舍六入，5看前，奇进偶不进
         NumberValueRevision : function(val,length){
@@ -407,7 +409,7 @@ numberValueMultiply: function (arg1, arg2) {
         },
 ```
 
-#### 校验是否为日期
+### 校验是否为日期
 ```javascript
 //校验是否为日期
         CheckIsDate: function (s) {
@@ -424,7 +426,7 @@ numberValueMultiply: function (arg1, arg2) {
         }
 ```
 
-#### 日期转字符串
+### 日期转字符串
 ```javascript
 //校验是否为日期
         CheckIsDate: function (s) {
@@ -441,7 +443,7 @@ numberValueMultiply: function (arg1, arg2) {
         }
 ```
 
-#### 字符串转日期
+### 字符串转日期
 ```javascript
 stringToDate: function (DateStr, format) {
             if (IsEmpty(DateStr)) return "";
@@ -540,7 +542,7 @@ stringToDate: function (DateStr, format) {
         },
 ```
 
-#### 获取日期的当月第一天
+### 获取日期的当月第一天
 ```javascript
 getFirstMonthDay: function (date) {
             if (IsEmpty(date)) date = new Date();
@@ -548,7 +550,7 @@ getFirstMonthDay: function (date) {
         }
 ```
 
-#### 获取日期的当月最后一天
+### 获取日期的当月最后一天
 ```javascript
 getLastMonthDay: function (date) {
             if (IsEmpty(date)) date = new Date();
@@ -556,7 +558,7 @@ getLastMonthDay: function (date) {
         }
 ```
 
-#### 操作时间，加1天，1小时，1分钟
+### 操作时间，加1天，1小时，1分钟
 ```javascript
 addDay: function (date, num) {
             if (date == null) date = new Date();
