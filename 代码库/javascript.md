@@ -247,10 +247,10 @@ function  Delete_Duplicate_Elements(arr) {
 ```
 
 
-#### JavaSript API | 腾讯位置服务
+### JavaSript API | 腾讯位置服务
 [https://lbs.qq.com/webApi/javascriptGL/glGuide/glOverview](https://lbs.qq.com/webApi/javascriptGL/glGuide/glOverview)
 
-#### 获取URL参数
+### 获取URL参数
 ```javascript
 QueryString: function (item, href) {
             var str = location.search;
@@ -269,7 +269,7 @@ QueryString: function (item, href) {
         }
 ```
 
-#### 判断对象是否是NULL或者时undefined
+### 判断对象是否是NULL或者时undefined
 ```javascript
 IsEmpty: function (val) {//判断对象是否是NULL或者时undefined
             if (typeof (val) == 'undefined') return true;
@@ -279,7 +279,7 @@ IsEmpty: function (val) {//判断对象是否是NULL或者时undefined
         }
 ```
 
-#### 数值相加
+### 数值相加
 ```javascript
 numberValueAdd: function (arg1, arg2) {
             var r1, r2, m;
@@ -295,7 +295,7 @@ numberValueAdd: function (arg1, arg2) {
         }
 ```
 
-#### 数值相减
+### 数值相减
 ```javascript
 numberValueSubtract: function (arg1, arg2) {
             var r1, r2, m;
@@ -311,7 +311,7 @@ numberValueSubtract: function (arg1, arg2) {
         },
 ```
 
-#### 数值相除
+### 数值相除
 ```javascript
 numberValueDivide: function (arg1, arg2) {
             if (arg2 === 0) return 0;
@@ -331,7 +331,7 @@ numberValueDivide: function (arg1, arg2) {
         }
 ```
 
-#### 数值相乘
+### 数值相乘
 ```javascript
 numberValueMultiply: function (arg1, arg2) {
             if (IsEmpty(arg1)) arg1 = 0;
@@ -347,7 +347,7 @@ numberValueMultiply: function (arg1, arg2) {
         }
 ```
 
-#### 数值相保留几位小数乘
+### 数值相保留几位小数乘
 ```javascript
 //保留几位小数
         ChangeDp: function (val, dp) {
@@ -361,7 +361,7 @@ numberValueMultiply: function (arg1, arg2) {
         }
 ```
 
-#### 四舍六入，5看前，奇进偶不进
+### 四舍六入，5看前，奇进偶不进
 ```javascript
 //四舍六入，5看前，奇进偶不进
         NumberValueRevision : function(val,length){
@@ -407,7 +407,7 @@ numberValueMultiply: function (arg1, arg2) {
         },
 ```
 
-#### 校验是否为日期
+### 校验是否为日期
 ```javascript
 //校验是否为日期
         CheckIsDate: function (s) {
@@ -424,7 +424,7 @@ numberValueMultiply: function (arg1, arg2) {
         }
 ```
 
-#### 日期转字符串
+### 日期转字符串
 ```javascript
 //校验是否为日期
         CheckIsDate: function (s) {
@@ -441,7 +441,7 @@ numberValueMultiply: function (arg1, arg2) {
         }
 ```
 
-#### 字符串转日期
+### 字符串转日期
 ```javascript
 stringToDate: function (DateStr, format) {
             if (IsEmpty(DateStr)) return "";
@@ -540,7 +540,7 @@ stringToDate: function (DateStr, format) {
         },
 ```
 
-#### 获取日期的当月第一天
+### 获取日期的当月第一天
 ```javascript
 getFirstMonthDay: function (date) {
             if (IsEmpty(date)) date = new Date();
@@ -548,7 +548,7 @@ getFirstMonthDay: function (date) {
         }
 ```
 
-#### 获取日期的当月最后一天
+### 获取日期的当月最后一天
 ```javascript
 getLastMonthDay: function (date) {
             if (IsEmpty(date)) date = new Date();
@@ -556,7 +556,7 @@ getLastMonthDay: function (date) {
         }
 ```
 
-#### 操作时间，加1天，1小时，1分钟
+### 操作时间，加1天，1小时，1分钟
 ```javascript
 addDay: function (date, num) {
             if (date == null) date = new Date();
@@ -576,4 +576,63 @@ addDay: function (date, num) {
             newDate.setMinutes(newDate.getMinutes() + num);
             return newDate;
         },
+```
+
+### js判断值是否为空
+```js
+/**
+ * 判断值是否为空
+ * @param {*} value               待判断的值
+ * @param {Object} [opt]          可选配置
+ * @param {boolean} [opt.trimNullish=true]  是否把 'null'/'NULL' 视为空
+ * @param {boolean} [opt.trimBlank=false]   是否把纯空白字符串视为空
+ * @returns {boolean}             为空返回 true，否则 false
+ */
+function isEmpty(value, opt = {}) {
+  const { trimNullish = true, trimBlank = false } = opt;
+
+  // 1. null / undefined
+  if (value == null) return true;
+
+  // 2. 字符串特殊处理
+  if (typeof value === 'string') {
+    // 2.1 空串
+    if (value === '') return true;
+    // 2.2 'null' 串
+    if (trimNullish && value.toLowerCase() === 'null') return true;
+    // 2.3 纯空白
+    if (trimBlank && value.trim() === '') return true;
+    // 其他字符串一律不为空
+    return false;
+  }
+
+  // 3. 数组 / 类数组 / Map / Set
+  if (Array.isArray(value) || value instanceof Map || value instanceof Set) {
+    return value.length === 0 || value.size === 0;
+  }
+
+  // 4. 普通对象
+  if (typeof value === 'object') {
+    return Object.keys(value).length === 0;
+  }
+
+  // 5. 其余情况（数字、布尔、函数、Symbol...）统一视为非空
+  return false;
+}
+
+/* ====== 测试用例 ====== */
+console.log(isEmpty(null));               // true
+console.log(isEmpty('null'));             // true
+console.log(isEmpty('NULL'));             // true
+console.log(isEmpty(''));                 // true
+console.log(isEmpty('   '));              // false（默认）
+console.log(isEmpty('   ', {trimBlank: true})); // true
+console.log(isEmpty(0));                  // false
+console.log(isEmpty(false));              // false
+console.log(isEmpty(NaN));                // false
+console.log(isEmpty([]));                 // true
+console.log(isEmpty({}));                 // true
+console.log(isEmpty(new Map()));          // true
+console.log(isEmpty(new Set([1])));       // false
+
 ```
