@@ -9,9 +9,9 @@
 
 ## 配置一个数据采集-推送-消费的流程
 
-[kafaka示例代码](https://github.com/731016/springboot-backend-example/tree/main/src/main/java/com/xiaofei/springbootinit/example/kafka)
+[kafka示例代码](https://github.com/731016/springboot-backend-example-parent/tree/main/springboot-backend-example/src/main/java/com/xiaofei/springbootinit/example/kafka)
 
-### 目录结构
+
 
 ![image-20250331084250189](https://note-1259190304.cos.ap-chengdu.myqcloud.com/noteimage-20250331084250189.png)
 
