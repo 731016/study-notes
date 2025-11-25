@@ -579,3 +579,62 @@ addDay: function (date, num) {
             return newDate;
         },
 ```
+
+### js判断值是否为空
+```js
+/**
+ * 判断值是否为空
+ * @param {*} value               待判断的值
+ * @param {Object} [opt]          可选配置
+ * @param {boolean} [opt.trimNullish=true]  是否把 'null'/'NULL' 视为空
+ * @param {boolean} [opt.trimBlank=false]   是否把纯空白字符串视为空
+ * @returns {boolean}             为空返回 true，否则 false
+ */
+function isEmpty(value, opt = {}) {
+  const { trimNullish = true, trimBlank = false } = opt;
+
+  // 1. null / undefined
+  if (value == null) return true;
+
+  // 2. 字符串特殊处理
+  if (typeof value === 'string') {
+    // 2.1 空串
+    if (value === '') return true;
+    // 2.2 'null' 串
+    if (trimNullish && value.toLowerCase() === 'null') return true;
+    // 2.3 纯空白
+    if (trimBlank && value.trim() === '') return true;
+    // 其他字符串一律不为空
+    return false;
+  }
+
+  // 3. 数组 / 类数组 / Map / Set
+  if (Array.isArray(value) || value instanceof Map || value instanceof Set) {
+    return value.length === 0 || value.size === 0;
+  }
+
+  // 4. 普通对象
+  if (typeof value === 'object') {
+    return Object.keys(value).length === 0;
+  }
+
+  // 5. 其余情况（数字、布尔、函数、Symbol...）统一视为非空
+  return false;
+}
+
+/* ====== 测试用例 ====== */
+console.log(isEmpty(null));               // true
+console.log(isEmpty('null'));             // true
+console.log(isEmpty('NULL'));             // true
+console.log(isEmpty(''));                 // true
+console.log(isEmpty('   '));              // false（默认）
+console.log(isEmpty('   ', {trimBlank: true})); // true
+console.log(isEmpty(0));                  // false
+console.log(isEmpty(false));              // false
+console.log(isEmpty(NaN));                // false
+console.log(isEmpty([]));                 // true
+console.log(isEmpty({}));                 // true
+console.log(isEmpty(new Map()));          // true
+console.log(isEmpty(new Set([1])));       // false
+
+```
