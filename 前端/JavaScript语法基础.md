@@ -1,4 +1,4 @@
-# 认识javascript
+## 认识javascript
 
 一种运行在**客户端**的**脚本**语言，不需要编译，由解释器逐行解释并运行
 
@@ -61,7 +61,7 @@ js 脚本语言 -- **编程类语言**
 
 
 
-# javascript注释
+## javascript注释
 
 <span style="font-weight:700;color:blue">单行注释</span>
 
@@ -80,7 +80,7 @@ js 脚本语言 -- **编程类语言**
 
 *vscode* *→* *首选项按钮* *→* *键盘快捷方式* *→* *查找* *原来的快捷键* *→* *修改为新的快捷键* *→* *回车确认*
 
-# javascript输入输出语句
+## javascript输入输出语句
 
 <table style="font-family:'Consolas';" cellspacing="0">
     <tr style="background-color:#92D050;color: #fff">
@@ -116,7 +116,7 @@ alert() 主要用来显示消息给**用户**
 
 console.log() 用来给**程序员**自己看运行时的消息
 
-# 变量
+## 变量
 
 变量是用于存放数据的**容器**。 我们通过 **变量名** 获取数据，甚至数据可以修改
 

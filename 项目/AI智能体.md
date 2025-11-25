@@ -3189,8 +3189,6 @@ public String doChatWithMcp(String message, String chatId) {
 
 
 
-
-
 ### Spring AI MCP 开发实战 - 图片搜索 MCP
 
 ### MCP 开发最佳实践
@@ -3223,4 +3221,4 @@ public String doChatWithMcp(String message, String chatId) {
 
 ### AI 生成前端代码
 
-### AI 服务 Serverless 部
+### AI 服务 Serverless 部署
