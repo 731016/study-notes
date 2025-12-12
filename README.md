@@ -43,6 +43,7 @@
 - [HTML+CSS+JS+JQuery案例学习](https://gitee.com/LovelyHzz/webpage-basic-learning)
 - [前端案例学习](http://www.lvyestudy.com/)
 - [常用业务解决方案](代码库/常用业务解决方案.md)
+- [常见问题解决方案](代码库/常见问题解决方案.md)
 - [数据库死锁解决](代码库/数据库死锁解决.md)
 
 ### 开发环境 :recycle: 
