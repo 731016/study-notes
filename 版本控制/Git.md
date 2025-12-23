@@ -14,6 +14,12 @@
 [git push No configured push destination](https://blog.csdn.net/COCOLI_BK/article/details/97921497)
 
 [修改git远程地址](https://blog.csdn.net/ShelleyLittlehero/article/details/95980669)
+```bash
+1.查看远程地址
+git remote -v
+2.修改远程地址
+git remote set-url origin <url>
+```
 
 #### 443,10054
 
