@@ -20,7 +20,7 @@
   - Python
     - [Python基础](Python/pyhton.md)
 - 后端开发框架
- - JavaWeb
+  - JavaWeb
     - [JSP + servlet](JavaWeb/jsp_servlet.md)
   - Spring 框架
     - [Mybatis持久层](SSM框架/mybatis.md)
@@ -83,14 +83,14 @@
     - [常用业务解决方案](代码库/常用业务解决方案.md)
     - [常见问题解决方案](代码库/常见问题解决方案.md)
 - 计算机基础
- - 计算机网络
-   - [计算机网络基础](计算机网络/network.md)
- - 操作系统
-  - [Linux 常用命令](linux/常用linux命令.md)
-  - [Linux 安装](linux/linux安装.md)
-  - [正则表达式](linux/正则表达式.md)
-  - [配置 Samba 服务器](linux/samba服务器.md)
-  - [Ununtu 问题解答](linux/ubuntu问题解答.md)
+  - 计算机网络
+    - [计算机网络基础](计算机网络/network.md)
+  - 操作系统
+    - [Linux 常用命令](linux/常用linux命令.md)
+    - [Linux 安装](linux/linux安装.md)
+    - [正则表达式](linux/正则表达式.md)
+    - [配置 Samba 服务器](linux/samba服务器.md)
+    - [Ununtu 问题解答](linux/ubuntu问题解答.md)
 - 软件设计与架构
   - [设计模式](设计模式/设计模式.md)
   - [软件设计师](软件设计师/软件设计师.md)
