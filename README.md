@@ -15,7 +15,7 @@
 ## 目录 :pencil:
 
 ### 编程语言基础
-  - Java
+  -Java
     - [Java 基础语法](JavaSE/Java基础.md)
     - [面向对象编程](JavaSE/面向对象编程.md)
     - [JavaAPI详解](JavaSE/JavaAPI.md)
@@ -35,7 +35,7 @@
   - Python
     - [Python基础](Python/pyhton.md)
 ### 后端开发框架
- - JavaWeb
+  - JavaWeb
     - [JSP + servlet](JavaWeb/jsp_servlet.md)
   - Spring 框架
     - [Mybatis持久层](SSM框架/mybatis.md)
@@ -65,7 +65,7 @@
     - [MySQL 基础](MySQL/MySQL基础.md)
     - [JDBC 组件](MySQL/JDBC组件.md)
   - SQL Server
-   - [SQLServer基础](SQLServer/SqlServer.md)
+    - [SQLServer基础](SQLServer/SqlServer.md)
 ### 中间件与消息队列
   - 缓存中间件
     - [Redis核心指南](Redis/redis.md)
@@ -98,14 +98,14 @@
     - [常用业务解决方案](代码库/常用业务解决方案.md)
     - [常见问题解决方案](代码库/常见问题解决方案.md)
 ### 计算机基础
- - 计算机网络
-   - [计算机网络基础](计算机网络/network.md)
- - 操作系统
-  - [Linux 常用命令](linux/常用linux命令.md)
-  - [Linux 安装](linux/linux安装.md)
-  - [正则表达式](linux/正则表达式.md)
-  - [配置 Samba 服务器](linux/samba服务器.md)
-  - [Ununtu 问题解答](linux/ubuntu问题解答.md)
+  - 计算机网络
+    - [计算机网络基础](计算机网络/network.md)
+  - 操作系统
+    - [Linux 常用命令](linux/常用linux命令.md)
+    - [Linux 安装](linux/linux安装.md)
+    - [正则表达式](linux/正则表达式.md)
+    - [配置 Samba 服务器](linux/samba服务器.md)
+    - [Ununtu 问题解答](linux/ubuntu问题解答.md)
 ### 软件设计与架构
   - [设计模式](设计模式/设计模式.md)
   - [软件设计师](软件设计师/软件设计师.md)
@@ -203,14 +203,3 @@
     - [竞业限制和违约金](劳动合同法/竞业限制和违约金.md)
 ### 资源导航
   - [资源链接汇总](资源导航/link.md)
-- [快递代取系统](https://github.com/731016/Express-pick-up-system)
-- [天天生鲜交易平台](https://github.com/731016/daily-fresh-trading-platform)
-- [Lie flat房屋出租平台](https://github.com/731016/rent_house)
-- [用户中心](项目/用户中心.md)
-- [伙伴匹配系统](项目/伙伴匹配系统.md)
-- [寻爱-万用信息展示平台](项目/寻爱-万用信息展示网站.md)
-- [API 开放平台](项目/API开放平台.md)
-- [手写RPC框架](项目/RPC框架.md)
-- [聚合搜索平台](项目/聚合搜索平台.md)
-- [智能协同云图库](项目/智能协同云图库.md)
-- [AI智能体](项目/AI智能体.md)

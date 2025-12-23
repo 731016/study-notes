@@ -50,7 +50,7 @@
     - [MySQL 基础](MySQL/MySQL基础.md)
     - [JDBC 组件](MySQL/JDBC组件.md)
   - SQL Server
-   - [SQLServer基础](SQLServer/SqlServer.md)
+    - [SQLServer基础](SQLServer/SqlServer.md)
 - 中间件与消息队列
   - 缓存中间件
     - [Redis核心指南](Redis/redis.md)
