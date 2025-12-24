@@ -15,7 +15,7 @@
 ## 目录 :pencil:
 
 ### 编程语言基础
-  -Java
+  - Java
     - [Java 基础语法](JavaSE/Java基础.md)
     - [面向对象编程](JavaSE/面向对象编程.md)
     - [JavaAPI详解](JavaSE/JavaAPI.md)
