@@ -109,10 +109,10 @@
           const author = commit.commit.author.name;
           
           // 1. 提取第一行作为标题，并进行 HTML 转义
-          const messageFirstLine = escapeHtml(fullMessage.split('\n')[0].trim());
+          const messageFirstLine = escapeHtml(stripMarkdown(fullMessage));
           
           // 2. 清理完整 message 用于 tooltip（可选）
-          const cleanFullMessage = escapeHtml(fullMessage);
+          const cleanFullMessage = escapeHtml(stripMarkdown(fullMessage));
           
           // 3. 构建基础内容（使用转义后的标题）
           let content = `- <a href="${commitUrl}" title="${cleanFullMessage}">${messageFirstLine}</a>`;
@@ -179,6 +179,31 @@
     }
   };
 
+// 工具函数：HTML 转义（防止注入和破坏结构）
+function escapeHtml(text) {
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, m => map[m]);
+}
+
+// 工具函数：提取纯文本（移除所有 Markdown 和 HTML 标签）
+function stripMarkdown(text) {
+  return text
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')      // 移除链接，保留文本
+    .replace(/`([^`]+)`/g, '$1')                   // 移除代码标记
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')          // 移除图片
+    .replace(/[#*_~]/g, '')                        // 移除 Markdown 符号
+    .replace(/<[^>]*>/g, '')                      // 移除 HTML 标签
+    .replace(/[.,;:!?"'()[\]{}\\/@$%^&+=|]/g, '') // 移除常用符号和标点
+    .replace(/\s+/g, ' ')                         // 将换行、制表等空白符替换为空格**
+    .trim();
+}
+
   // 检查 marked 库加载状态
   function initCommitHistory() {
     if (typeof marked === 'undefined') {
@@ -214,7 +239,6 @@
   initCommitHistory();
 })();
 </script>
-
 <style>
 #commit-history table {
   width: 100%;
