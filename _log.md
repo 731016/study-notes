@@ -103,29 +103,37 @@
             html += '| 更新时间 | 更新内容 |\n|---------|----------|\n';
           }
           
-          const message = commit.commit.message;
+          const fullMessage = commit.commit.message;
           const sha = commit.sha.substring(0, 7);
           const commitUrl = commit.html_url;
           const author = commit.commit.author.name;
           
-          // 处理文件列表，显示实际目录路径
-            let filesList = '';
-            if (commit.files) {
-              filesList = commit.files
-                .map(file => {
-                  const parts = file.filename.split('/');
-                  const fileName = parts.pop();
-                  const directory = parts.join('/') || '/';
-                  const fullPath = directory === '/' ? fileName : `${directory}/${fileName}`;
-                  return `- 更新文件: [${fullPath}](${file.blob_url})`;
-                })
-                .join('<br>');
-            }
+          // 1. 提取第一行作为标题，并进行 HTML 转义
+          const messageFirstLine = escapeHtml(fullMessage.split('\n')[0].trim());
           
-          const content = filesList ? 
-            `- [${message}](${commitUrl}) <br>${filesList}<br>- 提交者: ${author} <br>- Commit: [\`${sha}\`](${commitUrl})` :
-            `- [${message}](${commitUrl}) <br>- 提交者: ${author} <br>- Commit: [\`${sha}\`](${commitUrl})`;
+          // 2. 清理完整 message 用于 tooltip（可选）
+          const cleanFullMessage = escapeHtml(fullMessage);
           
+          // 3. 构建基础内容（使用转义后的标题）
+          let content = `- <a href="${commitUrl}" title="${cleanFullMessage}">${messageFirstLine}</a>`;
+          content += `<br>- 提交者: ${escapeHtml(author)}`;
+          content += `<br>- Commit: <code><a href="${commitUrl}">${sha}</a></code>`;
+          
+          // 4. 添加文件列表（如果存在）
+          if (commit.files && commit.files.length > 0) {
+            const filesList = commit.files
+              .map(file => {
+                const parts = file.filename.split('/');
+                const fileName = parts.pop();
+                const directory = parts.join('/') || '/';
+                const fullPath = directory === '/' ? fileName : `${directory}/${fileName}`;
+                return `- 更新文件: <a href="${file.blob_url}">${escapeHtml(fullPath)}</a>`;
+              })
+              .join('<br>');
+            content += `<br>${filesList}`;
+          }
+          
+          //5. 添加到表格
           html += `| ${formattedDate} | ${content} |\n`;
         } catch (commitError) {
           console.error('处理单个提交时出错:', commitError);
