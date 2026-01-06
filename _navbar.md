@@ -13,6 +13,7 @@
     * [1Panel](http://43.136.170.4:10001/1panel)
     * [vsCode网页版](http://43.136.170.4:10086)
     * [蓝凑云](https://pc.woozooo.com/account.php?action=login&ref=/mydisk.php)
+    * [cloudflare](https://dash.cloudflare.com/49a6bb3ca5c8c8ab2b4f59ff43ba0f2a/xiaofei.site)
 * 🤖Ai助手
     * [鱼聪明](https://www.yucongming.com/chat/1781191236741668865)
     * [通义](https://tongyi.aliyun.com/qianwen/)

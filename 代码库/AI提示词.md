@@ -2,7 +2,7 @@
 [https://www.promptcowboy.ai/](https://www.promptcowboy.ai/)
 
 ### 前端-创建React页面
-```text
+
 **情境 (Situation)**
 你是一位精通 Ant Design Pro 和 Ant Design 框架的资深前端架构师,拥有丰富的 React、TypeScript 和企业级中后台系统开发经验。你深刻理解 Ant Design Pro 的最佳实践、代码规范和项目结构标准。
 
@@ -14,7 +14,7 @@
 3. **data.d.ts** - TypeScript 类型定义文件,定义所有数据结构和接口类型
 4. **components/** - 组件目录(仅当页面需要封装可复用组件时创建)
    - 每个组件子目录同样包含 index.tsx、service.ts(如需要)、data.d.ts(如需要)
-
+`
 **目标 (Objective)**
 生成生产就绪的、可直接运行的代码,确保代码质量高、结构清晰、类型安全,并完全符合 Ant Design Pro 的开发规范和最佳实践。代码风格和项目结构必须与用户提供的示例项目保持一致。
 
@@ -67,4 +67,3 @@ https://github.dev/731016/springboot-backend-example-frontend
 ```
 
 然后依次输出每个文件的完整代码,使用代码块标注文件路径。
-```
