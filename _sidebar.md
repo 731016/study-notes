@@ -19,7 +19,7 @@
     - [C语言基础](c语言/c.md)
   - Python
     - [Python基础](Python/pyhton.md)
-- 后端开发框架
+- 后端
   - JavaWeb
     - [JSP + servlet](JavaWeb/jsp_servlet.md)
   - Spring 框架
@@ -29,7 +29,7 @@
     - [springBoot](SSM框架/springBoot.md)
     - [springClond](SSM框架/springclond.md)
     - [springClond Alibaba](SSM框架/springClond%20Alibaba.md)
-- 前端技术栈
+- 前端
   - 前端基础
     - [HTML基础](前端/HTML.md)
     - [CSS样式](前端/CSS.md)
@@ -51,13 +51,15 @@
     - [JDBC 组件](MySQL/JDBC组件.md)
   - SQL Server
     - [SQLServer基础](SQLServer/SqlServer.md)
-- 中间件与消息队列
+- 中间件
   - 缓存中间件
     - [Redis核心指南](Redis/redis.md)
   - 消息队列 MQ
     - [RabbitMQ](消息队列/rabbitMQ.md)
     - [Kafka](消息队列/kafka.md)
     - [RocketMQ](消息队列/RocketMQ.md)
+  - 搜索引擎
+    - [ElasticSearch](https://xiaofei.site/#/%E9%A1%B9%E7%9B%AE/%E8%81%9A%E5%90%88%E6%90%9C%E7%B4%A2%E5%B9%B3%E5%8F%B0?id=_11%e6%90%9c%e7%b4%a2%e4%bc%98%e5%8c%96-es)
 - 开发工具与环境
   - 版本控制
     - [SVN](版本控制/SVN.md)
@@ -72,7 +74,7 @@
     - [压力测试工具](开发环境/压力测试.md)
   - 命令行工具
     - [cmd 编码问题解决](开发环境/cmd编码-编码解决.md.md)
-- 代码库与工具集
+- 代码库
   - Java 工具集
     - [Java常用配置文件模板](代码库/常用配置文件.md)
     - [Java工具类](代码库/java工具类.md)
@@ -82,7 +84,7 @@
   - 业务解决方案
     - [常用业务解决方案](代码库/常用业务解决方案.md)
     - [常见问题解决方案](代码库/常见问题解决方案.md)
-- 运维与问题排查
+- 运维问题排查
   - 生产环境问题
     - [cpu占用过高](生产环境/cpu占用过高.md)
     - [OOM排查](生产环境/OOM排查.md)
@@ -114,10 +116,12 @@
     - [智能协同云图库](项目/智能协同云图库.md)
     - [AI智能体](项目/AI智能体.md)
   - 学习案例
+    - [Spring Boot脚手架学习项目](https://github.com/731016/springboot-backend-example-parent)
+    - [React脚手架学习项目](https://github.com/731016/springboot-backend-example-frontend)
     - [HTML+CSS+JS+JQuery案例学习](https://gitee.com/LovelyHzz/webpage-basic-learning)
     - [前端案例学习](http://www.lvyestudy.com/)
     - [控制台购物商城实现](MySQL/购物商城.md)
-- 面试与求职
+- 面试
   - 面试指南
     - [面试技巧](https://github.com/731016/731016.github.io/blob/master/面试技巧.md)
     - [八股文刷题路线](面试/八股文刷题路线.md)
@@ -166,7 +170,7 @@
       - [赢未来](面试/真实面经/赢未来.md)
       - [嘉禾云网](面试/真实面经/嘉禾云网.md)
       - [佰思杰](面试/真实面经/佰思杰.md)
-- 其他领域
+- 其他
   - 高等数学
     - [基本初等函数图形](高等数学/基本初等函数图形.md)
     - [特殊值的三角函数值表](高等数学/特殊值的三角函数值表.md)
