@@ -14,6 +14,7 @@
 
 [📖开始阅读](/README.md)
 [📃博客](https://blog.csdn.net/qq_41666142)
+[📕小红书](https://www.xiaohongshu.com/user/profile/5e2c0dc50000000001002160)
 
 <!-- 背景图片 -->
 
