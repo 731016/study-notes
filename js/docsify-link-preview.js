@@ -1,12 +1,13 @@
 const getOpenGraph = async (url) => {
     if (!window.$docsify.linkpreview.key)
+      console.log('linkpreview key获取错误:'+window.$docsify.linkpreview.key)
       throw new Error(
         `Please get a key on linkpreview.net and add it as
          a configuration in $docsify.linkpreview.key as follows:
          
          window.$docsify = {
           linkpreview: {
-            key : "123123",
+            key : "b8cbd68166c6cb13a26b0dabbfa6856e",
           }
         }
          `
