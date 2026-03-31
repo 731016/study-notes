@@ -15,12 +15,15 @@
     * [蓝凑云](https://pc.woozooo.com/account.php?action=login&ref=/mydisk.php)
     * [cloudflare](https://dash.cloudflare.com/49a6bb3ca5c8c8ab2b4f59ff43ba0f2a/xiaofei.site)
 * 🤖Ai助手
+    * [Kimi](https://kimi.moonshot.cn/)
+    * [Cursor](https://cursor.com/cn)
+    * [TRAE](https://www.trae.cn/)
+    * [DeepSeek - 探索未至之境](https://chat.deepseek.com/)
+    * [听脑 AI](https://itingnao.com/)
     * [鱼聪明](https://www.yucongming.com/chat/1781191236741668865)
     * [通义](https://tongyi.aliyun.com/qianwen/)
-    * [Kimi](https://kimi.moonshot.cn/)
-    * [听脑 AI](https://itingnao.com/)
-    * [DeepSeek - 探索未至之境](https://chat.deepseek.com/)
     * [AI 提示词](代码库/AI提示词.md)
+    
 * 🧑‍💻[关于我](https://731016.github.io/)
   <!-- * 注释
     * <a href="http://119.3.104.52:8080/" target="_blank" style="font-weight: 700;">基于vue的快递代取系统【毕业设计】</a>
