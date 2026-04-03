@@ -13,7 +13,37 @@
 - [docsify部署](部署/docsify部署.md)
 
 ## 目录 :pencil:
-
+### 知识库 :computer:
+  - Java 工具集
+    - [Java常用配置文件模板](知识库/常用配置文件.md)
+    - [Java工具类](知识库/java工具类.md)
+    - [Java基础算法](知识库/Java算法.md)
+  - JavaScript 工具集
+    - [JavaScript基础算法](知识库/javascript.md)
+  - 业务解决方案
+    - [常用业务解决方案](知识库/常用业务解决方案.md)
+    - [常见问题解决方案](知识库/常见问题解决方案.md)
+    - [制造业业务知识](知识库/制造业业务知识.md)
+### 运维与问题排查
+  - 生产环境问题
+    - [cpu占用过高](生产环境/cpu占用过高.md)
+    - [OOM排查](生产环境/OOM排查.md)
+    - [数据库死锁解决](知识库/数据库死锁解决.md)
+    - [慢SQL优化](生产环境/慢SQL优化.md)
+### 开发工具与环境 :recycle: 
+  - 版本控制
+    - [SVN](版本控制/SVN.md)
+    - [Git](版本控制/Git.md)
+  - IDE 与编辑器
+    - [idea 配置](开发环境/IDEA配置.md)
+    - [vscode 配置](开发环境/vscode.md)
+  - 构建与部署
+    - [maven 配置指南](开发环境/maven配置.md)
+    - [tomcat 服务器配置](开发环境/Tomcat配置.md)
+    - [单元测试实践](开发环境/单元测试.md)
+    - [压力测试工具](开发环境/压力测试.md)
+  - 命令行工具
+    - [cmd 编码问题解决](开发环境/cmd编码-编码解决.md.md)
 ### 编程语言基础
   - Java
     - [Java 基础语法](JavaSE/Java基础.md)
@@ -75,36 +105,6 @@
     - [RocketMQ](消息队列/RocketMQ.md)
   - 搜索引擎
     - [ElasticSearch](https://xiaofei.site/#/%E9%A1%B9%E7%9B%AE/%E8%81%9A%E5%90%88%E6%90%9C%E7%B4%A2%E5%B9%B3%E5%8F%B0?id=_11%e6%90%9c%e7%b4%a2%e4%bc%98%e5%8c%96-es)
-### 开发工具与环境 :recycle: 
-  - 版本控制
-    - [SVN](版本控制/SVN.md)
-    - [Git](版本控制/Git.md)
-  - IDE 与编辑器
-    - [idea 配置](开发环境/IDEA配置.md)
-    - [vscode 配置](开发环境/vscode.md)
-  - 构建与部署
-    - [maven 配置指南](开发环境/maven配置.md)
-    - [tomcat 服务器配置](开发环境/Tomcat配置.md)
-    - [单元测试实践](开发环境/单元测试.md)
-    - [压力测试工具](开发环境/压力测试.md)
-  - 命令行工具
-    - [cmd 编码问题解决](开发环境/cmd编码-编码解决.md.md)
-### 代码库 :computer:
-  - Java 工具集
-    - [Java常用配置文件模板](代码库/常用配置文件.md)
-    - [Java工具类](代码库/java工具类.md)
-    - [Java基础算法](代码库/Java算法.md)
-  - JavaScript 工具集
-    - [JavaScript基础算法](代码库/javascript.md)
-  - 业务解决方案
-    - [常用业务解决方案](代码库/常用业务解决方案.md)
-    - [常见问题解决方案](代码库/常见问题解决方案.md)
-### 运维与问题排查
-  - 生产环境问题
-    - [cpu占用过高](生产环境/cpu占用过高.md)
-    - [OOM排查](生产环境/OOM排查.md)
-    - [数据库死锁解决](代码库/数据库死锁解决.md)
-    - [慢SQL优化](生产环境/慢SQL优化.md)
 ### 计算机基础
   - 计算机网络
     - [计算机网络基础](计算机网络/network.md)
