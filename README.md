@@ -9,7 +9,7 @@
     很杂的资料库。。。
 </div>
 
-[学习笔记](/docs/notes/README)
+[学习笔记](/docs/notes/README.md)
 
 The Site is generated using [vuepress](https://vuepress.vuejs.org/) and [vuepress-theme-plume](https://github.com/pengzhanbo/vuepress-theme-plume)
 
