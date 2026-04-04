@@ -1,11 +1,34 @@
 {
-  "dependencies": {
-    "docsify": "^4.13.1",
-    "docsify-cli": "^4.4.4",
-    "gitalk": "^1.8.0",
-    "medium-zoom": "^1.1.0"
+  "name": "计算机知识杂货铺",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "小飞的学习笔记xiaofei.work-专为计算机相关专业的学生提供学习的平台！",
+  "author": "tuaofei <tu_aofei@163.com>",
+  "license": "MIT",
+  "engines": {
+    "node": "^18.19.0 || ^20.6.0 || >=22.0.0"
   },
   "scripts": {
-    "start": "docsify serve --port 10082"
+    "docs:dev": "vuepress dev docs",
+    "docs:dev-clean": "vuepress dev docs --clean-cache --clean-temp",
+    "docs:build": "vuepress build docs --clean-cache --clean-temp",
+    "docs:preview": "http-server docs/.vuepress/dist",
+    "vp-update": "npx vp-update"
+  },
+  "devDependencies": {
+    "@vuepress/bundler-vite": "2.0.0-rc.28",
+    "http-server": "^14.1.1",
+    "sass-embedded": "^1.86.3",
+    "typescript": "^5.8.3",
+    "vue": "^3.5.32",
+    "vuepress": "2.0.0-rc.28"
+  },
+  "dependencies": {
+    "artplayer": "^5.2.3",
+    "chart.js": "^4.4.9",
+    "echarts": "^5.6.0",
+    "flowchart.ts": "^3.0.1",
+    "mermaid": "^11.6.0",
+    "vuepress-theme-plume": "^1.0.0-rc.193"
   }
 }
