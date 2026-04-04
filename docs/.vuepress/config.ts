@@ -13,7 +13,13 @@ export default defineUserConfig({
         ['link', { rel: 'icon', type: 'image/png', href: '/plume.svg' }],
     ],
 
-    bundler: viteBundler(),
+    bundler: viteBundler({
+        viteOptions: {
+            server: {
+                allowedHosts: ['xiaofei.site']
+            }
+        }
+    }),
     shouldPrefetch: false, // 站点较大，页面数量较多时，不建议启用
 
     theme: plumeTheme({
