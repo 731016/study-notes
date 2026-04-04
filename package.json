@@ -9,6 +9,7 @@
     "node": "^18.19.0 || ^20.6.0 || >=22.0.0"
   },
   "scripts": {
+    "start":"vuepress dev docs --port 10082 --host xiaofei.site",
     "docs:dev": "vuepress dev docs --port 10082",
     "docs:dev-clean": "vuepress dev docs --clean-cache --clean-temp",
     "docs:build": "vuepress build docs --clean-cache --clean-temp",
