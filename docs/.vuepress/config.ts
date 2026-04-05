@@ -27,7 +27,7 @@ export default defineUserConfig({
         hostname: 'http://xiaofei.site',
 
         /* 文档仓库配置，用于 editLink */
-        docsRepo: 'https://github.com/731016/studyNotes-vuePress',
+        docsRepo: 'https://github.com/731016/study-notes',
         docsDir: 'docs',
         docsBranch: 'master',
 
