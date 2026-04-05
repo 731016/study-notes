@@ -30,6 +30,6 @@ config:
         -
           theme: alt
           text: 资源导航 →
-          link: /article/ubx9815i/
+          link: /资源导航/ubx9815i/
           icon: fluent-color:cloud-48
 ---

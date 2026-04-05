@@ -11,7 +11,7 @@ export default defineThemeConfig({
     appearance: true,  // 配置 深色模式
 
     social: [
-        { icon: 'github', link: 'https://github.com/731016/studyNotes-vuePress' },
+        { icon: 'github', link: 'https://github.com/731016/study-notes' },
     ],
     navbarSocialInclude: ['github'], // 允许显示在导航栏的 social 社交链接
     aside: true, // 页内侧边栏， 默认显示在右侧
