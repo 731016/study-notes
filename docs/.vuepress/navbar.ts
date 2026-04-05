@@ -62,12 +62,12 @@ export const navbar = defineNavbarConfig([
                     },
                     {
                         text: '1Panel',
-                        link: 'http://xiaofei.site:10001/1panel',
+                        link: 'http://43.136.170.4:10001/1panel',
                         icon: 'material-symbols:move-selection-down-rounded',
                     },
                     {
                         text: 'vsCode网页版',
-                        link: 'https://xiaofei.site:10084/vsCode-server/login',
+                        link: 'http://43.136.170.4:10086/login',
                         icon: 'ic:baseline-post-add',
                     },
                 ],
