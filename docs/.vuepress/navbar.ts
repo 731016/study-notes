@@ -61,6 +61,11 @@ export const navbar = defineNavbarConfig([
                         icon: 'pajamas:feature-flag',
                     },
                     {
+                        text: '腾讯云控制台',
+                        link: 'https://console.cloud.tencent.com/lighthouse/instance/index?rid=16',
+                        icon: 'pajamas:feature-flag',
+                    },
+                    {
                         text: '1Panel',
                         link: 'http://43.136.170.4:10001/1panel',
                         icon: 'material-symbols:move-selection-down-rounded',
