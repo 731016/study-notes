@@ -86,6 +86,17 @@ export const navbar = defineNavbarConfig([
         ],
     },
     {
+        text: '演示网站',
+        icon: 'mdi-light:link-variant',
+        items: [
+            {
+                text: '快速开发平台',
+                link: 'http://43.136.170.4:8888/',
+                icon: 'mdi-light:link-variant',
+            },
+        ]
+    },
+    {
         text: 'Ai助手',
         icon: 'flat-color-icons:search',
         items: [
