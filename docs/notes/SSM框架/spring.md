@@ -1,7 +1,7 @@
 ---
 title: spring
 createTime: 2026/04/04 23:28:20
-permalink: /SSM框架/k8wbgtv7/
+permalink: /notes/ssm-框架/spring/
 ---
 # Spring IoC
 

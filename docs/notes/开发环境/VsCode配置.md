@@ -1,7 +1,7 @@
 ---
-title: vscode
+title: VsCode配置
 createTime: 2026/04/04 23:28:20
-permalink: /开发环境/owked0r8/
+permalink: /notes/开发环境/VsCode配置/
 ---
 ## 官方下载地址
 

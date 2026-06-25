@@ -1,7 +1,7 @@
 ---
 title: javascript
 createTime: 2025/04/28 20:22:13
-permalink: /代码库/csk89h1b/
+permalink: /notes/代码库/javascript/
 ---
 ## JavaScript
 

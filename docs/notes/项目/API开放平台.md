@@ -1,7 +1,7 @@
 ---
 title: API开放平台
 createTime: 2026/04/04 23:28:20
-permalink: /项目/y9we30r9/
+permalink: /notes/项目/api-开放平台/
 ---
 ## 项目学习地址
 笔记

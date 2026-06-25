@@ -1,7 +1,7 @@
 ---
 title: MyBatis
 createTime: 2026/04/04 23:28:20
-permalink: /面试/utgs4s66/
+permalink: /notes/面试/my-batis/
 ---
 [TOC]
 

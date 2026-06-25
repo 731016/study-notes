@@ -1,7 +1,7 @@
 ---
 title: JavaAPI
 createTime: 2026/04/04 23:28:20
-permalink: /JavaSE/uvlho7t4/
+permalink: /notes/java-se/java-api/
 ---
 # JavaAPI
 

@@ -1,7 +1,7 @@
 ---
 title: springBoot
 createTime: 2026/04/04 23:28:20
-permalink: /SSM框架/jft9ljtu/
+permalink: /notes/ssm-框架/spring-boot/
 ---
 ## 基本的springboot项目
 

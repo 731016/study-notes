@@ -1,7 +1,7 @@
 ---
 title: Git
 createTime: 2026/04/04 23:28:20
-permalink: /版本控制/96cf5hze/
+permalink: /notes/版本控制/git/
 ---
 ## git常见问题
 [初次使用git配置以及git如何使用ssh密钥（将ssh密钥添加到github）](https://www.cnblogs.com/superGG1990/p/6844952.html)

@@ -1,7 +1,7 @@
 ---
 title: link
 createTime: 2026/04/04 23:28:20
-permalink: /资源导航/ubx9815i/
+permalink: /notes/资源导航/link/
 ---
 ### 搜索工具
 <div>

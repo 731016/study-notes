@@ -1,7 +1,7 @@
 ---
 title: Java虚拟机
 createTime: 2026/04/04 23:28:20
-permalink: /面试/3b88v7vq/
+permalink: /notes/面试/java-虚拟机/
 ---
 [TOC]
 

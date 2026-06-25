@@ -1,7 +1,7 @@
 ---
 title: Zookeeper
 createTime: 2026/04/04 23:28:20
-permalink: /面试/o56xu3bv/
+permalink: /notes/面试/zookeeper/
 ---
 [TOC]
 

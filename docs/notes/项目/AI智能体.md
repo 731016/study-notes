@@ -1,7 +1,7 @@
 ---
 title: AI智能体
 createTime: 2026/04/04 23:19:52
-permalink: /项目/qfzqzcwj/
+permalink: /notes/项目/ai-智能体/
 ---
 ## 项目地址
 

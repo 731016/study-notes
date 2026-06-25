@@ -1,7 +1,7 @@
 ---
 title: springClondAlibaba
 createTime: 2026/04/04 23:28:20
-permalink: /SSM框架/5ojnr8mj/
+permalink: /notes/ssm-框架/spring-clond-alibaba/
 ---
 ​        
 

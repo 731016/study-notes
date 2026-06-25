@@ -1,7 +1,7 @@
 ---
-title: java工具类
+title: Java工具类
 createTime: 2026/04/04 23:19:53
-permalink: /知识库/1dfoorsv/
+permalink: /notes/知识库/Java工具类/
 ---
 #### JSON格式处理
 

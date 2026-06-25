@@ -1,7 +1,7 @@
 ---
 title: rabbitMQ
 createTime: 2026/04/04 23:28:20
-permalink: /消息队列/ahraqdp1/
+permalink: /notes/消息队列/rabbit-mq/
 ---
 ## OTP下载
 

@@ -1,7 +1,7 @@
 ---
 title: ubuntu问题解答
 createTime: 2026/04/04 23:28:20
-permalink: /linux/ujtv843r/
+permalink: /notes/linux/ubuntu-问题解答/
 ---
 # Ubuntu问题解答
 

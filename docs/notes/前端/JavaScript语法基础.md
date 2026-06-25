@@ -1,7 +1,7 @@
 ---
 title: JavaScript语法基础
 createTime: 2026/04/04 23:28:20
-permalink: /前端/pykg1o82/
+permalink: /notes/前端/java-script-语法基础/
 ---
 ## 认识javascript
 

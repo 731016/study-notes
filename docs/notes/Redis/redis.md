@@ -1,7 +1,7 @@
 ---
 title: redis
 createTime: 2026/04/04 23:28:20
-permalink: /Redis/kvf9lhyh/
+permalink: /notes/redis/redis/
 ---
 ## 下载地址
 

@@ -1,7 +1,7 @@
 ---
 title: 慢SQL优化
 createTime: 2026/04/04 23:19:52
-permalink: /生产环境/m1abz9ju/
+permalink: /notes/生产环境/慢sql优化/
 ---
 ## 慢SQL 优化
 

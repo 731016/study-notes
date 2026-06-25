@@ -1,7 +1,7 @@
 ---
 title: Jquery
 createTime: 2026/04/04 23:28:20
-permalink: /jQuery/bgufic79/
+permalink: /notes/j-query/jquery/
 ---
 ## JavaScript库
 

@@ -1,7 +1,7 @@
 ---
 title: springclond
 createTime: 2026/04/04 23:28:20
-permalink: /SSM框架/wz98wdtf/
+permalink: /notes/ssm-框架/springclond/
 ---
 ## 基础实例
 

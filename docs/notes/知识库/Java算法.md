@@ -1,7 +1,7 @@
 ---
 title: Java算法
 createTime: 2026/04/04 23:19:53
-permalink: /知识库/4rzdkuum/
+permalink: /notes/知识库/java-算法/
 ---
 ## Java
 

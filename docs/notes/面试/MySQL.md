@@ -1,7 +1,7 @@
 ---
 title: MySQL
 createTime: 2026/04/04 23:28:20
-permalink: /面试/7g2ambg4/
+permalink: /notes/面试/my-sql/
 ---
 [TOC]
 

@@ -1,7 +1,7 @@
 ---
 title: Java集合
 createTime: 2026/04/04 23:28:20
-permalink: /面试/hhy2nb54/
+permalink: /notes/面试/java-集合/
 ---
 [TOC]
 

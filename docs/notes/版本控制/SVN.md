@@ -1,7 +1,7 @@
 ---
 title: SVN
 createTime: 2026/04/04 23:28:20
-permalink: /版本控制/xym1ijfz/
+permalink: /notes/版本控制/svn/
 ---
 # 1. 安装
 

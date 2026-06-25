@@ -1,7 +1,7 @@
 ---
-title: vue3
+title: Vue3
 createTime: 2026/04/04 23:28:20
-permalink: /前端/53xknuzl/
+permalink: /notes/前端/Vue3/
 ---
 # Vue3
 

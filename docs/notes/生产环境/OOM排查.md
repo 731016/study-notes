@@ -1,7 +1,7 @@
 ---
 title: OOM排查
 createTime: 2026/04/04 23:28:20
-permalink: /生产环境/3apki08u/
+permalink: /notes/生产环境/oom-排查/
 ---
 [怎么分析 JVM 当前的内存占用情况？OOM 后怎么分析？ - 后端场景面试题 - 面试鸭 - 程序员求职面试刷题神器](https://www.mianshiya.com/bank/1795650132375805954/question/1818990174270726145#heading-0)
 

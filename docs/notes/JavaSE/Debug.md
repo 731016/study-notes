@@ -1,7 +1,7 @@
 ---
 title: Debug
 createTime: 2026/04/04 23:28:20
-permalink: /JavaSE/xiiyjjuc/
+permalink: /notes/java-se/debug/
 ---
 # Debug
 
