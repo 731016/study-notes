@@ -449,7 +449,7 @@ export const notes = [
                 ],
             },
             /* ========== 资源导航 ========== */
-            { text: '资源链接汇总', icon: 'material-icon-theme:folder-resource', link: '资源导航/link' },
+            { text: '资源链接汇总', icon: 'material-icon-theme:folder-resource', link: 'notes/资源导航/links', },
         ],
         sidebarCollapsed: true, // 是否默认折叠侧边栏
     }
