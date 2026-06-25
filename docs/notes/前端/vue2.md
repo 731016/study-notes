@@ -1,7 +1,7 @@
 ---
-title: vue2
+title: Vue2
 createTime: 2026/04/04 23:28:20
-permalink: /前端/bwgz8wkr/
+permalink: /notes/前端/Vue2/
 ---
 
 

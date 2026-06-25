@@ -1,7 +1,7 @@
 ---
 title: CSS
 createTime: 2026/04/04 23:28:20
-permalink: /前端/51byp7qo/
+permalink: /notes/前端/css/
 ---
 ## CSS概念
 

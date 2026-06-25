@@ -1,7 +1,7 @@
 ---
 title: Java基础
 createTime: 2026/04/04 23:28:20
-permalink: /JavaSE/fo0c8lbw/
+permalink: /notes/java-se/java-基础/
 ---
 # Java基础
 

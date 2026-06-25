@@ -1,7 +1,7 @@
 ---
 title: RPC框架
 createTime: 2026/04/04 23:28:20
-permalink: /项目/nnxof0za/
+permalink: /notes/项目/rpc-框架/
 ---
 ## 1、RPC框架实现思路
 

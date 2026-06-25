@@ -1,7 +1,7 @@
 ---
 title: network
 createTime: 2026/04/04 23:28:20
-permalink: /计算机网络/4osy5hvh/
+permalink: /notes/计算机网络/network/
 ---
 期末考试习题复习
 

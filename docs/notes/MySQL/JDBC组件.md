@@ -1,7 +1,7 @@
 ---
 title: JDBC组件
 createTime: 2026/04/04 23:28:20
-permalink: /MySQL/irz3jw39/
+permalink: /notes/my-sql/jdbc-组件/
 ---
 # 驱动
 

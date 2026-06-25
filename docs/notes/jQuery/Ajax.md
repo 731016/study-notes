@@ -1,7 +1,7 @@
 ---
 title: Ajax
 createTime: 2026/04/04 23:28:20
-permalink: /jQuery/hqb4vtvr/
+permalink: /notes/j-query/ajax/
 ---
 # Ajax
 

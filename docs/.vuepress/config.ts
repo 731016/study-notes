@@ -81,7 +81,7 @@ export default defineUserConfig({
          * @see https://theme-plume.vuejs.press/config/basic/#autofrontmatter
          */
         autoFrontmatter: {
-            permalink: true,  // 是否生成永久链接
+            permalink: 'filepath',  // 根据文件路径生成永久链接
             createTime: true, // 是否生成创建时间
             title: true,      // 是否生成标题
         },

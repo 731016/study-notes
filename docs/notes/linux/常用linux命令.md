@@ -1,7 +1,7 @@
 ---
 title: 常用linux命令
 createTime: 2026/04/04 23:28:20
-permalink: /linux/i10c4sb0/
+permalink: /notes/linux/常用linux命令/
 ---
 ```shell
 #上一条命令是否执行成功

@@ -1,7 +1,7 @@
 ---
 title: mybatis
 createTime: 2026/04/04 23:28:20
-permalink: /SSM框架/g93r33rd/
+permalink: /notes/ssm-框架/mybatis/
 ---
 #        MyBatis
 

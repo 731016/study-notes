@@ -1,7 +1,7 @@
 ---
 title: c
 createTime: 2026/04/04 23:28:20
-permalink: /c语言/1q768731/
+permalink: /notes/c-语言/c/
 ---
 ## c/c++开发环境
 

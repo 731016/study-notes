@@ -1,7 +1,7 @@
 ---
 title: IDEA配置
 createTime: 2026/04/04 23:28:20
-permalink: /开发环境/uja8iwbz/
+permalink: /notes/开发环境/idea-配置/
 ---
 # IDEA配置
 

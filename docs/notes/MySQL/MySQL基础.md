@@ -1,7 +1,7 @@
 ---
 title: MySQL基础
 createTime: 2026/04/04 23:28:20
-permalink: /MySQL/1x408u80/
+permalink: /notes/my-sql/my-sql-基础/
 ---
 ﻿## 本单元目标
 

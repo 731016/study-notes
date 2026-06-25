@@ -1,7 +1,7 @@
 ---
 title: cpu占用过高
 createTime: 2026/04/04 23:28:20
-permalink: /生产环境/vo692j8x/
+permalink: /notes/生产环境/cpu-占用过高/
 ---
 1.找到占用CPU最高的进程
 

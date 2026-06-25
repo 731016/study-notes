@@ -1,7 +1,7 @@
 ---
 title: SpringBoot
 createTime: 2026/04/04 23:28:20
-permalink: /面试/vf5zg4gl/
+permalink: /notes/面试/spring-boot/
 ---
 [TOC]
 

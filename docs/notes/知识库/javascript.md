@@ -1,7 +1,7 @@
 ---
-title: javascript
+title: JavaScript
 createTime: 2026/04/04 23:19:53
-permalink: /知识库/nj0uicob/
+permalink: /notes/知识库/JavaScript/
 ---
 ## JavaScript
 

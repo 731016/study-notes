@@ -1,7 +1,7 @@
 ---
 title: AI提示词
 createTime: 2026/04/04 23:19:53
-permalink: /知识库/68i4hs34/
+permalink: /notes/知识库/ai-提示词/
 ---
 ## 提示词生成
 [https://www.promptcowboy.ai/](https://www.promptcowboy.ai/)

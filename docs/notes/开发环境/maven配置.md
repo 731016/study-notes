@@ -1,7 +1,7 @@
 ---
-title: maven配置
+title: Maven配置
 createTime: 2026/04/04 23:28:20
-permalink: /开发环境/qaykykdk/
+permalink: /notes/开发环境/Maven配置/
 ---
 # MAVEN配置
 

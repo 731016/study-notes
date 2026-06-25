@@ -1,7 +1,7 @@
 ---
 title: Java算法
 createTime: 2025/04/28 20:22:13
-permalink: /代码库/qwz8w908/
+permalink: /notes/代码库/java-算法/
 ---
 ## Java
 

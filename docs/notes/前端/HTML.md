@@ -1,7 +1,7 @@
 ---
 title: HTML
 createTime: 2026/04/04 23:28:20
-permalink: /前端/qqzcn4t5/
+permalink: /notes/前端/html/
 ---
 文档
 

@@ -1,7 +1,7 @@
 ---
 title: kafka
 createTime: 2026/04/04 23:28:20
-permalink: /消息队列/qb3e4aaz/
+permalink: /notes/消息队列/kafka/
 ---
 ## maven引入
 

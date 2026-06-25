@@ -1,7 +1,7 @@
 ---
 title: SqlServer
 createTime: 2026/04/04 23:28:20
-permalink: /SQLServer/228tl6cg/
+permalink: /notes/sql-server/sql-server/
 ---
 ## 第一章 数据库基础
 

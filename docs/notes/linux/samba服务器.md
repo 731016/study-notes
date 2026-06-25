@@ -1,7 +1,7 @@
 ---
 title: samba服务器
 createTime: 2026/04/04 23:28:20
-permalink: /linux/rfgkwfwt/
+permalink: /notes/linux/samba-服务器/
 ---
 # samba服务账户清除
 

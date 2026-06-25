@@ -1,7 +1,7 @@
 ---
 title: Tomcat配置
 createTime: 2026/04/04 23:28:20
-permalink: /开发环境/vubf3kk5/
+permalink: /notes/开发环境/tomcat-配置/
 ---
 **下载地址**
 

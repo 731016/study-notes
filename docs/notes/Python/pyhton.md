@@ -1,7 +1,7 @@
 ---
 title: pyhton
 createTime: 2026/04/04 23:28:20
-permalink: /Python/i319nekd/
+permalink: /notes/python/pyhton/
 ---
 ## 环境搭建
 

@@ -1,7 +1,7 @@
 ---
 title: netty
 createTime: 2026/04/04 23:28:20
-permalink: /面试/zvcrfd36/
+permalink: /notes/面试/netty/
 ---
 ## 几种I/O模型
 

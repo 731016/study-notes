@@ -1,7 +1,7 @@
 ---
 title: linux安装
 createTime: 2026/04/04 23:28:20
-permalink: /linux/vs3oxuxf/
+permalink: /notes/linux/linux-安装/
 ---
 # linux安装
 

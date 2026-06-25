@@ -1,7 +1,7 @@
 ---
 title: SpringCloud
 createTime: 2026/04/04 23:28:20
-permalink: /面试/t3sk9j75/
+permalink: /notes/面试/spring-cloud/
 ---
 
 

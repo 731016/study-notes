@@ -1,7 +1,7 @@
 ---
 title: cmd编码-编码解决
 createTime: 2026/04/04 23:28:20
-permalink: /开发环境/nnvipof4/
+permalink: /notes/开发环境/cmd-编码-编码解决/
 ---
 ## 注册表修改
 

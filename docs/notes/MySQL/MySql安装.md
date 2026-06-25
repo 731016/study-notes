@@ -1,7 +1,7 @@
 ---
 title: MySql安装
 createTime: 2026/04/04 23:28:20
-permalink: /MySQL/yeywvh3i/
+permalink: /notes/my-sql/my-sql-安装/
 ---
 # MySQL安装
 

@@ -1,7 +1,7 @@
 ---
 title: Java并发
 createTime: 2026/04/04 23:28:20
-permalink: /面试/lmcf2ay7/
+permalink: /notes/面试/java-并发/
 ---
 [TOC]
 

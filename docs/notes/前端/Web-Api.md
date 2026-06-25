@@ -1,7 +1,7 @@
 ---
 title: Web-Api
 createTime: 2026/04/04 23:28:20
-permalink: /前端/0bscxywt/
+permalink: /notes/前端/web-api/
 ---
 ## Web API介绍
 

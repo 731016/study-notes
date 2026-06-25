@@ -1,7 +1,7 @@
 ---
 title: jsp_servlet
 createTime: 2026/04/04 23:28:20
-permalink: /JavaWeb/oag3l4qn/
+permalink: /notes/java-web/jsp-servlet/
 ---
 # JSP + servlet
 
