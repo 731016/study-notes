@@ -106,7 +106,7 @@ export const notes = [
                         text: '命令行工具',
                         collapsed: true,
                         items: [
-                            '开发环境/CMD编码-编码解决',
+                            '开发环境/CMD编码',
                         ],
                     },
                 ],
@@ -449,7 +449,7 @@ export const notes = [
                 ],
             },
             /* ========== 资源导航 ========== */
-            { text: '资源链接汇总', icon: 'material-icon-theme:folder-resource', link: 'notes/资源导航/links', },
+            { text: '资源链接汇总', icon: 'material-icon-theme:folder-resource', link: '资源导航/link', },
         ],
         sidebarCollapsed: true, // 是否默认折叠侧边栏
     }

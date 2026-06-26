@@ -121,6 +121,10 @@ export const navbar = defineNavbarConfig([
                         link: 'https://www.trae.cn/',
                     },
                     {
+                        text: 'Qoder',
+                        link: 'https://qoder.com/',
+                    },
+                    {
                         text: 'DeepSeek - 探索未至之境',
                         link: 'https://chat.deepseek.com/',
                     },

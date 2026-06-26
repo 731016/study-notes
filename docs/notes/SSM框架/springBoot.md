@@ -490,7 +490,7 @@ public class DemoScheduled {
 
 ## Quartz
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211129114126034.png" alt="image-20211129114126034" style="zoom:67%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png" alt="image-20211129114126034" style="zoom:67%;" />
 
 ### 依赖
 
@@ -551,7 +551,7 @@ public class LoginIntercepter implements HandlerInterceptor {
 
 ### config
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211129160821148.png" alt="image-20211129160821148" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png" alt="image-20211129160821148" style="zoom:80%;" />
 
 ```java
 @Configuration
