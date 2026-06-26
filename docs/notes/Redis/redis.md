@@ -1,7 +1,7 @@
 ---
-title: redis
+title: Redis
 createTime: 2026/04/04 23:28:20
-permalink: /notes/redis/redis/
+permalink: /notes/Redis/Redis/
 ---
 ## 下载地址
 

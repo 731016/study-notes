@@ -1,7 +1,7 @@
 ---
-title: network
+title: NetWork
 createTime: 2026/04/04 23:28:20
-permalink: /notes/计算机网络/network/
+permalink: /notes/计算机网络/NetWork/
 ---
 期末考试习题复习
 
