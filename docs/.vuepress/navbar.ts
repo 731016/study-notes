@@ -96,7 +96,7 @@ export const navbar = defineNavbarConfig([
         items: [
             {
                 text: '日历订阅',
-                link: 'https://gist.github.com/731016',
+                link: 'https://xiaofei.site/calendar/',
                 icon: 'mdi-light:link-variant',
             },
         ]
