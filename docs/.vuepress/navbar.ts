@@ -95,11 +95,6 @@ export const navbar = defineNavbarConfig([
         icon: 'mdi-light:link-variant',
         items: [
             {
-                text: '快速开发平台',
-                link: 'http://43.136.170.4:8888/',
-                icon: 'mdi-light:link-variant',
-            },
-            {
                 text: '日历订阅',
                 link: 'https://gist.github.com/731016',
                 icon: 'mdi-light:link-variant',
