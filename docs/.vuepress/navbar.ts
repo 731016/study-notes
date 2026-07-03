@@ -75,6 +75,11 @@ export const navbar = defineNavbarConfig([
                         link: 'http://43.136.170.4:10086/login',
                         icon: 'ic:baseline-post-add',
                     },
+                    {
+                        text: '微信小程序',
+                        link: 'https://mp.weixin.qq.com/wxamp/wacodepage/getcodepage?token=843327991&lang=zh_CN',
+                    },
+                    
                 ],
             },
             {
