@@ -1,7 +1,7 @@
 ---
-title: SpringBoot集成PageHelper分页配置指南
+title: SpringBoot集成PageHelper分页指南
 createTime: 2026/04/04 23:19:53
-permalink: /notes/知识库/SpringBoot集成PageHelper分页配置指南/
+permalink: /notes/知识库/SpringBoot集成PageHelper分页指南/
 ---
 # Spring Boot 集成 PageHelper 分页配置指南
 
