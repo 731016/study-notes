@@ -45,7 +45,7 @@ export const notes = [
                         text: '业务解决方案',
                         collapsed: true,
                         items: [
-                            '知识库/常用业务解决方案',
+                            '知识库/常用技术解决方案',
                             '知识库/常见问题解决方案',
                             '知识库/制造业业务知识',
                         ],
@@ -158,7 +158,7 @@ export const notes = [
                             'SSM框架/springMVC',
                             'SSM框架/springBoot',
                             'SSM框架/springclond',
-                            'SSM框架/springClond Alibaba',
+                            'SSM框架/springClondAlibaba',
                         ],
                     },
                 ],
