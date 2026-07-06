@@ -1,3 +1,8 @@
+---
+title: SpringBoot集成PageHelper分页配置指南
+createTime: 2026/04/04 23:19:53
+permalink: /notes/知识库/SpringBoot集成PageHelper分页配置指南/
+---
 # Spring Boot 集成 PageHelper 分页配置指南
 
 > 基于 PageHelper 5.x/6.x，涵盖基本配置、多数据源方言适配、常见问题排查。
