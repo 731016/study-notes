@@ -3,6 +3,7 @@ import {defineNavbarConfig} from 'vuepress-theme-plume'
 export const navbar = defineNavbarConfig([
     {text: '首页', link: '/', icon: 'material-symbols:home-outline'},
     {text: '博客', link: '/blog/', icon: 'material-symbols:article-outline'},
+    {text: '案例', link: '/article/博客/', icon: 'map:wind-surfing'},
     {
         text: '刷题网站',
         icon: 'flat-color-icons:comments',
@@ -145,10 +146,10 @@ export const navbar = defineNavbarConfig([
                         text: '通义',
                         link: 'https://tongyi.aliyun.com/qianwen/',
                     },
-                    {
-                        text: 'AI 提示词',
-                        link: '/article/68i4hs34/',
-                    }
+                    // {
+                    //     text: 'AI 提示词',
+                    //     link: '/article/68i4hs34/',
+                    // }
                 ],
             }
         ],

@@ -1,4 +1,6 @@
 import { defineThemeConfig } from 'vuepress-theme-plume'
+import { viteBundler } from '@vuepress/bundler-vite'
+import path from 'node:path'
 import { navbar } from './navbar'
 import { notes } from './notes'
 
@@ -52,12 +54,12 @@ export default defineThemeConfig({
      * 公告板
      * @see https://theme-plume.vuejs.press/guide/features/bulletin/
      */
-    // bulletin: {
-    //   layout: 'top-right',
-    //   contentType: 'markdown',
-    //   title: '公告板标题',
-    //   content: '公告板内容',
-    // },
+    // bundler: viteBundler(),
+    bulletin: {
+        layout: 'top-right',
+        title: '🎉 公告 🎉',
+        contentFile: path.join(__dirname, '_bulletin.md'),
+    },
 
     /* 过渡动画 @see https://theme-plume.vuejs.press/config/basic/#transition */
     transition: {

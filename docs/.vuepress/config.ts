@@ -1,6 +1,7 @@
 import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
+import path from 'node:path'
 
 export default defineUserConfig({
     base: '/',
@@ -12,6 +13,12 @@ export default defineUserConfig({
         // 配置站点图标
         ['link', { rel: 'icon', type: 'image/png', href: '/plume.svg' }],
     ],
+
+    alias: {
+        '~/theme': path.resolve(__dirname, './theme'),
+        '~/components': path.resolve(__dirname, './theme/components'),
+        // '~/composables': path.resolve(__dirname, './theme/composables'),
+    },
 
     bundler: viteBundler({
         viteOptions: {
