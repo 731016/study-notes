@@ -2,7 +2,7 @@ import {defineNavbarConfig} from 'vuepress-theme-plume'
 
 export const navbar = defineNavbarConfig([
     {text: '首页', link: '/', icon: 'material-symbols:home-outline'},
-    {text: '博客', link: '/preview/', icon: 'material-symbols:article-outline'},
+    {text: '博客', link: '/blog/', icon: 'material-symbols:article-outline'},
     {
         text: '刷题网站',
         icon: 'flat-color-icons:comments',
