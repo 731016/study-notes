@@ -154,5 +154,6 @@ export const navbar = defineNavbarConfig([
             }
         ],
     },
+    {text: '相册', link: '/blog/日常/相册/', icon: 'tabler:photo'},
     {text: '关于我', link: 'https://731016.github.io/', icon: 'fluent-color:person-48'},
 ])
