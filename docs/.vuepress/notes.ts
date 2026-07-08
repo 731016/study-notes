@@ -452,5 +452,7 @@ export const notes = [
             { text: '资源链接汇总', icon: 'material-icon-theme:folder-resource', link: '资源导航/link', },
         ],
         sidebarCollapsed: true, // 是否默认折叠侧边栏
-    }
+    },
+    // 博客
+  { type: 'post', dir: '/blog/', link: '/blog/', title: 'Blog' },
 ]
