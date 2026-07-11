@@ -314,7 +314,8 @@ private SqlSession sqlSession = null;
 
 ### lib问题
 
-<img src="D:\xunleidownload\imgSave-master\imgSave-master\note\image-20211124233325091.png" alt="image-20211124233325091" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png" alt="image-20211129160821148" style="zoom:80%;" />
+
 
 **解决**
 

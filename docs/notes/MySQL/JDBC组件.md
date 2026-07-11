@@ -19,11 +19,13 @@ permalink: /notes/my-sql/jdbc-组件/
 
 ## 创建项目
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124232407819.png" alt="image-20211124232407819" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png" alt="image-20211129160821148" style="zoom:80%;" />
+
 
 ## 添加目录，更改为源目录
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124232421304.png" alt="image-20211124232421304" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png" alt="image-20211129160821148" style="zoom:80%;" />
+
 
 ## 加入jar包
 

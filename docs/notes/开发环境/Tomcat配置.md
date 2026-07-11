@@ -19,7 +19,8 @@ permalink: /notes/开发环境/tomcat-配置/
 
 ## 部署项目
 
-<img src="D:\xunleidownload\imgSave-master\imgSave-master\note\image-20211124223446489.png" alt="image-20211124223446489" style="zoom:67%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png" alt="image-20211129160821148" style="zoom:67%;" />
+
 
 ## 控制台乱码
 

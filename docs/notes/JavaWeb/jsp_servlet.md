@@ -398,7 +398,8 @@ select * from d_student;
 
 **jar包**
 
-![image-20211124231701264](C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124231701264.png)
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png" alt="image-20211129160821148" style="zoom:80%;" />
+
 
 - **实体类**
 
@@ -1523,7 +1524,8 @@ standard-1.1.2.jar
 
 https://mvnrepository.com/artifact/taglibs/standard/1.1.2
 
-<img src="C:\Users\折腾的小飞\AppData\Roaming\Typora\typora-user-images\image-20211124232145600.png" alt="image-20211124232145600" style="zoom:80%;" />
+<img src="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png" alt="image-20211129160821148" style="zoom:80%;" />
+
 
 **遍历<c:forEach>**集合
 
