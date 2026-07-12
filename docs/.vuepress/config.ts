@@ -56,7 +56,10 @@ export default defineUserConfig({
         editLinkPattern: ':repo/blob/:branch/:path',
 
         plugins: {
-            git: true
+            git: true,
+            markdownPower: {
+                imageSize: true, // 可选 'local' | 'all'
+            },
         },
 
 
