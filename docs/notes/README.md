@@ -17,7 +17,7 @@ permalink: /notes/
 ## 目录 :pencil:
 ### 知识库 :computer:
   - Java 工具集
-    - [Java常用配置文件模板](知识库/常用配置文件.md)
+    - [Java常用配置文件模板](./知识库/常用配置文件.md)
     - [Java工具类](知识库/Java工具类.md)
     - [Java基础算法](知识库/Java算法.md)
   - JavaScript 工具集
@@ -106,7 +106,7 @@ permalink: /notes/
     - [Kafka](消息队列/kafka.md)
     - [RocketMQ](消息队列/RocketMQ.md)
   - 搜索引擎
-    - [ElasticSearch](https://xiaofei.site/#/%E9%A1%B9%E7%9B%AE/%E8%81%9A%E5%90%88%E6%90%9C%E7%B4%A2%E5%B9%B3%E5%8F%B0?id=_11%e6%90%9c%e7%b4%a2%e4%bc%98%e5%8c%96-es)
+    - [ElasticSearch](面试/ElasticSearch.md)
 ### 计算机基础
   - 计算机网络
     - [计算机网络基础](计算机网络/NetWork.md)

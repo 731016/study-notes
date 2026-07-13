@@ -1,7 +1,7 @@
 ---
 title: ElasticSearch
 createTime: 2026/04/04 23:28:20
-permalink: /notes/面试/elastic-search/
+permalink: /notes/面试/ElasticSearch/
 ---
 [TOC]
 
