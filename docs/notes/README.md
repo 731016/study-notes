@@ -18,10 +18,10 @@ permalink: /notes/
 ### 知识库 :computer:
   - Java 工具集
     - [Java常用配置文件模板](知识库/常用配置文件.md)
-    - [Java工具类](知识库/java工具类.md)
+    - [Java工具类](知识库/Java工具类.md)
     - [Java基础算法](知识库/Java算法.md)
   - JavaScript 工具集
-    - [JavaScript基础算法](知识库/javascript.md)
+    - [JavaScript基础算法](知识库/JavaScript.md)
   - 业务解决方案
     - [常用业务解决方案](知识库/常用业务解决方案.md)
     - [常见问题解决方案](知识库/常见问题解决方案.md)
@@ -38,14 +38,14 @@ permalink: /notes/
     - [Git](版本控制/Git.md)
   - IDE 与编辑器
     - [idea 配置](开发环境/IDEA配置.md)
-    - [vscode 配置](开发环境/vscode.md)
+    - [vscode 配置](开发环境/VsCode配置.md)
   - 构建与部署
-    - [maven 配置指南](开发环境/maven配置.md)
+    - [maven 配置指南](开发环境/Maven配置.md)
     - [tomcat 服务器配置](开发环境/Tomcat配置.md)
     - [单元测试实践](开发环境/单元测试.md)
     - [压力测试工具](开发环境/压力测试.md)
   - 命令行工具
-    - [cmd 编码问题解决](开发环境/cmd编码-编码解决.md.md)
+    - [cmd 编码问题解决](开发环境/CMD编码.md)
 ### 编程语言基础
   - Java
     - [Java 基础语法](JavaSE/Java基础.md)
@@ -75,7 +75,7 @@ permalink: /notes/
     - [springMVC](SSM框架/springMVC.md)
     - [springBoot](SSM框架/springBoot.md)
     - [springClond](SSM框架/springclond.md)
-    - [springClond Alibaba](SSM框架/springClond%20Alibaba.md)
+    - [springClond Alibaba](SSM框架/springClondAlibaba.md)
 ### 前端
   - 前端基础
     - [HTML基础](前端/HTML.md)
@@ -84,8 +84,8 @@ permalink: /notes/
     - [Web API与DOM操作](前端/Web-Api.md)
     - [移动布局基础](前端/移动布局基础.md)
   - 前端框架
-    - [Vue2](前端/vue2.md)
-    - [Vue3](前端/vue3.md)
+    - [Vue2](前端/Vue2.md)
+    - [Vue3](前端/Vue3.md)
     - [JQuery 基础](jQuery/Jquery.md)
     - [jQuery-Ajax](jQuery/Ajax.md)
   - 前后端交互
@@ -100,7 +100,7 @@ permalink: /notes/
     - [SQLServer基础](SQLServer/SqlServer.md)
 ### 中间件
   - 缓存中间件
-    - [Redis核心指南](Redis/redis.md)
+    - [Redis核心指南](Redis/Redis.md)
   - 消息队列 MQ
     - [RabbitMQ](消息队列/rabbitMQ.md)
     - [Kafka](消息队列/kafka.md)
@@ -109,7 +109,7 @@ permalink: /notes/
     - [ElasticSearch](https://xiaofei.site/#/%E9%A1%B9%E7%9B%AE/%E8%81%9A%E5%90%88%E6%90%9C%E7%B4%A2%E5%B9%B3%E5%8F%B0?id=_11%e6%90%9c%e7%b4%a2%e4%bc%98%e5%8c%96-es)
 ### 计算机基础
   - 计算机网络
-    - [计算机网络基础](计算机网络/network.md)
+    - [计算机网络基础](计算机网络/NetWork.md)
   - 操作系统
     - [Linux 常用命令](linux/常用linux命令.md)
     - [Linux 安装](linux/linux安装.md)
