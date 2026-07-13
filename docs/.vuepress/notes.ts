@@ -246,7 +246,7 @@ export const notes = [
                         text: '搜索引擎',
                         collapsed: true,
                         items: [
-                            { text: 'ElasticSearch', link: 'https://xiaofei.site/#/%E9%A1%B9%E7%9B%AE/%E8%81%9A%E5%90%88%E6%90%9C%E7%B4%A2%E5%B9%B3%E5%8F%B0?id=_11%E6%90%9C%E7%B4%A2%E4%BC%98%E5%8C%96-es' },
+                            { text: 'ElasticSearch', link: '面试/ElasticSearch/' },
                         ],
                     },
                 ],
