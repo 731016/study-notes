@@ -5,6 +5,7 @@ docs/.vuepress/.temp
 docs/.vuepress/dist
 
 docs/blog/4.日常
+docs/.vuepress/public/images/photo
 
 .DS_Store
 *.log
