@@ -59,6 +59,7 @@ export default defineThemeConfig({
         layout: 'top-right',
         title: '🎉 公告 🎉',
         contentFile: path.join(__dirname, '_bulletin.md'),
+        lifetime: 'session',
     },
 
     /* 过渡动画 @see https://theme-plume.vuejs.press/config/basic/#transition */
