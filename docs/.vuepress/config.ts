@@ -97,19 +97,19 @@ export default defineUserConfig({
         },
 
         /* 本地搜索, 默认启用 */
-        search: { provider: 'local' },
+        // search: { provider: 'local' },
 
         /**
          * Algolia DocSearch
          * 启用此搜索需要将 本地搜索 search 设置为 false
          * @see https://theme-plume.vuejs.press/config/plugins/search/#algolia-docsearch
          */
-        // search: {
-        //   provider: 'algolia',
-        //   appId: '',
-        //   apiKey: '',
-        //   indexName: '',
-        // },
+        search: {
+            provider: 'algolia',
+            appId: 'GPVYNMFWYQ',
+            apiKey: '2db5ec01a08f8659ded603130d081cd2',
+            indexName: 'xiaofei.site',
+        },
 
         /**
          * Shiki 代码高亮
