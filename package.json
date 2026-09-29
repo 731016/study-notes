@@ -13,6 +13,7 @@
     "docs:dev-clean": "vuepress dev docs --clean-cache --clean-temp --port 10082 --host 0.0.0.0",
     "docs:build": "vuepress build docs --clean-cache --clean-temp",
     "docs:preview": "http-server docs/.vuepress/dist --port 10082 --host 0.0.0.0",
+    "docs:build-preview": "vuepress build docs --clean-cache --clean-temp && http-server docs/.vuepress/dist --port 10082 --host 0.0.0.0",
     "vp-update": "npx vp-update"
   },
   "devDependencies": {

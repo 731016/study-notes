@@ -501,7 +501,7 @@ p {
         <td>line-through</td>
         <td>定义穿过文本下的一条线。（不常用）</td>
     </tr>
-</table></body>
+</table>
 
 ### 文字阴影
 
@@ -523,7 +523,7 @@ opacity属性指定了一个元素的**不透明度**。换言之，opacity属�
 
 `<number>`
 
-<span style="font-family:'Consolas';color:#005282"> [<number>](https://developer.mozilla.org/zh-CN/Web/CSS/number) 是一个0.0到1.0范围内的数字值,这个数值既包含也代表通道的透明度，也就是alpha通道的值。任何一个溢出这个取值区间的值，尽管有效，但会被解析为在取值范围内最靠近它的值。</span>
+<span style="font-family:'Consolas';color:#005282"> [\<number\>](https://developer.mozilla.org/zh-CN/Web/CSS/number) 是一个0.0到1.0范围内的数字值,这个数值既包含也代表通道的透明度，也就是alpha通道的值。任何一个溢出这个取值区间的值，尽管有效，但会被解析为在取值范围内最靠近它的值。</span>
 
 <table style="font-family:'Consolas';" cellspacing="0">
     <tr style="background-color:#92D050;color: #fff">
@@ -542,7 +542,7 @@ opacity属性指定了一个元素的**不透明度**。换言之，opacity属�
         <td>1</td>
         <td>元素完全不透明(即元素后面的背景不可见).</td>
     </tr>
-</table></body>
+</table>
 
 
 
@@ -3173,7 +3173,7 @@ background: -webkit-linear-gradient(起始方向, 颜色1, 颜色2, ...);
 
 起始方向可以是：方位名词 或者 度数，如果省略默认为top
 
-CSS **linear-gradient()** 函数用于创建一个表示两种或多种颜色线性渐变的图片。其结果属于<span style="color:blue">[<gradient>](https://developer.mozilla.org/zh-CN/Web/CSS/gradient)数据类型，是一种特别的[<image>](https://developer.mozilla.org/zh-CN/Web/CSS/image)数据类型。</span>
+CSS **linear-gradient()** 函数用于创建一个表示两种或多种颜色线性渐变的图片。其结果属于<span style="color:blue">[\<gradient\>](https://developer.mozilla.org/zh-CN/Web/CSS/gradient)数据类型，是一种特别的[\<image\>](https://developer.mozilla.org/zh-CN/Web/CSS/image)数据类型。</span>
 
 ```css
 /* 渐变轴为45度，从蓝色渐变到红色 */

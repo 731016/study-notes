@@ -873,7 +873,7 @@ public class HttpServerHandler implements Handler<HttpServerRequest> {
 
 > 不同web服务器的请求处理器实现方式不同
 >
-> Vert.x通过实现Handler<HttpServerRequest>接口来自定义请求处理器
+> Vert.x通过实现 `Handler<HttpServerRequest>` 接口来自定义请求处理器
 >
 > 通过request.bodyHandler异步处理请求
 
