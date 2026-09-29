@@ -660,6 +660,12 @@ permalink: /notes/资源导航/link/
     description="EmojiAll is a multi-language Emoji Dictionary 📖. We provide you emoji copy and paste, emoji pictures, advanced emoji search, emoji leaderboard, emoji sentiment analysis, emoji mini-games, comments and other awesome features 🥰."
     href="https://www.emojiall.com/"
   />
+  <ImageCard
+    image="https://lf-iconpark-cdn-cn.bytetos.com/obj/iconpark-site/bydesign/iconparksite/static/media/logo_with_name.598fc011.svg"
+    title="iconpark图标库"
+    description="iconpark图标库"
+    href="https://iconpark.oceanengine.com/"
+  />
 </CardGrid>
 
 ### 实用工具
@@ -1159,6 +1165,12 @@ permalink: /notes/资源导航/link/
     title="Element UI"
     description="Element，一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库"
     href="https://element.eleme.cn/#/zh-CN"
+  />
+  <ImageCard
+    image="https://www.naiveui.com/assets/naivelogo-BdDVTUmz.svg"
+    title="Naïve UI"
+    description="一个 Vue 3 组件库 比较完整，主题可调，使用 TypeScript，快 有点意思"
+    href="https://www.naiveui.com/zh-CN/light"
   />
 </CardGrid>
 
