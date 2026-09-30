@@ -1,0 +1,1 @@
+throw Error(`Could not resolve "dashjs" imported by "vuepress-plugin-md-power". Is it installed?`);

@@ -1,0 +1,3 @@
+Sitemap: http://xiaofei.site/sitemap.xml
+User-agent:*
+Disallow:

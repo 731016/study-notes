@@ -2,7 +2,7 @@
 
 docs/.vuepress/.cache
 docs/.vuepress/.temp
-docs/.vuepress/dist
+# dist 不再忽略：需要提交构建产物用于服务器部署（服务器只托管静态文件、不构建）
 
 docs/blog/4.日常
 docs/.vuepress/public/images/photo
