@@ -1,0 +1,1 @@
+throw Error(`Could not resolve "pyodide" imported by "vuepress-plugin-md-power". Is it installed?`);
