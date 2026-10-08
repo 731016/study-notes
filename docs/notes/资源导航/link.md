@@ -40,6 +40,159 @@ permalink: /notes/资源导航/link/
   />
 </CardGrid>
 
+### 前端
+<CardGrid cols="3">
+  <ImageCard
+    image="https://nuxtjs.org/nuxt-card.png"
+    title="Nuxt.js"
+    description="Nuxt.js 是一个基于 Vue.js 的轻量级应用框架，可用来创建服务端渲染 (SSR) 应用，也可充当静态站点引擎生成静态站点应用，具有优雅的代码结构分层和热加载等特性。"
+    href="https://www.nuxtjs.cn/"
+  />
+  <ImageCard
+    image="https://fastly.jsdelivr.net/npm/@vant/assets/logo.png"
+    title="Vant3"
+    description="轻量、可靠的移动端 Vue 组件库"
+    href="https://vant-ui.github.io/vant/v3/#/zh-CN"
+  />
+  <ImageCard
+    image="https://vitejs.dev/og-image.png"
+    title="Vite"
+    description="下一代前端工具链"
+    href="https://cn.vitejs.dev/"
+  />
+  <ImageCard
+    image="https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png"
+    title="ant design pro"
+    description="🏆 让中后台开发更简单"
+    href="https://pro.ant.design/zh-CN/"
+  />
+  <ImageCard
+    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    title="Ant Design Vue"
+    description="ant-design-vue 为 Web 应用提供了丰富的基础 UI 组件，我们还将持续探索企业级应用的最佳 UI 实践。"
+    href="https://www.antdv.com/"
+  />
+  <ImageCard
+    image="https://procomponents.ant.design/icon.png"
+    title="procomponents"
+    description="🏆 让中后台开发更简单"
+    href="https://procomponents.ant.design/"
+  />
+  <ImageCard
+    image="https://umijs.org/images/og-home.png"
+    title="UmiJS"
+    description="Umi是可扩展的企业级前端应用框架。Umi 以路由为基础的，同时支持配置式路由和约定式路由，保证路由的功能完备，并以此进行功能扩展。然后配以生命周期完善的插件体系，覆盖从源码到构建产物的每个生命周期，支持各种功能扩展和业务需求。"
+    href="https://umijs.org/"
+  />
+  <ImageCard
+    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    title="TopJUI前端框架"
+    description="TopJUI前端框架，基于最新版EasyUI前端框架构建，纯HTML调用功能组件，不用写JS代码的EasyUI，专注你的后端业务开发！"
+    href="https://ui.misboot.com/?from=360tg"
+  />
+  <ImageCard
+    image="https://lf9-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/37361.png"
+    title="Semi Design"
+    description="由抖音前端与 UED 团队维护，易于定制的现代化设计系统，帮助设计师与开发者打造高质量产品"
+    href="https://semi.design/zh-CN/"
+  />
+  <ImageCard
+    image="https://www.bootcdn.cn/assets/ico/apple-touch-icon-144-precomposed.png?1723336072556"
+    title="BootCDN"
+    description="Bootstrap 中文网开源项目免费 CDN 加速服务 - 我们致力于为 Bootstrap、jQuery、Angular、Vue.js 一样优秀的开源项目提供稳定、快速、免费的 CDN 加速服务。BootCDN 是运营时间最长、用户量最大、最早同时支持 HTTPS（SSL）和 HTTP/2.0 协议的中立免费 CDN 。"
+    href="https://www.bootcdn.cn/"
+  />
+  <ImageCard
+    image="https://www.jq22.com/img/logo.png"
+    title="jQuery插件库"
+    description="本站致力于收集jQuery插件和提供各种jQuery特效的详细使用方法,在线预览，jQuery插件下载及教程"
+    href="https://www.jq22.com/"
+  />
+  <ImageCard
+    image="http://www.htmleaf.com/templets/default/images/ico/apple-touch-icon.png"
+    title="jQuery、html5、css3的插件库"
+    description="jQuery之家致力于搜集和整理各种jQuery插件，jQuery特效，jquery ui，jQuery 教程，JS特效，网页特效，以及各种html5，css3动画和效果，为前端开发者提供最全面的网页开发素材。"
+    href="http://www.htmleaf.com/"
+  />
+  <ImageCard
+    image="http://www.htmleaf.com/templets/default/images/ico/apple-touch-icon.png"
+    title="swiper"
+    description="开源的滑动触摸插件"
+    href="https://www.swiper.com.cn/"
+  />
+  <ImageCard
+    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    title="SuperSlide"
+    description="SuperSlide 致力于解决网站大部分特效展示问题，使网站代码规范整洁，方便维护更新。网站上常用的“焦点图/幻灯片”、“Tab标签切换”、“图片滚动”、“无缝滚动”等等只需要一个SuperSlide即可解决！还可以多个SuperSlide组合创造更多效果"
+    href="http://www.superslide2.com/"
+  />
+  <ImageCard
+    image="https://jquery.com/wp-content/themes/jquery/content/books/jquery-in-action.jpg"
+    title="jQuery"
+    href="https://jquery.com/"
+  />
+  <ImageCard
+    image="https://www.bootcss.com/assets/brand/bootstrap-social.png"
+    title="Bootstrap中文网"
+    description="Bootstrap是Twitter推出的一个用于前端开发的开源工具包。它由Twitter的设计师Mark Otto和Jacob Thornton合作开发，是一个CSS/HTML框架。目前，Bootstrap最新版本为5.0 。Bootstrap中文网致力于为广大国内开发者提供详尽的中文文档、代码实例等，助力开发者掌握并使用这一框架。"
+    href="https://jquery.com/"
+  />
+  <ImageCard
+    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    title="FullPage"
+    description="FullPage.js全屏插件文档及使用方法"
+    href="https://developer.aliyun.com/article/672922"
+  />
+  <ImageCard
+    image="https://img.nodejs.cn/favicon.png"
+    title="Node.js 文档"
+    href="https://nodejs.cn/api/http.html"
+  />
+  <ImageCard
+    image="http://s3.amazonaws.com/info-mongodb-com/_com_assets/cms/kuzt9r42or1fxvlq2-Meta_Generic.png"
+    title="MongoDB"
+    description="在基于文档模型构建的单一智能数据平台中，融合实时运营数据、向量和弹性扩展能力，并可部署在任意云环境或您自己的基础设施上"
+    href="https://www.mongodb.com/"
+  />
+  <ImageCard
+    image="https://yowebapp.github.io/static/favicon.b25e58c4b8.ico"
+    title="Yeoman 中文网"
+    description="yeoman中文网，yeoman中文官网，yeoman是一个前端自动化脚手架工具。"
+    href="https://yowebapp.github.io/"
+  />
+  <ImageCard
+    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    title="VueDraggablePlus"
+    description="vue3拖拽排序组件。"
+    href="https://vue-draggable-plus.pages.dev/en/"
+  />
+  <ImageCard
+    image="https://static-production.npmjs.com/338e4905a2684ca96e08c7780fc68412.png"
+    title="HTTP request"
+    description="npm软件包搜索"
+    href="https://www.npmjs.com/package/request"
+  />
+  <ImageCard
+    image="https://www.jsdelivr.com/assets/7d0460fde056c9b43ff23d890699566e0d7537ff/img/og-jsdelivr.png"
+    title="jsDelivr"
+    description="一个面向开源项目的免费CDN，针对 npm 和 GitHub 的 JS 和 ESM 交付进行了优化。适用于所有网页格式。"
+    href="https://www.jsdelivr.com/"
+  />
+  <ImageCard
+    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    title="Element UI"
+    description="Element，一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库"
+    href="https://element.eleme.cn/#/zh-CN"
+  />
+  <ImageCard
+    image="https://www.naiveui.com/assets/naivelogo-BdDVTUmz.svg"
+    title="Naïve UI"
+    description="一个 Vue 3 组件库 比较完整，主题可调，使用 TypeScript，快 有点意思"
+    href="https://www.naiveui.com/zh-CN/light"
+  />
+</CardGrid>
+
+
 ### 面试
 <CardGrid cols="3">
   <ImageCard
@@ -84,6 +237,48 @@ permalink: /notes/资源导航/link/
     description="成神之路系列丛书的第一本《深入理解Java核心技术（基础篇）》已经正式出版了，这本书囊括了<Java工程师成神之路>中基础篇的几乎全部内容，欢迎大家购买品鉴。"
     href="https://hollischuang.github.io/toBeTopJavaer/#/"
   />
+  <ImageCard
+    image="https://opengraph.githubassets.com/32db4e6d5ab6a1a2b2d9cf2380530dcf76e1704253b679f69110fcd0483378e5/Snailclimb/JavaGuide"
+    title="Java学习+面试指南"
+    description="「Java学习+面试指南」一份涵盖大部分 Java 程序员所需要掌握的核心知识。"
+    href="https://github.com/doocs/advanced-java"
+  />
+  <ImageCard
+    image="https://repository-images.githubusercontent.com/151834062/46b36580-62dc-11e9-9c10-9d6410e77c1e"
+    title="Java进阶知识"
+    description="互联网 Java 工程师进阶知识完全扫盲：涵盖高并发、分布式、高可用、微服务、海量数据处理等领域知识"
+    href="https://github.com/Snailclimb/JavaGuide"
+  />
+  <ImageCard
+    image="https://opengraph.githubassets.com/031dcced4d24b9ea678b2fca53c698e8a2cc6f9dd35b20f17ddcb8eb3f552c56/qiurunze123/threadandjuc"
+    title="高并发-高可靠-高性能"
+    description="⭐⭐⭐⭐高并发-高可靠-高性能three-high-import导入系统-高并发多线程进阶."
+    href="https://github.com/qiurunze123/threadandjuc"
+  />
+  <ImageCard
+    image="https://opengraph.githubassets.com/d5df232a0de582187fcef4a8dc93055e49b90cc13c7002a92c7657c9ec63a1a2/AobingJava/JavaFamily"
+    title="Java面试+Java学习指南"
+    description="【Java面试+Java学习指南】 一份涵盖大部分Java程序员所需要掌握的核心知识。"
+    href="https://github.com/AobingJava/JavaFamily"
+  />
+  <ImageCard
+    image="https://opengraph.githubassets.com/b8febaa8d27e5cf87c0329586f2bee789f9e5d62fa338379f0608c830c0e4c2c/ZhongFuCheng3y/athena"
+    title="Java后端知识图谱"
+    description="Java后端知识图谱🔥 帮助Java初学者成长"
+    href="https://github.com/ZhongFuCheng3y/athena"
+  />
+  <ImageCard
+    image="https://opengraph.githubassets.com/e5dcbc5c17bcd21561d03c7de8d6660cf044bfa467bf5c6dae8a30c52b43bb3f/itwanger/toBeBetterJavaer"
+    title="Java学习指南"
+    description="一份通俗易懂、风趣幽默的Java学习指南，内容涵盖Java基础、Java并发编程、Java虚拟机、Java企业级开发、Java面试等核心知识点。学Java，就认准二哥的Java进阶之路😄"
+    href="https://github.com/itwanger/toBeBetterJavaer"
+  />
+  <ImageCard
+    image="https://opengraph.githubassets.com/371ebd7543554c130be0f636de332f022d9378f621b1ea8ef5b54e9513f4a574/CyC2018/CS-Notes"
+    title="技术面试必备基础知识"
+    description="技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计."
+    href="https://github.com/CyC2018/CS-Notes?tab=readme-ov-file"
+  />
 </CardGrid>
 
 ### 学习教程
@@ -125,6 +320,12 @@ permalink: /notes/资源导航/link/
 #### Java
 <CardGrid cols="3">
   <ImageCard
+    image="https://img.alicdn.com/tfs/TB1LCE1aQ5E3KVjSZFCXXbuzXXa-200-200.png"
+    title="Alibaba Java 技术图谱"
+    description="Alibaba Java 由“Java课程专家组”倾力打造的行业权威图谱，11个知识点 ，近千课时，体验场景练习上手更快。从新手入门，到高级工程师进阶，从理论学习，到实践应用，一张图谱讲透Java ！"
+    href="https://developer.aliyun.com/graph/java"
+  />
+  <ImageCard
     image="https://codegym.cc/kit/social/og-image-cg.png"
     title="CodeGym"
     description="CodeGym 是学习 Java 语言的在线课程。适合初学者和有经验的程序员。包含一门 Java 语言教程和 1200 个 Java 实践任务！"
@@ -133,7 +334,7 @@ permalink: /notes/资源导航/link/
   <ImageCard
     image="https://cdn.freecodecamp.org/platform/universal/fcc_meta_1920X1080-indigo.png"
     title="freeCodeCamp.org"
-    description="Learn to Code — For Free"
+    description="由世界各地学习编程的人们共同组成的社区,可以在浏览器、代码编辑器或移动应用程序中通过逐步创建数十个项目来学习编程"
     href="https://www.freecodecamp.org/learn"
   />
   <ImageCard
@@ -145,13 +346,13 @@ permalink: /notes/资源导航/link/
   <ImageCard
     image="https://opengraph.githubassets.com/b77684acaa9d0b810f1711c1de45e5697599e681f3d72b0246d1e28afdbdf6d5/youlookwhat/DesignPattern"
     title="Java 23种设计模式全归纳"
-    description="Java 23种设计模式全归纳. Contribute to youlookwhat/DesignPattern development by creating an account on GitHub."
+    description="Java 23种设计模式全归纳"
     href="https://github.com/youlookwhat/DesignPattern"
   />
   <ImageCard
     image="https://opengraph.githubassets.com/b77684acaa9d0b810f1711c1de45e5697599e681f3d72b0246d1e28afdbdf6d5/youlookwhat/DesignPattern"
     title="Java设计模式"
-    description="Design patterns implemented in Java. Contribute to iluwatar/java-design-patterns development by creating an account on GitHub."
+    description="本网站展示了Java设计模式。这些解决方案由开源社区经验丰富的程序员和架构师开发"
     href="https://github.com/iluwatar/java-design-patterns"
   />
   <ImageCard
@@ -161,21 +362,9 @@ permalink: /notes/资源导航/link/
     href="https://refactoringguru.cn/design-patterns"
   />
   <ImageCard
-    image="https://opengraph.githubassets.com/32db4e6d5ab6a1a2b2d9cf2380530dcf76e1704253b679f69110fcd0483378e5/Snailclimb/JavaGuide"
-    title="Java学习+面试指南"
-    description="「Java学习+面试指南」一份涵盖大部分 Java 程序员所需要掌握的核心知识。"
-    href="https://github.com/doocs/advanced-java"
-  />
-  <ImageCard
-    image="https://repository-images.githubusercontent.com/151834062/46b36580-62dc-11e9-9c10-9d6410e77c1e"
-    title="Java进阶知识"
-    description="互联网 Java 工程师进阶知识完全扫盲：涵盖高并发、分布式、高可用、微服务、海量数据处理等领域知识"
-    href="https://github.com/Snailclimb/JavaGuide"
-  />
-  <ImageCard
     image="https://opengraph.githubassets.com/334b73fd9e5dce2fbbf24d29fae7d5dfb8ef14313cd3c7603f0a4ae56112b1ae/TheAlgorithms/Java"
     title="算法+数据结构 java实现"
-    description="All Algorithms implemented in Java. Contribute to TheAlgorithms/Java development by creating an account on GitHub."
+    description="所有算法均用Java实现,可以运行和编辑算法"
     href="https://github.com/TheAlgorithms/Java"
   />
   <ImageCard
@@ -185,52 +374,22 @@ permalink: /notes/资源导航/link/
     href="https://github.com/crossoverJie/JCSprout"
   />
   <ImageCard
-    image="https://opengraph.githubassets.com/b8febaa8d27e5cf87c0329586f2bee789f9e5d62fa338379f0608c830c0e4c2c/ZhongFuCheng3y/athena"
-    title="Java后端知识图谱"
-    description="Java后端知识图谱🔥 帮助Java初学者成长. Contribute to ZhongFuCheng3y/athena development by creating an account on GitHub."
-    href="https://github.com/ZhongFuCheng3y/athena"
-  />
-  <ImageCard
-    image="https://opengraph.githubassets.com/8f561c095ee80ce47712d07be1adaf5b8894f5dd0461d45d6959f329223f0864/hollischuang/toBeTopJavaer"
-    title="Java工程师成神之路"
-    description="To Be Top Javaer - Java工程师成神之路. Contribute to hollischuang/toBeTopJavaer development by creating an account on GitHub."
-    href="https://github.com/hollischuang/toBeTopJavaer"
-  />
-  <ImageCard
-    image="https://opengraph.githubassets.com/031dcced4d24b9ea678b2fca53c698e8a2cc6f9dd35b20f17ddcb8eb3f552c56/qiurunze123/threadandjuc"
-    title="高并发-高可靠-高性能"
-    description="⭐⭐⭐⭐高并发-高可靠-高性能three-high-import导入系统-高并发多线程进阶. Contribute to qiurunze123/threadandjuc development by creating an account on GitHub."
-    href="https://github.com/qiurunze123/threadandjuc"
-  />
-  <ImageCard
     image="https://repository-images.githubusercontent.com/110211147/07434880-f674-11e9-8a41-ea65193450ec"
     title="实战 Spring Boot 的项目"
-    description="🚀一个用来深入学习并实战 Spring Boot 的项目。. Contribute to xkcoding/spring-boot-demo development by creating an account on GitHub."
+    description="🚀一个用来深入学习并实战 Spring Boot 的项目。"
     href="https://github.com/xkcoding/spring-boot-demo"
   />
   <ImageCard
     image="https://opengraph.githubassets.com/061a40c2e0573481e1ddeb11b732620515e32b207db89a16356b90368e853f18/ityouknow/spring-boot-examples"
     title="Spring Boot 学习示例"
-    description="about learning Spring Boot via examples. Spring Boot 教程、技术栈示例代码，快速简单上手教程."
+    description="Spring Boot 教程、技术栈示例代码，快速简单上手教程."
     href="https://github.com/ityouknow/spring-boot-examples"
   />
   <ImageCard
     image="https://opengraph.githubassets.com/d2dd892d38e55f08fbe7c58355570daef8de51116144f64c433193e5958874f1/eugenp/tutorials"
     title="Learn Spring Security OAuth"
-    description="Just Announced - 'Learn Spring Security OAuth': . Contribute to eugenp/tutorials development by creating an account on GitHub."
+    description="这个项目是一系列小型且聚焦的教程——每个教程都涵盖 Java 生态系统中一个明确且明确的开发领域"
     href="https://github.com/eugenp/tutorials"
-  />
-  <ImageCard
-    image="https://opengraph.githubassets.com/d5df232a0de582187fcef4a8dc93055e49b90cc13c7002a92c7657c9ec63a1a2/AobingJava/JavaFamily"
-    title="Java面试+Java学习指南"
-    description="【Java面试+Java学习指南】 一份涵盖大部分Java程序员所需要掌握的核心知识。. Contribute to AobingJava/JavaFamily development by creating an account on GitHub."
-    href="https://github.com/AobingJava/JavaFamily"
-  />
-  <ImageCard
-    image="https://img.alicdn.com/tfs/TB1LCE1aQ5E3KVjSZFCXXbuzXXa-200-200.png"
-    title="Alibaba Java 技术图谱"
-    description="Alibaba Java 由“Java课程专家组”倾力打造的行业权威图谱，11个知识点 ，近千课时，体验场景练习上手更快。从新手入门，到高级工程师进阶，从理论学习，到实践应用，一张图谱讲透Java ！ 限时免费学。"
-    href="https://developer.aliyun.com/graph/java"
   />
   <ImageCard
     image="https://opengraph.githubassets.com/46b81be502420b7faed4411b2d543d4a03474a39b192092c2304a46e5c52fd4c/javagrowing/JGrowing"
@@ -244,15 +403,9 @@ permalink: /notes/资源导航/link/
     href="https://github.com/xingshaocheng/architect-awesome?tab=readme-ov-file"
   />
   <ImageCard
-    image="https://opengraph.githubassets.com/e5dcbc5c17bcd21561d03c7de8d6660cf044bfa467bf5c6dae8a30c52b43bb3f/itwanger/toBeBetterJavaer"
-    title="Java学习指南"
-    description="一份通俗易懂、风趣幽默的Java学习指南，内容涵盖Java基础、Java并发编程、Java虚拟机、Java企业级开发、Java面试等核心知识点。学Java，就认准二哥的Java进阶之路😄 - itwanger/toBeBetterJavaer"
-    href="https://github.com/itwanger/toBeBetterJavaer"
-  />
-  <ImageCard
     image="https://opengraph.githubassets.com/ed6811d9900a352278dedb67a75698c2bbd6bf76911570a2544cbd22ef018388/wuyouzhuguli/SpringAll"
     title="学习Spring Boot"
-    description="循序渐进，学习Spring Boot、Spring Boot Shiro、Spring Batch、Spring Cloud、Spring Cloud Alibaba、Spring Security、Spring Security OAuth2，博客Spring系列源码：https://mrbird.cc - wuyouzhuguli/SpringAll"
+    description="循序渐进，学习Spring Boot、Spring Boot Shiro、Spring Batch、Spring Cloud、Spring Cloud Alibaba、Spring Security、Spring Security OAuth2"
     href="https://github.com/wuyouzhuguli/SpringAll"
   />
 </CardGrid>
@@ -324,12 +477,6 @@ permalink: /notes/资源导航/link/
 #### 其它
 <CardGrid cols="3">
   <ImageCard
-    image="https://opengraph.githubassets.com/371ebd7543554c130be0f636de332f022d9378f621b1ea8ef5b54e9513f4a574/CyC2018/CS-Notes"
-    title="技术面试必备基础知识"
-    description="技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计."
-    href="https://github.com/CyC2018/CS-Notes?tab=readme-ov-file"
-  />
-  <ImageCard
     image="https://edu-image.nosdn.127.net/32a8dd2a-b9aa-4ec9-abd5-66cd8751befb.png?imageView\u0026quality=100"
     title="中国大学MOOC"
     description="中国大学MOOC,MOOC,慕课,在线学习,在线教育,大规模开放式在线课程,网络公开课,视频公开课,大学公开课,大学mooc,icourse163,慕课网, MOOC学院"
@@ -369,7 +516,7 @@ permalink: /notes/资源导航/link/
   <ImageCard
     image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
     title="Spring Cloud"
-    description="Spring Cloud provides tools for developers to quickly build some of the common patterns in distributed systems (e.g. configuration management, service discovery, circuit breakers, intelligent routing, micro-proxy, control bus). Coordination of distributed systems leads to boiler plate patterns, and using Spring Cloud developers can quickly stand up services and applications that implement those patterns. They will work well in any distributed environment, including the developer’s own laptop, bare metal data centres, and managed platforms such as Cloud Foundry."
+    description="Spring Cloud 为开发者提供了快速构建分布式系统中常见模式的工具（例如配置管理、服务发现、断路器、智能路由、微代理、控制总线等）"
     href="https://docs.spring.io/spring-cloud/docs/current/reference/html/"
   />
   <ImageCard
@@ -381,7 +528,7 @@ permalink: /notes/资源导航/link/
   <ImageCard
     image="https://opengraph.githubassets.com/1c81d40c47b15a5a084c7b4e08c2e9ed43ebf8f8d65c2051093b7404ef08fdd4/alibaba/spring-cloud-alibaba"
     title="spring-cloud-alibaba"
-    description="Spring Cloud Alibaba provides a one-stop solution for application development for the distributed solutions of Alibaba middleware. - alibaba/spring-cloud-alibaba"
+    description="Spring Cloud Alibaba 致力于提供微服务开发的一站式解决方案。此项目包含开发分布式应用微服务的必需组件，方便开发者通过 Spring Cloud 编程模型轻松使用这些组件来开发分布式应用服务。"
     href="https://github.com/alibaba/spring-cloud-alibaba/blob/2.2.x/README-zh.md"
   />
 </CardGrid>
@@ -449,13 +596,13 @@ permalink: /notes/资源导航/link/
   <ImageCard
     image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
     title="MySQL 8.0 Reference Manual"
-    description="This is the Reference Manual for the MySQL Database System, version 8.0, through release 8.0.39. Differences between minor versions of MySQL 8.0 are noted in the present text with reference to release numbers (8.0.x). For license information, see the Legal Notices."
+    description="这是MySQL数据库系统的参考手册"
     href="https://dev.mysql.com/doc/refman/8.0/en/preface.html"
   />
   <ImageCard
     image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
     title="The MyBatis Blog"
-    description="A blog about the the MyBatis data mapper framework."
+    description="关于 MyBatis 数据映射框架的博客"
     href="https://blog.mybatis.org/"
   />
 </CardGrid>
@@ -465,7 +612,7 @@ permalink: /notes/资源导航/link/
   <ImageCard
     image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
     title="编码规范"
-    description="永远遵循同一套编码规范 -- 可以是这里列出的，也可以是你自己总结的。如果你发现本规范中有任何错误，敬请指正。通过 在 GitHub 上提交 issue 为本规范贡献力量。"
+    description="永远遵循同一套编码规范 -- 可以是这里列出的，也可以是你自己总结的。如果你发现本规范中有任何错误，敬请指正"
     href="https://codeguide.bootcss.com/"
   />
   <ImageCard
@@ -481,12 +628,6 @@ permalink: /notes/资源导航/link/
     href="https://cloud.tencent.com/developer/article/1621396"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="SwaggerHub"
-    description="Join thousands of developers who use SwaggerHub to build and design great APIs. Signup or login today."
-    href="https://app.swaggerhub.com/search"
-  />
-  <ImageCard
     image="https://doc.xiaominfo.com/images/website/knife4j-framework2.png"
     title="Knife4j"
     description="集Swagger2及OpenAPI3为一体的增强解决方案"
@@ -500,25 +641,19 @@ permalink: /notes/资源导航/link/
   <ImageCard
     image="https://opengraph.githubassets.com/1872b6d0c3cd58fb28419114dfc95cfdbd2a82707c6d4bf0a3c9fc80e6442e57/jitwxs/express"
     title="快递代拿系统"
-    description="快递代拿系统，SpringBoot的最佳实践. Contribute to jitwxs/express development by creating an account on GitHub."
+    description="快递代拿系统，SpringBoot的最佳实践"
     href="https://github.com/jitwxs/express"
   />
   <ImageCard
     image="https://github.githubassets.com/assets/github-logo-55c5b9a1fe52.png"
-    title="Build software better, together"
-    description="GitHub is where people build software. More than 100 million people use GitHub to discover, fork, and contribute to over 420 million projects."
+    title="github热门趋势"
+    description="看看GitHub社区今天最兴奋的是什么"
     href="https://github.com/trending"
   />
   <ImageCard
-    image="https://avatars.githubusercontent.com/u/170270?v=4"
-    title="Top GitHub users and repositories"
-    description="Gitstar Ranking is a GitHub star ranking. You can see top 1000 users, organizations and repositories. Find your favorite user. See what is your rank."
-    href="https://gitstar-ranking.com/"
-  />
-  <ImageCard
     image="https://github.githubassets.com/assets/github-logo-55c5b9a1fe52.png"
-    title="Build software better"
-    description="GitHub is where people build software. More than 100 million people use GitHub to discover, fork, and contribute to over 420 million projects."
+    title="github精彩列表"
+    description="精彩列表是由社区精心策划的精彩内容列表"
     href="https://github.com/topics/awesome"
   />
 </CardGrid>
@@ -592,12 +727,6 @@ permalink: /notes/资源导航/link/
     href="https://picgo.github.io/PicGo-Doc/zh/guide/config.html#%E4%B8%83%E7%89%9B%E5%9B%BE%E5%BA%8A"
   />
   <ImageCard
-    image="https://livere.com/img/bg/main/sns-share-img.png"
-    title="LiveRe"
-    description="Welcome to LiveRe. We provide SNS integration linkage service information such as Social Comment, Social Log-in, My Page, and SNS Sharing, etc. With these various functions, you can enjoyable communicate in online!"
-    href="https://livere.com/"
-  />
-  <ImageCard
     image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
     title="链接预览"
     href="https://my.linkpreview.net/"
@@ -611,7 +740,7 @@ permalink: /notes/资源导航/link/
   <ImageCard
     image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
     title="DocSearch"
-    description="The easiest way to add search to your documentation - Powered by Algolia"
+    description="为您的文档添加搜索功能最简单的方法"
     href="https://docsearch.algolia.com/apply/"
   />
   <ImageCard
@@ -657,7 +786,7 @@ permalink: /notes/资源导航/link/
   <ImageCard
     image="https://www.emojiall.com/img/front-social.png"
     title="EmojiAll"
-    description="EmojiAll is a multi-language Emoji Dictionary 📖. We provide you emoji copy and paste, emoji pictures, advanced emoji search, emoji leaderboard, emoji sentiment analysis, emoji mini-games, comments and other awesome features 🥰."
+    description="emojiall图标库"
     href="https://www.emojiall.com/"
   />
   <ImageCard
@@ -665,6 +794,12 @@ permalink: /notes/资源导航/link/
     title="iconpark图标库"
     description="iconpark图标库"
     href="https://iconpark.oceanengine.com/"
+  />
+  <ImageCard
+    image="https://emojipedia.org/images/apple-touch-icon-180x180.png"
+    title="Emoji表情"
+    description="Emoji表情"
+    href="https://emojipedia.org/"
   />
 </CardGrid>
 
@@ -685,6 +820,30 @@ permalink: /notes/资源导航/link/
     href="https://github.com/opendatalab/MinerU/blob/master/README_zh-CN.md"
   />
 </CardGrid>
+  <ImageCard
+    image="https://dl.dbxio.com/assets/readme-hero-20260925.png"
+    title="DBX - 25MB，管理100+种数据库！"
+    description="DBX 是免费开源的数据库管理工具，支持 MySQL、PostgreSQL、SQLite、Redis 等 100+ 种数据系统，提供 SQL 编辑、可选 AI 助手、MCP 和 Docker 自托管，覆盖 Windows、macOS 与 Linux。"
+    href="https://dbxio.com/cn"
+  />
+  <ImageCard
+    image="https://www.bitcomet.com/images/favicon.png"
+    title="BitComet"
+    description="BitComet 是一个免费的 BitTorrent 下载客户端！BitComet 功能强大、速度超快且易于使用。"
+    href="https://www.bitcomet.com/en"
+  />
+  <ImageCard
+    image="https://www.voidtools.com/voidtools9.png"
+    title="Everything"
+    description="基于名称快速定位文件和文件夹。"
+    href="https://www.voidtools.com/zh-cn/"
+  />
+   <ImageCard
+    image="https://ask.dcloud.net.cn/static/css/classblack/img/favicon.png?v=20141207"
+    title="HBuilderX"
+    description="HBuilderX是当前最快的HTML开发工具，强大的代码助手帮你快速完成开发，最全的语法库和浏览器兼容性数据让浏览器碎片化不再头痛"
+    href="https://www.dcloud.io/hbuilderx.html"
+  />
 
 #### 笔记
 <CardGrid cols="3">
@@ -740,13 +899,13 @@ permalink: /notes/资源导航/link/
   <ImageCard
     image="https://app.diagrams.net/images/apple-touch-icon.png"
     title="流程图绘制"
-    description="draw.io is free online diagram software for making flowcharts, process diagrams, org charts, UML, ER and network diagrams"
+    description="一款免费的在线图表软件，可用于创建流程图、工艺流程图、组织结构图、UML 图、实体关系图和网络图"
     href="https://app.diagrams.net/"
   />
   <ImageCard
     image="https://excalidraw.com/og-image-3.png"
     title="Excalidraw"
-    description="Excalidraw is a virtual collaborative whiteboard tool that lets you easily sketch diagrams that have a hand-drawn feel to them."
+    description="一款虚拟协作白板工具，可轻松绘制出具有手绘风格的图表."
     href="https://excalidraw.com/"
   />
   <ImageCard
@@ -772,12 +931,6 @@ permalink: /notes/资源导航/link/
     href="https://sms-activate.io/cn/getNumber"
   />
   <ImageCard
-    image="https://emojipedia.org/images/apple-touch-icon-180x180.png"
-    title="Emoji表情"
-    description="X (fka Twitter) has quietly redesigned its 🔫 Water Pistol emoji to display as a firearm. This diverges from the cross-platform conversion of this ..."
-    href="https://emojipedia.org/"
-  />
-  <ImageCard
     image="https://busuanzi.ibruce.info/images/garlic.png"
     title="极简网页计数器"
     description="Hexo博客计数，Jekyll博客计数器，Octopress访问统计，GitHub Pages博客访问量统计，静态网站计数，静态博客计数，网站计数器，网站计数插件，博客计数器，WordPress计数插件, DedeCMS计数插件, Z-Blog计数器插件, Joomla计数器, emlog计数器, MediaWiki计数器"
@@ -792,7 +945,7 @@ permalink: /notes/资源导航/link/
   <ImageCard
     image="https://shields.io/img/logo.png"
     title="Shields.io"
-    description="Concise, consistent, and legible badges"
+    description="简洁、一致且易读的徽章"
     href="https://shields.io/"
   />
   <ImageCard
@@ -916,18 +1069,13 @@ permalink: /notes/资源导航/link/
   <ImageCard
     image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
     title="UNetbootin"
-    description="UNetbootin allows you to create bootable Live USB drives for Ubuntu and other Linux distributions without burning a CD."
+    description="UNetbootin 可以让你在不刻录光盘的情况下，为 Ubuntu 及其他 Linux 发行版创建可启动的 Live USB 驱动器。"
     href="https://unetbootin.github.io/"
   />
   <ImageCard
     image="https://www.kernel.org/theme/images/logos/favicon.png"
-    title="The Linux Kernel Archives"
+    title="Linux 内核存档"
     href="https://www.kernel.org/"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="ubuntu"
-    href="https://cn.ubuntu.com/"
   />
 </CardGrid>
 
@@ -936,7 +1084,7 @@ permalink: /notes/资源导航/link/
   <ImageCard
     image="https://www.vmware.com/media/blt8c9a8aaca0ffd4ac/blt239a2de180bcdb61/667ec477c66c885bcd69d848/bc-vmw-explore2024-dotcom-banner-content-catalog-1400x350.png"
     title="VMware"
-    description="Optimize cloud infrastructure with VMware for app platforms, private cloud, edge, networking, and security."
+    description="使用 VMware 优化云基础设施，适用于应用平台、私有云、边缘计算、网络和安全领域."
     href="https://www.vmware.com/"
   />
 </CardGrid>
@@ -957,20 +1105,8 @@ permalink: /notes/资源导航/link/
   <ImageCard
     image="https://opengraph.githubassets.com/1b3bad7a39538879905299f7714d0136b517268f335ce6c6ed5abfd0a6933b4a/TheTorProject/gettorbrowser"
     title="gettorbrowser"
-    description="Contribute to TheTorProject/gettorbrowser development by creating an account on GitHub."
+    description="Gettor浏览器"
     href="https://github.com/TheTorProject/gettorbrowser?tab=readme-ov-file"
-  />
-  <ImageCard
-    image="https://www.bitcomet.com/images/favicon.png"
-    title="BitComet"
-    description="BitComet is a free BitTorrent download client! BitComet is powerful, super-fast and easy-to-use."
-    href="https://www.bitcomet.com/en"
-  />
-  <ImageCard
-    image="https://www.voidtools.com/voidtools9.png"
-    title="Everything"
-    description="基于名称快速定位文件和文件夹。"
-    href="https://www.voidtools.com/zh-cn/"
   />
   <ImageCard
     image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
@@ -979,20 +1115,9 @@ permalink: /notes/资源导航/link/
     href="https://msdn.itellyou.cn/"
   />
   <ImageCard
-    image="https://ask.dcloud.net.cn/static/css/classblack/img/favicon.png?v=20141207"
-    title="HBuilderX"
-    description="HBuilderX是当前最快的HTML开发工具，强大的代码助手帮你快速完成开发，最全的语法库和浏览器兼容性数据让浏览器碎片化不再头痛"
-    href="https://www.dcloud.io/hbuilderx.html"
-  />
-  <ImageCard
     image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="Gradle Distributions"
+    title="Gradle 分发版"
     href="https://services.gradle.org/distributions/"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="UsbEAm Hosts Editor"
-    href="https://www.dogfight360.com/blog/475/"
   />
 </CardGrid>
 
@@ -1023,156 +1148,6 @@ permalink: /notes/资源导航/link/
   />
 </CardGrid>
 
-### 前端
-<CardGrid cols="3">
-  <ImageCard
-    image="https://nuxtjs.org/nuxt-card.png"
-    title="Nuxt.js"
-    description="Nuxt.js 是一个基于 Vue.js 的轻量级应用框架，可用来创建服务端渲染 (SSR) 应用，也可充当静态站点引擎生成静态站点应用，具有优雅的代码结构分层和热加载等特性。"
-    href="https://www.nuxtjs.cn/"
-  />
-  <ImageCard
-    image="https://fastly.jsdelivr.net/npm/@vant/assets/logo.png"
-    title="Vant3"
-    description="轻量、可靠的移动端 Vue 组件库"
-    href="https://vant-ui.github.io/vant/v3/#/zh-CN"
-  />
-  <ImageCard
-    image="https://vitejs.dev/og-image.png"
-    title="Vite"
-    description="Next Generation Frontend Tooling"
-    href="https://cn.vitejs.dev/"
-  />
-  <ImageCard
-    image="https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png"
-    title="ant design pro"
-    description="🏆 让中后台开发更简单"
-    href="https://pro.ant.design/zh-CN/"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="Ant Design Vue"
-    description="An enterprise-class UI components based on Ant Design and Vue"
-    href="https://www.antdv.com/"
-  />
-  <ImageCard
-    image="https://procomponents.ant.design/icon.png"
-    title="procomponents"
-    description="🏆 让中后台开发更简单"
-    href="https://procomponents.ant.design/"
-  />
-  <ImageCard
-    image="https://umijs.org/images/og-home.png"
-    title="UmiJS"
-    description="Umi是可扩展的企业级前端应用框架。Umi 以路由为基础的，同时支持配置式路由和约定式路由，保证路由的功能完备，并以此进行功能扩展。然后配以生命周期完善的插件体系，覆盖从源码到构建产物的每个生命周期，支持各种功能扩展和业务需求。"
-    href="https://umijs.org/"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="TopJUI前端框架"
-    description="TopJUI前端框架，基于最新版EasyUI前端框架构建，纯HTML调用功能组件，不用写JS代码的EasyUI，专注你的后端业务开发！"
-    href="https://ui.misboot.com/?from=360tg"
-  />
-  <ImageCard
-    image="https://lf9-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/37361.png"
-    title="Semi Design"
-    description="由抖音前端与 UED 团队维护，易于定制的现代化设计系统，帮助设计师与开发者打造高质量产品"
-    href="https://semi.design/zh-CN/"
-  />
-  <ImageCard
-    image="https://www.bootcdn.cn/assets/ico/apple-touch-icon-144-precomposed.png?1723336072556"
-    title="BootCDN"
-    description="Bootstrap 中文网开源项目免费 CDN 加速服务 - 我们致力于为 Bootstrap、jQuery、Angular、Vue.js 一样优秀的开源项目提供稳定、快速、免费的 CDN 加速服务。BootCDN 是运营时间最长、用户量最大、最早同时支持 HTTPS（SSL）和 HTTP/2.0 协议的中立免费 CDN 。"
-    href="https://www.bootcdn.cn/"
-  />
-  <ImageCard
-    image="https://www.jq22.com/img/logo.png"
-    title="jQuery插件库"
-    description="本站致力于收集jQuery插件和提供各种jQuery特效的详细使用方法,在线预览，jQuery插件下载及教程"
-    href="https://www.jq22.com/"
-  />
-  <ImageCard
-    image="http://www.htmleaf.com/templets/default/images/ico/apple-touch-icon.png"
-    title="jQuery、html5、css3的插件库"
-    description="jQuery之家致力于搜集和整理各种jQuery插件，jQuery特效，jquery ui，jQuery 教程，JS特效，网页特效，以及各种html5，css3动画和效果，为前端开发者提供最全面的网页开发素材。"
-    href="http://www.htmleaf.com/"
-  />
-  <ImageCard
-    image="http://www.htmleaf.com/templets/default/images/ico/apple-touch-icon.png"
-    title="swiper"
-    href="https://www.swiper.com.cn/"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="SuperSlide"
-    description="SuperSlide 致力于解决网站大部分特效展示问题，使网站代码规范整洁，方便维护更新。网站上常用的“焦点图/幻灯片”、“Tab标签切换”、“图片滚动”、“无缝滚动”等等只需要一个SuperSlide即可解决！还可以多个SuperSlide组合创造更多效果"
-    href="http://www.superslide2.com/"
-  />
-  <ImageCard
-    image="https://jquery.com/wp-content/themes/jquery/content/books/jquery-in-action.jpg"
-    title="jQuery"
-    href="https://jquery.com/"
-  />
-  <ImageCard
-    image="https://www.bootcss.com/assets/brand/bootstrap-social.png"
-    title="Bootstrap中文网"
-    description="Bootstrap是Twitter推出的一个用于前端开发的开源工具包。它由Twitter的设计师Mark Otto和Jacob Thornton合作开发，是一个CSS/HTML框架。目前，Bootstrap最新版本为5.0 。Bootstrap中文网致力于为广大国内开发者提供详尽的中文文档、代码实例等，助力开发者掌握并使用这一框架。"
-    href="https://jquery.com/"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="FullPage"
-    description="FullPage.js全屏插件文档及使用方法"
-    href="https://developer.aliyun.com/article/672922"
-  />
-  <ImageCard
-    image="https://img.nodejs.cn/favicon.png"
-    title="Node.js 文档"
-    href="https://nodejs.cn/api/http.html"
-  />
-  <ImageCard
-    image="http://s3.amazonaws.com/info-mongodb-com/_com_assets/cms/kuzt9r42or1fxvlq2-Meta_Generic.png"
-    title="MongoDB"
-    description="Get your ideas to market faster with a developer data platform built on the leading modern database. MongoDB makes working with data easy."
-    href="https://www.mongodb.com/"
-  />
-  <ImageCard
-    image="https://static-production.npmjs.com/338e4905a2684ca96e08c7780fc68412.png"
-    title="HTTP request"
-    description="Simplified HTTP request client.. Latest version: 2.88.2, last published: 5 years ago. Start using request in your project by running `npm i request`. There are 56331 other projects in the npm registry using request."
-    href="https://www.npmjs.com/package/request"
-  />
-  <ImageCard
-    image="https://yowebapp.github.io/static/favicon.b25e58c4b8.ico"
-    title="Yeoman 中文网"
-    description="yeoman中文网，yeoman中文官网，yeoman是一个前端自动化脚手架工具。"
-    href="https://yowebapp.github.io/"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="VueDraggablePlus"
-    description="vue3拖拽排序组件。"
-    href="https://vue-draggable-plus.pages.dev/en/"
-  />
-  <ImageCard
-    image="https://www.jsdelivr.com/assets/7d0460fde056c9b43ff23d890699566e0d7537ff/img/og-jsdelivr.png"
-    title="jsDelivr"
-    description="Optimized for JS and ESM delivery from npm and GitHub. Works with all web formats. Serving more than 150 billion requests per month"
-    href="https://www.jsdelivr.com/"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="Element UI"
-    description="Element，一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库"
-    href="https://element.eleme.cn/#/zh-CN"
-  />
-  <ImageCard
-    image="https://www.naiveui.com/assets/naivelogo-BdDVTUmz.svg"
-    title="Naïve UI"
-    description="一个 Vue 3 组件库 比较完整，主题可调，使用 TypeScript，快 有点意思"
-    href="https://www.naiveui.com/zh-CN/light"
-  />
-</CardGrid>
 
 ### 软件配置
 <CardGrid cols="3">
