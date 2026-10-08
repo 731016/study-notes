@@ -8,6 +8,6 @@ tags:
   - 更新说明
 ---
 
-# [docsify](https://github.com/731016/study-notes/releases/tag/docsify) 2026-04-04
+# 2026-04-04 [docsify](https://github.com/731016/study-notes/releases/tag/docsify)
 保留docsify文档[docsify](https://docsify.js.org/)
 下个版本将改为vuepress文档[Theme Plume](https://theme-plume.vuejs.press/)
