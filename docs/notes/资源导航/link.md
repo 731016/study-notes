@@ -43,10 +43,10 @@ permalink: /notes/资源导航/link/
 ### 前端
 <CardGrid cols="3">
   <ImageCard
-    image="https://nuxtjs.org/nuxt-card.png"
+    image="https://raw.githubusercontent.com/nuxt/modules/main/icons/nuxt.svg"
     title="Nuxt.js"
     description="Nuxt.js 是一个基于 Vue.js 的轻量级应用框架，可用来创建服务端渲染 (SSR) 应用，也可充当静态站点引擎生成静态站点应用，具有优雅的代码结构分层和热加载等特性。"
-    href="https://www.nuxtjs.cn/"
+    href="https://nuxtjs.org.cn/"
   />
   <ImageCard
     image="https://fastly.jsdelivr.net/npm/@vant/assets/logo.png"
@@ -55,10 +55,10 @@ permalink: /notes/资源导航/link/
     href="https://vant-ui.github.io/vant/v3/#/zh-CN"
   />
   <ImageCard
-    image="https://vitejs.dev/og-image.png"
+    image="https://vite.dev/og-image.jpg"
     title="Vite"
     description="下一代前端工具链"
-    href="https://cn.vitejs.dev/"
+    href="https://cn.vitejs.dev/guide/"
   />
   <ImageCard
     image="https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png"
@@ -67,7 +67,7 @@ permalink: /notes/资源导航/link/
     href="https://pro.ant.design/zh-CN/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://www.antdv.com/assets/logo.1ef800a8.svg"
     title="Ant Design Vue"
     description="ant-design-vue 为 Web 应用提供了丰富的基础 UI 组件，我们还将持续探索企业级应用的最佳 UI 实践。"
     href="https://www.antdv.com/"
@@ -85,10 +85,10 @@ permalink: /notes/资源导航/link/
     href="https://umijs.org/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://demo.topjui.com/topjui/images/logo.png"
     title="TopJUI前端框架"
     description="TopJUI前端框架，基于最新版EasyUI前端框架构建，纯HTML调用功能组件，不用写JS代码的EasyUI，专注你的后端业务开发！"
-    href="https://ui.misboot.com/?from=360tg"
+    href="https://www.topjui.com/"
   />
   <ImageCard
     image="https://lf9-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/37361.png"
@@ -109,22 +109,10 @@ permalink: /notes/资源导航/link/
     href="https://www.jq22.com/"
   />
   <ImageCard
-    image="http://www.htmleaf.com/templets/default/images/ico/apple-touch-icon.png"
-    title="jQuery、html5、css3的插件库"
-    description="jQuery之家致力于搜集和整理各种jQuery插件，jQuery特效，jquery ui，jQuery 教程，JS特效，网页特效，以及各种html5，css3动画和效果，为前端开发者提供最全面的网页开发素材。"
-    href="http://www.htmleaf.com/"
-  />
-  <ImageCard
-    image="http://www.htmleaf.com/templets/default/images/ico/apple-touch-icon.png"
+    image="https://www.swiper.com.cn/templets/default/images/logo.png"
     title="swiper"
     description="开源的滑动触摸插件"
     href="https://www.swiper.com.cn/"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="SuperSlide"
-    description="SuperSlide 致力于解决网站大部分特效展示问题，使网站代码规范整洁，方便维护更新。网站上常用的“焦点图/幻灯片”、“Tab标签切换”、“图片滚动”、“无缝滚动”等等只需要一个SuperSlide即可解决！还可以多个SuperSlide组合创造更多效果"
-    href="http://www.superslide2.com/"
   />
   <ImageCard
     image="https://jquery.com/wp-content/themes/jquery/content/books/jquery-in-action.jpg"
@@ -161,7 +149,7 @@ permalink: /notes/资源导航/link/
     href="https://yowebapp.github.io/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://vue-draggable-plus.pages.dev/logo.svg"
     title="VueDraggablePlus"
     description="vue3拖拽排序组件。"
     href="https://vue-draggable-plus.pages.dev/en/"
@@ -268,7 +256,7 @@ permalink: /notes/资源导航/link/
     href="https://github.com/ZhongFuCheng3y/athena"
   />
   <ImageCard
-    image="https://opengraph.githubassets.com/e5dcbc5c17bcd21561d03c7de8d6660cf044bfa467bf5c6dae8a30c52b43bb3f/itwanger/toBeBetterJavaer"
+    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
     title="Java学习指南"
     description="一份通俗易懂、风趣幽默的Java学习指南，内容涵盖Java基础、Java并发编程、Java虚拟机、Java企业级开发、Java面试等核心知识点。学Java，就认准二哥的Java进阶之路😄"
     href="https://github.com/itwanger/toBeBetterJavaer"
@@ -338,7 +326,7 @@ permalink: /notes/资源导航/link/
     href="https://www.freecodecamp.org/learn"
   />
   <ImageCard
-    image="https://www.pdai.tech/apple-touch-icon.png"
+    image="https://www.pdai.tech/images/index-read.gif"
     title="Java 全栈知识体系"
     description="包含: Java 基础, Java 部分源码, JVM, Spring, Spring Boot, Spring Cloud, 数据库原理, MySQL, ElasticSearch, MongoDB, Docker, k8s, CI, Linux, DevOps, 分布式, 中间件, 开发工具, Git, IDE, 源码阅读，读书笔记, 开源项目..."
     href="https://www.pdai.tech/"
@@ -413,7 +401,7 @@ permalink: /notes/资源导航/link/
 #### SQL
 <CardGrid cols="3">
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://api1024.oss-cn-shanghai.aliyuncs.com/xuesql/favicon.png"
     title="自学SQL网"
     description="一个适合小白学SQL的网站，我们会由浅入深的介绍所有有关 SQL 的知识, 每一个章节是一组相关的SQL知识点; 并且会配备一组动手练习任务"
     href="http://xuesql.cn/"
@@ -443,7 +431,7 @@ permalink: /notes/资源导航/link/
 #### 部署
 <CardGrid cols="3">
   <ImageCard
-    image="https://github.com/yeasy/docker_practice/raw/master/_images/docker_primer3.png"
+    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
     title="Docker — 从入门到实践"
     description="Docker (opens new window) 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的维护效率，降低了云计算应用开发的成本！使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！"
     href="https://vuepress.mirror.docker-practice.com/"
@@ -474,10 +462,10 @@ permalink: /notes/资源导航/link/
   />
 </CardGrid>
 
-#### 其它
+#### 高校课程
 <CardGrid cols="3">
   <ImageCard
-    image="https://edu-image.nosdn.127.net/32a8dd2a-b9aa-4ec9-abd5-66cd8751befb.png?imageView\u0026quality=100"
+    image="https://edu-image.nosdn.127.net/f24bc450d3c643dd9fb61e4c77928acd.png?imageView&quality=100"
     title="中国大学MOOC"
     description="中国大学MOOC,MOOC,慕课,在线学习,在线教育,大规模开放式在线课程,网络公开课,视频公开课,大学公开课,大学mooc,icourse163,慕课网, MOOC学院"
     href="https://www.icourse163.org/"
@@ -489,7 +477,7 @@ permalink: /notes/资源导航/link/
     href="https://www.lanqiao.cn/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://academy-cms-public-dev-1258344699.cos.ap-guangzhou.myqcloud.com/qcloud-edu/train-logo-pc-white.png"
     title="云计算学习中心"
     description="云计算学习中心是面向产业互联网生态用户的一站式学习成长平台，由腾讯内部技术专家出品体系化、高质量课程，结合真实云资源环境实验室，多元化教学方式，助力开发者云计算学习。"
     href="https://cloud.tencent.com/edu/learning"
@@ -514,13 +502,13 @@ permalink: /notes/资源导航/link/
     href="https://hutool.cn/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://docs.spring.io/spring-cloud/docs/current/reference/html/img/banner-logo.svg"
     title="Spring Cloud"
     description="Spring Cloud 为开发者提供了快速构建分布式系统中常见模式的工具（例如配置管理、服务发现、断路器、智能路由、微代理、控制总线等）"
     href="https://docs.spring.io/spring-cloud/docs/current/reference/html/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://doczhcn.gitbook.io/junit5/~gitbook/image?url=https%3A%2F%2F4171091121-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-LHHxU99vy9Ocjj8nLc6%252Favatar.png%3Fgeneration%3D1531473969222843%26alt%3Dmedia&width=32&dpr=2&quality=100&sign=30a8c4215edd08b669182bdcb093a0c7&sv=3"
     title="Junit 5官方文档中文版"
     description="表示方法是测试方法。与JUnit4的@Test注解不同的是，这个注解没有声明任何属性，因为JUnit Jupiter中的测试扩展是基于他们自己的专用注解来操作的。除非被覆盖，否则这些方法可以继承。"
     href="https://doczhcn.gitbook.io/junit5/index/index-2/annotations"
@@ -531,12 +519,24 @@ permalink: /notes/资源导航/link/
     description="Spring Cloud Alibaba 致力于提供微服务开发的一站式解决方案。此项目包含开发分布式应用微服务的必需组件，方便开发者通过 Spring Cloud 编程模型轻松使用这些组件来开发分布式应用服务。"
     href="https://github.com/alibaba/spring-cloud-alibaba/blob/2.2.x/README-zh.md"
   />
+  <ImageCard
+    image="https://cloudcache.tencentcs.com/open_proj/proj_qcloud_v2/gateway/shareicons/cloud.png"
+    title="Swagger"
+    description="Swagger 是最流行的 API 开发工具，它遵循 OpenAPI Specification（OpenAPI 规范，也简称 OAS）。 Swagger 可以贯穿于整个 API 生态，如 API 的设计、编写 API 文档、测试和部署。 Swagger 是一种通用的，和编程语言无关的 API 描述规范。"
+    href="https://cloud.tencent.com/developer/article/1621396"
+  />
+  <ImageCard
+    image="https://doc.xiaominfo.com/img/knife4j-light.svg"
+    title="Knife4j"
+    description="集Swagger2及OpenAPI3为一体的增强解决方案"
+    href="https://doc.xiaominfo.com/docs/quick-start"
+  />
 </CardGrid>
 
 #### Web
 <CardGrid cols="3">
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://www.jquery123.com/assets/images/jquery-logo-md.png"
     title="jQuery API 中文文档"
     description="jQuery：用更少的代码完成更多工作！jQuery 是一个最流行的 JavaScript 工具库。"
     href="https://www.jquery123.com/"
@@ -566,7 +566,7 @@ permalink: /notes/资源导航/link/
     href="https://ts.yayujs.com/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://www.yarnpkg.cn/assets/images/yarn-bg-black-d6508dec914f0a2f32f6951a66d4aa16.webp"
     title="Yarn"
     description="Yarn 是一个快速、可靠和安全的 JavaScript 依赖管理工具。"
     href="https://www.yarnpkg.cn/"
@@ -582,32 +582,32 @@ permalink: /notes/资源导航/link/
 #### 数据库
 <CardGrid cols="3">
   <ImageCard
-    image="https://baomidou.com/images/sponsors/flowlong.png"
+    image="https://baomidou.com/assets/asset.cIbiVTt_.svg"
     title="MyBatis-Plus"
     description="MyBatis-Plus 是一个 MyBatis 的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生"
     href="https://baomidou.com/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://xbatis.cn/images/small-logo.png"
     title="xbatis"
     description="xbatis是一款非常好用的ORM框架！"
     href="https://xbatis.cn/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://labs.mysql.com/common/logos/mysql-logo.svg?v2"
     title="MySQL 8.0 Reference Manual"
     description="这是MySQL数据库系统的参考手册"
     href="https://dev.mysql.com/doc/refman/8.0/en/preface.html"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhFFo86ITF6TEav19LRlXDAM3Ns9FivQgnji7DLJ-0K35qkf0e_FwGun6EUcK4iVI0A9cnYb-LN4UlPnwu2w9iknZd2nlLTIYkT_lyGNsiZMrA5wO2OVPKogXf47TWkaODcO_RBEH_73Wqc/s1600/mybatis-superbird-small.png"
     title="The MyBatis Blog"
     description="关于 MyBatis 数据映射框架的博客"
     href="https://blog.mybatis.org/"
   />
 </CardGrid>
 
-#### 其它
+#### 规范
 <CardGrid cols="3">
   <ImageCard
     image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
@@ -615,31 +615,22 @@ permalink: /notes/资源导航/link/
     description="永远遵循同一套编码规范 -- 可以是这里列出的，也可以是你自己总结的。如果你发现本规范中有任何错误，敬请指正"
     href="https://codeguide.bootcss.com/"
   />
+</CardGrid>
+
+#### 文档编辑
+<CardGrid cols="3">
   <ImageCard
     image="https://www.markdown.xyz/assets/images/markdown-guide-og.jpg"
     title="Markdown 入门指南"
     description="Markdown 语法概述、工作原理以及用途。"
     href="https://www.markdown.xyz/getting-started/"
   />
-  <ImageCard
-    image="https://cloudcache.tencentcs.com/open_proj/proj_qcloud_v2/gateway/shareicons/cloud.png"
-    title="Swagger"
-    description="Swagger 是最流行的 API 开发工具，它遵循 OpenAPI Specification（OpenAPI 规范，也简称 OAS）。 Swagger 可以贯穿于整个 API 生态，如 API 的设计、编写 API 文档、测试和部署。 Swagger 是一种通用的，和编程语言无关的 API 描述规范。"
-    href="https://cloud.tencent.com/developer/article/1621396"
-  />
-  <ImageCard
-    image="https://doc.xiaominfo.com/images/website/knife4j-framework2.png"
-    title="Knife4j"
-    description="集Swagger2及OpenAPI3为一体的增强解决方案"
-    href="https://doc.xiaominfo.com/"
-  />
 </CardGrid>
-
 
 ### 项目
 <CardGrid cols="3">
   <ImageCard
-    image="https://opengraph.githubassets.com/1872b6d0c3cd58fb28419114dfc95cfdbd2a82707c6d4bf0a3c9fc80e6442e57/jitwxs/express"
+    image="https://github.githubassets.com/assets/github-logo-55c5b9a1fe52.png"
     title="快递代拿系统"
     description="快递代拿系统，SpringBoot的最佳实践"
     href="https://github.com/jitwxs/express"
@@ -693,7 +684,7 @@ permalink: /notes/资源导航/link/
     href="https://wenku.baidu.com/?_wkts_=1724165359525"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="http://css.chachongz.com/style/1689/images/logo.png"
     title="熊猫论文"
     description="熊猫论文是一家专业论文查重检测平台。深耕查重行业6年，合作院校1000多所，累计为800多万高校师生提供服务。平台集合知网、万方、维普、paperpass、turnitin、copycheck等主流查重系统。保证查重结果的准确和权威。"
     href="http://www.xiongmaolunwen.com/"
@@ -715,30 +706,24 @@ permalink: /notes/资源导航/link/
     href="https://docs.halo.run/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="docsify插件配置"
-    description="docsify的配置+全插件列表"
-    href="https://xhhdd.cc/index.php/archives/80/"
-  />
-  <ImageCard
     image="https://raw.githubusercontent.com/Molunerfinn/test/master/picgo/New%20LOGO-150.png"
     title="PicGo"
     description="图片上传、管理新体验"
     href="https://picgo.github.io/PicGo-Doc/zh/guide/config.html#%E4%B8%83%E7%89%9B%E5%9B%BE%E5%BA%8A"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://my.linkpreview.net/assets/images/logo.svg?v1"
     title="链接预览"
     href="https://my.linkpreview.net/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://v6.51.la/img/logo.7ed53b91.png"
     title="51.LA网站统计V6"
     description="免费、易用、专业的网站数据统计与营销分析平台，实时监测，精准洞察，专注用户行为分析，助力业务增长，提供更加精准全面的来路统计分析、数据报表可视化、网站分析能力、事件分析和渠道追踪归因，助力网站持续增长和赋能决策，超过300万用户和开发者的信赖选择。"
     href="https://v6.51.la/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://dashboard.algolia.com/assets/auth/algolia-logo-light-2fc6ad36a48bf09ddd3136a97e71b523494ce964c348c150a628d29e94f15400.svg"
     title="DocSearch"
     description="为您的文档添加搜索功能最简单的方法"
     href="https://docsearch.algolia.com/apply/"
@@ -768,8 +753,7 @@ permalink: /notes/资源导航/link/
     href="https://maxiang.io/#/?id=readme"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="wolai"
+    image="https://cdn.wostatic.cn/dist/assets/img/2bf186d6726999428c83b7326d8b2e44.png"
     description="用 “我来” 搭建一站式协作平台，团队知识库、仪表台、工作流、内部应用、外部网站与个人云端笔记、待办……开箱即用"
     href="https://www.wolai.com/"
   />
@@ -819,7 +803,6 @@ permalink: /notes/资源导航/link/
     description="MinerU是一款将PDF转化为机器可读格式的工具（如markdown、json），可以很方便地抽取为任意格式。"
     href="https://github.com/opendatalab/MinerU/blob/master/README_zh-CN.md"
   />
-</CardGrid>
   <ImageCard
     image="https://dl.dbxio.com/assets/readme-hero-20260925.png"
     title="DBX - 25MB，管理100+种数据库！"
@@ -844,14 +827,21 @@ permalink: /notes/资源导航/link/
     description="HBuilderX是当前最快的HTML开发工具，强大的代码助手帮你快速完成开发，最全的语法库和浏览器兼容性数据让浏览器碎片化不再头痛"
     href="https://www.dcloud.io/hbuilderx.html"
   />
+</CardGrid>
 
 #### 笔记
 <CardGrid cols="3">
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="data:image/png;base64,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"
     title="代码库"
     description="代码小抄"
     href="https://www.codecopy.cn/search"
+  />
+  <ImageCard
+    image="https://tongji.baidu.com/web5/image/logo.png?__v=@version@"
+    title="百度统计"
+    description="一站式智能数据分析与应用平台"
+    href="https://tongji.baidu.com/"
   />
 </CardGrid>
 
@@ -863,7 +853,7 @@ permalink: /notes/资源导航/link/
     href="https://chatgpt.com/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://ai.codefather.cn/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75"
     title="鱼聪明AI"
     description="机器人聊天,人工智能对话,ChatGPT,OpenAI,编程助手,智能助手,AI绘画,AI模型,AI工具"
     href="https://www.yucongming.com/"
@@ -875,23 +865,23 @@ permalink: /notes/资源导航/link/
     href="https://tongyi.aliyun.com/qianwen/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="data:image/png;base64,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"
     title="Kimi.ai"
     description="Kimi 是一个有着超大“内存”的智能助手，可以一口气读完二十万字的小说，还会上网冲浪，快来跟他聊聊吧 | Kimi.ai - Moonshot AI 出品的智能助手"
     href="https://kimi.moonshot.cn/chat"
+  />
+  <ImageCard
+    image="https://bigjpg.com/static/css/og.jpg"
+    title="Bigjpg"
+    description="AI人工智能图片放大"
+    href="https://bigjpg.com/"
   />
 </CardGrid>
 
 #### 绘图
 <CardGrid cols="3">
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="神绘"
-    description="绘图工具"
-    href="https://board.oktangle.com/"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://www.processon.com/assets/json/home/mind_tab_3_0/index.png"
     title="ProcessOn思维导图流程图"
     description="ProcessOn是一款专业在线作图工具和知识分享社区，提供AI生成思维导图流程图。支持思维导图、流程图、组织结构图、网络拓扑图、鱼骨图、UML图等多种图形，同时可实现人与人之间的实时协作和共享，提升团队工作效率。"
     href="https://www.processon.com/"
@@ -914,9 +904,21 @@ permalink: /notes/资源导航/link/
     description="图形计算器"
     href="https://www.geogebra.org/graphing"
   />
+  <ImageCard
+    image="https://shields.io/img/logo.png"
+    title="Shields.io"
+    description="简洁、一致且易读的徽章"
+    href="https://shields.io/"
+  />
+  <ImageCard
+    image="https://www.bitbug.net/img/eg_favicon2.png"
+    title="在线制作ico图标"
+    description="轻松制作ico图标,在线ico图标转换工具,可以将jpg、jpeg、gif、png等图像转换成ico图像,方便浏览器制作并生成favicon.ico图标,提供ico图标下载,png to ico,jpg to ico,gif to ico"
+    href="https://www.bitbug.net/"
+  />
 </CardGrid>
 
-#### 其它
+#### 工具
 <CardGrid cols="3">
   <ImageCard
     image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
@@ -925,34 +927,10 @@ permalink: /notes/资源导航/link/
     href="http://www.cxy521.com/#else_tool"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="虚拟手机号"
-    description="获取虚拟手机号码。短期手机号码。手机短信激活服务"
-    href="https://sms-activate.io/cn/getNumber"
-  />
-  <ImageCard
     image="https://busuanzi.ibruce.info/images/garlic.png"
     title="极简网页计数器"
     description="Hexo博客计数，Jekyll博客计数器，Octopress访问统计，GitHub Pages博客访问量统计，静态网站计数，静态博客计数，网站计数器，网站计数插件，博客计数器，WordPress计数插件, DedeCMS计数插件, Z-Blog计数器插件, Joomla计数器, emlog计数器, MediaWiki计数器"
     href="https://busuanzi.ibruce.info/"
-  />
-  <ImageCard
-    image="https://tongji.baidu.com/web5/image/logo.png?__v=@version@"
-    title="百度统计"
-    description="一站式智能数据分析与应用平台"
-    href="https://tongji.baidu.com/"
-  />
-  <ImageCard
-    image="https://shields.io/img/logo.png"
-    title="Shields.io"
-    description="简洁、一致且易读的徽章"
-    href="https://shields.io/"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="在线制作ico图标"
-    description="轻松制作ico图标,在线ico图标转换工具,可以将jpg、jpeg、gif、png等图像转换成ico图像,方便浏览器制作并生成favicon.ico图标,提供ico图标下载,png to ico,jpg to ico,gif to ico"
-    href="https://www.bitbug.net/"
   />
   <ImageCard
     image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
@@ -961,7 +939,7 @@ permalink: /notes/资源导航/link/
     href="https://tool.oschina.net/regex"
   />
   <ImageCard
-    image="https://static.jyshare.com/images/c-runoob-logo.ico"
+    image="https://static.jyshare.com/images/JYSHARE-COM.png"
     title="菜鸟工具"
     description="菜鸟工具，为开发设计人员提供在线工具，网址导航，提供在线PHP、Python、 CSS、JS 调试，中文简繁体转换，进制转换等工具。致力于打造国内专业WEB开发工具，集成开发环境，WEB开发教程。.."
     href="https://www.jyshare.com/"
@@ -991,7 +969,7 @@ permalink: /notes/资源导航/link/
     href="https://mwhois.chinaz.com/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://www.yishimei.cn/upload/2026/2/202602250237394718.png"
     title="在线激活"
     description="KMS在线激活Win11 / 10 / 8 / 7和Office / Visio / Project 2021~2010之DragonKMS神龙版-网络教程与技术"
     href="http://www.yishimei.cn/network/319.html"
@@ -1014,12 +992,6 @@ permalink: /notes/资源导航/link/
     href="https://www.remove.bg/zh/upload"
   />
   <ImageCard
-    image="https://bigjpg.com/static/css/og.jpg"
-    title="Bigjpg"
-    description="AI人工智能图片放大"
-    href="https://bigjpg.com/"
-  />
-  <ImageCard
     image="https://cdn.sojson.com/sojson/favicon64.png"
     title="在线图片格式转换"
     description="这是一款在线图片格式转换工具，无需安装，完全免费！它可以迅速将.jpg转换成.gif、.png、.bmp、.webp的图片格式。支持.jpg .jpeg .gif .png .bmp .webp此类图片格式之间互相转换"
@@ -1032,7 +1004,7 @@ permalink: /notes/资源导航/link/
     href="https://smallpdf.com/cn/pdf-to-jpg"
   />
   <ImageCard
-    image="https://greasyfork.org/vite/assets/blacklogo16-DftkYuVe.png"
+    image="https://greasyfork.org/vite/assets/blacklogo96-CxYTSM_T.png"
     title="安全且实用的用户脚本站"
     description="用户脚本让您掌控网页浏览体验。安装后，它们能自动改善您访问网站的使用体验，有些能为网站添加新功能，有些能使网站更易于使用，有些能让网站隐藏烦人内容。Greasy Fork 上的用户脚本都是由用户编写并向全世界发布，您能免费安装它们，并且轻松使用。"
     href="https://greasyfork.org/zh-CN"
@@ -1045,13 +1017,13 @@ permalink: /notes/资源导航/link/
 #### 网盘
 <CardGrid cols="3">
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://pc.woozooo.com/img/logo3.gif"
     title="蓝凑云"
     description="在蓝奏，所有云存储、文件下载都是秒级响应。采用网众公司云计算+存储分发技术。任何网络，享受到最快的下载速度。"
     href="https://pc.woozooo.com/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://nd-static.bdstatic.com/m-static/wp-brand/img/wp-logo.ad8119c1.png"
     title="百度网盘"
     description="百度网盘是一款国民级产品，已连续9年为超过7亿用户提供稳定、安全的个人云存储服务，已实现电脑、手机、电视等多种终端场景的覆盖和互联，并支持多类型文件的备份、分享、查看和处理"
     href="https://pan.baidu.com/"
@@ -1067,7 +1039,7 @@ permalink: /notes/资源导航/link/
 #### linux相关
 <CardGrid cols="3">
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://unetbootin.github.io/linux.svg"
     title="UNetbootin"
     description="UNetbootin 可以让你在不刻录光盘的情况下，为 Ubuntu 及其他 Linux 发行版创建可启动的 Live USB 驱动器。"
     href="https://unetbootin.github.io/"
@@ -1089,10 +1061,10 @@ permalink: /notes/资源导航/link/
   />
 </CardGrid>
 
-#### 其它
+#### 开源镜像站
 <CardGrid cols="3">
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://img.alicdn.com/tfs/TB12PGuocKfxu4jSZPfXXb3dXXa-149-18.svg"
     title="阿里云仓库服务"
     description="maven仓库"
     href="https://developer.aliyun.com/mvn/guide"
@@ -1109,13 +1081,13 @@ permalink: /notes/资源导航/link/
     href="https://github.com/TheTorProject/gettorbrowser?tab=readme-ov-file"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://msdn.itellyou.cn/images/itellyou.cn.png"
     title="MSDN"
     description="MSDN, 我告诉你 - 做一个安静的工具站"
     href="https://msdn.itellyou.cn/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://services.gradle.org/images/gradle.svg"
     title="Gradle 分发版"
     href="https://services.gradle.org/distributions/"
   />
@@ -1131,12 +1103,12 @@ permalink: /notes/资源导航/link/
     href="https://account.aliyun.com/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://res-static.hc-cdn.cn/cloudbu-site/intl/zh-cn/yunying/header-new/logo.png"
     title="华为云"
-    href="https://auth.huaweicloud.com/"
+    href="https://www.huaweicloud.com/intl/zh-cn/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://cloudcache.tencent-cloud.com/qcloud/portal/kit/images/slice/logo.23996906.svg"
     title="腾讯云"
     href="https://cloud.tencent.com/"
   />
@@ -1174,19 +1146,13 @@ permalink: /notes/资源导航/link/
     href="https://www.ncss.cn/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="职朋"
-    description="职朋，又名职业圈，真实职业资讯及职业交流平台，提供免费招聘，工资待遇，面试经验，教育口碑等职业资讯及职业交流"
-    href="https://m.job592.com/"
-  />
-  <ImageCard
     image="https://img01.51jobcdn.com/im/yjs/logo_arc.ico"
     title="应届生求职APP"
     description="应届生求职网是中国领先的大学生求职网站，为应届毕业生提供大量校园招聘信息、兼职实习招聘信息以及校园宣讲会和校园招聘会信息，地区覆盖上海、北京、广州、深圳、武汉、南京、天津、成都等热门城市。"
     href="https://www.yingjiesheng.com/"
   />
   <ImageCard
-    image="https://stacdn.proginn.com/favicon_new.ico"
+    image="https://stacdn.proginn.com/image/common/logo_new.png"
     title="程序员客栈"
     description="程序员客栈提供兼职程序员、程序员接私活、开发外包，程序员客栈是最大的程序员兼职平台，优质的程序员兼职网站，这里有BAT级兼职程序员、产品经理兼职、UI设计兼职，通过程序员兼职，程序员接私活，程序员接单等方式，解决创业公司程序员兼职、软件开发、产品设计等问题"
     href="https://www.proginn.com/"
@@ -1198,16 +1164,10 @@ permalink: /notes/资源导航/link/
     href="https://shixian.com/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://www.yuanjisong.com/Public/Img/Website/logo.png"
     title="猿急送"
     description="猿急送为您提供兼职程序员、程序员接私活、企业开发外包信息，猿急送是一个高级技术共享平台，是优质的程序员兼职网站，这里汇聚BAT等知名互联网公司的技术开发、产品、UI设计大牛，通过程序员兼职，程序员接私活等方式，一对一为创业公司解决程序员、工程师等开发、产品设计人力问题。"
     href="https://www.yuanjisong.com/"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="开源众包"
-    description="开源众包平台-靠谱的IT软件开发服务交易平台，拥有百万专业软件类技术服务商。采用共享经济的理念借助“众”的模式降低企业技术资源成本投入，通过高效的匹配撮合与专业的项目管理机制等多维度平台级服务保障，为您提供覆盖所有软件领域技术资源需求的有效对接及开发实施"
-    href="https://zb.oschina.net/"
   />
 </CardGrid>
 
@@ -1220,105 +1180,46 @@ permalink: /notes/资源导航/link/
     href="https://dasai.lanqiao.cn/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://bm.ruankao.org.cn/asset/image/public/logo.png"
     title="软件专业技术资格（水平）考试"
     href="https://bm.ruankao.org.cn/sign/welcome"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://www.neea.edu.cn/res/Home/structure/22051678.png"
     title="中国教育考试网"
     href="https://www.neea.edu.cn/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://www.hbea.edu.cn/Templets/202209/images/index_logo.png"
     title="湖北省教育考试院"
     href="http://www.hbea.edu.cn/"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="专升本补录平台"
-    href="https://zsb.e21.cn/bl/#/login"
   />
 </CardGrid>
 
 ### 备案
 <CardGrid cols="3">
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://beian.mps.gov.cn/img/bg5.f85d72e1.png"
     title="全国互联网安全管理服务平台"
     description="备案"
     href="https://beian.mps.gov.cn/#/"
   />
 </CardGrid>
 
-### 影视
-<CardGrid cols="3">
-  <ImageCard
-    image="https://im.99meiju.cn/yyets/2022/04/20220428054512498.png"
-    title="人人影视"
-    description="提供最新影视剧介绍和影评，发布最新的字幕包括美剧,日剧,电影,动漫等，发布最新电影排行榜、本周电影口碑榜和高分电影TOP50"
-    href="https://yyets.com/"
-  />
-</CardGrid>
-
-### 游戏
-<CardGrid cols="3">
-  <ImageCard
-    image="https://imgs.gamersky.com/upimg/new_preview/2024/07/25/origin_202407251235146804.jpg"
-    title="游民星空"
-    description="游民星空是国内单机游戏门户网站,提供特色的游戏资讯,大量游戏攻略,经验,评测文章,以及热门游戏资料专题"
-    href="https://www.gamersky.com/"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="3DM游戏网"
-    description="单机游戏_单机游戏下载_单机游戏大全中文版下载_3DM游戏网"
-    href="https://www.3dmgame.com/"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="GBT乐赏游戏空间"
-    href="http://gbtgame.ysepan.com/"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="Database of everything on Steam"
-    href="https://steamdb.info/"
-  />
-  <ImageCard
-    image="http://www.uc129.com/templets/default/css_mubanzhijia/images/logo.gif"
-    title="命令与征服下载"
-    description="玩家喜爱的命令与征服系列游戏下载专区-提供命令与征服4，命令与征服3及泰伯利亚战争,凯恩之怒等各种版本的下载试玩。"
-    href="http://www.uc129.com/xiazai/cnc/list_67_1.html"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="C5GAME游戏饰品交易平台"
-    description="C5GAME游戏饰品交易平台-CS2饰品交易_CS2饰品租赁_DOTA2饰品交易_STEAM游戏CDK"
-    href="https://www.c5game.com/"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
-    title="Rizered Hangar"
-    description="本网站为Rizered个人用于公开PC游戏《我是航空管制官》自制关卡、涂装和原创小说的网站。"
-    href="https://www.asdscenario.com/"
-  />
-</CardGrid>
-
 ### 学校相关
 <CardGrid cols="3">
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://zhtj.youth.cn/zhtj/static/img/web_logo.png"
     title="智慧团建"
     href="https://zhtj.youth.cn/zhtj/signin"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://t3.chei.com.cn/archive/images/common/logo-index2x.png"
     title="学信档案"
     href="https://my.chsi.com.cn/archive/index.jsp"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://www.cdb.com.cn/images/logo.png"
     title="国家开发银行"
     href="https://www.cdb.com.cn/"
   />
@@ -1333,18 +1234,12 @@ permalink: /notes/资源导航/link/
 ### 其它
 <CardGrid cols="3">
   <ImageCard
-    image="https://res.cdn.office.net/todo/2115238_2.124.1/preview.png"
-    title="Microsoft To Do"
-    description="Microsoft To Do"
-    href="https://to-do.live.com/tasks/?app"
-  />
-  <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="data:image/png;base64,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"
     title="网易163免费邮箱"
     href="https://mail.163.com/#module=welcome.WelcomeModule%7C%7B%7D"
   />
   <ImageCard
-    image="https://ssrshare.github.io/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg=="
+    image="https://res.cloudinary.com/dherizchh/image/upload/v1554602795/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190407100535.png"
     title="暗网教程"
     description="一招教你上暗网，赶快来探索把！"
     href="https://ssrshare.github.io/2019/04/07/tor/"
@@ -1356,18 +1251,18 @@ permalink: /notes/资源导航/link/
     href="https://scp-wiki-cn.wikidot.com/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://tiles.flightaware.com//images/tilecache/classic/mobile.2.0.2/9/151/192.png"
     title="FlightAware"
     description="实时飞机运行情况"
     href="https://zh.flightaware.com/live/airport_status_bigmap.rvt?airport=ZHHH"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://gw.alipayobjects.com/zos/bmw-prod/f466695f-f426-4e79-ae69-ecdf64a03c71.svg"
     title="支付宝API文档"
     href="https://opendocs.alipay.com/apis/api_1/alipay.trade.page.pay"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://gw.alipayobjects.com/zos/bmw-prod/f466695f-f426-4e79-ae69-ecdf64a03c71.svg"
     title="支付宝沙箱"
     href="https://open.alipay.com/develop/sandbox/app"
   />
