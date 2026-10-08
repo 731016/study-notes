@@ -31,7 +31,7 @@ export default defineUserConfig({
 
     theme: plumeTheme({
         /* 添加您的部署域名, 有助于 SEO, 生成 sitemap */
-        hostname: 'http://xiaofei.site',
+        hostname: 'https://xiaofei.site',
 
         /* 文档仓库配置，用于 editLink */
         docsRepo: 'https://github.com/731016/study-notes',
@@ -108,7 +108,7 @@ export default defineUserConfig({
             provider: 'algolia',
             appId: 'GPVYNMFWYQ',
             apiKey: '2db5ec01a08f8659ded603130d081cd2',
-            indexName: 'xiaofei.site',
+            indices: ['xiaofei.site'],
         },
 
         /**
