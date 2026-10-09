@@ -223,5 +223,7 @@ Arthas 命令生成插件。Arthas 是阿里开源的 Java 在线诊断工具，
 
 ## idea控制台乱码
 
-https://cloud.tencent.com/developer/article/1795283
+[IDEA控制台乱码问题,原因&解决方式,解决不了算我输](https://blog.csdn.net/u011511756/article/details/107147491)
+
+[4 种方法完美解决 IntelliJ IDEA 控制台中文乱码问题](https://cloud.tencent.com/developer/article/1795283)
 

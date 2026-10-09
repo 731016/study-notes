@@ -4,21 +4,72 @@ createTime: 2026/04/04 23:28:20
 permalink: /notes/版本控制/git/
 ---
 ## git常见问题
-[初次使用git配置以及git如何使用ssh密钥（将ssh密钥添加到github）](https://www.cnblogs.com/superGG1990/p/6844952.html)
 
-[简单解决 gitee 上传限制问题 - jaychou、 - 博客园 (cnblogs.com)](https://www.cnblogs.com/jaychou-/p/14983818.html#:~:text=我们使用代码来上,10m以内的文件)
+#### [初次使用git配置以及git如何使用ssh密钥（将ssh密钥添加到github）](https://www.cnblogs.com/superGG1990/p/6844952.html)
 
-[vscode链接github&gitee](https://blog.csdn.net/qq_38981614/article/details/115013188)
+#### [简单解决 gitee 上传限制问题 - jaychou、 - 博客园 (cnblogs.com)](https://www.cnblogs.com/jaychou-/p/14983818.html#:~:text=我们使用代码来上,10m以内的文件)
 
-[git同时设置gitee和github push代码](https://cloud.tencent.com/developer/article/1774890)
+#### [vscode链接github&gitee](https://blog.csdn.net/qq_38981614/article/details/115013188)
 
-[ssh测试连接超时 10053](https://www.xuebuyuan.com/2159862.html)
+#### [git同时设置gitee和github push代码](https://cloud.tencent.com/developer/article/1774890)
 
-[not a git repository](https://blog.csdn.net/wenb1bai/article/details/89363588)
+#### [解决 fatal: Not a git repository (or any of the parent directories): .git 问题](https://blog.csdn.net/wenb1bai/article/details/89363588)
 
-[git push No configured push destination](https://blog.csdn.net/COCOLI_BK/article/details/97921497)
+关联远程或push 又出现了错误，如下
 
-[修改git远程地址](https://blog.csdn.net/ShelleyLittlehero/article/details/95980669)
+```bash
+ fatal: Not a git repository (or any of the parent directories): .git 
+```
+
+在命令行 输入 git init  然后回车就好了
+
+#### [git push No configured push destination](https://blog.csdn.net/COCOLI_BK/article/details/97921497)
+
+git下载自己项目到本地:
+假如外出工作，需要在另一台电脑上面pull自己的某个git远程项目到本地
+
+```bash
+ git init
+ 
+ git pull <远程仓库url>
+```
+
+下载的这个项目更改后需要push的会出现：
+
+```bash
+$ git push
+fatal: No configured push destination.
+Either specify the URL from the command-line or configure a remote repository using
+ 
+    git remote add <name> <url>
+ 
+and then push using the remote name
+ 
+    git push <name>
+```
+
+此时：[git remote用法](https://blog.csdn.net/lamp_yang_3533/article/details/80379246)
+
+```bash
+这个时候第一次push需要网址：
+ 
+$ git add --all  或者使用 git add .(所得的文件) | git add file.js(对用指定文件)
+$ git commit -m "提交信息"
+$ git remote add origin '远程仓库url'
+$ git push -u origin origin(对应远程分支名)
+ 
+ 
+ 
+然后下一次就不用那么麻烦了，直接：
+ 
+$ git add --all  | git add .(所得的文件) | git add file.js(对用指定文件)
+$ git commit -m "信息"
+$ git push
+```
+
+
+#### [修改git远程地址](https://blog.csdn.net/ShelleyLittlehero/article/details/95980669)
+
 ```bash
 1.查看远程地址
 git remote -v
