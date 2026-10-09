@@ -12,7 +12,7 @@ permalink: /notes/资源导航/link/
     href="https://www.zoomeye.org/"
   />
   <ImageCard
-    image="http://cdn.adguider.com/resource/images/icon_144-144.png"
+    image="http://cdn.adguider.com/resource/images_addog/mobLogo.png"
     title="广告人的网址导航"
     description="今日热榜/大数据分析/PPT模板/设计导航/营销策略大全网址导航"
     href="https://www.addog.vip/"
@@ -103,7 +103,7 @@ permalink: /notes/资源导航/link/
     href="https://www.bootcdn.cn/"
   />
   <ImageCard
-    image="https://www.jq22.com/img/logo.png"
+    image="https://www.jq22.com/plugin/462720240923220716.png"
     title="jQuery插件库"
     description="本站致力于收集jQuery插件和提供各种jQuery特效的详细使用方法,在线预览，jQuery插件下载及教程"
     href="https://www.jq22.com/"
@@ -126,7 +126,7 @@ permalink: /notes/资源导航/link/
     href="https://jquery.com/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://img.alicdn.com/tfs/TB1LCE1aQ5E3KVjSZFCXXbuzXXa-200-200.png"
     title="FullPage"
     description="FullPage.js全屏插件文档及使用方法"
     href="https://developer.aliyun.com/article/672922"
@@ -167,7 +167,7 @@ permalink: /notes/资源导航/link/
     href="https://www.jsdelivr.com/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://element.eleme.cn/favicon.ico"
     title="Element UI"
     description="Element，一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库"
     href="https://element.eleme.cn/#/zh-CN"
@@ -256,7 +256,7 @@ permalink: /notes/资源导航/link/
     href="https://github.com/ZhongFuCheng3y/athena"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://github.githubassets.com/assets/github-logo-55c5b9a1fe52.png"
     title="Java学习指南"
     description="一份通俗易懂、风趣幽默的Java学习指南，内容涵盖Java基础、Java并发编程、Java虚拟机、Java企业级开发、Java面试等核心知识点。学Java，就认准二哥的Java进阶之路😄"
     href="https://github.com/itwanger/toBeBetterJavaer"
@@ -298,7 +298,7 @@ permalink: /notes/资源导航/link/
     href="https://objtube.github.io/front-end-roadmap/#/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://deerchao.cn/images/regex.ico"
     title="正则表达式30分钟入门教程"
     description="30分钟内让你明白正则表达式是什么，并对它有一些基本的了解，让你可以在自己的程序或网页里使用它。"
     href="https://deerchao.cn/tutorials/regex/regex.htm"
@@ -610,7 +610,7 @@ permalink: /notes/资源导航/link/
 #### 规范
 <CardGrid cols="3">
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://codeguide.bootcss.com/favicon.ico"
     title="编码规范"
     description="永远遵循同一套编码规范 -- 可以是这里列出的，也可以是你自己总结的。如果你发现本规范中有任何错误，敬请指正"
     href="https://codeguide.bootcss.com/"
@@ -652,7 +652,7 @@ permalink: /notes/资源导航/link/
 ### 图书
 <CardGrid cols="3">
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://gitee.com/static/images/logo-black.svg?t=158106664"
     title="Java程序员必读书单"
     href="https://gitee.com/itwanger/JavaBooks"
   />
@@ -694,7 +694,7 @@ permalink: /notes/资源导航/link/
 ### 文档工具
 <CardGrid cols="3">
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://docsify.js.org/_media/favicon.ico"
     title="docsify"
     description="一个神奇的文档网站生成工具"
     href="https://docsify.js.org/#/zh-cn/"
@@ -747,7 +747,7 @@ permalink: /notes/资源导航/link/
     href="https://www.zybuluo.com/mdeditor"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://maxiang.io/ico/icon128.png"
     title="马克飞象"
     description="专为印象笔记打造的 Markdown 编辑器"
     href="https://maxiang.io/#/?id=readme"
@@ -933,7 +933,7 @@ permalink: /notes/资源导航/link/
     href="https://busuanzi.ibruce.info/"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://tool.oschina.net/img/favicon.ico"
     title="在线正则表达式测试"
     description="OSCHINA.NET在线工具,ostools为开发设计人员提供在线工具，提供jsbin在线 CSS、JS 调试，在线 Java API文档,在线 PHP API文档,在线 Node.js API文档,Less CSS编译器，MarkDown编译器等其他在线工具"
     href="https://tool.oschina.net/regex"
@@ -975,7 +975,7 @@ permalink: /notes/资源导航/link/
     href="http://www.yishimei.cn/network/319.html"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://tool.oschina.net/img/favicon.ico"
     title="代码着色高亮"
     href="https://tool.oschina.net/highlight"
   />
@@ -1070,7 +1070,7 @@ permalink: /notes/资源导航/link/
     href="https://developer.aliyun.com/mvn/guide"
   />
   <ImageCard
-    image="https://note-1259190304.cos.ap-chengdu.myqcloud.com/404.png"
+    image="https://mirrors.163.com/.media/favicon.ico"
     title="网易开源镜像站"
     href="https://mirrors.163.com/"
   />
