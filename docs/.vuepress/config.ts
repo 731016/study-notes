@@ -125,6 +125,14 @@ export default defineUserConfig({
         readingTime: true,
 
         /**
+         * llmstxt: 生成 LLM 友好的站点内容(llms.txt、llms-full.txt、页面 .md 文件)
+         * 同时为页面标题右侧的「复制页面」下拉控件 <PageContextMenu /> 提供支持
+         * 注意: 仅在执行生产构建(vuepress build)时生效
+         * @see https://theme-plume.vuejs.press/config/plugins/llmstxt/
+         */
+        llmstxt: true,
+
+        /**
          * markdown
          * @see https://theme-plume.vuejs.press/config/markdown/
          */
