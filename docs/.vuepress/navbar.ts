@@ -97,7 +97,7 @@ export const navbar = defineNavbarConfig([
         ],
     },
     {
-        text: '项目',
+        text: '产品',
         icon: 'mdi-light:link-variant',
         items: [
             {
