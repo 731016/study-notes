@@ -101,10 +101,16 @@ export const navbar = defineNavbarConfig([
         icon: 'mdi-light:link-variant',
         items: [
             {
-                text: '日历订阅',
+                text: '懒得浇',
                 link: 'https://xiaofei.site/calendar/',
                 icon: 'mdi-light:link-variant',
             },
+            {
+                text: '链接预览工具',
+                link: 'https://xiaofei.site/link-preview-tool/',
+                icon: 'mdi-light:link-variant',
+            },
+            
         ]
     },
     {
