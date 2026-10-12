@@ -20,7 +20,7 @@ config:
         -
           theme: brand
           text: 博客
-          link: /preview/
+          link: /blog/
           icon: vscode-icons:file-type-docz
         -
           theme: alt
