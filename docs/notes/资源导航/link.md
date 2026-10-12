@@ -630,6 +630,18 @@ permalink: /notes/资源导航/link/
 ### 项目
 <CardGrid cols="3">
   <ImageCard
+    image="https://doc.ruoyi.vip/images/favicon.ico"
+    title="介绍 | RuoYi"
+    description="使用若依快速构建web应用程序"
+    href="https://doc.ruoyi.vip/ruoyi/"
+  />
+  <ImageCard
+    image="https://static.iocoder.cn/ruoyi-vue-pro-logo.png"
+    title="yudao-cloud 开发指南"
+    description="RuoYi-Vue 全新 Cloud 版本，优化重构所有功能。基于 Spring Cloud Alibaba + MyBatis Plus + Vue & Element 实现的后台管理系统 + 微信小程序，支持 RBAC 动态权限、数据权限、SaaS 多租户、Activiti + Flowable 工作流、三方登录、支付、短信、商城、ERP、CRM、MES、HRM、FMS、PMS、OA、WMS、IM 即时通讯等功能。"
+    href="https://cloud.iocoder.cn/"
+  />
+  <ImageCard
     image="https://github.githubassets.com/assets/github-logo-55c5b9a1fe52.png"
     title="快递代拿系统"
     description="快递代拿系统，SpringBoot的最佳实践"
