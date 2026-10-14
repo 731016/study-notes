@@ -630,6 +630,18 @@ permalink: /notes/资源导航/link/
 ### 项目
 <CardGrid cols="3">
   <ImageCard
+    image="https://www.smartadmin.vip/smart-admin-logo.png"
+    title="SmartAdmin | 1024创新实验室"
+    description="SmartAdmin 是由【1024创新实验室】使用基于SpringBoot + Sa-Token + Mybatis-Plus 和 Vue3 + Vite5 + Ant Design Vue 4 (同时支持JavaScript和TypeScript双版本) 并以高质量代码为核心、简洁、高效、安全的快速开发平台！ 我开源一套漂亮的代码和一套整洁的代码规范，让大家在这浮躁的代码世界里感受到一股把代码写好的清流！同时又让开发者节省大量的时间，减少加班，快乐工作，热爱代码，更热爱生活。"
+    href="https://www.smartadmin.vip/"
+  />
+  <ImageCard
+    image="https://localsend.org/apple-touch-icon.png"
+    title="LocalSend：与附近设备共享文件"
+    description="LocalSend 是一款免费、开源、跨平台的工具，可让您与附近设备共享文件。"
+    href="https://localsend.org/zh-CN"
+  />
+  <ImageCard
     image="https://doc.ruoyi.vip/images/favicon.ico"
     title="介绍 | RuoYi"
     description="使用若依快速构建web应用程序"
@@ -658,6 +670,12 @@ permalink: /notes/资源导航/link/
     title="github精彩列表"
     description="精彩列表是由社区精心策划的精彩内容列表"
     href="https://github.com/topics/awesome"
+  />
+  <ImageCard
+    image="https://foruda.gitee.com/avatar/1790509371976335178/5469596_lab1024_1790509371.png"
+    title="六边形工程师（1024创新实验室）/智运物流TMS（SmartTMS）: 面向物流运输行业的专业 TMS 物流管理系统，基于 SmartAdmin （Java+Vue3）打造，代码风格规范，便于二次开发与长期维护。功能非常齐全，覆盖货主、司机、车辆、挂车、运单、费用、财务、报表、审批、油卡、固定资产等核心业务，同时支持管理后台与移动端协同，能够较好满足物流企业日常运营、调度管理和数据分析需求。系统整体设计兼顾稳定性、安全性与扩展性，符合三级等保网络安全要求"
+    description="六边形工程师（1024创新实验室）/智运物流TMS（SmartTMS）: 面向物流运输行业的专业 TMS 物流管理系统，基于 SmartAdmin （Java+Vue3）打造，代码风格规范，便于二次开发与长期维护。功能非常齐全，覆盖货主、司机、车辆、挂车、运单、费用、财务、报表、审批、油卡、固定资产等核心业务，同时支持管理后台与移动端协同，能够较好满足物流企业日常运营、调度管理和数据分析需求。系统整体设计兼顾稳定性、安全性与扩展性，符合三级等保网络安全要求"
+    href="https://gitee.com/lab1024/SmartTMS"
   />
 </CardGrid>
 
