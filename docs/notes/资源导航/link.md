@@ -677,6 +677,24 @@ permalink: /notes/资源导航/link/
     description="六边形工程师（1024创新实验室）/智运物流TMS（SmartTMS）: 面向物流运输行业的专业 TMS 物流管理系统，基于 SmartAdmin （Java+Vue3）打造，代码风格规范，便于二次开发与长期维护。功能非常齐全，覆盖货主、司机、车辆、挂车、运单、费用、财务、报表、审批、油卡、固定资产等核心业务，同时支持管理后台与移动端协同，能够较好满足物流企业日常运营、调度管理和数据分析需求。系统整体设计兼顾稳定性、安全性与扩展性，符合三级等保网络安全要求"
     href="https://gitee.com/lab1024/SmartTMS"
   />
+  <ImageCard
+    image="https://mybatis-plus-join.github.io/log.svg"
+    title="MyBatis-Plus-Join 🚀 为简化开发而生 | MyBatis-Plus-Join"
+    description="MyBatis-Plus 最佳搭档，只做增强不做改变，为简化开发、提高效率而生。"
+    href="https://mybatis-plus-join.github.io/"
+  />
+  <ImageCard
+    image="https://jeeflow-doc.mldong.com/svg/doc.svg"
+    title="jeeflow docs"
+    description="jeeflow 工作流引擎 · 多语言实现（Java/Go/Python/Node/PHP/Rust/MoonBit/C#）文档"
+    href="https://jeeflow-doc.mldong.com/"
+  />
+  <ImageCard
+    image="https://doc.myprint.top/myprint-icon_doc_right.svg"
+    title="MyPrint | 打印设计器"
+    description="操作简单，组件丰富的一站式打印解决方案打印设计器"
+    href="https://doc.myprint.top/"
+  />
 </CardGrid>
 
 ### 图书
