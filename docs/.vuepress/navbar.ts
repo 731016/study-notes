@@ -110,7 +110,12 @@ export const navbar = defineNavbarConfig([
                 link: 'https://xiaofei.site/link-preview-tool/',
                 icon: 'mdi-light:link-variant',
             },
-            
+            {
+                text: 'SPC采集管理',
+                link: 'http://43.136.170.4:8000/msgQueue/kafka-point-manage',
+                icon: 'mdi-light:link-variant',
+                badge: '账户：spcadmin,密码：spcadmin123456'
+            }
         ]
     },
     {
