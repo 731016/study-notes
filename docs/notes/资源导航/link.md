@@ -875,6 +875,18 @@ permalink: /notes/资源导航/link/
     description="HBuilderX是当前最快的HTML开发工具，强大的代码助手帮你快速完成开发，最全的语法库和浏览器兼容性数据让浏览器碎片化不再头痛"
     href="https://www.dcloud.io/hbuilderx.html"
   />
+  <ImageCard
+    image="https://prisma.nodejs.cn/img/logo.svg"
+    title="Prisma 中文网"
+    description="在官方文档中开始使用 Prisma，并通过参考文档、指南等详细了解 Prisma 的所有功能。"
+    href="https://prisma.nodejs.cn/"
+  />
+  <ImageCard
+    image="https://openrouter.ai/images/home/og-home.png"
+    title="OpenRouter"
+    description="The unified interface for every model. Find the best models & prices for your prompts"
+    href="https://openrouter.ai/"
+  />
 </CardGrid>
 
 #### 笔记
